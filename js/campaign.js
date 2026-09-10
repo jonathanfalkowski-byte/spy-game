@@ -20,7 +20,7 @@ window.CAMPAIGN = {
     { id: "c13", num: 13, title: "Senator Ives", start: "c13_start" },
     { id: "c14", num: 14, title: "Aftertaste", start: "c14_start" },
     { id: "c15", num: 15, title: "Second Pass", start: "c15_start" },
-    { id: "c16", num: 16, title: "Maren", start: "c16_start" },
+    { id: "c16", num: 16, title: "Pell", start: "c16_start" },
     { id: "c17", num: 17, title: "Subject Zero", start: "c17_start" },
     { id: "c18", num: 18, title: "War of Firms", start: "c18_start" },
     { id: "c19", num: 19, title: "Live Test", start: "c19_start" },
@@ -32,13 +32,14 @@ window.CAMPAIGN = {
 
 window.CAST = {
   kane: "Recruiter Kane — Revelations intake. Dry, legalistic, already selling you.",
-  voss: "Handler Voss — older woman, field sadist with a code. Thinks she can still pull you out.",
-  crowe: "Helene Crowe — Helix Director of Special Projects. Mid-forties. Blackmail as intimacy.",
+  voss: "Handler Voss — older woman, field sadist with a code. Thinks she can still pull you out. One of the few women in the chain who is not here to convert you.",
+  crowe: "Julian Crowe — Helix Director of Special Projects. Mid-forties. Blackmail as intimacy. He is the man who wants to own the legend.",
   vale: "Dr. Soren Vale — CHRYSALIS clinician. Never leers. That is the cruelty.",
   ives: "Senator Ives — 58, export-codes, daughter he mentions when drunk.",
   mia: "Mia — childhood friend, civilian nurse, leverage. Adult. Not a spy.",
-  maren: "Maren Pell — Crowe's lieutenant. Younger, hungrier, wants your body as a report.",
-  zero: "Subject Zero — successful conversion. Warning and advertisement.",
+  maren: "Marek Pell — Crowe's lieutenant. Younger, hungrier, wants your body as a report.",
+  zero: "Subject Zero — a woman they finished converting. Warning and advertisement.",
   radek: "Captain Radek — Helix security. If combat path, your bruise-twin.",
-  lila: "Nurse Lila — Vale's assistant. Kindness that is still a procedure.",
+  lila: "Nurse Lyle — Vale's assistant. Kindness that is still a procedure.",
+  ellis: "Ellis — House of Knives honey instructor. Adult man. Extraction that looks like a date.",
 };

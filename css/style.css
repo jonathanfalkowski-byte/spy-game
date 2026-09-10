@@ -109,27 +109,425 @@ body {
 
 .stage {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 20px;
+  align-items: start;
 }
 
 .dossier {
   background: var(--panel);
   padding: 16px;
   border: 1px solid #2a3144;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+}
+
+.who-portrait {
+  margin: 0 0 8px;
+  position: relative;
+  background: #07080d;
+  border: 1px solid #2a3144;
+  min-height: 420px;
+}
+
+.who-portrait img {
+  display: block;
+  width: 100%;
+  height: 460px;
+  object-fit: contain;
+  object-position: center top;
+  background: #07080d;
+}
+
+.who-portrait img.is-hidden,
+.who-nude[hidden] {
+  display: none;
+}
+
+.who-nude {
+  position: relative;
+  height: 460px;
+  background: radial-gradient(ellipse at 50% 20%, #1a1d28, #07080d 70%);
+}
+
+.who-nude span {
+  position: absolute;
+  display: block;
+}
+
+.fig-head {
+  left: 50%;
+  top: 18px;
+  width: 36px;
+  height: 42px;
+  margin-left: -18px;
+  border-radius: 50% 50% 46% 46%;
+  background: #c9b09a;
+  z-index: 3;
+}
+
+.fig-head::before,
+.fig-head::after {
+  content: "";
+  position: absolute;
+  background: #2a2420;
+  border-radius: 50%;
+}
+
+.fig-head::before {
+  width: 5px;
+  height: 6px;
+  left: 8px;
+  top: 16px;
+  box-shadow: 15px 0 0 #2a2420;
+}
+
+.fig-head::after {
+  width: 10px;
+  height: 4px;
+  left: 13px;
+  top: 28px;
+  border-radius: 0 0 8px 8px;
+  background: #a87878;
+}
+
+.fig-neck {
+  left: 50%;
+  top: 54px;
+  width: 14px;
+  height: 22px;
+  margin-left: -7px;
+  background: #c4ab96;
+  z-index: 2;
+}
+
+.fig-torso {
+  left: 50%;
+  top: 72px;
+  width: 52px;
+  height: 88px;
+  margin-left: -26px;
+  background: #c4ab96;
+  border-radius: 18px 18px 10px 10px;
+  z-index: 2;
+}
+
+.fig-breast {
+  display: none;
+  top: 86px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #c9b09a;
+  z-index: 3;
+}
+
+.fig-breast-l { left: 50%; margin-left: -26px; }
+.fig-breast-r { left: 50%; margin-left: 4px; }
+
+.who-nude[data-gender="female"] .fig-breast {
+  display: block;
+}
+
+.who-nude[data-gender="female"] .fig-torso {
+  width: 48px;
+  margin-left: -24px;
+  border-radius: 16px 18px 22px 22px;
+}
+
+.fig-hip {
+  left: 50%;
+  top: 150px;
+  width: 56px;
+  height: 42px;
+  margin-left: -28px;
+  background: #c4ab96;
+  border-radius: 8px 8px 20px 20px;
+  z-index: 2;
+}
+
+.who-nude[data-gender="female"] .fig-hip {
+  width: 62px;
+  margin-left: -31px;
+  height: 46px;
+}
+
+.fig-arm {
+  top: 80px;
+  width: 12px;
+  height: 110px;
+  background: #c4ab96;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.fig-arm-l { left: 50%; margin-left: -42px; transform: rotate(8deg); }
+.fig-arm-r { left: 50%; margin-left: 30px; transform: rotate(-8deg); }
+
+.who-nude[data-gender="female"] .fig-arm-l { margin-left: -40px; }
+.who-nude[data-gender="female"] .fig-arm-r { margin-left: 28px; }
+
+.fig-leg {
+  top: 188px;
+  width: 16px;
+  height: 168px;
+  background: #c4ab96;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.fig-leg-l { left: 50%; margin-left: -22px; }
+.fig-leg-r { left: 50%; margin-left: 6px; }
+
+.who-nude[data-gender="female"] .fig-leg {
+  width: 15px;
+}
+
+.fig-foot {
+  top: 348px;
+  width: 28px;
+  height: 12px;
+  background: #c4ab96;
+  border-radius: 4px 12px 8px 4px;
+  z-index: 3;
+}
+
+.fig-foot-l { left: 50%; margin-left: -32px; }
+.fig-foot-r { left: 50%; margin-left: 4px; transform: scaleX(-1); }
+
+.fig-hair-back,
+.fig-hair-front {
+  background: #2a1f18;
+  z-index: 4;
+}
+
+.fig-hair-back {
+  left: 50%;
+  top: 14px;
+  width: 42px;
+  height: 48px;
+  margin-left: -21px;
+  border-radius: 20px 20px 8px 8px;
+}
+
+.fig-hair-front {
+  left: 50%;
+  top: 16px;
+  width: 38px;
+  height: 18px;
+  margin-left: -19px;
+  border-radius: 16px 16px 0 0;
+  z-index: 5;
+}
+
+.who-nude[data-look="field"] .fig-hair-back {
+  height: 92px;
+  width: 28px;
+  margin-left: 4px;
+  border-radius: 8px 12px 18px 18px;
+  top: 28px;
+}
+
+.who-nude[data-look="legend"] .fig-hair-back {
+  height: 36px;
+  width: 38px;
+  margin-left: -19px;
+  border-radius: 50%;
+}
+
+.who-nude[data-look="honey"] .fig-hair-back,
+.who-nude[data-look="honey"] .fig-hair-front {
+  background: linear-gradient(180deg, #5c3d28, #c4a574);
+}
+
+.who-nude[data-look="honey"] .fig-hair-back {
+  height: 110px;
+  width: 46px;
+  margin-left: -23px;
+  border-radius: 18px 20px 24px 24px;
+}
+
+.who-nude[data-look="slut"] .fig-hair-back,
+.who-nude[data-look="slut"] .fig-hair-front {
+  background: #c9a35a;
+}
+
+.who-nude[data-look="slut"] .fig-hair-back {
+  height: 130px;
+  width: 50px;
+  margin-left: -25px;
+  border-radius: 22px 24px 30px 28px;
+}
+
+.who-nude[data-look="owned"] .fig-hair-back,
+.who-nude[data-look="owned"] .fig-hair-front {
+  background: #6b1528;
+}
+
+.who-nude[data-look="owned"] .fig-hair-back {
+  height: 140px;
+  width: 48px;
+  margin-left: -24px;
+  border-radius: 8px 20px 12px 20px;
+}
+
+.who-nude[data-look="talent"] .fig-hair-back,
+.who-nude[data-look="talent"] .fig-hair-front {
+  background: #e8e4d8;
+}
+
+.who-nude[data-look="talent"] .fig-hair-back {
+  height: 96px;
+  width: 16px;
+  margin-left: -30px;
+  top: 28px;
+  border-radius: 10px 8px 22px 20px;
+  box-shadow: 38px 4px 0 0 #e8e4d8;
+}
+
+.who-nude[data-look="talent"] .fig-hair-front {
+  width: 34px;
+  height: 16px;
+  margin-left: -17px;
+}
+
+.who-nude[data-gender="female"][data-look="talent"] .fig-torso {
+  width: 64px;
+  margin-left: -32px;
+}
+
+.who-nude[data-gender="female"][data-look="talent"] .fig-breast {
+  width: 36px;
+  height: 36px;
+  top: 78px;
+}
+
+.who-nude[data-gender="female"][data-look="talent"] .fig-breast-l {
+  margin-left: -38px;
+}
+
+.who-nude[data-gender="female"][data-look="talent"] .fig-breast-r {
+  margin-left: 2px;
+}
+
+.who-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 0 0 10px;
+}
+
+.who-toggle button {
+  background: #161b27;
+  color: var(--ink);
+  border: 1px solid #3a4558;
+  padding: 8px 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.who-toggle button.is-on,
+.who-toggle button:hover,
+.who-toggle button:focus {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+.sheet-pending {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--accent);
 }
 
 .silhouette {
   height: 180px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   background:
     linear-gradient(180deg, #2a2f3d, #151821);
   clip-path: polygon(50% 8%, 62% 22%, 58% 38%, 78% 48%, 72% 92%, 28% 92%, 22% 48%, 42% 38%, 38% 22%);
+  position: relative;
 }
 
 .silhouette[data-gender="female"] {
   clip-path: polygon(50% 6%, 64% 20%, 58% 36%, 82% 48%, 70% 92%, 30% 92%, 18% 48%, 42% 36%, 36% 20%);
   background: linear-gradient(180deg, #3a3044, #1a1520);
+}
+
+.silhouette[data-look="honey"] {
+  background: linear-gradient(180deg, #4a3a38, #1c1418);
+}
+
+.silhouette[data-look="slut"],
+.silhouette[data-look="owned"] {
+  clip-path: polygon(50% 5%, 66% 18%, 60% 34%, 88% 46%, 72% 92%, 28% 92%, 12% 46%, 40% 34%, 34% 18%);
+  background: linear-gradient(180deg, #6a2c44, #1a0e18);
+}
+
+.silhouette[data-look="talent"] {
+  clip-path: polygon(50% 4%, 68% 16%, 62% 32%, 90% 45%, 74% 92%, 26% 92%, 10% 45%, 38% 32%, 32% 16%);
+  background: linear-gradient(180deg, #8a3a5c, #220818);
+}
+
+.silhouette[data-pet="1"]::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  right: 38%;
+  top: 18%;
+  height: 8px;
+  background: #c4a574;
+  border-radius: 2px;
+}
+
+.silhouette[data-written="1"] {
+  background-image: repeating-linear-gradient(
+    -18deg,
+    transparent,
+    transparent 10px,
+    rgba(196, 90, 110, 0.35) 10px,
+    rgba(196, 90, 110, 0.35) 12px
+  );
+}
+
+.look-label {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sheet-h {
+  margin: 14px 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.sheet-p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #c8c0b4;
+}
+
+.sheet-list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #c8c0b4;
+}
+
+.sheet-list li {
+  margin-bottom: 4px;
 }
 
 .dossier dt {
@@ -163,6 +561,12 @@ body {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
+  opacity: 0.35;
+  transition: opacity 0.22s ease;
+}
+
+.scene-frame img.art-in {
+  opacity: 1;
 }
 
 .panel .location,
@@ -176,6 +580,14 @@ body {
 
 .panel .location {
   padding-top: 8px;
+}
+
+.travel {
+  margin: 0;
+  padding: 10px 28px 0;
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.06em;
 }
 
 .location {

@@ -20,22 +20,21 @@ NODE FIELDS:
 - journal: short dossier line
 - require on choices: { flag, notFlag, anyFlag:[], startGender, gender, min:{}, max:{} }
 
-TOKENS in prose: {{name}} {{he}} {{him}} {{his}} {{himself}}
+TOKENS in prose: {{name}} only. Narration is second person (you / your / yourself). Never interpolate player pronouns with {{he}}/{{him}}/{{she}}/{{her}} — those become she/her on a female start and collide with other women in the room. NPCs talking about the player in the room should use you, {{name}}, or they.
 
-CAST (adults 21+ only): Kane, Handler Voss, Helene Crowe, Dr Soren Vale, Senator Ives, Mia Renn, Maren Pell, Subject Zero, Captain Radek, Nurse Lila.
+CAST (adults 21+ only): Kane (m), Handler Voss (f — extraction, not the corrupter), Julian Crowe (m), Dr Soren Vale (m), Senator Ives (m), Mia Renn (f — civilian), Marek Pell (m), Subject Zero (f — finished conversion), Captain Radek (m), Nurse Lyle (m), Ellis (m — honey instructor).
+Men run Helix and Revelations. They convert and corrupt women (the player if she is female or converted; Subject Zero as the warning). Do not make Crowe, Pell, Vale, Ellis, Lyle, or Kane women. Voss and Mia stay women.
 
 WORLD: The Stack (city). Revelations (private intel). Helix Dynamics / Project CHRYSALIS.
 
-TONE: Literary spy fiction with explicit sex when the plot earns it (blackmail, honeytrap, clinic). Not joke porn. Difficult choices. Consequences stick via flags.
+TONE: Spy fiction, second person, specific rooms and bodies. Prefer plain sentences over metaphors and riddles. Do not write "X is a small country," "the cursor is a knife," "hunger is a hallway," or other lines the player has to decode. If a Sunday soup date is at risk, say that. Sex is explicit when the plot earns it, and it should get hotter and raunchier as corruption, heat, and depravity rise. Difficult choices. Consequences stick via flags.
 
-LENGTH HARD REQUIREMENT:
-- Minimum 5500 words of unique prose in the file (count words in pages/text strings).
-- At least 28 nodes.
-- A main spine of ~20 continue-beats plus 3-6 real choice forks that rejoin.
-- Do not pad with repeated sentences. Specific sensory detail: rain grid, clinics, trams, offices, bodies.
+LENGTH:
+- Keep the same nodes and roughly the same page count. Pages can be shorter if they are clearer (about 80–200 words). Do not pad with metaphors.
+- Specific sensory detail: rain, clinics, trams, offices, bodies — named, not symbolic.
 
 FLAGS YOU MAY SET (only these names):
-combat ghost honey prep slept_crowe transitioned half depraved forced_mod sold_voss honest lied_voss double owned ives mia_protected mia_hinted mia_compromised mia_alive shutdown beaten initiated stalled_body agreed_all new_name clinic asked_mia startMale startFemale
+combat ghost honey prep slept_crowe transitioned half depraved forced_mod sold_voss honest lied_voss double owned ives mia_protected mia_hinted mia_compromised mia_alive shutdown beaten initiated stalled_body agreed_all new_name clinic asked_mia startMale startFemale allow_homo hetero_only bound written pet exhibited creampied ganged masochist bimbo
 
 Every chapter file MUST define cXX_start.
 Every chapter except c22 MUST end a spine node with next: "cYY_start" of the following chapter.

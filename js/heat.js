@@ -24,8 +24,8 @@
     c07_heat_fork: {
       chapter: "c07",
       location: "Inner room",
-      speaker: "Helene Crowe",
-      text: "She wipes your mouth with her thumb and looks at the lens like a third person in the bed.\n\n\"The tape has a spine,\" she says. \"I can stop at spine. Or I can make you filthy enough that no lawyer calls it acting.\"",
+      speaker: "Julian Crowe",
+      text: "He wipes your mouth with his thumb and looks at the lens like a third person in the bed.\n\n\"The tape has a spine,\" he says. \"I can stop at spine. Or I can make you filthy enough that no lawyer calls it acting.\"",
       choices: [
         {
           text: "Spine only. Get the recording and get dressed.",
@@ -33,12 +33,12 @@
           effects: { integrity: 4 },
         },
         {
-          text: "Let her wreck you for the lens. You want it on the record.",
+          text: "Let him wreck you for the lens. You want it on the record.",
           to: "c07_heat_wreck1",
           effects: { corruption: 12, integrity: -8, flags: { slept_crowe: true } },
         },
         {
-          text: "Ask her to keep you on the floor until you can't talk.",
+          text: "Ask him to keep you on the floor until you can't talk.",
           to: "c07_heat_floor1",
           require: { min: { corruption: 35 } },
           effects: { corruption: 16, integrity: -12, flags: { depraved: true } },
@@ -51,8 +51,8 @@
       location: "Inner room",
       speaker: "",
       pages: [
-        "She puts you on your knees facing the glass. The pupil is a black coin. She stands over you, dress gone, and feeds you her cunt like a briefing: slow, then mean, her fist in your hair so the camera gets your eyes watering.\n\n\"Look at it while you eat me,\" she says. \"I want playback to show you knew who was watching.\" You look. You lick. She tastes like salt and expensive soap. When she grinds, your nose is in her and you can't breathe except when she lets you.",
-        "She comes on your tongue with a hiss through her teeth, then pulls you off by the hair and slaps your cheek once, light, possessive, not a beating. \"Again. Deeper.\" She fucks your mouth with her hips until spit runs down your chin onto your chest. The lens drinks it.\n\nWhen she is shaking she pushes you onto your back and sits on your face. You hold her thighs because falling would look like refusal. She rides your mouth until a second orgasm wrecks her composure. For one second she is just a woman coming. Then she is Crowe again.",
+        "He puts you on your knees facing the glass. The pupil is a black coin. He stands over you, shirt gone, and feeds you his cock slow, then mean, his fist in your hair so the camera gets your eyes watering.\n\n\"Look at it while you eat me,\" he says. \"I want playback to show you knew who was watching.\" You look. You lick. He tastes like salt and expensive soap. When he grinds, your nose is in him and you can't breathe except when he lets you.",
+        "He comes on your tongue with a hiss through his teeth, then pulls you off by the hair and slaps your cheek once, light, possessive, not a beating. \"Again. Deeper.\" He fucks your mouth with his hips until spit runs down your chin onto your chest. The lens drinks it.\n\nWhen he is shaking he pushes you onto your back and fucks your mouth from above. You hold his thighs because falling would look like refusal. He uses your throat until a second orgasm wrecks his composure. For one second he is just a man coming. Then he is Crowe again.",
       ],
       next: "c07_heat_wreck2",
     },
@@ -62,8 +62,8 @@
       location: "Inner room",
       speaker: "",
       pages: [
-        "She turns around and takes you with her hand, then her mouth, filthy and precise. If you have a cock she sucks you until you are leaking on her tongue and she stops, holds you there, looks at the glass. \"Don't you dare come until I say.\" You last because the tape is a gun.\n\nIf you have a cunt she spreads you with two fingers and sucks your clit like she is extracting a confession. You try to stay quiet. She won't allow quiet. \"Give me the sound. Pleasure is harder to cross-examine.\"",
-        "She lets you come with her fingers in you and her other hand on your throat, not choking, placing. You soak her wrist or spend on her tongue. She shows the wet to the lens like evidence.\n\nThen she fucks you: fingers, a strap she takes from a drawer like office supplies, or she puts you inside her and bounces until the couch complains. She makes you say yes, {{name}}, look at the glass, I want this. You say it. You almost mean it. That is the point of the recording.",
+        "He turns around and takes you with his hand, then his mouth, filthy and precise. If you have a cock he sucks you until you are leaking on his tongue and he stops, holds you there, looks at the glass. \"Don't you dare come until I say.\" You last because the tape can ruin you.\n\nIf you have a cunt he spreads you with two fingers and sucks your clit like he is extracting a confession. You try to stay quiet. He won't allow quiet. \"Give me the sound. Pleasure is harder to argue with in court.\"",
+        "He lets you come with his fingers in you and his other hand on your throat, not choking, placing. You soak his wrist or spend on his tongue. He shows the wet to the lens like evidence.\n\nThen he fucks you: fingers, his cock, already hard, no drawer required, or he turns you and fucks you until the couch complains. He makes you say yes, {{name}}, look at the glass, I want this. You say it. You almost mean it. That is the point of the recording.",
       ],
       next: "c07_sex_camera",
     },
@@ -73,8 +73,8 @@
       location: "Inner room · floor",
       speaker: "",
       pages: [
-        "She laughs, pleased, and points at the carpet. \"On your back. Legs open. I am going to use you like a toy that signed a form.\" You go down. The floor is hard. She kneels over your mouth first, then crawls down and sits on your cock or straps into you, grinding until your thoughts thin to wet heat.\n\nShe spits on you. She talks dirty in the same voice she uses on donors. \"This is what you are now. A mouth. A hole. A pretty problem I get to solve on camera.\" You moan. She films the moan with her eyes.",
-        "She fucks you until you come once, then doesn't stop. Overstimulation makes you twist; she pins your wrists with one hand and keeps going. \"Good. Ugly. I want ugly. Pretty is deniable.\"\n\nWhen you start crying she kisses the tears and keeps her fingers in you. She makes you lick them clean after. Then she puts those fingers in her own mouth, looking at the lens, and smiles with her teeth. \"Mine,\" she tells the tape. You believe her.",
+        "He laughs, pleased, and points at the carpet. \"On your back. Legs open. I am going to use you like a toy that signed a form.\" You go down. The floor is hard. He kneels over your mouth first, then crawls down and fucks you, grinding until your thoughts thin to wet heat.\n\nHe spits on you. He talks dirty in the same voice he uses on donors. \"This is what you are now. A mouth. A hole. A pretty problem I get to solve on camera.\" You moan. He watches the moan like evidence.",
+        "He fucks you until you come once, then doesn't stop. Overstimulation makes you twist; he pins your wrists with one hand and keeps going. \"Good. Ugly. I want ugly. Pretty is deniable.\"\n\nWhen you start crying he kisses the tears and keeps his fingers in you. He makes you lick them clean after. Then he puts those fingers in his own mouth, looking at the lens, and smiles with his teeth. \"Mine,\" he tells the tape. You believe him.",
       ],
       next: "c07_sex_camera",
     },
@@ -82,8 +82,8 @@
     c08_heat_newbody: {
       chapter: "c08",
       location: "Wing C · table",
-      speaker: "Lila",
-      text: "The work is seated. Your new nerves are still ringing. Lila's glove is off. Vale has stepped out to dictate.\n\n\"You can wait for aftercare,\" she says quietly. \"Or you can feel it now, while it's screaming, so the first orgasm isn't in a Helix tram.\"",
+      speaker: "Lyle",
+      text: "The work is seated. Your new nerves are still ringing. Lyle's glove is off. Vale has stepped out to dictate.\n\n\"You can wait for aftercare,\" he says quietly. \"Or you can feel it now, while it's screaming, so the first orgasm isn't in a Helix tram.\"",
       choices: [
         {
           text: "Wait. You will not come on their table.",
@@ -91,7 +91,7 @@
           effects: { integrity: 6 },
         },
         {
-          text: "Touch yourself. Learn the new wiring in front of her.",
+          text: "Touch yourself. Learn the new wiring in front of him.",
           to: "c08_heat_touch",
           effects: { corruption: 10, body: 4 },
         },
@@ -103,8 +103,8 @@
       location: "Wing C · table",
       speaker: "",
       pages: [
-        "She doesn't help at first. She watches. You slide a hand between your legs. If they gave you a cunt it is swollen, slick with their gel and your own want, clit so loud a brush makes your hips jump. You rub in small circles and hate how fast you get there.\n\nIf they left you a cock it is wet at the tip, too sensitive, and your chest aches when you stroke. You come in a few minutes like a teenager, shaking, making a noise the monitors log as 'bridge response.'",
-        "Lila's breath catches. \"Again,\" she whispers. \"Slower. Find what isn't the bag.\" You try. Second time takes longer. You finger yourself or stroke until your thighs shake and you soak the pad. She finally puts her ungloved fingers over yours and steers.\n\nYou come on her hand with your other fist in your mouth. She tastes her fingers after, clinical and not. \"That's yours,\" she says. \"Remember the difference.\"",
+        "He doesn't help at first. He watches. You slide a hand between your legs. If they gave you a cunt it is swollen, slick with their gel and your own want, clit so loud a brush makes your hips jump. You rub in small circles and hate how fast you get there.\n\nIf they left you a cock it is wet at the tip, too sensitive, and your chest aches when you stroke. You come in a few minutes like a teenager, shaking, making a noise the monitors log as 'bridge response.'",
+        "Lyle's breath catches. \"Again,\" he whispers. \"Slower. Find what isn't the bag.\" You try. Second time takes longer. You finger yourself or stroke until your thighs shake and you soak the pad. He finally puts his ungloved fingers over yours and steers.\n\nYou come on his hand with your other fist in your mouth. He tastes his fingers after, clinical and not. \"That's yours,\" he says. \"Remember the difference.\"",
       ],
       next: "c08_recovery",
     },
@@ -112,8 +112,8 @@
     c08_lila_heat_fork: {
       chapter: "c08",
       location: "Wing C · recovery",
-      speaker: "Lila",
-      text: "She is still on the bed, mouth wet, smock wrinkled. The lock is still red.\n\n\"That was aftercare,\" she says. \"If you want filthy, say so. I will still be a nurse in the morning. Tonight I can be a mouth.\"",
+      speaker: "Lyle",
+      text: "He is still on the bed, mouth wet, smock wrinkled. The lock is still red.\n\n\"That was aftercare,\" he says. \"If you want filthy, say so. I will still be a nurse in the morning. Tonight I can be a mouth.\"",
       choices: [
         {
           text: "Enough. Tea. You need a person, not another protocol.",
@@ -133,8 +133,8 @@
       location: "Wing C · recovery",
       speaker: "",
       pages: [
-        "She strips the smock. Under it she is twenty-eight, small-breasted, a scar on her knee, hair coming down. She kisses you like she is stealing something Vale owns. You put her on her back and eat her until she fists the cheap pillow and comes on your tongue, biting her own wrist to stay quiet.\n\nThen she rolls you and rides your cock or sits on your face again, selfish, shaking, whispering filthy nurse things: how wet the table made you, how she wanted to put her mouth on you during the drip, how she is going to hell and she does not care.",
-        "If you have a cunt she fucks you with four fingers, then her mouth, then a toy from a locked drawer that is definitely not on the aftercare pamphlet. She makes you come until you push at her head and she only slows, not stops. \"One more. For you. Not for him.\"\n\nYou break. You soak her chin. She laughs into you, wrecked. After, you lie in Helix lighting that was never meant for this, smelling like sex and antiseptic. She puts the smock back on and becomes a function. You keep the memory anyway.",
+        "He strips the smock. Under it he is twenty-eight, narrow-hipped, a scar on his knee, hair coming down. He kisses you like he is stealing something Vale owns. You put him on his back and eat him until he fists the cheap pillow and comes on your tongue, biting his own wrist to stay quiet.\n\nThen he rolls you and fucks you, or he puts his cock in your mouth again, selfish, shaking, whispering filthy nurse things: how wet the table made you, how he wanted to put his mouth on you during the drip, how he is going to hell and he does not care.",
+        "If you have a cunt he fucks you with four fingers, then his mouth, then a toy from a locked drawer that is definitely not on the aftercare pamphlet. He makes you come until you push at his head and he only slows, not stops. \"One more. For you. Not for him.\"\n\nYou break. You soak his chin. He laughs into you, wrecked. After, you lie in Helix lighting that was never meant for this, smelling like sex and antiseptic. He puts the smock back on and becomes a function. You keep the memory anyway.",
       ],
       next: "c08_glass",
     },
@@ -198,7 +198,7 @@
       location: "Helix suite · bed",
       speaker: "",
       pages: [
-        "You stay. He groans like you gave him a vote. You suck him until he is kicking the sheets, then you let him push your head, not quite cruel. He tastes like latex and whiskey-sweat. When he comes you swallow because spit on Helix sheets is a photograph waiting to happen.\n\nHe pets your hair, disgusting and sincere. \"Helene picks well.\" You hate how the praise lands in your gut as heat.",
+        "You stay. He groans like you gave him a vote. You suck him until he is kicking the sheets, then you let him push your head, not quite cruel. He tastes like latex and whiskey-sweat. When he comes you swallow because spit on Helix sheets is a photograph waiting to happen.\n\nHe pets your hair, disgusting and sincere. \"Julian picks well.\" You hate how the praise lands in your gut as heat.",
         "He gets hard again, old-man miracle, PREP or fear or you. He fucks you from behind, talking: export windows, a colleague's name, the safe backwards. You store it between the slaps of skin. You come or you don't; he does not care enough to be insulted.\n\nWhen he rolls off, the second phone is still in the trousers. Now you go get it, mouth wet, thighs wet, looking like the job.",
       ],
       next: "c13_honey_codes",
@@ -218,15 +218,15 @@
     c13_watch_heat_fork: {
       chapter: "c13",
       location: "Helix suite · watched",
-      speaker: "Helene Crowe",
-      text: "She has not joined. She could. The chair is a choice she is offering you with her eyes.",
+      speaker: "Julian Crowe",
+      text: "He has not joined. He could. The chair is a choice he is offering you with his eyes.",
       choices: [
         {
-          text: "Let her stay in the chair. Being watched is enough.",
+          text: "Let him stay in the chair. Being watched is enough.",
           to: "c13_watch_codes",
         },
         {
-          text: "Ask her to get on the bed. Two mouths. One file.",
+          text: "Ask him to get on the bed. Two mouths. One file.",
           to: "c13_watch_join",
           effects: { corruption: 16, flags: { owned: true, slept_crowe: true } },
         },
@@ -238,8 +238,8 @@
       location: "Helix suite · bed",
       speaker: "",
       pages: [
-        "Crowe stands, undresses without hurry, and the room becomes a hierarchy you can taste. She kisses Ives first, to remind him he is furniture, then she kisses you, deeper, thumb on your teeth.\n\nShe puts your mouth on her cunt while Ives fucks you. You are a sandwich of use: senator in you, director on your tongue. She instructs both of you. He obeys. You come with her clit on your lip and his cock in you and her voice saying mine.",
-        "She takes Ives' place and straps you or rides your face, while he watches, diminished, stroking himself like a man at a meeting he no longer chairs. She makes you look at him while you come. \"See? Even the vote is mine.\"\n\nAfter, she wipes you with a hotel cloth like a signature drying. \"Codes on the table. She does not kneel for you, Richard. She kneels for me.\" He puts the card where she points. You are shaking. You are also, horribly, proud.",
+        "Crowe stands, undresses without hurry, and the room becomes a hierarchy you can taste. He kisses Ives first, to remind him he is furniture, then he kisses you, deeper, thumb on your teeth, spit shared like a stamp.\n\nHe puts your mouth on his cock while Ives fucks you. You are a sandwich of use: senator in you, director on your tongue, wet, loud, instructed. Ives obeys. You come with Crowe's cock on your lip and Ives in you and Crowe's voice saying mine.",
+        "He takes Ives' place and fucks you, while Ives watches, diminished, stroking himself like a man at a meeting he no longer chairs. He makes you look at him while you come a second time, messy, unpretty. \"See? Even the vote is mine.\"\n\nAfter, he wipes you with a hotel cloth like a signature drying. \"Codes on the table. {{name}} does not kneel for you, Richard. They kneel for me.\" He puts the card where he points. You are shaking. You are also, horribly, proud.",
       ],
       next: "c13_watch_codes",
     },
@@ -247,8 +247,8 @@
     c16_heat_fork: {
       chapter: "c16",
       location: "Helix Annex 2 · Pell office",
-      speaker: "Maren Pell",
-      text: "She is still on you, slate in reach, pulse stupid. The camera's red eye is fat.\n\n\"Once can have a footnote,\" she says. \"Say no and we dress. Say yes and I put you on the desk and I file the sound.\"",
+      speaker: "Marek Pell",
+      text: "He is still on you, slate in reach, pulse stupid. The camera's red eye is fat.\n\n\"Once can have a footnote,\" he says. \"Say no and we dress. Say yes and I put you on the desk and I file the sound.\"",
       choices: [
         {
           text: "Dress. Once was the deal.",
@@ -256,7 +256,7 @@
           effects: { integrity: 4 },
         },
         {
-          text: "Desk. Footnote. Let her write the wet into the minutes.",
+          text: "Desk. Footnote. Let him write the wet into the minutes.",
           to: "c16_heat_desk",
           effects: { corruption: 10, flags: { depraved: true } },
         },
@@ -268,8 +268,8 @@
       location: "Helix Annex 2 · Pell desk",
       speaker: "",
       pages: [
-        "She clears the slate with one arm and puts you on the wood. Cold laminate on your back. She spreads your legs and eats you or sucks you with hungry, unpretty sounds, then stands and fucks you against the edge, knit still half on, watching the door like a professional even while she moans.\n\n\"Say my name,\" she orders. You say Maren. She slams in harder. \"Again.\" You say it until it is a rhythm.",
-        "She flips you and takes you from behind, one hand on the back of your neck, the other recording a voice memo: time, cooperative, vocalization, second climax. You come on her fingers with your cheek on a folder labeled SPECIAL PROJECTS.\n\nShe comes with her teeth in your shoulder, then laughs into the microphone. \"End note.\" She pulls out, wipes you with a memo she will shred, and kisses your mouth. \"Tuesdays just got longer. Dress. You look like my report.\"",
+        "He clears the slate with one arm and puts you on the wood. Cold laminate on your back. He spreads your legs and eats you or sucks you with hungry, unpretty sounds, then stands and fucks you against the edge, knit still half on, watching the door like a professional even while he moans.\n\n\"Say my name,\" he orders. You say Marek. He slams in harder. \"Again.\" You say it until it is a rhythm.",
+        "He flips you and takes you from behind, one hand on the back of your neck, the other recording a voice memo: time, cooperative, vocalization, second climax. You come on his fingers with your cheek on a folder labeled SPECIAL PROJECTS.\n\nShe comes with his teeth in your shoulder, then laughs into the microphone. \"End note.\" He pulls out, wipes you with a memo he will shred, and kisses your mouth. \"Tuesdays just got longer. Dress. You look like my report.\"",
       ],
       next: "c16_yield_report",
     },
@@ -336,15 +336,15 @@
     c21_crowe_heat_fork: {
       chapter: "c21",
       location: "A rented dark · bed",
-      speaker: "Helene Crowe",
-      text: "The brass lamp is still on. She is still in you, or still wet on your mouth. Dawn is a rumor she owns.\n\n\"I can leave you stamped and sleeping,\" she says. \"Or I can make this room a suite for one more hour and you can be as filthy as you were on my floor.\"",
+      speaker: "Julian Crowe",
+      text: "The brass lamp is still on. He is still in you, or still wet on your mouth. Dawn is a rumor he owns.\n\n\"I can leave you stamped and sleeping,\" he says. \"Or I can make this room a suite for one more hour and you can be as filthy as you were on my floor.\"",
       choices: [
         {
-          text: "Keep the stamp. Let her watch the window.",
+          text: "Keep the stamp. Let his watch the window.",
           to: "c21_crowe_after",
         },
         {
-          text: "Ask to be used. No hearing-proof voice. Just her.",
+          text: "Ask to be used. No hearing-proof voice. Just him.",
           to: "c21_crowe_more",
           effects: { corruption: 12, flags: { owned: true } },
         },
@@ -356,8 +356,8 @@
       location: "A rented dark · bed",
       speaker: "",
       pages: [
-        "She smiles with teeth. \"Darling.\" She puts you on your back and sits on your face, then on your cock, then on the cheap headboard while you crawl to her. She is loud now, a little, the honesty she bills. You eat her until your jaw aches. She comes on your mouth and makes you kiss her after so you taste it together.\n\nShe fucks you with the strap she brought in the coat, because of course she did, and she talks filth that would not survive a hearing: how you look wrecked, how she will keep you, how she will show Maren the bruise if you are very good.",
-        "You come crying, angry, hard. She likes the anger. She fucks you through it. After, she holds your throat and makes you say mine. You say it. The lamp coins your wet skin.\n\n\"There,\" she whispers, almost a person. \"That is the night. Tomorrow I am a director again. Tonight you are the only file I want open.\" She does not sleep. You do, a little, with her fingers still in you like a bookmark.",
+        "He smiles with teeth. \"Darling.\" He puts you on your back and fucks your mouth, then fucks you, then sits against the cheap headboard while you crawl to him. He is loud now, a little, the honesty he bills. You eat him until your jaw aches. He comes on your mouth and makes you kiss him after so you taste it together.\n\nHe fucks you with his cock, already hard, and he talks filth that would not survive a hearing: how you look wrecked, how he will keep you, how he will show Marek the bruise if you are very good.",
+        "You come crying, angry, hard. He likes the anger. He fucks you through it. After, he holds your throat and makes you say mine. You say it. The lamp coins your wet skin.\n\n\"There,\" he whispers, almost a person. \"That is the night. Tomorrow I am a director again. Tonight you are the only file I want open.\" He does not sleep. You do, a little, with his fingers still in you like a bookmark.",
       ],
       next: "c21_crowe_after",
     },

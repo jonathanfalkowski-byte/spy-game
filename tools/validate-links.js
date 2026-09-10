@@ -13,6 +13,8 @@ const ids = new Set();
 const refs = [];
 collect(fs.readFileSync("js/story.js", "utf8"), ids, refs);
 collect(fs.readFileSync("js/heat.js", "utf8"), ids, refs);
+collect(fs.readFileSync("js/talent.js", "utf8"), ids, refs);
+collect(fs.readFileSync("js/kink.js", "utf8"), ids, refs);
 const dir = "js/chapters";
 for (const f of fs.readdirSync(dir).filter((n) => /^c\d+\.js$/.test(n))) {
   collect(fs.readFileSync(path.join(dir, f), "utf8"), ids, refs);
