@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revelations</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div>
+          <p class="title">REVELATIONS</p>
+          <p class="subtitle">A 22-chapter blackmail &amp; body-mod spy novel · 18+</p>
+        </div>
+        <div class="actions">
+          <button type="button" id="journal-btn">Dossier</button>
+          <button type="button" id="save-btn">Save</button>
+          <button type="button" id="load-btn">Load</button>
+          <button type="button" id="restart-btn">Restart</button>
+        </div>
+      </header>
+
+      <section class="stats" id="stats" hidden>
+        <div class="stat">
+          <span>Cover</span>
+          <div class="bar"><i id="stat-cover"></i></div>
+        </div>
+        <div class="stat">
+          <span>Integrity</span>
+          <div class="bar"><i id="stat-integrity"></i></div>
+        </div>
+        <div class="stat">
+          <span>Corruption</span>
+          <div class="bar corruption"><i id="stat-corruption"></i></div>
+        </div>
+        <div class="stat">
+          <span>Heat</span>
+          <div class="bar heat"><i id="stat-heat"></i></div>
+        </div>
+        <div class="stat">
+          <span>Body</span>
+          <div class="bar body"><i id="stat-body"></i></div>
+        </div>
+      </section>
+
+      <main class="stage">
+        <aside class="dossier" id="dossier" hidden>
+          <div class="silhouette" id="silhouette" data-gender="male"></div>
+          <dl>
+            <dt>Operative</dt>
+            <dd id="who-name">—</dd>
+            <dt>Assigned sex</dt>
+            <dd id="who-start">—</dd>
+            <dt>Presentation</dt>
+            <dd id="who-gender">—</dd>
+            <dt>Chapter</dt>
+            <dd id="who-chapter">—</dd>
+            <dt>Status</dt>
+            <dd id="who-status">Recruit</dd>
+          </dl>
+        </aside>
+
+        <article class="panel">
+          <figure class="scene-frame">
+            <img id="scene-art" alt="" />
+          </figure>
+          <p class="location" id="location"></p>
+          <p class="speaker" id="speaker"></p>
+          <p class="text" id="text"></p>
+          <div class="choices" id="choices"></div>
+          <p class="hint">Number keys choose. Space continues. Dossier tracks the campaign.</p>
+        </article>
+      </main>
+      <aside class="journal" id="journal" hidden></aside>
+    </div>
+    <script src="js/campaign.js"></script>
+    <script src="js/art.js"></script>
+    <script src="js/story.js"></script>
+    <script src="js/chapters/c01.js"></script>
+    <script src="js/chapters/c02.js"></script>
+    <script src="js/chapters/c03.js"></script>
+    <script src="js/chapters/c04.js"></script>
+    <script src="js/chapters/c05.js"></script>
+    <script src="js/chapters/c06.js"></script>
+    <script src="js/chapters/c07.js"></script>
+    <script src="js/chapters/c08.js"></script>
+    <script src="js/chapters/c09.js"></script>
+    <script src="js/chapters/c10.js"></script>
+    <script src="js/chapters/c11.js"></script>
+    <script src="js/chapters/c12.js"></script>
+    <script src="js/chapters/c13.js"></script>
+    <script src="js/chapters/c14.js"></script>
+    <script src="js/chapters/c15.js"></script>
+    <script src="js/chapters/c16.js"></script>
+    <script src="js/chapters/c17.js"></script>
+    <script src="js/chapters/c18.js"></script>
+    <script src="js/chapters/c19.js"></script>
+    <script src="js/chapters/c20.js"></script>
+    <script src="js/chapters/c21.js"></script>
+    <script src="js/chapters/c22.js"></script>
+    <script src="js/heat.js"></script>
+    <script src="js/engine.js"></script>
+  </body>
+</html>

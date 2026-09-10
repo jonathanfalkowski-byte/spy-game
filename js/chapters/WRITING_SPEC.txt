@@ -1,0 +1,44 @@
+REVELATIONS CHAPTER WRITING SPEC
+Write a browser visual-novel chapter as a single JS file.
+
+FORMAT (exact):
+(function () {
+  window.STORY = window.STORY || {};
+  Object.assign(window.STORY, {
+    cXX_start: { chapter: "cXX", location: "...", speaker: "", pages: ["..."], next: "cXX_..." },
+  });
+})();
+
+NODE FIELDS:
+- chapter: "c02" etc
+- location, speaker (empty string if narration)
+- pages: array of 1-4 strings. EACH page 140-280 words. This is how we hit novel length.
+- or text: one string
+- next: node id
+- choices: [{ text, to, effects, require }]
+- effects: { cover, integrity, corruption, heat, body } as deltas, gender, flags: {}
+- journal: short dossier line
+- require on choices: { flag, notFlag, anyFlag:[], startGender, gender, min:{}, max:{} }
+
+TOKENS in prose: {{name}} {{he}} {{him}} {{his}} {{himself}}
+
+CAST (adults 21+ only): Kane, Handler Voss, Helene Crowe, Dr Soren Vale, Senator Ives, Mia Renn, Maren Pell, Subject Zero, Captain Radek, Nurse Lila.
+
+WORLD: The Stack (city). Revelations (private intel). Helix Dynamics / Project CHRYSALIS.
+
+TONE: Literary spy fiction with explicit sex when the plot earns it (blackmail, honeytrap, clinic). Not joke porn. Difficult choices. Consequences stick via flags.
+
+LENGTH HARD REQUIREMENT:
+- Minimum 5500 words of unique prose in the file (count words in pages/text strings).
+- At least 28 nodes.
+- A main spine of ~20 continue-beats plus 3-6 real choice forks that rejoin.
+- Do not pad with repeated sentences. Specific sensory detail: rain grid, clinics, trams, offices, bodies.
+
+FLAGS YOU MAY SET (only these names):
+combat ghost honey prep slept_crowe transitioned half depraved forced_mod sold_voss honest lied_voss double owned ives mia_protected mia_hinted mia_compromised mia_alive shutdown beaten initiated stalled_body agreed_all new_name clinic asked_mia startMale startFemale
+
+Every chapter file MUST define cXX_start.
+Every chapter except c22 MUST end a spine node with next: "cYY_start" of the following chapter.
+c22 endings: c22_identity, c22_double, c22_owned, c22_converted, c22_dead — long epilogues, no next.
+
+Do not write markdown. Do not write a README. JS file only.

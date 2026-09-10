@@ -1,0 +1,256 @@
+:root {
+  --bg: #07080d;
+  --panel: #10131c;
+  --ink: #e8e4d8;
+  --muted: #9a9486;
+  --accent: #c9a227;
+  --red: #c45c4a;
+  --teal: #4aa8a4;
+  --pink: #c98aa8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #1a2233 0%, transparent 50%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", Georgia, serif;
+}
+
+#app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-end;
+  border-bottom: 1px solid #2a3144;
+  padding-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  letter-spacing: 0.28em;
+  font-size: 22px;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.actions button {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid #3a4558;
+  padding: 8px 12px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.stat span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.bar {
+  height: 8px;
+  background: #1b2230;
+  overflow: hidden;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  transition: width 0.25s ease;
+}
+
+.bar.corruption i {
+  background: var(--red);
+}
+
+.bar.heat i {
+  background: var(--accent);
+}
+
+.bar.body i {
+  background: var(--pink);
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+
+.dossier {
+  background: var(--panel);
+  padding: 16px;
+  border: 1px solid #2a3144;
+}
+
+.silhouette {
+  height: 180px;
+  margin-bottom: 16px;
+  background:
+    linear-gradient(180deg, #2a2f3d, #151821);
+  clip-path: polygon(50% 8%, 62% 22%, 58% 38%, 78% 48%, 72% 92%, 28% 92%, 22% 48%, 42% 38%, 38% 22%);
+}
+
+.silhouette[data-gender="female"] {
+  clip-path: polygon(50% 6%, 64% 20%, 58% 36%, 82% 48%, 70% 92%, 30% 92%, 18% 48%, 42% 36%, 36% 20%);
+  background: linear-gradient(180deg, #3a3044, #1a1520);
+}
+
+.dossier dt {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 10px;
+}
+
+.dossier dd {
+  margin: 2px 0 0;
+}
+
+.panel {
+  background: rgba(16, 19, 28, 0.92);
+  border: 1px solid #2a3144;
+  min-height: 420px;
+  padding: 0 0 20px;
+}
+
+.scene-frame {
+  margin: 0 0 16px;
+  background: #07080d;
+  border-bottom: 1px solid #2a3144;
+}
+
+.scene-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+.panel .location,
+.panel .speaker,
+.panel .text,
+.panel .choices,
+.panel .hint {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.panel .location {
+  padding-top: 8px;
+}
+
+.location {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.speaker {
+  margin: 0 0 8px;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.text {
+  margin: 0 0 24px;
+  font-size: 18px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choices button {
+  text-align: left;
+  background: #161b27;
+  color: var(--ink);
+  border: 1px solid #3a4558;
+  padding: 12px 14px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.choices button:hover,
+.choices button:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.hint {
+  margin: 18px 0 0;
+  color: #5d6574;
+  font-size: 12px;
+}
+
+.journal {
+  margin-top: 16px;
+  background: var(--panel);
+  border: 1px solid #2a3144;
+  padding: 16px 20px;
+}
+
+.journal h2 {
+  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  font-size: 14px;
+}
+
+.journal ul {
+  padding-left: 18px;
+}
+
+.text {
+  max-width: 62ch;
+}
+
+@media (max-width: 800px) {
+  .stage,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}

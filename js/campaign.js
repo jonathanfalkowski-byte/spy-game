@@ -1,0 +1,44 @@
+window.STORY = window.STORY || {};
+
+window.CAMPAIGN = {
+  title: "Revelations",
+  hours: "20–25",
+  chapters: [
+    { id: "c00", num: 0, title: "Clearance", start: "warning" },
+    { id: "c01", num: 1, title: "The Offer", start: "c01_start" },
+    { id: "c02", num: 2, title: "House of Knives", start: "c02_start" },
+    { id: "c03", num: 3, title: "Legend of Rivers", start: "c03_start" },
+    { id: "c04", num: 4, title: "The Soft Building", start: "c04_start" },
+    { id: "c05", num: 5, title: "Director Crowe", start: "c05_start" },
+    { id: "c06", num: 6, title: "Convert, Compromise, Own", start: "c06_start" },
+    { id: "c07", num: 7, title: "The Tape", start: "c07_start" },
+    { id: "c08", num: 8, title: "Vale", start: "c08_start" },
+    { id: "c09", num: 9, title: "The Mirror", start: "c09_start" },
+    { id: "c10", num: 10, title: "Voss in the Rain", start: "c10_start" },
+    { id: "c11", num: 11, title: "Mia", start: "c11_start" },
+    { id: "c12", num: 12, title: "The Gala", start: "c12_start" },
+    { id: "c13", num: 13, title: "Senator Ives", start: "c13_start" },
+    { id: "c14", num: 14, title: "Aftertaste", start: "c14_start" },
+    { id: "c15", num: 15, title: "Second Pass", start: "c15_start" },
+    { id: "c16", num: 16, title: "Maren", start: "c16_start" },
+    { id: "c17", num: 17, title: "Subject Zero", start: "c17_start" },
+    { id: "c18", num: 18, title: "War of Firms", start: "c18_start" },
+    { id: "c19", num: 19, title: "Live Test", start: "c19_start" },
+    { id: "c20", num: 20, title: "Kill Switch", start: "c20_start" },
+    { id: "c21", num: 21, title: "Last Night", start: "c21_start" },
+    { id: "c22", num: 22, title: "Who You Are", start: "c22_start" },
+  ],
+};
+
+window.CAST = {
+  kane: "Recruiter Kane — Revelations intake. Dry, legalistic, already selling you.",
+  voss: "Handler Voss — older woman, field sadist with a code. Thinks she can still pull you out.",
+  crowe: "Helene Crowe — Helix Director of Special Projects. Mid-forties. Blackmail as intimacy.",
+  vale: "Dr. Soren Vale — CHRYSALIS clinician. Never leers. That is the cruelty.",
+  ives: "Senator Ives — 58, export-codes, daughter he mentions when drunk.",
+  mia: "Mia — childhood friend, civilian nurse, leverage. Adult. Not a spy.",
+  maren: "Maren Pell — Crowe's lieutenant. Younger, hungrier, wants your body as a report.",
+  zero: "Subject Zero — successful conversion. Warning and advertisement.",
+  radek: "Captain Radek — Helix security. If combat path, your bruise-twin.",
+  lila: "Nurse Lila — Vale's assistant. Kindness that is still a procedure.",
+};
