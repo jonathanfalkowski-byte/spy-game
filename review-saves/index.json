@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 5,
+  "contentVersion": 9,
+  "saves": [
+    {
+      "file": "01-cautious-withdrawal.json",
+      "node": "dayend.cautious",
+      "actions": 26,
+      "sha256": "efd9083dc4805f15a4e38eb5691986e2e725b2f123fd6b20247dd4f33f5906dc"
+    },
+    {
+      "file": "02-refusal-and-departure.json",
+      "node": "dayend.walkaway",
+      "actions": 35,
+      "sha256": "ad119a854842f3e44aec076e9a73967f5ece48c7cb619e491030861799f25fd5"
+    },
+    {
+      "file": "03-clinic-stop-before-treatment.json",
+      "node": "clinic.stopped",
+      "actions": 64,
+      "sha256": "44afecf08242c80ac2f301ea089436dce2b20b710778036bd9b4b65c0cc8a059"
+    },
+    {
+      "file": "04-clinic-stop-after-voice.json",
+      "node": "clinic.stopped",
+      "actions": 67,
+      "sha256": "a34422c09beffed998e596fd8b793fa5ccb2737d9b0d69c4d7b1507894a24be1"
+    },
+    {
+      "file": "05-clinic-stop-after-face.json",
+      "node": "clinic.stopped",
+      "actions": 69,
+      "sha256": "b7ef1c12dd2c3cbd1c679a4c8a7fcd991731de519ee5d2c0a8d42710ca54662d"
+    },
+    {
+      "file": "06-timely-audio.json",
+      "node": "mission.complete",
+      "actions": 107,
+      "sha256": "e53a80333ba7768f6675c6f66e0d53f20798aa7ab56f768f1678a71c6da24dbb"
+    },
+    {
+      "file": "07-late-audio.json",
+      "node": "mission.complete",
+      "actions": 104,
+      "sha256": "052cd7be867967a061a567166e14b571ac0f8e6784bc32601ad6add5682da2d9"
+    },
+    {
+      "file": "06-timely-photo.json",
+      "node": "mission.complete",
+      "actions": 107,
+      "sha256": "f2d9e19c856c604be5985c0d0f2e09c9de0daa346421783c65bdf2b2499be9f1"
+    },
+    {
+      "file": "07-late-photo.json",
+      "node": "mission.complete",
+      "actions": 104,
+      "sha256": "f3554d425121e50ce7a26b05bf99b5d004365ae07e1d13c9d330a74ff1545884"
+    },
+    {
+      "file": "06-timely-token.json",
+      "node": "mission.complete",
+      "actions": 107,
+      "sha256": "acef5f1a023f160f729050a8e59bfa9698fd33902f13810762a333ca4280df84"
+    },
+    {
+      "file": "07-late-token.json",
+      "node": "mission.complete",
+      "actions": 104,
+      "sha256": "df0a1bb67fd01c0da88dd78c4a3cd4a1f9a6b1a8f3941b931b4083d3a05249d0"
+    },
+    {
+      "file": "08-correct-unsupported-guess.json",
+      "node": "mission.complete",
+      "actions": 104,
+      "sha256": "f699472b3ecb8d940e29ec8405f521337cdc6ce7162817e44e60bb25673e24f2"
+    },
+    {
+      "file": "09-wrong-accusation.json",
+      "node": "mission.complete",
+      "actions": 104,
+      "sha256": "d41e0d59a82ad1bcacd1b4975d93d9d9f10fb0212904a37667aee5e0cc7b38a1"
+    }
+  ]
+}

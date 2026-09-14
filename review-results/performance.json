@@ -1,0 +1,70 @@
+{
+  "measuredAt": "2026-09-14T22:39:31.145Z",
+  "platform": "win32",
+  "release": "10.0.26200",
+  "cpu": "Intel(R) Core(TM) i9-14900K",
+  "ramGiB": 63.77250289916992,
+  "node": "v24.14.0",
+  "browser": "153.0.8010.12",
+  "method": "Seven isolated Chromium contexts per metric. Navigation start to visible story locator (includes automation observation overhead); click dispatch to next scene mutation plus two animation frames. Local loopback production preview; no CPU/network throttling. Not a human reading-duration estimate.",
+  "results": {
+    "startup": {
+      "samplesMs": [
+        241.29999995231628,
+        237.39999997615814,
+        218.60000002384186,
+        219.69999998807907,
+        222.5,
+        221.19999998807907,
+        205.89999997615814
+      ],
+      "medianMs": 221.19999998807907,
+      "p95Ms": 241.29999995231628
+    },
+    "currentSave": {
+      "samplesMs": [
+        285.80000001192093,
+        306.60000002384186,
+        295.19999998807907,
+        306.19999998807907,
+        304.2000000476837,
+        301.5,
+        318
+      ],
+      "medianMs": 304.2000000476837,
+      "p95Ms": 318
+    },
+    "content8Save": {
+      "samplesMs": [
+        352.5,
+        358.5999999642372,
+        372.69999998807907,
+        363.7000000476837,
+        346.80000001192093,
+        360.30000001192093,
+        370
+      ],
+      "medianMs": 360.30000001192093,
+      "p95Ms": 372.69999998807907
+    },
+    "choice": {
+      "samplesMs": [
+        26,
+        27.19999998807907,
+        35.09999996423721,
+        27.69999998807907,
+        34,
+        28.299999952316284,
+        40.59999996423721
+      ],
+      "medianMs": 28.299999952316284,
+      "p95Ms": 40.59999996423721
+    },
+    "automatedTraversal": {
+      "actions": 107,
+      "durationSeconds": 4.060664100000009,
+      "ending": "mission.complete",
+      "humanReadingTime": false
+    }
+  }
+}
