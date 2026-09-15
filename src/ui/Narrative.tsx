@@ -1,8 +1,9 @@
 import type { Block } from '../content/schema';
-export function Narrative({ blocks }: { blocks: Block[] }) {
+import { readingBlocks } from './reading-presentation';
+export function Narrative({ blocks, node }: { blocks: Block[]; node?: string }) {
   return (
     <div className="narrative">
-      {blocks.map((b, i) =>
+      {readingBlocks(blocks, node).map((b, i) =>
         b.kind === 'speech' ? (
           <blockquote key={i}>
             <span className="eyebrow">{b.speaker}</span>

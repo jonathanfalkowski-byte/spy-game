@@ -20,7 +20,7 @@ export function ClinicConversation({
   return (
     <>
       {incoming.map((entry, i) => (
-        <Narrative key={'incoming' + i} blocks={entry.blocks} />
+        <Narrative key={'incoming' + i} blocks={entry.blocks} node={entry.node} />
       ))}
       {exchanges.map((entry, i) => (
         <div
@@ -31,7 +31,7 @@ export function ClinicConversation({
           aria-label={i === 0 ? 'Scene opening' : 'Conversation exchange'}
           style={{ scrollMarginTop: 90 }}
         >
-          <Narrative blocks={entry.blocks} />
+          <Narrative blocks={entry.blocks} node={entry.node} />
         </div>
       ))}
     </>

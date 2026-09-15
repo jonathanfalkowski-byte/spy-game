@@ -1,4 +1,5 @@
 import { RestoreBackup } from './RestoreBackup';
+import { displayName } from './reading-presentation';
 import { readSize, writeSize } from '../persistence/preferences';
 import { Missionwork, MissionSummary } from './Missionwork';
 import { missionSections, missionSection } from '../content/mission';
@@ -227,7 +228,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     }
                   >
                     <span>{String(i + 1).padStart(2, '0')}</span>
-                    {label}
+                    {displayName(label)}
                   </li>
                 ))}
               </ol>
@@ -264,7 +265,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             <main id="story" className="story">
               <span className="eyebrow">{sceneById[node].place}</span>
               <h1 ref={heading} tabIndex={-1}>
-                {sceneById[node].title}
+                {displayName(sceneById[node].title)}
               </h1>
               <div className="chapter-line" />
               {saveError && (
@@ -276,27 +277,39 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   <button onClick={() => location.reload()}>Reload saved run</button>
                 </div>
               )}
-              {state.feedback && (
-                <div className="confirmation" role="status">
-                  <span aria-hidden="true">✓</span>
-                  <p>
-                    {[
-                      'clinic',
-                      'mission',
-                      'file',
-                      'security',
-                      'sloane',
-                      'release',
-                      'refusal',
-                      'evening',
-                      'warning',
-                      'dayend',
-                    ].includes(state.scene)
-                      ? state.feedback.replace(/^Recorded: /, '')
-                      : state.feedback}
-                  </p>
-                </div>
-              )}
+              {state.feedback &&
+                ![
+                  'clinic',
+                  'mission',
+                  'file',
+                  'security',
+                  'sloane',
+                  'release',
+                  'refusal',
+                  'evening',
+                  'warning',
+                  'dayend',
+                ].includes(state.scene) && (
+                  <div className="confirmation" role="status">
+                    <span aria-hidden="true">✓</span>
+                    <p>
+                      {[
+                        'clinic',
+                        'mission',
+                        'file',
+                        'security',
+                        'sloane',
+                        'release',
+                        'refusal',
+                        'evening',
+                        'warning',
+                        'dayend',
+                      ].includes(state.scene)
+                        ? state.feedback.replace(/^Recorded: /, '')
+                        : state.feedback}
+                    </p>
+                  </div>
+                )}
               {[
                 'clinic',
                 'mission',
@@ -354,8 +367,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                       >
                         <span className="choice-number">{String(i + 1).padStart(2, '0')}</span>
                         <span className="choice-copy">
-                          {c.label}
-                          <small>{c.hint}</small>
+                          {displayName(c.label)}
+                          <small>{displayName(c.hint)}</small>
                         </span>
                         <span className="choice-arrow" aria-hidden="true">
                           ↗
@@ -475,7 +488,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : state.day.closure === 'checkin'
                           ? 'Maya will call you at 06:30 and knows to look for Sublevel 17 if you do not answer.'
                           : state.day.closure === 'evelyn'
-                            ? 'Maya knows the proposed adaptation and Evelyn’s name.'
+                            ? 'Maya knows the proposed adaptation and Evelynn’s name.'
                             : 'You asked Maya not to become more involved; she retains what you already shared.'}
                     </p>
                   )}
@@ -529,7 +542,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             {state.history.map((h, i) => (
               <section key={i}>
                 <h3>{sceneById[h.node].place}</h3>
-                <Narrative blocks={h.blocks} />
+                <Narrative blocks={h.blocks} node={h.node} />
               </section>
             ))}
           </div>
@@ -556,8 +569,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       {modal === 'restart' && (
         <Modal title="Restart from the apartment?" onClose={() => setModal(null)}>
           <p>
-            This replaces the entire production story save with a new run from the apartment. The reference prototype and its saves
-            remain unchanged.
+            This replaces the entire production story save with a new run from the apartment. The
+            reference prototype and its saves remain unchanged.
           </p>
           <div className="actions">
             <button onClick={exportRun} disabled={recovery && loaded.raw === null}>

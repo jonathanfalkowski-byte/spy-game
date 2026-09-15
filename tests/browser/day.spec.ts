@@ -182,7 +182,7 @@ test('new phase save failure is visible, retry works and restart remains confirm
   await page.getByRole('button', { name: 'Download this run' }).click();
   await page.reload();
   await expect(
-    page.getByRole('heading', { name: 'Become Evelyn for the operation' }),
+    page.getByRole('heading', { name: 'Become Evelynn for the operation' }),
   ).toBeVisible();
   await choose(page, 'offer.refuse');
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();

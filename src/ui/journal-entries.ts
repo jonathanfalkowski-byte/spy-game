@@ -2,6 +2,7 @@ import type { GameState } from '../state/schema';
 import { documents, searches } from '../content/evidence';
 import { inspections } from '../content/scenes';
 import { reasoningText, sourceNames, findings, leadNames } from '../content/mission';
+import { displayName } from './reading-presentation';
 export const milestoneNames = {
   opening: 'The opening',
   day: 'The rest of Adrian’s day',
@@ -46,7 +47,7 @@ const titles: Record<string, string> = {
   glasshouse_claim: 'A meeting at the Glass House',
   'question.insider': 'Sloane’s account of the source',
   'question.why': 'Why an analyst?',
-  evelyn_package: 'The Evelyn identity package',
+  evelyn_package: 'Axiom’s Evelynn Vale identity package',
   mission: 'Sloane’s assignment',
   offer: 'The terms of the offer',
   termination: 'Employment and housing notice',
@@ -78,6 +79,21 @@ const titles: Record<string, string> = {
   'mission.celeste-greeting': 'Celeste’s greeting',
   'mission.halcyon-mention': 'A mention of Halcyon',
   'mission.transfer': 'What you saw at the table',
+  'mission.exposure': 'Marcus signals security',
+  'mission.sloane-test': 'Sloane’s account of the other objective',
+  'mission.recoverable': 'Sloane says the exchange was recoverable',
+  'mission.debrief.end': 'Unknown warning: Benton was not the test',
+  'mission.warning.next1': 'Unknown warning: you were the test',
+  'mission.warning.next2': 'Unknown claim: Sloane could have stopped it',
+  'warning.begin': 'Unknown warning: do not go to Sublevel 17',
+  'warning.next': 'Unknown warning: the photograph',
+  'warning.last': 'Unknown claim: she is not you',
+  'clinic.privacy': 'Who remained for the examination',
+  'clinic.morning': 'The morning contact decision',
+  'morning.answer.message': 'The check-in you answered',
+  'morning.message.message': 'Your departure message to Maya',
+  'contact.brief.message': 'Recovery message without identity details',
+  'contact.identity.message': 'Your adaptation disclosure to Maya',
 };
 export function journalEntries(s: GameState): JournalEntry[] {
   const entries: JournalEntry[] = [];
@@ -185,9 +201,16 @@ export function journalEntries(s: GameState): JournalEntry[] {
       id: 'capture',
       milestone: 'mission',
       type: 'capture',
-      title: 'The capture attempt',
+      title: {
+        substantive: 'Recorded agreement — Sloane’s copy',
+        fragment: 'Recording fragments — agreement missed',
+        transfer: 'Photograph of the wafer handover',
+        contact: 'Photograph of contact — handover missed',
+        asset: 'Benton’s access token — potential leverage',
+        none: 'Failed token attempt — nothing retained',
+      }[c.quality],
       text: c.text,
-      source: 'Held by: ' + c.owner + '. ' + c.axiomAccess,
+      source: 'Held by: ' + displayName(c.owner) + '. ' + displayName(c.axiomAccess),
       limits: c.limits,
     });
   }

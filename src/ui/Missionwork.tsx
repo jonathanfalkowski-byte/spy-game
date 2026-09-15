@@ -1,6 +1,7 @@
 import type { GameState } from '../state/schema';
 import type { Intent } from '../state/actions';
 import { availableMissionChoices, reasoningText, sourceNames } from '../content/mission';
+import { displayName, missionActionLabel, personalRecap } from './reading-presentation';
 export function Missionwork({ state, send }: { state: GameState; send: (a: Intent) => void }) {
   const choices = availableMissionChoices(state);
   return choices.length ? (
@@ -14,8 +15,8 @@ export function Missionwork({ state, send }: { state: GameState; send: (a: Inten
             onClick={() => send({ type: 'MISSION_CHOOSE', id: c.id })}
           >
             <span className="choice-copy">
-              {c.label}
-              <small>{c.hint}</small>
+              {missionActionLabel(c.id, c.label, state)}
+              <small>{displayName(c.hint)}</small>
             </span>
             <span aria-hidden="true">→</span>
           </button>
@@ -36,10 +37,10 @@ export function MissionSummary({ state }: { state: GameState }) {
       {m.capture && (
         <>
           <h3>What you brought back</h3>
-          <p>{m.capture.text}</p>
+          <p>{displayName(m.capture.text)}</p>
           <p>{m.capture.limits}</p>
           <p>
-            Held by: {m.capture.owner}. {m.capture.axiomAccess}
+            Held by: {displayName(m.capture.owner)}. {displayName(m.capture.axiomAccess)}
           </p>
         </>
       )}
@@ -52,10 +53,24 @@ export function MissionSummary({ state }: { state: GameState }) {
           </p>
           <p>
             Sloane says your judgment was another objective. The unknown sender claims she could
-            have stopped the exchange. Neither account resolves Evelyn’s earlier history or
+            have stopped the exchange. Neither account resolves Evelynn’s earlier history or
             identifies the sender.
           </p>
         </>
+      )}
+      {m.outcome && (
+        <section className="personal-recap" aria-label="Choices you carried here">
+          <h3>Choices you carried here</h3>
+          {personalRecap(state).map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+          <p>
+            {state.day.employment === 'terminated'
+              ? 'Your employment remains terminated; the original housing notice still stands.'
+              : 'Your office access remains suspended.'}{' '}
+            The phone remains monitored.
+          </p>
+        </section>
       )}
     </>
   );

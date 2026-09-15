@@ -1,0 +1,241 @@
+import type { Block } from '../content/schema';
+import type { GameState } from '../state/schema';
+import { leadNames } from '../content/mission';
+
+// UI copy only. Never feed these blocks back into history, the reducer or saves.
+// Match the originating scene and its authored text, so reviewing old exchanges
+// cannot acquire information from the player's later state.
+const p = (text: string): Block => ({ kind: 'narrative', text });
+const q = (speaker: string, text: string): Block => ({ kind: 'speech', speaker, text });
+const t = (text: string): Block => ({ kind: 'thought', text });
+
+export function displayName(text: string): string {
+  return text.replace(/\bEvelyn\b/g, 'Evelynn').replace(/\bEVELYN\b/g, 'EVELYNN');
+}
+
+export function readingBlocks(blocks: Block[], node?: string): Block[] {
+  return blocks.flatMap((b): Block[] => {
+    if (node === 'clinic.display' && b.text === 'How close will the result be to this model?')
+      return [
+        b,
+        q(
+          'Voss',
+          'It is a prediction, not a photograph of the result. There will be variation during recovery. We assess what actually changes; the model cannot promise how you will feel in it.',
+        ),
+      ];
+    if (node === 'clinic.display' && b.text.startsWith('You study the predicted change in balance'))
+      return [
+        p(
+          'You lean forward. The figure shifts with you, but its weight seems to settle differently over the hips. You put both feet flat on the floor.',
+        ),
+        q('Adrian', 'Will moving feel like this looks?'),
+        q(
+          'Voss',
+          'The model shows a prediction. We will assess your balance and practise movement during recovery. Looking at it cannot replace that.',
+        ),
+      ];
+    if (
+      node === 'clinic.examResult' &&
+      b.text === 'She releases the chair and helps you return to the consultation area.'
+    )
+      return [
+        p(
+          'She releases the chair. The consultation area is waiting beyond it; you can ask about the scan before moving on.',
+        ),
+      ];
+    if (
+      node === 'mission.marcus' &&
+      b.text.startsWith('You restore the earpiece before leaving the elevator.')
+    )
+      return [
+        p(
+          'At the edge of the gathering, you restore the earpiece. Sloane confirms the channel is live. You do not tell her what you thought during the silence.',
+        ),
+      ];
+    if (
+      node === 'dayend.accepted' &&
+      b.text.startsWith('Adrian’s day ends here, before the clinic.')
+    )
+      return [p('You can pause here and review the day, or continue to the morning appointment.')];
+    if (node === 'clinic.complete' && b.text.startsWith('This milestone ends in transit.'))
+      return [
+        p('You can review your preparation here or continue the journey to the Glass House.'),
+      ];
+
+    if (
+      node === 'mission.exchange' &&
+      b.text.startsWith('You take the gallery side of the gathering,')
+    )
+      return [
+        p(
+          'You take the gallery side of the gathering. From here you can watch the entrance without crossing the room when Benton arrives. You have committed your position to the name you gave Sloane.',
+        ),
+      ];
+    if (
+      node === 'mission.exchange' &&
+      b.text.startsWith('You remain at the edge of the gathering,')
+    )
+      return [
+        p(
+          'You remain at the edge of the gathering. You have not sent a name you cannot defend. Marcus moves beyond your best line of sight while you wait; seeing more clearly will now mean moving after him.',
+        ),
+      ];
+    if (node === 'mission.exchange' && b.text.startsWith('You keep your attention on '))
+      return [
+        b,
+        t('I have put my attention behind a name. Marcus is moving while I look elsewhere.'),
+      ];
+    if (
+      node === 'mission.confrontation' &&
+      b.text.startsWith('The microphone catches “replacement team,”')
+    )
+      return [
+        p(
+          'The microphone catches “replacement team,” then the scrape of a chair. You hold it steady, waiting for the missing answer. Benton pockets the wafer.',
+        ),
+        q('Sloane · earpiece', 'Only fragments. The agreement has already passed.'),
+        t('I can keep listening. I cannot record words they have finished saying.'),
+      ];
+    if (
+      node === 'mission.confrontation' &&
+      b.text.startsWith('You bring the phone around too late for the wafer.')
+    )
+      return [
+        p(
+          'You bring the phone around too late for the wafer. In the frame, Benton and Marcus stand beside the table with nothing passing between their hands. You have their faces together. The moment that would explain why you took the picture is outside it.',
+        ),
+      ];
+    if (
+      node === 'mission.confrontation' &&
+      b.text.startsWith('You reach the gallery after Benton has put the wafer away.')
+    )
+      return [
+        p(
+          'You reach the gallery after Benton has put the wafer away. His token remains clipped inside his jacket. He turns toward your reaching hand before you can touch it. You stop short. Going closer now would mean reaching into his jacket while he watches. You lower your empty hand.',
+        ),
+      ];
+    if (
+      node === 'mission.escape' &&
+      b.text.startsWith('The guard reaches the bank in time to ask your name.')
+    )
+      return [
+        p(
+          'The guard reaches the bank before the doors close. “Your name?” The guests are holding the doorway; you cannot simply disappear among them. You show the valid invitation. “Ms Vale. I am leaving.” The attendant confirms it. The guard repeats the name into his sleeve. He has no instruction to detain you, but your departure is no longer quiet.',
+        ),
+      ];
+    if (node === 'mission.debrief' && b.kind === 'speech') {
+      if (b.text.startsWith('Benton was my probable source.'))
+        return [
+          q(
+            'Sloane · earpiece',
+            'Benton was my probable source. I needed proof, and your assessment before I gave you mine.',
+          ),
+        ];
+      if (b.text.includes('I have fragments, not the agreement.'))
+        return [
+          b,
+          t(
+            'She has the recording. Even if I could take a copy with me, it would still be missing the agreement. My account has to carry what the microphone did not.',
+          ),
+        ];
+      if (b.text.includes('Your photograph places them together.'))
+        return [
+          b,
+          t(
+            'The picture is mine to keep. Anyone looking at it will still have to take my word for what happened before it.',
+          ),
+        ];
+      if (b.text.includes('You did not get the token.'))
+        return [
+          b,
+          t(
+            'He kept the token and the wafer. I am leaving with an account of the meeting, while Sloane decides what she can do with it.',
+          ),
+        ];
+      if (b.text.includes('I have their agreement on the recording.'))
+        return [
+          b,
+          t(
+            'The clearest evidence is in her recorder. I heard it happen; I cannot put my own clean copy on a table.',
+          ),
+        ];
+      if (b.text.includes('You have his access token. Keep it intact.'))
+        return [
+          b,
+          t(
+            'The token presses into my palm. Sloane knows I have it, but it is still in my hand. Something useful, perhaps. Not the agreement she asked me to prove.',
+          ),
+        ];
+    }
+    if (
+      node === 'mission.debrief' &&
+      b.text ===
+        'Yes. The exchange was recoverable. Your first unscripted decision as Evelyn was not reproducible.'
+    )
+      return [
+        q(
+          'Sloane · earpiece',
+          'Yes. I considered the exchange recoverable. I could only observe your first decision once.',
+        ),
+      ];
+    // Keep all three warning messages verbatim. Reframe the meaning in the
+    // protagonist's uncertainty, without making the sender's claim a fact.
+    if (node === 'mission.warning2' && b.text.startsWith('The second line offers no explanation'))
+      return [
+        p(
+          'Sloane called your judgment another objective. The sender calls you the real test. Those are not quite the same account of what happened upstairs. You wait for an explanation.',
+        ),
+      ];
+    if (node === 'mission.warning3' && b.kind === 'thought')
+      return [
+        t(
+          'If that is true, why let it happen? Sloane told me what I brought back. She has not told me what she was trying to learn about me. The sender has given me a question, not an answer.',
+        ),
+      ];
+    return [b];
+  });
+}
+
+export function missionActionLabel(id: string, fallback: string, s: GameState): string {
+  if (id === 'exchange.follow')
+    return s.mission.timing === 'late'
+      ? 'Turn toward the gallery — catch what remains'
+      : 'Watch the gallery entrance';
+  if (id === 'confrontation.leave' && s.mission.wrist === 'held')
+    return 'Get your wrist free and leave the gallery';
+  return displayName(fallback);
+}
+
+/** At most four short recollections; only concrete, completed player behaviour. */
+export function personalRecap(s: GameState): string[] {
+  if (s.mission.outcome !== 'complete') return [];
+  const c = s.clinic;
+  const lines = [
+    s.mission.leads.length
+      ? 'You followed ' +
+        s.mission.leads.map((id) => leadNames[id].toLowerCase()).join(' and ') +
+        '.'
+      : 'You gave your assessment without following a party lead.',
+  ];
+  lines.push(
+    c.contact === 'identity'
+      ? 'You told Maya about the changed body and the name Evelynn Vale on the monitored phone.'
+      : c.contact === 'brief'
+        ? 'You told Maya you were recovering, and left the identity details out of that message.'
+        : 'You sent Maya no recovery message. You let the earlier conversation stand.',
+  );
+  const privacy = ['ask', 'demand'].includes(c.privacy || '')
+    ? 'You asked Sloane to leave the examination.'
+    : 'Sloane stayed during your examination.';
+  lines.push(
+    privacy +
+      (c.profile && c.profile !== 'existing'
+        ? ' You chose the ' + c.profile + ' profile rather than the supplied default.'
+        : ' You kept the supplied profile.'),
+  );
+  if (c.outfit && c.makeup)
+    lines.push(
+      'You chose the ' + c.outfit + ' outfit and ' + c.makeup + ' makeup for the reception.',
+    );
+  return lines;
+}

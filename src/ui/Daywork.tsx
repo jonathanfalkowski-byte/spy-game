@@ -1,6 +1,7 @@
 import type { GameState } from '../state/schema';
 import type { Intent } from '../state/actions';
 import { availableDayChoices } from '../content/day';
+import { displayName } from './reading-presentation';
 export function Daywork({ state, send }: { state: GameState; send: (a: Intent) => void }) {
   const choices = availableDayChoices(state);
   return (
@@ -16,8 +17,8 @@ export function Daywork({ state, send }: { state: GameState; send: (a: Intent) =
                 onClick={() => send({ type: 'DAY_CHOOSE', id: c.id })}
               >
                 <span className="choice-copy">
-                  {c.label}
-                  <small>{c.hint}</small>
+                  {displayName(c.label)}
+                  <small>{displayName(c.hint)}</small>
                 </span>
                 <span aria-hidden="true">→</span>
               </button>
