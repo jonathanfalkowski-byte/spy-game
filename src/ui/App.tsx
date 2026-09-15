@@ -24,6 +24,7 @@ import { Daywork } from './Daywork';
 import { Clinicwork } from './Clinicwork';
 import { ClinicConversation } from './ClinicConversation';
 import { clinicSections, clinicSection } from '../content/clinic';
+import { Chapter3work } from './Chapter3work';
 const Inspector = import.meta.env.DEV ? lazy(() => import('./Inspector')) : null;
 const browserStorage: StoragePort = {
   getItem: (key) => window.localStorage.getItem(key),
@@ -380,6 +381,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               )}
               <Casework state={state} send={send} />
               <Daywork state={state} send={send} />
+              {state.scene === 'chapter3' && <Chapter3work state={state} send={send} />}
               <Clinicwork state={state} send={send} />
               <Missionwork state={state} send={send} />
               {state.mission.outcome === 'complete' && (
@@ -390,6 +392,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     <button onClick={() => setModal('journal')}>Review your evidence</button>
                     <button onClick={() => setModal('history')}>Review conversation history</button>
                     <button onClick={exportRun}>Download save backup</button>
+                    {state.phase === 'accepted' && state.day.outcome === 'accepted' && state.mission.outcome === 'complete' && state.clinic.outcome === 'departed' && (
+                      <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>Continue to Chapter 3</button>
+                    )}
                   </div>
                 </section>
               )}
@@ -436,6 +441,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     <button onClick={() => setModal('journal')}>Review your evidence</button>
                     <button onClick={() => setModal('history')}>Review conversation history</button>
                     <button onClick={exportRun}>Download save backup</button>
+                    {state.clinic.outcome === 'departed' && state.day.outcome === 'accepted' && state.mission.outcome === 'complete' && (
+                      <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>Continue to Chapter 3</button>
+                    )}
                   </div>
                 </section>
               )}

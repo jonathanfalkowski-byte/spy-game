@@ -4,6 +4,7 @@ import { scenes, sceneBlocks } from '../../src/content/scenes';
 import { dayChoices } from '../../src/content/day';
 import { clinicChoices } from '../../src/content/clinic';
 import { dialogue } from '../../src/content/dialogue';
+import { chapter3Choices } from '../../src/content/chapter3';
 import { validateContent } from '../../src/content/validate';
 import { act, availableIntents, initialState, nodeOf } from '../../src/state/reducer';
 import { encodeSave, decodeSave } from '../../src/persistence/saves';
@@ -15,6 +16,7 @@ it('validates content and every narrative node can reach the only ending', () =>
     'dayend.walkaway',
     'mission.complete',
     'clinic.stopped',
+    'chapter3.complete',
   ]);
   let changed = true;
   while (changed) {
@@ -22,7 +24,7 @@ it('validates content and every narrative node can reach the only ending', () =>
     for (const s of scenes) {
       const next = [
         s.next,
-        ...[...dialogue, ...dayChoices, ...clinicChoices, ...missionChoices]
+        ...[...dialogue, ...dayChoices, ...clinicChoices, ...missionChoices, ...chapter3Choices]
           .filter((c) => c.node === s.id)
           .map((c) => c.next),
       ];

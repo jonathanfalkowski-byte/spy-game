@@ -110,9 +110,6 @@ export const nodeIds = [
   'dayend.cautious',
   'dayend.walkaway',
   'dayend.accepted',
-  'chapter3.home',
-  'chapter3.surveillance',
-  'chapter3.complete',
 ] as const;
 export const NodeSchema = z.enum(nodeIds);
 export type NodeId = z.infer<typeof NodeSchema>;

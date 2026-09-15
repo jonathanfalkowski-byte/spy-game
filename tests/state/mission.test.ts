@@ -147,7 +147,7 @@ it('separates evidence, reasoning, operational timing and custody across source/
         expect(s.proof.length).toBe(method === 'audio' && timely ? 1 : 0);
         expect(s.npcs.maya).toEqual(hub.npcs.maya);
         expect(s.clinic).toEqual(hub.clinic);
-        expect(availableIntents(s)).toEqual([]);
+        expect(availableIntents(s)).toEqual([{ type: 'CONTINUE_CHAPTER3' }]);
         expect(decodeSave(encodeSave(s))).toEqual(s);
       }
   }

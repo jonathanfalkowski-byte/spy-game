@@ -1,4 +1,6 @@
 import { replay as replayContentV8 } from './legacy-v8/state/reducer';
+import { replay as replayContentV9 } from './legacy-v9/state/reducer';
+import { StateSchema as ContentV9StateSchema } from './legacy-v9/state/schema';
 import { StateSchema as ContentV8StateSchema } from './legacy-v8/state/schema';
 import { replay as replayContentV7 } from './legacy-v7/state/reducer';
 import { StateSchema as ContentV7StateSchema } from './legacy-v7/state/schema';
@@ -21,7 +23,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.literal(9), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
@@ -43,6 +45,11 @@ const V1Schema = z
 // Frozen v1 replay verifies the original prose as well as every mechanical field.
 // Only then do we replay the unchanged decisions against the revised authored content.
 export function migrateSave(input: unknown) {
+  const v9 = z.object({ schemaVersion: z.literal(5), contentVersion: z.literal(9), state: ContentV9StateSchema }).strict().safeParse(input);
+  if (v9.success) {
+    if (canonical(replayContentV9(v9.data.state.ledger)) !== canonical(v9.data.state)) throw Error('Original content-v9 snapshot does not match its event ledger.');
+    return { schemaVersion: 5 as const, contentVersion: 9 as const, state: replay(v9.data.state.ledger) };
+  }
   const v8 = z
     .object({
       schemaVersion: z.literal(5),
@@ -184,7 +191,7 @@ export function decodeSave(raw: string): GameState {
   return reconstructed;
 }
 export function encodeSave(state: GameState) {
-  const value = SaveSchema.parse({ schemaVersion: 5, contentVersion: 9, state });
+  const value = SaveSchema.parse({ schemaVersion: 5, contentVersion: state.scene === 'chapter3' ? 10 : 9, state });
   const raw = JSON.stringify(value);
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)
     throw new Error('Save exceeds the save limit. Download a backup.');

@@ -8,7 +8,6 @@ import { nodeIds, InspectionSchema } from './schema';
 import { dayChoices } from './day';
 import { missionChoices } from './mission';
 import { clinicChoices } from './clinic';
-import { chapter3Choices } from './chapter3';
 export function validateContent() {
   inspections.forEach((record) => InspectionSchema.parse(record));
   for (const collection of [
@@ -27,7 +26,7 @@ export function validateContent() {
     if (!scenes.some((s) => s.id === id)) throw new Error('Missing scene ' + id);
   if (new Set(clinicChoices.map((c) => c.node + ':' + c.id)).size !== clinicChoices.length)
     throw new Error('Duplicate clinic choice within a phase');
-  for (const c of [...dialogue, ...dayChoices, ...clinicChoices, ...missionChoices, ...chapter3Choices])
+  for (const c of [...dialogue, ...dayChoices, ...clinicChoices, ...missionChoices])
     if (!scenes.some((s) => s.id === c.node) || !scenes.some((s) => s.id === c.next))
       throw new Error('Invalid dialogue route ' + c.id);
   for (const s of scenes)

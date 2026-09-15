@@ -11,7 +11,6 @@ import type { GameState } from '../state/schema';
 import { dayScenes, dayBlocks } from './day';
 import { missionScenes, missionBlocks } from './mission';
 import { clinicScenes, clinicBlocks } from './clinic';
-import { chapter3Scenes } from './chapter3';
 
 export const inspections = [
   {
@@ -41,7 +40,6 @@ export const scenes = SceneSchema.array().parse([
   ...dayScenes,
   ...clinicScenes,
   ...missionScenes,
-  ...chapter3Scenes,
   {
     id: 'apartment.bond',
     title: 'Promotion day',

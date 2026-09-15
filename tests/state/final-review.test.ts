@@ -12,7 +12,7 @@ it('authenticates content 8 at every phase and preserves the unchanged decision 
   const end = runMission();
   for (let i = 0; i <= end.ledger.length; i++) {
     const ledger = end.ledger.slice(0, i),
-      old = oldReplay(ledger);
+      old = oldReplay(ledger as any);
     const raw = JSON.stringify({ schemaVersion: 5, contentVersion: 8, state: old });
     const current = decodeSave(raw);
     expect(current).toEqual(replay(ledger));
@@ -33,7 +33,7 @@ it('authenticates content 8 at every phase and preserves the unchanged decision 
       }),
     ).toMatchObject({ kind: 'ready', raw });
   }
-  const bad = oldReplay(end.ledger);
+  const bad = oldReplay(end.ledger as any);
   bad.relationships.mayaTrust++;
   expect(() =>
     decodeSave(JSON.stringify({ schemaVersion: 5, contentVersion: 8, state: bad })),
