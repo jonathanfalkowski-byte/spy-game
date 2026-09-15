@@ -124,6 +124,30 @@ Reconnections below are possibilities for later design, never promised scenes or
 - **Recovery/reintegration:** authored paths to safety, resources, chosen relationships and work. Returning to a voluntary career, leaving it, or declining intelligence work can all remain legitimate.
 - **Reconnection:** Axiom, Helix, Rook or Sloane might provide resources, pose threats or negotiate involvement. Any reconnection must preserve the option to refuse and must not erase the history of control.
 
+## Early dark-power seeds — Chapter 3 design amendment
+
+Design only; the frozen external-playtest slice remains unchanged. See [Second Skin](../story/CHAPTER_3_SECOND_SKIN.md), [Dark Power Roadmap](../story/DARK_POWER_ROADMAP.md) and [handoff map](../story/ADULT_SCENE_HANDOFF_MAP.md). Chapter 3 dark-power direction is approved, including residential surveillance and persistent authorized public association. Marcus's record frames a real discussion as more advanced interest; it must not fabricate definitive advisory acceptance. Future mechanisms and detailed treatment branches remain design proposals.
+
+**Escalate situations quickly; escalate permanent loss of autonomy gradually.** Each major chapter should aim for an information problem, power confrontation, memorable dark situation, prior-behavior consequence and a valuable opportunity with a cost. Darkness can be surveillance, omission, status pressure, temptation or the protagonist's own exercise of leverage. No sexual scene quota or visible alignment meter follows.
+
+| Trajectory | Early seed | Accumulation that might matter later | Reversal / limit |
+|---|---|---|---|
+| Free Agent | Question monitoring scope; negotiate independent access; retain bounded evidence | Diversified support and compatible commitments | Independence needs real alternatives, not one defiant answer |
+| Sloane Operative | Accept specified reporting/support arrangements | Institutional access becomes useful and recurrent | Cooperation is not loyalty or unrestricted surveillance permission |
+| Rook alignment | Verify a selected truth and decide what to report back | Reliance on one source can become informational dependency | Authentic information does not establish full candor; compare sources or withhold |
+| Corporate Predator | Correct, preserve, trade or pressure using Marcus's favorable interpretation of a real exchange | Control of incomplete information and other people's access/reputations | Marcus may qualify it himself, defend his wording, refuse, restrict future access or reveal the player's actual demands; no automatic victory |
+| Celebrity Power | Approve a particular public association | Recognition brings influence and costs anonymity | Publication is a durable artifact, not instant fame or blanket rights |
+| Adult Entertainment Career | Preserve authorship over public image and future professional terms | Later voluntary business/public exposure choices, if independently earned | No career offer in Chapter 3; public visibility is neither sexual availability nor corruption |
+| Executive Companion | Experience useful proximity and a respected boundary | Private access, favors and chosen comfort can develop gradually | No intimacy or enduring obligation inferred from reception attendance |
+| Ornamental Dependency / Kept Life | Notice the terms attached to convenience or support | Specific obligations and concentrated resources can narrow alternatives | Luxury alone is not dependency; terms can be refused or unbundled |
+| Exploitation and Recovery | Identify actual threats/limits and seek practical alternatives | Coercion can close choices; recovery reopens particular options | Separate from voluntary work and intimacy; no automatic escalation from either |
+
+Rook alignment is an additional design direction, not a newly implemented route. Its appeal is actionable truth; its danger is dependence on a person who chooses which truths arrive. Sloane can tell the truth while constraining options, and Helix can offer genuinely useful help. No faction becomes the universal moral answer.
+
+Publicity, favors and leverage need sourced histories. Distinguish potential, disclosed, threatened and exercised leverage. An agreed obligation is separate from another person's expectation of gratitude. Receiving help must have concrete consequences, but not an invented unlimited debt. The player can protect, conceal, trade, expose or pressure; consequences concern actual conduct rather than a good/evil label.
+
+The proposed male executive may progress through respect, access, private meetings, favors, gifts, protection, expectations, obligations and influence over presentation/schedule. Dependency or isolation occurs only if alternatives actually narrow. High-autonomy or mutual relationships can stop or reverse that progression. Neither character is assigned a permanent exploiter/victim role. Later irreversible EVE changes continue to require affirmative authorization; pressured compliance cannot be silently counted as voluntary identity investment.
+
 ## Boundary for the current project
 
-Do not implement these trajectories, add meters, assign existing NPCs to them, or expand them into chapters during vertical-slice completion. The immediate work remains understanding whether the apartment-through-Glass-House experience earns player investment. Future trajectory selection must follow that evidence and a separately approved story plan.
+Do not implement these trajectories, add meters or assign existing NPCs to predetermined intimate roles. Chapter 3 and future situation design is now separately authorized in the story-design worktree; the playable vertical slice remains frozen for outside testing. Implementation and future route selection still require separate approval and should account for that evidence.
