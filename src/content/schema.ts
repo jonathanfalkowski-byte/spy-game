@@ -169,17 +169,7 @@ export const ChoiceSchema = z
   })
   .strict();
 export type Choice = z.infer<typeof ChoiceSchema>;
-export const CharacterSchema = z
-  .object({
-    id: z.string(),
-    name: z.string(),
-    role: z.string(),
-    arrival: z.string(),
-    appearance: z.string(),
-    history: z.string(),
-    emotion: z.string(),
-  })
-  .strict();
+export { CharacterSchema } from './character-schema';
 export const DocumentSchema = z
   .object({
     id: DocIdSchema,

@@ -1,5 +1,6 @@
 import { CharacterSchema } from './schema';
-export const characters = CharacterSchema.array().parse([
+import { IntroductionSchema } from './character-schema';
+const introductions = [
   {
     id: 'marcus',
     name: 'Marcus Chen',
@@ -92,4 +93,63 @@ export const characters = CharacterSchema.array().parse([
       'Met Adrian in his first year at Axiom; a decade of bad coffee and sealed investigations.',
     emotion: 'Relief and trust; the player defines the private emotional boundary.',
   },
-]);
+];
+
+// Exact ages only: approximate ages remain in the preserved descriptive prose.
+const establishedAges: Partial<Record<string, number>> = {
+  adrian: 34,
+  daniel: 32,
+  benton: 58,
+  maya: 33,
+};
+// Preserved identity-package prose is not a second person in the character catalog.
+export const presentedIdentityIntroduction = IntroductionSchema.parse(
+  introductions.find((character) => character.id === 'evelyn'),
+);
+export const characters = CharacterSchema.array().parse(
+  introductions
+    .filter((character) => character.id !== 'evelyn')
+    .map((character) => ({
+      id: character.id === 'adrian' ? 'player-character' : character.id,
+      displayName: character.id === 'adrian' ? 'Evelynn Vale' : character.name,
+      introduction: character,
+      canon: {
+        ...(establishedAges[character.id] !== undefined
+          ? {
+              age: {
+                years: establishedAges[character.id],
+                status: 'established',
+                source: character.appearance,
+              },
+            }
+          : {}),
+        // Maya is the first migrated context example. Other introductions stay intact;
+        // no allegiance, desire, secret, or romantic fact is inferred from them.
+        facts:
+          character.id === 'maya'
+            ? [
+                {
+                  id: 'name',
+                  text: character.name,
+                  source: 'Existing Maya character introduction',
+                },
+                {
+                  id: 'occupation',
+                  text: character.role,
+                  source: 'Existing Maya character introduction',
+                },
+                {
+                  id: 'appearance',
+                  text: character.appearance,
+                  source: 'Existing Maya character introduction',
+                },
+                {
+                  id: 'background',
+                  text: character.history,
+                  source: 'Existing Maya character introduction',
+                },
+              ]
+            : [],
+      },
+    })),
+);

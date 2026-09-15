@@ -1,5 +1,7 @@
 import { dialogue } from './dialogue';
 import { characters } from './characters';
+import { CharacterSchema, NpcIdSchema } from './character-schema';
+import { identities, IdentitySchema } from './identities';
 import { documents, pairs } from './evidence';
 import { scenes, inspections } from './scenes';
 import { nodeIds, InspectionSchema } from './schema';
@@ -8,7 +10,15 @@ import { missionChoices } from './mission';
 import { clinicChoices } from './clinic';
 export function validateContent() {
   inspections.forEach((record) => InspectionSchema.parse(record));
-  for (const collection of [scenes, dialogue, characters, documents, inspections, dayChoices])
+  for (const collection of [
+    scenes,
+    dialogue,
+    characters,
+    identities,
+    documents,
+    inspections,
+    dayChoices,
+  ])
     if (new Set(collection.map((x) => x.id)).size !== collection.length)
       throw new Error('Duplicate content identifier');
   if (scenes.length !== nodeIds.length) throw new Error('Missing scene');
@@ -26,7 +36,9 @@ export function validateContent() {
     for (let j = i + 1; j < documents.length; j++)
       if (!pairs[[documents[i].id, documents[j].id].sort().join('|')])
         throw new Error('Unspecified evidence pair');
-  for (const c of characters)
-    for (const value of Object.values(c))
-      if (!value.trim()) throw new Error('Incomplete character introduction');
+  characters.forEach((character) => CharacterSchema.parse(character));
+  identities.forEach((identity) => IdentitySchema.parse(identity));
+  for (const id of ['player-character', ...NpcIdSchema.options])
+    if (!characters.some((character) => character.id === id))
+      throw Error('Missing character ' + id);
 }
