@@ -1,0 +1,284 @@
+{
+  "jobs": [
+    {
+      "entry": {
+        "key": "cast-adrian",
+        "kind": "cast",
+        "title": "Adrian Vale",
+        "concept": false,
+        "sources": [
+          "Age and occupation from src/content/characters.ts; hair, facial hair and outfit details are provisional visual design."
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style and limited family resemblance"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-adrian-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "adrian"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket."
+        },
+        "direction": "A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket.",
+          "SCENE": "A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket.",
+          "CAMERA": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level",
+          "LIGHTING": "Restrained soft directional key and warm rim; readable facial planes",
+          "CONTINUITY": "Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: style and limited family resemblance.\nTransform the style reference into a new single-character portrait of the described person. Preserve only the rendering style; give this person their own distinct face, hair and clothing. Leave generous headroom; include the complete hairstyle.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket.\nSCENE: A 34-year-old adult man, an intelligence analyst in understated office clothing. Family resemblance in eye shape and cheekbones to Evelynn; masculine face, short dark hair, clean-shaven, restrained tired alertness. Dark shirt and simple tailored jacket.\nCAMERA: Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level\nLIGHTING: Restrained soft directional key and warm rim; readable facial planes\nCONTINUITY: Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-maya",
+        "kind": "cast",
+        "title": "Maya Reyes",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Maya appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-maya-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "maya"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression."
+        },
+        "direction": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression.",
+          "SCENE": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression.",
+          "CAMERA": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level",
+          "LIGHTING": "Restrained soft directional key and warm rim; readable facial planes",
+          "CONTINUITY": "Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: style only; depict a distinct person.\nTransform the style reference into a new single-character portrait of the described person. Preserve only the rendering style; give this person their own distinct face, hair and clothing. Leave generous headroom; include the complete hairstyle.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: 33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression.\nSCENE: 33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression.\nCAMERA: Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level\nLIGHTING: Restrained soft directional key and warm rim; readable facial planes\nCONTINUITY: Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-daniel",
+        "kind": "cast",
+        "title": "Daniel Kessler",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Daniel appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-daniel-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "daniel"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking."
+        },
+        "direction": "32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking.",
+          "SCENE": "32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking.",
+          "CAMERA": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level",
+          "LIGHTING": "Restrained soft directional key and warm rim; readable facial planes",
+          "CONTINUITY": "Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: style only; depict a distinct person.\nTransform the style reference into a new single-character portrait of the described person. Preserve only the rendering style; give this person their own distinct face, hair and clothing. Leave generous headroom; include the complete hairstyle.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: 32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking.\nSCENE: 32-year-old man, long-limbed, dark unruly curls, open collar one button looser than corporate dress code. Intelligent expressive face, concerned rather than joking.\nCAMERA: Single head-and-shoulders portrait with generous space above entire hair and around shoulders. Near-front three-quarter, eye level\nLIGHTING: Restrained soft directional key and warm rim; readable facial planes\nCONTINUITY: Design candidate only; all unestablished facial details are provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    }
+  ],
+  "task": {
+    "id": "b85c560b-ca88-420c-b0e7-aaee657f1a25",
+    "unique_name": "image_editor-2026-09-16-18-24-b85c560b",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 3,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T18:24:48.910143Z",
+    "comment": "EVE cast pilot: Adrian, Maya, Daniel — provisional staging only"
+  },
+  "quote": 3
+}

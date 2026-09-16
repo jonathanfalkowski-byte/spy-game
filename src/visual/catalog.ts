@@ -1,7 +1,11 @@
 // Human-maintained production catalog, not a runtime manifest or approval service.
 import { VisualAssetRecordSchema, type VisualAssetRecord } from './schema';
+import stagingRecords from '../../art/staging/evelynn/records.json';
+import approvedPortraits from '../../art/reference/evelynn/approved-portraits.json';
+import castSceneRecords from '../../art/staging/cast-scenes/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
+  // Generator receipts are always pending; human approval is a separate catalog edit.
   {
     spec: {
       assetId: 'evelynn-helix-gala-v1',
@@ -22,6 +26,18 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
         'Owner explicitly approved and supplied the Evelynn Helix gala illustration with Art Bible v1.0',
     },
   },
+  ...approvedPortraits.map((record) => {
+    const portrait = VisualAssetRecordSchema.parse(record);
+    if (portrait.role !== 'canonical-reference' || portrait.approvalStatus !== 'approved')
+      throw Error('Approved portrait records require explicit canonical approval');
+    return portrait;
+  }),
+  ...[...stagingRecords, ...castSceneRecords].map((record) => {
+    const candidate = VisualAssetRecordSchema.parse(record);
+    if (candidate.role !== 'staging' || candidate.approvalStatus !== 'pending')
+      throw Error('Staging receipts cannot approve or promote artwork');
+    return candidate;
+  }),
 ]);
 
 export function canonicalReference(
@@ -45,5 +61,28 @@ export function validateVisualCatalog(catalog: readonly VisualAssetRecord[] = vi
       if (reference === asset.spec.assetId) throw Error('Asset cannot reference itself');
       canonicalReference(reference, validated);
     }
+  const byId = new Map(validated.map((asset) => [asset.spec.assetId, asset]));
+  const visiting = new Set<string>(),
+    visited = new Set<string>();
+  function visit(assetId: string) {
+    if (visiting.has(assetId)) throw Error('Cyclic staging references');
+    if (visited.has(assetId)) return;
+    visiting.add(assetId);
+    const asset = byId.get(assetId)!;
+    for (const reference of asset.spec.stagingReferences ?? []) {
+      const source = byId.get(reference);
+      if (
+        !source ||
+        source.role !== 'staging' ||
+        source.approvalStatus !== 'pending' ||
+        source.review?.decision !== 'PASS'
+      )
+        throw Error('Provisional reference must be a reviewed passing staging candidate');
+      visit(reference);
+    }
+    visiting.delete(assetId);
+    visited.add(assetId);
+  }
+  for (const asset of validated) visit(asset.spec.assetId);
   return validated;
 }

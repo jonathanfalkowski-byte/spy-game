@@ -1,0 +1,198 @@
+[
+  {
+    "spec": {
+      "assetId": "evelynn-canon-front-v1",
+      "assetType": "portrait",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "expression": "Composed controlled neutrality",
+      "pose": "Head and shoulders facing directly forward; shoulders level, head upright",
+      "cameraAngle": "Front view at eye level",
+      "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+      "wardrobeId": "evelynn-gala",
+      "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+      "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+      "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+      "intendedUse": "Lock facial proportions and identity",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "continuityRequirements": [
+        "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+        "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+        "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+    },
+    "role": "canonical-reference",
+    "approvalStatus": "approved",
+    "file": "art/reference/evelynn/evelynn-canon-front-v1.png",
+    "sha256": "D2A2C1944D4BBEB30A5FED40908CFCF23925D68D1956903EBCFB863798CB491B",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "ad81e5b4-333b-4676-a892-9cb9aa39f784",
+      "callId": "059efc49-5d67-41a1-99e0-a06049b40455",
+      "providerAssetId": "2780ce8a-310f-48b9-ac39-6ad16c5aa9bd",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "evelynn-helix-gala-v1",
+          "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+        }
+      ],
+      "promptVersion": "eve-evelynn-v1",
+      "promptComponents": {
+        "EVE_STYLE": "Preserve the reference illustration: polished 2D adult espionage graphic novel, confident clean linework, semi-cel shading, strong graphic shadows, controlled highlights, subtle illustrated texture, believable adult anatomy.",
+        "EVELYNN_CANON": "Keep the same adult woman and her identity: angular facial shape, defined cheekbones, almond-shaped eyes, strong brows, elegant nose, full controlled lips, dark brunette near-black hair, hairline, skin tone, slim graceful proportions and poised silhouette. Preserve the elegant updo and loose face-framing strands for this consistency test.",
+        "REFERENCE_IMAGE": "The woman in the supplied approved Evelynn Helix gala illustration is the sole identity and style reference.",
+        "ASSET_TYPE": "portrait",
+        "POSE": "Head and shoulders facing directly forward; shoulders level, head upright",
+        "CAMERA": "Front view at eye level. Head and shoulders for portraits; complete subject for wardrobe references",
+        "WARDROBE": "Retain the black evening gown and black gemstone earrings from the reference, with a simple elegant front neckline. Empty hands for the neutral study.",
+        "LIGHTING": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+        "MOOD": "Intelligent, elegant, dangerous, sophisticated and controlled. Expression: Composed controlled neutrality",
+        "ENVIRONMENT": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette"
+      },
+      "prompt": "The woman in the supplied approved Evelynn Helix gala illustration is the sole identity and style reference. Recompose her into the following single character reference study, changing the camera and pose as specified. Replace the gala setting with the quiet backdrop. EVE_STYLE: Preserve the reference illustration: polished 2D adult espionage graphic novel, confident clean linework, semi-cel shading, strong graphic shadows, controlled highlights, subtle illustrated texture, believable adult anatomy.\nEVELYNN_CANON: Keep the same adult woman and her identity: angular facial shape, defined cheekbones, almond-shaped eyes, strong brows, elegant nose, full controlled lips, dark brunette near-black hair, hairline, skin tone, slim graceful proportions and poised silhouette. Preserve the elegant updo and loose face-framing strands for this consistency test.\nASSET_TYPE: portrait\nPOSE: Head and shoulders facing directly forward; shoulders level, head upright\nCAMERA: Front view at eye level. Head and shoulders for portraits; complete subject for wardrobe references\nWARDROBE: Retain the black evening gown and black gemstone earrings from the reference, with a simple elegant front neckline. Empty hands for the neutral study.\nLIGHTING: Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows\nMOOD: Intelligent, elegant, dangerous, sophisticated and controlled. Expression: Composed controlled neutrality\nENVIRONMENT: Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette\nPreserve her recognizable facial proportions and illustrated rendering across the transformation. One adult subject, restrained expression, clear unobstructed face and silhouette. The result is a character design study with an unlettered backdrop.",
+      "settings": {
+        "ratio": "3:4",
+        "width": 1536,
+        "height": 2048,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T17:50:52.573477Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2048
+      }
+    },
+    "review": {
+      "decision": "PASS",
+      "reasons": [
+        "Recognizable relative to gala reference: almond eyes, angular cheeks, controlled lips, near-black updo and adult facial proportions are coherent. Polished 2D linework and semi-cel shading remain consistent.",
+        "Front-facing camera and neutral poised shoulders meet the primary facial-reference purpose. Crown is tightly cropped, brows/lips slightly bolder and expression slightly more self-assured than gala; owner should review these differences.",
+        "Eligible for human approval as a face candidate only; no canonical promotion."
+      ],
+      "reviewer": "Codex visual QA (recommendation only)",
+      "date": "2026-09-16"
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-16",
+      "source": "Explicit user response \"yes\" to \"Should I make the front and three-quarter portraits canonical references? The profile and full-body images would stay in staging until we fix their angle and cropping.\" EVE task 01a0ab52-071a-7622-8a05-a7578c9fcd56."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "evelynn-canon-three-quarter-v1",
+      "assetType": "portrait",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "expression": "Composed controlled neutrality",
+      "pose": "Head and shoulders rotated 45 degrees toward viewer left; composed upright posture",
+      "cameraAngle": "Three-quarter view at eye level",
+      "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+      "wardrobeId": "evelynn-gala",
+      "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+      "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+      "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+      "intendedUse": "Primary conversational reference",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "continuityRequirements": [
+        "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+        "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+        "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+    },
+    "role": "canonical-reference",
+    "approvalStatus": "approved",
+    "file": "art/reference/evelynn/evelynn-canon-three-quarter-v1.png",
+    "sha256": "4F1252ED22C25695BC40ABB0A46AE77E6EFBA86567B35A2B0A5DBC39DB2ABF9C",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "1735ca21-aae9-484d-aebd-ad08e6c99dc0",
+      "callId": "f3db573a-d79c-47d6-8351-b3e24722195c",
+      "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "evelynn-helix-gala-v1",
+          "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+        }
+      ],
+      "promptVersion": "eve-evelynn-v1",
+      "promptComponents": {
+        "EVE_STYLE": "Preserve the reference illustration: polished 2D adult espionage graphic novel, confident clean linework, semi-cel shading, strong graphic shadows, controlled highlights, subtle illustrated texture, believable adult anatomy.",
+        "EVELYNN_CANON": "Keep the same adult woman and her identity: angular facial shape, defined cheekbones, almond-shaped eyes, strong brows, elegant nose, full controlled lips, dark brunette near-black hair, hairline, skin tone, slim graceful proportions and poised silhouette. Preserve the elegant updo and loose face-framing strands for this consistency test.",
+        "REFERENCE_IMAGE": "The woman in the supplied approved Evelynn Helix gala illustration is the sole identity and style reference.",
+        "ASSET_TYPE": "portrait",
+        "POSE": "Head and shoulders rotated 45 degrees toward viewer left; composed upright posture",
+        "CAMERA": "Three-quarter view at eye level. Head and shoulders for portraits; complete subject for wardrobe references",
+        "WARDROBE": "Retain the black evening gown and black gemstone earrings from the reference, with a simple elegant front neckline. Empty hands for the neutral study.",
+        "LIGHTING": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+        "MOOD": "Intelligent, elegant, dangerous, sophisticated and controlled. Expression: Composed controlled neutrality",
+        "ENVIRONMENT": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette"
+      },
+      "prompt": "The woman in the supplied approved Evelynn Helix gala illustration is the sole identity and style reference. Recompose her into the following single character reference study, changing the camera and pose as specified. Replace the gala setting with the quiet backdrop. EVE_STYLE: Preserve the reference illustration: polished 2D adult espionage graphic novel, confident clean linework, semi-cel shading, strong graphic shadows, controlled highlights, subtle illustrated texture, believable adult anatomy.\nEVELYNN_CANON: Keep the same adult woman and her identity: angular facial shape, defined cheekbones, almond-shaped eyes, strong brows, elegant nose, full controlled lips, dark brunette near-black hair, hairline, skin tone, slim graceful proportions and poised silhouette. Preserve the elegant updo and loose face-framing strands for this consistency test.\nASSET_TYPE: portrait\nPOSE: Head and shoulders rotated 45 degrees toward viewer left; composed upright posture\nCAMERA: Three-quarter view at eye level. Head and shoulders for portraits; complete subject for wardrobe references\nWARDROBE: Retain the black evening gown and black gemstone earrings from the reference, with a simple elegant front neckline. Empty hands for the neutral study.\nLIGHTING: Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows\nMOOD: Intelligent, elegant, dangerous, sophisticated and controlled. Expression: Composed controlled neutrality\nENVIRONMENT: Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette\nPreserve her recognizable facial proportions and illustrated rendering across the transformation. One adult subject, restrained expression, clear unobstructed face and silhouette. The result is a character design study with an unlettered backdrop.",
+      "settings": {
+        "ratio": "3:4",
+        "width": 1536,
+        "height": 2048,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T17:52:31.553208Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2048
+      }
+    },
+    "review": {
+      "decision": "PASS",
+      "reasons": [
+        "Closest match to gala facial silhouette, eye shape, nose, lips, hairline and updo; rendering remains within the same EVE illustration language.",
+        "Three-quarter angle is usable for conversation reference. Crown is tightly cropped; makeup is slightly stronger and neckline is inferred from a back-view source.",
+        "Eligible for human approval as a portrait candidate only; no canonical promotion."
+      ],
+      "reviewer": "Codex visual QA (recommendation only)",
+      "date": "2026-09-16"
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-16",
+      "source": "Explicit user response \"yes\" to \"Should I make the front and three-quarter portraits canonical references? The profile and full-body images would stay in staging until we fix their angle and cropping.\" EVE task 01a0ab52-071a-7622-8a05-a7578c9fcd56."
+    }
+  }
+]

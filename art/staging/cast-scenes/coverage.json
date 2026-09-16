@@ -1,0 +1,921 @@
+{
+  "runtimeNodes": [
+    {
+      "node": "mission.home",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-home-before-v1",
+          "guard": "Post-transformation pre-gala home visit; gala presentation variant."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.homePresentation",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.homeContact",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.cover",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.car",
+      "neutralBackground": "eve-bg-car-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.arrival",
+      "neutralBackground": "eve-bg-glass-entrance-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-arrival-v1",
+          "guard": "Gala presentation branch, arriving only."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.reception",
+      "neutralBackground": "eve-bg-glass-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.elevator",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.entry",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.marcus",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-marcus-v1",
+          "guard": "Greeting; no assertion their claimed shared history is true."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.marcusReply",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.celeste",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-celeste-v1",
+          "guard": "Public reunion greeting; no confirmed memory or intimacy."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.celesteReply",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.hub",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-investigation-v1",
+          "guard": "Before choosing a lead; no evidence earned or suspect confirmed."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.leadReview",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.leadResult",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.leadRead",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.assessment",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.assessmentReview",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.method",
+      "neutralBackground": "eve-bg-glass-hall-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.exchange",
+      "neutralBackground": "eve-bg-glass-gallery-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-exchange-v1",
+          "guard": "Timely observation composition only; wafer distinct from access token, not automatic captured evidence."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.confrontation",
+      "neutralBackground": "eve-bg-glass-gallery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.escape",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.debrief",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-debrief-v1",
+          "guard": "After other guests exit; Sloane is remote and not physically present."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.debriefReply",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.warning1",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.warning2",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.warning3",
+      "neutralBackground": "eve-bg-elevator-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.garage",
+      "neutralBackground": "eve-bg-garage-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-garage-v1",
+          "guard": "Mission ending, gala variant, evidence-neutral."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "mission.complete",
+      "neutralBackground": "eve-bg-garage-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.morning",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.contact",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.morningReply",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.travel",
+      "neutralBackground": "eve-bg-car-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.entrance",
+      "neutralBackground": "eve-bg-axiom-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.screened",
+      "neutralBackground": "eve-bg-axiom-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.reception",
+      "neutralBackground": "eve-bg-clinic-reception-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.receptionReply",
+      "neutralBackground": "eve-bg-clinic-reception-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.privacy",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-clinic-privacy-v1",
+          "guard": "Initial privacy decision before room occupancy choice."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.privacyReply",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.exam",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-clinic-scan-v1",
+          "guard": "Baseline measurement only; no adaptation or inferred new consent."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.examResult",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.protocol",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.profile",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.profileReview",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.simulation",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.display",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.authorization",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.preparation",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.voice",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.voiceReply",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.voicePause",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.face",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.faceReply",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.facePause",
+      "neutralBackground": "eve-bg-clinic-exam-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.steps",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.mirror",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-recovery-v1",
+          "guard": "Completed Stage One recovery branch only; no identity acceptance."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.name",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.rest",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.recoveryContact",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.recoveryReply",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.wardrobe",
+      "neutralBackground": "eve-bg-wardrobe-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-wardrobe-v1",
+          "guard": "Gala outfit variant only; other selectable wardrobes are not replaced."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.makeup",
+      "neutralBackground": "eve-bg-wardrobe-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.presentationReview",
+      "neutralBackground": "eve-bg-wardrobe-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.rehearsal",
+      "neutralBackground": "eve-bg-wardrobe-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.briefing",
+      "neutralBackground": "eve-bg-wardrobe-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.farewell",
+      "neutralBackground": "eve-bg-clinic-reception-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.departure",
+      "neutralBackground": "eve-bg-car-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.complete",
+      "neutralBackground": "eve-bg-car-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.stopConfirm",
+      "neutralBackground": "eve-bg-clinic-consult-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "clinic.stopped",
+      "neutralBackground": "eve-bg-clinic-recovery-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "apartment.bond",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-morning-v1",
+          "guard": "Opening morning, pre-transformation."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "apartment.reply",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "apartment.departure",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "commute.arrival",
+      "neutralBackground": "eve-bg-axiom-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "office.daniel",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-daniel-v1",
+          "guard": "Pre-transformation office encounter."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "office.benton",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-benton-v1",
+          "guard": "Pre-transformation briefing; no capture evidence."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "office.departure",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "helix.brief",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "helix.documents",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "helix.analysis",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "helix.review",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "helix.submitted",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "maya.promotion",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-maya-coffee-v1",
+          "guard": "Office coffee encounter; no private relationship verdict."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "maya.invitation",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "maya.case",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "maya.goodbye",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "ending.complete",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "file.arrival",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "file.directory",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "file.authorized",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "security.intervention",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-security-v1",
+          "guard": "Security intervention; anonymous staff designs provisional."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "security.escort",
+      "neutralBackground": "eve-bg-intelligence-floor-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "sloane.intro",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-sloane-v1",
+          "guard": "Initial meeting before any agreement."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "sloane.allegation",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "sloane.brief",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "sloane.identity",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "sloane.offer",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "refusal.lobby",
+      "neutralBackground": "eve-bg-axiom-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "refusal.reconsider",
+      "neutralBackground": "eve-bg-axiom-lobby-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "release.departure",
+      "neutralBackground": "eve-bg-sloane-office-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "release.home",
+      "neutralBackground": "eve-bg-apartment-day-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "evening.plan",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "evening.disclosure",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [
+        {
+          "assetId": "eve-scene-maya-evening-v1",
+          "guard": "ONLY in-person evening.meet branch; not call/avoid or automatic romance."
+        }
+      ],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "evening.closure",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "evening.goodbye",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "evening.home",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "warning.first",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "warning.second",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "warning.third",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "dayend.cautious",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "dayend.walkaway",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "dayend.accepted",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "chapter3.home",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "chapter3.surveillance",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    },
+    {
+      "node": "chapter3.complete",
+      "neutralBackground": "eve-bg-apartment-night-v1",
+      "conditionalKeyframes": [],
+      "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding."
+    }
+  ],
+  "futureConcepts": [
+    {
+      "assetId": "eve-cast-executive-v1",
+      "labels": [],
+      "guard": "Design candidate only; all unestablished facial details are provisional."
+    },
+    {
+      "assetId": "eve-bg-helix-meeting-v1",
+      "labels": [
+        "c3.executive"
+      ],
+      "guard": "Empty location establishing art; never implies attendance or a completed branch."
+    },
+    {
+      "assetId": "eve-bg-helix-reception-v1",
+      "labels": [
+        "c3.seen"
+      ],
+      "guard": "Empty location establishing art; never implies attendance or a completed branch."
+    },
+    {
+      "assetId": "eve-c3-home-v1",
+      "labels": [
+        "c3.home"
+      ],
+      "guard": "Return after completed mission; evidence-neutral."
+    },
+    {
+      "assetId": "eve-c3-maya-v1",
+      "labels": [
+        "c3.maya"
+      ],
+      "guard": "Chosen call branch only; Maya remains remote. Casual outfit is a design proposal."
+    },
+    {
+      "assetId": "eve-c3-voss-v1",
+      "labels": [
+        "c3.voss"
+      ],
+      "guard": "Attended voluntary aftercare conversation; no new adaptation consent."
+    },
+    {
+      "assetId": "eve-c3-sender-v1",
+      "labels": [
+        "c3.sender"
+      ],
+      "guard": "Unknown sender stays unseen; receipt does not establish verification."
+    },
+    {
+      "assetId": "eve-c3-helix-contact-v1",
+      "labels": [
+        "c3.helix-contact"
+      ],
+      "guard": "Invitation received, not accepted; no invented sender portrait."
+    },
+    {
+      "assetId": "eve-c3-verify-v1",
+      "labels": [
+        "c3.verify"
+      ],
+      "guard": "Verification concept; no completed assessment or acceptance implied."
+    },
+    {
+      "assetId": "eve-c3-executive-v1",
+      "labels": [
+        "c3.executive"
+      ],
+      "guard": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing."
+    },
+    {
+      "assetId": "eve-c3-seen-v1",
+      "labels": [
+        "c3.seen"
+      ],
+      "guard": "Optional reception concept, no-photo boundary; no publication or consent assumed."
+    },
+    {
+      "assetId": "eve-c3-marcus-record-v1",
+      "labels": [
+        "c3.marcus-record"
+      ],
+      "guard": "Only actual limited-interest branch; record unreadable, no forced confession."
+    },
+    {
+      "assetId": "eve-c3-records-entry-v1",
+      "labels": [
+        "c3.records-entry"
+      ],
+      "guard": "Future refusal branch: attended record inspection; no automatic retained copy."
+    },
+    {
+      "assetId": "eve-c3-records-interpret-v1",
+      "labels": [
+        "c3.records-interpret"
+      ],
+      "guard": "Future refusal branch; comparison is not adjudicated fraud."
+    },
+    {
+      "assetId": "eve-c3-records-power-v1",
+      "labels": [
+        "c3.records-power"
+      ],
+      "guard": "Before signing or circulation; no automatic transmission or agreement."
+    },
+    {
+      "assetId": "eve-c3-disclosures-v1",
+      "labels": [
+        "c3.disclosures"
+      ],
+      "guard": "No recipient delivery implied; no hidden sender revealed."
+    },
+    {
+      "assetId": "eve-c3-commit-v1",
+      "labels": [
+        "c3.commit"
+      ],
+      "guard": "Before acceptance; no price/date or signature invented."
+    },
+    {
+      "assetId": "eve-c3-ending-v1",
+      "labels": [
+        "c3.ending"
+      ],
+      "guard": "Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation."
+    }
+  ]
+}

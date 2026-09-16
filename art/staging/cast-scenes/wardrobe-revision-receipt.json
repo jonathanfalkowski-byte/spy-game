@@ -1,0 +1,124 @@
+{
+  "entry": {
+    "key": "scene-wardrobe",
+    "kind": "scene",
+    "title": "Preparing for Glass House",
+    "concept": false,
+    "sources": [
+      "src/content/clinic.ts",
+      "Owner correction 2026-09-16: regular clothes or bathrobe before putting on the dress"
+    ],
+    "sourceNodes": [
+      "clinic.wardrobe"
+    ],
+    "guard": "Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established.",
+    "references": [
+      {
+        "assetId": "eve-bg-wardrobe-v1",
+        "purpose": "location layout"
+      },
+      {
+        "assetId": "evelynn-canon-three-quarter-v1",
+        "purpose": "evelynn identity"
+      }
+    ],
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-scene-wardrobe-v1",
+      "assetType": "scene-cg",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "stagingReferences": [
+        "eve-bg-wardrobe-v1"
+      ],
+      "sceneId": "clinic.wardrobe",
+      "locationId": "wardrobe",
+      "pose": "Evelynn from Reference 2 is preparing BEFORE putting on the gala dress. Dress her in a soft ivory cotton bathrobe, long sleeves, opaque fabric, fully wrapped closed across chest and tied securely at waist, knee-to-mid-calf length. She stands naturally beside the garment rail, face in readable three-quarter view, gently touching the hanger of the single black gala gown which remains on the rail. She is NOT wearing an evening dress. Preserve her face, brunette updo, adult proportions, the warm dressing room from Reference 1, confident ink lines and semi-cel shadows. Quiet practical preparation, relaxed posture, no glamour pose. Keep head and robe hem inside frame.",
+      "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+      "cameraAngle": "Eye-level observational composition",
+      "lighting": "Warm flattering but restrained practical light",
+      "mood": "Controlled adult espionage tension, subtle facial acting",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Staged authored-scene keyframe with branch guard",
+      "notes": "Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established."
+    },
+    "direction": "Evelynn from Reference 2 is preparing BEFORE putting on the gala dress. Dress her in a soft ivory cotton bathrobe, long sleeves, opaque fabric, fully wrapped closed across chest and tied securely at waist, knee-to-mid-calf length. She stands naturally beside the garment rail, face in readable three-quarter view, gently touching the hanger of the single black gala gown which remains on the rail. She is NOT wearing an evening dress. Preserve her face, brunette updo, adult proportions, the warm dressing room from Reference 1, confident ink lines and semi-cel shadows. Quiet practical preparation, relaxed posture, no glamour pose. Keep head and robe hem inside frame."
+  },
+  "request": {
+    "components": {
+      "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+      "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+      "SCENE": "Evelynn from Reference 2 is preparing BEFORE putting on the gala dress. Dress her in a soft ivory cotton bathrobe, long sleeves, opaque fabric, fully wrapped closed across chest and tied securely at waist, knee-to-mid-calf length. She stands naturally beside the garment rail, face in readable three-quarter view, gently touching the hanger of the single black gala gown which remains on the rail. She is NOT wearing an evening dress. Preserve her face, brunette updo, adult proportions, the warm dressing room from Reference 1, confident ink lines and semi-cel shadows. Quiet practical preparation, relaxed posture, no glamour pose. Keep head and robe hem inside frame.",
+      "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+      "LIGHTING": "Warm flattering but restrained practical light",
+      "CONTINUITY": "Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+    },
+    "settings": {
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "rewrite_prompt": false
+    },
+    "sourceReferences": [
+      {
+        "assetId": "eve-bg-wardrobe-v1",
+        "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+      },
+      {
+        "assetId": "evelynn-canon-three-quarter-v1",
+        "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+      }
+    ],
+    "inputs": {
+      "image_assets": [
+        "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+        "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+      ],
+      "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn from Reference 2 is preparing BEFORE putting on the gala dress. Dress her in a soft ivory cotton bathrobe, long sleeves, opaque fabric, fully wrapped closed across chest and tied securely at waist, knee-to-mid-calf length. She stands naturally beside the garment rail, face in readable three-quarter view, gently touching the hanger of the single black gala gown which remains on the rail. She is NOT wearing an evening dress. Preserve her face, brunette updo, adult proportions, the warm dressing room from Reference 1, confident ink lines and semi-cel shadows. Quiet practical preparation, relaxed posture, no glamour pose. Keep head and robe hem inside frame.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+      "model": "SEEDREAM_5",
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "rewrite_prompt": false
+    }
+  },
+  "excluded": false,
+  "file": "art/staging/cast-scenes/eve-scene-wardrobe-v1.png",
+  "receipt": {
+    "taskId": "eae1803b-06f4-4ae5-a66c-6544403becf9",
+    "callId": "1ebef5c1-767f-4e90-92e4-710059353d34",
+    "providerAssetId": "20271a42-139c-4559-8f14-26d1e5188a5d",
+    "createdAt": "2026-09-16T18:48:51.619317Z",
+    "estimatedCredits": 1,
+    "mediaType": "image/png",
+    "sha256": "1122D54FD87CEC303A588A177C84C467F05B27BF86C38FA2B7F4B2985EAB964D",
+    "outputDimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "PASS",
+    "reviewer": "Codex visual QA — provisional only",
+    "date": "2026-09-16",
+    "reasons": [
+      "Owner-requested before-dressing correction: opaque tied ivory robe, gown remains on rail, recognizable Evelynn and matching illustrated dressing room. Her hand rests near the jacket rather than the gown hanger; the preparation state is clear."
+    ]
+  }
+}

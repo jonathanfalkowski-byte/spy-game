@@ -1,0 +1,261 @@
+[
+  {
+    "assetId": "evelynn-canon-front-v1",
+    "assetType": "portrait",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Head and shoulders facing directly forward; shoulders level, head upright",
+    "cameraAngle": "Front view at eye level",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Lock facial proportions and identity",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2048
+    },
+    "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+  },
+  {
+    "assetId": "evelynn-canon-three-quarter-v1",
+    "assetType": "portrait",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Head and shoulders rotated 45 degrees toward viewer left; composed upright posture",
+    "cameraAngle": "Three-quarter view at eye level",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Primary conversational reference",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2048
+    },
+    "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+  },
+  {
+    "assetId": "evelynn-canon-profile-v1",
+    "assetType": "portrait",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "True left-facing side profile, head level, one eye visible; shoulders aligned with profile",
+    "cameraAngle": "Strict 90-degree side profile at eye level",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Silhouette and facial consistency",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2048
+    },
+    "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+  },
+  {
+    "assetId": "evelynn-canon-fullbody-v1",
+    "assetType": "full-body",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Neutral upright standing pose, arms relaxed beside body, both hands visible, feet slightly apart",
+    "cameraAngle": "Straight-on full-body view at natural eye level; entire head and shoes inside frame",
+    "cameraFraming": "Head to toe with breathing room around head and feet",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Proportions and body consistency",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2304
+    },
+    "notes": "Candidate reference only; requested dimensions are distinct from measured output dimensions. Human approval required."
+  },
+  {
+    "assetId": "evelynn-expression-sheet-v1",
+    "assetType": "expression-sheet",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "neutral; amused; suspicious; calculating; confident; angry; vulnerable; controlled fear",
+    "pose": "Eight restrained head-and-shoulder expressions in an orderly sheet",
+    "cameraAngle": "Consistent frontal camera",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Neutral, amused, suspicious, calculating, confident, angry, vulnerable, controlled fear",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "notes": "Planned spec only; not authorized for generation in the first four-view milestone."
+  },
+  {
+    "assetId": "evelynn-gala-v1",
+    "assetType": "wardrobe-reference",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Poised over-the-shoulder stance",
+    "cameraAngle": "Three-quarter gala wardrobe view",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-gala",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Consistency test only; never replace the approved gala reference",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "notes": "Planned spec only; not authorized for generation in the first four-view milestone."
+  },
+  {
+    "assetId": "evelynn-business-v1",
+    "assetType": "wardrobe-reference",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Poised neutral standing pose",
+    "cameraAngle": "Full-body eye-level view",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-business",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Tailored understated luxury business presentation",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "notes": "Planned spec only; not authorized for generation in the first four-view milestone."
+  },
+  {
+    "assetId": "evelynn-operational-v1",
+    "assetType": "wardrobe-reference",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Balanced relaxed standing pose",
+    "cameraAngle": "Full-body eye-level view",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-operational",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Elegant practical espionage presentation; avoid costume-like spy styling",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "notes": "Planned spec only; not authorized for generation in the first four-view milestone."
+  },
+  {
+    "assetId": "evelynn-private-v1",
+    "assetType": "wardrobe-reference",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "evelyn"
+      }
+    ],
+    "expression": "Composed controlled neutrality",
+    "pose": "Relaxed natural standing pose",
+    "cameraAngle": "Full-body eye-level view",
+    "cameraFraming": "Head and shoulders for portraits; complete subject for wardrobe references",
+    "wardrobeId": "evelynn-private",
+    "lighting": "Soft directional warm key with restrained gold rim light; readable facial planes and controlled graphic noir shadows",
+    "mood": "Intelligent, elegant, dangerous, sophisticated and controlled",
+    "environment": "Quiet charcoal backdrop with a subtle warm gradient; clear isolated silhouette",
+    "intendedUse": "Private casual presentation preserving identity",
+    "canonicalReferences": ["evelynn-helix-gala-v1"],
+    "continuityRequirements": [
+      "Preserve gala-reference facial proportions, almond eyes, strong brows, angular cheekbones, nose, controlled lips and hairline.",
+      "Adult slim graceful build, believable anatomy, long clean silhouette; presentation does not imply identity acceptance.",
+      "Polished 2D graphic-novel illustration, confident clean linework, semi-cel shading and controlled highlights."
+    ],
+    "notes": "Planned spec only; not authorized for generation in the first four-view milestone."
+  }
+]

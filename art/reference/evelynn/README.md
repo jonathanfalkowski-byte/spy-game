@@ -1,5 +1,20 @@
 # Evelynn Vale — approved gala reference
 
+## Additional approved canonical portraits — 2026-09-16
+
+The project owner explicitly approved the front and three-quarter portraits as canonical
+references in EVE task 01a0ab52-071a-7622-8a05-a7578c9fcd56. Both preserve the exact generated
+PNG bytes and provenance; approval details and hashes are in
+[approved-portraits.json](approved-portraits.json).
+
+- [Front](evelynn-canon-front-v1.png): canonical facial reference.
+- [Three-quarter](evelynn-canon-three-quarter-v1.png): canonical conversational reference.
+
+The profile and full-body candidates remain staging/pending. This approval adds visual
+references only; it does not make runtime production assets or alter story/identity canon.
+
+## Original approved gala reference
+
 `evelynn-helix-gala-v1.png` is the approved Evelynn Helix gala illustration supplied
 by the project owner on 2026-09-15. It is preserved without edits as the first
 canonical visual reference. It is production/design material, not a runtime asset

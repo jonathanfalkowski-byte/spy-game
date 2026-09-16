@@ -1,0 +1,571 @@
+{
+  "jobs": [
+    {
+      "entry": {
+        "key": "cast-maya",
+        "kind": "cast",
+        "title": "Maya Reyes",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Maya appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-maya-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "maya"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression."
+        },
+        "direction": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "33-year-old woman, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs. Grounded and perceptive, distinct softer facial planes, restrained expression. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-benton",
+        "kind": "cast",
+        "title": "Elias Benton",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Benton appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-benton-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "benton"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "58-year-old compact adult man, silver hair, precisely fitted charcoal suit, impassive controlled expression, mature facial lines. Black data slate held at waist."
+        },
+        "direction": "58-year-old compact adult man, silver hair, precisely fitted charcoal suit, impassive controlled expression, mature facial lines. Black data slate held at waist."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "58-year-old compact adult man, silver hair, precisely fitted charcoal suit, impassive controlled expression, mature facial lines. Black data slate held at waist.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "58-year-old compact adult man, silver hair, precisely fitted charcoal suit, impassive controlled expression, mature facial lines. Black data slate held at waist. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-sloane",
+        "kind": "cast",
+        "title": "Victoria Sloane",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts; src/content/day.ts sloane.intro"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-sloane-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "sloane"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "Woman in her late forties, tall and spare, bronze skin, jaw-length black hair with one silver streak at her right temple, immaculate graphite suit, composed authority. No visible rank pin."
+        },
+        "direction": "Woman in her late forties, tall and spare, bronze skin, jaw-length black hair with one silver streak at her right temple, immaculate graphite suit, composed authority. No visible rank pin."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "Woman in her late forties, tall and spare, bronze skin, jaw-length black hair with one silver streak at her right temple, immaculate graphite suit, composed authority. No visible rank pin.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "Woman in her late forties, tall and spare, bronze skin, jaw-length black hair with one silver streak at her right temple, immaculate graphite suit, composed authority. No visible rank pin. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-voss",
+        "kind": "cast",
+        "title": "Dr Lena Voss",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Voss appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-voss-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "voss"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "Woman in her mid-forties, slight build, sharp features, dark hair with silver at temples, charcoal blouse and open medical coat. Tired attentive expression, practical rather than glamorous."
+        },
+        "direction": "Woman in her mid-forties, slight build, sharp features, dark hair with silver at temples, charcoal blouse and open medical coat. Tired attentive expression, practical rather than glamorous."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "Woman in her mid-forties, slight build, sharp features, dark hair with silver at temples, charcoal blouse and open medical coat. Tired attentive expression, practical rather than glamorous.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "Woman in her mid-forties, slight build, sharp features, dark hair with silver at temples, charcoal blouse and open medical coat. Tired attentive expression, practical rather than glamorous. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-marcus",
+        "kind": "cast",
+        "title": "Marcus Chen",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Marcus appearance"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-marcus-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "marcus"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "Lean adult man in his early forties, silver at both temples, impeccable black dinner jacket, reserved socially fluent expression. Refined distinct facial structure."
+        },
+        "direction": "Lean adult man in his early forties, silver at both temples, impeccable black dinner jacket, reserved socially fluent expression. Refined distinct facial structure."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "Lean adult man in his early forties, silver at both temples, impeccable black dinner jacket, reserved socially fluent expression. Refined distinct facial structure.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "Lean adult man in his early forties, silver at both temples, impeccable black dinner jacket, reserved socially fluent expression. Refined distinct facial structure. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-celeste",
+        "kind": "cast",
+        "title": "Celeste Laurent",
+        "concept": false,
+        "sources": [
+          "src/content/characters.ts Celeste appearance; exact age not established"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-celeste-v1",
+          "assetType": "portrait",
+          "subjects": [
+            {
+              "characterId": "celeste"
+            }
+          ],
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "Tall dark-skinned adult woman, close-cropped hair, silver evening gown, long clean silhouette, unhurried composed presence and restrained expressive eyes."
+        },
+        "direction": "Tall dark-skinned adult woman, close-cropped hair, silver evening gown, long clean silhouette, unhurried composed presence and restrained expressive eyes."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "Tall dark-skinned adult woman, close-cropped hair, silver evening gown, long clean silhouette, unhurried composed presence and restrained expressive eyes.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "Tall dark-skinned adult woman, close-cropped hair, silver evening gown, long clean silhouette, unhurried composed presence and restrained expressive eyes. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "cast-executive",
+        "kind": "cast",
+        "title": "Helix executive — proposed design",
+        "concept": true,
+        "sources": [
+          "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md Scene 7; gender and senior role proposed; all detailed appearance is a noncanonical concept"
+        ],
+        "sourceNodes": [],
+        "guard": "Design candidate only; all unestablished facial details are provisional.",
+        "references": [
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "style only; depict a distinct person"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-cast-executive-v1",
+          "assetType": "portrait",
+          "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+          "cameraAngle": "Near-front three-quarter, eye level",
+          "expression": "Controlled neutral expression",
+          "pose": "Upright natural posture",
+          "lighting": "Restrained soft directional key and warm rim; readable facial planes",
+          "environment": "Quiet charcoal gradient",
+          "dimensions": {
+            "width": 1536,
+            "height": 2048
+          },
+          "intendedUse": "Provisional cast design for scene continuity; human review required",
+          "notes": "Clearly middle-aged adult man in a tailored midnight-blue business suit, short neatly combed salt-and-pepper hair, attentive composed expression. Distinct broad face and rectangular features. A professional counterpart, not a romantic pose."
+        },
+        "direction": "Clearly middle-aged adult man in a tailored midnight-blue business suit, short neatly combed salt-and-pepper hair, attentive composed expression. Distinct broad face and rectangular features. A professional counterpart, not a romantic pose."
+      },
+      "request": {
+        "toolName": "by_prompt",
+        "components": {
+          "STYLE": "Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette.",
+          "SUBJECT": "Clearly middle-aged adult man in a tailored midnight-blue business suit, short neatly combed salt-and-pepper hair, attentive composed expression. Distinct broad face and rectangular features. A professional counterpart, not a romantic pose.",
+          "SCENE": "Single character on a plain charcoal gradient background.",
+          "CAMERA": "Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom.",
+          "LIGHTING": "Soft directional key, thin warm rim light, controlled noir contrast.",
+          "CONTINUITY": "Provisional design based on sourced appearance; neutral professional expression."
+        },
+        "settings": {
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [],
+        "inputs": {
+          "positive_prompt": "Clearly middle-aged adult man in a tailored midnight-blue business suit, short neatly combed salt-and-pepper hair, attentive composed expression. Distinct broad face and rectangular features. A professional counterpart, not a romantic pose. Single character on a plain charcoal gradient background. Head-and-shoulders portrait, near-front three-quarter view, complete hair visible with generous headroom. Soft directional key, thin warm rim light, controlled noir contrast. Polished 2D adult espionage graphic-novel illustration. Confident clean ink lines, angular graphic facial planes, semi-cel shadows, restrained highlights, illustrated skin, charcoal and muted jewel palette. Provisional design based on sourced appearance; neutral professional expression.",
+          "model": "SEEDREAM_5",
+          "ratio": "3:4",
+          "width": 1536,
+          "height": 2048,
+          "batch_size": 1,
+          "mode": "quality",
+          "rewrite_prompt": false
+        }
+      }
+    }
+  ],
+  "task": {
+    "id": "27f5acce-5e01-4be6-b58e-a9a829ca71d5",
+    "unique_name": "by_prompt-2026-09-16-18-28-27f5acce",
+    "tool_name": "by_prompt",
+    "status": "created",
+    "total": 7,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T18:28:21.822940Z",
+    "comment": "EVE distinct cast designs — Maya replacement plus six remaining characters; staging only"
+  },
+  "quote": 7
+}

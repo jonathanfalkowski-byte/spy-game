@@ -1,0 +1,350 @@
+{
+  "jobs": [
+    {
+      "entry": {
+        "key": "scene-daniel",
+        "kind": "scene",
+        "title": "Daniel brings the news",
+        "concept": false,
+        "sources": [
+          "src/content/scenes.ts"
+        ],
+        "sourceNodes": [
+          "office.daniel"
+        ],
+        "guard": "Pre-transformation office encounter.",
+        "references": [
+          {
+            "assetId": "eve-bg-intelligence-floor-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "eve-cast-adrian-v1",
+            "purpose": "adrian identity"
+          },
+          {
+            "assetId": "eve-cast-daniel-v1",
+            "purpose": "daniel identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-scene-daniel-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "adrian"
+            },
+            {
+              "characterId": "daniel"
+            }
+          ],
+          "canonicalReferences": [],
+          "stagingReferences": [
+            "eve-bg-intelligence-floor-v1",
+            "eve-cast-adrian-v1",
+            "eve-cast-daniel-v1"
+          ],
+          "sceneId": "office.daniel",
+          "locationId": "intelligence-floor",
+          "pose": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.",
+          "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Cool office daylight, restrained monitor glow",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Staged authored-scene keyframe with branch guard",
+          "notes": "Pre-transformation office encounter."
+        },
+        "direction": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.",
+          "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+          "LIGHTING": "Cool office daylight, restrained monitor glow",
+          "CONTINUITY": "Pre-transformation office encounter. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-intelligence-floor-v1",
+            "providerAssetId": "50fa0662-ef94-494d-8c2c-8d2ce57c1320"
+          },
+          {
+            "assetId": "eve-cast-adrian-v1",
+            "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+          },
+          {
+            "assetId": "eve-cast-daniel-v1",
+            "providerAssetId": "0b60feba-ddc0-498b-b6e9-aa69500a778d"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "50fa0662-ef94-494d-8c2c-8d2ce57c1320",
+            "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+            "0b60feba-ddc0-498b-b6e9-aa69500a778d"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: daniel identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Pre-transformation office encounter. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "scene-marcus",
+        "kind": "scene",
+        "title": "Marcus’s greeting",
+        "concept": false,
+        "sources": [
+          "src/content/mission.ts"
+        ],
+        "sourceNodes": [
+          "mission.marcus"
+        ],
+        "guard": "Greeting; no assertion their claimed shared history is true.",
+        "references": [
+          {
+            "assetId": "eve-bg-glass-hall-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "evelynn identity"
+          },
+          {
+            "assetId": "eve-cast-marcus-v1",
+            "purpose": "marcus identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-scene-marcus-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "evelyn"
+            },
+            {
+              "characterId": "marcus"
+            }
+          ],
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "stagingReferences": [
+            "eve-bg-glass-hall-v1",
+            "eve-cast-marcus-v1"
+          ],
+          "sceneId": "mission.marcus",
+          "locationId": "glass-hall",
+          "pose": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.",
+          "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Black and gold cinematic evening light",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Staged authored-scene keyframe with branch guard",
+          "notes": "Greeting; no assertion their claimed shared history is true."
+        },
+        "direction": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.",
+          "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+          "LIGHTING": "Black and gold cinematic evening light",
+          "CONTINUITY": "Greeting; no assertion their claimed shared history is true. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-glass-hall-v1",
+            "providerAssetId": "7ab89c53-295e-46fe-a6f0-299e0c5fcddf"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          },
+          {
+            "assetId": "eve-cast-marcus-v1",
+            "providerAssetId": "febcc97a-41fb-40be-8503-27bd6dc71d96"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "7ab89c53-295e-46fe-a6f0-299e0c5fcddf",
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+            "febcc97a-41fb-40be-8503-27bd6dc71d96"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: marcus identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Black and gold cinematic evening light\nCONTINUITY: Greeting; no assertion their claimed shared history is true. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "concept-executive",
+        "kind": "scene",
+        "title": "A professional conversation",
+        "concept": true,
+        "sources": [
+          "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+        ],
+        "sourceNodes": [
+          "c3.executive"
+        ],
+        "guard": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing.",
+        "references": [
+          {
+            "assetId": "eve-bg-helix-meeting-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "evelynn identity"
+          },
+          {
+            "assetId": "eve-cast-executive-v1",
+            "purpose": "executive identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-c3-executive-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "evelyn"
+            }
+          ],
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "stagingReferences": [
+            "eve-bg-helix-meeting-v1",
+            "eve-cast-executive-v1"
+          ],
+          "locationId": "helix-meeting",
+          "pose": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.",
+          "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Clear afternoon daylight, midnight blue and warm wood",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+          "notes": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing."
+        },
+        "direction": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.",
+          "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+          "LIGHTING": "Clear afternoon daylight, midnight blue and warm wood",
+          "CONTINUITY": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-helix-meeting-v1",
+            "providerAssetId": "5ea96ce8-6804-4170-8c76-ac373f2db4ca"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          },
+          {
+            "assetId": "eve-cast-executive-v1",
+            "providerAssetId": "2152077c-4772-4642-94a1-c092ae9881a9"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "5ea96ce8-6804-4170-8c76-ac373f2db4ca",
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+            "2152077c-4772-4642-94a1-c092ae9881a9"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: executive identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Clear afternoon daylight, midnight blue and warm wood\nCONTINUITY: Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    }
+  ],
+  "task": {
+    "id": "e996e255-b5ee-40d0-ab19-a27319b98590",
+    "unique_name": "image_editor-2026-09-16-18-36-e996e255",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 3,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T18:36:34.027378Z",
+    "comment": "EVE scene pilots: office, gala, future Helix meeting; staging only"
+  },
+  "quote": 3
+}

@@ -1,0 +1,3645 @@
+[
+  {
+    "entry": {
+      "key": "scene-morning",
+      "kind": "scene",
+      "title": "Promotion morning",
+      "concept": false,
+      "sources": [
+        "src/content/scenes.ts"
+      ],
+      "sourceNodes": [
+        "apartment.bond"
+      ],
+      "guard": "Opening morning, pre-transformation.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-morning-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1",
+          "eve-cast-adrian-v1"
+        ],
+        "sceneId": "apartment.bond",
+        "locationId": "apartment-day",
+        "pose": "Adrian stands near the kitchen counter, coat over one arm, looking toward the rain and distant tower; phone rests on counter with screen unreadable.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Opening morning, pre-transformation."
+      },
+      "direction": "Adrian stands near the kitchen counter, coat over one arm, looking toward the rain and distant tower; phone rests on counter with screen unreadable."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Adrian stands near the kitchen counter, coat over one arm, looking toward the rain and distant tower; phone rests on counter with screen unreadable.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Blue rainy morning with one warm lamp",
+        "CONTINUITY": "Opening morning, pre-transformation. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "1a9cb0ae-d810-4bf6-b786-a4f695795ea7",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian stands near the kitchen counter, coat over one arm, looking toward the rain and distant tower; phone rests on counter with screen unreadable.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Blue rainy morning with one warm lamp\nCONTINUITY: Opening morning, pre-transformation. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-daniel",
+      "kind": "scene",
+      "title": "Daniel brings the news",
+      "concept": false,
+      "sources": [
+        "src/content/scenes.ts"
+      ],
+      "sourceNodes": [
+        "office.daniel"
+      ],
+      "guard": "Pre-transformation office encounter.",
+      "references": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-daniel-v1",
+          "purpose": "daniel identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-daniel-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "daniel"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-intelligence-floor-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-daniel-v1"
+        ],
+        "sceneId": "office.daniel",
+        "locationId": "intelligence-floor",
+        "pose": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Cool office daylight, restrained monitor glow",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Pre-transformation office encounter."
+      },
+      "direction": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Cool office daylight, restrained monitor glow",
+        "CONTINUITY": "Pre-transformation office encounter. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "providerAssetId": "50fa0662-ef94-494d-8c2c-8d2ce57c1320"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-daniel-v1",
+          "providerAssetId": "0b60feba-ddc0-498b-b6e9-aa69500a778d"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "50fa0662-ef94-494d-8c2c-8d2ce57c1320",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "0b60feba-ddc0-498b-b6e9-aa69500a778d"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: daniel identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian at his desk, Daniel beside the divider leaning in with subdued concern; a quiet professional conversation, no touch.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Pre-transformation office encounter. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-benton",
+      "kind": "scene",
+      "title": "Benton’s assignment",
+      "concept": false,
+      "sources": [
+        "src/content/scenes.ts"
+      ],
+      "sourceNodes": [
+        "office.benton"
+      ],
+      "guard": "Pre-transformation briefing; no capture evidence.",
+      "references": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-benton-v1",
+          "purpose": "benton identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-benton-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "benton"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-intelligence-floor-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-benton-v1"
+        ],
+        "sceneId": "office.benton",
+        "locationId": "intelligence-floor",
+        "pose": "Benton stands beside Adrian's desk holding a thin black data slate; Adrian looks up from the workstation.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Cool office daylight, restrained monitor glow",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Pre-transformation briefing; no capture evidence."
+      },
+      "direction": "Benton stands beside Adrian's desk holding a thin black data slate; Adrian looks up from the workstation."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Benton stands beside Adrian's desk holding a thin black data slate; Adrian looks up from the workstation.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Cool office daylight, restrained monitor glow",
+        "CONTINUITY": "Pre-transformation briefing; no capture evidence. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "providerAssetId": "50fa0662-ef94-494d-8c2c-8d2ce57c1320"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-benton-v1",
+          "providerAssetId": "70484362-06d3-49cb-b4b4-274a79b58ef8"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "50fa0662-ef94-494d-8c2c-8d2ce57c1320",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "70484362-06d3-49cb-b4b4-274a79b58ef8"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: benton identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Benton stands beside Adrian's desk holding a thin black data slate; Adrian looks up from the workstation.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Pre-transformation briefing; no capture evidence. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-maya-coffee",
+      "kind": "scene",
+      "title": "Maya brings coffee",
+      "concept": false,
+      "sources": [
+        "src/content/scenes.ts"
+      ],
+      "sourceNodes": [
+        "maya.promotion"
+      ],
+      "guard": "Office coffee encounter; no private relationship verdict.",
+      "references": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-maya-v1",
+          "purpose": "maya identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-maya-coffee-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "maya"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-intelligence-floor-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-maya-v1"
+        ],
+        "sceneId": "maya.promotion",
+        "locationId": "intelligence-floor",
+        "pose": "Maya approaches Adrian with two ordinary takeaway coffees; both attentive, colleagues with familiar ease but no implied romance.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Cool office daylight, restrained monitor glow",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Office coffee encounter; no private relationship verdict."
+      },
+      "direction": "Maya approaches Adrian with two ordinary takeaway coffees; both attentive, colleagues with familiar ease but no implied romance."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Maya approaches Adrian with two ordinary takeaway coffees; both attentive, colleagues with familiar ease but no implied romance.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Cool office daylight, restrained monitor glow",
+        "CONTINUITY": "Office coffee encounter; no private relationship verdict. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "providerAssetId": "50fa0662-ef94-494d-8c2c-8d2ce57c1320"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-maya-v1",
+          "providerAssetId": "eead0851-2674-46be-ab61-5daee2764bcc"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "50fa0662-ef94-494d-8c2c-8d2ce57c1320",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "eead0851-2674-46be-ab61-5daee2764bcc"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: maya identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Maya approaches Adrian with two ordinary takeaway coffees; both attentive, colleagues with familiar ease but no implied romance.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Office coffee encounter; no private relationship verdict. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-security",
+      "kind": "scene",
+      "title": "The escort",
+      "concept": false,
+      "sources": [
+        "src/content/day.ts"
+      ],
+      "sourceNodes": [
+        "security.intervention"
+      ],
+      "guard": "Security intervention; anonymous staff designs provisional.",
+      "references": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-security-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-intelligence-floor-v1",
+          "eve-cast-adrian-v1"
+        ],
+        "sceneId": "security.intervention",
+        "locationId": "intelligence-floor",
+        "pose": "Adrian rises beside his workstation; two functional security staff in background, a broad-shouldered middle-aged woman with short copper-brown hair and younger narrow-faced man. Their hands visible, no weapons drawn.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Cool office daylight, restrained monitor glow",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Security intervention; anonymous staff designs provisional."
+      },
+      "direction": "Adrian rises beside his workstation; two functional security staff in background, a broad-shouldered middle-aged woman with short copper-brown hair and younger narrow-faced man. Their hands visible, no weapons drawn."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Adrian rises beside his workstation; two functional security staff in background, a broad-shouldered middle-aged woman with short copper-brown hair and younger narrow-faced man. Their hands visible, no weapons drawn.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Cool office daylight, restrained monitor glow",
+        "CONTINUITY": "Security intervention; anonymous staff designs provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "providerAssetId": "50fa0662-ef94-494d-8c2c-8d2ce57c1320"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "50fa0662-ef94-494d-8c2c-8d2ce57c1320",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian rises beside his workstation; two functional security staff in background, a broad-shouldered middle-aged woman with short copper-brown hair and younger narrow-faced man. Their hands visible, no weapons drawn.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Security intervention; anonymous staff designs provisional. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-sloane",
+      "kind": "scene",
+      "title": "Sloane at the window",
+      "concept": false,
+      "sources": [
+        "src/content/day.ts"
+      ],
+      "sourceNodes": [
+        "sloane.intro"
+      ],
+      "guard": "Initial meeting before any agreement.",
+      "references": [
+        {
+          "assetId": "eve-bg-sloane-office-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-sloane-v1",
+          "purpose": "sloane identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-sloane-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "sloane"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-sloane-office-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-sloane-v1"
+        ],
+        "sceneId": "sloane.intro",
+        "locationId": "sloane-office",
+        "pose": "Sloane beside window holding a water glass; Adrian remains standing by the empty visitor chair with coat folded over his arm. Clear physical distance.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Hard window light, controlled charcoal shadows",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Initial meeting before any agreement."
+      },
+      "direction": "Sloane beside window holding a water glass; Adrian remains standing by the empty visitor chair with coat folded over his arm. Clear physical distance."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Sloane beside window holding a water glass; Adrian remains standing by the empty visitor chair with coat folded over his arm. Clear physical distance.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Hard window light, controlled charcoal shadows",
+        "CONTINUITY": "Initial meeting before any agreement. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-sloane-office-v1",
+          "providerAssetId": "e57cfbfe-5b99-453b-95ec-8ce5af759bd6"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-sloane-v1",
+          "providerAssetId": "b1ff3306-6765-41d7-84fe-44954d521136"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "e57cfbfe-5b99-453b-95ec-8ce5af759bd6",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "b1ff3306-6765-41d7-84fe-44954d521136"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: sloane identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Sloane beside window holding a water glass; Adrian remains standing by the empty visitor chair with coat folded over his arm. Clear physical distance.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Hard window light, controlled charcoal shadows\nCONTINUITY: Initial meeting before any agreement. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-maya-evening",
+      "kind": "scene",
+      "title": "The evening conversation",
+      "concept": false,
+      "sources": [
+        "src/content/day.ts"
+      ],
+      "sourceNodes": [
+        "evening.disclosure"
+      ],
+      "guard": "ONLY in-person evening.meet branch; not call/avoid or automatic romance.",
+      "references": [
+        {
+          "assetId": "eve-bg-bar-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-maya-v1",
+          "purpose": "maya identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-maya-evening-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "maya"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-bar-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-maya-v1"
+        ],
+        "sceneId": "evening.disclosure",
+        "locationId": "bar",
+        "pose": "Adrian and Maya seated opposite each other at a booth, attentive serious conversation, hands on their own sides of table.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Amber lamps and dark red accents",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "ONLY in-person evening.meet branch; not call/avoid or automatic romance."
+      },
+      "direction": "Adrian and Maya seated opposite each other at a booth, attentive serious conversation, hands on their own sides of table."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Adrian and Maya seated opposite each other at a booth, attentive serious conversation, hands on their own sides of table.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Amber lamps and dark red accents",
+        "CONTINUITY": "ONLY in-person evening.meet branch; not call/avoid or automatic romance. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-bar-v1",
+          "providerAssetId": "9932c1ad-6960-421b-811a-0dfaf037def6"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-maya-v1",
+          "providerAssetId": "eead0851-2674-46be-ab61-5daee2764bcc"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "9932c1ad-6960-421b-811a-0dfaf037def6",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "eead0851-2674-46be-ab61-5daee2764bcc"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: maya identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian and Maya seated opposite each other at a booth, attentive serious conversation, hands on their own sides of table.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Amber lamps and dark red accents\nCONTINUITY: ONLY in-person evening.meet branch; not call/avoid or automatic romance. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-clinic-privacy",
+      "kind": "scene",
+      "title": "Who controls the room?",
+      "concept": false,
+      "sources": [
+        "src/content/clinic.ts"
+      ],
+      "sourceNodes": [
+        "clinic.privacy"
+      ],
+      "guard": "Initial privacy decision before room occupancy choice.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-exam-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        },
+        {
+          "assetId": "eve-cast-sloane-v1",
+          "purpose": "sloane identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-clinic-privacy-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "voss"
+          },
+          {
+            "characterId": "sloane"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-clinic-exam-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-voss-v1",
+          "eve-cast-sloane-v1"
+        ],
+        "sceneId": "clinic.privacy",
+        "locationId": "clinic-exam",
+        "pose": "Voss stands beside the examination chair; Adrian stands nearby still in office clothes; Sloane remains near simulated daylight window. No procedure underway.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "White and pale cyan clinical light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Initial privacy decision before room occupancy choice."
+      },
+      "direction": "Voss stands beside the examination chair; Adrian stands nearby still in office clothes; Sloane remains near simulated daylight window. No procedure underway."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Voss stands beside the examination chair; Adrian stands nearby still in office clothes; Sloane remains near simulated daylight window. No procedure underway.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "White and pale cyan clinical light",
+        "CONTINUITY": "Initial privacy decision before room occupancy choice. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-exam-v1",
+          "providerAssetId": "9bbec0f1-4544-49d2-9fdb-6a960e1e79b4"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        },
+        {
+          "assetId": "eve-cast-sloane-v1",
+          "providerAssetId": "b1ff3306-6765-41d7-84fe-44954d521136"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "9bbec0f1-4544-49d2-9fdb-6a960e1e79b4",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605",
+          "b1ff3306-6765-41d7-84fe-44954d521136"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: voss identity. Reference 4: sloane identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Voss stands beside the examination chair; Adrian stands nearby still in office clothes; Sloane remains near simulated daylight window. No procedure underway.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: White and pale cyan clinical light\nCONTINUITY: Initial privacy decision before room occupancy choice. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-clinic-scan",
+      "kind": "scene",
+      "title": "Baseline examination",
+      "concept": false,
+      "sources": [
+        "src/content/clinic.ts"
+      ],
+      "sourceNodes": [
+        "clinic.exam"
+      ],
+      "guard": "Baseline measurement only; no adaptation or inferred new consent.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-exam-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "purpose": "adrian identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-clinic-scan-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-clinic-exam-v1",
+          "eve-cast-adrian-v1",
+          "eve-cast-voss-v1"
+        ],
+        "sceneId": "clinic.exam",
+        "locationId": "clinic-exam",
+        "pose": "Adrian seated upright in examination chair in plain modest clinic clothing; scanner ring around shoulder space; Voss observes terminal, hands clear of patient.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "White and pale cyan clinical light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Baseline measurement only; no adaptation or inferred new consent."
+      },
+      "direction": "Adrian seated upright in examination chair in plain modest clinic clothing; scanner ring around shoulder space; Voss observes terminal, hands clear of patient."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Adrian seated upright in examination chair in plain modest clinic clothing; scanner ring around shoulder space; Voss observes terminal, hands clear of patient.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "White and pale cyan clinical light",
+        "CONTINUITY": "Baseline measurement only; no adaptation or inferred new consent. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-exam-v1",
+          "providerAssetId": "9bbec0f1-4544-49d2-9fdb-6a960e1e79b4"
+        },
+        {
+          "assetId": "eve-cast-adrian-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "9bbec0f1-4544-49d2-9fdb-6a960e1e79b4",
+          "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: adrian identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Adrian seated upright in examination chair in plain modest clinic clothing; scanner ring around shoulder space; Voss observes terminal, hands clear of patient.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: White and pale cyan clinical light\nCONTINUITY: Baseline measurement only; no adaptation or inferred new consent. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-recovery",
+      "kind": "scene",
+      "title": "Evelynn in recovery",
+      "concept": false,
+      "sources": [
+        "src/content/clinic.ts"
+      ],
+      "sourceNodes": [
+        "clinic.mirror"
+      ],
+      "guard": "Completed Stage One recovery branch only; no identity acceptance.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-recovery-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-recovery-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-clinic-recovery-v1",
+          "eve-cast-voss-v1"
+        ],
+        "sceneId": "clinic.mirror",
+        "locationId": "clinic-recovery",
+        "pose": "Evelynn in modest opaque clinic garment, seated upright beside the full-length mirror; Voss stands at respectful distance. Quiet medical recovery, no glamour pose.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Gentle neutral light with clear facial readability",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Completed Stage One recovery branch only; no identity acceptance."
+      },
+      "direction": "Evelynn in modest opaque clinic garment, seated upright beside the full-length mirror; Voss stands at respectful distance. Quiet medical recovery, no glamour pose."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in modest opaque clinic garment, seated upright beside the full-length mirror; Voss stands at respectful distance. Quiet medical recovery, no glamour pose.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Gentle neutral light with clear facial readability",
+        "CONTINUITY": "Completed Stage One recovery branch only; no identity acceptance. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-recovery-v1",
+          "providerAssetId": "2aab8a35-213d-4cb2-82f7-7073954d1d37"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "2aab8a35-213d-4cb2-82f7-7073954d1d37",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in modest opaque clinic garment, seated upright beside the full-length mirror; Voss stands at respectful distance. Quiet medical recovery, no glamour pose.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Gentle neutral light with clear facial readability\nCONTINUITY: Completed Stage One recovery branch only; no identity acceptance. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-wardrobe",
+      "kind": "scene",
+      "title": "Preparing for Glass House",
+      "concept": false,
+      "sources": [
+        "src/content/clinic.ts"
+      ],
+      "sourceNodes": [
+        "clinic.wardrobe"
+      ],
+      "guard": "Gala outfit variant only; other selectable wardrobes are not replaced.",
+      "references": [
+        {
+          "assetId": "eve-bg-wardrobe-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-wardrobe-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-wardrobe-v1"
+        ],
+        "sceneId": "clinic.wardrobe",
+        "locationId": "wardrobe",
+        "pose": "Evelynn in the approved black evening gown by the garment rail, adjusting a sleeve of a separate jacket on its hanger. Fully dressed, reflective neutral expression.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm flattering but restrained practical light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Gala outfit variant only; other selectable wardrobes are not replaced."
+      },
+      "direction": "Evelynn in the approved black evening gown by the garment rail, adjusting a sleeve of a separate jacket on its hanger. Fully dressed, reflective neutral expression."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in the approved black evening gown by the garment rail, adjusting a sleeve of a separate jacket on its hanger. Fully dressed, reflective neutral expression.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm flattering but restrained practical light",
+        "CONTINUITY": "Gala outfit variant only; other selectable wardrobes are not replaced. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-wardrobe-v1",
+          "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in the approved black evening gown by the garment rail, adjusting a sleeve of a separate jacket on its hanger. Fully dressed, reflective neutral expression.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Gala outfit variant only; other selectable wardrobes are not replaced. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-home-before",
+      "kind": "scene",
+      "title": "Home before the operation",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.home"
+      ],
+      "guard": "Post-transformation pre-gala home visit; gala presentation variant.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-home-before-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "sceneId": "mission.home",
+        "locationId": "apartment-night",
+        "pose": "Evelynn in black gala gown beside familiar chair and jacket, garment case open on nearby seat, phone on counter. Quiet observation.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Post-transformation pre-gala home visit; gala presentation variant."
+      },
+      "direction": "Evelynn in black gala gown beside familiar chair and jacket, garment case open on nearby seat, phone on counter. Quiet observation."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in black gala gown beside familiar chair and jacket, garment case open on nearby seat, phone on counter. Quiet observation.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "Post-transformation pre-gala home visit; gala presentation variant. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in black gala gown beside familiar chair and jacket, garment case open on nearby seat, phone on counter. Quiet observation.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Post-transformation pre-gala home visit; gala presentation variant. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-arrival",
+      "kind": "scene",
+      "title": "Arrival at Glass House",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.arrival"
+      ],
+      "guard": "Gala presentation branch, arriving only.",
+      "references": [
+        {
+          "assetId": "eve-bg-glass-entrance-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-arrival-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-glass-entrance-v1"
+        ],
+        "sceneId": "mission.arrival",
+        "locationId": "glass-entrance",
+        "pose": "Evelynn fully visible from head through lower legs, black evening gown, stepping toward entrance under glass canopy; ordinary driver holds car door behind, no face emphasis.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Dusk blue rain and champagne gold entrance light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Gala presentation branch, arriving only."
+      },
+      "direction": "Evelynn fully visible from head through lower legs, black evening gown, stepping toward entrance under glass canopy; ordinary driver holds car door behind, no face emphasis."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn fully visible from head through lower legs, black evening gown, stepping toward entrance under glass canopy; ordinary driver holds car door behind, no face emphasis.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Dusk blue rain and champagne gold entrance light",
+        "CONTINUITY": "Gala presentation branch, arriving only. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-glass-entrance-v1",
+          "providerAssetId": "c6ae2222-439f-4686-bf18-940a5ee9aa6b"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "c6ae2222-439f-4686-bf18-940a5ee9aa6b",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn fully visible from head through lower legs, black evening gown, stepping toward entrance under glass canopy; ordinary driver holds car door behind, no face emphasis.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Dusk blue rain and champagne gold entrance light\nCONTINUITY: Gala presentation branch, arriving only. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-marcus",
+      "kind": "scene",
+      "title": "Marcus’s greeting",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.marcus"
+      ],
+      "guard": "Greeting; no assertion their claimed shared history is true.",
+      "references": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "purpose": "marcus identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-marcus-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "marcus"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-glass-hall-v1",
+          "eve-cast-marcus-v1"
+        ],
+        "sceneId": "mission.marcus",
+        "locationId": "glass-hall",
+        "pose": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Black and gold cinematic evening light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Greeting; no assertion their claimed shared history is true."
+      },
+      "direction": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Black and gold cinematic evening light",
+        "CONTINUITY": "Greeting; no assertion their claimed shared history is true. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "providerAssetId": "7ab89c53-295e-46fe-a6f0-299e0c5fcddf"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "providerAssetId": "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "7ab89c53-295e-46fe-a6f0-299e0c5fcddf",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: marcus identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn and Marcus in medium two-shot beside rain windows, maintaining polite distance; Marcus turns from background guests toward her.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Black and gold cinematic evening light\nCONTINUITY: Greeting; no assertion their claimed shared history is true. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-celeste",
+      "kind": "scene",
+      "title": "Celeste’s reunion",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.celeste"
+      ],
+      "guard": "Public reunion greeting; no confirmed memory or intimacy.",
+      "references": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-celeste-v1",
+          "purpose": "celeste identity"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "purpose": "marcus identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-celeste-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "celeste"
+          },
+          {
+            "characterId": "marcus"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-glass-hall-v1",
+          "eve-cast-celeste-v1",
+          "eve-cast-marcus-v1"
+        ],
+        "sceneId": "mission.celeste",
+        "locationId": "glass-hall",
+        "pose": "Celeste approaches Evelynn near central table, Marcus to one side; attentive poised expressions, hands visible and separated.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Black and gold cinematic evening light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Public reunion greeting; no confirmed memory or intimacy."
+      },
+      "direction": "Celeste approaches Evelynn near central table, Marcus to one side; attentive poised expressions, hands visible and separated."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Celeste approaches Evelynn near central table, Marcus to one side; attentive poised expressions, hands visible and separated.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Black and gold cinematic evening light",
+        "CONTINUITY": "Public reunion greeting; no confirmed memory or intimacy. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "providerAssetId": "7ab89c53-295e-46fe-a6f0-299e0c5fcddf"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-celeste-v1",
+          "providerAssetId": "2de3eaad-42cb-4318-821c-870fb5507ca5"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "providerAssetId": "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "7ab89c53-295e-46fe-a6f0-299e0c5fcddf",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "2de3eaad-42cb-4318-821c-870fb5507ca5",
+          "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: celeste identity. Reference 4: marcus identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Celeste approaches Evelynn near central table, Marcus to one side; attentive poised expressions, hands visible and separated.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Black and gold cinematic evening light\nCONTINUITY: Public reunion greeting; no confirmed memory or intimacy. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-investigation",
+      "kind": "scene",
+      "title": "Reading the room",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.hub"
+      ],
+      "guard": "Before choosing a lead; no evidence earned or suspect confirmed.",
+      "references": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-investigation-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-glass-hall-v1"
+        ],
+        "sceneId": "mission.hub",
+        "locationId": "glass-hall",
+        "pose": "Evelynn at edge of gathering observes service opening and smoked-glass gallery, one hand loosely holding phone with unlettered screen; distant generic guests.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Black and gold cinematic evening light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Before choosing a lead; no evidence earned or suspect confirmed."
+      },
+      "direction": "Evelynn at edge of gathering observes service opening and smoked-glass gallery, one hand loosely holding phone with unlettered screen; distant generic guests."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn at edge of gathering observes service opening and smoked-glass gallery, one hand loosely holding phone with unlettered screen; distant generic guests.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Black and gold cinematic evening light",
+        "CONTINUITY": "Before choosing a lead; no evidence earned or suspect confirmed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-glass-hall-v1",
+          "providerAssetId": "7ab89c53-295e-46fe-a6f0-299e0c5fcddf"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "7ab89c53-295e-46fe-a6f0-299e0c5fcddf",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn at edge of gathering observes service opening and smoked-glass gallery, one hand loosely holding phone with unlettered screen; distant generic guests.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Black and gold cinematic evening light\nCONTINUITY: Before choosing a lead; no evidence earned or suspect confirmed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-exchange",
+      "kind": "scene",
+      "title": "The gallery exchange",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.exchange"
+      ],
+      "guard": "Timely observation composition only; wafer distinct from access token, not automatic captured evidence.",
+      "references": [
+        {
+          "assetId": "eve-bg-glass-gallery-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "purpose": "marcus identity"
+        },
+        {
+          "assetId": "eve-cast-benton-v1",
+          "purpose": "benton identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-exchange-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "marcus"
+          },
+          {
+            "characterId": "benton"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-glass-gallery-v1",
+          "eve-cast-marcus-v1",
+          "eve-cast-benton-v1"
+        ],
+        "sceneId": "mission.exchange",
+        "locationId": "glass-gallery",
+        "pose": "Marcus passes a small thin wafer to Benton at private table. Evelynn is a partially obscured observer beyond smoked-glass edge; no camera-taking or token theft shown.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Amber spill from reception, deep controlled shadows",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Timely observation composition only; wafer distinct from access token, not automatic captured evidence."
+      },
+      "direction": "Marcus passes a small thin wafer to Benton at private table. Evelynn is a partially obscured observer beyond smoked-glass edge; no camera-taking or token theft shown."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Marcus passes a small thin wafer to Benton at private table. Evelynn is a partially obscured observer beyond smoked-glass edge; no camera-taking or token theft shown.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Amber spill from reception, deep controlled shadows",
+        "CONTINUITY": "Timely observation composition only; wafer distinct from access token, not automatic captured evidence. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-glass-gallery-v1",
+          "providerAssetId": "49cbae89-fe42-45d9-ac2c-0b6e02997646"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "providerAssetId": "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        },
+        {
+          "assetId": "eve-cast-benton-v1",
+          "providerAssetId": "70484362-06d3-49cb-b4b4-274a79b58ef8"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "49cbae89-fe42-45d9-ac2c-0b6e02997646",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "febcc97a-41fb-40be-8503-27bd6dc71d96",
+          "70484362-06d3-49cb-b4b4-274a79b58ef8"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: marcus identity. Reference 4: benton identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Marcus passes a small thin wafer to Benton at private table. Evelynn is a partially obscured observer beyond smoked-glass edge; no camera-taking or token theft shown.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Amber spill from reception, deep controlled shadows\nCONTINUITY: Timely observation composition only; wafer distinct from access token, not automatic captured evidence. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-debrief",
+      "kind": "scene",
+      "title": "Descent after the operation",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.debrief"
+      ],
+      "guard": "After other guests exit; Sloane is remote and not physically present.",
+      "references": [
+        {
+          "assetId": "eve-bg-elevator-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-debrief-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-elevator-v1"
+        ],
+        "sceneId": "mission.debrief",
+        "locationId": "elevator",
+        "pose": "Evelynn alone in mirrored elevator, tiny discreet earpiece, phone held low with screen turned away. Reflection consistent with her pose.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Subdued gold with cool reflected city tones",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "After other guests exit; Sloane is remote and not physically present."
+      },
+      "direction": "Evelynn alone in mirrored elevator, tiny discreet earpiece, phone held low with screen turned away. Reflection consistent with her pose."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn alone in mirrored elevator, tiny discreet earpiece, phone held low with screen turned away. Reflection consistent with her pose.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Subdued gold with cool reflected city tones",
+        "CONTINUITY": "After other guests exit; Sloane is remote and not physically present. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-elevator-v1",
+          "providerAssetId": "36e4ac79-f13f-4de8-90c1-6aef2d041370"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "36e4ac79-f13f-4de8-90c1-6aef2d041370",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn alone in mirrored elevator, tiny discreet earpiece, phone held low with screen turned away. Reflection consistent with her pose.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Subdued gold with cool reflected city tones\nCONTINUITY: After other guests exit; Sloane is remote and not physically present. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "scene-garage",
+      "kind": "scene",
+      "title": "Below the glass",
+      "concept": false,
+      "sources": [
+        "src/content/mission.ts"
+      ],
+      "sourceNodes": [
+        "mission.garage"
+      ],
+      "guard": "Mission ending, gala variant, evidence-neutral.",
+      "references": [
+        {
+          "assetId": "eve-bg-garage-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-garage-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-garage-v1"
+        ],
+        "sceneId": "mission.garage",
+        "locationId": "garage",
+        "pose": "Evelynn walks toward waiting sedan from elevator lobby, composed but tired, dark clutch at side; no visible stolen token or evidence.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Cold blue fluorescent pools and a warm car light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Mission ending, gala variant, evidence-neutral."
+      },
+      "direction": "Evelynn walks toward waiting sedan from elevator lobby, composed but tired, dark clutch at side; no visible stolen token or evidence."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn walks toward waiting sedan from elevator lobby, composed but tired, dark clutch at side; no visible stolen token or evidence.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Cold blue fluorescent pools and a warm car light",
+        "CONTINUITY": "Mission ending, gala variant, evidence-neutral. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-garage-v1",
+          "providerAssetId": "8da93e61-ec93-4021-828a-50767ae5cd66"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "8da93e61-ec93-4021-828a-50767ae5cd66",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn walks toward waiting sedan from elevator lobby, composed but tired, dark clutch at side; no visible stolen token or evidence.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Cold blue fluorescent pools and a warm car light\nCONTINUITY: Mission ending, gala variant, evidence-neutral. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-home",
+      "kind": "scene",
+      "title": "Home after Glass House",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.home"
+      ],
+      "guard": "Return after completed mission; evidence-neutral.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-home-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn in gala gown sets her phone on counter, distant tower beyond rain; no evidence objects displayed.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Return after completed mission; evidence-neutral."
+      },
+      "direction": "Evelynn in gala gown sets her phone on counter, distant tower beyond rain; no evidence objects displayed."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in gala gown sets her phone on counter, distant tower beyond rain; no evidence objects displayed.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "Return after completed mission; evidence-neutral. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in gala gown sets her phone on counter, distant tower beyond rain; no evidence objects displayed.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Return after completed mission; evidence-neutral. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-maya",
+      "kind": "scene",
+      "title": "What you can tell her",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.maya"
+      ],
+      "guard": "Chosen call branch only; Maya remains remote. Casual outfit is a design proposal.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-maya-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn seated by window in opaque cream knit top and dark trousers, phone to ear, listening; only Evelynn is physically present.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Chosen call branch only; Maya remains remote. Casual outfit is a design proposal."
+      },
+      "direction": "Evelynn seated by window in opaque cream knit top and dark trousers, phone to ear, listening; only Evelynn is physically present."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn seated by window in opaque cream knit top and dark trousers, phone to ear, listening; only Evelynn is physically present.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "Chosen call branch only; Maya remains remote. Casual outfit is a design proposal. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn seated by window in opaque cream knit top and dark trousers, phone to ear, listening; only Evelynn is physically present.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Chosen call branch only; Maya remains remote. Casual outfit is a design proposal. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-voss",
+      "kind": "scene",
+      "title": "If I do nothing",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.voss"
+      ],
+      "guard": "Attended voluntary aftercare conversation; no new adaptation consent.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-voss-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-clinic-consult-v1",
+          "eve-cast-voss-v1"
+        ],
+        "locationId": "clinic-consult",
+        "pose": "Evelynn in tailored understated charcoal business clothing sits across from Voss; blank follow-up page between them, no procedure equipment in use.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Soft pale cyan daylight and charcoal accents",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Attended voluntary aftercare conversation; no new adaptation consent."
+      },
+      "direction": "Evelynn in tailored understated charcoal business clothing sits across from Voss; blank follow-up page between them, no procedure equipment in use."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in tailored understated charcoal business clothing sits across from Voss; blank follow-up page between them, no procedure equipment in use.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Soft pale cyan daylight and charcoal accents",
+        "CONTINUITY": "Attended voluntary aftercare conversation; no new adaptation consent. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "providerAssetId": "f957c19d-0583-4699-bfc1-c4fc9dd062fa"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "f957c19d-0583-4699-bfc1-c4fc9dd062fa",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in tailored understated charcoal business clothing sits across from Voss; blank follow-up page between them, no procedure equipment in use.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Soft pale cyan daylight and charcoal accents\nCONTINUITY: Attended voluntary aftercare conversation; no new adaptation consent. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-sender",
+      "kind": "scene",
+      "title": "A date, not an explanation",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.sender"
+      ],
+      "guard": "Unknown sender stays unseen; receipt does not establish verification.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-sender-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn studies a phone at table, plain unopened document beside it, thoughtful restrained attention; screen unreadable.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Unknown sender stays unseen; receipt does not establish verification."
+      },
+      "direction": "Evelynn studies a phone at table, plain unopened document beside it, thoughtful restrained attention; screen unreadable."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn studies a phone at table, plain unopened document beside it, thoughtful restrained attention; screen unreadable.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Blue rainy morning with one warm lamp",
+        "CONTINUITY": "Unknown sender stays unseen; receipt does not establish verification. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "1a9cb0ae-d810-4bf6-b786-a4f695795ea7",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn studies a phone at table, plain unopened document beside it, thoughtful restrained attention; screen unreadable.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Blue rainy morning with one warm lamp\nCONTINUITY: Unknown sender stays unseen; receipt does not establish verification. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-helix-contact",
+      "kind": "scene",
+      "title": "An outside invitation",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.helix-contact"
+      ],
+      "guard": "Invitation received, not accepted; no invented sender portrait.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-helix-contact-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn in cream knit top sits at counter reading an incoming phone notification, calm analytical expression.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Invitation received, not accepted; no invented sender portrait."
+      },
+      "direction": "Evelynn in cream knit top sits at counter reading an incoming phone notification, calm analytical expression."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in cream knit top sits at counter reading an incoming phone notification, calm analytical expression.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Blue rainy morning with one warm lamp",
+        "CONTINUITY": "Invitation received, not accepted; no invented sender portrait. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "1a9cb0ae-d810-4bf6-b786-a4f695795ea7",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in cream knit top sits at counter reading an incoming phone notification, calm analytical expression.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Blue rainy morning with one warm lamp\nCONTINUITY: Invitation received, not accepted; no invented sender portrait. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-verify",
+      "kind": "scene",
+      "title": "Check the door before entering",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.verify"
+      ],
+      "guard": "Verification concept; no completed assessment or acceptance implied.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-verify-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn at a small table compares three plain documents and a phone, fingers resting apart from papers; no legible text.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Verification concept; no completed assessment or acceptance implied."
+      },
+      "direction": "Evelynn at a small table compares three plain documents and a phone, fingers resting apart from papers; no legible text."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn at a small table compares three plain documents and a phone, fingers resting apart from papers; no legible text.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Blue rainy morning with one warm lamp",
+        "CONTINUITY": "Verification concept; no completed assessment or acceptance implied. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "1a9cb0ae-d810-4bf6-b786-a4f695795ea7",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn at a small table compares three plain documents and a phone, fingers resting apart from papers; no legible text.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Blue rainy morning with one warm lamp\nCONTINUITY: Verification concept; no completed assessment or acceptance implied. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-executive",
+      "kind": "scene",
+      "title": "A professional conversation",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.executive"
+      ],
+      "guard": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing.",
+      "references": [
+        {
+          "assetId": "eve-bg-helix-meeting-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-executive-v1",
+          "purpose": "executive identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-executive-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-helix-meeting-v1",
+          "eve-cast-executive-v1"
+        ],
+        "locationId": "helix-meeting",
+        "pose": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Clear afternoon daylight, midnight blue and warm wood",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing."
+      },
+      "direction": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Clear afternoon daylight, midnight blue and warm wood",
+        "CONTINUITY": "Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-helix-meeting-v1",
+          "providerAssetId": "5ea96ce8-6804-4170-8c76-ac373f2db4ca"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-executive-v1",
+          "providerAssetId": "2152077c-4772-4642-94a1-c092ae9881a9"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "5ea96ce8-6804-4170-8c76-ac373f2db4ca",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "2152077c-4772-4642-94a1-c092ae9881a9"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: executive identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in tailored charcoal business suit and the proposed male executive sit opposite across modest table, agenda between them, his screen closed. Professional attentive exchange.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Clear afternoon daylight, midnight blue and warm wood\nCONTINUITY: Conditional attended meeting; executive appearance provisional, no runtime identity or romantic framing. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-seen",
+      "kind": "scene",
+      "title": "The price of being seen",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.seen"
+      ],
+      "guard": "Optional reception concept, no-photo boundary; no publication or consent assumed.",
+      "references": [
+        {
+          "assetId": "eve-bg-helix-reception-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-executive-v1",
+          "purpose": "executive identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-seen-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-helix-reception-v1",
+          "eve-cast-executive-v1"
+        ],
+        "locationId": "helix-reception",
+        "pose": "Evelynn and proposed male executive at reception threshold; a functional photographer to side keeps camera lowered, waiting. No photograph being taken.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm afternoon practical light",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Optional reception concept, no-photo boundary; no publication or consent assumed."
+      },
+      "direction": "Evelynn and proposed male executive at reception threshold; a functional photographer to side keeps camera lowered, waiting. No photograph being taken."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn and proposed male executive at reception threshold; a functional photographer to side keeps camera lowered, waiting. No photograph being taken.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm afternoon practical light",
+        "CONTINUITY": "Optional reception concept, no-photo boundary; no publication or consent assumed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-helix-reception-v1",
+          "providerAssetId": "cb898442-52ee-407d-95d5-96f75435938c"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-executive-v1",
+          "providerAssetId": "2152077c-4772-4642-94a1-c092ae9881a9"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "cb898442-52ee-407d-95d5-96f75435938c",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "2152077c-4772-4642-94a1-c092ae9881a9"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: executive identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn and proposed male executive at reception threshold; a functional photographer to side keeps camera lowered, waiting. No photograph being taken.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm afternoon practical light\nCONTINUITY: Optional reception concept, no-photo boundary; no publication or consent assumed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-marcus-record",
+      "kind": "scene",
+      "title": "The useful interpretation",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.marcus-record"
+      ],
+      "guard": "Only actual limited-interest branch; record unreadable, no forced confession.",
+      "references": [
+        {
+          "assetId": "eve-bg-helix-meeting-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "purpose": "marcus identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-marcus-record-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "marcus"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-helix-meeting-v1",
+          "eve-cast-marcus-v1"
+        ],
+        "locationId": "helix-meeting",
+        "pose": "Evelynn and Marcus in professional conversation near meeting-room exit, one plain record held between them, restrained disagreement.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Clear afternoon daylight, midnight blue and warm wood",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Only actual limited-interest branch; record unreadable, no forced confession."
+      },
+      "direction": "Evelynn and Marcus in professional conversation near meeting-room exit, one plain record held between them, restrained disagreement."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn and Marcus in professional conversation near meeting-room exit, one plain record held between them, restrained disagreement.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Clear afternoon daylight, midnight blue and warm wood",
+        "CONTINUITY": "Only actual limited-interest branch; record unreadable, no forced confession. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-helix-meeting-v1",
+          "providerAssetId": "5ea96ce8-6804-4170-8c76-ac373f2db4ca"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-marcus-v1",
+          "providerAssetId": "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "5ea96ce8-6804-4170-8c76-ac373f2db4ca",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "febcc97a-41fb-40be-8503-27bd6dc71d96"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: marcus identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn and Marcus in professional conversation near meeting-room exit, one plain record held between them, restrained disagreement.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Clear afternoon daylight, midnight blue and warm wood\nCONTINUITY: Only actual limited-interest branch; record unreadable, no forced confession. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-records-entry",
+      "kind": "scene",
+      "title": "What left the clinic",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.records-entry"
+      ],
+      "guard": "Future refusal branch: attended record inspection; no automatic retained copy.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-records-entry-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-clinic-consult-v1",
+          "eve-cast-voss-v1"
+        ],
+        "locationId": "clinic-consult",
+        "pose": "Voss places three separate plain sheets before Evelynn at consultation table, pointing to one without handing it away.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Soft pale cyan daylight and charcoal accents",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Future refusal branch: attended record inspection; no automatic retained copy."
+      },
+      "direction": "Voss places three separate plain sheets before Evelynn at consultation table, pointing to one without handing it away."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Voss places three separate plain sheets before Evelynn at consultation table, pointing to one without handing it away.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Soft pale cyan daylight and charcoal accents",
+        "CONTINUITY": "Future refusal branch: attended record inspection; no automatic retained copy. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "providerAssetId": "f957c19d-0583-4699-bfc1-c4fc9dd062fa"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "f957c19d-0583-4699-bfc1-c4fc9dd062fa",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Voss places three separate plain sheets before Evelynn at consultation table, pointing to one without handing it away.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Soft pale cyan daylight and charcoal accents\nCONTINUITY: Future refusal branch: attended record inspection; no automatic retained copy. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-records-interpret",
+      "kind": "scene",
+      "title": "Completion is not permission",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.records-interpret"
+      ],
+      "guard": "Future refusal branch; comparison is not adjudicated fraud.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-records-interpret-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-clinic-consult-v1",
+          "eve-cast-voss-v1"
+        ],
+        "locationId": "clinic-consult",
+        "pose": "Evelynn points to a distinction between two plain documents while Voss listens, tablet aside, respectful analytical exchange.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Soft pale cyan daylight and charcoal accents",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Future refusal branch; comparison is not adjudicated fraud."
+      },
+      "direction": "Evelynn points to a distinction between two plain documents while Voss listens, tablet aside, respectful analytical exchange."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn points to a distinction between two plain documents while Voss listens, tablet aside, respectful analytical exchange.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Soft pale cyan daylight and charcoal accents",
+        "CONTINUITY": "Future refusal branch; comparison is not adjudicated fraud. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "providerAssetId": "f957c19d-0583-4699-bfc1-c4fc9dd062fa"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "f957c19d-0583-4699-bfc1-c4fc9dd062fa",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn points to a distinction between two plain documents while Voss listens, tablet aside, respectful analytical exchange.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Soft pale cyan daylight and charcoal accents\nCONTINUITY: Future refusal branch; comparison is not adjudicated fraud. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-records-power",
+      "kind": "scene",
+      "title": "Who receives the qualification",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.records-power"
+      ],
+      "guard": "Before signing or circulation; no automatic transmission or agreement.",
+      "references": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "purpose": "voss identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-records-power-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          },
+          {
+            "characterId": "voss"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-clinic-consult-v1",
+          "eve-cast-voss-v1"
+        ],
+        "locationId": "clinic-consult",
+        "pose": "Voss turns a plain unsigned note toward Evelynn, pen on table untouched, both considering its scope.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Soft pale cyan daylight and charcoal accents",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Before signing or circulation; no automatic transmission or agreement."
+      },
+      "direction": "Voss turns a plain unsigned note toward Evelynn, pen on table untouched, both considering its scope."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Voss turns a plain unsigned note toward Evelynn, pen on table untouched, both considering its scope.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Soft pale cyan daylight and charcoal accents",
+        "CONTINUITY": "Before signing or circulation; no automatic transmission or agreement. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-clinic-consult-v1",
+          "providerAssetId": "f957c19d-0583-4699-bfc1-c4fc9dd062fa"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        },
+        {
+          "assetId": "eve-cast-voss-v1",
+          "providerAssetId": "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "f957c19d-0583-4699-bfc1-c4fc9dd062fa",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940",
+          "c19973fa-6a6a-4e60-b5b2-c66b919ec605"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity. Reference 3: voss identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Voss turns a plain unsigned note toward Evelynn, pen on table untouched, both considering its scope.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Soft pale cyan daylight and charcoal accents\nCONTINUITY: Before signing or circulation; no automatic transmission or agreement. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-disclosures",
+      "kind": "scene",
+      "title": "Different people, different accounts",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.disclosures"
+      ],
+      "guard": "No recipient delivery implied; no hidden sender revealed.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-disclosures-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn in simple opaque knit top at counter with phone screen angled away, documents closed, deliberate pause before communication.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "No recipient delivery implied; no hidden sender revealed."
+      },
+      "direction": "Evelynn in simple opaque knit top at counter with phone screen angled away, documents closed, deliberate pause before communication."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn in simple opaque knit top at counter with phone screen angled away, documents closed, deliberate pause before communication.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "No recipient delivery implied; no hidden sender revealed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn in simple opaque knit top at counter with phone screen angled away, documents closed, deliberate pause before communication.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: No recipient delivery implied; no hidden sender revealed. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-commit",
+      "kind": "scene",
+      "title": "An appointment of your own",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.commit"
+      ],
+      "guard": "Before acceptance; no price/date or signature invented.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-commit-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn reads a plain offer at table, pen lying unused beside it, warm lamp, composed uncertainty.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Before acceptance; no price/date or signature invented."
+      },
+      "direction": "Evelynn reads a plain offer at table, pen lying unused beside it, warm lamp, composed uncertainty."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn reads a plain offer at table, pen lying unused beside it, warm lamp, composed uncertainty.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "Before acceptance; no price/date or signature invented. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn reads a plain offer at table, pen lying unused beside it, warm lamp, composed uncertainty.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Before acceptance; no price/date or signature invented. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  },
+  {
+    "entry": {
+      "key": "concept-ending",
+      "kind": "scene",
+      "title": "Who has your next hour?",
+      "concept": true,
+      "sources": [
+        "docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md"
+      ],
+      "sourceNodes": [
+        "c3.ending"
+      ],
+      "guard": "Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation.",
+      "references": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "purpose": "location layout"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "purpose": "evelynn identity"
+        }
+      ],
+      "spec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-ending-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn stands quietly at rain window in opaque casual knit clothing, phone face-down on counter, city tower distant.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation."
+      },
+      "direction": "Evelynn stands quietly at rain window in opaque casual knit clothing, phone face-down on counter, city tower distant."
+    },
+    "request": {
+      "components": {
+        "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+        "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+        "SCENE": "Evelynn stands quietly at rain window in opaque casual knit clothing, phone face-down on counter, city tower distant.",
+        "CAMERA": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition",
+        "LIGHTING": "Warm practical lamp against cool night rain",
+        "CONTINUITY": "Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+      },
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-night-v1",
+          "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "inputs": {
+        "image_assets": [
+          "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Evelynn stands quietly at rain window in opaque casual knit clothing, phone face-down on counter, city tower distant.\nCAMERA: Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable. Eye-level observational composition\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  }
+]

@@ -3,7 +3,14 @@
 The [Art Bible](../docs/art/EVE_ART_BIBLE.md) is production/design authority, not game
 state. The [review checklist](../docs/art/ART_REVIEW_CHECKLIST.md) applies to all
 important candidates. The supplied [Evelynn gala reference](reference/evelynn/README.md)
-is the only approved image in this initial catalog.
+and the owner-approved front and three-quarter portraits are the canonical images.
+
+The [cast and scene review gallery](staging/cast-scenes/gallery.html) contains the
+new 3:4 cast portraits, 16:9 empty locations, playable-story illustrations and future
+Chapter 3 concepts. These remain pending staging artwork. A QA PASS means a candidate
+can serve as a provisional conditioning reference; it is not owner approval.
+`stagingReferences` keeps these dependencies distinct from `canonicalReferences`.
+The coverage map is a production plan, not a runtime asset binding.
 
 ## Asset roles
 

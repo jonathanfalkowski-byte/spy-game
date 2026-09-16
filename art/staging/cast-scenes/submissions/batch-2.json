@@ -1,0 +1,441 @@
+{
+  "jobs": [
+    {
+      "entry": {
+        "key": "bg-apartment-day",
+        "kind": "background",
+        "title": "Apartment — morning",
+        "concept": false,
+        "sources": [
+          "src/content/scenes.ts"
+        ],
+        "sourceNodes": [
+          "apartment.bond"
+        ],
+        "guard": "Empty location establishing art; never implies attendance or a completed branch.",
+        "references": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "purpose": "rendering style only"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-helix-gala-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-bg-apartment-day-v1",
+          "assetType": "background",
+          "sceneId": "apartment.bond",
+          "locationId": "apartment-day",
+          "environment": "Narrow urban apartment, chair by rainy window with distant corporate tower, small kitchen counter, familiar jacket on hook, muted charcoal and cream, blue dawn.",
+          "lighting": "Blue rainy morning with one warm lamp",
+          "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+          "cameraAngle": "Eye-level cinematic wide",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Reusable staged location background"
+        },
+        "direction": "Narrow urban apartment, chair by rainy window with distant corporate tower, small kitchen counter, familiar jacket on hook, muted charcoal and cream, blue dawn. Empty environment, no people, no human reflections, no readable lettering."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Empty environment, with no people or human reflections.",
+          "SCENE": "Narrow urban apartment, chair by rainy window with distant corporate tower, small kitchen counter, familiar jacket on hook, muted charcoal and cream, blue dawn. Empty environment, no people, no human reflections, no readable lettering.",
+          "CAMERA": "Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide",
+          "LIGHTING": "Blue rainy morning with one warm lamp",
+          "CONTINUITY": "Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          ],
+          "prompt": "Reference 1: rendering style only.\nReplace the reference composition with the described empty location. Preserve its illustration style only; remove the reference people and render the new architecture in a wide composition.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Empty environment, with no people or human reflections.\nSCENE: Narrow urban apartment, chair by rainy window with distant corporate tower, small kitchen counter, familiar jacket on hook, muted charcoal and cream, blue dawn. Empty environment, no people, no human reflections, no readable lettering.\nCAMERA: Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide\nLIGHTING: Blue rainy morning with one warm lamp\nCONTINUITY: Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "bg-apartment-night",
+        "kind": "background",
+        "title": "Apartment — night",
+        "concept": false,
+        "sources": [
+          "src/content/chapter3.ts"
+        ],
+        "sourceNodes": [
+          "chapter3.home"
+        ],
+        "guard": "Empty location establishing art; never implies attendance or a completed branch.",
+        "references": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "purpose": "rendering style only"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-helix-gala-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-bg-apartment-night-v1",
+          "assetType": "background",
+          "sceneId": "chapter3.home",
+          "locationId": "apartment-night",
+          "environment": "The same narrow urban apartment, chair beside rain-streaked window, distant illuminated corporate tower, small counter and familiar jacket, quiet empty room.",
+          "lighting": "Warm practical lamp against cool night rain",
+          "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+          "cameraAngle": "Eye-level cinematic wide",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Reusable staged location background"
+        },
+        "direction": "The same narrow urban apartment, chair beside rain-streaked window, distant illuminated corporate tower, small counter and familiar jacket, quiet empty room. Empty environment, no people, no human reflections, no readable lettering."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Empty environment, with no people or human reflections.",
+          "SCENE": "The same narrow urban apartment, chair beside rain-streaked window, distant illuminated corporate tower, small counter and familiar jacket, quiet empty room. Empty environment, no people, no human reflections, no readable lettering.",
+          "CAMERA": "Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide",
+          "LIGHTING": "Warm practical lamp against cool night rain",
+          "CONTINUITY": "Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          ],
+          "prompt": "Reference 1: rendering style only.\nReplace the reference composition with the described empty location. Preserve its illustration style only; remove the reference people and render the new architecture in a wide composition.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Empty environment, with no people or human reflections.\nSCENE: The same narrow urban apartment, chair beside rain-streaked window, distant illuminated corporate tower, small counter and familiar jacket, quiet empty room. Empty environment, no people, no human reflections, no readable lettering.\nCAMERA: Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide\nLIGHTING: Warm practical lamp against cool night rain\nCONTINUITY: Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "bg-axiom-lobby",
+        "kind": "background",
+        "title": "Axiom security lobby",
+        "concept": false,
+        "sources": [
+          "src/content/scenes.ts"
+        ],
+        "sourceNodes": [
+          "commute.arrival"
+        ],
+        "guard": "Empty location establishing art; never implies attendance or a completed branch.",
+        "references": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "purpose": "rendering style only"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-helix-gala-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-bg-axiom-lobby-v1",
+          "assetType": "background",
+          "sceneId": "commute.arrival",
+          "locationId": "axiom-lobby",
+          "environment": "Corporate tower lobby, glass partitions channel screening lanes, tray scanner, visible cameras, locked inner gates and elevator doors. Pale stone and steel, orderly restrained luxury.",
+          "lighting": "Cold morning daylight and white security lighting",
+          "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+          "cameraAngle": "Eye-level cinematic wide",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Reusable staged location background"
+        },
+        "direction": "Corporate tower lobby, glass partitions channel screening lanes, tray scanner, visible cameras, locked inner gates and elevator doors. Pale stone and steel, orderly restrained luxury. Empty environment, no people, no human reflections, no readable lettering."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Empty environment, with no people or human reflections.",
+          "SCENE": "Corporate tower lobby, glass partitions channel screening lanes, tray scanner, visible cameras, locked inner gates and elevator doors. Pale stone and steel, orderly restrained luxury. Empty environment, no people, no human reflections, no readable lettering.",
+          "CAMERA": "Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide",
+          "LIGHTING": "Cold morning daylight and white security lighting",
+          "CONTINUITY": "Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          ],
+          "prompt": "Reference 1: rendering style only.\nReplace the reference composition with the described empty location. Preserve its illustration style only; remove the reference people and render the new architecture in a wide composition.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Empty environment, with no people or human reflections.\nSCENE: Corporate tower lobby, glass partitions channel screening lanes, tray scanner, visible cameras, locked inner gates and elevator doors. Pale stone and steel, orderly restrained luxury. Empty environment, no people, no human reflections, no readable lettering.\nCAMERA: Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide\nLIGHTING: Cold morning daylight and white security lighting\nCONTINUITY: Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "bg-intelligence-floor",
+        "kind": "background",
+        "title": "Strategic Intelligence",
+        "concept": false,
+        "sources": [
+          "src/content/scenes.ts"
+        ],
+        "sourceNodes": [
+          "office.daniel"
+        ],
+        "guard": "Empty location establishing art; never implies attendance or a completed branch.",
+        "references": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "purpose": "rendering style only"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-helix-gala-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-bg-intelligence-floor-v1",
+          "assetType": "background",
+          "sceneId": "office.daniel",
+          "locationId": "intelligence-floor",
+          "environment": "Intelligence office with orderly workstations, desk dividers, compliance corridor behind glass and director's smoked-glass office. Screens show abstract non-readable interfaces.",
+          "lighting": "Cool office daylight, restrained monitor glow",
+          "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+          "cameraAngle": "Eye-level cinematic wide",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Reusable staged location background"
+        },
+        "direction": "Intelligence office with orderly workstations, desk dividers, compliance corridor behind glass and director's smoked-glass office. Screens show abstract non-readable interfaces. Empty environment, no people, no human reflections, no readable lettering."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Empty environment, with no people or human reflections.",
+          "SCENE": "Intelligence office with orderly workstations, desk dividers, compliance corridor behind glass and director's smoked-glass office. Screens show abstract non-readable interfaces. Empty environment, no people, no human reflections, no readable lettering.",
+          "CAMERA": "Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide",
+          "LIGHTING": "Cool office daylight, restrained monitor glow",
+          "CONTINUITY": "Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          ],
+          "prompt": "Reference 1: rendering style only.\nReplace the reference composition with the described empty location. Preserve its illustration style only; remove the reference people and render the new architecture in a wide composition.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Empty environment, with no people or human reflections.\nSCENE: Intelligence office with orderly workstations, desk dividers, compliance corridor behind glass and director's smoked-glass office. Screens show abstract non-readable interfaces. Empty environment, no people, no human reflections, no readable lettering.\nCAMERA: Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide\nLIGHTING: Cool office daylight, restrained monitor glow\nCONTINUITY: Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    },
+    {
+      "entry": {
+        "key": "bg-sloane-office",
+        "kind": "background",
+        "title": "Sloane’s office",
+        "concept": false,
+        "sources": [
+          "src/content/day.ts"
+        ],
+        "sourceNodes": [
+          "sloane.intro"
+        ],
+        "guard": "Empty location establishing art; never implies attendance or a completed branch.",
+        "references": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "purpose": "rendering style only"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "canonicalReferences": [
+            "evelynn-helix-gala-v1"
+          ],
+          "mood": "Sophisticated adult espionage, restrained psychological tension",
+          "continuityRequirements": [
+            "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+            "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+          ],
+          "assetId": "eve-bg-sloane-office-v1",
+          "assetType": "background",
+          "sceneId": "sloane.intro",
+          "locationId": "sloane-office",
+          "environment": "High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos.",
+          "lighting": "Hard window light, controlled charcoal shadows",
+          "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+          "cameraAngle": "Eye-level cinematic wide",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Reusable staged location background"
+        },
+        "direction": "High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos. Empty environment, no people, no human reflections, no readable lettering."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Empty environment, with no people or human reflections.",
+          "SCENE": "High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos. Empty environment, no people, no human reflections, no readable lettering.",
+          "CAMERA": "Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide",
+          "LIGHTING": "Hard window light, controlled charcoal shadows",
+          "CONTINUITY": "Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "evelynn-helix-gala-v1",
+            "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6"
+          ],
+          "prompt": "Reference 1: rendering style only.\nReplace the reference composition with the described empty location. Preserve its illustration style only; remove the reference people and render the new architecture in a wide composition.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Empty environment, with no people or human reflections.\nSCENE: High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos. Empty environment, no people, no human reflections, no readable lettering.\nCAMERA: Wide 16:9 empty location establishing shot with readable spatial layout. Eye-level cinematic wide\nLIGHTING: Hard window light, controlled charcoal shadows\nCONTINUITY: Empty location establishing art; never implies attendance or a completed branch. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      }
+    }
+  ],
+  "task": {
+    "id": "4cbe029f-6522-4936-a3c3-d95c93246b0a",
+    "unique_name": "image_editor-2026-09-16-18-28-4cbe029f",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 5,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T18:28:23.658610Z",
+    "comment": "EVE backgrounds 1: apartment day/night, Axiom lobby, intelligence floor, Sloane office; staging only"
+  },
+  "quote": 5
+}
