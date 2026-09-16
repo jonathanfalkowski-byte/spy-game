@@ -1,0 +1,94 @@
+[
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-scene-sloane-continuity-v2",
+      "assetType": "scene-cg",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        },
+        {
+          "characterId": "sloane"
+        }
+      ],
+      "canonicalReferences": [],
+      "stagingReferences": [
+        "eve-bg-sloane-office-v1",
+        "eve-cast-adrian-v1",
+        "eve-cast-sloane-v1"
+      ],
+      "sceneId": "sloane.intro",
+      "locationId": "sloane-office",
+      "pose": "Sloane beside window holding a water glass; Adrian remains standing by the empty visitor chair with coat folded over his arm. Clear physical distance.",
+      "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+      "cameraAngle": "Eye-level observational composition",
+      "lighting": "Daytime window light and cool overcast skyline, with restrained graphic interior shadows",
+      "mood": "Controlled adult espionage tension, subtle facial acting",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Staged authored-scene keyframe with branch guard",
+      "notes": "Bounded continuity correction; Daylight is corrected, but silver streak remains on the visible anatomical left side of Sloane’s head. Right-temple criterion fails. Do not promote, mirror the entire scene, or silently retry.",
+      "editSources": [
+        "eve-scene-sloane-v1"
+      ],
+      "timeOfDay": "Overcast midday"
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/cast-scenes/eve-scene-sloane-continuity-v2.png",
+    "sha256": "92ed6d80d317e04e2f4bc0a72911e5f3158f13c3da236058d4a816399484f95b",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "model": "SEEDREAM_5",
+      "taskId": "101efa21-c245-493c-bdd8-9d3d4dc71c29",
+      "callId": "a7d4262d-7895-44c0-a3f4-2cbe4421817f",
+      "providerAssetId": "7c23bce7-b59f-4de5-954e-185640cf8c68",
+      "sourceReferences": [
+        {
+          "assetId": "eve-scene-sloane-v1",
+          "providerAssetId": "0d14039d-8947-454d-b454-2979dc584fb2"
+        }
+      ],
+      "promptVersion": "eve-continuity-v2",
+      "promptComponents": {
+        "STYLE": "EVE Art Bible v1.0",
+        "SUBJECT": "Existing source subjects and wardrobe except the specified correction",
+        "SCENE": "Edit this EVE polished 2D espionage illustration. Change the exterior from night to overcast midday, approximately 12:30. Remove night skyline glow and use soft diffuse daylight. Preserve desk, chairs, window geometry, Adrian with coat over his arm and Sloane standing. Correct Sloane’s silver streak to her anatomical RIGHT temple, not camera-right; preserve her jaw-length black bob, bronze skin, late-forties face and graphite suit. Do not mirror the room or either figure. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+        "CAMERA": "Preserve source composition",
+        "LIGHTING": "Daylight office",
+        "CONTINUITY": "Correction target is provenance only, not new canonical identity authority"
+      },
+      "prompt": "Edit this EVE polished 2D espionage illustration. Change the exterior from night to overcast midday, approximately 12:30. Remove night skyline glow and use soft diffuse daylight. Preserve desk, chairs, window geometry, Adrian with coat over his arm and Sloane standing. Correct Sloane’s silver streak to her anatomical RIGHT temple, not camera-right; preserve her jaw-length black bob, bronze skin, late-forties face and graphite suit. Do not mirror the room or either figure. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T20:45:55.276174Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual inspection under project-owner delegated approval",
+      "date": "2026-09-16",
+      "reasons": [
+        "Daylight is corrected, but silver streak remains on the visible anatomical left side of Sloane’s head.",
+        "Right-temple criterion fails. Do not promote, mirror the entire scene, or silently retry."
+      ]
+    }
+  }
+]

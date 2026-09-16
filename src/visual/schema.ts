@@ -47,6 +47,8 @@ export const VisualAssetSpecSchema = z
     canonicalReferences: z.array(id).max(12).optional(),
     // Provisional conditioning references never become canonical by being reused.
     stagingReferences: z.array(id).max(12).optional(),
+    // Correction targets are provenance, not approved conditioning references.
+    editSources: z.array(id).max(12).optional(),
     dimensions: z
       .object({
         width: z.number().int().min(1).max(16384),
@@ -113,7 +115,7 @@ export const VisualGenerationSchema = z.union([
   EvelynnGenerationSchema.extend({
     tool: z.enum(['image_editor', 'by_prompt']),
     sourceReferences: z.array(z.object({ assetId: id, providerAssetId: z.uuid() }).strict()),
-    promptVersion: z.literal('eve-cast-scenes-v1'),
+    promptVersion: z.enum(['eve-cast-scenes-v1', 'eve-continuity-v2']),
     promptComponents: z
       .object({
         STYLE: text,
@@ -199,6 +201,7 @@ export const VisualAssetRecordSchema = z
             ![
               ...(asset.spec.canonicalReferences ?? []),
               ...(asset.spec.stagingReferences ?? []),
+              ...(asset.spec.editSources ?? []),
             ].includes(source),
         )
       )

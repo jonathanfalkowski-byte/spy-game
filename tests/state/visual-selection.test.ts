@@ -20,7 +20,7 @@ it('keeps the current staging map disabled and location branches explicit',()=>{
   const node=(id:string)=>map.runtimeNodes.find((n:any)=>n.node===id);
   expect(node('security.escort').neutralBackground).toBeNull();
   expect(node('security.escort').requiredLocation).toBe('Axiom secure elevator, Level 71');
-  expect(node('refusal.reconsider').neutralBackground).toBe('eve-bg-sloane-office-v1');
+  expect(node('refusal.reconsider').neutralBackground).toBe('eve-bg-sloane-office-continuity-v2');
   for(const id of ['evening.disclosure','evening.closure','evening.goodbye']) {
     expect(node(id).neutralBackground).toBeNull();
     expect(node(id).locationVariants.map((v:any)=>v.when.evening)).toEqual(['meet','call']);

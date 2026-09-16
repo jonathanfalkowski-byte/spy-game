@@ -12,6 +12,28 @@ can serve as a provisional conditioning reference; it is not owner approval.
 `stagingReferences` keeps these dependencies distinct from `canonicalReferences`.
 The coverage map is a production plan, not a runtime asset binding.
 
+## Approved first continuity correction batch — 2026-09-16
+
+The owner authorized the exact four quoted edits (1 credit each, total 4), then delegated
+Art Bible review and promotion of passing outputs. All four completed. Codex inspected
+the full-size PNGs against the Art Bible and checklist; this is delegated visual review,
+not a claim that the owner personally reviewed the new images.
+
+Three assets passed and were copied unchanged into `production/continuity/`: the wardrobe
+background, Maya’s black-sweater scene and the daylight office background. The Sloane
+scene stays in staging: daylight passes, but the silver streak remains on the wrong
+anatomical side. No extra paid retry was submitted. Canonical references are unchanged.
+
+See [the four-image review](staging/cast-scenes/continuity-review.html),
+[exact request/quote receipt](staging/cast-scenes/continuity-batch-receipt.json), and
+[approved records](production/continuity/records.json). The original quoted proposal is
+retained unchanged as historical evidence. Production approval does not turn on runtime
+selection; guarded bindings are a separate implementation step.
+
+`editSources` identifies the image being corrected. It does not approve that source as a
+canonical identity or conditioning reference. Missing and cyclic correction dependencies
+are rejected by the catalog validator.
+
 ## Asset roles
 
 - `reference/`: explicitly approved canonical visual references.

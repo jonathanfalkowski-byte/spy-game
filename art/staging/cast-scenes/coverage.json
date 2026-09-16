@@ -517,7 +517,7 @@
     },
     {
       "node": "clinic.wardrobe",
-      "neutralBackground": "eve-bg-wardrobe-v1",
+      "neutralBackground": "eve-bg-wardrobe-continuity-v2",
       "conditionalKeyframes": [
         {
           "assetId": "eve-scene-wardrobe-v1",
@@ -532,28 +532,28 @@
     },
     {
       "node": "clinic.makeup",
-      "neutralBackground": "eve-bg-wardrobe-v1",
+      "neutralBackground": "eve-bg-wardrobe-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "clinic.presentationReview",
-      "neutralBackground": "eve-bg-wardrobe-v1",
+      "neutralBackground": "eve-bg-wardrobe-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "clinic.rehearsal",
-      "neutralBackground": "eve-bg-wardrobe-v1",
+      "neutralBackground": "eve-bg-wardrobe-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "clinic.briefing",
-      "neutralBackground": "eve-bg-wardrobe-v1",
+      "neutralBackground": "eve-bg-wardrobe-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
@@ -790,7 +790,7 @@
     },
     {
       "node": "sloane.intro",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [
         {
           "assetId": "eve-scene-sloane-v1",
@@ -805,28 +805,28 @@
     },
     {
       "node": "sloane.allegation",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "sloane.brief",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "sloane.identity",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
     },
     {
       "node": "sloane.offer",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
@@ -840,7 +840,7 @@
     },
     {
       "node": "refusal.reconsider",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Correct location; existing night background requires daylight correction and approval.",
       "runtimeEligible": false,
@@ -848,7 +848,7 @@
     },
     {
       "node": "release.departure",
-      "neutralBackground": "eve-bg-sloane-office-v1",
+      "neutralBackground": "eve-bg-sloane-office-continuity-v2",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
       "runtimeEligible": false
@@ -872,7 +872,7 @@
       "neutralBackground": null,
       "conditionalKeyframes": [
         {
-          "assetId": "eve-scene-maya-evening-v1",
+          "assetId": "eve-scene-maya-evening-continuity-v2",
           "guard": "ONLY in-person evening.meet branch; not call/avoid or automatic romance.",
           "runtimeEligible": false,
           "reviewedGuards": null,
@@ -1012,6 +1012,55 @@
       "neutralBackground": "eve-bg-apartment-night-v1",
       "conditionalKeyframes": [],
       "note": "Planning map only. Neutral background contains no characters or branch outcome. Conditional keyframes require their explicit guard; no runtime binding.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.mayaContact",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.mayaTalk",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.mayaClose",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.pressure",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.mayaFollowup",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.rest",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
+      "runtimeEligible": false
+    },
+    {
+      "node": "chapter3.nightComplete",
+      "neutralBackground": null,
+      "conditionalKeyframes": [],
+      "note": "Scene 2 is playable in content 13. No approved apartment artwork establishes its lighting, occupants or current clothing. Text presentation remains authoritative.",
       "runtimeEligible": false
     }
   ],

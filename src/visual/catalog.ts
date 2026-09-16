@@ -3,6 +3,8 @@ import { VisualAssetRecordSchema, type VisualAssetRecord } from './schema';
 import stagingRecords from '../../art/staging/evelynn/records.json';
 import approvedPortraits from '../../art/reference/evelynn/approved-portraits.json';
 import castSceneRecords from '../../art/staging/cast-scenes/records.json';
+import correctionCandidates from '../../art/staging/cast-scenes/continuity-records.json';
+import approvedCorrections from '../../art/production/continuity/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
   // Generator receipts are always pending; human approval is a separate catalog edit.
@@ -32,7 +34,13 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Approved portrait records require explicit canonical approval');
     return portrait;
   }),
-  ...[...stagingRecords, ...castSceneRecords].map((record) => {
+  ...approvedCorrections.map((record) => {
+    const asset = VisualAssetRecordSchema.parse(record);
+    if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || asset.review?.decision !== 'PASS')
+      throw Error('Production corrections require explicit passing review and owner authorization');
+    return asset;
+  }),
+  ...[...stagingRecords, ...castSceneRecords, ...correctionCandidates].map((record) => {
     const candidate = VisualAssetRecordSchema.parse(record);
     if (candidate.role !== 'staging' || candidate.approvalStatus !== 'pending')
       throw Error('Staging receipts cannot approve or promote artwork');
@@ -69,6 +77,10 @@ export function validateVisualCatalog(catalog: readonly VisualAssetRecord[] = vi
     if (visited.has(assetId)) return;
     visiting.add(assetId);
     const asset = byId.get(assetId)!;
+    for (const source of asset.spec.editSources ?? []) {
+      if (!byId.has(source)) throw Error('Missing correction source');
+      visit(source);
+    }
     for (const reference of asset.spec.stagingReferences ?? []) {
       const source = byId.get(reference);
       if (
