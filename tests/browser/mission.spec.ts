@@ -88,7 +88,7 @@ test('post-transformation apartment reset precedes the Glass House and preserves
   const saved = await current(page);
   expect(saved.phase).toBe('car');
   expect(saved.mission.completed).toContain('home.begin');
-  expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(11);
+  expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(12);
 });
 
 test('full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological', async ({
@@ -109,7 +109,7 @@ test('full operation with two leads reaches the garage, reloads every phase, and
   const exchanges = page.locator('[data-clinic-exchange]');
   await expect(exchanges).toHaveCount(3);
   await expect(exchanges.last()).toBeFocused();
-  await expect(exchanges.nth(1)).toContainText('Evelyn Vale. Axiom Strategic Acquisitions.');
+  await expect(exchanges.nth(1)).toContainText('Evelynn Vale. Axiom Strategic Acquisitions.');
   await expect(exchanges.nth(2)).toContainText('There are no new messages.');
   expect((await exchanges.last().boundingBox())!.y).toBeLessThan(200);
   let leads = 0;

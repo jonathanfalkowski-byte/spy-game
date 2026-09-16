@@ -113,14 +113,14 @@ export function createHandoffWorkspace(
   );
   const derived = deriveConsequences(snapshot);
   const prefixes = new Map<number, GameState>([
-    [0, replay([])],
+    [0, replay([], snapshot.contentRevision ?? 11)],
     [snapshot.revision, snapshot],
   ]);
   const prefix = (revision: number) => {
     if (revision > snapshot.revision) throw Error('Future knowledge source');
     let value = prefixes.get(revision);
     if (!value) {
-      value = replay(snapshot.ledger.slice(0, revision));
+      value = replay(snapshot.ledger.slice(0, revision), snapshot.contentRevision ?? 11);
       prefixes.set(revision, value);
     }
     return value;

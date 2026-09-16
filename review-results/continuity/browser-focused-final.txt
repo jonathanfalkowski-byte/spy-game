@@ -1,0 +1,23 @@
+[WebServer] (node:47232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter]
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:52176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 2 workers
+
+(node:47280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:47580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\browser\continuity.spec.ts:11:33 › content 12 direct route offers expanded choices (10.0s)
+  ok 2 [chromium] › tests\browser\continuity.spec.ts:11:33 › content 12 apartment route offers expanded choices (12.1s)
+  ok 3 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 scope preserves reply and unresolved check-in (3.9s)
+  ok 4 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 challenge preserves reply and unresolved check-in (3.7s)
+  ok 5 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 withhold preserves reply and unresolved check-in (3.7s)
+
+  5 passed (25.0s)

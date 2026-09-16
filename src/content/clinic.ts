@@ -442,7 +442,7 @@ export const clinicScenes = SceneSchema.array().parse([
       'The earpiece connects to me. Your phone remains monitored. Neither is a private line.',
     ),
   ]),
-  scene('farewell', 'Leaving the clinic', '18:05 · Sublevel 17', [
+  scene('farewell', 'Leaving the clinic', '17:35 · Sublevel 17', [
     p(
       'The earpiece test is brief. You hear Sloane from across the room with the tiny delay of the channel, answer, then remove it while Voss completes her last check. The invitation credentials are confirmed without replacing the badge you still need to get home.',
     ),
@@ -456,9 +456,9 @@ export const clinicScenes = SceneSchema.array().parse([
       'You thank her, ask her to remember that promise, or keep the farewell brief. She has helped you through something she also helped make possible. The day has not supplied a simple category for that.',
     ),
   ]),
-  scene('departure', 'Through the doors again', '18:20 · Axiom departure', [
+  scene('departure', 'Through the doors again', '17:45 · Axiom departure', [
     p(
-      'You retrieve the jacket and check the keys and phone before leaving the suite. The officer at the lift verifies the escorted departure against the clinic release. The badge is still restricted; the appointment has not restored a place on your former floor.',
+      'You leave in the presentation you confirmed at the fitting. You check your keys, restricted badge and phone before leaving the suite. The officer at the lift verifies the escorted departure against the clinic release. The badge is still restricted; the appointment has not restored a place on your former floor.',
     ),
     p(
       'Upstairs, the evening entrance staff check the updated identity authorization attached to the escort. Their comparison takes a second longer than you want it to. Then the gate opens. No one asks you what the extra second felt like.',
@@ -467,15 +467,15 @@ export const clinicScenes = SceneSchema.array().parse([
       'The air outside is cool and damp. A waiting car holds the reflection of the tower along its dark flank. You enter, settle the unfamiliar clothes, and check that the door has closed before placing the phone beside you.',
     ),
     p(
-      'Sloane confirms the destination with the driver, then closes your door from outside. She remains at the curb as the car pulls away from Axiom. You watch the entrance disappear behind rain on the glass. The clinic is no longer the next thing that will happen to you.',
+      'Sloane tells the driver to offer the residential stop before the Glass House, then closes your door from outside. She remains at the curb as the car pulls away from Axiom. You watch the entrance disappear behind rain on the glass. The clinic is no longer the next thing that will happen to you.',
     ),
   ]),
-  scene('complete', 'Sublevel 17 complete — en route to the Glass House', '18:22 · In transit', [
+  scene('complete', 'Sublevel 17 complete — en route to the Glass House', '17:47 · In transit', [
     p(
       'Streetlights slide across the window, briefly sharpening the face reflected there. When you turn toward the traffic, the reflection turns too. You settle one hand over the other in your lap. The driver changes lanes; you feel the small movement of the car through your seat.',
     ),
     p(
-      'The mission remains ahead: enter as Evelyn Vale, identify Marcus Chen’s Axiom source, and obtain proof. The car has not reached the Glass House.',
+      'The invitation is for 19:00. There is time for a short stop at home; a garment case with alternate presentations has been delivered there. You can keep the clinic selection or change it at home. If you go directly, the driver will wait short of the entrance until it is time to join the arrival queue.',
     ),
     t(
       'At the next light, a man glances into the car and looks away. Just a passenger in the back of a car. I had forgotten that was possible.',

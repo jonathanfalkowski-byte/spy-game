@@ -18,7 +18,7 @@ The treatment preserves the uncertainty around the prior Evelynn, the unknown se
 
 ## Continuity and boundaries
 
-The operation begins after **Home in Another Skin**. The car journey should not repeat the apartment’s mirror, wardrobe or Maya contact. It may refer to the selected presentation, one chosen accessory or one actual message.
+For new content-12 runs, the operation begins after the optional **Home in Another Skin** reset or direct clinic transport. Both routes expose the expanded dialogue and seven leads; only apartment-specific callbacks require the visit. The car journey should not repeat the apartment’s mirror, wardrobe or Maya contact. It may refer to the selected presentation, one chosen accessory or one actual message.
 
 The phone remains monitored, the invitation remains a Glass House credential and the restricted badge is not upgraded by presentation. Existing evidence custody is authoritative:
 

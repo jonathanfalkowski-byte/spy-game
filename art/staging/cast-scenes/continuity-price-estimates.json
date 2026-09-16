@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-16",
+  "status": "quoted-not-submitted",
+  "totalCredits": 4,
+  "quotes": [
+    {
+      "asset": "eve-bg-wardrobe-continuity-v2",
+      "tool_name": "image_editor",
+      "price": 1,
+      "raw": {
+        "tool_name": "image_editor",
+        "price": 1
+      }
+    },
+    {
+      "asset": "eve-scene-maya-evening-continuity-v2",
+      "tool_name": "image_editor",
+      "price": 1,
+      "raw": {
+        "tool_name": "image_editor",
+        "price": 1
+      }
+    },
+    {
+      "asset": "eve-bg-sloane-office-continuity-v2",
+      "tool_name": "image_editor",
+      "price": 1,
+      "raw": {
+        "tool_name": "image_editor",
+        "price": 1
+      }
+    },
+    {
+      "asset": "eve-scene-sloane-continuity-v2",
+      "tool_name": "image_editor",
+      "price": 1,
+      "raw": {
+        "tool_name": "image_editor",
+        "price": 1
+      }
+    }
+  ]
+}

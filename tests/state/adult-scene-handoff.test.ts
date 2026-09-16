@@ -486,6 +486,6 @@ describe('external draft and editorial approval', () => {
     it(`preserves review save ${file}`, () => {
       const saved = decodeSave(readFileSync(`review-saves/${file}`, 'utf8'));
       expect(decodeSave(encodeSave(saved))).toEqual(saved);
-      expect(replay(saved.ledger)).toEqual(saved);
+      expect(replay(saved.ledger, saved.contentRevision ?? 11)).toEqual(saved);
     });
 });

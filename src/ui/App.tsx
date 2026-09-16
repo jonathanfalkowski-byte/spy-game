@@ -63,6 +63,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       [
         'clinic',
         'mission',
+        'chapter3',
         'file',
         'security',
         'sloane',
@@ -86,6 +87,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
     [
       'clinic',
       'mission',
+      'chapter3',
       'file',
       'security',
       'sloane',
@@ -176,13 +178,15 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   ? 'Glass House / 03'
                   : state.scene === 'clinic'
                     ? 'Adaptation / 02'
-                    : 'Opening / 01'}
+                    : state.scene === 'chapter3' ? 'Chapter 3 / Scene 1' : 'Opening / 01'}
               </span>
               <h2>
                 {state.scene === 'mission' ? (
                   'Above the city.'
                 ) : state.scene === 'clinic' ? (
                   'Inside Sublevel 17.'
+                ) : state.scene === 'chapter3' ? (
+                  'Home after Glass House.'
                 ) : (
                   <>
                     The shape of
@@ -199,7 +203,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     ).map((s, i) => ['mission' + i, s.label])
                   : state.scene === 'clinic'
                     ? clinicSections.map((s, i) => ['clinic' + i, s.label])
-                    : [
+                    : state.scene === 'chapter3' ? [['chapter3.home', 'The return home'], ['chapter3.surveillance', 'The entry record'], ['chapter3.complete', 'Scene 1 endpoint']] : [
                         ['apartment', 'At home'],
                         ['office', 'At Axiom'],
                         ['helix', 'The Helix review'],
@@ -221,6 +225,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     key={id}
                     aria-current={
                       state.scene === id ||
+                      (state.scene === 'chapter3' && id === node) ||
                       (state.scene === 'mission' &&
                         id ===
                           'mission' +
@@ -322,6 +327,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               {[
                 'clinic',
                 'mission',
+                'chapter3',
                 'file',
                 'security',
                 'sloane',
@@ -542,7 +548,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     : 'GLASS HOUSE'
                   : state.scene === 'clinic'
                     ? 'SUBLEVEL 17'
-                    : 'ADRIAN’S DAY'}
+                    : state.scene === 'chapter3' ? 'CHAPTER 3 · SCENE 1' : 'ADRIAN’S DAY'}
                 <span>Every judgment leaves a record.</span>
               </footer>
             </main>

@@ -38,7 +38,7 @@ export function MissionSummary({ state }: { state: GameState }) {
         <>
           <h3>What you brought back</h3>
           <p>{displayName(m.capture.text)}</p>
-          <p>{m.capture.limits}</p>
+          <p>{displayName(m.capture.limits)}</p>
           <p>
             Held by: {displayName(m.capture.owner)}. {displayName(m.capture.axiomAccess)}
           </p>

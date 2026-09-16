@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { availableMissionChoices as legacyMissionChoices } from '../persistence/legacy-v11/content/mission';
 import {
   SceneSchema,
   NodeSchema,
@@ -39,7 +40,7 @@ export const missionScenes = [
       'The car leaves you at the residential entrance with a little time before the Glass House. Sloane calls it a reset window. The building calls it a familiar address. Neither description accounts for the way your body meets the lift, the key, or the quiet beyond the door.',
     ),
     p(
-      'The apartment has not been cleared for a new life. Adrian’s jacket is still where it was left, the old chair still faces the rain, and the tower still fills the window. Your shoulders sit narrower beneath the shirt; the waist draws inward, and your hips and thighs carry a balance you have not learned yet. A turn between the chair and the window takes a small correction. The jacket’s old line no longer falls where you expect. A sealed garment case waits beside the wardrobe with the three presentation options Axiom prepared for tonight.',
+      'The apartment has not been cleared for a new life. Adrian’s jacket is still where it was left, the old chair still faces the rain, and the tower still fills the window. You are still wearing the outfit confirmed at the clinic. Its fabric shifts as you turn between the chair and the window; your hips and thighs carry a balance you are still learning. You put a hand on the chair back to steady the turn. A sealed garment case waits beside the wardrobe with the alternate presentation options Axiom prepared for tonight.',
     ),
     p(
       'The residential reader accepts the restricted badge under Evelynn Vale. The display gives the presented name without explaining the person who used to live here. You do not know who arranged the delivery or whether anyone entered the rooms. The phone remains monitored in your hand.',
@@ -49,7 +50,7 @@ export const missionScenes = [
     ),
   ]),
   scene('homePresentation', 'What nobody required', '18:09 · Adrian’s apartment', [
-    p('The garment case opens onto the three presentations prepared for the Glass House. The tailored jacket changes the line of your shoulders; the evening dress asks you to adjust your stance; the shadow look leaves your new outline less announced, not less real. The choice is yours to revise before departure. Sloane will hear which one you confirm, not what you thought while trying it.'),
+    p('You open the delivered garment case beside the wardrobe. It holds the alternate presentations; the outfit you wore from the clinic is yours to keep on or set beside them while you change. The tailored jacket changes the line of your shoulders; the evening dress asks you to adjust your stance; the shadow look leaves your new outline less announced, not less real. The choice is yours to revise before departure. Sloane will hear which one you confirm, not what you thought while trying it.'),
     p('A small personal detail is optional. Nothing in the operation requires an accessory, jewellery or a cosmetics change.'),
   ]),
   scene('homeContact', 'Before the car arrives', '18:16 · Adrian’s apartment', [
@@ -58,7 +59,7 @@ export const missionScenes = [
   ]),
   scene('car', 'The city goes on', '18:23 · In the car', [
     p(
-      'The car slows at another junction. For a moment it is quiet enough to hear the seat leather settle beneath you. Then the driver indicates, a delivery van lets him in, and Axiom disappears behind the buildings.',
+      'At 18:23 the car joins the last leg to the Glass House. You have either come down from the apartment or waited with the driver away from the arrival queue. A delivery van lets him into the traffic; the seat leather settles beneath you.',
     ),
     p(
       'There are people waiting for a bus with shopping bags between their feet. Someone runs across the crossing with a coat over their head. Yesterday you could have been any one of them. Your phone rests against your thigh, heavier than it ought to feel.',
@@ -153,16 +154,16 @@ scene('celesteReply', 'What she leaves unsaid', '19:06 · The gathering', [
     ),
     q('Marcus', 'We should finish this later.'),
     p(
-      'He straightens his cuff and walks away. Celeste follows him with her eyes, then draws her hand back from your arm. She remains by the window. You could find her again without asking anyone where she went.',
+      'Celeste withdraws her hand. Marcus straightens his cuff and moves to the near end of the central table, a few steps from the window. She stays beside you. You can leave the conversation here or follow her when she turns toward the table.',
     ),
   ]),
   scene('cover', 'A detail that should be familiar', '19:07 · Beside the central table', [
     p(
-      'Celeste looks toward the windows, then back at you. The room has begun to close around its next arrangement; Marcus is close enough to hear if either of you raises a voice.',
+      'Celeste leads you the few steps from the window to the near end of the central table. Marcus is beside it, still waiting for the guest who called him. He can see you both and hear your conversation at this distance.',
     ),
     q('Celeste', 'You once told me the Blue Orchid was where we settled it. Or am I putting the wrong night together?'),
     p(
-      'You have no memory to compare with hers. Her confidence may be care, performance or a test. You can offer a detail you know is wrong, ask her to explain, turn the conversation toward the event, or use your presentation to make the interruption public and ordinary. Marcus is close enough to hear; other guests may notice the pause.',
+      'You have no memory to compare with hers. Her confidence may be care, performance or a test. You can offer a detail that conflicts with the place she just named, ask her to explain, turn the conversation toward the event, or use your presentation to make the interruption public and ordinary. Marcus is close enough to hear; other guests may notice the pause.',
     ),
   ]),
   scene('hub', 'People do not stay in their files', '19:08–19:20 · The reception floor', [
@@ -444,7 +445,7 @@ add(
 for (const [id, label, hint] of [
   ['mirror', 'Look in the apartment mirror', 'Notice the changed face and body without assigning it a verdict.'],
   ['clothes', 'Handle Adrian’s old clothes', 'The shirt and jacket remain. Compare their fit without declaring what they mean.'],
-  ['evidence', 'Check what came back with you', 'Review only the evidence already in your custody.'],
+  ['evidence', 'Check the things you brought from the clinic', 'Check the phone, restricted badge, keys and invitation before leaving.'],
   ['routine', 'Try one familiar routine', 'Notice a small physical change without turning it into a diagnosis.'],
 ])
   add('home', 'home.' + id, 'home', label, hint);
@@ -684,6 +685,7 @@ add('warning3', 'warning.finish', 'garage', 'Put the phone away and leave the li
 add('garage', 'garage.finish', 'complete', 'Get into the waiting car');
 export const missionChoices = choices;
 export function availableMissionChoices(s: GameState) {
+  if (s.contentRevision !== 12) return legacyMissionChoices(s);
   const node = s.scene + '.' + s.phase,
     m = s.mission;
   return choices.filter(
@@ -697,15 +699,15 @@ export function availableMissionChoices(s: GameState) {
         !m.completed.some((done) => ['home.maya.send', 'home.maya.skip'].includes(done))) &&
       (!c.id.startsWith('lead.') ||
         (!['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted'].includes(c.id.split('.')[1])) ||
-        (!['security', 'staff', 'restricted'].includes(c.id.split('.')[1]) || m.completed.includes('home.begin')) &&
+        (!['security', 'staff', 'restricted'].includes(c.id.split('.')[1]) || s.contentRevision === 12 || m.completed.includes('home.begin')) &&
         (m.remaining > 0 && !m.leads.includes(c.id.split('.')[1] as Lead))) &&
       (!c.id.startsWith('read.') ||
         c.id === 'read.return' ||
         m.leads.includes(c.id.split('.')[1] as Lead)) &&
       (!['marcus.detail', 'marcus.push', 'cover.begin'].includes(c.id) ||
-        m.completed.includes('home.begin')) &&
+        s.contentRevision === 12 || m.completed.includes('home.begin')) &&
       (!['marcus.question', 'marcus.detail', 'marcus.push'].includes(c.id) ||
-        !m.completed.includes('home.begin') ||
+        !(s.contentRevision === 12 || m.completed.includes('home.begin')) ||
         !m.completed.some((done) => ['marcus.question', 'marcus.detail', 'marcus.push'].includes(done))) &&
       (c.id !== 'lead.confirm' ||
         (m.pending !== null && m.remaining > 0 && !m.leads.includes(m.pending))) &&
@@ -727,7 +729,7 @@ export function reasoningText(s: GameState): string {
         : 'The credential or sighting supports this identification, without establishing the purpose of the meeting.';
     if (m.reasoning === 'contextual')
       return s.mission.completed.includes('cover.test')
-        ? 'Celeste corrected the detail you deliberately misstated. That gives her recollection a stronger source footing, but it still does not place anyone at the meeting.'
+        ? 'Celeste corrected the detail you deliberately misstated. Her answer is consistent with her earlier claim, not independently verified; it still does not place anyone at the meeting.'
         : 'Celeste’s recollection offers context, but does not place this person at the meeting.';
     if (m.reasoning === 'unsupported')
       return 'You have named someone without an observation that places them at the meeting.';
@@ -739,7 +741,7 @@ export function reasoningText(s: GameState): string {
       : 'Your observations supported naming Benton. A credential or a sighting did not yet prove what the meeting was for.';
   if (m.reasoning === 'contextual')
     return s.mission.completed.includes('cover.test')
-      ? 'Celeste corrected the detail you deliberately misstated, improving the footing of her recollection. It still did not place Benton at the meeting; the correct name did not make your inference direct evidence.'
+      ? 'Celeste corrected the detail you deliberately misstated, remaining consistent with her earlier claim without independently verifying it. It still did not place Benton at the meeting; the correct name did not make your inference direct evidence.'
       : 'Celeste’s recollection offered context for Benton, but did not place him at the meeting. The correct name did not make that inference direct evidence.';
   if (m.reasoning === 'unsupported')
     return m.source === 'benton'
@@ -807,7 +809,7 @@ export function missionBlocks(s: GameState): Block[] {
             ' will remain.',
         ),
         ...(m.leads.length === 0 ? [p(approach(s, m.pending))] : []),
-        ...(m.completed.includes('home.begin') ? [p(leadCost(m.pending))] : []),
+        ...((s.contentRevision === 12 || m.completed.includes('home.begin')) ? [p(leadCost(m.pending))] : []),
       );
     else if (phase === 'leadResult')
       blocks.push(

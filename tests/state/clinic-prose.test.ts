@@ -21,7 +21,7 @@ it('authenticates and migrates original clinic prose at every phase without chan
       const old = legacyReplay(LegacyEvent.array().parse(ledger));
       const raw = JSON.stringify({ schemaVersion: 4, contentVersion: 5, state: old });
       const current = decodeSave(raw);
-      expect(current).toEqual(replay(ledger));
+      expect(current).toEqual(replay(ledger, 11));
       for (const key of [
         'choices',
         'scene',

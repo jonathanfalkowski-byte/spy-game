@@ -13,7 +13,7 @@ export function missionPresentation(state: GameState): Block[] {
   if (node === 'mission.arrival')
     return [
       p(
-        'The first room is designed to make arrival look effortless. Coat check, invitation desk, and the dark elevator doors all sit within one polite line of sight. Sloane’s voice reaches you through the earpiece before anyone asks your name.',
+        'Through the revolving doors you can see the coat check, invitation desk and dark elevator doors in one line of sight. You are still beneath the canopy when Sloane speaks through the earpiece.',
       ),
       s('Sloane · earpiece', '“You have one clean opportunity. Every extra conversation becomes part of the room’s memory.”'),
     ];
@@ -27,14 +27,16 @@ export function missionPresentation(state: GameState): Block[] {
   if (node === 'mission.celesteReply')
     return [
       p(
-        'Celeste’s hand leaves your arm when another guest passes close enough to notice the familiarity. She does not apologize. She only lowers her voice, as if the room has become a third person in the conversation.',
+        'Celeste lowers her voice as another guest passes between the window and the central table, as if the room has become a third person in the conversation.',
       ),
       t('Whatever she remembers, she is measuring how much of it I will claim in public.'),
     ];
   if (node === 'mission.hub' && state.mission.leads.length > 0)
     return [
       p(
-        'The quartet has moved into its final set. One investigation has already cost you a stretch of attention, and the room has had time to place your face in more than one line of sight. There is still room for another lead, but it will not be free of context.',
+        state.mission.remaining > 0
+          ? 'One investigation has already cost you a stretch of attention. There is still room for another lead, though the quartet is nearing the end of its set.'
+          : 'Both opportunities are spent. The quartet is nearing the end of its set; you can review what you learned or give Sloane your assessment.',
       ),
     ];
   if (node === 'mission.method')

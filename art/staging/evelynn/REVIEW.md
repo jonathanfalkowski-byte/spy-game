@@ -8,7 +8,7 @@
 > pre-approval milestone. Original staging PNGs and generation-run.json are retained as
 > historical evidence; records.json now contains only the two remaining pending candidates.
 
-All four originals remain **staging / pending**. PASS is a recommendation for human approval, not approval. No expressions/outfits, other characters, scene art, video, upscales or LoRA were generated.
+At the time of the original review, all four originals were **staging / pending**. The front and three-quarter portraits have since been approved, as recorded in the approval update above; profile and full body remain pending. In the historical review below, PASS is a recommendation, not an approval record. That original milestone generated no expressions/outfits, other characters, scene art, video, upscales or LoRA.
 
 ## Provider, settings and cost
 

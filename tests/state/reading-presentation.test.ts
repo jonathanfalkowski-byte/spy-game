@@ -29,7 +29,7 @@ it('repairs the accuracy question only when actually spoken; reading does not au
     );
     expect(s.clinic.authorized).toBe(false);
     expect(encodeSave(s)).toBe(before);
-    expect(replay(s.ledger)).toEqual(s);
+    expect(replay(s.ledger, s.contentRevision ?? 11)).toEqual(s);
   }
 });
 
@@ -46,7 +46,7 @@ it('keeps all 13 review saves byte-equivalent in state and exact replay after pr
     personalRecap(s);
     journalEntries(s);
     expect(encodeSave(s)).toBe(before);
-    expect(replay(s.ledger)).toEqual(s);
+    expect(replay(s.ledger, s.contentRevision ?? 11)).toEqual(s);
     expect(JSON.parse(before)).toMatchObject({ schemaVersion: 5, contentVersion: 9 });
     expect(readFileSync('review-saves/' + file, 'utf8')).toBe(raw);
   }

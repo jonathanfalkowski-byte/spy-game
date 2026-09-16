@@ -15,7 +15,7 @@ it('authenticates content 8 at every phase and preserves the unchanged decision 
       old = oldReplay(ledger as any);
     const raw = JSON.stringify({ schemaVersion: 5, contentVersion: 8, state: old });
     const current = decodeSave(raw);
-    expect(current).toEqual(replay(ledger));
+    expect(current).toEqual(replay(ledger, 11));
     expect(current.ledger).toEqual(old.ledger);
     expect([
       current.scene,

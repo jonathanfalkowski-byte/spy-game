@@ -24,7 +24,7 @@ export function deriveConsequences(state: GameState, throughRevision = state.rev
   const relationships = new Map<string, RelationshipView>();
   const leverage = new Map<string, LeverageRecord>();
   const ids = new Set<string>();
-  let before = initialState();
+  let before = initialState(authenticated.contentRevision ?? 11);
   for (const event of authenticated.ledger.slice(0, throughRevision)) {
     const after = reducer(before, event.action);
     if (after === before || after.revision !== event.sequence)

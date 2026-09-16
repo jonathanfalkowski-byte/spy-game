@@ -71,7 +71,7 @@ it('migrates v3 prose saves at every day-zero phase and rejects altered old hist
         old = replayV3(DayV3Event.array().parse(ledger));
       const raw = JSON.stringify({ schemaVersion: 3, contentVersion: 3, state: old });
       const current = decodeSave(raw);
-      expect(current).toEqual(replay(ledger));
+      expect(current).toEqual(replay(ledger, 11));
       for (const key of ['choices', 'ledger', 'scene', 'phase', 'relationships'] as const)
         expect(current[key]).toEqual(old[key]);
       expect(current.day.outcome).toBe(old.day.outcome);

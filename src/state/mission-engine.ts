@@ -1,3 +1,4 @@
+import { missionPresentation } from '../content/mission-presentation';
 import type { GameState } from './schema';
 import type { Lead, MissionState } from './mission-schema';
 import { availableMissionChoices, missionBlocks, findings, sourceNames } from '../content/mission';
@@ -51,7 +52,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
   if (id === 'home.mirror') {
     response.push(
       t(
-        'The mirror catches my face, then the body beneath it: my shoulders set differently, my waist drawn in, my hips and thighs carrying a balance I have not learned to trust yet. When I turn, the change moves with me. I can look closely without deciding what any of it means.',
+        'The mirror catches my face, then the body beneath it: my shoulders set differently, my waist drawn in, my hips and thighs carrying a balance I have not learned to trust yet. When I turn, the change moves with me. I move the glass from one hand to the other and watch the reflection follow.',
       ),
     );
     record(
@@ -64,7 +65,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
   if (id === 'home.clothes') {
     response.push(
       p(
-        'Adrian’s shirt is exactly where it was left. Across your changed shoulders it hangs loose; at the waist and hips it pulls against a shape the shirt was never cut to follow. You hold it there for a moment, then hang it back. The old fit has not answered a larger question.',
+        'Adrian’s shirt is exactly where it was left. Across your changed shoulders it hangs loose; at the waist and hips it pulls against a shape the shirt was never cut to follow. You hold it there for a moment, then hang it back. The hanger knocks softly against the wardrobe door.',
       ),
     );
     record(
@@ -75,24 +76,13 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
     );
   }
   if (id === 'home.evidence') {
-    response.push(
-      p(
-        s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn'
-          ? 'The retained material is still where it was put. The photograph remains on the monitored phone; the token remains a separate object. Nothing in the apartment enlarges what either item proves.'
-          : 'There is no independently retained Glass House item to examine here. Sloane’s recording and the mission account remain outside your personal custody.',
-      ),
-    );
-    record(
-      'mission.home.evidence',
-      'fact',
-      'Evelynn checked the Glass House material available in her custody without changing its ownership or limits.',
-      'Apartment evidence check',
-    );
+    response.push(p('You put the keys beside the restricted badge, then wake the phone. The Glass House invitation is still there. You check the time and slide the badge back into its holder.'));
+    record('mission.home.evidence', 'fact', 'Evelynn checked the keys, restricted badge, monitored phone and invitation brought from the clinic.', 'Pre-mission belongings check at the apartment');
   }
   if (id === 'home.routine') {
     response.push(
       p(
-        'You reach for the glass you always use. The movement is familiar; the angle of your wrist and the distance your voice carries in the small kitchen are not. You set the glass down carefully and let the ordinary task stay ordinary.',
+        'You reach for the glass you always use. The movement is familiar; the angle of your wrist and the distance your voice carries in the small kitchen are not. You set the glass down carefully and watch the water settle against the side.',
       ),
     );
     record(
@@ -376,7 +366,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
     know('marcus', 'Evelynn asked who else was present in Singapore', 'Her spoken question beside the windows');
     know('marcus', 'Evelynn is pressing for names', 'Marcus interprets her follow-up; not verified', true);
   }
-  if (id.startsWith('cover.')) {
+  if (['cover.test', 'cover.bluff', 'cover.partial', 'cover.redirect', 'cover.presentation'].includes(id)) {
     const coverReply: Record<string, string> = {
       test: 'No. The Blue Orchid. You corrected me when I called it the Marina Room.',
       bluff: 'You remember the name, at least. I thought you would deny knowing the place at all.',
@@ -385,10 +375,10 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
     };
     const line = coverReply[value];
     if (value === 'test') {
-      response.push(q('You', 'It was at the Marina Room.'), q('Celeste', line), p('She corrects the location without hesitation. That makes this part of her recollection more credible; it still does not prove why she remembers it or what she wants from you.'));
+      response.push(q('You', 'It was at the Marina Room.'), q('Celeste', line), p('She corrects the location without hesitation. She has kept to the place she named first. You still have no independent memory against which to check it.'));
       m.scrutiny++;
-      record('mission.cover.correction', 'claim', 'Celeste corrected Evelynn’s deliberately false Marina Room detail with the Blue Orchid.', 'Celeste’s direct correction during a public conversation');
-      know('celeste', 'Evelynn offered a deliberately false location to test her recollection', 'Celeste interprets the exchange; not verified', true);
+      record('mission.cover.correction', 'claim', 'Celeste corrected Evelynn’s deliberately conflicting Marina Room detail with the Blue Orchid.', 'Celeste’s direct correction during a public conversation');
+      know('celeste', 'Evelynn offered a conflicting location to test her recollection', 'Celeste interprets the exchange; not verified', true);
     } else if (value === 'bluff') {
       response.push(q('You', 'The Blue Orchid. I remember.'), q('Celeste', line), p('The reply makes room for your claim without confirming what you remember. A guest close by notices your confidence, not the truth behind it.'));
       m.scrutiny++;
@@ -396,7 +386,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
       know('celeste', 'Evelynn says she remembers the Blue Orchid', 'Evelynn’s spoken claim');
       know('celeste', 'Evelynn may be trying to preserve the appearance of shared memory', 'Celeste interprets the exchange; not verified', true);
     } else if (value === 'partial') {
-      response.push(q('You', 'I have the name, not the conversation. What mattered to you?'), q('Celeste', line), p('She offers the remembered subject, not proof that her phrasing is exact. Marcus remains near enough to see that the private conversation continued.'));
+      response.push(q('You', 'I have the name, not the conversation. What mattered to you?'), p('Celeste leans toward you and lowers her reply beneath the quartet. Marcus can see the exchange, but her words do not carry to him.'), q('Celeste', line), p('She offers the remembered subject, not proof that her phrasing is exact. Marcus remains near enough to see that the private conversation continued.'));
       record('mission.cover.halcyon', 'claim', 'Celeste says Evelynn asked about people using the Halcyon Foundation’s name outside its invitations.', 'Celeste’s account during the follow-up');
       know('celeste', 'Evelynn asked what Celeste remembers about Singapore', 'Evelynn’s spoken question');
       know('marcus', 'Evelynn continued a private conversation with Celeste', 'Visible proximity at the central table');
@@ -405,7 +395,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
       record('mission.cover.redirect', 'fact', 'Evelynn redirected Celeste’s private question toward the event.', 'Evelynn’s spoken response in the gathering');
       record('mission.cover.redirect-table', 'claim', 'Celeste says Marcus wants guests to regard the private table as an ordinary part of the reception.', 'Celeste’s reply during the follow-up');
       know('celeste', 'Evelynn redirected the conversation toward tonight', 'Evelynn’s spoken question');
-    } else {
+    } else if (value === 'presentation') {
       const visibleAction =
         s.clinic.outfit === 'executive'
           ? 'You make the question sound like a scheduling correction. Two nearby guests turn toward the exchange.'
@@ -737,7 +727,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
   const [scene, phase] = c.next.split('.');
   s.scene = scene as GameState['scene'];
   s.phase = phase;
-  if (c.next !== original) s.history.push({ node: c.next, blocks: missionBlocks(s) });
+  if (c.next !== original) s.history.push({ node: c.next, blocks: [...missionBlocks(s), ...missionPresentation(s)] });
   s.feedback = 'Recorded: ' + c.label;
   return true;
 }

@@ -1,3 +1,4 @@
+import { replay as replayContentV11 } from './legacy-v11/state/reducer';
 import { replay as replayContentV8 } from './legacy-v8/state/reducer';
 import { replay as replayContentV9 } from './legacy-v9/state/reducer';
 import { StateSchema as ContentV9StateSchema } from './legacy-v9/state/schema';
@@ -23,7 +24,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11)]), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
@@ -48,7 +49,7 @@ export function migrateSave(input: unknown) {
   const v9 = z.object({ schemaVersion: z.literal(5), contentVersion: z.literal(9), state: ContentV9StateSchema }).strict().safeParse(input);
   if (v9.success) {
     if (canonical(replayContentV9(v9.data.state.ledger)) !== canonical(v9.data.state)) throw Error('Original content-v9 snapshot does not match its event ledger.');
-    return { schemaVersion: 5 as const, contentVersion: 9 as const, state: replay(v9.data.state.ledger) };
+    return { schemaVersion: 5 as const, contentVersion: 9 as const, state: replayContentV11(v9.data.state.ledger) };
   }
   const v8 = z
     .object({
@@ -64,7 +65,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(v8.data.state.ledger),
+      state: replayContentV11(v8.data.state.ledger),
     };
   }
   const v7 = z
@@ -81,7 +82,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(v7.data.state.ledger),
+      state: replayContentV11(v7.data.state.ledger),
     };
   }
 
@@ -99,7 +100,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(v6.data.state.ledger),
+      state: replayContentV11(v6.data.state.ledger),
     };
   }
   const v5 = z
@@ -116,7 +117,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(v5.data.state.ledger),
+      state: replayContentV11(v5.data.state.ledger),
     };
   }
   const v4 = z
@@ -133,7 +134,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(v4.data.state.ledger),
+      state: replayContentV11(v4.data.state.ledger),
     };
   }
   const dayV3 = DayV3SaveSchema.safeParse(input);
@@ -143,7 +144,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(dayV3.data.state.ledger),
+      state: replayContentV11(dayV3.data.state.ledger),
     };
   }
   const old = V1Schema.safeParse(input);
@@ -152,7 +153,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(old.data.ledger),
+      state: replayContentV11(old.data.ledger),
     };
   }
   const original = ContentV1Schema.safeParse(input);
@@ -163,7 +164,7 @@ export function migrateSave(input: unknown) {
     return {
       schemaVersion: 5 as const,
       contentVersion: 9 as const,
-      state: replay(original.data.state.ledger),
+      state: replayContentV11(original.data.state.ledger),
     };
   }
   return input;
@@ -185,13 +186,15 @@ export function decodeSave(raw: string): GameState {
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)
     throw new Error('Save exceeds the 2 MB save limit.');
   const decoded = SaveSchema.parse(migrateSave(JSON.parse(raw)));
-  const reconstructed = replay(decoded.state.ledger);
+  if ((decoded.contentVersion === 12) !== (decoded.state.contentRevision === 12))
+    throw Error('Content version and state revision differ.');
+  const reconstructed = replay(decoded.state.ledger, decoded.contentVersion === 12 ? 12 : 11);
   if (canonical(reconstructed) !== canonical(decoded.state))
     throw new Error('Save snapshot does not match its event ledger.');
   return reconstructed;
 }
 export function encodeSave(state: GameState) {
-  const contentVersion = state.mission.completed.includes('home.begin') ? 11 : state.scene === 'chapter3' ? 10 : 9;
+  const contentVersion = state.contentRevision === 12 ? 12 : state.mission.completed.includes('home.begin') ? 11 : state.scene === 'chapter3' ? 10 : 9;
   const value = SaveSchema.parse({ schemaVersion: 5, contentVersion, state });
   const raw = JSON.stringify(value);
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)

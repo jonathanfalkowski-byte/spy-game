@@ -185,7 +185,7 @@ it('replays every existing review endpoint exactly with unchanged schema 5/conte
     );
     const loaded = decodeSave(JSON.stringify(original));
     expect(loaded).toEqual(original.state);
-    expect(replay(loaded.ledger)).toEqual(original.state);
+    expect(replay(loaded.ledger, loaded.contentRevision ?? 11)).toEqual(original.state);
     expect(JSON.parse(encodeSave(loaded))).toEqual(original);
   }
 }, 30000);

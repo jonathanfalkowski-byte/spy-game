@@ -1,0 +1,81 @@
+{
+  "status": "awaiting-owner-cost-approval",
+  "jobs": [
+    {
+      "sourceAssetId": "eve-bg-wardrobe-v1",
+      "outputAssetId": "eve-bg-wardrobe-continuity-v2",
+      "tool_name": "image_editor",
+      "params": {
+        "image_assets": [
+          "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+        ],
+        "prompt": "Edit this EVE polished 2D espionage illustration. Replace only the rightmost tactical harness outfit with one understated knee-length charcoal cocktail dress on a hanger. Exactly one tailored business suit, one long black evening gown and one plain cocktail dress total. Keep the room empty. Preserve the mirrored wardrobe, vanity, tile grid, lighting and camera. No additional suit, no tactical gear. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    },
+    {
+      "sourceAssetId": "eve-scene-maya-evening-v1",
+      "outputAssetId": "eve-scene-maya-evening-continuity-v2",
+      "tool_name": "image_editor",
+      "params": {
+        "image_assets": [
+          "20c50a33-890f-4694-826c-18d56f00998a"
+        ],
+        "prompt": "Edit this EVE polished 2D espionage illustration. Replace Maya’s navy blazer and visible blouse sleeves with a plain black sweater. Keep Maya’s face, dark updo, adult proportions, seated pose, Adrian’s dark shirt, booth, drinks and rainy Lantern location unchanged. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    },
+    {
+      "sourceAssetId": "eve-bg-sloane-office-v1",
+      "outputAssetId": "eve-bg-sloane-office-continuity-v2",
+      "tool_name": "image_editor",
+      "params": {
+        "image_assets": [
+          "e57cfbfe-5b99-453b-95ec-8ce5af759bd6"
+        ],
+        "prompt": "Edit this EVE polished 2D espionage illustration. Change the exterior from night to overcast midday, approximately 12:30. Remove night glow from windows and skyline; add soft diffuse daylight through the existing windows. Preserve exact office geometry, desk, chairs, dark wood, pale stone and camera. Keep room empty. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    },
+    {
+      "sourceAssetId": "eve-scene-sloane-v1",
+      "outputAssetId": "eve-scene-sloane-continuity-v2",
+      "tool_name": "image_editor",
+      "params": {
+        "image_assets": [
+          "0d14039d-8947-454d-b454-2979dc584fb2"
+        ],
+        "prompt": "Edit this EVE polished 2D espionage illustration. Change the exterior from night to overcast midday, approximately 12:30. Remove night skyline glow and use soft diffuse daylight. Preserve desk, chairs, window geometry, Adrian with coat over his arm and Sloane standing. Correct Sloane’s silver streak to her anatomical RIGHT temple, not camera-right; preserve her jaw-length black bob, bronze skin, late-forties face and graphite suit. Do not mirror the room or either figure. Preserve clean ink linework, semi-cel shading, believable adult anatomy and restrained graphic shadows. No captions, labels, logos or watermarks. This is a staging correction, not canonical approval.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      }
+    }
+  ]
+}

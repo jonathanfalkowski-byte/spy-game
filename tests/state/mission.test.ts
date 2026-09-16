@@ -139,7 +139,7 @@ it('keeps the Celeste cover complication attributed and limits who hears each re
 
   const corrected = mission(routeToCover(), 'cover.test');
   expect(corrected.day.records.find((r) => r.key === 'mission.cover.correction')?.layer).toBe('claim');
-  expect(corrected.npcs.celeste.beliefs.some((x) => x.key.includes('deliberately false location'))).toBe(true);
+  expect(corrected.npcs.celeste.beliefs.some((x) => x.key.includes('conflicting location'))).toBe(true);
   expect(corrected.npcs.marcus.known.some((x) => x.key.includes('false location'))).toBe(false);
   expect(corrected.mission.scrutiny).toBeGreaterThan(0);
 

@@ -1,8 +1,8 @@
 # EVE — Home in Another Skin
 
-- **Status:** Implemented story treatment; current runtime content version 11
+- **Status:** Implemented story treatment; new-run content version 12; content 11 retained for legacy replay
 - **Scope:** Post-Stage One apartment sequence before Glass House arrival
-- **Placement:** Sublevel 17 departure → this sequence → Glass House arrival
+- **Placement:** Sublevel 17 departure → optional apartment reset or direct transport → Glass House arrival
 - **Target length:** Approximately 10–15 minutes, depending on optional inspection and contact
 
 ## Purpose
@@ -15,14 +15,14 @@ The sequence observes embodiment and administrative intrusion. It does not decla
 
 ## Continuity and entry
 
-The existing accepted clinic-departure route provides a short reset window before transport to the Glass House. Sloane remains at Axiom and gives the window an operational reason: Evelynn must collect the supplied presentation and arrive at the invitation time without being rushed directly from recovery. This is a practical interval, not an unexplained time skip.
+The existing accepted clinic-departure route provides a short reset window before transport to the Glass House. Sloane remains at Axiom. Evelynn leaves wearing the clinic-confirmed outfit; an optional home stop offers a delivered case of alternate presentations before the invitation time. This is a practical interval, not an unexplained time skip.
 
 The entry state carries forward:
 
 - Stage One’s actual physical progress, voice and face result;
 - the selected Executive, Socialite or Shadow presentation and any authored customization;
 - phone monitoring, restricted badge status, employment and housing consequences;
-- the exact custody of audio, photograph or token evidence;
+- only available clinic belongings: monitored phone, restricted badge, keys and invitation; Glass House capture has not happened;
 - Maya’s prior invitation, morning response and any earned disclosures;
 - Sloane’s existing knowledge and the source of each known fact;
 - private interpretations from the clinic, which remain private.
@@ -33,7 +33,7 @@ No new mission, medical stage, relationship score or identity verdict is created
 
 ### 1. The reset window
 
-Open in the vehicle or residential lift after Sublevel 17. Sloane’s last instruction is concise: return home, prepare, and be ready for transport. The driver or building attendant completes the physical transition; the player is never teleported between locations.
+Open in the vehicle or residential lift after Sublevel 17. Sloane offers the residential stop; direct transport remains available and waits away from the arrival queue. The driver or building attendant completes the physical transition; the player is never teleported between locations.
 
 The city is ordinary outside the glass. The apartment tower remains the same landmark from the opening. The contrast is physical: the same seat, stairs and building now meet a body with a different balance and voice.
 
@@ -115,7 +115,7 @@ The transition goes directly to the existing Glass House car/arrival scene. Do n
 - Maya’s knowledge contains only delivered words and independently sourced prior facts.
 - Private mirror thoughts remain private.
 - Presentation choice, mirror action and voluntary accessory are distinct from forced physical adaptation.
-- Existing evidence custody is preserved: Sloane owns the audio route; the monitored phone holds any photograph; the token remains a separate physical asset.
+- The pre-gala inspection cannot reference future captures. After Glass House, Chapter 3 separately preserves custody: Sloane owns audio, the monitored phone holds any retained photograph, and the token remains a separate physical asset.
 - A missed contact is a missed contact. It does not become a hidden emotional judgment or a new appointment.
 
 ## Estimated duration and interaction density
@@ -149,3 +149,7 @@ The new sequence also means Chapter 3 Scene 1 should begin with an already estab
 - any new medical mechanism, later stage or mystery revelation.
 
 Implementation note: the apartment interlude is represented by `mission.home`, `mission.homePresentation` and `mission.homeContact`. It records ordinary observations and explicit messages through the existing ledger; no save fields were added. Content-9 and content-10 routes retain their historical flow, and the new continuation is stored as content 11 under save schema 5.
+
+## Content 12 itinerary
+
+Clinic briefing 17:10; farewell 17:35; departure 17:45; in transit 17:47. Optional home arrival 18:02, preparation 18:09, contact 18:16; transport 18:23 and Glass House canopy 18:48 for the 19:00 invitation. The direct route retains its clinic outfit and waits off-site; the apartment route retains the final selected outfit. Neither route gates expanded gala dialogue or leads. Historical content 11 timing remains frozen in old saves.

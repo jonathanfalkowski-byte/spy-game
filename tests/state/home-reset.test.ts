@@ -20,7 +20,7 @@ describe('post-transformation apartment reset', () => {
     expect(nodeOf(home)).toBe('mission.home');
     expect(home.mission.completed).toContain('home.begin');
     expect(home.day.records.some((record) => record.key === 'mission.home.entry')).toBe(true);
-    expect(JSON.parse(encodeSave(home)).contentVersion).toBe(11);
+    expect(JSON.parse(encodeSave(home)).contentVersion).toBe(12);
   });
 
   it('keeps home observations optional, one-shot and chronological', () => {
@@ -33,7 +33,7 @@ describe('post-transformation apartment reset', () => {
     expect(state.history.filter((entry) => entry.blocks[0]?.kind === 'notice').slice(-4).map((entry) => entry.blocks[0].text)).toEqual([
       'Your choice: Look in the apartment mirror',
       'Your choice: Handle Adrian’s old clothes',
-      'Your choice: Check what came back with you',
+      'Your choice: Check the things you brought from the clinic',
       'Your choice: Try one familiar routine',
     ]);
     expect(missionChoice(state, 'home.mirror')).toBe(state);
@@ -55,7 +55,7 @@ describe('post-transformation apartment reset', () => {
     state = missionChoice(state, 'home.leave');
     expect(nodeOf(state)).toBe('mission.car');
     expect(state.day.records.filter((record) => record.key.startsWith('mission.home.')).length).toBeGreaterThanOrEqual(6);
-    expect(JSON.parse(encodeSave(state)).contentVersion).toBe(11);
+    expect(JSON.parse(encodeSave(state)).contentVersion).toBe(12);
     expect(decodeSave(encodeSave(state))).toEqual(state);
   });
 
@@ -73,12 +73,12 @@ describe('post-transformation apartment reset', () => {
     expect(replay(state.ledger)).toEqual(state);
   });
 
-  it('keeps content version 11 through the earned Chapter 3 continuation', () => {
+  it('keeps content version 12 through the earned Chapter 3 continuation', () => {
     const endpoint = runMission(clinicComplete(), { complete: 'home.begin' });
     expect(nodeOf(endpoint)).toBe('mission.complete');
     const next = act(endpoint, { type: 'CONTINUE_CHAPTER3' });
     expect(nodeOf(next)).toBe('chapter3.home');
-    expect(JSON.parse(encodeSave(next)).contentVersion).toBe(11);
+    expect(JSON.parse(encodeSave(next)).contentVersion).toBe(12);
     expect(decodeSave(encodeSave(next))).toEqual(next);
   });
 });

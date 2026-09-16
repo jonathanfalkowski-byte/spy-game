@@ -250,7 +250,7 @@ it('authenticates content-v4 saves before migration without changing prior decis
     expect(migrated.ledger).toEqual(old.ledger);
     expect(migrated.choices).toEqual(old.choices);
     expect(migrated.clinic.authorized).toBe(false);
-    expect(migrated).toEqual(replay(start.ledger.slice(0, i)));
+    expect(migrated).toEqual(replay(start.ledger.slice(0, i), 11));
     expect(
       loadGame({
         getItem: () => raw,

@@ -48,12 +48,12 @@ it('keeps checkpoint explicit and migrates v2 without losing choices or adding c
     const ledger = OldEvent.array().parse(now.ledger.slice(0, i));
     expect(
       decodeSave(JSON.stringify({ schemaVersion: 2, contentVersion: 2, state: oldReplay(ledger) })),
-    ).toEqual(replay(ledger));
+    ).toEqual(replay(ledger, 11));
   }
   const old = oldReplay(OldEvent.array().parse(now.ledger));
   const raw = JSON.stringify({ schemaVersion: 2, contentVersion: 2, state: old });
   const restored = decodeSave(raw);
-  expect(restored).toEqual(now);
+  expect(restored).toEqual(replay(now.ledger, 11));
   expect(restored.day.biometric).toBe(false);
   expect(nodeOf(restored)).toBe('ending.complete');
   expect(

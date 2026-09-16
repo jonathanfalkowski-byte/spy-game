@@ -1,3 +1,4 @@
+import { initialState as legacyInitialState, reducer as legacyReducer, replay as legacyReplay, availableIntents as legacyIntents } from '../persistence/legacy-v11/state/reducer';
 import { initialMission } from './mission-schema';
 import { applyMissionChoice } from './mission-engine';
 import { availableMissionChoices } from '../content/mission';
@@ -16,8 +17,10 @@ import { availableClinicChoices } from '../content/clinic';
 import { chapter3Choices } from '../content/chapter3';
 
 export const nodeOf = (state: GameState) => `${state.scene}.${state.phase}` as NodeId;
-export function initialState(): GameState {
+export function initialState(contentRevision = 12): GameState {
+  if (contentRevision !== 12) return legacyInitialState();
   const s: GameState = {
+    contentRevision: 12,
     day: initialDay(),
     clinic: initialClinic(),
     mission: initialMission(),
@@ -104,10 +107,10 @@ function enter(s: GameState, id: NodeId) {
 function history(s: GameState, blocks: Block[]) {
   s.history.push({ node: nodeOf(s), blocks });
 }
-function recordChapter3(s: GameState, key: string, text: string, source: string) {
+function recordChapter3(s: GameState, key: string, text: string, source: string, layer: 'fact' | 'claim' = 'fact') {
   if (!s.day.records.some((r) => r.key === key)) {
-    s.day.records.push({ key, layer: 'fact', text, source, event: s.revision });
-    add(s.facts, key);
+    s.day.records.push({ key, layer, text, source, event: s.revision });
+    add(layer === 'fact' ? s.facts : s.claims, key);
     add(s.knowledge, key);
   }
 }
@@ -142,6 +145,7 @@ export function canContinue(s: GameState) {
   return !!sceneById[node].next && (node !== 'helix.documents' || s.documents.length >= 2);
 }
 export function reducer(state: GameState, input: unknown): GameState {
+  if (state.contentRevision !== 12) return legacyReducer(state, input);
   const parsed = ActionSchema.safeParse(input);
   if (!parsed.success || parsed.data.expectedRevision !== state.revision) return state;
   const action = parsed.data;
@@ -252,14 +256,14 @@ export function reducer(state: GameState, input: unknown): GameState {
       add(s.day.completed, c.id);
       if (action.id === 'chapter3.mirror') {
         recordChapter3(s, 'chapter3_mirror', 'Evelynn examined the presentation carried home from the Glass House without selecting an identity interpretation.', 'Evelynn’s private apartment observation');
-        history(s, [{ kind: 'thought', text: 'The mirror gives back the presentation I chose. It does not answer whether I accept what it shows.' }]);
+        history(s, [{ kind: 'thought', text: (s.mission.completed.includes('home.mirror') ? 'Earlier I watched this face move in the same mirror. Now I try the still expression I used when Marcus said Singapore. ' : 'I try the still expression I used when Marcus said Singapore. ') + 'The glass gives me the expression, not the evening he remembers.' }]);
       } else if (action.id === 'chapter3.clothing') {
         recordChapter3(s, 'chapter3_clothing', 'Evelynn handled the selected presentation clothing and separated mission requirements from personal customization.', 'Evelynn’s apartment observation');
-        history(s, [{ kind: 'thought', text: 'The clothes were selected for a room I had to enter. That does not tell me what I want from them here.' }]);
+        history(s, [{ kind: 'thought', text: (s.clinic.outfit === 'executive' ? 'The jacket cuff has folded under. I smooth it with my thumb.' : s.clinic.outfit === 'socialite' ? 'The hem brushes the chair leg as I sit. I lift it clear and let the fabric settle.' : 'A narrow fold in the quiet fabric has held the shape of the car seat. I press it flat.') + (s.mission.completed.includes('home.detail.watch') ? ' The old watch catches against the fabric.' : s.mission.completed.includes('home.detail.earrings') ? ' I loosen one of the earrings I added before leaving.' : '') }]);
       } else if (action.id === 'chapter3.evidence') {
         const available = s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn';
         recordChapter3(s, 'chapter3_evidence', available ? 'Evelynn checked retained Glass House material without changing its custody.' : 'Evelynn found no independently retained Glass House material to inspect.', 'Apartment evidence check');
-        history(s, [{ kind: 'notice', text: available ? 'The retained material is still yours. Its limits are unchanged.' : 'Nothing in the apartment gives you a copy of evidence held by someone else.' }]);
+        history(s, [{ kind: 'notice', text: s.mission.token === 'evelyn' ? 'Benton’s access token is still in your custody. It is separate from the information wafer he pocketed; possession does not authenticate that wafer.' : s.mission.capture?.owner === 'Evelyn' ? 'The photograph is on the monitored phone. ' + s.mission.capture.limits : s.mission.capture?.owner === 'Sloane' ? 'Sloane controls the audio recording. You have no independent copy on the phone.' : 'You brought back no capture to inspect. Benton retained his token.' }]);
       } else if (action.id === 'chapter3.phone') {
         recordChapter3(s, 'chapter3_phone', 'Evelynn set down the monitored phone before receiving Sloane’s residential-entry message.', 'Evelynn’s apartment action');
         history(s, [{ kind: 'thought', text: 'The phone is on the table. The monitoring does not stop because I stop looking at it.' }]);
@@ -267,8 +271,23 @@ export function reducer(state: GameState, input: unknown): GameState {
       } else {
         const text = action.id === 'chapter3.confirm' ? 'Evelynn confirmed arrival without authorizing broader residential monitoring.' : action.id === 'chapter3.scope' ? 'Evelynn asked who receives the residential-entry record and what reporting scope applies.' : action.id === 'chapter3.challenge' ? 'Evelynn challenged the monitoring justification while acknowledging the recorded entry event.' : 'Evelynn left Sloane’s residential-entry request unanswered.';
         recordChapter3(s, 'chapter3_sloane_' + action.id.split('.')[1], text, 'Sloane’s residential-entry message and Evelynn’s response');
-        observe(s, 'sloane', text, 'Evelynn’s Chapter 3 response');
-        if (action.id === 'chapter3.scope' || action.id === 'chapter3.challenge') recordChapter3(s, 'chapter3_monitoring_scope', 'Sloane identified the restricted residential-entry record as the source of her knowledge.', 'Sloane’s stated monitoring source');
+        const reply = (speaker: string, text: string): Block => ({kind:'speech', speaker, text});
+        if (action.id === 'chapter3.confirm') {
+          history(s, [reply('You · message', 'I am home.'), reply('Sloane · message', 'Received. That closes the check-in.')]);
+          observe(s, 'sloane', 'Evelynn confirmed arrival at home', 'Her delivered residential check-in');
+        } else if (action.id === 'chapter3.scope') {
+          history(s, [reply('You · message', 'Who receives the entry record? I want to know where it goes.'),
+            reply('Sloane · message', 'Executive Intelligence’s active-compromise review. I will not give you the individual recipients. The entry record is what reached me; it is not an account of what you do in the apartment.')]);
+          observe(s, 'sloane', 'Evelynn asked who receives the residential-entry record', 'Her delivered scope question');
+          recordChapter3(s, 'chapter3_monitoring_scope', 'Sloane says Executive Intelligence’s active-compromise review receives the entry record and declines to identify individual recipients.', 'Sloane’s written answer; scope not independently verified', 'claim');
+        } else if (action.id === 'chapter3.challenge') {
+          history(s, [reply('You · message', 'A residential badge is not permission to watch my home. Why are you using it this way?'),
+            reply('Sloane · message', 'I am using the forwarded entry record for the active-compromise review. I will not debate the justification on this channel. You asked about the record; I am still asking you to confirm arrival.')]);
+          observe(s, 'sloane', 'Evelynn challenged the use of the residential-entry record', 'Her delivered monitoring challenge');
+          recordChapter3(s, 'chapter3_monitoring_scope', 'Sloane invokes the active-compromise review and refuses to debate its justification on the monitored channel.', 'Sloane’s written justification and refusal; not independent authority', 'claim');
+        } else {
+          history(s, [{kind:'narrative', text:'You leave the reply field empty. The screen dims without a sent message.'}]);
+        }
         s.feedback = text;
         enter(s, c.next);
       }
@@ -399,7 +418,8 @@ export function reducer(state: GameState, input: unknown): GameState {
 export function act(state: GameState, intent: Intent) {
   return reducer(state, { ...intent, expectedRevision: state.revision });
 }
-export function replay(events: GameEvent[]): GameState {
+export function replay(events: GameEvent[], contentRevision = 12): GameState {
+  if (contentRevision !== 12) return legacyReplay(events);
   let state = initialState();
   for (const event of events) {
     if (event.sequence !== state.revision + 1) throw new Error('Event sequence is not contiguous.');
@@ -410,6 +430,7 @@ export function replay(events: GameEvent[]): GameState {
   return state;
 }
 export function availableIntents(s: GameState): Intent[] {
+  if (s.contentRevision !== 12) return legacyIntents(s);
   const intents: Intent[] = availableChoices(s).map((c) => ({ type: 'CHOOSE_DIALOGUE', id: c.id }));
   intents.push(...availableDayChoices(s).map((c) => ({ type: 'DAY_CHOOSE' as const, id: c.id })));
   intents.push(

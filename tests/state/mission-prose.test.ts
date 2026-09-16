@@ -90,7 +90,7 @@ it('authenticates v7 and preserves gameplay at each mission phase while updating
       if (oldMechanics.feedback.includes('Try to take Benton’s access token'))
         oldMechanics.feedback = oldMechanics.feedback.replace('Try to take Benton’s access token', 'Try to take the contact’s access token');
       expect(newMechanics).toEqual(oldMechanics);
-      expect(migrated).toEqual(replay(ledger));
+      expect(migrated).toEqual(replay(ledger, 11));
       expect(decodeSave(encodeSave(migrated))).toEqual(migrated);
       expect(
         loadGame({

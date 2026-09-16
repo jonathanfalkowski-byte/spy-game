@@ -50,7 +50,7 @@ describe('authenticated read-only consequences', () => {
   it('does not duplicate consequences on rejected/repeated actions or rereading', () => {
     const state = checkpoint(true);
     expect(act(state, { type: 'CHOOSE_DIALOGUE', id: 'disclosure.voss' })).toBe(state);
-    expect(deriveConsequences(state)).toEqual(deriveConsequences(replay(state.ledger)));
+    expect(deriveConsequences(state)).toEqual(deriveConsequences(replay(state.ledger, state.contentRevision ?? 11)));
     const reading = toAnalysis();
     const again = act(reading, { type: 'READ_DOCUMENT', id: 'email' });
     expect(deriveConsequences(again)).toEqual(deriveConsequences(reading));
@@ -104,7 +104,7 @@ describe('authenticated read-only consequences', () => {
       const original = encodeSave(state);
       const view = deriveConsequences(state);
       expect(encodeSave(state)).toBe(original);
-      expect(replay(state.ledger)).toEqual(state);
+      expect(replay(state.ledger, state.contentRevision ?? 11)).toEqual(state);
       expect(deriveConsequences(decodeSave(original))).toEqual(view);
       expect(new Set(view.consequences.map((e) => e.id)).size).toBe(view.consequences.length);
       for (const effect of view.consequences) {

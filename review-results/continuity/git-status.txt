@@ -1,0 +1,99 @@
+ M README.md
+ M art/staging/cast-scenes/coverage.json
+ M art/staging/evelynn/REVIEW.md
+ M docs/story/CHAPTER_3_PLAYABLE_TREATMENT.md
+ M docs/story/GLASS_HOUSE_EXPANSION_TREATMENT.md
+ M docs/story/POST_TRANSFORMATION_HOME_TREATMENT.md
+ M review-results/journal-narrow-final.png
+ M src/content/chapter3.ts
+ M src/content/clinic.ts
+ M src/content/mission-presentation.ts
+ M src/content/mission.ts
+ M src/content/scenes.ts
+ M src/narrative/adult-scenes/handoff.ts
+ M src/persistence/saves.ts
+ M src/state/consequences.ts
+ M src/state/mission-engine.ts
+ M src/state/reducer.ts
+ M src/state/schema.ts
+ M src/ui/App.tsx
+ M src/ui/ClinicConversation.tsx
+ M src/ui/Missionwork.tsx
+ M src/ui/Narrative.tsx
+ M src/ui/journal-entries.ts
+ M tests/browser/clinic.spec.ts
+ M tests/browser/mission.spec.ts
+ M tests/state/adult-scene-handoff.test.ts
+ M tests/state/chapter3.test.ts
+ M tests/state/clinic-prose.test.ts
+ M tests/state/clinic.test.ts
+ M tests/state/consequences.test.ts
+ M tests/state/day.test.ts
+ M tests/state/final-review.test.ts
+ M tests/state/home-reset.test.ts
+ M tests/state/mission-prose.test.ts
+ M tests/state/mission.test.ts
+ M tests/state/narrative-context.test.ts
+ M tests/state/prose.test.ts
+ M tests/state/reading-presentation.test.ts
+ M tests/state/saves.test.ts
+?? art/staging/cast-scenes/continuity-price-estimates.json
+?? art/staging/cast-scenes/continuity-proposed-batch.json
+?? docs/EVE_CONTINUITY_COMPLETION_2026-09-16.md
+?? docs/art/CONTINUITY_CORRECTIONS_2026-09-16.md
+?? review-results/continuity/apartment-expanded-route.png
+?? review-results/continuity/browser-focused-final.txt
+?? review-results/continuity/browser-opening.png
+?? review-results/continuity/browser-run-final.txt
+?? review-results/continuity/browser-run.txt
+?? review-results/continuity/build.txt
+?? review-results/continuity/chapter3-challenge.png
+?? review-results/continuity/chapter3-scope.png
+?? review-results/continuity/chapter3-withhold.png
+?? review-results/continuity/contact-0.html
+?? review-results/continuity/contact-0.png
+?? review-results/continuity/contact-1.html
+?? review-results/continuity/contact-1.png
+?? review-results/continuity/contact-2.html
+?? review-results/continuity/contact-2.png
+?? review-results/continuity/contact-3.html
+?? review-results/continuity/contact-3.png
+?? review-results/continuity/contact-4.html
+?? review-results/continuity/contact-4.png
+?? review-results/continuity/contact-5.html
+?? review-results/continuity/contact-5.png
+?? review-results/continuity/contact-6.html
+?? review-results/continuity/contact-6.png
+?? review-results/continuity/contact-7.html
+?? review-results/continuity/contact-7.png
+?? review-results/continuity/contact-8.html
+?? review-results/continuity/contact-8.png
+?? review-results/continuity/direct-expanded-route.png
+?? review-results/continuity/git-status.txt
+?? review-results/continuity/references.txt
+?? review-results/continuity/unit-results.json
+?? review-results/continuity/validation-summary.json
+?? src/persistence/content-11-hashes.json
+?? src/persistence/legacy-v11/content/chapter3.ts
+?? src/persistence/legacy-v11/content/character-schema.ts
+?? src/persistence/legacy-v11/content/clinic.ts
+?? src/persistence/legacy-v11/content/day.ts
+?? src/persistence/legacy-v11/content/dialogue.ts
+?? src/persistence/legacy-v11/content/evidence.ts
+?? src/persistence/legacy-v11/content/mission-presentation.ts
+?? src/persistence/legacy-v11/content/mission.ts
+?? src/persistence/legacy-v11/content/scenes.ts
+?? src/persistence/legacy-v11/content/schema.ts
+?? src/persistence/legacy-v11/state/actions.ts
+?? src/persistence/legacy-v11/state/clinic-engine.ts
+?? src/persistence/legacy-v11/state/clinic-schema.ts
+?? src/persistence/legacy-v11/state/day-engine.ts
+?? src/persistence/legacy-v11/state/day-schema.ts
+?? src/persistence/legacy-v11/state/mission-engine.ts
+?? src/persistence/legacy-v11/state/mission-schema.ts
+?? src/persistence/legacy-v11/state/reducer.ts
+?? src/persistence/legacy-v11/state/schema.ts
+?? src/visual/selection.ts
+?? tests/browser/continuity.spec.ts
+?? tests/state/continuity.test.ts
+?? tests/state/visual-selection.test.ts

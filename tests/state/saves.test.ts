@@ -22,9 +22,9 @@ it('migrates internal v1 event-only saves with current defaults', () => {
   const s = toMaya();
   expect(
     decodeSave(JSON.stringify({ schemaVersion: 1, contentVersion: 1, ledger: s.ledger })),
-  ).toEqual(s);
+  ).toEqual(replay(s.ledger, 11));
   expect(decodeSave(JSON.stringify({ schemaVersion: 1, contentVersion: 1, ledger: [] }))).toEqual(
-    initialState(),
+    initialState(11),
   );
 });
 it('rejects malformed, oversized, unknown-version, duplicate and tampered saves', () => {
@@ -55,7 +55,7 @@ it('migrates authentic original prose saves at every phase without changing deci
     const original = replayOriginal(OriginalEvent.array().parse(ledger));
     const raw = JSON.stringify({ schemaVersion: 2, contentVersion: 1, state: original });
     const migrated = decodeSave(raw);
-    expect(migrated).toEqual(replay(ledger));
+    expect(migrated).toEqual(replay(ledger, 11));
     for (const key of [
       'ledger',
       'choices',

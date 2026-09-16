@@ -121,7 +121,7 @@ test('private answer appears immediately; pause and free voice sample do not aut
   expect((await current(page)).clinic.paused).toBe(true);
   await click(page, 'voice.resume');
   await click(page, 'voice.evelyn');
-  await expect(page.locator('#story')).toContainText('established Evelyn register');
+  await expect(page.locator('#story')).toContainText('established Evelynn register');
 });
 test('fitting revisions and recovery disclosure remain explicit', async ({ page }) => {
   await seed(page, traverse(start, { contact: 'morning.miss' }, 'recoveryContact'));

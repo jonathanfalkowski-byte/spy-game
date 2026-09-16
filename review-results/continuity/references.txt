@@ -1,0 +1,6 @@
+
+> eve-opening@0.1.0 check:references
+> node scripts/check-references.mjs
+
+UNCHANGED EVE_M0_Helix_Prototype.html
+UNCHANGED EVE_Vertical_Slice_GDD_v0.2.docx

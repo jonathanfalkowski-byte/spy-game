@@ -572,3 +572,7 @@ The refusal branch adds a real three-record source/interpretation/distribution p
 **Narrative review priorities:** authentic note versus disputed interpretation; meaningful no-photo access; care versus adaptation authorization; monitored versus personally read messages; exact Maya source tiers and protected alternative; equally substantial different routes. No genuine Helix engagement means no fabricated advisory willingness: the refusal branch earns a different source of power through clinical-record scope. Reception-only refusal does not erase the meeting or its resulting Marcus exchange. Test no-source, warning-only and lookup Maya variants independently; late monitored messages must not satisfy Sloane knowledge without delivery.
 
 Stop after treatment review. No Chapter 3 implementation, Chapter 4 scene, explicit writing, provider integration or change to the external-playtest baseline is authorized here.
+
+## Implemented boundary — content 12
+
+Only Scene 1, Home after Glass House, is implemented. Scope and challenge now receive attributed written answers/refusals, confirmation closes the check-in, and silence leaves it unresolved. These exchanges persist in history and are shown on completion. All later scenes in this treatment remain future design; their costume sequence and apartment layout are pending visual decisions, not new runtime canon.

@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-16",
+  "unit": {
+    "total": 261,
+    "passed": 261,
+    "failed": 0
+  },
+  "browser": {
+    "fullSuitePassed": 66,
+    "finalFocusedPassed": 5
+  },
+  "build": "passed including typecheck; final focused browser runner rebuilt current application",
+  "references": "prototype HTML and GDD DOCX unchanged",
+  "frozenDependencies": 19,
+  "visualInspection": "74 PNG files rendered including archived candidates and gallery preview; selected images and reported references inspected",
+  "artGeneration": "not submitted",
+  "quotedFirstBatchCredits": 4,
+  "git": {
+    "branch": "story/chapter-3-design",
+    "head": "41d403043c226f500c5ad4bb38c93d137b4aa4df",
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  }
+}

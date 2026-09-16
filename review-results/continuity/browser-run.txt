@@ -1,0 +1,271 @@
+
+> eve-opening@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:25560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter]
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:45352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 66 tests using 2 workers
+
+(node:25428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\browser\clinic.spec.ts:11:1 › existing clinic save receives revised prose without losing decisions or writing on load (10.0s)
+  ok  2 [chromium] › tests\browser\clinic.spec.ts:26:1 › questions append chronologically and focus the newest exchange, including after reload (11.8s)
+  ok  4 [chromium] › tests\browser\clinic.spec.ts:83:3 › clinic stop at authorization is confirmed and remains stopped after reload (4.0s)
+  ok  5 [chromium] › tests\browser\clinic.spec.ts:83:3 › clinic stop at voice is confirmed and remains stopped after reload (2.7s)
+  ok  3 [chromium] › tests\browser\clinic.spec.ts:61:1 › ten complete clinic scenes finish in transit with reload at every phase (9.9s)
+  ok  6 [chromium] › tests\browser\clinic.spec.ts:83:3 › clinic stop at face is confirmed and remains stopped after reload (2.7s)
+  ok  8 [chromium] › tests\browser\clinic.spec.ts:126:1 › fitting revisions and recovery disclosure remain explicit (3.8s)
+  ok  9 [chromium] › tests\browser\clinic.spec.ts:141:1 › clinic navigation and keyboard focus fit narrow screens at large text (2.5s)
+  x   7 [chromium] › tests\browser\clinic.spec.ts:107:1 › private answer appears immediately; pause and free voice sample do not auto-resume (8.6s)
+(node:44148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 10 [chromium] › tests\browser\clinic.spec.ts:162:1 › previous completed save loads unchanged and enters clinic only on click (2.3s)
+  ok 12 [chromium] › tests\browser\clinic.spec.ts:177:1 › clinic storage failure stays truthful and restart requires confirmation (11.9s)
+  ok 13 [chromium] › tests\browser\completion.spec.ts:16:1 › simulation answer is visible before authorization, stays in history and survives reload (3.7s)
+  ok 14 [chromium] › tests\browser\completion.spec.ts:35:3 › late audio is a missed opportunity, still permits extraction and retains exact save (3.3s)
+  ok 15 [chromium] › tests\browser\completion.spec.ts:35:3 › late photo is a missed opportunity, still permits extraction and retains exact save (3.7s)
+  ok 16 [chromium] › tests\browser\completion.spec.ts:35:3 › late token is a missed opportunity, still permits extraction and retains exact save (3.8s)
+  ok 17 [chromium] › tests\browser\completion.spec.ts:68:1 › earned ending recap and differentiated journal work at narrow width without identity verdicts (3.6s)
+  ok 11 [chromium] › tests\browser\clinic.spec.ts:195:1 › browser process reopens at a paused face checkpoint with the equipment still stopped (34.6s)
+  ok 18 [chromium] › tests\browser\continuity.spec.ts:11:33 › content 12 direct route offers expanded choices (4.0s)
+  ok 19 [chromium] › tests\browser\continuity.spec.ts:11:33 › content 12 apartment route offers expanded choices (4.2s)
+  x  20 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 scope preserves reply and unresolved check-in (8.5s)
+(node:38704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  21 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 challenge preserves reply and unresolved check-in (8.5s)
+(node:41248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 22 [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 withhold preserves reply and unresolved check-in (7.7s)
+  ok 24 [chromium] › tests\browser\day.spec.ts:62:1 › cautious player can inspect all anomaly responses, close and withdraw by keyboard (5.9s)
+  ok 23 [chromium] › tests\browser\day.spec.ts:21:1 › original day-zero ending migrates and consistently says Maya places the call (10.0s)
+  ok 25 [chromium] › tests\browser\day.spec.ts:84:3 › refusal ends outside Axiom, reconsidered=false (5.0s)
+  ok 26 [chromium] › tests\browser\day.spec.ts:84:3 › refusal ends outside Axiom, reconsidered=true (5.7s)
+  ok 27 [chromium] › tests\browser\day.spec.ts:98:3 › accepted meet route resolves evening then unknown warning (5.3s)
+  ok 28 [chromium] › tests\browser\day.spec.ts:98:3 › accepted call route resolves evening then unknown warning (5.5s)
+  ok 29 [chromium] › tests\browser\day.spec.ts:98:3 › accepted avoid route resolves evening then unknown warning (4.8s)
+  ok 30 [chromium] › tests\browser\day.spec.ts:122:1 › reconsideration preserves phone possession and terminated employment (3.8s)
+  ok 31 [chromium] › tests\browser\day.spec.ts:132:1 › Maya leverage appears only with a logged source (2.9s)
+  ok 32 [chromium] › tests\browser\day.spec.ts:159:1 › old completed opening migrates but does not automatically continue (2.9s)
+  ok 33 [chromium] › tests\browser\day.spec.ts:171:1 › new phase save failure is visible, retry works and restart remains confirmed (3.4s)
+  ok 34 [chromium] › tests\browser\day.spec.ts:193:1 › Sloane and evening remain readable on a narrow screen with large text (4.0s)
+  ok 36 [chromium] › tests\browser\final-review.spec.ts:12:1 › restore previews without replacing, confirms, survives reload, filters journal and returns focus (3.6s)
+  ok 37 [chromium] › tests\browser\final-review.spec.ts:42:1 › invalid, unsupported, oversized and conflicting backups never replace the current run (3.6s)
+  ok 38 [chromium] › tests\browser\final-review.spec.ts:67:1 › day questions append and retain focus order through reload; large text persists on narrow screen (5.5s)
+  ok 39 [chromium] › tests\browser\final-review.spec.ts:95:1 › failed restore write preserves live scene and save; reading preference failure does not block play (4.0s)
+  ok 40 [chromium] › tests\browser\mission.spec.ts:10:1 › existing first investigation resumes without repeating outfit advice on the second (3.5s)
+  ok 41 [chromium] › tests\browser\mission.spec.ts:54:1 › original departed save remains a checkpoint until an explicit continuation (3.8s)
+  x  42 [chromium] › tests\browser\mission.spec.ts:71:1 › post-transformation apartment reset precedes the Glass House and preserves custody (4.1s)
+(node:23664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [chromium] › tests\browser\day.spec.ts:207:1 › browser process reopens at the accepted evening phase (33.4s)
+  ok 44 [chromium] › tests\browser\mission.spec.ts:149:3 › capture benton / photo / socialite (4.2s)
+  ok 45 [chromium] › tests\browser\mission.spec.ts:149:3 › capture benton / token / shadow (3.8s)
+  ok 46 [chromium] › tests\browser\mission.spec.ts:149:3 › capture priya / audio / executive (3.8s)
+  ok 47 [chromium] › tests\browser\mission.spec.ts:149:3 › capture insufficient / photo / shadow (4.1s)
+  x  43 [chromium] › tests\browser\mission.spec.ts:94:1 › full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological (17.2s)
+(node:51332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 48 [chromium] › tests\browser\mission.spec.ts:149:3 › capture celeste / token / socialite (4.0s)
+  ok 50 [chromium] › tests\browser\mission.spec.ts:200:1 › storage failure never reports the new capture as saved (3.6s)
+  ok 49 [chromium] › tests\browser\mission.spec.ts:174:1 › narrow screen, large text, keyboard choices, free reread and restart confirmation (9.9s)
+  ok 52 [chromium] › tests\browser\opening.spec.ts:10:1 › original arrival save migrates to revised checkpoint prose and keeps decisions (3.3s)
+  ok 53 [chromium] › tests\browser\opening.spec.ts:115:3 › bounded assessment plays through Maya and resumes ending (4.9s)
+  ok 54 [chromium] › tests\browser\opening.spec.ts:115:3 › personnel assessment plays through Maya and resumes ending (3.8s)
+  ok 55 [chromium] › tests\browser\opening.spec.ts:115:3 › data assessment plays through Maya and resumes ending (4.1s)
+  ok 56 [chromium] › tests\browser\opening.spec.ts:115:3 › fraud assessment plays through Maya and resumes ending (4.9s)
+  ok 57 [chromium] › tests\browser\opening.spec.ts:115:3 › unresolved assessment plays through Maya and resumes ending (5.9s)
+  ok 51 [chromium] › tests\browser\mission.spec.ts:215:1 › browser closes and reopens with the acquired token and held wrist intact (35.8s)
+  ok 58 [chromium] › tests\browser\opening.spec.ts:148:1 › keyboard activation, visible focus, history trap and focus return (3.4s)
+  ok 59 [chromium] › tests\browser\opening.spec.ts:174:1 › incorrect evidence feedback is retryable; selection never changes automatically (4.5s)
+  ok 60 [chromium] › tests\browser\opening.spec.ts:193:1 › unknown disclosures stay hidden; all Maya phases survive reload (4.8s)
+  ok 61 [chromium] › tests\browser\opening.spec.ts:213:1 › save failure is truthful and retry persists the current run (3.5s)
+  ok 62 [chromium] › tests\browser\opening.spec.ts:232:1 › corrupted save is retained and downloadable; restart requires confirmation (3.3s)
+  ok 63 [chromium] › tests\browser\opening.spec.ts:254:1 › a second tab cannot silently overwrite another tab’s decisions (7.5s)
+  ok 65 [chromium] › tests\browser\opening.spec.ts:285:1 › responsive layout and extra-large reading remain within the viewport (4.4s)
+  ok 66 [chromium] › tests\browser\opening.spec.ts:303:1 › desktop opening has real content, no overlay or development inspector (3.0s)
+  ok 64 [chromium] › tests\browser\opening.spec.ts:269:1 › browser process closes and reopens at the exact committed phase (26.6s)
+
+
+  1) [chromium] › tests\browser\clinic.spec.ts:107:1 › private answer appears immediately; pause and free voice sample do not auto-resume
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#story')
+    Expected substring: "established Evelyn register"
+    Received string:    "08:07 · Voice assessmentHearing your own wordsVoss applies the established Evelynn register. There is a warmth at the end of the next sentence that surprises you. You repeat it more flatly, testing whether you can lose the inflection. You can. Voss waits while you try once more.AdrianI would like a glass of water when you can give me one.Voss reaches toward the water, then checks the monitor before bringing it within reach. You watch the glass instead of her face. You are thirsty enough to resent the delay and embarrassed by how much you want her to hear you sounding ordinary.VossWe can leave it there. Do not force it. Tell me if speaking begins to hurt.Your next actionContinue to the face assessmentContinue when you are ready.→EVE / SUBLEVEL 17Every judgment leaves a record."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('#story') with timeout 5000ms
+      - waiting for locator('#story')
+        14 × locator resolved to <main id="story" class="story">…</main>
+           - unexpected value "08:07 · Voice assessmentHearing your own wordsVoss applies the established Evelynn register. There is a warmth at the end of the next sentence that surprises you. You repeat it more flatly, testing whether you can lose the inflection. You can. Voss waits while you try once more.AdrianI would like a glass of water when you can give me one.Voss reaches toward the water, then checks the monitor before bringing it within reach. You watch the glass instead of her face. You are thirsty enough to resent the delay and embarrassed by how much you want her to hear you sounding ordinary.VossWe can leave it there. Do not force it. Tell me if speaking begins to hurt.Your next actionContinue to the face assessmentContinue when you are ready.→EVE / SUBLEVEL 17Every judgment leaves a record."
+
+
+      122 |   await click(page, 'voice.resume');
+      123 |   await click(page, 'voice.evelyn');
+    > 124 |   await expect(page.locator('#story')).toContainText('established Evelyn register');
+          |                                        ^
+      125 | });
+      126 | test('fitting revisions and recovery disclosure remain explicit', async ({ page }) => {
+      127 |   await seed(page, traverse(start, { contact: 'morning.miss' }, 'recoveryContact'));
+        at C:\Users\Admin\Documents\Codex\2026-09-14\files-pasted-by-the-user-we\outputs\eve-chapter-3-design\tests\browser\clinic.spec.ts:124:40
+
+    Error Context: test-results\clinic-private-answer-appe-d0d94-e-sample-do-not-auto-resume-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\clinic-private-answer-appe-d0d94-e-sample-do-not-auto-resume-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\clinic-private-answer-appe-d0d94-e-sample-do-not-auto-resume-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 scope preserves reply and unresolved check-in
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#story')
+    Expected substring: "individual recipients"
+    Received string:    "20:04 · Scene 1 completeA room with a boundary✓Evelynn asked who receives the residential-entry record and what reporting scope applies.Sloane has answered as far as she intends to. You have not sent the confirmation she requested. The thread remains open on the table.Scene 1 ends here. Maya, Voss and the next decision remain ahead. Your reply, your silence and the evidence you carried forward are recorded for the next scene.Glass House completeYour assessmentElias Benton. You named Benton without evidence placing him there. Being right did not make the guess well supported.What you brought backThe recording captures Marcus offering the handover schedule and Benton describing the concealed personnel move.Their recorded agreement supports action on the concealed arrangement. The wafer’s contents are not independently authenticated.Held by: Sloane. Sloane controls the recording; Evelynn has no independent clean copy.What remains unresolvedMarcus noticed your interest and signalled security. You left through the east elevator. Neither his attention nor Benton’s reaction established that they identified Adrian.Sloane says your judgment was another objective. The unknown sender claims she could have stopped the exchange. Neither account resolves Evelynn’s earlier history or identifies the sender.Choices you carried hereYou gave your assessment without following a party lead.You told Maya you were recovering, and left the identity details out of that message.You asked Sloane to leave the examination. You kept the supplied profile.You chose the executive outfit and corporate makeup for the reception.Your office access remains suspended. The phone remains monitored.Review your evidenceReview conversation historyDownload save backupEVE / ADRIAN’S DAYEvery judgment leaves a record."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('#story') with timeout 5000ms
+      - waiting for locator('#story')
+        14 × locator resolved to <main id="story" class="story">…</main>
+           - unexpected value "20:04 · Scene 1 completeA room with a boundary✓Evelynn asked who receives the residential-entry record and what reporting scope applies.Sloane has answered as far as she intends to. You have not sent the confirmation she requested. The thread remains open on the table.Scene 1 ends here. Maya, Voss and the next decision remain ahead. Your reply, your silence and the evidence you carried forward are recorded for the next scene.Glass House completeYour assessmentElias Benton. You named Benton without evidence placing him there. Being right did not make the guess well supported.What you brought backThe recording captures Marcus offering the handover schedule and Benton describing the concealed personnel move.Their recorded agreement supports action on the concealed arrangement. The wafer’s contents are not independently authenticated.Held by: Sloane. Sloane controls the recording; Evelynn has no independent clean copy.What remains unresolvedMarcus noticed your interest and signalled security. You left through the east elevator. Neither his attention nor Benton’s reaction established that they identified Adrian.Sloane says your judgment was another objective. The unknown sender claims she could have stopped the exchange. Neither account resolves Evelynn’s earlier history or identifies the sender.Choices you carried hereYou gave your assessment without following a party lead.You told Maya you were recovering, and left the identity details out of that message.You asked Sloane to leave the examination. You kept the supplied profile.You chose the executive outfit and corporate makeup for the reception.Your office access remains suspended. The phone remains monitored.Review your evidenceReview conversation historyDownload save backupEVE / ADRIAN’S DAYEvery judgment leaves a record."
+
+
+      27 |   await page.locator(`[data-chapter3-choice="chapter3.${response}"]`).click();
+      28 |   const expected=response==='scope'?'individual recipients':response==='challenge'?'will not debate':'unanswered';
+    > 29 |   await expect(page.locator('#story')).toContainText(expected);
+         |                                        ^
+      30 |   await page.reload();
+      31 |   await expect(page.locator('#story')).toContainText(expected);
+      32 |   const raw=await page.evaluate(key=>localStorage.getItem(key),SAVE_KEY);
+        at C:\Users\Admin\Documents\Codex\2026-09-14\files-pasted-by-the-user-we\outputs\eve-chapter-3-design\tests\browser\continuity.spec.ts:29:40
+
+    Error Context: test-results\continuity-Chapter-3-scope-a0faf-ply-and-unresolved-check-in-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\continuity-Chapter-3-scope-a0faf-ply-and-unresolved-check-in-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\continuity-Chapter-3-scope-a0faf-ply-and-unresolved-check-in-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 challenge preserves reply and unresolved check-in
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#story')
+    Expected substring: "will not debate"
+    Received string:    "20:04 · Scene 1 completeA room with a boundary✓Evelynn challenged the monitoring justification while acknowledging the recorded entry event.Sloane has answered as far as she intends to. You have not sent the confirmation she requested. The thread remains open on the table.Scene 1 ends here. Maya, Voss and the next decision remain ahead. Your reply, your silence and the evidence you carried forward are recorded for the next scene.Glass House completeYour assessmentElias Benton. You named Benton without evidence placing him there. Being right did not make the guess well supported.What you brought backThe recording captures Marcus offering the handover schedule and Benton describing the concealed personnel move.Their recorded agreement supports action on the concealed arrangement. The wafer’s contents are not independently authenticated.Held by: Sloane. Sloane controls the recording; Evelynn has no independent clean copy.What remains unresolvedMarcus noticed your interest and signalled security. You left through the east elevator. Neither his attention nor Benton’s reaction established that they identified Adrian.Sloane says your judgment was another objective. The unknown sender claims she could have stopped the exchange. Neither account resolves Evelynn’s earlier history or identifies the sender.Choices you carried hereYou gave your assessment without following a party lead.You told Maya you were recovering, and left the identity details out of that message.You asked Sloane to leave the examination. You kept the supplied profile.You chose the executive outfit and corporate makeup for the reception.Your office access remains suspended. The phone remains monitored.Review your evidenceReview conversation historyDownload save backupEVE / ADRIAN’S DAYEvery judgment leaves a record."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('#story') with timeout 5000ms
+      - waiting for locator('#story')
+        14 × locator resolved to <main id="story" class="story">…</main>
+           - unexpected value "20:04 · Scene 1 completeA room with a boundary✓Evelynn challenged the monitoring justification while acknowledging the recorded entry event.Sloane has answered as far as she intends to. You have not sent the confirmation she requested. The thread remains open on the table.Scene 1 ends here. Maya, Voss and the next decision remain ahead. Your reply, your silence and the evidence you carried forward are recorded for the next scene.Glass House completeYour assessmentElias Benton. You named Benton without evidence placing him there. Being right did not make the guess well supported.What you brought backThe recording captures Marcus offering the handover schedule and Benton describing the concealed personnel move.Their recorded agreement supports action on the concealed arrangement. The wafer’s contents are not independently authenticated.Held by: Sloane. Sloane controls the recording; Evelynn has no independent clean copy.What remains unresolvedMarcus noticed your interest and signalled security. You left through the east elevator. Neither his attention nor Benton’s reaction established that they identified Adrian.Sloane says your judgment was another objective. The unknown sender claims she could have stopped the exchange. Neither account resolves Evelynn’s earlier history or identifies the sender.Choices you carried hereYou gave your assessment without following a party lead.You told Maya you were recovering, and left the identity details out of that message.You asked Sloane to leave the examination. You kept the supplied profile.You chose the executive outfit and corporate makeup for the reception.Your office access remains suspended. The phone remains monitored.Review your evidenceReview conversation historyDownload save backupEVE / ADRIAN’S DAYEvery judgment leaves a record."
+
+
+      27 |   await page.locator(`[data-chapter3-choice="chapter3.${response}"]`).click();
+      28 |   const expected=response==='scope'?'individual recipients':response==='challenge'?'will not debate':'unanswered';
+    > 29 |   await expect(page.locator('#story')).toContainText(expected);
+         |                                        ^
+      30 |   await page.reload();
+      31 |   await expect(page.locator('#story')).toContainText(expected);
+      32 |   const raw=await page.evaluate(key=>localStorage.getItem(key),SAVE_KEY);
+        at C:\Users\Admin\Documents\Codex\2026-09-14\files-pasted-by-the-user-we\outputs\eve-chapter-3-design\tests\browser\continuity.spec.ts:29:40
+
+    Error Context: test-results\continuity-Chapter-3-chall-6dca5-ply-and-unresolved-check-in-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\continuity-Chapter-3-chall-6dca5-ply-and-unresolved-check-in-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\continuity-Chapter-3-chall-6dca5-ply-and-unresolved-check-in-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests\browser\mission.spec.ts:71:1 › post-transformation apartment reset precedes the Glass House and preserves custody
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 11
+    Received: 12
+
+      89 |   expect(saved.phase).toBe('car');
+      90 |   expect(saved.mission.completed).toContain('home.begin');
+    > 91 |   expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(11);
+         |                                                                                                           ^
+      92 | });
+      93 |
+      94 | test('full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological', async ({
+        at C:\Users\Admin\Documents\Codex\2026-09-14\files-pasted-by-the-user-we\outputs\eve-chapter-3-design\tests\browser\mission.spec.ts:91:107
+
+    Error Context: test-results\mission-post-transformatio-cd1c0-House-and-preserves-custody-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\mission-post-transformatio-cd1c0-House-and-preserves-custody-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\mission-post-transformatio-cd1c0-House-and-preserves-custody-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests\browser\mission.spec.ts:94:1 › full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[data-clinic-exchange]').nth(1)
+    Expected substring: "Evelyn Vale. Axiom Strategic Acquisitions."
+    Received string:    "Evelynn Vale. Axiom Strategic Acquisitions. The same invitation prepared before the clinic, carrying the identity you were shown. Your chosen presentation has not replaced its records. You check the reception address and close it without changing anything."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('[data-clinic-exchange]').nth(1) with timeout 5000ms
+      - waiting for locator('[data-clinic-exchange]').nth(1)
+        14 × locator resolved to <div tabindex="-1" data-clinic-exchange="true" aria-label="Conversation exchange">…</div>
+           - unexpected value "Evelynn Vale. Axiom Strategic Acquisitions. The same invitation prepared before the clinic, carrying the identity you were shown. Your chosen presentation has not replaced its records. You check the reception address and close it without changing anything."
+
+
+      110 |   await expect(exchanges).toHaveCount(3);
+      111 |   await expect(exchanges.last()).toBeFocused();
+    > 112 |   await expect(exchanges.nth(1)).toContainText('Evelyn Vale. Axiom Strategic Acquisitions.');
+          |                                  ^
+      113 |   await expect(exchanges.nth(2)).toContainText('There are no new messages.');
+      114 |   expect((await exchanges.last().boundingBox())!.y).toBeLessThan(200);
+      115 |   let leads = 0;
+        at C:\Users\Admin\Documents\Codex\2026-09-14\files-pasted-by-the-user-we\outputs\eve-chapter-3-design\tests\browser\mission.spec.ts:112:34
+
+    Error Context: test-results\mission-full-operation-wit-36edf-eps-questions-chronological-chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\mission-full-operation-wit-36edf-eps-questions-chronological-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\mission-full-operation-wit-36edf-eps-questions-chronological-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › tests\browser\clinic.spec.ts:107:1 › private answer appears immediately; pause and free voice sample do not auto-resume
+    [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 scope preserves reply and unresolved check-in
+    [chromium] › tests\browser\continuity.spec.ts:23:57 › Chapter 3 challenge preserves reply and unresolved check-in
+    [chromium] › tests\browser\mission.spec.ts:71:1 › post-transformation apartment reset precedes the Glass House and preserves custody
+    [chromium] › tests\browser\mission.spec.ts:94:1 › full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological
+  61 passed (4.2m)

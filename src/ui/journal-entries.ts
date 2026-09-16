@@ -214,5 +214,5 @@ export function journalEntries(s: GameState): JournalEntry[] {
       limits: c.limits,
     });
   }
-  return entries;
+  return entries.map(e => ({ ...e, title: displayName(e.title), text: displayName(e.text), source: displayName(e.source), ...(e.limits ? { limits: displayName(e.limits) } : {}) }));
 }
