@@ -1,24 +1,12 @@
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, type Block, type NodeId } from './schema';
 
-export type NextChoice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
-export const flag = (s: GameState, key: string) => s.choices['c3.' + key];
-export const mark = (s: GameState, key: string, value = 'yes') => { s.choices['c3.' + key] = value; };
-export function record(s: GameState, key: string, text: string, source: string, layer: 'fact'|'claim' = 'fact') {
-  const id = 'c3.' + key;
-  if (s.day.records.some(r => r.key === id)) return;
-  s.day.records.push({key:id,text,source,layer,event:s.revision});
-  s[layer === 'fact' ? 'facts' : 'claims'].push(id); s.knowledge.push(id);
-}
-export function deliver(s: GameState, recipient: keyof GameState['npcs']|'rook'|'julian', key: string, text: string, source: string) {
-  record(s, `delivery.${recipient}.${key}`, `${recipient} received: ${text}`, source);
-  if (recipient !== 'rook' && recipient !== 'julian') s.npcs[recipient].known.push({key:text,source,event:s.revision});
-  // New contacts use existing sourced records, without changing schema-5 NPC structure.
-}
-export const choice = (id: string, label: string, hint: string, next: string, apply?: NextChoice['apply']): NextChoice => ({id:'chapter3.'+id,label,hint,next,apply});
+import { type NextChoice, flag, mark, record, deliver, choice } from './chapter3-next-model';
+import { opportunityScenes, opportunityChoices } from './chapter3-opportunity';
 const hasRecord = (s: GameState, key: string) => s.day.records.some(r=>r.key===key);
 
 export const nextSceneDefinitions: Record<string, {title:string;place:string;blocks:Block[]}> = {
+  ...opportunityScenes,
   morningPlan:{title:'A question for the morning',place:'06:15 · Day two · Apartment',blocks:[p('The follow-up notice offers an 08:30 appointment with Voss, preliminary remote advice, or a later consultation. No procedure is booked. You read it beside the clothes you left out last night.')]},
   voss:{title:'If I do nothing',place:'08:30 · Clinical follow-up',blocks:[q('Dr Lena Voss','If you authorize nothing further, no further adaptation is authorized. Yesterday does not undo itself because you leave the next page blank. Care, assessment and another stage are separate decisions.')]},
   vossPlan:{title:'A plan without another procedure',place:'08:48 · Follow-up closes',blocks:[p('Voss leaves the authorization section blank. She offers a staffed records review at 14:00–15:00 today, concerning your release summary and its routing. Ordinary care remains available whether you take that appointment or not.')]},
@@ -40,7 +28,7 @@ export function nextChoices(s: GameState): NextChoice[] {
   if(s.scene!=='chapter3')return [];
   if(s.phase==='nightComplete' && (s.contentRevision===13||s.contentRevision===14)) return [choice('begin-followup','Continue · If I do nothing','Begin the following morning. Prior decisions and history are preserved.','morningPlan')];
   if(s.contentRevision!==14)return [];
-  const c:NextChoice[]=[];
+  const c:NextChoice[]=opportunityChoices(s);
   const once=(key:string, label:string,hint:string,next:string,apply:NonNullable<NextChoice['apply']>)=>{if(!flag(s,key))c.push(choice(key,label,hint,next,x=>{mark(x,key);return apply(x);}));};
   if(s.phase==='morningPlan'){
     if(hasRecord(s,'chapter3.next-contact')&&!flag(s,'morning-contact'))return [
