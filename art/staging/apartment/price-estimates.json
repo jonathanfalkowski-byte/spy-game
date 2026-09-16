@@ -1,0 +1,88 @@
+{
+  "date": "2026-09-16",
+  "status": "quote-only-not-submitted",
+  "actualCreditsSpent": 0,
+  "exactMasterParams": {
+    "image_assets": [
+      "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+    ],
+    "prompt": "Reference 1 is the existing EVE blue-dawn apartment corner. Extend the unshown space into one coherent empty daylight master view, keeping its visible two-column window with one low horizontal transom, padded gray chair with dark tapered legs, pale square floor tiles, cream plaster, charcoal cabinet faces, pale kitchen counter and cream-shaded dark lamp. Preserve the flat-topped tower in the right window pane and neighboring skyline; do not borrow the spired tower or three-column window from the separate night image. Keep the lamp at the window-side end of the kitchen counter.\nAfter owner approval of this proposed plan: the living area extends behind the original camera, with a compact charcoal two-seat sofa against its left wall and small dark rectangular coffee table outside circulation. Continue the kitchen on the right wall toward the rear. Interpret the existing far-right dark door as a short private-hall access to bedroom and bathroom; front entry is behind the camera on rear-right. Put a built-in wardrobe on a rear-left return with a thin dark full-length mirror fixed to its living-facing panel. Show only what the rear living-area camera can physically see: overlap original window/chair/cabinet anchors with sofa edge, wardrobe return edge and clear hall route; do not use cutaways or impossible mirror views. Unseen rooms stay unseen.\nMove the existing hook-hung jacket into the wardrobe to match authored closet storage; retain empty hooks. No duplicate jacket. Floor highlights are reflected light, not indoor puddles. No people or human reflections, no packages, papers, flowers, mission equipment or readable screens. Use ordinary human-scale doors, about 0.9 m counter and 0.45 m chair seat, with clear walking space; no penthouse enlargement. Neutral cool daylight with restrained warm practical light, clean confident 2D ink linework, semi-cel shading and graphic shadows exactly matching EVE Art Bible v1.0. No photorealism, captions, labels, logos or watermarks. This output is a staging candidate for review, never an approval.",
+    "model": "SEEDREAM_5",
+    "ratio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "number_of_images": 1,
+    "batch_mode": false,
+    "sequential_generation": false,
+    "rewrite_prompt": false
+  },
+  "masterQuote": {
+    "tool_name": "image_editor",
+    "price": 1,
+    "raw": {
+      "tool_name": "image_editor",
+      "price": 1
+    }
+  },
+  "comparison": {
+    "tool_name": "image_editor",
+    "count": 9,
+    "prices": [
+      {
+        "model": "FLUX_KLEIN_NSFW",
+        "description": "Flux Klein NSFW. Trusted users only.",
+        "price": 1,
+        "trusted_only": true
+      },
+      {
+        "model": "GENERAL_NSFW",
+        "description": "Default. General-purpose edit pipeline; allows NSFW (uncensored). Trusted users only. Older model — occasional hand/limb artifacts.",
+        "price": 1,
+        "is_default": true,
+        "trusted_only": true
+      },
+      {
+        "model": "QWEN_IMAGE",
+        "description": "Alibaba Qwen Image edit.",
+        "price": 1
+      },
+      {
+        "model": "SEEDREAM_5",
+        "description": "Bytedance Seedream 5 — newer generation: better prompt understanding, stronger stylization, better likeness, fewer artifacts. Uncensored; transforms NSFW references rather than creating explicit content from scratch.",
+        "price": 1
+      },
+      {
+        "model": "WAN_2_7_IMAGE",
+        "description": "Wan 2.7 image edit.",
+        "price": 1
+      },
+      {
+        "model": "QWEN_IMAGE_PRO",
+        "description": "Qwen Image Pro edit — higher quality.",
+        "price": 2
+      },
+      {
+        "model": "WAN_2_7_IMAGE_PRO",
+        "description": "Wan 2.7 Pro edit — best Wan quality, highest cost.",
+        "price": 2
+      },
+      {
+        "model": "FLUX_KLEIN_LORA",
+        "description": "Flux Klein with LoRA support — pass one or more via `loras` (or the deprecated single `lora_id`). Trusted users only.",
+        "price": 3,
+        "trusted_only": true
+      },
+      {
+        "model": "NANO_BANANA",
+        "description": "Google Gemini Image. Best for precise prompt-driven edits and text inside images.",
+        "price": 4
+      }
+    ]
+  },
+  "comparisonScope": "Same one-reference 1920x1080 16:9 configuration; comparison used a shorter planning prompt. Exact master request quoted separately.",
+  "futureBudget": {
+    "uniqueImages": 3,
+    "estimatedTotalCredits": 3,
+    "qualified": "Only master has an exact current quote. Night and mirror require an accepted real master and fresh quotes. No duplicate day/entry generation planned."
+  }
+}

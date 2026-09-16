@@ -115,7 +115,7 @@ export const VisualGenerationSchema = z.union([
   EvelynnGenerationSchema.extend({
     tool: z.enum(['image_editor', 'by_prompt']),
     sourceReferences: z.array(z.object({ assetId: id, providerAssetId: z.uuid() }).strict()),
-    promptVersion: z.enum(['eve-cast-scenes-v1', 'eve-continuity-v2']),
+    promptVersion: z.enum(['eve-cast-scenes-v1', 'eve-continuity-v2', 'eve-apartment-v1']),
     promptComponents: z
       .object({
         STYLE: text,

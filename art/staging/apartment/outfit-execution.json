@@ -1,0 +1,241 @@
+{
+  "task": {
+    "id": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+    "unique_name": "image_editor-2026-09-16-21-51-fbf8e885",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 6,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T21:51:15.523037Z",
+    "comment": "EVE six home outfit scenes; owner accepts background; pre/post executive socialite shadow"
+  },
+  "entries": [
+    {
+      "assetId": "apartment-pre-glasshouse-executive-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a fitted charcoal tailored blazer over an opaque understated ivory blouse, matching straight dark trousers and black low heels. No gown, robe, spare suit or tactical equipment. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "c6792778-34f6-4a6a-9395-616f0817954c",
+        "providerAssetId": "a4bac133-7881-42ab-acaa-d338780fc60a",
+        "file": "art/staging/apartment/apartment-pre-glasshouse-executive-v1.png",
+        "sha256": "39e7ae564395d6a3f8c1b9826017920cee4e1ab3edf12f194c004cfc4a340374",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct tailored suit and recognizable Evelynn; accepted room retained.",
+          "Right shoe is clipped by the lower frame and the figure is larger than the post-return suit version; standardize framing before production."
+        ]
+      }
+    },
+    {
+      "assetId": "apartment-pre-glasshouse-socialite-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing the black floor-length elegant evening gown with a tasteful neckline and open back, black gemstone earrings and black heels. No robe or spare gown. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "5d7a04c7-70f6-4616-81ce-af9ff6d73dfc",
+        "providerAssetId": "c631ac7d-78db-468e-a31d-e7d1cb44013d",
+        "file": "art/staging/apartment/apartment-pre-glasshouse-socialite-v1.png",
+        "sha256": "b0c9d596651d9a541da04857f5b1715ea6faacdcb08a217c85cb953fb41a6de7",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct long black gown, recognizable face and accepted room.",
+          "Figure appears taller than the other outfit variants, with head above the window; align scale. Closed pumps differ from post-return sandals."
+        ]
+      }
+    },
+    {
+      "assetId": "apartment-pre-glasshouse-shadow-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a simple matte charcoal knee-length sleeveless V-neck dress, modest neckline, narrow matching waistband and black low heels, understated small earrings. No long gown, tactical gear, robe or spare dress. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "aa843011-b82f-42d1-b083-183fd421a3a6",
+        "providerAssetId": "869e1d27-6d88-48e9-bb61-5072d6f69e48",
+        "file": "art/staging/apartment/apartment-pre-glasshouse-shadow-v1.png",
+        "sha256": "41363cab8916be7615b3d8f4717998b1176a83c1886119e7fc9962623fe1199d",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct short charcoal dress category, recognizable Evelynn, grounded feet and retained apartment.",
+          "The narrow fitted skirt and prominent buckle differ from the post-return flared skirt and narrow belt; unify the exact garment before production."
+        ]
+      }
+    },
+    {
+      "assetId": "apartment-post-glasshouse-executive-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a fitted charcoal tailored blazer over an opaque understated ivory blouse, matching straight dark trousers and black low heels. No gown, robe, spare suit or tactical equipment. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "25db7785-d463-4950-94fc-1cb029b00209",
+        "providerAssetId": "a9f29914-39df-42c2-816d-5b5206688ed8",
+        "file": "art/staging/apartment/apartment-post-glasshouse-executive-v1.png",
+        "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "PASS",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Tailored suit, recognizable face and full figure; no duplicate outfit or reaching artifact.",
+          "Accepted apartment remains recognizable with darker late-evening exterior. Ready for owner review; no promotion."
+        ]
+      }
+    },
+    {
+      "assetId": "apartment-post-glasshouse-socialite-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing the black floor-length elegant evening gown with a tasteful neckline and open back, black gemstone earrings and black heels. No robe or spare gown. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "5a39ee41-f3aa-4847-aec5-8021d7da53fc",
+        "providerAssetId": "8a327863-c7f7-4931-8758-bac8ea01b209",
+        "file": "art/staging/apartment/apartment-post-glasshouse-socialite-v1.png",
+        "sha256": "d90f7841cca746b204b9e0a79f25b43b686777ef9af45130a1bc4b33a58f3ebc",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct long black gown and recognizable Evelynn; late-evening apartment retained.",
+          "Open-toe shoes differ from the pre-departure pumps and figure scale differs across the set; align before production."
+        ]
+      }
+    },
+    {
+      "assetId": "apartment-post-glasshouse-shadow-v1",
+      "params": {
+        "image_assets": [
+          "bc68c904-0736-440d-9b6a-cb417615e6fc",
+          "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        ],
+        "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a simple matte charcoal knee-length sleeveless V-neck dress, modest neckline, narrow matching waistband and black low heels, understated small earrings. No long gown, tactical gear, robe or spare dress. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+        "model": "SEEDREAM_5",
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "output": {
+        "callId": "2b87755f-7e05-4425-93cf-b78d6a7d1c35",
+        "providerAssetId": "de51baee-acb2-449e-aec9-656c7b4917be",
+        "file": "art/staging/apartment/apartment-post-glasshouse-shadow-v1.png",
+        "sha256": "7119a70f0c5df18e29a05b4ab040edd415a26d8cf10efef5ace4cf862bcc0154",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex manual visual inspection",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct short plain dress category, recognizable Evelynn and accepted room; all limbs and feet visible.",
+          "Flared skirt and narrow belt differ from pre-departure fitted skirt and buckle. Match the same dress before production."
+        ]
+      }
+    }
+  ],
+  "estimatedCredits": 6,
+  "status": "completed",
+  "authorization": "Owner: the background looks good, generate the proper images. Accepted apartment-evening-v1 for conditioning; no automatic approval of new character images.",
+  "completedOutputCount": 6
+}

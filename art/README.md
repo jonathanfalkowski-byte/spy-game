@@ -36,6 +36,14 @@ are rejected by the catalog validator.
 
 ## Asset roles
 
+The [apartment canon proposal](../docs/art/APARTMENT_CANON.md) inventories twelve
+existing home images and defines one proposed location with four camera anchors.
+Ten spec-only records in `staging/apartment/records.json` are pending, with no invented
+image files or approvals. [Review the existing images](staging/apartment/review.html).
+Apartment generation is held for owner review of unseen geography and continuity
+decisions; its quoted master request is in `tools/visual/zencreator/apartment-plan.json`.
+No apartment image has been promoted by this package.
+
 - `reference/`: explicitly approved canonical visual references.
 - `production/`: approved assets intended for the game; not automatically references.
 - `staging/`: unapproved candidates awaiting review.

@@ -1,0 +1,49 @@
+{
+  "task": {
+    "id": "2f8a7f01-68e1-453d-ab67-a9601775d9a4",
+    "unique_name": "image_editor-2026-09-16-21-40-2f8a7f01",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 1,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T21:40:24.544735Z",
+    "comment": "EVE apartment targeted visual correction: mirror ghost jacket and floor only"
+  },
+  "request": {
+    "image_assets": [
+      "571a17bf-78ad-4b6e-a7c7-82a2c824f512"
+    ],
+    "prompt": "Correct this empty apartment illustration, preserving the exact camera, two-column window with low transom, skyline, furniture placement, cabinets, lamp, cream walls, door, sofa, wardrobe and clean 2D ink semi-cel style. The full-length mirror on the left currently reflects a jacket on hooks although the real hooks are empty: REMOVE the jacket and all hooks from the mirror reflection and replace that area with a physically plausible reflected plain cream opposite wall and a small consistent portion of dark cabinet base; no reflected people or invented objects. Make the indoor floor dry pale gray SQUARE ceramic tiles with consistent perspective and straight grout, replacing the long narrow plank-looking rows and puddle-like bright patches. Preserve natural diffuse window light and graphic shadows on the dry floor. Keep all other composition and architecture identical. No people, extra furnishings, readable text, logos or watermarks.",
+    "model": "SEEDREAM_5",
+    "ratio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "number_of_images": 1,
+    "batch_mode": false,
+    "sequential_generation": false,
+    "rewrite_prompt": false
+  },
+  "estimatedCredits": 1,
+  "reason": "Manual review found impossible jacket in mirror and elongated floor pattern.",
+  "status": "completed",
+  "output": {
+    "callId": "92b45de7-e688-4c50-94ba-edb3a6cb9504",
+    "providerAssetId": "9b579ded-849b-4166-85d8-90e8b0b38eba",
+    "file": "art/staging/apartment/apartment-layout-corrected-v1.png",
+    "sha256": "0b55b38a5b8abb63286cf37c22e3db30b3245a390a4f79d81872b8488cc995ab",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "REVISE",
+    "reviewer": "Codex manual visual inspection",
+    "date": "2026-09-16",
+    "reasons": [
+      "Ghost jacket removed; same window, chair, mirror, sofa and counter relationships preserved.",
+      "Floor still has elongated narrow tile rows; pending correction before outfit variants."
+    ]
+  }
+}

@@ -1,0 +1,1177 @@
+[
+  {
+    "spec": {
+      "assetId": "apartment-layout-canon-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Empty daylight establishing wide from rear living area near proposed entry toward original window corner. Show W1, C1, K1/L1, sofa edge, wardrobe return edge and route to D1 without seeing through walls.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 master layout",
+      "lighting": "Cool neutral daylight; cream/gray/charcoal material colors readable.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Master environment reference for owner layout review; not a final approved image.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "eve-bg-apartment-day-v1"
+      ],
+      "notes": "Generated candidate, manually reviewed against Art Bible v1.0 and apartment continuity. Pending owner review; not canonical or production approved."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-layout-canon-v1.png",
+    "sha256": "1517a401bb6e835e0c85491ed114e20d5d970224e0a29fda09fd91dd5b8a396d",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "5525ff7c-0479-4004-8a09-4a1f813a7a16",
+      "callId": "bde4de6a-c213-4b9d-b1bd-1ba1fb59e3c5",
+      "providerAssetId": "571a17bf-78ad-4b6e-a7c7-82a2c824f512",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "eve-bg-apartment-day-v1",
+          "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "EVE Art Bible v1.0: 2D ink and semi-cel illustration.",
+        "SUBJECT": "Empty apartment; no people.",
+        "SCENE": "Recurring apartment from the supplied reference; see exact prompt.",
+        "CAMERA": "Preserve reference camera and realistic human-scale furnishings.",
+        "LIGHTING": "Cool daylight with warm practical lamp.",
+        "CONTINUITY": "Preserve apartment geometry, window grid, skyline, furniture and fixed mirror; no automatic approval."
+      },
+      "prompt": "Reference 1 is the existing EVE blue-dawn apartment corner. Extend the unshown space into one coherent empty daylight master view, keeping its visible two-column window with one low horizontal transom, padded gray chair with dark tapered legs, pale square floor tiles, cream plaster, charcoal cabinet faces, pale kitchen counter and cream-shaded dark lamp. Preserve the flat-topped tower in the right window pane and neighboring skyline; do not borrow the spired tower or three-column window from the separate night image. Keep the lamp at the window-side end of the kitchen counter.\nthe living area extends behind the original camera, with a compact charcoal two-seat sofa against its left wall and small dark rectangular coffee table outside circulation. Continue the kitchen on the right wall toward the rear. Interpret the existing far-right dark door as a short private-hall access to bedroom and bathroom; front entry is behind the camera on rear-right. Put a built-in wardrobe on a rear-left return with a thin dark full-length mirror fixed to its living-facing panel. Show only what the rear living-area camera can physically see: overlap original window/chair/cabinet anchors with sofa edge, wardrobe return edge and clear hall route; do not use cutaways or impossible mirror views. Unseen rooms stay unseen.\nMove the existing hook-hung jacket into the wardrobe to match authored closet storage; retain empty hooks. No duplicate jacket. Floor highlights are reflected light, not indoor puddles. No people or human reflections, no packages, papers, flowers, mission equipment or readable screens. Use ordinary human-scale doors, about 0.9 m counter and 0.45 m chair seat, with clear walking space; no penthouse enlargement. Neutral cool daylight with restrained warm practical light, clean confident 2D ink linework, semi-cel shading and graphic shadows exactly matching EVE Art Bible v1.0. No photorealism, captions, labels, logos or watermarks. This output is a staging candidate for review, never an approval.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:38:17.510352Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Style, window divisions, skyline and main furnishings remain recognizable.",
+        "Mirror contains a ghost jacket absent from the real empty hooks.",
+        "Floor reads as narrow planks instead of specified square ceramic tiles. Do not use this as a scene master."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-anchor-entry-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Rear entry sector toward W1; window grid, padded chair, kitchen-end lamp and sofa edge overlap; clear private-hall route. Front entry may remain behind camera.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 entry/living wide",
+      "lighting": "Neutral daylight for geometry review.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Repeated opening/home-return/arrival framing. Reuse master bytes if this exact view passes.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-anchor-mirror-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Central living area toward fixed full-length M1 frame and WARD1, with private-hall edge and floor space for garment case visible. Do not invent reflected windows or people.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A2 dressing mirror",
+      "lighting": "Neutral daylight and ordinary practical bounce; no vanity-bulb makeover.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Embodiment/preparation/private reflection; distinct from bathroom M2.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-anchor-couch-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Kitchen-side clear passage toward rear-left two-seat S1 and T1; include original C1 and W1 frame edge for registration. No sofa rotation or layout mirroring.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A3 couch",
+      "lighting": "Neutral daylight for geometry review.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Private calls, waiting and later authored visitors; empty reference only.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-anchor-transition-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Living center toward K1 kitchen continuation and D1 private hall. Include original lamp/cabinet edge; bedroom doorway only when physical sightline permits.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A4 kitchen/private transition",
+      "lighting": "Neutral daylight for geometry review.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Domestic routines and bedroom/bath movement; no architectural cutaway.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-day-v1",
+      "assetType": "background",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Use accepted A1 master framing and geometry exactly. No furniture or prop redesign.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 day",
+      "lighting": "Cool neutral daytime. Opening 06:42 may request blue-dawn light separately.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Recurring neutral daytime background; reuse master bytes if identical to approved purpose.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-evening-v1",
+      "assetType": "background",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Use accepted A1 master framing and geometry exactly.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 evening",
+      "lighting": "Blue-gray exterior and restrained warm L1/under-cabinet light, materials unchanged.",
+      "timeOfDay": "evening",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Pre-clinic and later evening context; rain is conditional.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-corrected-v1"
+      ],
+      "notes": "Generated candidate, manually reviewed against Art Bible v1.0 and apartment continuity. Pending owner review; not canonical or production approved."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-evening-v1.png",
+    "sha256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "c062afd1-1962-4da3-b14b-d479f960a011",
+      "callId": "c6474ff8-70ef-4f76-9f04-4d87b227bd8f",
+      "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-layout-corrected-v1",
+          "providerAssetId": "9b579ded-849b-4166-85d8-90e8b0b38eba"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "EVE Art Bible v1.0: 2D ink and semi-cel illustration.",
+        "SUBJECT": "Empty apartment; no people.",
+        "SCENE": "Recurring apartment from the supplied reference; see exact prompt.",
+        "CAMERA": "Preserve reference camera and realistic human-scale furnishings.",
+        "LIGHTING": "Early evening exterior with warm practical lamp.",
+        "CONTINUITY": "Preserve apartment geometry, window grid, skyline, furniture and fixed mirror; no automatic approval."
+      },
+      "prompt": "Edit the supplied empty apartment. Keep camera, wardrobe and mirror, chair, sofa, coffee table, two-column four-pane window and EXACT skyline, cabinet, lamp, wall hooks, door and all architecture unchanged. Replace ONLY the FLOOR SURFACE: broad large-format 60cm by 60cm SQUARE pale gray ceramic tiles, approximately FOUR tiles across the width of the visible walking path. Each tile has equal length and width in world space, foreshortened consistently by perspective. REMOVE the numerous thin lengthwise plank seams; this is not wooden plank flooring. Straight regular square grid grout. Dry matte surface with soft illumination, NO white wet patches. ALSO relight the same scene for early evening before Glass House: muted blue-gray exterior still visibly light, restrained warm table lamp, soft graphic shadows. No people, no jacket, no new objects, no human reflections. Preserve the same polished 2D ink/semi-cel espionage illustration. No text, logos or watermarks.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:42:33.275955Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Window, skyline, furniture, mirror and cabinet positions remain coherent; ghost jacket stays removed.",
+        "Floor still reads as narrow elongated rows rather than specified broad square tiles.",
+        "Exterior and overall lighting remain close to daylight rather than the requested muted early evening.",
+        "Do not use as a passing scene background or promote into canon."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-night-v1",
+      "assetType": "background",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Relight accepted A1 master only; window columns, skyline silhouette and furniture outlines identical.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 night",
+      "lighting": "Dark blue exterior, sparse office lights, warm L1, readable graphite silhouettes.",
+      "timeOfDay": "night",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Recurring late-night background; do not condition on inconsistent old night image.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-clinic-v1",
+      "assetType": "background",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Same A1 master, empty. Leave authored case location beside WARD1 clear; do not add a case to unconditional background.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 post-clinic",
+      "lighting": "18:02-18:16 evening treatment; not automatically deep night.",
+      "timeOfDay": "early evening",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Optional home reset after Stage One; characters/outfits/case require separate branch-specific staging.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-glasshouse-v1",
+      "assetType": "background",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Same A1 master, empty. Retain counter area for carried phone/keys; no clean audio copy or assumed token.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 post-Glass House",
+      "lighting": "19:52 onward late evening/night treatment appropriate to authored context.",
+      "timeOfDay": "late evening",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "After-operation return; final outfit, actual belongings and prior home visit remain state-dependent.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "SPEC ONLY. Proposed input provenance is not a usable conditioning image until a real file/hash and reviewed provider asset exist. All off-camera architecture remains owner-review pending."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-layout-corrected-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "cameraFraming": "Empty daylight establishing wide from rear living area near proposed entry toward original window corner. Show W1, C1, K1/L1, sofa edge, wardrobe return edge and route to D1 without seeing through walls.",
+      "cameraAngle": "Approximately 1.45-1.60 m camera height; natural 35-45 mm-equivalent perspective. A1 master layout",
+      "lighting": "Cool neutral daylight; cream/gray/charcoal material colors readable.",
+      "timeOfDay": "day",
+      "mood": "Controlled, employer-supported domestic calm with restrained espionage tension",
+      "environment": "Same modest Axiom-supported apartment: two-column black window grid, gray padded chair left of window, pale gray square tiles, cream plaster, charcoal kitchen cabinets and pale counter right. Rear-left two-seat sofa and small coffee table; wardrobe return with full-length mirror; rear-right entry and right private hall to bedroom/bath. Proposed unseen geography requires owner approval.",
+      "intendedUse": "Master environment reference for owner layout review; not a final approved image.",
+      "continuityRequirements": [
+        "Follow docs/art/APARTMENT_CANON.md v1 proposal; no visual canon approval is implied by this spec.",
+        "Keep window divisions, wall/door relationships, C1 padded chair, K1 counter, L1 lamp, materials and room scale fixed across variants.",
+        "Master extends only unshown space. Existing day corner is partial evidence, not permission to infer the whole home.",
+        "Jacket default is wardrobe/closet; do not duplicate it on a hook or counter. Cup by sink and familiar glass remain modest personal anchors.",
+        "M1 dressing mirror and M2 bathroom mirror are separate proposed fixtures; reflections must obey actual sightlines.",
+        "Do not invent indoor surveillance hardware, legal ownership, future gifts, delivered records, NPC knowledge or identity acceptance.",
+        "Empty environment: no people, human reflections, readable screens, logos, captions or watermarks.",
+        "The same flat-topped proposed Axiom silhouette and adjacent buildings remain in the same positions; no new spired landmark at night.",
+        "Natural eye/chest-height view; consistent tile perspective, human-scale counter/door/seat and clear circulation.",
+        "Portable props, rain, garment cases and mission evidence vary only by actual scene; neutral references contain none of the future branch-specific items."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "editSources": [
+        "apartment-layout-canon-v1"
+      ],
+      "notes": "Generated candidate, manually reviewed against Art Bible v1.0 and apartment continuity. Pending owner review; not canonical or production approved."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-layout-corrected-v1.png",
+    "sha256": "0b55b38a5b8abb63286cf37c22e3db30b3245a390a4f79d81872b8488cc995ab",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "2f8a7f01-68e1-453d-ab67-a9601775d9a4",
+      "callId": "92b45de7-e688-4c50-94ba-edb3a6cb9504",
+      "providerAssetId": "9b579ded-849b-4166-85d8-90e8b0b38eba",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-layout-canon-v1",
+          "providerAssetId": "571a17bf-78ad-4b6e-a7c7-82a2c824f512"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "EVE Art Bible v1.0: 2D ink and semi-cel illustration.",
+        "SUBJECT": "Empty apartment; no people.",
+        "SCENE": "Recurring apartment from the supplied reference; see exact prompt.",
+        "CAMERA": "Preserve reference camera and realistic human-scale furnishings.",
+        "LIGHTING": "Cool daylight with warm practical lamp.",
+        "CONTINUITY": "Preserve apartment geometry, window grid, skyline, furniture and fixed mirror; no automatic approval."
+      },
+      "prompt": "Correct this empty apartment illustration, preserving the exact camera, two-column window with low transom, skyline, furniture placement, cabinets, lamp, cream walls, door, sofa, wardrobe and clean 2D ink semi-cel style. The full-length mirror on the left currently reflects a jacket on hooks although the real hooks are empty: REMOVE the jacket and all hooks from the mirror reflection and replace that area with a physically plausible reflected plain cream opposite wall and a small consistent portion of dark cabinet base; no reflected people or invented objects. Make the indoor floor dry pale gray SQUARE ceramic tiles with consistent perspective and straight grout, replacing the long narrow plank-looking rows and puddle-like bright patches. Preserve natural diffuse window light and graphic shadows on the dry floor. Keep all other composition and architecture identical. No people, extra furnishings, readable text, logos or watermarks.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:40:24.544735Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Ghost jacket removed; same window, chair, mirror, sofa and counter relationships preserved.",
+        "Floor still has elongated narrow tile rows; pending correction before outfit variants."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-pre-glasshouse-executive-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "mission.homeContact",
+      "wardrobeId": "executive",
+      "presentationVariant": "executive",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Muted blue-gray early-evening exterior with warm practical lamp.",
+      "timeOfDay": "early evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "pre-glasshouse home scene depicting the selected executive outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Tailored dark jacket and matching trousers; understated blouse and shoes.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-pre-glasshouse-executive-v1.png",
+    "sha256": "39e7ae564395d6a3f8c1b9826017920cee4e1ab3edf12f194c004cfc4a340374",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "c6792778-34f6-4a6a-9395-616f0817954c",
+      "providerAssetId": "a4bac133-7881-42ab-acaa-d338780fc60a",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the executive outfit.",
+        "SCENE": "mission.homeContact",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Muted blue-gray early-evening exterior with warm practical lamp.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a fitted charcoal tailored blazer over an opaque understated ivory blouse, matching straight dark trousers and black low heels. No gown, robe, spare suit or tactical equipment. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Correct tailored suit and recognizable Evelynn; accepted room retained.",
+        "Right shoe is clipped by the lower frame and the figure is larger than the post-return suit version; standardize framing before production."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-pre-glasshouse-socialite-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "mission.homeContact",
+      "wardrobeId": "socialite",
+      "presentationVariant": "socialite",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Muted blue-gray early-evening exterior with warm practical lamp.",
+      "timeOfDay": "early evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "pre-glasshouse home scene depicting the selected socialite outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Black floor-length evening gown matching approved gala silhouette.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-pre-glasshouse-socialite-v1.png",
+    "sha256": "b0c9d596651d9a541da04857f5b1715ea6faacdcb08a217c85cb953fb41a6de7",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "5d7a04c7-70f6-4616-81ce-af9ff6d73dfc",
+      "providerAssetId": "c631ac7d-78db-468e-a31d-e7d1cb44013d",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the socialite outfit.",
+        "SCENE": "mission.homeContact",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Muted blue-gray early-evening exterior with warm practical lamp.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing the black floor-length elegant evening gown with a tasteful neckline and open back, black gemstone earrings and black heels. No robe or spare gown. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Correct long black gown, recognizable face and accepted room.",
+        "Figure appears taller than the other outfit variants, with head above the window; align scale. Closed pumps differ from post-return sandals."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-pre-glasshouse-shadow-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "mission.homeContact",
+      "wardrobeId": "shadow",
+      "presentationVariant": "shadow",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Muted blue-gray early-evening exterior with warm practical lamp.",
+      "timeOfDay": "early evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "pre-glasshouse home scene depicting the selected shadow outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Plain charcoal knee-length dress and understated shoes; no tactical gear.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-pre-glasshouse-shadow-v1.png",
+    "sha256": "41363cab8916be7615b3d8f4717998b1176a83c1886119e7fc9962623fe1199d",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "aa843011-b82f-42d1-b083-183fd421a3a6",
+      "providerAssetId": "869e1d27-6d88-48e9-bb61-5072d6f69e48",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the shadow outfit.",
+        "SCENE": "mission.homeContact",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Muted blue-gray early-evening exterior with warm practical lamp.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a simple matte charcoal knee-length sleeveless V-neck dress, modest neckline, narrow matching waistband and black low heels, understated small earrings. No long gown, tactical gear, robe or spare dress. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has finished choosing her outfit before leaving for Glass House. Preserve the reference's accepted cool light and warm lamp. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Correct short charcoal dress category, recognizable Evelynn, grounded feet and retained apartment.",
+        "The narrow fitted skirt and prominent buckle differ from the post-return flared skirt and narrow belt; unify the exact garment before production."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-glasshouse-executive-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter3.home",
+      "wardrobeId": "executive",
+      "presentationVariant": "executive",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+      "timeOfDay": "late evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "post-glasshouse home scene depicting the selected executive outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Tailored dark jacket and matching trousers; understated blouse and shoes.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-post-glasshouse-executive-v1.png",
+    "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "25db7785-d463-4950-94fc-1cb029b00209",
+      "providerAssetId": "a9f29914-39df-42c2-816d-5b5206688ed8",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the executive outfit.",
+        "SCENE": "chapter3.home",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a fitted charcoal tailored blazer over an opaque understated ivory blouse, matching straight dark trousers and black low heels. No gown, robe, spare suit or tactical equipment. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Tailored suit, recognizable face and full figure; no duplicate outfit or reaching artifact.",
+        "Accepted apartment remains recognizable with darker late-evening exterior. Ready for owner review; no promotion."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-glasshouse-socialite-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter3.home",
+      "wardrobeId": "socialite",
+      "presentationVariant": "socialite",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+      "timeOfDay": "late evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "post-glasshouse home scene depicting the selected socialite outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Black floor-length evening gown matching approved gala silhouette.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-post-glasshouse-socialite-v1.png",
+    "sha256": "d90f7841cca746b204b9e0a79f25b43b686777ef9af45130a1bc4b33a58f3ebc",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "5a39ee41-f3aa-4847-aec5-8021d7da53fc",
+      "providerAssetId": "8a327863-c7f7-4931-8758-bac8ea01b209",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the socialite outfit.",
+        "SCENE": "chapter3.home",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing the black floor-length elegant evening gown with a tasteful neckline and open back, black gemstone earrings and black heels. No robe or spare gown. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Correct long black gown and recognizable Evelynn; late-evening apartment retained.",
+        "Open-toe shoes differ from the pre-departure pumps and figure scale differs across the set; align before production."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-glasshouse-shadow-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter3.home",
+      "wardrobeId": "shadow",
+      "presentationVariant": "shadow",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+      "timeOfDay": "late evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "post-glasshouse home scene depicting the selected shadow outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Plain charcoal knee-length dress and understated shoes; no tactical gear.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Generated using the owner-accepted apartment background. Pending owner review of this character image; no automatic promotion.",
+      "editSources": [
+        "apartment-evening-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/apartment/apartment-post-glasshouse-shadow-v1.png",
+    "sha256": "7119a70f0c5df18e29a05b4ab040edd415a26d8cf10efef5ace4cf862bcc0154",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+      "callId": "2b87755f-7e05-4425-93cf-b78d6a7d1c35",
+      "providerAssetId": "de51baee-acb2-449e-aec9-656c7b4917be",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-evening-v1",
+          "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-apartment-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D adult espionage graphic novel, confident ink and semi-cel shading.",
+        "SUBJECT": "Evelynn wearing the shadow outfit.",
+        "SCENE": "chapter3.home",
+        "CAMERA": "Full figure in the accepted apartment wide; natural scale and grounded feet.",
+        "LIGHTING": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+        "CONTINUITY": "Preserve accepted apartment and approved face; chosen outfit persists until an authored change."
+      },
+      "prompt": "Reference 1 is the accepted apartment background. Reference 2 is Evelynn's approved face and identity. Add this SAME adult brunette woman into reference 1, wearing a simple matte charcoal knee-length sleeveless V-neck dress, modest neckline, narrow matching waistband and black low heels, understated small earrings. No long gown, tactical gear, robe or spare dress. Preserve her angular cheekbones, almond eyes, strong brows, elegant nose, controlled lips, slim believable adult anatomy, dark brunette updo with loose face-framing strands. Full-body cinematic wide: she stands in the central open walking space, slightly right of center between the armchair and counter, both feet grounded, head comfortably BELOW the top of the window. Natural human scale: counter reaches approximately her waist, NOT an oversized foreground figure. Her arms rest naturally at her sides, no reaching across the room. Three-quarter body facing slightly toward the window, face subtly turned toward the room with restrained observant neutrality. She has returned home after Glass House, still wearing the selected outfit. Relight the SAME room to late evening, darker blue exterior with city office lights and the warm table lamp; preserve skyline silhouettes exactly. Slightly tired but composed. Preserve EXACT apartment geometry, camera position, window divisions, skyline, chair, sofa, coffee table, cabinet, wardrobe, floor pattern and mirror from reference 1. Do not redesign or correct the accepted room. No extra garments on hooks or furniture; no invented bags, phones, papers or mission evidence. Keep her out of the left mirror's sightline; no ghost reflection or extra person. Same polished 2D adult espionage graphic novel, clean confident ink, semi-cel shadows, restrained highlights. No photorealism, pin-up framing, text, labels, logos or watermarks. ONE complete 16:9 image.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-16T21:51:15.523037Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex manual visual inspection",
+      "date": "2026-09-16",
+      "reasons": [
+        "Correct short plain dress category, recognizable Evelynn and accepted room; all limbs and feet visible.",
+        "Flared skirt and narrow belt differ from pre-departure fitted skirt and buckle. Match the same dress before production."
+      ]
+    }
+  }
+]

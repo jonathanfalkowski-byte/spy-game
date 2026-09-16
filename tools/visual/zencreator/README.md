@@ -1,5 +1,21 @@
 # Evelynn staging adapter
 
+## Apartment package
+
+`apartment-plan.json` holds one exact, unsubmitted `image_editor` request and the
+staged review sequence. Specs use the existing visual schema/catalog. The existing
+`buildPackRequest` background mode replaces reference composition and must not be
+used unchanged for apartment continuity. Submit the saved flat `params` through the
+same MCP workflow only after the owner reviews `docs/art/APARTMENT_CANON.md`.
+Revalidate its source file/hash/provider UUID and refresh the quote before spending.
+
+The master is generated first; dependent night/mirror requests require its actual
+reviewed provider UUID. No fabricated UUIDs, automatic retries, canonicalization or
+runtime bindings are supplied. Reuse reviewed master bytes for day/entry roles where
+appropriate. Existing source records and reviews remain historical evidence.
+
+## Existing portrait adapter
+
 This offline adapter builds ZenCreator MCP image_editor requests from existing VisualAssetSpecs.
 The agent calls MCP for upload, exact price estimates, submission, waiting and downloads.
 It is not a network client and is never imported into the game.

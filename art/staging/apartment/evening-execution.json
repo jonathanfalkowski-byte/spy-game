@@ -1,0 +1,50 @@
+{
+  "task": {
+    "id": "c062afd1-1962-4da3-b14b-d479f960a011",
+    "unique_name": "image_editor-2026-09-16-21-42-c062afd1",
+    "tool_name": "image_editor",
+    "status": "created",
+    "total": 1,
+    "done": 0,
+    "channel": "mcp",
+    "created_at": "2026-09-16T21:42:33.275955Z",
+    "comment": "EVE apartment early-evening base; preserve geometry, correct floor grid"
+  },
+  "request": {
+    "image_assets": [
+      "9b579ded-849b-4166-85d8-90e8b0b38eba"
+    ],
+    "prompt": "Edit the supplied empty apartment. Keep camera, wardrobe and mirror, chair, sofa, coffee table, two-column four-pane window and EXACT skyline, cabinet, lamp, wall hooks, door and all architecture unchanged. Replace ONLY the FLOOR SURFACE: broad large-format 60cm by 60cm SQUARE pale gray ceramic tiles, approximately FOUR tiles across the width of the visible walking path. Each tile has equal length and width in world space, foreshortened consistently by perspective. REMOVE the numerous thin lengthwise plank seams; this is not wooden plank flooring. Straight regular square grid grout. Dry matte surface with soft illumination, NO white wet patches. ALSO relight the same scene for early evening before Glass House: muted blue-gray exterior still visibly light, restrained warm table lamp, soft graphic shadows. No people, no jacket, no new objects, no human reflections. Preserve the same polished 2D ink/semi-cel espionage illustration. No text, logos or watermarks.",
+    "model": "SEEDREAM_5",
+    "ratio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "number_of_images": 1,
+    "batch_mode": false,
+    "sequential_generation": false,
+    "rewrite_prompt": false
+  },
+  "estimatedCredits": 1,
+  "status": "completed",
+  "output": {
+    "callId": "c6474ff8-70ef-4f76-9f04-4d87b227bd8f",
+    "providerAssetId": "bc68c904-0736-440d-9b6a-cb417615e6fc",
+    "file": "art/staging/apartment/apartment-evening-v1.png",
+    "sha256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "REVISE",
+    "reviewer": "Codex manual visual inspection",
+    "date": "2026-09-16",
+    "reasons": [
+      "Window, skyline, furniture, mirror and cabinet positions remain coherent; ghost jacket stays removed.",
+      "Floor still reads as narrow elongated rows rather than specified broad square tiles.",
+      "Exterior and overall lighting remain close to daylight rather than the requested muted early evening.",
+      "Do not use as a passing scene background or promote into canon."
+    ]
+  }
+}

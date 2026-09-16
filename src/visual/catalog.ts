@@ -6,6 +6,8 @@ import approvedPortraits from '../../art/reference/evelynn/approved-portraits.js
 import castSceneRecords from '../../art/staging/cast-scenes/records.json';
 import correctionCandidates from '../../art/staging/cast-scenes/continuity-records.json';
 import approvedCorrections from '../../art/production/continuity/records.json';
+import apartmentSpecs from '../../art/staging/apartment/records.json';
+import approvedHomeArt from '../../art/production/apartment/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
   // Generator receipts are always pending; human approval is a separate catalog edit.
@@ -35,13 +37,19 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Approved portrait records require explicit canonical approval');
     return portrait;
   }),
+  ...approvedHomeArt.map((record) => {
+    const asset = VisualAssetRecordSchema.parse(record);
+    if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || !asset.approval)
+      throw Error('Home scene artwork requires explicit owner production approval');
+    return asset;
+  }),
   ...approvedCorrections.map((record) => {
     const asset = VisualAssetRecordSchema.parse(record);
     if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || asset.review?.decision !== 'PASS')
       throw Error('Production corrections require explicit passing review and owner authorization');
     return asset;
   }),
-  ...[...chapter3RuntimeSpecs, ...stagingRecords, ...castSceneRecords, ...correctionCandidates].map((record) => {
+  ...[...chapter3RuntimeSpecs, ...stagingRecords, ...castSceneRecords, ...correctionCandidates, ...apartmentSpecs].map((record) => {
     const candidate = VisualAssetRecordSchema.parse(record);
     if (candidate.role !== 'staging' || candidate.approvalStatus !== 'pending')
       throw Error('Staging receipts cannot approve or promote artwork');

@@ -1,5 +1,6 @@
 import { chapter3Number, chapter3Progress } from './chapter3-progress';
 import { RestoreBackup } from './RestoreBackup';
+import { homeSceneArt } from './home-scene-art';
 import { displayName } from './reading-presentation';
 import { readSize, writeSize } from '../persistence/preferences';
 import { Missionwork, MissionSummary } from './Missionwork';
@@ -57,6 +58,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
   const previousNode = useRef<string | null>(null);
   const entered = useRef(false);
   const node = nodeOf(state);
+  const homeArt = homeSceneArt(state);
   useEffect(() => {
     if (
       entered.current &&
@@ -283,6 +285,16 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 {displayName(sceneById[node].title)}
               </h1>
               <div className="chapter-line" />
+              {homeArt && (
+                <img
+                  className="home-scene-art"
+                  src={`${import.meta.env.BASE_URL}${homeArt.file}`}
+                  alt={homeArt.alt}
+                  width={1920}
+                  height={1080}
+                  decoding="async"
+                />
+              )}
               {saveError && (
                 <div className="save-error" role="alert">
                   <strong>Your latest decisions are not saved.</strong>

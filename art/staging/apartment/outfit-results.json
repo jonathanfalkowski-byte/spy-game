@@ -1,0 +1,102 @@
+{
+  "task_id": "fbf8e885-50fc-4d69-b5f1-7e6541f60467",
+  "tool_name": "image_editor",
+  "status": "completed",
+  "total": 6,
+  "done": 6,
+  "timed_out": false,
+  "duration_ms": 8275,
+  "polls": 3,
+  "calls": [
+    {
+      "call_id": "c6792778-34f6-4a6a-9395-616f0817954c",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "a4bac133-7881-42ab-acaa-d338780fc60a"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "a4bac133-7881-42ab-acaa-d338780fc60a"
+      ]
+    },
+    {
+      "call_id": "5d7a04c7-70f6-4616-81ce-af9ff6d73dfc",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "c631ac7d-78db-468e-a31d-e7d1cb44013d"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "c631ac7d-78db-468e-a31d-e7d1cb44013d"
+      ]
+    },
+    {
+      "call_id": "aa843011-b82f-42d1-b083-183fd421a3a6",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "869e1d27-6d88-48e9-bb61-5072d6f69e48"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "869e1d27-6d88-48e9-bb61-5072d6f69e48"
+      ]
+    },
+    {
+      "call_id": "25db7785-d463-4950-94fc-1cb029b00209",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "a9f29914-39df-42c2-816d-5b5206688ed8"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "a9f29914-39df-42c2-816d-5b5206688ed8"
+      ]
+    },
+    {
+      "call_id": "5a39ee41-f3aa-4847-aec5-8021d7da53fc",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "8a327863-c7f7-4931-8758-bac8ea01b209"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "8a327863-c7f7-4931-8758-bac8ea01b209"
+      ]
+    },
+    {
+      "call_id": "2b87755f-7e05-4425-93cf-b78d6a7d1c35",
+      "status": "completed",
+      "output": {
+        "image_assets": [
+          "de51baee-acb2-449e-aec9-656c7b4917be"
+        ]
+      },
+      "error": null,
+      "asset_ids": [
+        "de51baee-acb2-449e-aec9-656c7b4917be"
+      ]
+    }
+  ],
+  "asset_ids": [
+    "a4bac133-7881-42ab-acaa-d338780fc60a",
+    "8a327863-c7f7-4931-8758-bac8ea01b209",
+    "a9f29914-39df-42c2-816d-5b5206688ed8",
+    "c631ac7d-78db-468e-a31d-e7d1cb44013d",
+    "869e1d27-6d88-48e9-bb61-5072d6f69e48",
+    "de51baee-acb2-449e-aec9-656c7b4917be"
+  ],
+  "created_at": "2026-09-16T21:51:15.523037Z",
+  "finished_at": "2026-09-16T21:52:25.458638Z",
+  "comment": "EVE six home outfit scenes; owner accepts background; pre/post executive socialite shadow",
+  "channel": "mcp"
+}

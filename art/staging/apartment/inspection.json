@@ -1,0 +1,683 @@
+{
+  "status": "inspection-complete-no-promotion",
+  "bestPartialBase": "eve-bg-apartment-day-v1",
+  "approvedWholeLayout": null,
+  "assets": [
+    {
+      "assetId": "eve-bg-apartment-day-v1",
+      "file": "art/staging/cast-scenes/eve-bg-apartment-day-v1.png",
+      "sha256": "931f8cd1658ff04adf6eb87b5c7de547de47555cbfb6796b4c8df037ce974066",
+      "providerAssetId": "1a9cb0ae-d810-4bf6-b786-a4f695795ea7",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "canonicalReferences": [
+          "evelynn-helix-gala-v1"
+        ],
+        "mood": "Sophisticated adult espionage, restrained psychological tension",
+        "continuityRequirements": [
+          "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+          "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+        ],
+        "assetId": "eve-bg-apartment-day-v1",
+        "assetType": "background",
+        "sceneId": "apartment.bond",
+        "locationId": "apartment-day",
+        "environment": "Narrow urban apartment, chair by rainy window with distant corporate tower, small kitchen counter, familiar jacket on hook, muted charcoal and cream, blue dawn.",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+        "cameraAngle": "Eye-level cinematic wide",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Reusable staged location background"
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16",
+        "reasons": [
+          "Empty illustrated location with clear composition and no people; proposed architecture only."
+        ]
+      },
+      "apartmentReview": {
+        "decision": "PASS",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Partial reference only: strongest two-column window/chair/kitchen corner and restrained EVE style. Blue dawn is not neutral daytime. Unseen rooms, mirror and front entry remain unestablished. Jacket hook conflicts with closet baseline; clarify floor reflections. Not sufficient unchanged as whole-apartment canon."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-bg-apartment-night-v1",
+      "file": "art/staging/cast-scenes/eve-bg-apartment-night-v1.png",
+      "sha256": "7ca3c963fc2864028629a5dd43f638a1d29ffd0cdee04999774932fd8a4a55b1",
+      "providerAssetId": "342a56ed-99f9-41ed-9fae-f5ac8e494c95",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "canonicalReferences": [
+          "evelynn-helix-gala-v1"
+        ],
+        "mood": "Sophisticated adult espionage, restrained psychological tension",
+        "continuityRequirements": [
+          "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+          "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+        ],
+        "assetId": "eve-bg-apartment-night-v1",
+        "assetType": "background",
+        "sceneId": "chapter3.home",
+        "locationId": "apartment-night",
+        "environment": "The same narrow urban apartment, chair beside rain-streaked window, distant illuminated corporate tower, small counter and familiar jacket, quiet empty room.",
+        "lighting": "Warm practical lamp against cool night rain",
+        "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+        "cameraAngle": "Eye-level cinematic wide",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Reusable staged location background"
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16",
+        "reasons": [
+          "Empty illustrated location with clear composition and no people; proposed architecture only.",
+          "Day and night apartment layouts differ; reconcile geography before runtime use."
+        ]
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Three window columns replace two; thin exposed chair arms/legs replace padded chair; wider counter, new curtain and spired skyline replace base geometry. Jacket migrates to counter. Derive night by relighting the accepted master, not this competing plan."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-scene-morning-v1",
+      "file": "art/staging/cast-scenes/eve-scene-morning-v1.png",
+      "sha256": "6c886d12236c3df87800a6c6688322affc95401b84aca6a4d5533c6c6c3eb022",
+      "providerAssetId": "e4cffb71-cd43-4e83-b37f-66af8c47c550",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-morning-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "adrian"
+          }
+        ],
+        "canonicalReferences": [],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1",
+          "eve-cast-adrian-v1"
+        ],
+        "sceneId": "apartment.bond",
+        "locationId": "apartment-day",
+        "pose": "Adrian stands near the kitchen counter, coat over one arm, looking toward the rain and distant tower; phone rests on counter with screen unreadable.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Opening morning, pre-transformation."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Recognizable Adrian, phone and coat; apartment composition follows the daytime location."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Retains useful day corner, but counter projects differently and Adrian handles/wears the jacket before a generic opening node that still locates it in the closet. Use only an explicitly timed dressing/departure beat after geometry review; not a master reference."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-scene-home-before-v1",
+      "file": "art/staging/cast-scenes/eve-scene-home-before-v1.png",
+      "sha256": "de700ccc05eeb12adac2b6ccd6a9f0d7d45256f76cd194f9de998107703f453a",
+      "providerAssetId": "03f1356f-b620-4a72-a8ad-ae48032e9f88",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-scene-home-before-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "sceneId": "mission.home",
+        "locationId": "apartment-night",
+        "pose": "Evelynn in black gala gown beside familiar chair and jacket, garment case open on nearby seat, phone on counter. Quiet observation.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Staged authored-scene keyframe with branch guard",
+        "notes": "Post-transformation pre-gala home visit; gala presentation variant."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Quiet pre-mission composition with gown, familiar chair, jacket and open garment case; use only for the specified presentation branch."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Uses competing night window/chair plan at 18:02; open garment case is on chair instead of sealed beside wardrobe on arrival. Socialite-only clothing cannot represent all clinic-confirmed outfits. No layout authority."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-home-v1",
+      "file": "art/staging/cast-scenes/eve-c3-home-v1.png",
+      "sha256": "8960b09873fe634dfe974ac99a326385a919c993ff6841754e00d3f39d58bb8f",
+      "providerAssetId": "d14c1292-2f8b-449d-ab3a-5206fbf33e25",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-home-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn in gala gown sets her phone on counter, distant tower beyond rain; no evidence objects displayed.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Return after completed mission; evidence-neutral."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Recognizable Evelynn places her phone on the counter; quiet return-home concept with no evidence objects."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Inherits night window/chair/skyline redesign; counter/lamp arrangement shifts and foreground figure obscures geography. Gala gown is only one possible carried outfit. Rebuild from master for the correct outfit branch."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-maya-v1",
+      "file": "art/staging/cast-scenes/eve-c3-maya-v1.png",
+      "sha256": "2dc22497934772d565b7f5fdc858b7d8d002e1fc8d3b618e805141e1445aea09",
+      "providerAssetId": "0772b720-5f68-44ad-b96b-6c6d4aae6f38",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-maya-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn seated by window in opaque cream knit top and dark trousers, phone to ear, listening; only Evelynn is physically present.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Chosen call branch only; Maya remains remote. Casual outfit is a design proposal."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Casual knit wardrobe and phone conversation preserve Evelynn identity; Maya is correctly offscreen."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Night geometry and thin chair repeat; casual sweater is not an automatically recorded change before the current Scene 2 call. Scene must require actual contact and authored wardrobe; maintain original padded chair footprint."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-sender-v1",
+      "file": "art/staging/cast-scenes/eve-c3-sender-v1.png",
+      "sha256": "05333937701d04098f4d9e62f7cd56d574007d7a1a0d66b0069b3f40d9355105",
+      "providerAssetId": "73c3c5be-c396-4a18-884d-8e53de05be20",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-sender-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn studies a phone at table, plain unopened document beside it, thoughtful restrained attention; screen unreadable.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Unknown sender stays unseen; receipt does not establish verification."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Unidentified sender remains unseen; phone and document support a restrained reading moment. Gala clothing is a provisional choice, not treatment canon."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Day corner recognizable, but adds an unlocated foreground table/chair and papers. Gala clothes and new documents are not universal late-morning state. Register work surface location first."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-helix-contact-v1",
+      "file": "art/staging/cast-scenes/eve-c3-helix-contact-v1.png",
+      "sha256": "c7874b39a3e5f659bd7ddf63931bbc9919d2479cccb9667972b0c3d0a2f5703c",
+      "providerAssetId": "13ebcfb5-1c5b-4cdf-8b2f-3b9a5cbba56e",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-helix-contact-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn in cream knit top sits at counter reading an incoming phone notification, calm analytical expression.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Invitation received, not accepted; no invented sender portrait."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Recognizable Evelynn in cream knit with unreadable incoming phone information; calm private setting."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Day corner recognizable; close crop/foreground counter and enlarged upper cabinet do not establish a new room angle. Sweater and extra surface remain unapproved. Derive from a named camera anchor."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-verify-v1",
+      "file": "art/staging/cast-scenes/eve-c3-verify-v1.png",
+      "sha256": "c196a666df262cbce462cefa79acc7ef38a8675d3dd148b0f2cff2f72b682d20",
+      "providerAssetId": "8de22624-0538-4197-b8b4-e5346a8e7e5b",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-verify-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-day-v1"
+        ],
+        "locationId": "apartment-day",
+        "pose": "Evelynn at a small table compares three plain documents and a phone, fingers resting apart from papers; no legible text.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Blue rainy morning with one warm lamp",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Verification concept; no completed assessment or acceptance implied."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Three documents and phone provide a clear verification concept without readable story claims. Gown wardrobe remains provisional."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Adds a broad foreground desk blocking original room relationship; document possession and gown are future branch-dependent, not baseline. Reposition only after work-surface anchor approval."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-disclosures-v1",
+      "file": "art/staging/cast-scenes/eve-c3-disclosures-v1.png",
+      "sha256": "6a2d9ba40650f9bd8b2e21f291429e58a410c28260d1ddc8742a47a26822e61a",
+      "providerAssetId": "cb82f139-68b8-4b5c-92df-ddb08947b156",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-disclosures-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn in simple opaque knit top at counter with phone screen angled away, documents closed, deliberate pause before communication.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "No recipient delivery implied; no hidden sender revealed."
+      },
+      "historicalReview": {
+        "decision": "REVISE",
+        "reasons": [
+          "Private phone moment and casual outfit work, but documents are exposed rather than closed and the phone is turned outward. Restore the intended privacy staging."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Night geometry repeats and additional papers/garment details imply specific later state. Historical REVISE remains; preserve body/outfit continuity and a coherent, approved phone/surface arrangement."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-commit-v1",
+      "file": "art/staging/cast-scenes/eve-c3-commit-v1.png",
+      "sha256": "c2fbe88bbd1ecb66acf2789f9f0883d7927f3de6cfac037455b951dab783c076",
+      "providerAssetId": "9452247a-1b9c-4bde-80c9-f3316f139e99",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-commit-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn reads a plain offer at table, pen lying unused beside it, warm lamp, composed uncertainty.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Before acceptance; no price/date or signature invented."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Offer remains unsigned and pen untouched; reflective concept preserves the pending choice. Wardrobe remains provisional."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Lamp migrates in front of window onto a new table; its base changes. Night grid/skyline and gala costume repeat. Return L1 to kitchen-end position and use approved work/couch anchor."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    },
+    {
+      "assetId": "eve-c3-ending-v1",
+      "file": "art/staging/cast-scenes/eve-c3-ending-v1.png",
+      "sha256": "83bbc73de82ccdcae9062b48a355cde4ec75216f4ea0a7309e2fb0817fdbd004",
+      "providerAssetId": "bec0915e-b86d-44f6-9293-ad22ef50502a",
+      "specSource": "art/staging/cast-scenes/records.json",
+      "planSource": "tools/visual/zencreator/cast-scenes-plan.json",
+      "existingSpec": {
+        "styleBibleVersion": "1.0",
+        "assetId": "eve-c3-ending-v1",
+        "assetType": "scene-cg",
+        "subjects": [
+          {
+            "characterId": "player-character",
+            "identityId": "evelyn"
+          }
+        ],
+        "canonicalReferences": [
+          "evelynn-canon-three-quarter-v1"
+        ],
+        "stagingReferences": [
+          "eve-bg-apartment-night-v1"
+        ],
+        "locationId": "apartment-night",
+        "pose": "Evelynn stands quietly at rain window in opaque casual knit clothing, phone face-down on counter, city tower distant.",
+        "cameraFraming": "Wide 16:9 cinematic ensemble shot; all heads fully inside frame, natural eye-level medium-wide camera; distinct faces readable",
+        "cameraAngle": "Eye-level observational composition",
+        "lighting": "Warm practical lamp against cool night rain",
+        "mood": "Controlled adult espionage tension, subtle facial acting",
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "intendedUse": "Future Chapter 3 treatment concept only, not runtime art",
+        "notes": "Neutral closing reflection; no claimed liberation, identity acceptance or unearned obligation."
+      },
+      "historicalReview": {
+        "decision": "PASS",
+        "reasons": [
+          "Quiet closing image retains Evelynn in opaque casual knit beside the rain window; no asserted branch resolution."
+        ],
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16"
+      },
+      "apartmentReview": {
+        "decision": "REVISE",
+        "reviewer": "Codex full-size visual inspection",
+        "date": "2026-09-16",
+        "styleBibleVersion": "1.0",
+        "scope": "Suitability for one consistent apartment; PASS is not approval",
+        "reasons": [
+          "Night grid, chair and skyline compete with base; sweater and rain are specific unapproved scene dressing. Ending image must follow authored outfit/weather rather than establish them."
+        ]
+      },
+      "role": "staging",
+      "approvalStatus": "pending"
+    }
+  ]
+}
