@@ -20,7 +20,7 @@ const text = (s: ReturnType<typeof missionStart>) =>
     .join(' ');
 
 it('only completed clinic departures can continue, and load does not auto-advance', () => {
-  expect(availableMissionChoices(start).map((c) => c.id)).toEqual(['mission.begin']);
+  expect(availableMissionChoices(start).map((c) => c.id)).toEqual(['home.begin', 'mission.begin']);
   const stopped = traverse(clinicStart(), { authorization: 'stop.request' });
   for (const s of [stopped, clinicStart()]) expect(availableMissionChoices(s)).toEqual([]);
   expect(decodeSave(encodeSave(start))).toEqual(start);
@@ -71,11 +71,14 @@ it('reviews actual earlier Maya messages without sending or changing her knowled
   expect(next.day.exposure).toEqual(car.day.exposure);
 });
 
-it('all six lead pairs work in both orders; review and reread cannot spend or duplicate findings', () => {
-  const leads = ['guest', 'service', 'celeste', 'marcus'];
-  const hub = runMission(start, {}, 'hub');
+it('all 21 lead pairs work in both orders; review and reread cannot spend or duplicate findings', () => {
+  const leads = ['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted'];
   for (const a of leads)
     for (const b of leads.filter((x) => x !== a)) {
+      const requiresHome = ['security', 'staff', 'restricted'].includes(a) || ['security', 'staff', 'restricted'].includes(b);
+      const hub = requiresHome
+        ? runMission(start, { complete: 'home.begin' }, 'hub')
+        : runMission(start, {}, 'hub');
       let s = mission(hub, 'lead.' + a);
       expect(s.mission.remaining).toBe(2);
       s = mission(s, 'lead.cancel');
@@ -99,9 +102,67 @@ it('all six lead pairs work in both orders; review and reread cannot spend or du
       expect(s.mission.leads).toEqual([a, b]);
       expect(s.mission.remaining).toBe(0);
       expect(availableMissionChoices(s).some((c) => c.id.startsWith('lead.'))).toBe(false);
+      expect(
+        reducer(s, { type: 'MISSION_CHOOSE', id: 'lead.guest', expectedRevision: s.revision }),
+      ).toBe(s);
       expect(s.npcs.sloane).toEqual(hub.npcs.sloane);
       expect(decodeSave(encodeSave(s))).toEqual(s);
     }
+}, 30000);
+
+it('keeps source quality distinct across all seven Glass House leads', () => {
+  const supported = ['guest', 'service', 'security'];
+  for (const lead of ['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted']) {
+    const newLead = ['security', 'staff', 'restricted'].includes(lead);
+    const hub = newLead
+      ? runMission(start, { complete: 'home.begin' }, 'hub')
+      : runMission(start, {}, 'hub');
+    let state = mission(hub, 'lead.' + lead);
+    state = mission(state, 'lead.confirm');
+    state = mission(state, 'lead.return');
+    state = mission(state, 'assess.begin');
+    state = mission(state, 'source.benton');
+    state = mission(state, 'source.confirm');
+    expect(state.mission.reasoning).toBe(
+      supported.includes(lead) ? 'supported' : lead === 'celeste' ? 'contextual' : 'unsupported',
+    );
+  }
+});
+
+it('keeps the Celeste cover complication attributed and limits who hears each response', () => {
+  const routeToCover = (outfit = 'executive') =>
+    runMission(missionStart(outfit), {
+      complete: 'home.begin',
+      celeste: 'celeste.memory',
+      celesteReply: 'cover.begin',
+    }, 'cover');
+
+  const corrected = mission(routeToCover(), 'cover.test');
+  expect(corrected.day.records.find((r) => r.key === 'mission.cover.correction')?.layer).toBe('claim');
+  expect(corrected.npcs.celeste.beliefs.some((x) => x.key.includes('deliberately false location'))).toBe(true);
+  expect(corrected.npcs.marcus.known.some((x) => x.key.includes('false location'))).toBe(false);
+  expect(corrected.mission.scrutiny).toBeGreaterThan(0);
+
+  const partial = mission(routeToCover(), 'cover.partial');
+  expect(partial.day.records.find((r) => r.key === 'mission.cover.halcyon')?.layer).toBe('claim');
+  expect(partial.npcs.marcus.known.some((x) => x.key.includes('continued a private conversation'))).toBe(true);
+  expect(partial.npcs.marcus.known.some((x) => x.key.includes('Halcyon'))).toBe(false);
+
+  const bluff = mission(routeToCover(), 'cover.bluff');
+  expect(bluff.day.records.find((r) => r.key === 'mission.cover.bluff')?.layer).toBe('fact');
+  expect(bluff.npcs.celeste.known.some((x) => x.key.includes('says she remembers the Blue Orchid'))).toBe(true);
+
+  const presentation = mission(routeToCover('socialite'), 'cover.presentation');
+  expect(presentation.npcs.marcus.known.some((x) => x.key.includes('ended their private exchange in public'))).toBe(true);
+  expect(presentation.day.records.some((r) => r.key === 'mission.cover.presentation')).toBe(true);
+});
+
+it('lets Marcus answer one follow-up question, with his memory remaining a claim', () => {
+  const atReply = runMission(start, { complete: 'home.begin' }, 'marcusReply');
+  const answered = mission(atReply, 'marcus.detail');
+  expect(answered.day.records.find((r) => r.key === 'mission.marcus-detail')?.layer).toBe('claim');
+  expect(availableMissionChoices(answered).some((c) => c.id === 'marcus.push')).toBe(false);
+  expect(replay(answered.ledger)).toEqual(answered);
 });
 
 it('separates evidence, reasoning, operational timing and custody across source/method/outfit combinations', () => {
@@ -186,7 +247,17 @@ it('visits every mission choice and phase with deterministic replay, exact resum
     if (phase === 'leadRead') setup.hub = ['lead.guest', 'read.guest'];
     if (c.id.startsWith('read.') && c.id !== 'read.return')
       setup.hub = ['lead.' + c.id.split('.')[1]];
-    let s = c.id === 'mission.begin' ? start : runMission(start, setup, phase);
+    const homeRoute =
+      c.id.startsWith('home.') ||
+      c.id.startsWith('cover.') ||
+      ['marcus.detail', 'marcus.push'].includes(c.id) ||
+      ['security', 'staff', 'restricted'].includes(c.id.split('.')[1]);
+    if (homeRoute) {
+      setup.complete = 'home.begin';
+      if (phase === 'cover') setup.celesteReply = 'cover.begin';
+    }
+    let s = c.id === 'mission.begin' || c.id === 'home.begin' ? start : runMission(start, setup, phase);
+    if (phase === 'home') s = mission(start, 'home.begin');
     if (c.id.startsWith('read.') && c.id !== 'read.return')
       s = runMission(mission(s, 'lead.' + c.id.split('.')[1]), {}, 'hub');
     expect(

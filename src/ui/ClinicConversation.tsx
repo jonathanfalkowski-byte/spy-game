@@ -1,5 +1,6 @@
 import type { Ref } from 'react';
 import type { GameState } from '../state/schema';
+import { missionPresentation } from '../content/mission-presentation';
 import { Narrative } from './Narrative';
 
 export function ClinicConversation({
@@ -17,6 +18,7 @@ export function ClinicConversation({
   const incoming =
     start > 0 && !isChoice(state.history[start - 1]) ? [state.history[start - 1]] : [];
   const exchanges = state.history.slice(start).filter((entry) => !isChoice(entry));
+  const presentation = missionPresentation(state);
   return (
     <>
       {incoming.map((entry, i) => (
@@ -32,8 +34,23 @@ export function ClinicConversation({
           style={{ scrollMarginTop: 90 }}
         >
           <Narrative blocks={entry.blocks} node={entry.node} />
+          {i === exchanges.length - 1 && presentation.length > 0 && (
+            <div data-mission-presentation aria-label="Operational context">
+              <Narrative blocks={presentation} node={node} />
+            </div>
+          )}
         </div>
       ))}
+      {exchanges.length === 0 && presentation.length > 0 && (
+        <div
+          data-mission-presentation
+          tabIndex={-1}
+          aria-label="Operational context"
+          style={{ scrollMarginTop: 90 }}
+        >
+          <Narrative blocks={presentation} node={node} />
+        </div>
+      )}
     </>
   );
 }

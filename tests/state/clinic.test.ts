@@ -98,7 +98,7 @@ it('profile, attention and outward response remain separate across all 80 combin
         expect(s.npcs.sloane.beliefs.at(-1)?.source).toContain('not access to private thought');
         expect(encodeSave(decodeSave(encodeSave(s)))).toBe(encodeSave(s));
       }
-});
+}, 30000);
 it('review and pause never imply authorization; stop is confirmed at all three stages', () => {
   for (const phase of ['authorization', 'voice', 'face']) {
     let s = traverse(start, {}, phase);

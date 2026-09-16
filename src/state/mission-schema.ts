@@ -1,5 +1,13 @@
 import { z } from 'zod';
-export const LeadSchema = z.enum(['guest', 'service', 'celeste', 'marcus']);
+export const LeadSchema = z.enum([
+  'guest',
+  'service',
+  'celeste',
+  'marcus',
+  'security',
+  'staff',
+  'restricted',
+]);
 export type Lead = z.infer<typeof LeadSchema>;
 export const SourceSchema = z.enum(['benton', 'priya', 'celeste', 'insufficient']);
 export const MethodSchema = z.enum(['audio', 'photo', 'token']);

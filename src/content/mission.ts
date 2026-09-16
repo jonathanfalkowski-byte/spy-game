@@ -12,10 +12,11 @@ import type { GameState } from '../state/schema';
 import type { Lead } from '../state/mission-schema';
 
 export const missionSections = [
+  { label: 'Home in another skin', phases: ['home', 'homePresentation', 'homeContact'] },
   { label: 'The journey', phases: ['car', 'arrival'] },
   { label: 'Admitted as Evelyn', phases: ['reception', 'elevator', 'entry'] },
   { label: 'Marcus remembers', phases: ['marcus', 'marcusReply'] },
-  { label: 'Celeste’s reunion', phases: ['celeste', 'celesteReply'] },
+  { label: 'Celeste’s reunion', phases: ['celeste', 'celesteReply', 'cover'] },
   { label: 'The room', phases: ['hub', 'leadReview'] },
   { label: 'Following the leads', phases: ['leadResult', 'leadRead'] },
   { label: 'Giving Sloane a name', phases: ['assessment', 'assessmentReview'] },
@@ -26,11 +27,35 @@ export const missionSections = [
     phases: ['debrief', 'debriefReply', 'warning1', 'warning2', 'warning3', 'garage', 'complete'],
   },
 ];
-export const missionSection = (phase: string) =>
-  missionSections.findIndex((s) => s.phases.includes(phase));
+export const missionSection = (phase: string, includeHome = true) => {
+  const index = missionSections.findIndex((s) => s.phases.includes(phase));
+  return includeHome || index < 1 ? index : index - 1;
+};
 const scene = (phase: string, title: string, place: string, blocks: Block[]) =>
   SceneSchema.parse({ id: 'mission.' + phase, title, place, blocks });
 export const missionScenes = [
+  scene('home', 'Home in another skin', '18:02 · Adrian’s apartment', [
+    p(
+      'The car leaves you at the residential entrance with a little time before the Glass House. Sloane calls it a reset window. The building calls it a familiar address. Neither description accounts for the way your body meets the lift, the key, or the quiet beyond the door.',
+    ),
+    p(
+      'The apartment has not been cleared for a new life. Adrian’s jacket is still where it was left, the old chair still faces the rain, and the tower still fills the window. Your shoulders sit narrower beneath the shirt; the waist draws inward, and your hips and thighs carry a balance you have not learned yet. A turn between the chair and the window takes a small correction. The jacket’s old line no longer falls where you expect. A sealed garment case waits beside the wardrobe with the three presentation options Axiom prepared for tonight.',
+    ),
+    p(
+      'The residential reader accepts the restricted badge under Evelynn Vale. The display gives the presented name without explaining the person who used to live here. You do not know who arranged the delivery or whether anyone entered the rooms. The phone remains monitored in your hand.',
+    ),
+    p(
+      'The familiar rooms offer no instructions. You can look, handle what remains or try a routine. The garment case can wait until you are ready to prepare.',
+    ),
+  ]),
+  scene('homePresentation', 'What nobody required', '18:09 · Adrian’s apartment', [
+    p('The garment case opens onto the three presentations prepared for the Glass House. The tailored jacket changes the line of your shoulders; the evening dress asks you to adjust your stance; the shadow look leaves your new outline less announced, not less real. The choice is yours to revise before departure. Sloane will hear which one you confirm, not what you thought while trying it.'),
+    p('A small personal detail is optional. Nothing in the operation requires an accessory, jewellery or a cosmetics change.'),
+  ]),
+  scene('homeContact', 'Before the car arrives', '18:16 · Adrian’s apartment', [
+    p('The phone still carries the earlier conversation with Maya. You can review it, send one bounded update, or leave it untouched. No new check-in has been arranged.'),
+    p('If you send a message, the screen will show exactly what she receives. Axiom may have access to the monitored device; that does not mean Sloane personally reads it.'),
+  ]),
   scene('car', 'The city goes on', '18:23 · In the car', [
     p(
       'The car slows at another junction. For a moment it is quiet enough to hear the seat leather settle beneath you. Then the driver indicates, a delivery van lets him in, and Axiom disappears behind the buildings.',
@@ -122,13 +147,22 @@ export const missionScenes = [
     q('Celeste', 'Evelyn. You disappeared before breakfast.'),
     q('Marcus', 'Apparently Singapore left different impressions on all of us.'),
   ]),
-  scene('celesteReply', 'What she leaves unsaid', '19:06 · The gathering', [
+scene('celesteReply', 'What she leaves unsaid', '19:06 · The gathering', [
     p(
       'Someone at the central table calls Marcus’s name. He gives the speaker a small raised finger, buying himself one last moment with you.',
     ),
     q('Marcus', 'We should finish this later.'),
     p(
       'He straightens his cuff and walks away. Celeste follows him with her eyes, then draws her hand back from your arm. She remains by the window. You could find her again without asking anyone where she went.',
+    ),
+  ]),
+  scene('cover', 'A detail that should be familiar', '19:07 · Beside the central table', [
+    p(
+      'Celeste looks toward the windows, then back at you. The room has begun to close around its next arrangement; Marcus is close enough to hear if either of you raises a voice.',
+    ),
+    q('Celeste', 'You once told me the Blue Orchid was where we settled it. Or am I putting the wrong night together?'),
+    p(
+      'You have no memory to compare with hers. Her confidence may be care, performance or a test. You can offer a detail you know is wrong, ask her to explain, turn the conversation toward the event, or use your presentation to make the interruption public and ordinary. Marcus is close enough to hear; other guests may notice the pause.',
     ),
   ]),
   scene('hub', 'People do not stay in their files', '19:08–19:20 · The reception floor', [
@@ -230,6 +264,9 @@ export const leadNames: Record<Lead, string> = {
   service: 'The service corridor',
   celeste: 'Celeste’s memory',
   marcus: 'Marcus’s behaviour',
+  security: 'The admission trace',
+  staff: 'A server’s account',
+  restricted: 'The gallery attendant',
 };
 export const findings: Record<
   Lead,
@@ -330,6 +367,42 @@ export const findings: Record<
       ),
     ],
   },
+  security: {
+    layer: 'fact',
+    text: 'The host’s limited admission trace shows the gallery credential cleared under E. Benton’s authorization.',
+    source: 'A host-facing confirmation shown briefly during the reception',
+    limits: 'The trace supports Benton’s access to the gallery. It does not show what he did after admission.',
+    blocks: [
+      p('You ask the floor host whether the private gallery is still taking guests. The answer is a polite refusal to show the roster.'),
+      q('Floor host', 'I can confirm a cleared credential. I cannot show you the guest record.'),
+      p('The narrow confirmation names E. Benton as the approving authorization. The host closes the panel before you can ask for more.'),
+      p('A second route places Benton at the gallery entrance. It still does not show the exchange or the wafer.'),
+    ],
+  },
+  staff: {
+    layer: 'claim',
+    text: 'A server says the private table was reset after a late change to the guest count.',
+    source: 'A brief conversation near the service opening',
+    limits: 'The server does not know who requested the change or who arrived. This is hearsay, not placement.',
+    blocks: [
+      p('You wait until a server pauses with an empty tray and ask whether the gallery is still in use.'),
+      q('Server', 'They changed the count after the room was set. We had to replace a place card.'),
+      q('You', 'Did you see who it was for?'),
+      q('Server', 'No. I was bringing glassware back.'),
+      p('The detail fits the blank card you noticed. The server cannot connect it to a name.'),
+    ],
+  },
+  restricted: {
+    layer: 'claim',
+    text: 'The gallery attendant confirms the private table requires separate host clearance beyond the public invitation, but refuses access to the roster.',
+    source: 'A request made at the public edge of the gallery',
+    limits: 'The restriction explains why the invitation is insufficient. It does not identify who entered or what the table is for.',
+    blocks: [
+      p('You stop at the public edge of the gallery and ask whether the table has been reserved for the evening.'),
+      q('Gallery attendant', 'The invitation does not clear that threshold. A host must authorize the gallery separately. I cannot show you the roster.'),
+      p('The refusal is firm and quiet. You are not admitted, and the attendant looks past you toward the gathering, making clear that a second request would be remembered.'),
+    ],
+  },
 };
 const ChoiceSchema = z
   .object({
@@ -356,11 +429,43 @@ const add = (phase: string, id: string, next: string, label: string, hint = '', 
   );
 add(
   'clinic.complete',
+  'home.begin',
+  'home',
+  'Return home before the Glass House',
+  'A short reset window. Your body, apartment and presentation are yours to notice.',
+);
+add(
+  'clinic.complete',
   'mission.begin',
   'car',
   'Continue to the Glass House',
   'Begin the operation from the car.',
 );
+for (const [id, label, hint] of [
+  ['mirror', 'Look in the apartment mirror', 'Notice the changed face and body without assigning it a verdict.'],
+  ['clothes', 'Handle Adrian’s old clothes', 'The shirt and jacket remain. Compare their fit without declaring what they mean.'],
+  ['evidence', 'Check what came back with you', 'Review only the evidence already in your custody.'],
+  ['routine', 'Try one familiar routine', 'Notice a small physical change without turning it into a diagnosis.'],
+])
+  add('home', 'home.' + id, 'home', label, hint);
+add('home', 'home.prepare', 'homePresentation', 'Open the garment case', 'Move from noticing the apartment to preparing for the operation.');
+for (const [id, label] of [
+  ['executive', 'Preview the Executive presentation'],
+  ['socialite', 'Preview the Socialite presentation'],
+  ['shadow', 'Preview the Shadow presentation'],
+])
+  add('homePresentation', 'home.outfit.' + id, 'homePresentation', label, 'Revise the operation outfit privately; Sloane will know only what you confirm on departure.', true);
+for (const [id, label, hint] of [
+  ['watch', 'Wear Adrian’s old watch', 'A personal detail, not an operational requirement.'],
+  ['earrings', 'Add the black-stone earrings', 'A voluntary detail; no one reads it as a verdict.'],
+  ['none', 'Add nothing', 'Leave the optional detail off or undecided.'],
+])
+  add('homePresentation', 'home.detail.' + id, 'homePresentation', label, hint);
+add('homePresentation', 'home.presentationDone', 'homeContact', 'Finish getting ready', 'Confirm the presentation; the optional detail may remain undecided.');
+add('homeContact', 'home.maya', 'homeContact', 'Review Maya’s existing thread', 'Read only what is already in the conversation.');
+add('homeContact', 'home.maya.send', 'homeContact', 'Send Maya a brief update', 'The wording reflects only what she already knows. This phone remains monitored.');
+add('homeContact', 'home.maya.skip', 'homeContact', 'Leave Maya’s thread untouched', 'No message is sent and no new arrangement is created.');
+add('homeContact', 'home.leave', 'car', 'Leave for the Glass House', 'Collect the phone, badge and invitation before transport.');
 for (const [id, label] of [
   ['brief', 'Review Marcus’s brief'],
   ['credentials', 'Check the invitation'],
@@ -396,6 +501,20 @@ add(
   '“What did you expect me to remember?”',
   'Ask once; his answer remains an attributed recollection.',
 );
+add(
+  'marcusReply',
+  'marcus.detail',
+  'marcusReply',
+  'Ask for one detail only the two of you would know',
+  'Hear a specific memory without treating it as verified.',
+);
+add(
+  'marcusReply',
+  'marcus.push',
+  'marcusReply',
+  'Ask who else was there',
+  'Make Marcus name a witness or admit he will not.',
+);
 add('marcusReply', 'marcus.close', 'celeste', 'Let the subject rest');
 for (const [id, label] of [
   ['bluff', '“You were asleep. I was working.”'],
@@ -405,6 +524,21 @@ for (const [id, label] of [
 ])
   add('celeste', 'celeste.' + id, 'celesteReply', label);
 add('celesteReply', 'celeste.close', 'hub', 'Give her a little space and look around');
+add(
+  'celesteReply',
+  'cover.begin',
+  'cover',
+  'Stay with the detail she expects you to remember',
+  'Test the account or manage the pressure before you investigate.',
+);
+for (const [id, label, hint] of [
+  ['test', '“It was at the Marina Room.”', 'Deliberately offer a false location and see whether Celeste corrects you.'],
+  ['bluff', 'Act as if you remember the Blue Orchid', 'A confident response may preserve the cover but creates a specific claim.'],
+  ['partial', 'Admit the memory is incomplete', 'Ask her what mattered to her without claiming the same interpretation.'],
+  ['redirect', 'Turn the conversation back to tonight', 'Decline the private test and keep the social exchange open.'],
+  ['presentation', 'Use your presentation to change the room’s attention', 'Let your chosen approach alter who interrupts and what they assume.'],
+])
+  add('cover', 'cover.' + id, 'hub', label, hint);
 for (const id of ['guest', 'service', 'celeste', 'marcus'] as Lead[]) {
   add(
     'hub',
@@ -412,6 +546,24 @@ for (const id of ['guest', 'service', 'celeste', 'marcus'] as Lead[]) {
     'leadReview',
     leadNames[id],
     'Review the approach before spending one opportunity.',
+    true,
+  );
+  add(
+    'hub',
+    'read.' + id,
+    'leadRead',
+    'Reread: ' + leadNames[id],
+    'No cost and no new observation.',
+    true,
+  );
+}
+for (const id of ['security', 'staff', 'restricted'] as Lead[]) {
+  add(
+    'hub',
+    'lead.' + id,
+    'leadReview',
+    leadNames[id],
+    'Review the approach, visibility and limits before spending one opportunity.',
     true,
   );
   add(
@@ -539,12 +691,22 @@ export function availableMissionChoices(s: GameState) {
       c.node === node &&
       (c.repeat || !m.completed.includes(c.id)) &&
       (c.id !== 'mission.begin' || s.clinic.outcome === 'departed') &&
+      (!c.id.startsWith('home.detail.') ||
+        !m.completed.some((done) => done.startsWith('home.detail.'))) &&
+      (!['home.maya.send', 'home.maya.skip'].includes(c.id) ||
+        !m.completed.some((done) => ['home.maya.send', 'home.maya.skip'].includes(done))) &&
       (!c.id.startsWith('lead.') ||
-        !['guest', 'service', 'celeste', 'marcus'].includes(c.id.split('.')[1]) ||
+        (!['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted'].includes(c.id.split('.')[1])) ||
+        (!['security', 'staff', 'restricted'].includes(c.id.split('.')[1]) || m.completed.includes('home.begin')) &&
         (m.remaining > 0 && !m.leads.includes(c.id.split('.')[1] as Lead))) &&
       (!c.id.startsWith('read.') ||
         c.id === 'read.return' ||
         m.leads.includes(c.id.split('.')[1] as Lead)) &&
+      (!['marcus.detail', 'marcus.push', 'cover.begin'].includes(c.id) ||
+        m.completed.includes('home.begin')) &&
+      (!['marcus.question', 'marcus.detail', 'marcus.push'].includes(c.id) ||
+        !m.completed.includes('home.begin') ||
+        !m.completed.some((done) => ['marcus.question', 'marcus.detail', 'marcus.push'].includes(done))) &&
       (c.id !== 'lead.confirm' ||
         (m.pending !== null && m.remaining > 0 && !m.leads.includes(m.pending))) &&
       (c.id !== 'source.confirm' || m.draft !== null),
@@ -560,17 +722,25 @@ export function reasoningText(s: GameState): string {
   const m = s.mission;
   if (!m.capture) {
     if (m.reasoning === 'supported')
-      return 'The credential or sighting supports this identification, without establishing the purpose of the meeting.';
+      return m.leads.includes('security')
+        ? 'The admission trace, credential or sighting supports this identification, without establishing what happened after entry or the purpose of the meeting.'
+        : 'The credential or sighting supports this identification, without establishing the purpose of the meeting.';
     if (m.reasoning === 'contextual')
-      return 'Celeste’s recollection offers context, but does not place this person at the meeting.';
+      return s.mission.completed.includes('cover.test')
+        ? 'Celeste corrected the detail you deliberately misstated. That gives her recollection a stronger source footing, but it still does not place anyone at the meeting.'
+        : 'Celeste’s recollection offers context, but does not place this person at the meeting.';
     if (m.reasoning === 'unsupported')
       return 'You have named someone without an observation that places them at the meeting.';
     return 'You have withheld a name because you cannot yet justify one.';
   }
   if (m.reasoning === 'supported')
-    return 'Your observations supported naming Benton. A credential or a sighting did not yet prove what the meeting was for.';
+    return m.leads.includes('security')
+      ? 'The admission trace, credential or sighting supported naming Benton. It did not prove what happened after entry or what the meeting was for.'
+      : 'Your observations supported naming Benton. A credential or a sighting did not yet prove what the meeting was for.';
   if (m.reasoning === 'contextual')
-    return 'Celeste’s recollection offered context for Benton, but did not place him at the meeting. The correct name did not make that inference direct evidence.';
+    return s.mission.completed.includes('cover.test')
+      ? 'Celeste corrected the detail you deliberately misstated, improving the footing of her recollection. It still did not place Benton at the meeting; the correct name did not make your inference direct evidence.'
+      : 'Celeste’s recollection offered context for Benton, but did not place him at the meeting. The correct name did not make that inference direct evidence.';
   if (m.reasoning === 'unsupported')
     return m.source === 'benton'
       ? 'You named Benton without evidence placing him there. Being right did not make the guess well supported.'
@@ -637,6 +807,7 @@ export function missionBlocks(s: GameState): Block[] {
             ' will remain.',
         ),
         ...(m.leads.length === 0 ? [p(approach(s, m.pending))] : []),
+        ...(m.completed.includes('home.begin') ? [p(leadCost(m.pending))] : []),
       );
     else if (phase === 'leadResult')
       blocks.push(
@@ -700,14 +871,29 @@ export function approach(s: GameState, id: Lead): string {
   if (outfit === 'executive')
     return id === 'guest'
       ? 'You can ask reception a precise professional question. The suit makes it easier to begin; it also invites questions about your authority.'
-      : 'The suit gives you a reason to move purposefully, but someone may expect you to explain what business brings you there.';
+      : id === 'security'
+        ? 'At reception, a precise professional question can open a limited check. The suit makes it easier to begin; it also invites questions about your authority.'
+        : 'The suit gives you a reason to move purposefully, but someone may expect you to explain what business brings you there.';
   if (outfit === 'socialite')
     return id === 'celeste'
       ? 'Joining Celeste will look like a continuation of the reunion. People already noticed it, and may notice how it ends.'
-      : 'Conversation offers a way across the room. The attention that makes an introduction easy also makes your movements easier to remember.';
-  return id === 'service'
+      : id === 'staff'
+        ? 'A social opening lets you ask a server one ordinary question. The attention that makes the approach easy also gives the answer an audience.'
+        : 'Conversation offers a way across the room. The attention that makes an introduction easy also makes your movements easier to remember.';
+  return id === 'service' || id === 'restricted'
     ? 'The understated outfit will not announce the approach. It does not make you staff or give permission to cross a restricted threshold.'
-    : 'You can wait at the edge without drawing the whole room. You will have to speak up to start an exchange; being unobtrusive is not an introduction.';
+    : id === 'security'
+      ? 'You can ask about the public admission record, but the attendant can end the exchange and log that you asked.'
+      : 'You can wait at the edge without drawing the whole room. You will have to speak up to start an exchange; being unobtrusive is not an introduction.';
+}
+function leadCost(id: Lead): string {
+  if (id === 'security') return 'Visibility cost: high. The admission attendant may attach your invitation number to the restricted-table check.';
+  if (id === 'restricted') return 'Visibility cost: high. The gallery attendant will remember the request, and the roster remains closed.';
+  if (id === 'staff') return 'Visibility cost: moderate. A server may repeat your question without being able to verify what it means.';
+  if (id === 'celeste') return 'Visibility cost: personal. Marcus can see that you returned to Celeste, even if he cannot hear the words.';
+  if (id === 'marcus') return 'Visibility cost: low. You can observe from the gathering, but the blank card identifies no one.';
+  if (id === 'service') return 'Visibility cost: moderate. You remain on the public side of the corridor; nearby staff may notice the detour.';
+  return 'Visibility cost: moderate. The attendant controls what you can see and may record the question.';
 }
 function leadReaction(s: GameState, id: Lead): string {
   const reactions = {
@@ -720,6 +906,12 @@ function leadReaction(s: GameState, id: Lead): string {
         'Celeste glances at the severe line of your jacket. “Always working,” she says as you leave. Two nearby guests look up.',
       marcus:
         'The guest asks which firm you represent. You give the name on the invitation, thank her, and move on before the question becomes a conversation.',
+      security:
+        'The attendant closes the audit pane and notes your invitation number. Your question has created a record even though you saw only the public clearance field.',
+      staff:
+        'The server checks whether you are still listening, then returns to the table. She will remember that you asked her to interpret a colleague’s movements.',
+      restricted:
+        'The gallery attendant repeats that the roster is private. Your professional tone gets a clear answer, not a second look at the list.',
     },
     socialite: {
       guest:
@@ -730,6 +922,12 @@ function leadReaction(s: GameState, id: Lead): string {
         'Celeste lifts her glass slightly as you leave. From across the room, it could be the end of an ordinary reunion.',
       marcus:
         'The guest tries to draw you into her circle. Leaving takes a smile, an apology, and another moment in which Marcus could notice where you were looking.',
+      security:
+        'A nearby guest sees you speaking with the admission attendant. The conversation looks harmless, but it joins your face to the restricted table.',
+      staff:
+        'The server answers with a practiced smile, and a guest at her table hears part of your question. The story may travel farther than the fact.',
+      restricted:
+        'The attendant declines to discuss the gallery. A guest nearby assumes you were asking for directions and offers to walk you back.',
     },
     shadow: {
       guest:
@@ -740,6 +938,12 @@ function leadReaction(s: GameState, id: Lead): string {
         'Celeste raises her voice to catch you before you leave. “Evelyn.” You turn back long enough to acknowledge her, and several guests notice the name.',
       marcus:
         'The guest looks at you properly for the first time when you answer. You have to repeat the quiet remark before she lets the conversation end.',
+      security:
+        'The attendant asks you to repeat your name before closing the pane. The request is routine; the access trace is not anonymous.',
+      staff:
+        'The server asks you to speak up, then gives only the part she saw herself. She does not want to be quoted as an authority.',
+      restricted:
+        'The gallery attendant catches your invitation name and confirms the public pass does not clear the private threshold. She will remember that you asked.',
     },
   };
   return reactions[(s.clinic.outfit || 'shadow') as keyof typeof reactions][id];

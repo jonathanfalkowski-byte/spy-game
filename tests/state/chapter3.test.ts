@@ -6,8 +6,19 @@ import { atOffer, endAccepted, evening } from '../day-helpers';
 import { day } from '../day-helpers';
 import { clinic, traverse } from '../clinic-helpers';
 import { runMission } from '../mission-helpers';
+import { sceneBlocks } from '../../src/content/scenes';
 
 describe('Chapter 3 Scene 1 continuation', () => {
+  it('makes the bodily adaptation explicit at the face checkpoint', () => {
+    const state = initialState();
+    state.scene = 'clinic';
+    state.phase = 'face';
+    const text = sceneBlocks(state).map((block) => block.text).join(' ');
+    expect(text).toContain('shoulders sit differently');
+    expect(text).toContain('hips and thighs');
+    expect(text).toContain('reshaped for the profile');
+  });
+
   it('continues only from the accepted day-zero endpoint and preserves the prefix', () => {
     const end = acceptedDayEndpoint();
     expect(nodeOf(end)).toBe('mission.complete');

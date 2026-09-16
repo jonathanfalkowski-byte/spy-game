@@ -10,6 +10,9 @@ export const mission = (s: GameState, id: string) => {
 };
 export const missionDefaults: Record<string, string> = {
   complete: 'mission.begin',
+  home: 'home.prepare',
+  homePresentation: 'home.presentationDone',
+  homeContact: 'home.leave',
   car: 'car.arrive',
   arrival: 'arrival.enter',
   reception: 'reception.enter',
@@ -19,6 +22,7 @@ export const missionDefaults: Record<string, string> = {
   marcusReply: 'marcus.close',
   celeste: 'celeste.boundary',
   celesteReply: 'celeste.close',
+  cover: 'cover.redirect',
   hub: 'assess.begin',
   leadReview: 'lead.confirm',
   leadResult: 'lead.return',
@@ -49,7 +53,12 @@ export function runMission(
   for (let i = 0; i < 100; i++) {
     visit?.(s);
     if (s.mission.outcome || (s.scene === 'mission' && s.phase === until)) return s;
-    s = mission(s, plan[s.phase]?.shift() || missionDefaults[s.phase]);
+    const planned = plan[s.phase]?.shift();
+    const defaultChoice =
+      s.phase === 'celesteReply' && s.mission.completed.includes('home.begin')
+        ? 'cover.begin'
+        : missionDefaults[s.phase];
+    s = mission(s, planned || defaultChoice);
   }
   throw Error('Mission route exceeded bound');
 }

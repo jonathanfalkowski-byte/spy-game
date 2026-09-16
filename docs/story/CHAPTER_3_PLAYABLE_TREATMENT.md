@@ -14,6 +14,12 @@ Based on approved dark-power direction committed as `c714347` and the Marcus can
 - Phone monitoring stays active. An outgoing message may be accessible to Axiom; a specific Sloane reaction still needs delivery to her. Muted/closed earpiece is not an unmonitored phone. A public post does not update all NPCs at once.
 - Refusal routes are real. Declining the Helix engagement before its meeting opens the substantial Voss records-review branch in slots 7–9. No invitation response means no invented willingness in Marcus's record. Each main branch has twelve scene slots; refusing both opportunities can end sooner, but Helix refusal alone no longer removes the central gameplay. Refusing only the reception after completing the executive meeting stays on the Helix branch; the paid meeting and Marcus exchange already provide its substantive content.
 
+## Continuity note — post-transformation home
+
+The proposed **Home in Another Skin** sequence now sits between Stage One departure and the Glass House. It is a distinct apartment visit and should be treated as established prior experience when this chapter begins. Chapter 3 Scene 1 remains the later return after Evelynn has operated publicly as Evelynn; it should not replay the first home-entry recognition, first mirror encounter, first wardrobe selection or first Maya contact.
+
+Later callbacks may refer to a home inspection, voluntary accessory, selected presentation, actual message or missed arrangement only when the player made that choice. The prior sequence does not establish identity acceptance, Maya's knowledge of the Adrian/Evelynn relationship, or Sloane's access to a private thought. Existing phone monitoring, employment status, housing deadline, evidence custody and clinic progress continue unchanged.
+
 ## Scene 1 — `c3.home`: Home After Glass House
 
 **Location / time:** waiting car → residential entrance → apartment; day one, after 19:28. Allow time for the actual journey.

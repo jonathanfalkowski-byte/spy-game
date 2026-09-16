@@ -1,6 +1,10 @@
 import { z } from 'zod';
 
 export const nodeIds = [
+  'mission.home',
+  'mission.homePresentation',
+  'mission.homeContact',
+  'mission.cover',
   'mission.car',
   'mission.arrival',
   'mission.reception',

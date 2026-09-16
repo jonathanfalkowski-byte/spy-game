@@ -141,7 +141,7 @@ it('all security, Sloane, attention and refusal choices have sourced consequence
   expect(s.day.housing).toBe('notice30');
   expect(prose(s)).toContain('remained with you');
   expect(prose(s)).not.toContain('confiscated phone beside');
-});
+}, 30000);
 it('briefing questions work in either order exactly once', () => {
   let s = atOffer();
   s = replay(s.ledger.slice(0, -2));

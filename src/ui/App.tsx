@@ -193,7 +193,10 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               </h2>
               <ol className="progress" aria-label="Milestone progress">
                 {(state.scene === 'mission'
-                  ? missionSections.map((s, i) => ['mission' + i, s.label])
+                  ? (state.mission.completed.includes('home.begin')
+                      ? missionSections
+                      : missionSections.slice(1)
+                    ).map((s, i) => ['mission' + i, s.label])
                   : state.scene === 'clinic'
                     ? clinicSections.map((s, i) => ['clinic' + i, s.label])
                     : [
@@ -219,7 +222,12 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     aria-current={
                       state.scene === id ||
                       (state.scene === 'mission' &&
-                        id === 'mission' + missionSection(state.phase)) ||
+                        id ===
+                          'mission' +
+                            missionSection(
+                              state.phase,
+                              state.mission.completed.includes('home.begin'),
+                            )) ||
                       (state.scene === 'clinic' && id === 'clinic' + clinicSection(state.phase)) ||
                       (state.scene === 'commute' && id === 'office') ||
                       (['release', 'refusal'].includes(state.scene) && id === 'sloane') ||
@@ -529,7 +537,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               <footer className="story-footer">
                 EVE /{' '}
                 {state.scene === 'mission'
-                  ? 'GLASS HOUSE'
+                  ? state.phase === 'home'
+                    ? 'HOME RESET'
+                    : 'GLASS HOUSE'
                   : state.scene === 'clinic'
                     ? 'SUBLEVEL 17'
                     : 'ADRIAN’S DAY'}

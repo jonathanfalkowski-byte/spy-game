@@ -32,6 +32,170 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
   };
   if (!c.repeat) add(m.completed, id);
   s.history.push({ node: original, blocks: [{ kind: 'notice', text: 'Your choice: ' + c.label }] });
+  if (id === 'home.begin') {
+    record(
+      'mission.home.entry',
+      'fact',
+      'Evelynn returned to Adrian’s apartment after Stage One and before the Glass House.',
+      'Residential entry and Sloane’s reset-window instruction',
+    );
+  }
+  if (id === 'home.prepare') {
+    record(
+      'mission.home.delivery',
+      'fact',
+      'An Axiom-prepared garment case was present in the apartment before the Glass House. Who arranged access is unknown.',
+      'Evelynn’s observation beside the wardrobe',
+    );
+  }
+  if (id === 'home.mirror') {
+    response.push(
+      t(
+        'The mirror catches my face, then the body beneath it: my shoulders set differently, my waist drawn in, my hips and thighs carrying a balance I have not learned to trust yet. When I turn, the change moves with me. I can look closely without deciding what any of it means.',
+      ),
+    );
+    record(
+      'mission.home.mirror',
+      'fact',
+      'Evelynn inspected the apartment mirror after Stage One without selecting an identity interpretation.',
+      'Evelynn’s private apartment observation',
+    );
+  }
+  if (id === 'home.clothes') {
+    response.push(
+      p(
+        'Adrian’s shirt is exactly where it was left. Across your changed shoulders it hangs loose; at the waist and hips it pulls against a shape the shirt was never cut to follow. You hold it there for a moment, then hang it back. The old fit has not answered a larger question.',
+      ),
+    );
+    record(
+      'mission.home.clothes',
+      'fact',
+      'Evelynn handled Adrian’s clothing and observed the changed fit without treating the clothing as a verdict.',
+      'Evelynn’s apartment observation',
+    );
+  }
+  if (id === 'home.evidence') {
+    response.push(
+      p(
+        s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn'
+          ? 'The retained material is still where it was put. The photograph remains on the monitored phone; the token remains a separate object. Nothing in the apartment enlarges what either item proves.'
+          : 'There is no independently retained Glass House item to examine here. Sloane’s recording and the mission account remain outside your personal custody.',
+      ),
+    );
+    record(
+      'mission.home.evidence',
+      'fact',
+      'Evelynn checked the Glass House material available in her custody without changing its ownership or limits.',
+      'Apartment evidence check',
+    );
+  }
+  if (id === 'home.routine') {
+    response.push(
+      p(
+        'You reach for the glass you always use. The movement is familiar; the angle of your wrist and the distance your voice carries in the small kitchen are not. You set the glass down carefully and let the ordinary task stay ordinary.',
+      ),
+    );
+    record(
+      'mission.home.routine',
+      'fact',
+      'Evelynn tried a familiar home routine and noticed a changed physical habit.',
+      'Evelynn’s private apartment observation',
+    );
+  }
+  if (id.startsWith('home.outfit.')) {
+    const outfit = id.split('.')[2] as 'executive' | 'socialite' | 'shadow';
+    s.clinic.outfit = outfit;
+    const responseText = {
+      executive: 'The tailored jacket sits cleanly across the shoulders. It gives the room an answer before anyone asks a question.',
+      socialite: 'The evening fabric catches the apartment light differently from the clinic mirror. It will make an entrance easier to notice and harder to forget.',
+      shadow: 'The simple lines leave fewer details to remember. They also make it less natural to begin a conversation without purpose.',
+    }[outfit];
+    response.push(t(responseText));
+    add(m.completed, 'home.presentation.' + outfit);
+    record(
+      'mission.home.presentation.' + outfit,
+      'fact',
+      'Evelynn privately previewed the ' + outfit + ' presentation before confirming the Glass House outfit.',
+      'Evelynn’s apartment preparation',
+    );
+  }
+  if (id.startsWith('home.detail.')) {
+    const detail = id.split('.')[2];
+    const text =
+      detail === 'watch'
+        ? 'The old watch still fits. You fasten it over the altered wrist and feel its familiar weight settle there.'
+        : detail === 'earrings'
+          ? 'The black-stone earrings catch the light when you turn your head. No one asked you to add them.'
+          : 'You leave the extra detail off. The case closes without requiring an explanation.';
+    response.push(p(text));
+    record(
+      'mission.home.detail.' + detail,
+      'fact',
+      'Evelynn ' + (detail === 'none' ? 'left the optional accessory off' : 'chose the optional ' + detail + ' detail') + ' before the Glass House.',
+      'Evelynn’s voluntary apartment preparation',
+    );
+  }
+  if (id === 'home.presentationDone') {
+    const outfit = s.clinic.outfit || 'shadow';
+    response.push(
+      q('You · earpiece', 'Final presentation: ' + outfit + '.'),
+      q('Sloane · earpiece', 'Received. I will account for that approach. The invitation still controls where it gets you.'),
+    );
+    record(
+      'mission.home.presentation.final',
+      'fact',
+      'Evelynn confirmed the ' + outfit + ' presentation for the Glass House.',
+      'Evelynn’s explicit earpiece confirmation',
+    );
+    know('sloane', 'Final Glass House presentation: ' + outfit, 'Evelynn’s explicit earpiece confirmation');
+  }
+  if (id === 'home.maya') {
+    const mayaText =
+      s.day.closure === 'checkin'
+        ? s.clinic.completed.includes('morning.answer')
+          ? 'The 06:30 check-in happened before the appointment. You answered with a short warning that you would be hard to reach; there is no second call arranged. You can reread the exchange, send a bounded update, or leave the thread alone.'
+          : 'The 06:30 check-in happened before the appointment, but you did not answer. No one arranged a second call. You can reread the thread, send a bounded update, or leave it alone.'
+        : s.clinic.contact === 'identity'
+          ? 'Your earlier recovery message already told Maya about the adaptation and the proposed identity. Reading it again does not give her a new fact or create a new promise.'
+          : 'There is no new Maya arrangement to act on here. You can read the existing thread without turning silence into a message.';
+    response.push(p(mayaText));
+    record(
+      'mission.home.maya',
+      'fact',
+      'Evelynn reviewed the existing Maya thread before the Glass House without inventing new knowledge for either person.',
+      'Existing Maya conversation on the monitored phone',
+    );
+  }
+  if (id === 'home.maya.send') {
+    const text =
+      s.clinic.contact === 'identity'
+        ? 'Home is quieter than the clinic. I keep catching the new voice in the room. I may message again after the evening, but I cannot promise when.'
+        : 'I made it home for a few minutes before the evening engagement. I may be hard to reach, but I wanted you to know I got back.';
+    response.push(q('You · message to Maya', text), p('Sent from the monitored phone. Maya has not replied yet.'));
+    know('maya', text, 'Evelynn’s sent message before the Glass House');
+    s.day.exposure.push({ key: 'glass_house_home_message', source: 'Message sent on a monitored phone; whether anyone accessed it is unknown: ' + text, event: s.revision });
+    record('mission.home.maya-message', 'fact', text, 'Evelynn’s delivered message to Maya through the monitored phone');
+  }
+  if (id === 'home.maya.skip')
+    record(
+      'mission.home.maya-silence',
+      'fact',
+      'Evelynn left Maya’s existing thread untouched before leaving for the Glass House.',
+      'Evelynn’s choice not to send a new message',
+    );
+  if (id === 'home.leave') {
+    const outfit = s.clinic.outfit || 'shadow';
+    response.push(
+      p('You collect the invitation, monitored phone and restricted badge. The old jacket remains in the apartment.'),
+      p('You turn the key and check that it caught. The apartment is unchanged; the unfamiliar weight and balance leave with you.'),
+    );
+    record(
+      'mission.home.departure',
+      'fact',
+      'Evelynn left Adrian’s apartment for the Glass House with the ' + outfit + ' presentation.',
+      'Evelynn’s completed home preparation',
+    );
+  }
   if (id === 'review.brief')
     response.push(
       p(
@@ -190,6 +354,71 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
       'Her spoken question beside the windows',
     );
   }
+  if (id === 'marcus.detail') {
+    response.push(
+      q('You', 'Give me one detail only the two of us would know.'),
+      q('Marcus', 'You left your gloves in my car and made me bring them back the next morning. You were angry that I remembered.'),
+      p('It is specific enough to feel personal and ordinary enough to be true. You cannot verify it. Marcus waits to see what the memory does to your face.'),
+    );
+    m.scrutiny++;
+    record('mission.marcus-detail', 'claim', 'Marcus claims Evelynn left gloves in his car after a Singapore evening and collected them the next morning.', 'Marcus’s specific recollection beside the windows');
+    know('marcus', 'Evelynn asked for a private detail from Singapore', 'Her spoken question beside the windows');
+    know('marcus', 'Evelynn is testing how much of his memory she can trust', 'Marcus interprets her request; not verified', true);
+  }
+  if (id === 'marcus.push') {
+    response.push(
+      q('You', 'Who else was there?'),
+      q('Marcus', 'Enough people to make me careful now. I will not make them part of this conversation.'),
+      p('He gives you no name. The refusal may protect someone, preserve his own position, or simply end a question he does not want to answer.'),
+    );
+    m.scrutiny += 2;
+    record('mission.marcus-witness', 'claim', 'Marcus says other people were present in Singapore but refuses to identify them.', 'Marcus’s answer to Evelynn’s direct question');
+    know('marcus', 'Evelynn asked who else was present in Singapore', 'Her spoken question beside the windows');
+    know('marcus', 'Evelynn is pressing for names', 'Marcus interprets her follow-up; not verified', true);
+  }
+  if (id.startsWith('cover.')) {
+    const coverReply: Record<string, string> = {
+      test: 'No. The Blue Orchid. You corrected me when I called it the Marina Room.',
+      bluff: 'You remember the name, at least. I thought you would deny knowing the place at all.',
+      partial: 'It was about Halcyon. You asked who could use the foundation’s name without appearing on its invitations.',
+      redirect: 'Tonight, then. Marcus wants everyone to believe the table is an ordinary part of the reception.',
+    };
+    const line = coverReply[value];
+    if (value === 'test') {
+      response.push(q('You', 'It was at the Marina Room.'), q('Celeste', line), p('She corrects the location without hesitation. That makes this part of her recollection more credible; it still does not prove why she remembers it or what she wants from you.'));
+      m.scrutiny++;
+      record('mission.cover.correction', 'claim', 'Celeste corrected Evelynn’s deliberately false Marina Room detail with the Blue Orchid.', 'Celeste’s direct correction during a public conversation');
+      know('celeste', 'Evelynn offered a deliberately false location to test her recollection', 'Celeste interprets the exchange; not verified', true);
+    } else if (value === 'bluff') {
+      response.push(q('You', 'The Blue Orchid. I remember.'), q('Celeste', line), p('The reply makes room for your claim without confirming what you remember. A guest close by notices your confidence, not the truth behind it.'));
+      m.scrutiny++;
+      record('mission.cover.bluff', 'fact', 'Evelynn said she remembered the Blue Orchid, though she has no independent memory of it.', 'Evelynn’s spoken claim to Celeste');
+      know('celeste', 'Evelynn says she remembers the Blue Orchid', 'Evelynn’s spoken claim');
+      know('celeste', 'Evelynn may be trying to preserve the appearance of shared memory', 'Celeste interprets the exchange; not verified', true);
+    } else if (value === 'partial') {
+      response.push(q('You', 'I have the name, not the conversation. What mattered to you?'), q('Celeste', line), p('She offers the remembered subject, not proof that her phrasing is exact. Marcus remains near enough to see that the private conversation continued.'));
+      record('mission.cover.halcyon', 'claim', 'Celeste says Evelynn asked about people using the Halcyon Foundation’s name outside its invitations.', 'Celeste’s account during the follow-up');
+      know('celeste', 'Evelynn asked what Celeste remembers about Singapore', 'Evelynn’s spoken question');
+      know('marcus', 'Evelynn continued a private conversation with Celeste', 'Visible proximity at the central table');
+    } else if (value === 'redirect') {
+      response.push(q('You', 'Then tell me whether tonight’s table is part of the reception.'), q('Celeste', line), p('She answers without offering access or a name. You return to the room with the question still open.'));
+      record('mission.cover.redirect', 'fact', 'Evelynn redirected Celeste’s private question toward the event.', 'Evelynn’s spoken response in the gathering');
+      record('mission.cover.redirect-table', 'claim', 'Celeste says Marcus wants guests to regard the private table as an ordinary part of the reception.', 'Celeste’s reply during the follow-up');
+      know('celeste', 'Evelynn redirected the conversation toward tonight', 'Evelynn’s spoken question');
+    } else {
+      const visibleAction =
+        s.clinic.outfit === 'executive'
+          ? 'You make the question sound like a scheduling correction. Two nearby guests turn toward the exchange.'
+          : s.clinic.outfit === 'socialite'
+            ? 'You lift your glass and give the interruption the shape of a toast. Celeste accepts the graceful exit and follows your lead back toward the room.'
+            : 'You step aside as a server passes and let the crowd close the space between you. Celeste sees the retreat, but does not follow.';
+      response.push(q('You', 'We can leave it there.'), p(visibleAction), q('Celeste', 'All right. We can leave it there.'), p('The conversation ends in public, without either of you explaining what was left unsaid.'));
+      if (s.clinic.outfit === 'executive') m.scrutiny++;
+      know('celeste', 'Evelynn used the room’s attention to end the private subject', 'Celeste observes the public redirection', true);
+      know('marcus', 'Evelynn and Celeste ended their private exchange in public', 'Visible exchange near the central table');
+      record('mission.cover.presentation', 'fact', 'Evelynn used her presentation to redirect Celeste’s question.', 'Public interaction observed at the gathering');
+    }
+  }
   if (id.startsWith('celeste.') && value !== 'close') {
     m.celeste = value as MissionState['celeste'];
     if (value === 'memory' || value === 'redirect') m.scrutiny++;
@@ -247,7 +476,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
         'Celeste’s interrupted reunion; not the full investigative recollection',
       );
   }
-  if (id.startsWith('lead.') && ['guest', 'service', 'celeste', 'marcus'].includes(value))
+  if (id.startsWith('lead.') && ['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted'].includes(value))
     m.pending = value as Lead;
   if (id.startsWith('read.') && value !== 'return') m.pending = value as Lead;
   if (id === 'lead.confirm') {
@@ -260,6 +489,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
       (s.clinic.outfit === 'socialite' && lead === 'celeste') ||
       (s.clinic.outfit === 'shadow' && lead === 'service');
     if (!compatible) m.scrutiny++;
+    if (lead === 'security' || lead === 'restricted') m.scrutiny += 2;
     record('mission.lead.' + lead, f.layer, f.text, f.source);
     if (lead === 'celeste')
       know(
@@ -278,7 +508,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
         ? 'unresolved'
         : m.source !== 'benton'
           ? 'unsupported'
-          : m.leads.some((x) => x === 'guest' || x === 'service')
+          : m.leads.some((x) => x === 'guest' || x === 'service' || x === 'security')
             ? 'supported'
             : m.leads.includes('celeste')
               ? 'contextual'

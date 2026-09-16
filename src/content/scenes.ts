@@ -10,6 +10,7 @@ import { choiceById } from './dialogue';
 import type { GameState } from '../state/schema';
 import { dayScenes, dayBlocks } from './day';
 import { missionScenes, missionBlocks } from './mission';
+import { missionPresentation } from './mission-presentation';
 import { clinicScenes, clinicBlocks } from './clinic';
 import { chapter3Scenes } from './chapter3';
 
@@ -292,8 +293,22 @@ const responseSlot: Partial<Record<NodeId, string>> = {
 export function sceneBlocks(state: GameState): Block[] {
   const node = `${state.scene}.${state.phase}` as NodeId;
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
-  if (state.scene === 'mission') return missionBlocks(state);
-  if (state.scene === 'clinic') return clinicBlocks(state);
+  if (state.scene === 'mission')
+    return state.mission.completed.includes('home.begin')
+      ? [...missionBlocks(state), ...missionPresentation(state)]
+      : missionBlocks(state);
+  if (state.scene === 'clinic') {
+    const content = clinicBlocks(state);
+    if (node === 'clinic.face')
+      content.splice(
+        2,
+        0,
+        p(
+          'The face is not the only thing that has changed. Beneath the clinic garment, your shoulders sit differently and your waist draws inward; the new balance runs through your hips and thighs. The fabric rests against a body that has been reshaped for the profile, and standing will mean learning those proportions instead of pretending they are a costume.',
+        ),
+      );
+    return content;
+  }
   const blocks: Block[] = [];
   const slot = responseSlot[node];
   const choice = slot ? choiceById[state.choices[slot]] : undefined;

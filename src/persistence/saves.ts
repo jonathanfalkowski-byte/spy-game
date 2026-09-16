@@ -23,7 +23,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10)]), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
@@ -191,7 +191,8 @@ export function decodeSave(raw: string): GameState {
   return reconstructed;
 }
 export function encodeSave(state: GameState) {
-  const value = SaveSchema.parse({ schemaVersion: 5, contentVersion: state.scene === 'chapter3' ? 10 : 9, state });
+  const contentVersion = state.mission.completed.includes('home.begin') ? 11 : state.scene === 'chapter3' ? 10 : 9;
+  const value = SaveSchema.parse({ schemaVersion: 5, contentVersion, state });
   const raw = JSON.stringify(value);
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)
     throw new Error('Save exceeds the save limit. Download a backup.');

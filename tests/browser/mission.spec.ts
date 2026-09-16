@@ -68,6 +68,29 @@ test('original departed save remains a checkpoint until an explicit continuation
   ).toBe(9);
 });
 
+test('post-transformation apartment reset precedes the Glass House and preserves custody', async ({
+  page,
+}) => {
+  await seed(page);
+  await click(page, 'home.begin');
+  await expect(page.getByRole('heading', { name: 'Home in another skin' })).toBeVisible();
+  await expect(page.locator('#story')).toContainText('hips and thighs carry a balance');
+  await expect(page.locator('#story')).toContainText('A sealed garment case waits beside the wardrobe');
+  for (const id of ['home.mirror', 'home.clothes', 'home.evidence']) await click(page, id);
+  await click(page, 'home.prepare');
+  await click(page, 'home.outfit.socialite');
+  await click(page, 'home.detail.earrings');
+  await click(page, 'home.presentationDone');
+  await click(page, 'home.maya');
+  await click(page, 'home.maya.send');
+  await click(page, 'home.leave');
+  await expect(page.getByRole('heading', { name: 'The city goes on' })).toBeVisible();
+  const saved = await current(page);
+  expect(saved.phase).toBe('car');
+  expect(saved.mission.completed).toContain('home.begin');
+  expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(11);
+});
+
 test('full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological', async ({
   page,
 }, info) => {
@@ -75,7 +98,12 @@ test('full operation with two leads reaches the garage, reloads every phase, and
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await seed(page);
-  await click(page, 'mission.begin');
+  await click(page, 'home.begin');
+  await click(page, 'home.prepare');
+  await click(page, 'home.outfit.executive');
+  await click(page, 'home.presentationDone');
+  await click(page, 'home.maya.skip');
+  await click(page, 'home.leave');
   await click(page, 'review.credentials');
   await click(page, 'review.maya');
   const exchanges = page.locator('[data-clinic-exchange]');
@@ -91,7 +119,11 @@ test('full operation with two leads reaches the garage, reloads every phase, and
     const id =
       s.phase === 'hub' && leads < 2
         ? ['lead.guest', 'lead.celeste'][leads++]
-        : missionDefaults[s.phase];
+        : s.phase === 'celesteReply' && s.mission.completed.includes('home.begin')
+          ? 'cover.begin'
+          : s.phase === 'cover'
+            ? 'cover.test'
+            : missionDefaults[s.phase];
     await click(page, id);
     await page.reload();
     await expect(page.getByText('We couldn’t read this save.')).toHaveCount(0);
@@ -99,6 +131,7 @@ test('full operation with two leads reaches the garage, reloads every phase, and
   const end = await current(page);
   expect(end.mission.capture?.quality).toBe('substantive');
   expect(end.mission.outcome).toBe('complete');
+  expect(end.mission.completed).toContain('cover.test');
   await expect(page.getByRole('heading', { name: 'The Glass House is behind you' })).toBeVisible();
   await expect(page.locator('.ending-summary')).toContainText('Sloane');
   await expect(page.getByRole('button', { name: 'Download save backup' })).toBeVisible();
