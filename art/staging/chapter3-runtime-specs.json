@@ -1,0 +1,324 @@
+[
+  {
+    "spec": {
+      "assetId": "c3-runtime-voss",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.voss",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "voss"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "editSources": [
+        "eve-c3-voss-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-rook",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.rook",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-sender-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-invitation",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.invitation",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-helix-contact-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-verifyoffer",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.verifyOffer",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-verify-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-executive",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.executive",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "julian-mercer"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Julian Mercer is 49, Helix Group COO; introduction implies no attraction, romance, coercion or dependency.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-executive-v1",
+        "eve-cast-executive-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-reception",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.reception",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "julian-mercer"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Julian Mercer is 49, Helix Group COO; introduction implies no attraction, romance, coercion or dependency.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-cast-executive-v1"
+      ],
+      "editSources": [
+        "eve-c3-seen-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-marcusrecord",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.marcusRecord",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "marcus"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "editSources": [
+        "eve-c3-marcus-record-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-institutional",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.institutional",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "voss"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "editSources": [
+        "eve-c3-records-entry-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-reviewqualification",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.reviewQualification",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "voss"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-records-power-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-truths",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.truths",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "editSources": [
+        "eve-c3-disclosures-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-calendar",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.calendar",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-commit-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "c3-runtime-departure",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "chapter3.departure",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "intendedUse": "Runtime planning only; existing candidate requires scene-specific continuity review before production use.",
+      "continuityRequirements": [
+        "Preserve Evelynn identity, approved apartment geography where applicable, and outfit continuity.",
+        "Depict only participants and information available in this scene.",
+        "No extra image generation or automatic promotion."
+      ],
+      "stagingReferences": [
+        "eve-c3-ending-v1"
+      ]
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  }
+]
