@@ -1,0 +1,103 @@
+{
+  "entry": {
+    "key": "scene-wardrobe-executive",
+    "kind": "scene",
+    "title": "Preparing for Glass House — Executive",
+    "concept": false,
+    "sources": [
+      "src/content/clinic.ts wardrobe and outfitDraft options",
+      "Owner correction: correct garment per choice, realistic scale and reachable closet",
+      "Owner correction: remove duplicate suit from closet"
+    ],
+    "sourceNodes": [
+      "clinic.wardrobe"
+    ],
+    "guard": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+    "references": [
+      {
+        "assetId": "eve-bg-wardrobe-v1",
+        "purpose": "location layout"
+      },
+      {
+        "assetId": "evelynn-canon-three-quarter-v1",
+        "purpose": "evelynn identity"
+      }
+    ],
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-scene-wardrobe-executive-v1",
+      "assetType": "scene-cg",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "stagingReferences": [
+        "eve-bg-wardrobe-v1"
+      ],
+      "sceneId": "clinic.wardrobe",
+      "locationId": "wardrobe",
+      "pose": "Standing immediately beside wardrobe, holding executive garment on hanger with naturally bent arm; full figure and feet visible.",
+      "cameraFraming": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her",
+      "cameraAngle": "Eye-level observational composition",
+      "lighting": "Warm flattering but restrained practical light",
+      "mood": "Controlled adult espionage tension, subtle facial acting",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Staged authored-scene keyframe with branch guard",
+      "notes": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+      "presentationVariant": "executive"
+    },
+    "direction": "Correct the wardrobe inventory from Reference 1. REMOVE THE BLACK JACKET AT THE FAR LEFT OF THE CLOSET. Replace that hanging jacket with ONE simple knee-length charcoal cocktail dress with modest neckline. Keep ONE long black evening gown in the center. Exactly TWO garments remain hanging on the rail: cocktail dress and evening gown. NO suit, blazer, trousers or jacket remains on the rail. The ONLY tailored business suit in the entire image is the single charcoal blazer and matching trousers on ONE hanger held by Evelynn. Adult Evelynn from Reference 2 is wearing an opaque ivory tied cotton bathrobe and slippers. Full figure with feet grounded, natural adult scale, standing immediately beside closet, within 30cm of rail. She holds the SUIT hanger in her right hand at shoulder height and supports that same suit with her left hand. Her elbow bends naturally. Closet taller than her; show headroom and floor beneath feet. Preserve recognizable face, brunette updo, warm vanity lighting, neutral room layout, clean ink linework and semi-cel illustration style. No tactical clothing. Three outfits TOTAL: two dresses on rail plus ONE suit in her hands. Eye-level full-figure 16:9 view, believable perspective."
+  },
+  "request": {
+    "components": {
+      "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+      "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+      "SCENE": "Correct the wardrobe inventory from Reference 1. REMOVE THE BLACK JACKET AT THE FAR LEFT OF THE CLOSET. Replace that hanging jacket with ONE simple knee-length charcoal cocktail dress with modest neckline. Keep ONE long black evening gown in the center. Exactly TWO garments remain hanging on the rail: cocktail dress and evening gown. NO suit, blazer, trousers or jacket remains on the rail. The ONLY tailored business suit in the entire image is the single charcoal blazer and matching trousers on ONE hanger held by Evelynn. Adult Evelynn from Reference 2 is wearing an opaque ivory tied cotton bathrobe and slippers. Full figure with feet grounded, natural adult scale, standing immediately beside closet, within 30cm of rail. She holds the SUIT hanger in her right hand at shoulder height and supports that same suit with her left hand. Her elbow bends naturally. Closet taller than her; show headroom and floor beneath feet. Preserve recognizable face, brunette updo, warm vanity lighting, neutral room layout, clean ink linework and semi-cel illustration style. No tactical clothing. Three outfits TOTAL: two dresses on rail plus ONE suit in her hands. Eye-level full-figure 16:9 view, believable perspective.",
+      "CAMERA": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition",
+      "LIGHTING": "Warm flattering but restrained practical light",
+      "CONTINUITY": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+    },
+    "settings": {
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "rewrite_prompt": false
+    },
+    "sourceReferences": [
+      {
+        "assetId": "eve-bg-wardrobe-v1",
+        "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+      },
+      {
+        "assetId": "evelynn-canon-three-quarter-v1",
+        "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+      }
+    ],
+    "inputs": {
+      "image_assets": [
+        "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+        "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+      ],
+      "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Correct the wardrobe inventory from Reference 1. REMOVE THE BLACK JACKET AT THE FAR LEFT OF THE CLOSET. Replace that hanging jacket with ONE simple knee-length charcoal cocktail dress with modest neckline. Keep ONE long black evening gown in the center. Exactly TWO garments remain hanging on the rail: cocktail dress and evening gown. NO suit, blazer, trousers or jacket remains on the rail. The ONLY tailored business suit in the entire image is the single charcoal blazer and matching trousers on ONE hanger held by Evelynn. Adult Evelynn from Reference 2 is wearing an opaque ivory tied cotton bathrobe and slippers. Full figure with feet grounded, natural adult scale, standing immediately beside closet, within 30cm of rail. She holds the SUIT hanger in her right hand at shoulder height and supports that same suit with her left hand. Her elbow bends naturally. Closet taller than her; show headroom and floor beneath feet. Preserve recognizable face, brunette updo, warm vanity lighting, neutral room layout, clean ink linework and semi-cel illustration style. No tactical clothing. Three outfits TOTAL: two dresses on rail plus ONE suit in her hands. Eye-level full-figure 16:9 view, believable perspective.\nCAMERA: Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+      "model": "SEEDREAM_5",
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "rewrite_prompt": false
+    }
+  }
+}

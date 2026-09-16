@@ -1971,7 +1971,8 @@
     "concept": false,
     "sources": [
       "src/content/clinic.ts wardrobe and outfitDraft options",
-      "Owner correction: correct garment per choice, realistic scale and reachable closet"
+      "Owner correction: correct garment per choice, realistic scale and reachable closet",
+      "Owner correction: remove duplicate suit from closet"
     ],
     "sourceNodes": [
       "clinic.wardrobe"
@@ -2018,7 +2019,7 @@
       "notes": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
       "presentationVariant": "executive"
     },
-    "direction": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a tailored charcoal business blazer with matching trousers neatly draped over the hanger bar. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket."
+    "direction": "Correct the wardrobe inventory from Reference 1. REMOVE THE BLACK JACKET AT THE FAR LEFT OF THE CLOSET. Replace that hanging jacket with ONE simple knee-length charcoal cocktail dress with modest neckline. Keep ONE long black evening gown in the center. Exactly TWO garments remain hanging on the rail: cocktail dress and evening gown. NO suit, blazer, trousers or jacket remains on the rail. The ONLY tailored business suit in the entire image is the single charcoal blazer and matching trousers on ONE hanger held by Evelynn. Adult Evelynn from Reference 2 is wearing an opaque ivory tied cotton bathrobe and slippers. Full figure with feet grounded, natural adult scale, standing immediately beside closet, within 30cm of rail. She holds the SUIT hanger in her right hand at shoulder height and supports that same suit with her left hand. Her elbow bends naturally. Closet taller than her; show headroom and floor beneath feet. Preserve recognizable face, brunette updo, warm vanity lighting, neutral room layout, clean ink linework and semi-cel illustration style. No tactical clothing. Three outfits TOTAL: two dresses on rail plus ONE suit in her hands. Eye-level full-figure 16:9 view, believable perspective."
   },
   {
     "key": "scene-wardrobe-shadow",

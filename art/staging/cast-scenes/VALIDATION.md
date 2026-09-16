@@ -1,5 +1,9 @@
 # Pack validation — 2026-09-16
 
+## Executive duplicate suit correction
+
+The selected Executive image now contains exactly one suit held by Evelynn, with the evening gown and plain cocktail dress on the rail. The duplicate-suit candidate is archived as REVISE. Corrected PNG measured 1920 × 1080; hash and four pack tests passed. Current totals: 65 selected images, 69 generated originals including four archived candidates, 69 ledger-confirmed credits. This correction cost 1 credit. Earlier validation sections are historical.
+
 ## Three wardrobe-choice variants and perspective correction
 
 Verified source options in src/content/clinic.ts: executive (dark suit), socialite (evening dress), shadow (understated cocktail outfit). Three new 1920 × 1080 PNGs show Evelynn in a robe holding the selected garment beside the rail, with feet, contact shadows and a short natural reach visible. The previous oversized robe image is archived with REVISE. Tactical gear was removed from the new scenes. The executive variant retains a spare blazer on the rail, recorded as a minor background refinement.

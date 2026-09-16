@@ -1,6 +1,6 @@
 # EVE cast and scene review
 
-65 selected PNG images: 9 cast designs, 20 empty locations, 21 playable-story keyframes including three wardrobe choices, and 15 future Chapter 3 concepts. 3 earlier candidates retained for audit. Total task charges: 68 ZenCreator credits.
+65 selected PNG images: 9 cast designs, 20 empty locations, 21 playable-story keyframes including three wardrobe choices, and 15 future Chapter 3 concepts. 4 earlier candidates retained for audit. Total task charges: 69 ZenCreator credits.
 
 All new artwork remains staging / pending owner review. PASS is a visual QA recommendation, not canonical or production approval. Future concepts illustrate treatment proposals, not implemented story events. Coverage is a planning map, not a runtime binding.
 
@@ -499,16 +499,6 @@ Correct socialite garment held on a hanger; robe before dressing, feet and floor
 
 **Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
 
-### Preparing for Glass House — Executive — PASS
-
-[Original PNG](eve-scene-wardrobe-executive-v1.png) · eve-scene-wardrobe-executive-v1
-
-Correct executive garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed. A spare blazer remains on the rail; remove it if the background must show exactly one of each outfit.
-
-**Scope / branch restriction:** Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.
-
-**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
-
 ### Preparing for Glass House — Shadow — PASS
 
 [Original PNG](eve-scene-wardrobe-shadow-v1.png) · eve-scene-wardrobe-shadow-v1
@@ -518,6 +508,16 @@ Correct shadow garment held on a hanger; robe before dressing, feet and floor co
 **Scope / branch restriction:** Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches.
 
 **Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
+
+### Preparing for Glass House — Executive — PASS
+
+[Original PNG](eve-scene-wardrobe-executive-v1.png) · eve-scene-wardrobe-executive-v1
+
+Exactly one tailored suit, held by Evelynn; evening gown and understated cocktail dress remain on rail. Duplicate jacket removed. Robe, recognizable face, short reach and visible floor contact retained.
+
+**Scope / branch restriction:** Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.
+
+**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet; Owner correction: remove duplicate suit from closet
 
 ## Future Chapter 3 concepts
 
@@ -702,3 +702,13 @@ Owner identified incorrect jacket reach and oversized foreground figure with inc
 **Scope / branch restriction:** Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established.
 
 **Source:** src/content/clinic.ts; Owner correction 2026-09-16: regular clothes or bathrobe before putting on the dress
+
+### Preparing for Glass House — Executive — REVISE
+
+[Original PNG](eve-scene-wardrobe-executive-duplicate-v1.png) · eve-scene-wardrobe-executive-v1
+
+Duplicate suit on rail; superseded by owner-requested correction.
+
+**Scope / branch restriction:** Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.
+
+**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
