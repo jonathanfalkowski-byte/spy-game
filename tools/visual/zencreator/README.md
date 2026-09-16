@@ -24,7 +24,8 @@ Stop after four candidates. The remaining five specs are planning records only.
 `pack.mjs` and `cast-scenes-plan.json` implement the subsequent owner request for the
 remaining cast and scenes, including future Chapter 3 treatment concepts. This does
 not expand the four-view adapter's scope. The pack has 9 cast designs, 20 empty
-locations, 19 playable-story keyframes and 15 future concepts.
+locations, 21 playable-story keyframes (including Executive, Socialite and Shadow
+wardrobe preparation variants) and 15 future concepts.
 
 `buildPackRequest` uses ordered image references: environment first, then characters.
 `buildTextCastRequest` creates distinct cast designs without image conditioning;

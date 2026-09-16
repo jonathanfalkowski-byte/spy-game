@@ -17,14 +17,24 @@ const entries = plan.map((e) => ({
 })) as PackEntry[];
 
 it('validates scoped cast, locations and scene specs without registering proposed story IDs', () => {
-  expect(entries).toHaveLength(63);
-  expect(new Set(entries.map((e) => e.spec.assetId)).size).toBe(63);
+  expect(entries).toHaveLength(65);
+  expect(new Set(entries.map((e) => e.spec.assetId)).size).toBe(65);
   for (const entry of entries) {
     if (entry.concept) expect(entry.spec.sceneId).toBeUndefined();
     for (const id of entry.spec.stagingReferences ?? [])
       expect(entries.some((source) => source.spec.assetId === id)).toBe(true);
   }
   expect(entries.find((e) => e.key === 'cast-executive')!.spec.subjects).toBeUndefined();
+  const wardrobe = entries.filter((e) => e.key.startsWith('scene-wardrobe'));
+  expect(wardrobe.map((e) => e.spec.presentationVariant).sort()).toEqual([
+    'executive',
+    'shadow',
+    'socialite',
+  ]);
+  for (const entry of wardrobe) {
+    expect(entry.spec.sceneId).toBe('clinic.wardrobe');
+    expect(entry.guard).toContain('outfitDraft ' + entry.spec.presentationVariant);
+  }
 });
 
 it('builds ordered provisional references and hardcodes staging rather than trusting provider authority', () => {

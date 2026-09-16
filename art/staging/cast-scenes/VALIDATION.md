@@ -1,5 +1,11 @@
 # Pack validation — 2026-09-16
 
+## Three wardrobe-choice variants and perspective correction
+
+Verified source options in src/content/clinic.ts: executive (dark suit), socialite (evening dress), shadow (understated cocktail outfit). Three new 1920 × 1080 PNGs show Evelynn in a robe holding the selected garment beside the rail, with feet, contact shadows and a short natural reach visible. The previous oversized robe image is archived with REVISE. Tactical gear was removed from the new scenes. The executive variant retains a spare blazer on the rail, recorded as a minor background refinement.
+
+Current totals: 65 selected images (9 cast, 20 backgrounds, 21 playable keyframes, 15 future concepts), 52 QA PASS and 13 REVISE; 68 generated originals including three archived candidates; 68 ledger-confirmed credits. The new task cost 3 credits. Exact inputs and receipts are preserved. Four pack tests passed, including three explicit outfitDraft variants, and original-file hash verification passed. All artwork remains pending; no runtime asset binding or story logic changed.
+
 ## Owner-requested preparation correction
 
 The selected wardrobe scene now shows Evelynn in an opaque tied ivory bathrobe before putting on the gown. The previous scene is archived. Current totals: 63 selected images, 50 QA PASS and 13 REVISE; 65 generated originals including two archived candidates; 65 ledger-confirmed credits. The revision is a 1920 × 1080 PNG, verified by SHA-256. Four pack provenance tests and git diff --check passed after replacing the gallery entry. The owner's style praise was recorded as feedback, not blanket canonical asset approval.

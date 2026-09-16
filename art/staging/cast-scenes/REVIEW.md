@@ -1,6 +1,6 @@
 # EVE cast and scene review
 
-63 selected PNG images: 9 cast designs, 20 empty locations, 19 playable-story keyframes and 15 future Chapter 3 concepts. 2 earlier candidates retained for audit. Total task charges: 65 ZenCreator credits.
+65 selected PNG images: 9 cast designs, 20 empty locations, 21 playable-story keyframes including three wardrobe choices, and 15 future Chapter 3 concepts. 3 earlier candidates retained for audit. Total task charges: 68 ZenCreator credits.
 
 All new artwork remains staging / pending owner review. PASS is a visual QA recommendation, not canonical or production approval. Future concepts illustrate treatment proposals, not implemented story events. Coverage is a planning map, not a runtime binding.
 
@@ -489,15 +489,35 @@ Correct garage and recognizable Evelynn, but she walks away from the waiting sed
 
 **Source:** src/content/mission.ts
 
-### Preparing for Glass House — PASS
+### Preparing for Glass House — Socialite — PASS
 
 [Original PNG](eve-scene-wardrobe-v1.png) · eve-scene-wardrobe-v1
 
-Owner-requested before-dressing correction: opaque tied ivory robe, gown remains on rail, recognizable Evelynn and matching illustrated dressing room. Her hand rests near the jacket rather than the gown hanger; the preparation state is clear.
+Correct socialite garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed.
 
-**Scope / branch restriction:** Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established.
+**Scope / branch restriction:** Preparation preview for outfitDraft socialite only; robe before dressing; does not commit a wardrobe choice or replace other branches.
 
-**Source:** src/content/clinic.ts; Owner correction 2026-09-16: regular clothes or bathrobe before putting on the dress
+**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
+
+### Preparing for Glass House — Executive — PASS
+
+[Original PNG](eve-scene-wardrobe-executive-v1.png) · eve-scene-wardrobe-executive-v1
+
+Correct executive garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed. A spare blazer remains on the rail; remove it if the background must show exactly one of each outfit.
+
+**Scope / branch restriction:** Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.
+
+**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
+
+### Preparing for Glass House — Shadow — PASS
+
+[Original PNG](eve-scene-wardrobe-shadow-v1.png) · eve-scene-wardrobe-shadow-v1
+
+Correct shadow garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed.
+
+**Scope / branch restriction:** Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches.
+
+**Source:** src/content/clinic.ts wardrobe and outfitDraft options; Owner correction: correct garment per choice, realistic scale and reachable closet
 
 ## Future Chapter 3 concepts
 
@@ -672,3 +692,13 @@ Evelynn and dressing-room style are consistent, but she reaches toward a duplica
 **Scope / branch restriction:** Gala outfit variant only; other selectable wardrobes are not replaced.
 
 **Source:** src/content/clinic.ts
+
+### Preparing for Glass House — REVISE
+
+[Original PNG](eve-scene-wardrobe-perspective-before-v1.png) · eve-scene-wardrobe-v1
+
+Owner identified incorrect jacket reach and oversized foreground figure with inconsistent closet depth. Superseded by three wardrobe-specific preparation variants.
+
+**Scope / branch restriction:** Before dressing for Glass House. Bathrobe is temporary preparation clothing; gown stays on the hanger and no final wardrobe choice is established.
+
+**Source:** src/content/clinic.ts; Owner correction 2026-09-16: regular clothes or bathrobe before putting on the dress

@@ -20,7 +20,7 @@ for (const item of run.items) {
     throw Error('Image hash mismatch: ' + item.file);
 }
 const selected = run.items.filter((x) => !x.excluded);
-if (selected.length !== 63 || new Set(selected.map((x) => x.entry.spec.assetId)).size !== 63)
+if (selected.length !== 65 || new Set(selected.map((x) => x.entry.spec.assetId)).size !== 65)
   throw Error('Incomplete pack');
 const records = selected.map((x) => ({
   ...stagePackCandidate(x.entry, x.request, x.receipt),
@@ -40,7 +40,11 @@ const groupsData = groups.map(([title, filter], i) => ({
   items: run.items.filter((x) => (i === 4 ? x.excluded : !x.excluded && filter(x))),
 }));
 const summary =
-  '63 selected PNG images: 9 cast designs, 20 empty locations, 19 playable-story keyframes and 15 future Chapter 3 concepts. ' + run.items.filter(x => x.excluded).length + ' earlier candidates retained for audit. Total task charges: ' + run.actualTaskCharges + ' ZenCreator credits.';
+  '65 selected PNG images: 9 cast designs, 20 empty locations, 21 playable-story keyframes including three wardrobe choices, and 15 future Chapter 3 concepts. ' +
+  run.items.filter((x) => x.excluded).length +
+  ' earlier candidates retained for audit. Total task charges: ' +
+  run.actualTaskCharges +
+  ' ZenCreator credits.';
 const status =
   'All new artwork remains staging / pending owner review. PASS is a visual QA recommendation, not canonical or production approval. Future concepts illustrate treatment proposals, not implemented story events. Coverage is a planning map, not a runtime binding.';
 const card = (x) =>

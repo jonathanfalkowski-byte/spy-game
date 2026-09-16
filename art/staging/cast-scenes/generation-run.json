@@ -1,10 +1,10 @@
 {
   "date": "2026-09-16",
   "provider": "zencreator",
-  "selectedImages": 63,
-  "originalFiles": 65,
-  "estimatedCredits": 65,
-  "actualTaskCharges": 65,
+  "selectedImages": 65,
+  "originalFiles": 68,
+  "estimatedCredits": 68,
+  "actualTaskCharges": 68,
   "transactions": [
     {
       "id": "42ff1368-b617-482b-a632-0d2abda2c540",
@@ -47,6 +47,12 @@
       "amount": -1,
       "createdAt": "2026-09-16T18:48:51.619222Z",
       "taskId": "eae1803b-06f4-4ae5-a66c-6544403becf9"
+    },
+    {
+      "id": "19937505-58e1-4bba-9389-6375b3d06a51",
+      "amount": -3,
+      "createdAt": "2026-09-16T18:55:15.520737Z",
+      "taskId": "658153fd-2a9c-425c-a908-99a284e6521f"
     }
   ],
   "items": [
@@ -7795,8 +7801,8 @@
           "rewrite_prompt": false
         }
       },
-      "excluded": false,
-      "file": "art/staging/cast-scenes/eve-scene-wardrobe-v1.png",
+      "excluded": true,
+      "file": "art/staging/cast-scenes/eve-scene-wardrobe-perspective-before-v1.png",
       "receipt": {
         "taskId": "eae1803b-06f4-4ae5-a66c-6544403becf9",
         "callId": "1ebef5c1-767f-4e90-92e4-710059353d34",
@@ -7811,11 +7817,387 @@
         }
       },
       "review": {
+        "decision": "REVISE",
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16",
+        "reasons": [
+          "Owner identified incorrect jacket reach and oversized foreground figure with inconsistent closet depth. Superseded by three wardrobe-specific preparation variants."
+        ]
+      }
+    },
+    {
+      "entry": {
+        "key": "scene-wardrobe",
+        "kind": "scene",
+        "title": "Preparing for Glass House — Socialite",
+        "concept": false,
+        "sources": [
+          "src/content/clinic.ts wardrobe and outfitDraft options",
+          "Owner correction: correct garment per choice, realistic scale and reachable closet"
+        ],
+        "sourceNodes": [
+          "clinic.wardrobe"
+        ],
+        "guard": "Preparation preview for outfitDraft socialite only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+        "references": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "evelynn identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-scene-wardrobe-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "evelyn"
+            }
+          ],
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "stagingReferences": [
+            "eve-bg-wardrobe-v1"
+          ],
+          "sceneId": "clinic.wardrobe",
+          "locationId": "wardrobe",
+          "pose": "Standing immediately beside wardrobe, holding socialite garment on hanger with naturally bent arm; full figure and feet visible.",
+          "cameraFraming": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Warm flattering but restrained practical light",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Staged authored-scene keyframe with branch guard",
+          "notes": "Preparation preview for outfitDraft socialite only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+          "presentationVariant": "socialite"
+        },
+        "direction": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a long black elegant evening gown. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a long black elegant evening gown. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.",
+          "CAMERA": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition",
+          "LIGHTING": "Warm flattering but restrained practical light",
+          "CONTINUITY": "Preparation preview for outfitDraft socialite only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a long black elegant evening gown. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.\nCAMERA: Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Preparation preview for outfitDraft socialite only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      },
+      "excluded": false,
+      "file": "art/staging/cast-scenes/eve-scene-wardrobe-v1.png",
+      "receipt": {
+        "taskId": "658153fd-2a9c-425c-a908-99a284e6521f",
+        "callId": "ca65909a-a491-4c45-9256-7360dbc2aa7a",
+        "providerAssetId": "174ea3e1-b304-4157-877d-aa2b05320829",
+        "createdAt": "2026-09-16T18:55:15.520891Z",
+        "estimatedCredits": 1,
+        "mediaType": "image/png",
+        "sha256": "24C33086C7EE999E81421C4DB287C9E00ECC4AA2582A18B85815A6574B411459",
+        "outputDimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
         "decision": "PASS",
         "reviewer": "Codex visual QA — provisional only",
         "date": "2026-09-16",
         "reasons": [
-          "Owner-requested before-dressing correction: opaque tied ivory robe, gown remains on rail, recognizable Evelynn and matching illustrated dressing room. Her hand rests near the jacket rather than the gown hanger; the preparation state is clear."
+          "Correct socialite garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed."
+        ]
+      }
+    },
+    {
+      "entry": {
+        "key": "scene-wardrobe-executive",
+        "kind": "scene",
+        "title": "Preparing for Glass House — Executive",
+        "concept": false,
+        "sources": [
+          "src/content/clinic.ts wardrobe and outfitDraft options",
+          "Owner correction: correct garment per choice, realistic scale and reachable closet"
+        ],
+        "sourceNodes": [
+          "clinic.wardrobe"
+        ],
+        "guard": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+        "references": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "evelynn identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-scene-wardrobe-executive-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "evelyn"
+            }
+          ],
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "stagingReferences": [
+            "eve-bg-wardrobe-v1"
+          ],
+          "sceneId": "clinic.wardrobe",
+          "locationId": "wardrobe",
+          "pose": "Standing immediately beside wardrobe, holding executive garment on hanger with naturally bent arm; full figure and feet visible.",
+          "cameraFraming": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Warm flattering but restrained practical light",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Staged authored-scene keyframe with branch guard",
+          "notes": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+          "presentationVariant": "executive"
+        },
+        "direction": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a tailored charcoal business blazer with matching trousers neatly draped over the hanger bar. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a tailored charcoal business blazer with matching trousers neatly draped over the hanger bar. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.",
+          "CAMERA": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition",
+          "LIGHTING": "Warm flattering but restrained practical light",
+          "CONTINUITY": "Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a tailored charcoal business blazer with matching trousers neatly draped over the hanger bar. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.\nCAMERA: Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Preparation preview for outfitDraft executive only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      },
+      "excluded": false,
+      "file": "art/staging/cast-scenes/eve-scene-wardrobe-executive-v1.png",
+      "receipt": {
+        "taskId": "658153fd-2a9c-425c-a908-99a284e6521f",
+        "callId": "026fc86f-3fb6-4b86-bc36-384fbe56bf9a",
+        "providerAssetId": "7ef8b218-0d75-4bbc-9111-9bddae957e36",
+        "createdAt": "2026-09-16T18:55:15.520891Z",
+        "estimatedCredits": 1,
+        "mediaType": "image/png",
+        "sha256": "4ADC7BB2D6FDE26E626339C063979B58B4A950E3DFC51D22154BB57812148457",
+        "outputDimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "PASS",
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct executive garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed.",
+          "A spare blazer remains on the rail; remove it if the background must show exactly one of each outfit."
+        ]
+      }
+    },
+    {
+      "entry": {
+        "key": "scene-wardrobe-shadow",
+        "kind": "scene",
+        "title": "Preparing for Glass House — Shadow",
+        "concept": false,
+        "sources": [
+          "src/content/clinic.ts wardrobe and outfitDraft options",
+          "Owner correction: correct garment per choice, realistic scale and reachable closet"
+        ],
+        "sourceNodes": [
+          "clinic.wardrobe"
+        ],
+        "guard": "Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+        "references": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "purpose": "location layout"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "purpose": "evelynn identity"
+          }
+        ],
+        "spec": {
+          "styleBibleVersion": "1.0",
+          "assetId": "eve-scene-wardrobe-shadow-v1",
+          "assetType": "scene-cg",
+          "subjects": [
+            {
+              "characterId": "player-character",
+              "identityId": "evelyn"
+            }
+          ],
+          "canonicalReferences": [
+            "evelynn-canon-three-quarter-v1"
+          ],
+          "stagingReferences": [
+            "eve-bg-wardrobe-v1"
+          ],
+          "sceneId": "clinic.wardrobe",
+          "locationId": "wardrobe",
+          "pose": "Standing immediately beside wardrobe, holding shadow garment on hanger with naturally bent arm; full figure and feet visible.",
+          "cameraFraming": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her",
+          "cameraAngle": "Eye-level observational composition",
+          "lighting": "Warm flattering but restrained practical light",
+          "mood": "Controlled adult espionage tension, subtle facial acting",
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "intendedUse": "Staged authored-scene keyframe with branch guard",
+          "notes": "Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches.",
+          "presentationVariant": "shadow"
+        },
+        "direction": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a simple understated knee-length charcoal cocktail dress, subtle seams, modest neckline, no sparkle, no tactical equipment. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket."
+      },
+      "request": {
+        "components": {
+          "STYLE": "Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.",
+          "SUBJECT": "Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.",
+          "SCENE": "Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a simple understated knee-length charcoal cocktail dress, subtle seams, modest neckline, no sparkle, no tactical equipment. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.",
+          "CAMERA": "Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition",
+          "LIGHTING": "Warm flattering but restrained practical light",
+          "CONTINUITY": "Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks."
+        },
+        "settings": {
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        },
+        "sourceReferences": [
+          {
+            "assetId": "eve-bg-wardrobe-v1",
+            "providerAssetId": "57b1ff3c-d03a-4e18-a074-63ab31f185f4"
+          },
+          {
+            "assetId": "evelynn-canon-three-quarter-v1",
+            "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          }
+        ],
+        "inputs": {
+          "image_assets": [
+            "57b1ff3c-d03a-4e18-a074-63ab31f185f4",
+            "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+          ],
+          "prompt": "Reference 1: location layout. Reference 2: evelynn identity.\nRecompose the location from Reference 1 and place the supplied characters into this authored moment. Preserve recognizable identities and location design; change pose, camera and clothing as specified. Include all heads comfortably inside the frame.\nSTYLE: Match the supplied EVE illustration language: polished 2D adult espionage graphic novel, confident clean ink linework, semi-cel shading, graphic shadows, controlled highlights, believable adult anatomy, restrained rich color and subtle illustrated texture.\nSUBJECT: Use the supplied character references for recognizable distinct faces, hair, age and build. Clothing follows the scene instruction.\nSCENE: Rebuild the dressing-room composition from Reference 1 with physically coherent perspective. Adult Evelynn from Reference 2 wears a fully opaque ivory cotton robe, long sleeves, wrapped closed and tied at waist, hem below knees, simple slippers. Full figure including BOTH FEET and clear floor contact shadows visible, head occupying only the middle upper part of frame; her height is about 70 percent of frame and about three quarters of the wardrobe height. Eye-level 50mm perspective, no wide-angle foreground enlargement. She stands directly beside the open wardrobe within 30cm of the rail, her feet on the same floor depth as the wardrobe threshold. Her right elbow is naturally bent; right fingers curl clearly around the neck of ONE wooden hanger just lifted off the rail. On that hanger she holds a simple understated knee-length charcoal cocktail dress, subtle seams, modest neckline, no sparkle, no tactical equipment. The selected garment hangs vertically in front of the wardrobe, at natural adult clothing scale. Her left hand gently supports its fabric. She looks at the selected garment rather than the viewer. Replace the tactical outfit on the rail with an ordinary understated cocktail dress. The only choices in this room are a business suit, evening gown and understated cocktail outfit. No tactical suits or gear. Keep the warm vanity lighting, clean illustrated linework, semi-cel shadows, brunette updo, and Evelynn facial identity. Show a believable short reach, normal-length arms, enough space above her head and below her feet. No floating hands or touching a distant jacket.\nCAMERA: Wide 16:9 full-figure scene, eye level 50mm perspective, character occupies about 70 percent of frame height with wardrobe taller than her. Eye-level observational composition\nLIGHTING: Warm flattering but restrained practical light\nCONTINUITY: Preparation preview for outfitDraft shadow only; robe before dressing; does not commit a wardrobe choice or replace other branches. This artwork is a visual proposal only. Unlettered surfaces and unreadable screens; no captions, labels, speech balloons or watermarks.",
+          "model": "SEEDREAM_5",
+          "ratio": "16:9",
+          "width": 1920,
+          "height": 1080,
+          "number_of_images": 1,
+          "batch_mode": false,
+          "sequential_generation": false,
+          "rewrite_prompt": false
+        }
+      },
+      "excluded": false,
+      "file": "art/staging/cast-scenes/eve-scene-wardrobe-shadow-v1.png",
+      "receipt": {
+        "taskId": "658153fd-2a9c-425c-a908-99a284e6521f",
+        "callId": "1a4d68d9-b1c8-41d4-b848-670748efb3a9",
+        "providerAssetId": "5275e664-89f0-4ea0-b4af-a379266e41c4",
+        "createdAt": "2026-09-16T18:55:15.520891Z",
+        "estimatedCredits": 1,
+        "mediaType": "image/png",
+        "sha256": "097A0097E953069CDCE338FF7DCCBDD3B047FF3D2082F6EB9992DAB14DFBECA6",
+        "outputDimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "review": {
+        "decision": "PASS",
+        "reviewer": "Codex visual QA — provisional only",
+        "date": "2026-09-16",
+        "reasons": [
+          "Correct shadow garment held on a hanger; robe before dressing, feet and floor contact visible, natural short reach beside wardrobe. Character scale and garment interaction corrected; tactical outfit removed."
         ]
       }
     }
