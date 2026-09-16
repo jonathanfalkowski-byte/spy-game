@@ -12,7 +12,7 @@ import { dayScenes, dayBlocks } from './day';
 import { missionScenes, missionBlocks } from './mission';
 import { missionPresentation } from './mission-presentation';
 import { clinicScenes, clinicBlocks } from './clinic';
-import { chapter3Blocks, chapter3Scenes } from './chapter3';
+import { chapter3Scenes } from './chapter3';
 
 export const inspections = [
   {
@@ -293,9 +293,8 @@ const responseSlot: Partial<Record<NodeId, string>> = {
 export function sceneBlocks(state: GameState): Block[] {
   const node = `${state.scene}.${state.phase}` as NodeId;
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
-  if (state.scene === 'chapter3') return chapter3Blocks(state);
   if (state.scene === 'mission')
-    return (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin')
+    return state.mission.completed.includes('home.begin')
       ? [...missionBlocks(state), ...missionPresentation(state)]
       : missionBlocks(state);
   if (state.scene === 'clinic') {

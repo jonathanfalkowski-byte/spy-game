@@ -1,7 +1,4 @@
 import { initialState as legacyInitialState, reducer as legacyReducer, replay as legacyReplay, availableIntents as legacyIntents } from '../persistence/legacy-v11/state/reducer';
-import { initialState as initialV12, reducer as reducerV12, replay as replayV12, availableIntents as intentsV12 } from '../persistence/legacy-v12/state/reducer';
-import { eveningChoices, eveningScenes } from '../content/chapter3-evening';
-import { applyEveningChoice } from './chapter3-evening-engine';
 import { initialMission } from './mission-schema';
 import { applyMissionChoice } from './mission-engine';
 import { availableMissionChoices } from '../content/mission';
@@ -20,11 +17,10 @@ import { availableClinicChoices } from '../content/clinic';
 import { chapter3Choices } from '../content/chapter3';
 
 export const nodeOf = (state: GameState) => `${state.scene}.${state.phase}` as NodeId;
-export function initialState(contentRevision = 13): GameState {
-  if (contentRevision === 12) return initialV12();
-  if (contentRevision !== 13) return legacyInitialState();
+export function initialState(contentRevision = 12): GameState {
+  if (contentRevision !== 12) return legacyInitialState();
   const s: GameState = {
-    contentRevision: 13,
+    contentRevision: 12,
     day: initialDay(),
     clinic: initialClinic(),
     mission: initialMission(),
@@ -70,7 +66,7 @@ export const availableChoices = (s: GameState) =>
       (!c.requires || s.knowledge.includes(c.requires)),
   );
 export const availableChapter3Choices = (s: GameState) =>
-  [...chapter3Choices.filter((c) => c.node === nodeOf(s) && !s.day.completed.includes(c.id)), ...(s.contentRevision === 13 ? eveningChoices(s) : [])];
+  chapter3Choices.filter((c) => c.node === nodeOf(s) && !s.day.completed.includes(c.id));
 const add = (list: string[], value: string) => {
   if (!list.includes(value)) list.push(value);
 };
@@ -149,21 +145,7 @@ export function canContinue(s: GameState) {
   return !!sceneById[node].next && (node !== 'helix.documents' || s.documents.length >= 2);
 }
 export function reducer(state: GameState, input: unknown): GameState {
-  if (state.contentRevision === 12) {
-    const parsed = ActionSchema.safeParse(input);
-    if (parsed.success && parsed.data.type === 'CONTINUE_CHAPTER3_SCENE2') {
-      if (parsed.data.expectedRevision !== state.revision || nodeOf(state) !== 'chapter3.complete') return state;
-      try {
-        const verified = replayV12(state.ledger as Parameters<typeof replayV12>[0]);
-        if (stable(verified) !== stable(state)) return state;
-        const next = replay(state.ledger, 13);
-        if (stable({...next, contentRevision:12}) !== stable(state)) return state;
-        return reducer(next, input);
-      } catch { return state; }
-    }
-    return reducerV12(state as Parameters<typeof reducerV12>[0], input);
-  }
-  if (state.contentRevision !== 13) return legacyReducer(state as Parameters<typeof legacyReducer>[0], input);
+  if (state.contentRevision !== 12) return legacyReducer(state, input);
   const parsed = ActionSchema.safeParse(input);
   if (!parsed.success || parsed.data.expectedRevision !== state.revision) return state;
   const action = parsed.data;
@@ -268,15 +250,7 @@ export function reducer(state: GameState, input: unknown): GameState {
       enter(s, 'chapter3.home');
       s.feedback = 'Chapter 3 continuation recorded. The historical day remains unchanged.';
       break;
-    case 'CONTINUE_CHAPTER3_SCENE2':
-      if (node !== 'chapter3.complete') return state;
-      enter(s, 'chapter3.mayaContact');
-      break;
     case 'CHAPTER3_CHOOSE': {
-      if (eveningScenes.some(scene => scene.id === node)) {
-        if (!applyEveningChoice(state, s, action.id)) return state;
-        break;
-      }
       const c = availableChapter3Choices(state).find((choice) => choice.id === action.id);
       if (!c || node === 'chapter3.complete') return state;
       add(s.day.completed, c.id);
@@ -444,9 +418,8 @@ export function reducer(state: GameState, input: unknown): GameState {
 export function act(state: GameState, intent: Intent) {
   return reducer(state, { ...intent, expectedRevision: state.revision });
 }
-export function replay(events: GameEvent[], contentRevision = 13): GameState {
-  if (contentRevision === 12) return replayV12(events as Parameters<typeof replayV12>[0]);
-  if (contentRevision !== 13) return legacyReplay(events as Parameters<typeof legacyReplay>[0]);
+export function replay(events: GameEvent[], contentRevision = 12): GameState {
+  if (contentRevision !== 12) return legacyReplay(events);
   let state = initialState();
   for (const event of events) {
     if (event.sequence !== state.revision + 1) throw new Error('Event sequence is not contiguous.');
@@ -457,8 +430,7 @@ export function replay(events: GameEvent[], contentRevision = 13): GameState {
   return state;
 }
 export function availableIntents(s: GameState): Intent[] {
-  if (s.contentRevision === 12) return [...intentsV12(s as Parameters<typeof intentsV12>[0]), ...(nodeOf(s) === 'chapter3.complete' ? [{type:'CONTINUE_CHAPTER3_SCENE2' as const}] : [])];
-  if (s.contentRevision !== 13) return legacyIntents(s as Parameters<typeof legacyIntents>[0]);
+  if (s.contentRevision !== 12) return legacyIntents(s);
   const intents: Intent[] = availableChoices(s).map((c) => ({ type: 'CHOOSE_DIALOGUE', id: c.id }));
   intents.push(...availableDayChoices(s).map((c) => ({ type: 'DAY_CHOOSE' as const, id: c.id })));
   intents.push(
@@ -467,7 +439,6 @@ export function availableIntents(s: GameState): Intent[] {
   );
   intents.push(...availableChapter3Choices(s).map((c) => ({ type: 'CHAPTER3_CHOOSE' as const, id: c.id })));
   if (s.scene === 'mission' && s.phase === 'complete' && s.day.outcome === 'accepted' && s.mission.outcome === 'complete' && s.clinic.outcome === 'departed') intents.push({ type: 'CONTINUE_CHAPTER3' });
-  if (nodeOf(s) === 'chapter3.complete') intents.push({type:'CONTINUE_CHAPTER3_SCENE2'});
   if (canContinue(s)) intents.push({ type: 'CONTINUE' });
   if (s.scene === 'apartment')
     inspections
@@ -500,11 +471,4 @@ export function availableIntents(s: GameState): Intent[] {
   if (node === 'helix.review')
     intents.push({ type: 'REVISE_ASSESSMENT' }, { type: 'SUBMIT_ASSESSMENT' });
   return intents;
-}
-
-// Stable object-key ordering for exact frozen-snapshot authentication.
-function stable(value: unknown): string {
-  if (Array.isArray(value)) return '['+value.map(stable).join(',')+']';
-  if (value && typeof value === 'object') return '{'+Object.entries(value).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>JSON.stringify(k)+':'+stable(v)).join(',')+'}';
-  return JSON.stringify(value);
 }

@@ -685,7 +685,7 @@ add('warning3', 'warning.finish', 'garage', 'Put the phone away and leave the li
 add('garage', 'garage.finish', 'complete', 'Get into the waiting car');
 export const missionChoices = choices;
 export function availableMissionChoices(s: GameState) {
-  if ((s.contentRevision ?? 0) < 12) return legacyMissionChoices(s as Parameters<typeof legacyMissionChoices>[0]);
+  if (s.contentRevision !== 12) return legacyMissionChoices(s);
   const node = s.scene + '.' + s.phase,
     m = s.mission;
   return choices.filter(
@@ -699,15 +699,15 @@ export function availableMissionChoices(s: GameState) {
         !m.completed.some((done) => ['home.maya.send', 'home.maya.skip'].includes(done))) &&
       (!c.id.startsWith('lead.') ||
         (!['guest', 'service', 'celeste', 'marcus', 'security', 'staff', 'restricted'].includes(c.id.split('.')[1])) ||
-        (!['security', 'staff', 'restricted'].includes(c.id.split('.')[1]) || (s.contentRevision ?? 0) >= 12 || m.completed.includes('home.begin')) &&
+        (!['security', 'staff', 'restricted'].includes(c.id.split('.')[1]) || s.contentRevision === 12 || m.completed.includes('home.begin')) &&
         (m.remaining > 0 && !m.leads.includes(c.id.split('.')[1] as Lead))) &&
       (!c.id.startsWith('read.') ||
         c.id === 'read.return' ||
         m.leads.includes(c.id.split('.')[1] as Lead)) &&
       (!['marcus.detail', 'marcus.push', 'cover.begin'].includes(c.id) ||
-        (s.contentRevision ?? 0) >= 12 || m.completed.includes('home.begin')) &&
+        s.contentRevision === 12 || m.completed.includes('home.begin')) &&
       (!['marcus.question', 'marcus.detail', 'marcus.push'].includes(c.id) ||
-        !((s.contentRevision ?? 0) >= 12 || m.completed.includes('home.begin')) ||
+        !(s.contentRevision === 12 || m.completed.includes('home.begin')) ||
         !m.completed.some((done) => ['marcus.question', 'marcus.detail', 'marcus.push'].includes(done))) &&
       (c.id !== 'lead.confirm' ||
         (m.pending !== null && m.remaining > 0 && !m.leads.includes(m.pending))) &&
@@ -809,7 +809,7 @@ export function missionBlocks(s: GameState): Block[] {
             ' will remain.',
         ),
         ...(m.leads.length === 0 ? [p(approach(s, m.pending))] : []),
-        ...(((s.contentRevision ?? 0) >= 12 || m.completed.includes('home.begin')) ? [p(leadCost(m.pending))] : []),
+        ...((s.contentRevision === 12 || m.completed.includes('home.begin')) ? [p(leadCost(m.pending))] : []),
       );
     else if (phase === 'leadResult')
       blocks.push(

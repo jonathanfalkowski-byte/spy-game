@@ -295,7 +295,7 @@ export function sceneBlocks(state: GameState): Block[] {
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
   if (state.scene === 'chapter3') return chapter3Blocks(state);
   if (state.scene === 'mission')
-    return (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin')
+    return state.contentRevision === 12 || state.mission.completed.includes('home.begin')
       ? [...missionBlocks(state), ...missionPresentation(state)]
       : missionBlocks(state);
   if (state.scene === 'clinic') {

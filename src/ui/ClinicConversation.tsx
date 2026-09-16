@@ -18,7 +18,7 @@ export function ClinicConversation({
   const incoming =
     start > 0 && !isChoice(state.history[start - 1]) ? [state.history[start - 1]] : [];
   const exchanges = state.history.slice(start).filter((entry) => !isChoice(entry));
-  const presentation = state.contentRevision === 12 || state.mission.completed.includes('home.begin') ? [] : missionPresentation(state);
+  const presentation = (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin') ? [] : missionPresentation(state);
   return (
     <>
       {incoming.map((entry, i) => (

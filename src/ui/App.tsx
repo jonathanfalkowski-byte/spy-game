@@ -178,7 +178,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   ? 'Glass House / 03'
                   : state.scene === 'clinic'
                     ? 'Adaptation / 02'
-                    : state.scene === 'chapter3' ? 'Chapter 3 / Scene 1' : 'Opening / 01'}
+                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? 'Chapter 3 / Scene 1' : 'Chapter 3 / Scene 2') : 'Opening / 01'}
               </span>
               <h2>
                 {state.scene === 'mission' ? (
@@ -203,7 +203,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     ).map((s, i) => ['mission' + i, s.label])
                   : state.scene === 'clinic'
                     ? clinicSections.map((s, i) => ['clinic' + i, s.label])
-                    : state.scene === 'chapter3' ? [['chapter3.home', 'The return home'], ['chapter3.surveillance', 'The entry record'], ['chapter3.complete', 'Scene 1 endpoint']] : [
+                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? [['chapter3.home', 'The return home'], ['chapter3.surveillance', 'The entry record'], ['chapter3.complete', 'Scene 1 endpoint']] : [['chapter3.mayaContact','What you can tell her'], ['chapter3.mayaTalk','The call'], ['chapter3.mayaClose','Closing the call'], ['chapter3.pressure','The extent of the record'], ['chapter3.mayaFollowup','The follow-up'], ['chapter3.rest','Rest'], ['chapter3.nightComplete','Scene 2 endpoint']]) : [
                         ['apartment', 'At home'],
                         ['office', 'At Axiom'],
                         ['helix', 'The Helix review'],
@@ -548,7 +548,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     : 'GLASS HOUSE'
                   : state.scene === 'clinic'
                     ? 'SUBLEVEL 17'
-                    : state.scene === 'chapter3' ? 'CHAPTER 3 · SCENE 1' : 'ADRIAN’S DAY'}
+                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? 'CHAPTER 3 · SCENE 1' : 'CHAPTER 3 · SCENE 2') : 'ADRIAN’S DAY'}
                 <span>Every judgment leaves a record.</span>
               </footer>
             </main>

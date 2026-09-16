@@ -117,13 +117,6 @@ export const nodeIds = [
   'chapter3.home',
   'chapter3.surveillance',
   'chapter3.complete',
-  'chapter3.mayaContact',
-  'chapter3.mayaTalk',
-  'chapter3.mayaClose',
-  'chapter3.pressure',
-  'chapter3.mayaFollowup',
-  'chapter3.rest',
-  'chapter3.nightComplete',
 ] as const;
 export const NodeSchema = z.enum(nodeIds);
 export type NodeId = z.infer<typeof NodeSchema>;

@@ -44,14 +44,14 @@ describe('Chapter 3 Scene 1 continuation', () => {
     expect(state.history.at(-1)?.node).toBe('chapter3.complete');
     expect(state.day.records.filter((r) => r.key === 'chapter3_mirror')).toHaveLength(1);
     expect(state.day.records.filter((r) => r.key === 'chapter3_phone')).toHaveLength(1);
-    expect(availableIntents(state)).toEqual([]);
+    expect(availableIntents(state)).toEqual([{type:'CONTINUE_CHAPTER3_SCENE2'}]);
   });
 
   it('round-trips a current Scene 1 save without changing the ledger', () => {
     let state = act(acceptedDayEndpoint(), { type: 'CONTINUE_CHAPTER3' });
     state = act(state, { type: 'CHAPTER3_CHOOSE', id: 'chapter3.phone' });
     expect(nodeOf(state)).toBe('chapter3.surveillance');
-    expect(JSON.parse(encodeSave(state)).contentVersion).toBe(12);
+    expect(JSON.parse(encodeSave(state)).contentVersion).toBe(13);
     const loaded = decodeSave(encodeSave(state));
     expect(loaded).toEqual(state);
   });

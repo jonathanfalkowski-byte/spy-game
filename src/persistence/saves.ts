@@ -24,7 +24,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12)]), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12), z.literal(13)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
@@ -186,15 +186,15 @@ export function decodeSave(raw: string): GameState {
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)
     throw new Error('Save exceeds the 2 MB save limit.');
   const decoded = SaveSchema.parse(migrateSave(JSON.parse(raw)));
-  if ((decoded.contentVersion === 12) !== (decoded.state.contentRevision === 12))
+  if ((decoded.contentVersion >= 12 ? decoded.contentVersion : undefined) !== decoded.state.contentRevision)
     throw Error('Content version and state revision differ.');
-  const reconstructed = replay(decoded.state.ledger, decoded.contentVersion === 12 ? 12 : 11);
+  const reconstructed = replay(decoded.state.ledger, decoded.contentVersion >= 12 ? decoded.contentVersion : 11);
   if (canonical(reconstructed) !== canonical(decoded.state))
     throw new Error('Save snapshot does not match its event ledger.');
   return reconstructed;
 }
 export function encodeSave(state: GameState) {
-  const contentVersion = state.contentRevision === 12 ? 12 : state.mission.completed.includes('home.begin') ? 11 : state.scene === 'chapter3' ? 10 : 9;
+  const contentVersion = state.contentRevision ?? ( state.mission.completed.includes('home.begin') ? 11 : state.scene === 'chapter3' ? 10 : 9);
   const value = SaveSchema.parse({ schemaVersion: 5, contentVersion, state });
   const raw = JSON.stringify(value);
   if (new TextEncoder().encode(raw).length > MAX_SAVE_BYTES)

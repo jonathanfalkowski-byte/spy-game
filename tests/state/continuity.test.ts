@@ -35,7 +35,7 @@ describe('content 12 continuity', () => {
     expect(partial.npcs.marcus.known.some(k=>k.key.includes('Halcyon'))).toBe(false);
   });
   it('normalizes displayed journal spelling without altering stored historical data',()=>{
-    const old=frozenReplay(runMission().ledger);
+    const old=frozenReplay(runMission().ledger as Parameters<typeof frozenReplay>[0]);
     const before=JSON.stringify(old);
     expect(JSON.stringify(journalEntries(old))).not.toMatch(/\bEvelyn\b/);
     expect(JSON.stringify(old)).toBe(before);
@@ -126,12 +126,12 @@ describe('frozen content 11 boundary',()=>{
   });
   it.each([false,true])('preserves legacy snapshot and continuation (home %s)', home=>{
     const current=runMission(missionStart(),{complete:home?'home.begin':'mission.begin'},'celesteReply');
-    const old=frozenReplay(current.ledger);
+    const old=frozenReplay(current.ledger as Parameters<typeof frozenReplay>[0]);
     const raw=JSON.stringify({schemaVersion:5,contentVersion:home?11:10,state:old});
     expect(decodeSave(raw)).toEqual(old);
     expect(replay(old.ledger,11)).toEqual(old);
     const next=act(old,{type:'MISSION_CHOOSE',id:home?'cover.begin':'celeste.close'});
-    expect(next).toEqual(frozenReplay(next.ledger));
+    expect(next).toEqual(frozenReplay(next.ledger as Parameters<typeof frozenReplay>[0]));
   });
   it('rejects mismatched snapshot and envelope revisions',()=>{
     const save=JSON.parse(encodeSave(missionStart()));

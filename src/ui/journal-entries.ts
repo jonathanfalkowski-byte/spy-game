@@ -8,6 +8,7 @@ export const milestoneNames = {
   day: 'The rest of Adrian’s day',
   clinic: 'Sublevel 17',
   mission: 'The Glass House',
+  chapter3: 'Second Skin',
 };
 export type Milestone = keyof typeof milestoneNames;
 export const informationNames = {
@@ -17,7 +18,7 @@ export const informationNames = {
   capture: 'Captured evidence and assets',
 };
 export function milestoneOf(s: GameState): Milestone {
-  if (s.scene === 'clinic' || s.scene === 'mission') return s.scene;
+  if (s.scene === 'clinic' || s.scene === 'mission' || s.scene === 'chapter3') return s.scene;
   return ['apartment', 'commute', 'office', 'helix', 'maya', 'ending'].includes(s.scene)
     ? 'opening'
     : 'day';
@@ -139,7 +140,7 @@ export function journalEntries(s: GameState): JournalEntry[] {
     if (r.key === 'mission.capture') continue;
     const action = s.ledger[r.event - 1]?.action.type;
     const milestone: Milestone =
-      action === 'MISSION_CHOOSE' ? 'mission' : action === 'CLINIC_CHOOSE' ? 'clinic' : 'day';
+      action === 'CHAPTER3_CHOOSE' ? 'chapter3' : action === 'MISSION_CHOOSE' ? 'mission' : action === 'CLINIC_CHOOSE' ? 'clinic' : 'day';
     const lead = r.key.startsWith('mission.lead.')
       ? (r.key.split('.').at(-1) as keyof typeof findings)
       : undefined;

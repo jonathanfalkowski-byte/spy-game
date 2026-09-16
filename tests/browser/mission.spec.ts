@@ -88,7 +88,7 @@ test('post-transformation apartment reset precedes the Glass House and preserves
   const saved = await current(page);
   expect(saved.phase).toBe('car');
   expect(saved.mission.completed).toContain('home.begin');
-  expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(12);
+  expect(JSON.parse((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!).contentVersion).toBe(13);
 });
 
 test('full operation with two leads reaches the garage, reloads every phase, and keeps questions chronological', async ({

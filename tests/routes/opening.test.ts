@@ -5,6 +5,7 @@ import { dayChoices } from '../../src/content/day';
 import { clinicChoices } from '../../src/content/clinic';
 import { dialogue } from '../../src/content/dialogue';
 import { chapter3Choices } from '../../src/content/chapter3';
+import { eveningChoices } from '../../src/content/chapter3-evening';
 import { validateContent } from '../../src/content/validate';
 import { act, availableIntents, initialState, nodeOf } from '../../src/state/reducer';
 import { encodeSave, decodeSave } from '../../src/persistence/saves';
@@ -17,6 +18,7 @@ it('validates content and every narrative node can reach the only ending', () =>
     'mission.complete',
     'clinic.stopped',
     'chapter3.complete',
+    'chapter3.nightComplete',
   ]);
   let changed = true;
   while (changed) {
@@ -29,6 +31,7 @@ it('validates content and every narrative node can reach the only ending', () =>
           .map((c) => c.next),
       ];
       if (s.id === 'helix.analysis') next.push('helix.review');
+      if (s.id.startsWith('chapter3.')) next.push(...eveningChoices({...initialState(),scene:'chapter3',phase:s.id.split('.')[1]}).map(c=>c.next));
       if (s.id === 'helix.review') next.push('helix.submitted');
       if (next.some((id) => id && reachable.has(id)) && !reachable.has(s.id)) {
         reachable.add(s.id);
