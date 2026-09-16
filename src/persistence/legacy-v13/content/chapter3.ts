@@ -1,4 +1,3 @@
-import { nextSceneDefinitions, nextBlocks } from './chapter3-next';
 import { eveningScenes, eveningBlocks } from './chapter3-evening';
 import type { GameState } from '../state/schema';
 import { z } from 'zod';
@@ -25,7 +24,6 @@ export const chapter3Choices = Chapter3ChoiceSchema.array().parse([
 ]);
 
 export const chapter3Scenes = [
-  ...Object.entries(nextSceneDefinitions).map(([phase,scene])=>({id:('chapter3.'+phase) as import('./schema').NodeId,...scene})),
   ...eveningScenes,
   { id: 'chapter3.home' as const, title: 'Home after Glass House', place: '19:52 · Adrian’s apartment', blocks: [
     p('The driver waits until you have settled before asking for the residential address. He knows the route, not what happened upstairs. At the building, the restricted badge opens the lobby reader after a longer pause than it used to require.'),
@@ -47,7 +45,6 @@ export const chapter3Scenes = [
 export const chapter3SceneById = Object.fromEntries(chapter3Scenes.map((s) => [s.id, s]));
 
 export function chapter3Blocks(state: GameState) {
-  if (state.contentRevision === 14 && nextSceneDefinitions[state.phase]) return nextBlocks(state);
   if (eveningScenes.some(scene => scene.id === 'chapter3.' + state.phase)) return eveningBlocks(state);
   const scene = chapter3SceneById[('chapter3.' + state.phase) as keyof typeof chapter3SceneById];
   const blocks = [...scene.blocks];

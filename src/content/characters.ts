@@ -2,6 +2,13 @@ import { CharacterSchema } from './schema';
 import { IntroductionSchema } from './character-schema';
 const introductions = [
   {
+    id: 'julian-mercer', name: 'Julian Mercer', role: 'Helix Group COO',
+    arrival: 'A professional introduction at Helix, when the player accepts the meeting.',
+    appearance: 'Forty-nine, dark hair graying at the temples, a navy suit; use the existing executive portrait as the visual base.',
+    history: 'Major adult character. His position at Helix is established; a personal history with Evelynn is not.',
+    emotion: 'Professional attention. The introduction establishes no attraction, romance, coercion or dependency.',
+  },
+  {
     id: 'marcus',
     name: 'Marcus Chen',
     role: 'Helix director of strategic acquisitions',
@@ -97,6 +104,7 @@ const introductions = [
 
 // Exact ages only: approximate ages remain in the preserved descriptive prose.
 const establishedAges: Partial<Record<string, number>> = {
+  'julian-mercer': 49,
   adrian: 34,
   daniel: 32,
   benton: 58,
@@ -126,7 +134,9 @@ export const characters = CharacterSchema.array().parse(
         // Maya is the first migrated context example. Other introductions stay intact;
         // no allegiance, desire, secret, or romantic fact is inferred from them.
         facts:
-          character.id === 'maya'
+          character.id === 'julian-mercer'
+            ? [{id:'name',text:'Julian Mercer',source:'Explicit user canon approval'}, {id:'role',text:'Helix Group COO; major adult character',source:'Explicit user canon approval'}, {id:'visual-base',text:'art/staging/cast-scenes/eve-cast-executive-v1.png',source:'Existing executive artwork approved as visual base'}]
+            : character.id === 'maya'
             ? [
                 {
                   id: 'name',

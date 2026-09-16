@@ -47,7 +47,7 @@ export const ReportSchema = z
   .strict();
 export const StateSchema = z
   .object({
-    contentRevision: z.union([z.literal(12), z.literal(13), z.literal(14)]).optional(),
+    contentRevision: z.union([z.literal(12), z.literal(13)]).optional(),
     scene: z.enum([
       'apartment',
       'commute',

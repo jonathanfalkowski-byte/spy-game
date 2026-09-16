@@ -91,7 +91,7 @@ it.each(['lookup', 'warning', 'access'] as const)(
       if (s.phase === 'mayaFollowup') s = choose(s, 'send-followup');
       s = choose(s, 'sleep');
       expect(s.phase).toBe('nightComplete');
-      expect(availableIntents(s)).toEqual([]);
+      expect(availableIntents(s)).toEqual([{type:'CHAPTER3_CHOOSE',id:'chapter3.begin-followup'}]);
       expect(StateSchema.safeParse(s).success).toBe(true);
       expect(decodeSave(encodeSave(s))).toEqual(s);
       expect(s.relationships).toEqual(start.relationships);

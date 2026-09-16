@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 export const nodeIds = [
-  'chapter3.morningPlan', 'chapter3.voss', 'chapter3.vossPlan', 'chapter3.rook', 'chapter3.rookCompare', 'chapter3.rookReply', 'chapter3.informationEnd',
   'mission.home',
   'mission.homePresentation',
   'mission.homeContact',

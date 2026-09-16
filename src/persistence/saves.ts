@@ -24,7 +24,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12), z.literal(13)]), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12), z.literal(13), z.literal(14)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
