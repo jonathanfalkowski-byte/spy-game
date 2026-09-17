@@ -1,3 +1,4 @@
+import { records4 } from '../content/chapter4-model';
 import type { GameState } from '../state/schema';
 import { documents, searches } from '../content/evidence';
 import { inspections } from '../content/scenes';
@@ -9,6 +10,7 @@ export const milestoneNames = {
   clinic: 'Sublevel 17',
   mission: 'The Glass House',
   chapter3: 'Second Skin',
+  chapter4: 'Private Access',
 };
 export type Milestone = keyof typeof milestoneNames;
 export const informationNames = {
@@ -18,7 +20,13 @@ export const informationNames = {
   capture: 'Captured evidence and assets',
 };
 export function milestoneOf(s: GameState): Milestone {
-  if (s.scene === 'clinic' || s.scene === 'mission' || s.scene === 'chapter3') return s.scene;
+  if (
+    s.scene === 'clinic' ||
+    s.scene === 'mission' ||
+    s.scene === 'chapter3' ||
+    s.scene === 'chapter4'
+  )
+    return s.scene;
   return ['apartment', 'commute', 'office', 'helix', 'maya', 'ending'].includes(s.scene)
     ? 'opening'
     : 'day';
@@ -140,7 +148,13 @@ export function journalEntries(s: GameState): JournalEntry[] {
     if (r.key === 'mission.capture') continue;
     const action = s.ledger[r.event - 1]?.action.type;
     const milestone: Milestone =
-      action === 'CHAPTER3_CHOOSE' ? 'chapter3' : action === 'MISSION_CHOOSE' ? 'mission' : action === 'CLINIC_CHOOSE' ? 'clinic' : 'day';
+      action === 'CHAPTER3_CHOOSE'
+        ? 'chapter3'
+        : action === 'MISSION_CHOOSE'
+          ? 'mission'
+          : action === 'CLINIC_CHOOSE'
+            ? 'clinic'
+            : 'day';
     const lead = r.key.startsWith('mission.lead.')
       ? (r.key.split('.').at(-1) as keyof typeof findings)
       : undefined;
@@ -157,7 +171,9 @@ export function journalEntries(s: GameState): JournalEntry[] {
       milestone,
       type: r.layer,
       title,
-      text: r.text,
+      text: r.key.startsWith('c3.delivery.')
+        ? r.text.replace(/\brook received:/g, 'Unknown sender received:')
+        : r.text,
       source: r.source,
       limits: lead
         ? findings[lead].limits
@@ -215,5 +231,22 @@ export function journalEntries(s: GameState): JournalEntry[] {
       limits: c.limits,
     });
   }
-  return entries.map(e => ({ ...e, title: displayName(e.title), text: displayName(e.text), source: displayName(e.source), ...(e.limits ? { limits: displayName(e.limits) } : {}) }));
+  for (const record of records4(s))
+    entries.push({
+      id: record.key,
+      milestone: 'chapter4',
+      type: s.proof.some((p) => p.key === record.key) ? 'capture' : record.layer,
+      title: record.key.startsWith('c4.sent-')
+        ? 'Delivered message'
+        : record.key.slice(3).replaceAll('-', ' '),
+      text: record.text.replace(/^rook received:/, 'Unknown sender received:'),
+      source: record.source,
+    });
+  return entries.map((e) => ({
+    ...e,
+    title: displayName(e.title),
+    text: displayName(e.text),
+    source: displayName(e.source),
+    ...(e.limits ? { limits: displayName(e.limits) } : {}),
+  }));
 }

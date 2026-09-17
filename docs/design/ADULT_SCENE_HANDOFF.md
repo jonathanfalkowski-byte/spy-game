@@ -1,6 +1,6 @@
 # Offline adult-scene presentation contract
 
-Implemented scope: production metadata and pure validation only. No production encounter, prose generator, provider, runtime selection, image generation or game-state transition is installed. `productionOutcomes` is empty. Save schema remains **5** and content version remains **9**. No migration is needed.
+Current scope: offline production metadata and validation, plus an authored Chapter 4 adapter in `src/narrative/adult-scenes/chapter4.ts`. It issues a state-bound fade-to-black specification only at the eligible, currently authorized runtime boundary. See [Chapter 4 contracts](../story/CHAPTER_4_HANDOFF_AND_ART.md). The static `productionOutcomes` registry remains empty; dynamic contracts consume the authenticated current scope. Save schema remains **5**, latest content revision is **15**. No external writer, provider, graphic prose generator or new image generator is installed.
 
 ## Authority and reuse
 
@@ -8,7 +8,7 @@ The game owns truth. A writer supplies presentation only. The pipeline is:
 
 Authenticated committed state → trusted authored outcome and projection policy → immutable AdultSceneSpec → external draft intake → local editorial review → approved presentation asset → future authored aftermath.
 
-The final runtime integration is deliberately absent. Importing, reviewing, publishing metadata and rereading text never execute a reducer action. Future integration must select already-approved assets and enter aftermath through the existing guarded authored engine. Reading or skipping an asset must not duplicate consequences.
+External presentation-asset runtime integration remains absent. Chapter 4 itself commits its authored non-graphic outcome through its guarded reducer. Importing, reviewing, publishing metadata and rereading text never execute a reducer action. Future integration must select already-approved assets and enter aftermath through the existing guarded authored engine. Reading or skipping an asset must not duplicate consequences.
 
 The contract reuses the existing character/persona IDs, character-canon adulthood test, save/replay authentication, sourced NPC observations, narrative projector and read-only consequence rules/views. Node IDs retain the existing closed scene registry. Offline outcome/asset IDs are separate production identifiers; adding one does not register a playable scene. Visual IDs are optional metadata references only; this module neither resolves nor generates images.
 
@@ -19,6 +19,7 @@ The contract reuses the existing character/persona IDs, character-canon adulthoo
 `sources` maps bounded local reference IDs to:
 
 - A committed ledger event.
+- An exact authenticated typed-history delivery to a named recipient (revision 15); only that recipient may receive it as participant knowledge.
 - An exact sourced NPC knowledge/belief observation.
 - A player knowledge key and its verified first acquisition event (zero means initial knowledge).
 - An existing derived leverage or consequence record.

@@ -1,3 +1,5 @@
+import { chapter4Choices, applyChapter4Choice } from '../content/chapter4';
+import { replay as replayV14, reducer as reducerV14, availableIntents as intentsV14 } from '../persistence/legacy-v14/state/reducer';
 import { replay as replayV13 } from '../persistence/legacy-v13/state/reducer';
 import { nextChoices, applyNextChoice } from '../content/chapter3-next';
 import { initialState as legacyInitialState, reducer as legacyReducer, replay as legacyReplay, availableIntents as legacyIntents } from '../persistence/legacy-v11/state/reducer';
@@ -24,7 +26,7 @@ import { chapter3Choices } from '../content/chapter3';
 export const nodeOf = (state: GameState) => `${state.scene}.${state.phase}` as NodeId;
 export function initialState(contentRevision = 13): GameState {
   if (contentRevision === 12) return initialV12();
-  if (contentRevision !== 13) return legacyInitialState();
+  if (![13,14,15].includes(contentRevision)) return legacyInitialState();
   const s: GameState = {
     contentRevision: 13,
     day: initialDay(),
@@ -151,7 +153,18 @@ export function canContinue(s: GameState) {
   return !!sceneById[node].next && (node !== 'helix.documents' || s.documents.length >= 2);
 }
 export function reducer(state: GameState, input: unknown): GameState {
-  if (state.contentRevision === 14 || (state.contentRevision === 13 && state.scene === 'chapter3' && state.phase === 'nightComplete')) {
+  if (state.contentRevision === 15 || state.contentRevision === 14) {
+    const parsed = ActionSchema.safeParse(input);
+    if (parsed.success && parsed.data.type === 'CHAPTER4_CHOOSE' && parsed.data.expectedRevision === state.revision) {
+      if (state.contentRevision === 14) {
+        try { if (stable(replayV14(state.ledger as Parameters<typeof replayV14>[0],14)) !== stable(state)) return state; }
+        catch { return state; }
+      }
+      return applyChapter4Choice(state, parsed.data.id);
+    }
+    return state.contentRevision === 14 ? reducerV14(state as Parameters<typeof reducerV14>[0],input) : state;
+  }
+  if ((state.contentRevision === 13 && state.scene === 'chapter3' && state.phase === 'nightComplete')) {
     const parsed = ActionSchema.safeParse(input);
     if (!parsed.success || parsed.data.expectedRevision !== state.revision || parsed.data.type !== 'CHAPTER3_CHOOSE') return state;
     if (state.contentRevision === 13) {
@@ -183,6 +196,7 @@ export function reducer(state: GameState, input: unknown): GameState {
   s.revision++;
   s.feedback = '';
   switch (action.type) {
+    case 'CHAPTER4_CHOOSE': return state;
     case 'MISSION_CHOOSE':
       if (!applyMissionChoice(state, s, action.id)) return state;
       break;
@@ -458,7 +472,8 @@ export function act(state: GameState, intent: Intent) {
 export function replay(events: GameEvent[], contentRevision = 13): GameState {
   if (contentRevision === 12) return replayV12(events as Parameters<typeof replayV12>[0]);
   if (contentRevision === 13) return replayV13(events as Parameters<typeof replayV13>[0]);
-  if (contentRevision !== 14) return legacyReplay(events as Parameters<typeof legacyReplay>[0]);
+  if (contentRevision === 14) return replayV14(events as Parameters<typeof replayV14>[0],14);
+  if (contentRevision !== 15) return legacyReplay(events as Parameters<typeof legacyReplay>[0]);
   let state = initialState();
   for (const event of events) {
     if (event.sequence !== state.revision + 1) throw new Error('Event sequence is not contiguous.');
@@ -466,11 +481,12 @@ export function replay(events: GameEvent[], contentRevision = 13): GameState {
     if (next === state) throw new Error(`Invalid event at sequence ${event.sequence}.`);
     state = next;
   }
-  if (state.contentRevision !== 14) throw new Error('Missing revision-14 continuation.');
+  if (state.contentRevision !== 15) throw new Error('Missing revision-15 continuation.');
   return state;
 }
 export function availableIntents(s: GameState): Intent[] {
-  if (s.contentRevision === 14) return nextChoices(s).map(c=>({type:'CHAPTER3_CHOOSE' as const,id:c.id}));
+  if (s.contentRevision === 15) return chapter4Choices(s).map(c=>({type:'CHAPTER4_CHOOSE' as const,id:c.id}));
+  if (s.contentRevision === 14) return [...intentsV14(s as Parameters<typeof intentsV14>[0]), ...chapter4Choices(s).map(c=>({type:'CHAPTER4_CHOOSE' as const,id:c.id}))];
   if (s.contentRevision === 12) return [...intentsV12(s as Parameters<typeof intentsV12>[0]), ...(nodeOf(s) === 'chapter3.complete' ? [{type:'CONTINUE_CHAPTER3_SCENE2' as const}] : [])];
   if (s.contentRevision !== 13) return legacyIntents(s as Parameters<typeof legacyIntents>[0]);
   const intents: Intent[] = availableChoices(s).map((c) => ({ type: 'CHOOSE_DIALOGUE', id: c.id }));
@@ -521,4 +537,10 @@ function stable(value: unknown): string {
   if (Array.isArray(value)) return '['+value.map(stable).join(',')+']';
   if (value && typeof value === 'object') return '{'+Object.entries(value).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>JSON.stringify(k)+':'+stable(v)).join(',')+'}';
   return JSON.stringify(value);
+}
+
+/** Prefix inspection selects the last authenticated epoch; full-save replay stays strict. */
+export function replayPrefix(events: GameEvent[], contentRevision = 13): GameState {
+ const epoch = contentRevision >= 13 ? events.some(e=>e.action.type==='CHAPTER4_CHOOSE') ? 15 : events.some(e=>e.action.type==='CHAPTER3_CHOOSE' && e.action.id==='chapter3.begin-followup') ? 14 : 13 : contentRevision;
+ return replay(events,epoch);
 }

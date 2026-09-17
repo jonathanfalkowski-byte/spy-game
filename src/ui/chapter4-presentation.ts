@@ -1,0 +1,37 @@
+import type { GameState } from '../state/schema';
+import { get4 } from '../content/chapter4-model';
+import { helix4 } from '../content/chapter4-case';
+/** Journal records remain in the authenticated history; this is display only. */
+export function conversationHistory(s: GameState) {
+  const records = new Set(
+    Object.entries(s.choices)
+      .filter(([key]) => key.startsWith('c4.rec.'))
+      .map(([, value]) => Number(value)),
+  );
+  return s.history.filter((_, index) => !records.has(index));
+}
+export function currentPlace(s: GameState, fallback: string) {
+  if (s.scene === 'chapter3') {
+    if (s.phase === 'complete') return '20:04 · Apartment';
+    if (s.phase === 'nightComplete') return '06:15 · Following morning · Apartment';
+    // Frozen node times mark the start of a scene, not a clock that rewinds on a menu loop.
+    if (['truths', 'disclosure'].includes(s.phase)) return '16:00–17:00 · Apartment desk';
+    if (s.phase === 'morningPlan' && s.choices['c3.morning-contact'] === 'called')
+      return 'After the 06:45 call · Apartment';
+    if (s.phase === 'vossPlan' && s.choices['c3.careMode'] !== 'attend')
+      return '08:48 · Apartment · Follow-up messages';
+  }
+  if (s.scene !== 'chapter4') return fallback;
+  if (s.phase === 'consequences')
+    return `${get4(s, 'clock') === '1155' ? '19:15' : '18:30'} · River path`;
+  if (s.phase === 'resource')
+    return `${get4(s, 'redeemed') ? '09:50' : '09:15'} · Next morning · Public records room`;
+  if (s.phase === 'room')
+    return `10:30–11:30 · ${helix4(s) ? 'Helix review room' : 'Public records desk'}`;
+  if (s.phase === 'outside')
+    return `12:15 · ${helix4(s) ? 'Hotel café beside Helix' : 'Records-room counter'}`;
+  if (s.phase === 'notice') return '13:30 · Phone messages';
+  if (s.phase === 'power')
+    return `14:00 · ${helix4(s) ? 'Helix case desk' : 'Municipal case desk'}`;
+  return fallback;
+}

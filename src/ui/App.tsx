@@ -1,3 +1,6 @@
+import { conversationHistory, currentPlace } from './chapter4-presentation';
+import { Chapter4work } from './Chapter4work';
+import { chapter4Scenes } from '../content/chapter4';
 import { chapter3Number, chapter3Progress } from './chapter3-progress';
 import { RestoreBackup } from './RestoreBackup';
 import { homeSceneArt } from './home-scene-art';
@@ -67,6 +70,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'clinic',
         'mission',
         'chapter3',
+        'chapter4',
         'file',
         'security',
         'sloane',
@@ -91,6 +95,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'clinic',
       'mission',
       'chapter3',
+      'chapter4',
       'file',
       'security',
       'sloane',
@@ -181,15 +186,29 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   ? 'Glass House / 03'
                   : state.scene === 'clinic'
                     ? 'Adaptation / 02'
-                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? 'Chapter 3 / Scene 1' : state.contentRevision === 14 ? 'Chapter 3 / Scene '+chapter3Number(state) : 'Chapter 3 / Scene 2') : 'Opening / 01'}
+                    : state.scene === 'chapter4'
+                      ? 'Chapter 4 / Private Access'
+                      : state.scene === 'chapter3'
+                        ? ['home', 'surveillance', 'complete'].includes(state.phase)
+                          ? 'Chapter 3 / Scene 1'
+                          : state.contentRevision === 14
+                            ? 'Chapter 3 / Scene ' + chapter3Number(state)
+                            : 'Chapter 3 / Scene 2'
+                        : 'Opening / 01'}
               </span>
               <h2>
                 {state.scene === 'mission' ? (
                   'Above the city.'
                 ) : state.scene === 'clinic' ? (
                   'Inside Sublevel 17.'
+                ) : state.scene === 'chapter4' ? (
+                  'Private Access.'
                 ) : state.scene === 'chapter3' ? (
-                  state.contentRevision === 14 ? 'Second Skin.' : 'Home after Glass House.'
+                  state.contentRevision === 14 ? (
+                    'Second Skin.'
+                  ) : (
+                    'Home after Glass House.'
+                  )
                 ) : (
                   <>
                     The shape of
@@ -206,29 +225,51 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     ).map((s, i) => ['mission' + i, s.label])
                   : state.scene === 'clinic'
                     ? clinicSections.map((s, i) => ['clinic' + i, s.label])
-                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? [['chapter3.home', 'The return home'], ['chapter3.surveillance', 'The entry record'], ['chapter3.complete', 'Scene 1 endpoint']] : state.contentRevision === 14 ? chapter3Progress(state) : [['chapter3.mayaContact','What you can tell her'], ['chapter3.mayaTalk','The call'], ['chapter3.mayaClose','Closing the call'], ['chapter3.pressure','The extent of the record'], ['chapter3.mayaFollowup','The follow-up'], ['chapter3.rest','Rest'], ['chapter3.nightComplete','Scene 2 endpoint']]) : [
-                        ['apartment', 'At home'],
-                        ['office', 'At Axiom'],
-                        ['helix', 'The Helix review'],
-                        ['maya', 'Coffee with Maya'],
-                        ['ending', 'Opening checkpoint'],
-                        ...(state.scene === 'ending' || state.day.completed.length
+                    : state.scene === 'chapter4'
+                      ? chapter4Scenes.map((s) => [s.id, s.title])
+                      : state.scene === 'chapter3'
+                        ? ['home', 'surveillance', 'complete'].includes(state.phase)
                           ? [
-                              ['file', 'The anomaly'],
-                              ['security', 'Executive review'],
-                              ['sloane', 'The offer'],
-                              ['evening', 'The evening'],
-                              ['dayend', 'Day zero ending'],
-                              ...(state.clinic.completed.length ? [['clinic', 'Sublevel 17']] : []),
+                              ['chapter3.home', 'The return home'],
+                              ['chapter3.surveillance', 'The entry record'],
+                              ['chapter3.complete', 'Scene 1 endpoint'],
                             ]
-                          : []),
-                      ]
+                          : state.contentRevision === 14
+                            ? chapter3Progress(state)
+                            : [
+                                ['chapter3.mayaContact', 'What you can tell her'],
+                                ['chapter3.mayaTalk', 'The call'],
+                                ['chapter3.mayaClose', 'Closing the call'],
+                                ['chapter3.pressure', 'The extent of the record'],
+                                ['chapter3.mayaFollowup', 'The follow-up'],
+                                ['chapter3.rest', 'Rest'],
+                                ['chapter3.nightComplete', 'Scene 2 endpoint'],
+                              ]
+                        : [
+                            ['apartment', 'At home'],
+                            ['office', 'At Axiom'],
+                            ['helix', 'The Helix review'],
+                            ['maya', 'Coffee with Maya'],
+                            ['ending', 'Opening checkpoint'],
+                            ...(state.scene === 'ending' || state.day.completed.length
+                              ? [
+                                  ['file', 'The anomaly'],
+                                  ['security', 'Executive review'],
+                                  ['sloane', 'The offer'],
+                                  ['evening', 'The evening'],
+                                  ['dayend', 'Day zero ending'],
+                                  ...(state.clinic.completed.length
+                                    ? [['clinic', 'Sublevel 17']]
+                                    : []),
+                                ]
+                              : []),
+                          ]
                 ).map(([id, label], i) => (
                   <li
                     key={id}
                     aria-current={
                       state.scene === id ||
-                      (state.scene === 'chapter3' && id === node) ||
+                      (['chapter3', 'chapter4'].includes(state.scene) && id === node) ||
                       (state.scene === 'mission' &&
                         id ===
                           'mission' +
@@ -280,7 +321,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               </p>
             </aside>
             <main id="story" className="story">
-              <span className="eyebrow">{sceneById[node].place}</span>
+              <span className="eyebrow">{currentPlace(state, sceneById[node].place)}</span>
               <h1 ref={heading} tabIndex={-1}>
                 {displayName(sceneById[node].title)}
               </h1>
@@ -341,6 +382,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 'clinic',
                 'mission',
                 'chapter3',
+                'chapter4',
                 'file',
                 'security',
                 'sloane',
@@ -409,9 +451,10 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               <Casework state={state} send={send} />
               <Daywork state={state} send={send} />
               {state.scene === 'chapter3' && <Chapter3work state={state} send={send} />}
+              <Chapter4work state={state} send={send} />
               <Clinicwork state={state} send={send} />
               <Missionwork state={state} send={send} />
-              {state.mission.outcome === 'complete' && state.contentRevision !== 14 && (
+              {state.mission.outcome === 'complete' && (state.contentRevision ?? 11) < 14 && (
                 <section className="ending-summary">
                   <span className="tag">Glass House complete</span>
                   <MissionSummary state={state} />
@@ -419,9 +462,14 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     <button onClick={() => setModal('journal')}>Review your evidence</button>
                     <button onClick={() => setModal('history')}>Review conversation history</button>
                     <button onClick={exportRun}>Download save backup</button>
-                    {state.phase === 'accepted' && state.day.outcome === 'accepted' && state.mission.outcome === 'complete' && state.clinic.outcome === 'departed' && (
-                      <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>Continue to Chapter 3</button>
-                    )}
+                    {state.phase === 'accepted' &&
+                      state.day.outcome === 'accepted' &&
+                      state.mission.outcome === 'complete' &&
+                      state.clinic.outcome === 'departed' && (
+                        <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>
+                          Continue to Chapter 3
+                        </button>
+                      )}
                   </div>
                 </section>
               )}
@@ -468,9 +516,13 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     <button onClick={() => setModal('journal')}>Review your evidence</button>
                     <button onClick={() => setModal('history')}>Review conversation history</button>
                     <button onClick={exportRun}>Download save backup</button>
-                    {state.clinic.outcome === 'departed' && state.day.outcome === 'accepted' && state.mission.outcome === 'complete' && (
-                      <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>Continue to Chapter 3</button>
-                    )}
+                    {state.clinic.outcome === 'departed' &&
+                      state.day.outcome === 'accepted' &&
+                      state.mission.outcome === 'complete' && (
+                        <button onClick={() => send({ type: 'CONTINUE_CHAPTER3' })}>
+                          Continue to Chapter 3
+                        </button>
+                      )}
                   </div>
                 </section>
               )}
@@ -561,7 +613,15 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     : 'GLASS HOUSE'
                   : state.scene === 'clinic'
                     ? 'SUBLEVEL 17'
-                    : state.scene === 'chapter3' ? (['home','surveillance','complete'].includes(state.phase) ? 'CHAPTER 3 · SCENE 1' : state.contentRevision === 14 ? 'CHAPTER 3 · SCENE '+chapter3Number(state) : 'CHAPTER 3 · SCENE 2') : 'ADRIAN’S DAY'}
+                    : state.scene === 'chapter4'
+                      ? 'Chapter 4 / Private Access'
+                      : state.scene === 'chapter3'
+                        ? ['home', 'surveillance', 'complete'].includes(state.phase)
+                          ? 'CHAPTER 3 · SCENE 1'
+                          : state.contentRevision === 14
+                            ? 'CHAPTER 3 · SCENE ' + chapter3Number(state)
+                            : 'CHAPTER 3 · SCENE 2'
+                        : 'ADRIAN’S DAY'}
                 <span>Every judgment leaves a record.</span>
               </footer>
             </main>
@@ -576,7 +636,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       {modal === 'history' && (
         <Modal title="Conversation history" onClose={() => setModal(null)}>
           <div className="history">
-            {state.history.map((h, i) => (
+            {conversationHistory(state).map((h, i) => (
               <section key={i}>
                 <h3>{sceneById[h.node].place}</h3>
                 <Narrative blocks={h.blocks} node={h.node} />

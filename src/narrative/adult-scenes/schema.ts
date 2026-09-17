@@ -11,6 +11,7 @@ const ids = z.array(Id).max(40);
 export const PresentationVariantSchema = z.enum(['fade_to_black', 'mature', 'explicit_external']);
 export const ObservationGrantSchema = BeatProjectionSchema.shape.npcObservations.element;
 export const SourceReferenceSchema = z.discriminatedUnion('kind', [
+  z.object({kind:z.literal('delivery'),characterId:CharacterIdSchema,key:text,event:z.number().int().positive()}).strict(),
   z.object({ kind: z.literal('event'), sequence: z.number().int().positive() }).strict(),
   z.object({ kind: z.literal('observation'), observation: ObservationGrantSchema }).strict(),
   z

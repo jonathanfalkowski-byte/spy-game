@@ -32,7 +32,7 @@ it('freezes every revision-13 dependency byte against the source commit', () => 
 }, 30000);
 it('authenticates 13 before crossing to 14, preserving the exact prefix', () => {
   const old = morning();
-  expect(frozen(old.ledger)).toEqual(old);
+  expect(frozen(old.ledger as Parameters<typeof frozen>[0])).toEqual(old);
   expect(decodeSave(encodeSave(old))).toEqual(old);
   const next = choose(old, 'begin-followup');
   expect(next.contentRevision).toBe(14);

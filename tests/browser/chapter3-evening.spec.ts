@@ -62,5 +62,5 @@ test('narrow screen supports noncontact and only the access alternative', async 
   await page.screenshot({ path: info.outputPath('scene2-access-narrow.png'), fullPage: true });
   await select(page, 'access-scope');
   await select(page, 'sleep');
-  await expect(page.locator('#story')).toContainText('Scene 2 ends here');
+  await expect(page.locator('#story')).toContainText('open the morning follow-up notice');
 });

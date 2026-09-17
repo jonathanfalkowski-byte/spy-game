@@ -1,3 +1,4 @@
+import { conversationHistory } from './chapter4-presentation';
 import type { Ref } from 'react';
 import type { GameState } from '../state/schema';
 import { missionPresentation } from '../content/mission-presentation';
@@ -11,14 +12,18 @@ export function ClinicConversation({
   latest: Ref<HTMLDivElement>;
 }) {
   const node = state.scene + '.' + state.phase;
-  let start = state.history.length;
-  while (start > 0 && state.history[start - 1].node === node) start--;
+  const visibleHistory = conversationHistory(state);
+  let start = visibleHistory.length;
+  while (start > 0 && visibleHistory[start - 1].node === node) start--;
   const isChoice = (entry: GameState['history'][number]) =>
     entry.blocks.every((b) => b.kind === 'notice' && b.text.startsWith('Your choice: '));
   const incoming =
-    start > 0 && !isChoice(state.history[start - 1]) ? [state.history[start - 1]] : [];
-  const exchanges = state.history.slice(start).filter((entry) => !isChoice(entry));
-  const presentation = (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin') ? [] : missionPresentation(state);
+    start > 0 && !isChoice(visibleHistory[start - 1]) ? [visibleHistory[start - 1]] : [];
+  const exchanges = visibleHistory.slice(start).filter((entry) => !isChoice(entry));
+  const presentation =
+    (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin')
+      ? []
+      : missionPresentation(state);
   return (
     <>
       {incoming.map((entry, i) => (

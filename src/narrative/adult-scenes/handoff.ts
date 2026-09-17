@@ -1,10 +1,11 @@
+import { read4 } from '../../content/chapter4-model';
 import { createHash } from 'node:crypto';
 import { characters } from '../../content/characters';
 import { CharacterSchema, adultEligibility, type Character } from '../../content/character-schema';
 import { consequenceRules } from '../../content/consequence-rules';
 import { deriveConsequences } from '../../state/consequences';
 import { decodeSave, encodeSave } from '../../persistence/saves';
-import { replay, nodeOf } from '../../state/reducer';
+import { replayPrefix, nodeOf } from '../../state/reducer';
 import { playerView, identityDisplayName } from '../../state/player';
 import type { GameState } from '../../state/schema';
 import { projectNarratorContext } from '../context';
@@ -113,14 +114,14 @@ export function createHandoffWorkspace(
   );
   const derived = deriveConsequences(snapshot);
   const prefixes = new Map<number, GameState>([
-    [0, replay([], snapshot.contentRevision ?? 11)],
+    [0, replayPrefix([], snapshot.contentRevision ?? 11)],
     [snapshot.revision, snapshot],
   ]);
   const prefix = (revision: number) => {
     if (revision > snapshot.revision) throw Error('Future knowledge source');
     let value = prefixes.get(revision);
     if (!value) {
-      value = replay(snapshot.ledger.slice(0, revision), snapshot.contentRevision ?? 11);
+      value = replayPrefix(snapshot.ledger.slice(0, revision), snapshot.contentRevision ?? 11);
       prefixes.set(revision, value);
     }
     return value;
@@ -128,6 +129,11 @@ export function createHandoffWorkspace(
   for (const source of outcome.sources) {
     const ref = source.reference;
     switch (ref.kind) {
+      case 'delivery': {
+        const record=read4(snapshot,ref.key);
+        if(ref.key!==`sent-${ref.event}-${ref.characterId}` || !record || record.event!==ref.event) throw Error('Unknown recipient delivery');
+        break;
+      }
       case 'event':
         if (!snapshot.ledger.some((e) => e.sequence === ref.sequence))
           throw Error('Unknown source event');
@@ -282,7 +288,8 @@ export function createHandoffWorkspace(
         const ref = source.reference;
         if (
           !(ref.kind === 'observation' && ref.observation.characterId === p.characterId) &&
-          !(ref.kind === 'player-knowledge' && p.characterId === 'player-character')
+          !(ref.kind === 'player-knowledge' && p.characterId === 'player-character') &&
+          !(ref.kind === 'delivery' && ref.characterId === p.characterId)
         )
           throw Error('Writer knowledge is not participant knowledge');
         return source;

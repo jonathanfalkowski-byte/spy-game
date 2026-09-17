@@ -1,5 +1,7 @@
 # Adult Scene Handoff Map
 
+Current implementation update: Chapter 4 revision 15 now has an earned, optional Julian Mercer handoff. Julian is approved canon, age 49, Helix Group COO. See [Chapter 4 contracts](CHAPTER_4_HANDOFF_AND_ART.md). The design-only roadmap below is historical; its unassigned-executive and content-version-9 statements describe its original scope, not current runtime. Other future trajectories remain concepts.
+
 **Design-only roadmap. No production encounters, external writing assignments or runtime changes.** Chapter 3 currently proposes **zero sexual-presentation handoffs**. Surveillance, authorized public association, sourced observations and usable leverage are approved dark-power direction. Marcus's leverage concerns a sophisticated interpretation of real discussions, not fabricated definitive acceptance. Future intimate milestones below have no fixed chapter placement. No explicit prose is included or requested by this document.
 
 Authority: [offline presentation contract](../design/ADULT_SCENE_HANDOFF.md), [Second Skin proposal](CHAPTER_3_SECOND_SKIN.md), [future trajectories](../design/FUTURE_TRAJECTORIES.md), and existing `src/narrative/adult-scenes/` contracts. Save schema 5 and content version 9 are unchanged. The production outcome registry remains empty.

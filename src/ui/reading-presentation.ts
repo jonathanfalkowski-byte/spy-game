@@ -1,3 +1,4 @@
+import { chapter3Reading } from './chapter3-reading';
 import type { Block } from '../content/schema';
 import type { GameState } from '../state/schema';
 import { leadNames } from '../content/mission';
@@ -15,6 +16,8 @@ export function displayName(text: string): string {
 
 export function readingBlocks(blocks: Block[], node?: string): Block[] {
   return blocks.flatMap((b): Block[] => {
+    const polished = chapter3Reading(b, node);
+    if (polished) return [polished];
     if (node === 'clinic.display' && b.text === 'How close will the result be to this model?')
       return [
         b,
