@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const nodeIds = [
+ 'chapter5.home','chapter5.spend','chapter5.echo','chapter5.invitation','chapter5.presentation','chapter5.room','chapter5.offer','chapter5.proof','chapter5.infrastructure','chapter5.terms','chapter5.people','chapter5.want','chapter5.handoff','chapter5.return','chapter5.complete',
 'chapter4.entry','chapter4.consequences','chapter4.resource','chapter4.assignment','chapter4.room','chapter4.assessment','chapter4.interest','chapter4.outside','chapter4.favor','chapter4.notice','chapter4.power','chapter4.intimacy','chapter4.handoff','chapter4.privateAccess','chapter4.complete',
   'chapter3.marcusRecord','chapter3.marcusLeverage','chapter3.institutional','chapter3.reviewQualification','chapter3.truths','chapter3.disclosure','chapter3.calendar','chapter3.departure',
   'chapter3.invitation', 'chapter3.verifyOffer', 'chapter3.executive', 'chapter3.executiveWork', 'chapter3.reception', 'chapter3.photograph', 'chapter3.opportunityEnd',

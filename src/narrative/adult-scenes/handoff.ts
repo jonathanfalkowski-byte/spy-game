@@ -1,3 +1,4 @@
+import { read5 } from '../../content/chapter5-model';
 import { read4 } from '../../content/chapter4-model';
 import { createHash } from 'node:crypto';
 import { characters } from '../../content/characters';
@@ -130,8 +131,9 @@ export function createHandoffWorkspace(
     const ref = source.reference;
     switch (ref.kind) {
       case 'delivery': {
-        const record=read4(snapshot,ref.key);
-        if(ref.key!==`sent-${ref.event}-${ref.characterId}` || !record || record.event!==ref.event) throw Error('Unknown recipient delivery');
+        const fifth=ref.key.startsWith('c5.');
+        const record=fifth?read5(snapshot,ref.key.slice(3)):read4(snapshot,ref.key);
+        if(ref.key!==`${fifth?'c5.':''}sent-${ref.event}-${ref.characterId}` || !record || record.event!==ref.event) throw Error('Unknown recipient delivery');
         break;
       }
       case 'event':

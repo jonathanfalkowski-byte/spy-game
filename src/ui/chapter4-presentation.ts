@@ -5,7 +5,7 @@ import { helix4 } from '../content/chapter4-case';
 export function conversationHistory(s: GameState) {
   const records = new Set(
     Object.entries(s.choices)
-      .filter(([key]) => key.startsWith('c4.rec.'))
+      .filter(([key]) => key.startsWith('c4.rec.') || key.startsWith('c5.rec.'))
       .map(([, value]) => Number(value)),
   );
   return s.history.filter((_, index) => !records.has(index));
@@ -20,6 +20,17 @@ export function currentPlace(s: GameState, fallback: string) {
       return 'After the 06:45 call · Apartment';
     if (s.phase === 'vossPlan' && s.choices['c3.careMode'] !== 'attend')
       return '08:48 · Apartment · Follow-up messages';
+  }
+  if (s.scene === 'chapter5') {
+    if (s.phase === 'presentation')
+      return s.choices['c5.event'] === 'attend'
+        ? '17:00 · Following day · Apartment'
+        : '14:00 · Following day · Apartment';
+    if (s.phase === 'room')
+      return s.choices['c5.event'] === 'attend'
+        ? '18:30–19:15 · Harbour preview'
+        : '15:00–15:45 · Harbour reading salon';
+    return fallback;
   }
   if (s.scene !== 'chapter4') return fallback;
   if (s.phase === 'consequences')

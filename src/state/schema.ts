@@ -47,7 +47,7 @@ export const ReportSchema = z
   .strict();
 export const StateSchema = z
   .object({
-    contentRevision: z.union([z.literal(12), z.literal(13), z.literal(14), z.literal(15)]).optional(),
+    contentRevision: z.union([z.literal(12), z.literal(13), z.literal(14), z.literal(15), z.literal(16)]).optional(),
     scene: z.enum([
       'apartment',
       'commute',
@@ -65,7 +65,7 @@ export const StateSchema = z
       'dayend',
       'clinic',
       'mission',
-      'chapter3', 'chapter4',
+      'chapter3', 'chapter4', 'chapter5',
     ]),
     day: DayStateSchema,
     clinic: ClinicSchema,

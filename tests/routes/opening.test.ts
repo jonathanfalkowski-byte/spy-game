@@ -1,3 +1,4 @@
+import {chapter5Scenes} from '../../src/content/chapter5';
 import {chapter4Scenes} from '../../src/content/chapter4';
 import { nextSceneDefinitions } from '../../src/content/chapter3-next';
 import { missionChoices } from '../../src/content/mission';
@@ -12,7 +13,7 @@ import { validateContent } from '../../src/content/validate';
 import { act, availableIntents, initialState, nodeOf } from '../../src/state/reducer';
 import { encodeSave, decodeSave } from '../../src/persistence/saves';
 import { toMaya, toAnalysis, choice, advance, apply } from '../helpers';
-it('validates legacy nodes reach their existing endpoints; revisions 14 and 15 are covered by playable route tests', () => {
+it('validates legacy nodes reach their existing endpoints; revisions 14 through 16 are covered by playable route tests', () => {
   expect(validateContent).not.toThrow();
   const reachable = new Set([
     'dayend.cautious',
@@ -41,7 +42,7 @@ it('validates legacy nodes reach their existing endpoints; revisions 14 and 15 a
       }
     }
   }
-  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length);
+  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length-chapter5Scenes.length);
 });
 for (const promotion of ['professional', 'angry', 'joke', 'quiet'])
   for (const benton of ['obey', 'push', 'promotion'])

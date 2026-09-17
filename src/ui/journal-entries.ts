@@ -1,3 +1,4 @@
+import { records5 } from '../content/chapter5-model';
 import { records4 } from '../content/chapter4-model';
 import type { GameState } from '../state/schema';
 import { documents, searches } from '../content/evidence';
@@ -11,6 +12,7 @@ export const milestoneNames = {
   mission: 'The Glass House',
   chapter3: 'Second Skin',
   chapter4: 'Private Access',
+  chapter5: 'The Beautiful Life',
 };
 export type Milestone = keyof typeof milestoneNames;
 export const informationNames = {
@@ -24,7 +26,8 @@ export function milestoneOf(s: GameState): Milestone {
     s.scene === 'clinic' ||
     s.scene === 'mission' ||
     s.scene === 'chapter3' ||
-    s.scene === 'chapter4'
+    s.scene === 'chapter4' ||
+    s.scene === 'chapter5'
   )
     return s.scene;
   return ['apartment', 'commute', 'office', 'helix', 'maya', 'ending'].includes(s.scene)
@@ -241,6 +244,17 @@ export function journalEntries(s: GameState): JournalEntry[] {
         : record.key.slice(3).replaceAll('-', ' '),
       text: record.text.replace(/^rook received:/, 'Unknown sender received:'),
       source: record.source,
+    });
+  for (const r of records5(s))
+    entries.push({
+      id: r.key,
+      milestone: 'chapter5',
+      type: r.layer,
+      title: r.key.startsWith('c5.sent-')
+        ? 'Delivered message'
+        : r.key.slice(3).replaceAll('-', ' '),
+      text: r.text,
+      source: r.source,
     });
   return entries.map((e) => ({
     ...e,

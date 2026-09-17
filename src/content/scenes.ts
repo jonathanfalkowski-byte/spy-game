@@ -12,6 +12,7 @@ import { dayScenes, dayBlocks } from './day';
 import { missionScenes, missionBlocks } from './mission';
 import { missionPresentation } from './mission-presentation';
 import { clinicScenes, clinicBlocks } from './clinic';
+import { chapter5Blocks,chapter5Scenes } from './chapter5';
 import { chapter4Blocks, chapter4Scenes } from './chapter4';
 import { chapter3Blocks, chapter3Scenes } from './chapter3';
 
@@ -45,6 +46,7 @@ export const scenes = SceneSchema.array().parse([
   ...missionScenes,
   ...chapter3Scenes,
   ...chapter4Scenes,
+  ...chapter5Scenes,
   {
     id: 'apartment.bond',
     title: 'Promotion day',
@@ -295,6 +297,7 @@ const responseSlot: Partial<Record<NodeId, string>> = {
 export function sceneBlocks(state: GameState): Block[] {
   const node = `${state.scene}.${state.phase}` as NodeId;
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
+  if (state.scene === 'chapter5') return chapter5Blocks(state);
   if (state.scene === 'chapter4') return chapter4Blocks(state);
   if (state.scene === 'chapter3') return chapter3Blocks(state);
   if (state.scene === 'mission')
