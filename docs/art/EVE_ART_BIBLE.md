@@ -362,6 +362,20 @@ For each branch, record the conditions that allow its shot and what must already
 
 ## Continuity between shots
 
+### Locked environment rule
+
+An approved locked recurring environment master is immutable. Character movement,
+entry/exit, wardrobe changes and prop actions do not authorize a generator to redraw
+the room. Prefer deterministic compositing of transparent character, prop and
+object-state layers over full-scene regeneration. Generation supplies missing layers;
+it does not recreate locked architecture. Preserve background pixels outside layer
+coverage, record source hashes and explicit scale/anchor/z-order metadata, and review
+physical fit against the camera's floor/table/chair/door/mirror calibration. Never
+resize furniture to accommodate a character. Any distinct lighting master requires
+separate explicit approval. See the [global rule](GLOBAL_CINEMATIC_ART_RULES.md) and
+[offline compositor](../../tools/visual/compositor/README.md). These production
+records neither change save schema nor establish story or identity state.
+
 Carry forward established environment layout, entrances, furniture, lighting/time, weather, character positions, face, hair, age, body proportions, wardrobe, accessories, injuries/marks and object placement/custody. Change them only when supported by the scene or an established transition. A camera change must not invent a wardrobe change, relocate a prop, reverse an object handoff, or add an absent participant. Movement inside the locked Adrian/Evelynn apartment never authorizes redesigning it; the same rule applies to every locked recurring environment.
 
 Use approved character and environment references. Artwork depicts established state; it does not establish biography, identity acceptance, knowledge, attraction, or relationship status.

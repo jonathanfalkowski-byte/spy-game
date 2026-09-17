@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SceneCompositionSpec",
+  "type": "object",
+  "required": [
+    "compositionId",
+    "shotId",
+    "backgroundAssetId",
+    "outputSize",
+    "characters",
+    "props",
+    "environmentCanonVersion"
+  ],
+  "properties": {
+    "compositionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shotId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "backgroundAssetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outputSize": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "environmentCanonVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "calibrationId": {
+      "type": "string"
+    },
+    "branchState": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "characters": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    },
+    "props": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/placement"
+      }
+    },
+    "shadows": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/placement"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "character": {
+      "type": "object",
+      "required": [
+        "x",
+        "y",
+        "scale",
+        "anchor",
+        "zIndex",
+        "characterAssetId",
+        "identityReference",
+        "wardrobeId",
+        "poseId"
+      ],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": -8192,
+          "maximum": 16384
+        },
+        "y": {
+          "type": "number",
+          "minimum": -8192,
+          "maximum": 16384
+        },
+        "scale": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 32
+        },
+        "anchor": {
+          "enum": [
+            "top-left",
+            "top-center",
+            "top-right",
+            "center",
+            "bottom-left",
+            "bottom-center",
+            "bottom-right"
+          ]
+        },
+        "zIndex": {
+          "type": "integer"
+        },
+        "flipX": {
+          "type": "boolean",
+          "default": false
+        },
+        "flipApproval": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowClipping": {
+          "type": "boolean",
+          "default": false
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "characterAssetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identityReference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wardrobeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "poseId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "placement": {
+      "type": "object",
+      "required": [
+        "assetId",
+        "x",
+        "y",
+        "scale",
+        "anchor",
+        "zIndex",
+        "custodyNote"
+      ],
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "x": {
+          "type": "number",
+          "minimum": -8192,
+          "maximum": 16384
+        },
+        "y": {
+          "type": "number",
+          "minimum": -8192,
+          "maximum": 16384
+        },
+        "scale": {
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 32
+        },
+        "anchor": {
+          "enum": [
+            "top-left",
+            "top-center",
+            "top-right",
+            "center",
+            "bottom-left",
+            "bottom-center",
+            "bottom-right"
+          ]
+        },
+        "zIndex": {
+          "type": "integer"
+        },
+        "custodyNote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "flipX": {
+          "type": "boolean",
+          "default": false
+        },
+        "flipApproval": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowClipping": {
+          "type": "boolean",
+          "default": false
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

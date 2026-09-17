@@ -9,6 +9,35 @@ They govern both:
 
 The goal is a cinematic visual-novel presentation where the artwork follows physical action without changing unnecessarily during ordinary conversation.
 
+# LOCKED ENVIRONMENT RULE
+
+Once a recurring environment is approved and locked, meaningful character movement
+does not authorize regenerating the environment. Its master is immutable. Character
+entry/exit, pose, outfit or prop-position changes use layered scene compositing:
+
+CANONICAL BACKGROUND → CHARACTER LAYERS → PROP LAYERS → NUMERIC SCALE/POSITION → COMPOSITE → REVIEW.
+
+Generate only missing visual layers. Do not ask a generator to redraw locked
+architecture. Preserve background pixels wherever foreground layers do not cover
+them; record its file hash, camera and environment canon version. Lighting variants
+need their own explicitly approved master, not an incidental scene rewrite.
+
+When an owner explicitly authorizes a lighting-only derivative, record the source
+hash and deterministic exposure/color settings and masks. Preserve all source pixel
+coordinates, dimensions and alpha; save a separate candidate. RGB values may change
+for lighting, but architecture may not. Review at production resolution and actual
+game display dimensions before approval. The original master remains untouched.
+
+Calibrate character scale to the room's floor, table/chair, door and mirror anchors.
+Never resize furniture to make a person fit. Verify grounded feet and believable
+reach at that depth. Deterministic props must respect authored custody and the exact
+completed action. Horizontal flips require approval. All composites remain staging
+until reviewed and explicitly approved for production.
+
+This applies initially to the apartment, locked Harbour and all future environments
+designated LOCKED. Use the offline tool in `tools/visual/compositor`; it is not part
+of gameplay or save state.
+
 # CORE RULE
 
 HOLD ON DIALOGUE.
