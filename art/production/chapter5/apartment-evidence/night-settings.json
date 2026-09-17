@@ -1,0 +1,157 @@
+{
+  "operation": "lighting-only",
+  "sourceSHA256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "settings": {
+    "base": {
+      "gamma": 1.06,
+      "gains": [
+        0.64,
+        0.67,
+        0.72
+      ]
+    },
+    "regions": [
+      {
+        "name": "four-existing-exterior-panes",
+        "polygons": [
+          [
+            [
+              722,
+              253
+            ],
+            [
+              914,
+              250
+            ],
+            [
+              914,
+              662
+            ],
+            [
+              722,
+              664
+            ]
+          ],
+          [
+            [
+              939,
+              246
+            ],
+            [
+              1117,
+              241
+            ],
+            [
+              1117,
+              660
+            ],
+            [
+              939,
+              663
+            ]
+          ],
+          [
+            [
+              724,
+              686
+            ],
+            [
+              914,
+              687
+            ],
+            [
+              914,
+              831
+            ],
+            [
+              724,
+              834
+            ]
+          ],
+          [
+            [
+              940,
+              686
+            ],
+            [
+              1116,
+              684
+            ],
+            [
+              1116,
+              831
+            ],
+            [
+              940,
+              833
+            ]
+          ]
+        ],
+        "maskBlur": 1,
+        "opacity": 1,
+        "grade": {
+          "gamma": 1.12,
+          "gains": [
+            0.19,
+            0.23,
+            0.28
+          ]
+        }
+      },
+      {
+        "name": "existing-practical-lamp-pool",
+        "polygons": [
+          [
+            [
+              1220,
+              398
+            ],
+            [
+              1494,
+              382
+            ],
+            [
+              1590,
+              551
+            ],
+            [
+              1563,
+              841
+            ],
+            [
+              1303,
+              943
+            ],
+            [
+              1157,
+              786
+            ],
+            [
+              1142,
+              570
+            ]
+          ]
+        ],
+        "maskBlur": 100,
+        "opacity": 0.78,
+        "grade": {
+          "gamma": 1.02,
+          "gains": [
+            0.97,
+            0.87,
+            0.74
+          ]
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Explicitly authorized lighting-only derivative. No source resampling, crop, object insertion or geometry redraw.",
+    "All regional RGB values sample the exact same original pixel coordinate. Masks only mix lighting grades.",
+    "Original night/window architecture unchanged; filename does not grant canonical or production approval."
+  ]
+}

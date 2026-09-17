@@ -20,6 +20,7 @@ it('shows no transformed home image before treatment, off-site, or after Scene 1
   expect(homeSceneArt(runMission(missionStart(), {}, 'car'))).toBeNull();
   const home = act(runMission(), {type:'CONTINUE_CHAPTER3'});
   expect(homeSceneArt(home)).not.toBeNull();
+  for (const id of ['mirror','clothing','evidence','phone']) expect(homeSceneArt(act(home,{type:'CHAPTER3_CHOOSE',id:'chapter3.'+id}))).toBeNull();
   expect(homeSceneArt({...home, phase:'mayaContact'})).toBeNull();
   expect(homeSceneArt({...home, clinic:{...home.clinic, stage:'face'}})).toBeNull();
 });

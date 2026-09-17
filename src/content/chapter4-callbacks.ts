@@ -61,14 +61,14 @@ export function contactCallback4(s: GameState, who: string): Block[] {
     return [
       q(
         'Julian Mercer',
-        'I received the qualification to Marcus’s note. Today’s discussion ended today. This would be a new piece of work.',
+        'I have the corrected note. If we work together again, we will start with a fresh brief.',
       ),
     ];
   if (who === 'sloane' && old(s, 'report-rook'))
     return [
       q(
         'Sloane',
-        'I have your report about the unknown sender. Keep the message. I have not asked you to send your patient file.',
+        'Keep the original sender message. Your report is enough for this channel; retain the patient file.',
       ),
     ];
   if (who === 'sloane' && old(s, 'partial-rook'))
@@ -79,7 +79,7 @@ export function contactCallback4(s: GameState, who: string): Block[] {
       return [
         q(
           'Maya',
-          'I read the qualification you sent. I would keep the signed version, whatever anyone puts on the cover sheet.',
+          'I read it. Keep the signed copy. Cover sheets have a way of outliving what people actually said.',
         ),
       ];
     if (known.some((k) => k.key.includes('paid discussion') || k.key.includes('fee voucher')))

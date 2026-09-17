@@ -1,3 +1,7 @@
+import { applyChapter4Choice as applyFrozenChapter4 } from '../persistence/legacy-v15/content/chapter4';
+import { applyNextChoice as applyFrozenNext } from '../persistence/legacy-v14/content/chapter3-next';
+import { canContinueAudit } from './audit-continuation';
+import { applyChapter5Choice as applyFrozenChapter5 } from '../persistence/legacy-v16/content/chapter5';
 import { chapter5Choices, applyChapter5Choice } from '../content/chapter5';
 import { replay as replayV15, reducer as reducerV15, availableIntents as intentsV15 } from '../persistence/legacy-v15/state/reducer';
 import { chapter4Choices, applyChapter4Choice } from '../content/chapter4';
@@ -28,7 +32,7 @@ import { chapter3Choices } from '../content/chapter3';
 export const nodeOf = (state: GameState) => `${state.scene}.${state.phase}` as NodeId;
 export function initialState(contentRevision = 13): GameState {
   if (contentRevision === 12) return initialV12();
-  if (![13,14,15,16].includes(contentRevision)) return legacyInitialState();
+  if (![13,14,15,16,17].includes(contentRevision)) return legacyInitialState();
   const s: GameState = {
     contentRevision: 13,
     day: initialDay(),
@@ -155,6 +159,25 @@ export function canContinue(s: GameState) {
   return !!sceneById[node].next && (node !== 'helix.documents' || s.documents.length >= 2);
 }
 export function reducer(state: GameState, input: unknown): GameState {
+  const auditAction = ActionSchema.safeParse(input);
+  if (auditAction.success && auditAction.data.type === 'CONTINUE_AUDIT_REVISION') {
+    if (!canContinueAudit(state) || auditAction.data.expectedRevision !== state.revision) return state;
+    try { if (stable(replay(state.ledger, state.contentRevision)) !== stable(state)) return state; }
+    catch { return state; }
+    const next = structuredClone(state);
+    next.contentRevision = 17;
+    next.revision++;
+    next.ledger.push({sequence: next.revision, action: auditAction.data});
+    return next;
+  }
+  if (state.contentRevision === 17) {
+    if (!auditAction.success || auditAction.data.expectedRevision !== state.revision) return state;
+    const a = auditAction.data;
+    if (a.type === 'CHAPTER3_CHOOSE' && state.scene === 'chapter3') return applyNextChoice(state,a.id);
+    if (a.type === 'CHAPTER4_CHOOSE') return applyChapter4Choice(state,a.id);
+    if (a.type === 'CHAPTER5_CHOOSE') return applyChapter5Choice(state,a.id);
+    return state;
+  }
   if(state.contentRevision!==15 && state.contentRevision!==16 && input && typeof input==='object' && 'type' in input && input.type==='CHAPTER5_CHOOSE')return state;
   if (state.contentRevision === 16 || state.contentRevision === 15) {
     const parsed=ActionSchema.safeParse(input);
@@ -162,7 +185,7 @@ export function reducer(state: GameState, input: unknown): GameState {
       if(state.contentRevision===15){
         try { if(stable(replayV15(state.ledger as Parameters<typeof replayV15>[0],15))!==stable(state)) return state; } catch { return state; }
       }
-      return applyChapter5Choice(state,parsed.data.id);
+      return applyFrozenChapter5(state,parsed.data.id);
     }
     return state.contentRevision===15 ? reducerV15(state as Parameters<typeof reducerV15>[0],input) : state;
   }
@@ -173,7 +196,7 @@ export function reducer(state: GameState, input: unknown): GameState {
         try { if (stable(replayV14(state.ledger as Parameters<typeof replayV14>[0],14)) !== stable(state)) return state; }
         catch { return state; }
       }
-      return applyChapter4Choice(state, parsed.data.id);
+      return applyFrozenChapter4(state as Parameters<typeof applyFrozenChapter4>[0], parsed.data.id);
     }
     return state.contentRevision === 14 ? reducerV14(state as Parameters<typeof reducerV14>[0],input) : state;
   }
@@ -184,7 +207,7 @@ export function reducer(state: GameState, input: unknown): GameState {
       try { if (stable(replayV13(state.ledger as Parameters<typeof replayV13>[0])) !== stable(state)) return state; }
       catch { return state; }
     }
-    return applyNextChoice(state, parsed.data.id);
+    return applyFrozenNext(state as Parameters<typeof applyFrozenNext>[0], parsed.data.id);
   }
   if (state.contentRevision === 12) {
     const parsed = ActionSchema.safeParse(input);
@@ -483,6 +506,20 @@ export function act(state: GameState, intent: Intent) {
   return reducer(state, { ...intent, expectedRevision: state.revision });
 }
 export function replay(events: GameEvent[], contentRevision = 13): GameState {
+  if (contentRevision === 17) {
+    const boundary = events.findIndex(e => e.action.type === 'CONTINUE_AUDIT_REVISION');
+    if (boundary < 0) throw Error('Missing explicit revision-17 continuation.');
+    const prefix = events.slice(0,boundary);
+    let state = replayPrefix(prefix,16);
+    for (const event of events.slice(boundary)) {
+      if (event.sequence !== state.revision + 1) throw Error('Noncontiguous revision-17 event.');
+      const next = reducer(state,event.action);
+      if (next === state) throw Error('Invalid revision-17 event.');
+      state = next;
+    }
+    if (state.contentRevision !== 17) throw Error('Missing revision-17 state.');
+    return state;
+  }
   if (contentRevision === 12) return replayV12(events as Parameters<typeof replayV12>[0]);
   if (contentRevision === 13) return replayV13(events as Parameters<typeof replayV13>[0]);
   if (contentRevision === 14) return replayV14(events as Parameters<typeof replayV14>[0],14);
@@ -499,6 +536,14 @@ export function replay(events: GameEvent[], contentRevision = 13): GameState {
   return state;
 }
 export function availableIntents(s: GameState): Intent[] {
+  return [...(canContinueAudit(s) ? [{type:'CONTINUE_AUDIT_REVISION' as const}] : []), ...storyIntents(s)];
+}
+function storyIntents(s: GameState): Intent[] {
+  if (s.contentRevision === 17) return [
+    ...nextChoices(s).map(c=>({type:'CHAPTER3_CHOOSE' as const,id:c.id})),
+    ...chapter4Choices(s).map(c=>({type:'CHAPTER4_CHOOSE' as const,id:c.id})),
+    ...chapter5Choices(s).map(c=>({type:'CHAPTER5_CHOOSE' as const,id:c.id})),
+  ];
   if(s.contentRevision===16)return chapter5Choices(s).map(c=>({type:'CHAPTER5_CHOOSE' as const,id:c.id}));
   if(s.contentRevision===15)return [...intentsV15(s as Parameters<typeof intentsV15>[0]),...chapter5Choices(s).map(c=>({type:'CHAPTER5_CHOOSE' as const,id:c.id}))];
   if (s.contentRevision === 14) return [...intentsV14(s as Parameters<typeof intentsV14>[0]), ...chapter4Choices(s).map(c=>({type:'CHAPTER4_CHOOSE' as const,id:c.id}))];
@@ -556,6 +601,7 @@ function stable(value: unknown): string {
 
 /** Prefix inspection selects the last authenticated epoch; full-save replay stays strict. */
 export function replayPrefix(events: GameEvent[], contentRevision = 13): GameState {
+ if (events.some(e => e.action.type === 'CONTINUE_AUDIT_REVISION')) return replay(events,17);
  const epoch = contentRevision >= 13 ? events.some(e=>e.action.type==='CHAPTER5_CHOOSE') ? 16 : events.some(e=>e.action.type==='CHAPTER4_CHOOSE') ? 15 : events.some(e=>e.action.type==='CHAPTER3_CHOOSE' && e.action.id==='chapter3.begin-followup') ? 14 : 13 : contentRevision;
  return replay(events,epoch);
 }

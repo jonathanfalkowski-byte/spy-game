@@ -6,7 +6,7 @@ import { createHandoffWorkspace } from './handoff';
 import type { OutcomeContract, HandoffPolicy } from './schema';
 export function createChapter5Handoff(state: GameState) {
   if (
-    state.contentRevision !== 16 ||
+    (state.contentRevision !== 16 && state.contentRevision !== 17) ||
     state.scene !== 'chapter5' ||
     state.phase !== 'handoff' ||
     !intimate5(state) ||

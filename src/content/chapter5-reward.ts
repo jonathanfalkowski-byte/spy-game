@@ -88,6 +88,9 @@ export function rewardBlocks5(s: GameState): Block[] {
   if (s.phase === 'spend') return [p(`Available settled money: $${cash5(s)}.`)];
   return [];
 }
+export const uncorrectedExcuse5 = (s: GameState, who: string) =>
+  old(s, 'cal-' + who) === 'excused' && get4(s, 'cal-' + who) !== 'corrected';
+
 export function rewardChoices5(s: GameState): C5Choice[] {
   const c: C5Choice[] = [];
   if (s.phase === 'home') {
@@ -132,13 +135,15 @@ export function rewardChoices5(s: GameState): C5Choice[] {
               const out = [p('You scroll past the calendar threads before opening a new message.')];
               for (const who of ['maya', 'sloane', 'voss', 'rook', 'julian-mercer'])
                 if (
-                  ['repair-requested', 'missed', 'left-uncorrected'].includes(
+                  uncorrectedExcuse5(x, who) || ['repair-requested', 'missed'].includes(
                     get4(x, 'cal-' + who) ?? '',
                   )
                 )
                   out.push(
                     p(
-                      `The ${who === 'rook' ? 'unknown sender' : who === 'julian-mercer' ? 'Julian' : who} thread still has an unresolved ${get4(x, 'cal-' + who) === 'left-uncorrected' ? 'excuse' : 'missed-call exchange'}. No replacement time has been agreed.`,
+                      uncorrectedExcuse5(x, who)
+                        ? who === 'voss' ? 'Voss rejected the false medical-order claim. Your correction is still unsent.' : `The ${who === 'rook' ? 'unknown sender' : who === 'julian-mercer' ? 'Julian' : who} thread still contains your medical excuse. You have not corrected it.`
+                        : `The ${who === 'rook' ? 'unknown sender' : who === 'julian-mercer' ? 'Julian' : who} thread still has an unresolved missed-call exchange. No replacement time has been agreed.`,
                     ),
                   );
               if (old(x, 'qualification') === 'formal')
@@ -175,7 +180,7 @@ export function rewardChoices5(s: GameState): C5Choice[] {
     c.push(
       offer5(
         'go-spend',
-        'Take the afternoon for yourself',
+        'Take the rest of the morning for yourself',
         'Leave the private records at home.',
         'spend',
         (x) => {
@@ -261,7 +266,7 @@ export function rewardChoices5(s: GameState): C5Choice[] {
           ),
         );
     for (const [id, label] of [
-      ['save', 'Set the money aside'],
+      ['save', cash5(s) > 0 ? 'Set the money aside' : 'Keep the budget unchanged; buy nothing'],
       ['nothing', 'Buy nothing today'],
     ] as const)
       c.push(

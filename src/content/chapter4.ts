@@ -1,3 +1,4 @@
+import { chapter4Blocks as frozenBlocks, chapter4Choices as frozenChoices } from '../persistence/legacy-v15/content/chapter4';
 import type { GameState } from '../state/schema';
 import { type NodeId } from './schema';
 import { entryScenes4, entryBlocks4, entryChoices4 } from './chapter4-entry';
@@ -9,7 +10,7 @@ export const chapter4Scenes = Object.entries(chapter4Definitions).map(([phase, s
   id: `chapter4.${phase}` as NodeId,
   ...scene,
 }));
-export const chapter4Blocks = (s: GameState) => [
+export const chapter4Blocks = (s: GameState) => s.contentRevision !== 17 ? frozenBlocks(s as Parameters<typeof frozenBlocks>[0]) : [
   ...(s.phase === 'power' ? powerBlocks4(s) : []),
   ...(chapter4Definitions[s.phase]?.blocks ?? []),
   ...entryBlocks4(s),
@@ -17,7 +18,8 @@ export const chapter4Blocks = (s: GameState) => [
   ...(s.phase === 'power' ? [] : powerBlocks4(s)),
 ];
 export function chapter4Choices(s: GameState): C4Choice[] {
-  if (s.contentRevision === 14 && s.scene === 'chapter3' && s.phase === 'departure')
+  if (s.contentRevision !== 17) return frozenChoices(s as Parameters<typeof frozenChoices>[0]) as unknown as C4Choice[];
+  if (s.contentRevision === 17 && s.scene === 'chapter3' && s.phase === 'departure')
     return [
       offer4(
         'begin',
@@ -26,7 +28,7 @@ export function chapter4Choices(s: GameState): C4Choice[] {
         'entry',
       ),
     ];
-  if (s.contentRevision !== 15 || s.scene !== 'chapter4') return [];
+  if (s.contentRevision !== 17 || s.scene !== 'chapter4') return [];
   return [...entryChoices4(s), ...caseChoices4(s), ...powerChoices4(s)];
 }
 export function applyChapter4Choice(state: GameState, id: string): GameState {
@@ -34,7 +36,7 @@ export function applyChapter4Choice(state: GameState, id: string): GameState {
   if (!c) return state;
   const s = structuredClone(state);
   s.revision++;
-  s.contentRevision = 15;
+  s.contentRevision = state.contentRevision === 17 ? 17 : 15;
   s.history.push({
     node: `${state.scene}.${state.phase}` as NodeId,
     blocks: [{ kind: 'notice', text: 'Your choice: ' + c.label }],

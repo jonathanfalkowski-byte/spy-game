@@ -310,14 +310,14 @@ export function desireChoices5(s: GameState): C5Choice[] {
               return [
                 q('Julian Mercer', 'Twenty minutes, by phone. That suits me.'),
                 p(
-                  'You call at the agreed time and end the conversation when the twenty minutes are up.',
+                  'You place the call and end the conversation when the twenty minutes are up.',
                 ),
               ];
             }
             set5(x, 'went-out');
             return [
               p(
-                'The host confirms by message that you may come for twenty minutes. You take the guest card, leave home and arrive at Harbour’s roof terrace at half past eight. You listen until ten to nine, then leave while the set continues.',
+                'The host confirms by message that you may come for twenty minutes. You take the guest card, leave home and arrive at Harbour’s roof terrace at half past eight. A low phrase returns under the melody. You catch it on the second pass and listen for it again. At ten to nine you leave while the set continues.',
               ),
             ];
           },

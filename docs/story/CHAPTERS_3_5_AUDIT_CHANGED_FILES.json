@@ -1,0 +1,559 @@
+{
+  "baseline": "7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6",
+  "branch": "story/chapter-3-design",
+  "stagedFiles": [],
+  "files": [
+    {
+      "status": " M",
+      "path": "art/production/chapter5/README.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/README.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "art/production/chapter5/coverage.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/coverage.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "art/production/chapter5/records.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/records.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "docs/art/CHAPTER_5_ART_REQUIREMENTS.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CHAPTER_5_ART_REQUIREMENTS.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "docs/art/CHAPTER_5_SHOT_PLAN_REVIEW.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CHAPTER_5_SHOT_PLAN_REVIEW.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter3-next.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter3-next.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter3-opportunity.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter3-opportunity.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter3.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter3.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter4-callbacks.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter4-callbacks.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter4-power.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter4-power.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter4.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter4.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-benefit.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-benefit.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-continuity.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-continuity.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-desire.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-desire.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-harbour-shots.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-harbour-shots.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-public.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-public.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5-reward.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5-reward.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/content/chapter5.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/content/chapter5.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/narrative/adult-scenes/chapter4.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/narrative/adult-scenes/chapter4.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/narrative/adult-scenes/chapter5.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/narrative/adult-scenes/chapter5.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/persistence/saves.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/saves.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/state/actions.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/state/actions.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/state/reducer.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/state/reducer.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/state/schema.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/state/schema.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/App.tsx",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/App.tsx",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/Chapter3work.tsx",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/Chapter3work.tsx",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/Chapter5work.tsx",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/Chapter5work.tsx",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/ClinicConversation.tsx",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/ClinicConversation.tsx",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/chapter3-reading.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/chapter3-reading.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "src/ui/home-scene-art.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/home-scene-art.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/browser/chapter5.spec.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/browser/chapter5.spec.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/state/chapter3-evening.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/chapter3-evening.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/state/chapter4.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/chapter4.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/state/chapter5-art-promotion.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/chapter5-art-promotion.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/state/chapter5-continuity.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/chapter5-continuity.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": " M",
+      "path": "tests/state/home-art.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/home-art.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/apartment-evening-v1.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/apartment-evening-v1.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/apartment-night-canon-derived-v1.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/apartment-night-canon-derived-v1.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/contact-shadow.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/contact-shadow.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/evelynn-canon-three-quarter-v1.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/evelynn-canon-three-quarter-v1.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/evelynn-character-layer-clean-v2.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/evelynn-character-layer-clean-v2.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/evelynn-character-layer-v1.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/evelynn-character-layer-v1.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/evelynn-crouch-extracted-v1.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/evelynn-crouch-extracted-v1.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/phone-axiom.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/phone-axiom.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-components/phone-personal.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-components/phone-personal.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/README.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/README.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/assets.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/assets.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/composition.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/composition.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/matte-settings.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/matte-settings.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/night-settings.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/night-settings.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/review.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/review.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/v1-placement-reference.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/v1-placement-reference.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "art/production/chapter5/apartment-evidence/verification.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/art/production/chapter5/apartment-evidence/verification.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/CHAPTER_5_COVERAGE_AUDIT.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CHAPTER_5_COVERAGE_AUDIT.json",
+      "note": "pre-existing untracked coverage; updated within scope"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/CHAPTER_5_COVERAGE_AUDIT.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CHAPTER_5_COVERAGE_AUDIT.md",
+      "note": "pre-existing untracked coverage; updated within scope"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/CHAPTER_5_WAVE_A_REVIEW.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CHAPTER_5_WAVE_A_REVIEW.md",
+      "note": "pre-existing untracked Aster review; preserved unchanged"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/CURRENT_AUTHORITY_INDEX.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CURRENT_AUTHORITY_INDEX.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/CURRENT_AUTHORITY_INDEX.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/CURRENT_AUTHORITY_INDEX.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/1440-apartment-ending.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/1440-apartment-ending.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/1440-current-proposal.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/1440-current-proposal.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/1440-harbour-arrived.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/1440-harbour-arrived.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/1440-harbour-departed.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/1440-harbour-departed.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/390-apartment-ending.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/390-apartment-ending.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/390-current-proposal.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/390-current-proposal.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/390-harbour-arrived.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/390-harbour-arrived.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/390-harbour-departed.png",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/390-harbour-departed.png",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/art/audit-revision17-review/README.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/art/audit-revision17-review/README.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/story/CHAPTERS_3_5_AUDIT_CHANGED_FILES.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/story/CHAPTERS_3_5_AUDIT_CHANGED_FILES.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/story/CHAPTERS_3_5_AUDIT_IMPLEMENTATION_REVIEW.md",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/story/CHAPTERS_3_5_AUDIT_IMPLEMENTATION_REVIEW.md",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "docs/story/CHAPTERS_3_5_AUDIT_VALIDATION.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/docs/story/CHAPTERS_3_5_AUDIT_VALIDATION.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/SOURCE.json",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/SOURCE.json",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter4-model.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter4-model.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-benefit.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-benefit.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-continuity.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-continuity.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-desire.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-desire.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-harbour-shots.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-harbour-shots.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-model.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-model.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-public.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-public.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5-reward.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5-reward.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/chapter5.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/chapter5.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/character-schema.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/character-schema.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/characters.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/characters.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/content/schema.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/content/schema.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/persistence/legacy-v16/state/chapter3-provenance.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/persistence/legacy-v16/state/chapter3-provenance.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/state/audit-continuation.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/state/audit-continuation.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/ui/Chapter5BeatSequence.tsx",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/Chapter5BeatSequence.tsx",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "src/ui/chapter5-beats.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/src/ui/chapter5-beats.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "tests/browser/audit-revision17.spec.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/browser/audit-revision17.spec.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "tests/state/audit-art-registry.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/audit-art-registry.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "tests/state/audit-frozen16.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/audit-frozen16.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "tests/state/audit-revision17.test.ts",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tests/state/audit-revision17.test.ts",
+      "note": "audit implementation"
+    },
+    {
+      "status": "??",
+      "path": "tools/visual/compositor/test_apartment_production.py",
+      "absolutePath": "C:/Users/Admin/Documents/Codex/2026-09-14/files-pasted-by-the-user-we/outputs/eve-chapter-3-design/tools/visual/compositor/test_apartment_production.py",
+      "note": "audit implementation"
+    }
+  ]
+}

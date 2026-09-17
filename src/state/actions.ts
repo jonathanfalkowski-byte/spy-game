@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { DocIdSchema, RelationSchema, SearchSchema, AssessmentSchema } from '../content/schema';
 const revision = { expectedRevision: z.number().int().nonnegative() };
 export const ActionSchema = z.discriminatedUnion('type', [
+  z.object({ ...revision, type: z.literal('CONTINUE_AUDIT_REVISION') }).strict(),
   z.object({ ...revision, type: z.literal('CHAPTER5_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('CHAPTER4_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('MISSION_CHOOSE'), id: z.string().max(80) }).strict(),

@@ -1,3 +1,5 @@
+import { apartmentEndingArt5, coffeeAction5 } from './chapter5-beats';
+import { canContinueAudit } from '../state/audit-continuation';
 import { Chapter5work } from './Chapter5work';
 import { chapter5Scenes } from '../content/chapter5';
 import { conversationHistory, currentPlace } from './chapter4-presentation';
@@ -64,6 +66,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
   const entered = useRef(false);
   const node = nodeOf(state);
   const homeArt = homeSceneArt(state);
+  const apartmentArt = apartmentEndingArt5(state);
+  const [readRevision,setReadRevision] = useState(-1);
+  const readingScene = coffeeAction5(state) && readRevision !== state.revision;
   useEffect(() => {
     if (
       entered.current &&
@@ -197,7 +202,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : state.scene === 'chapter3'
                           ? ['home', 'surveillance', 'complete'].includes(state.phase)
                             ? 'Chapter 3 / Scene 1'
-                            : state.contentRevision === 14
+                            : (state.contentRevision === 14 || state.contentRevision === 17)
                               ? 'Chapter 3 / Scene ' + chapter3Number(state)
                               : 'Chapter 3 / Scene 2'
                           : 'Opening / 01'}
@@ -212,7 +217,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 ) : state.scene === 'chapter4' ? (
                   'Private Access.'
                 ) : state.scene === 'chapter3' ? (
-                  state.contentRevision === 14 ? (
+                  (state.contentRevision === 14 || state.contentRevision === 17) ? (
                     'Second Skin.'
                   ) : (
                     'Home after Glass House.'
@@ -244,7 +249,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                                 ['chapter3.surveillance', 'The entry record'],
                                 ['chapter3.complete', 'Scene 1 endpoint'],
                               ]
-                            : state.contentRevision === 14
+                            : (state.contentRevision === 14 || state.contentRevision === 17)
                               ? chapter3Progress(state)
                               : [
                                   ['chapter3.mayaContact', 'What you can tell her'],
@@ -403,9 +408,16 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 'warning',
                 'dayend',
               ].includes(state.scene) ? (
-                <ClinicConversation state={state} latest={latestExchange} />
+                <ClinicConversation state={state} latest={latestExchange} onSceneRead={() => setReadRevision(state.revision)} />
               ) : (
                 <Narrative blocks={sceneBlocks(state)} />
+              )}
+              {canContinueAudit(state) && !readingScene && (
+                <section className="decision" aria-label="Story revision continuation">
+                  <p>Updated Chapters 3–5 are available. Continue with the revised choices from here; your earlier decisions and history stay intact.</p>
+                  <button onClick={() => send({type: 'CONTINUE_AUDIT_REVISION'})}>Continue with revised Chapters 3–5</button>
+                  <small>You can keep playing this saved edition using its existing choices below.</small>
+                </section>
               )}
               {state.scene === 'apartment' && (
                 <section className="apartment-inspections">
@@ -463,7 +475,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               <Daywork state={state} send={send} />
               {state.scene === 'chapter3' && <Chapter3work state={state} send={send} />}
               <Chapter4work state={state} send={send} />
-              <Chapter5work state={state} send={send} />
+              {apartmentArt && <figure style={{margin:0}} data-reading-shot={apartmentArt.shotId}><img className="chapter5-scene-art" style={{width:'100%',height:'auto'}} src={'art/chapter5/'+apartmentArt.file} alt={apartmentArt.alt} /></figure>}
+              {!readingScene && <Chapter5work state={state} send={send} />}
               <Clinicwork state={state} send={send} />
               <Missionwork state={state} send={send} />
               {state.mission.outcome === 'complete' && (state.contentRevision ?? 11) < 14 && (
@@ -632,7 +645,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : state.scene === 'chapter3'
                           ? ['home', 'surveillance', 'complete'].includes(state.phase)
                             ? 'CHAPTER 3 · SCENE 1'
-                            : state.contentRevision === 14
+                            : (state.contentRevision === 14 || state.contentRevision === 17)
                               ? 'CHAPTER 3 · SCENE ' + chapter3Number(state)
                               : 'CHAPTER 3 · SCENE 2'
                           : 'ADRIAN’S DAY'}

@@ -42,7 +42,7 @@ export const wardrobe5 = {
 
 /** Read-only audit projection. This does not authorize an image or reconstruct a past beat. */
 export function continuity5(s: GameState) {
-  if (s.contentRevision !== 16 || s.scene !== 'chapter5') return undefined;
+  if ((s.contentRevision !== 16 && s.contentRevision !== 17) || s.scene !== 'chapter5') return undefined;
   const wardrobe = Object.values(wardrobe5).find((w) => w.id === get5(s, 'wardrobe'));
   return {
     wardrobe,

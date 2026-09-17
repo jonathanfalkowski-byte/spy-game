@@ -1,3 +1,4 @@
+import { nextChoices as frozenChoices } from '../persistence/legacy-v14/content/chapter3-next';
 import { autonomyScenes, autonomyChoices } from './chapter3-autonomy';
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, type Block, type NodeId } from './schema';
@@ -27,7 +28,7 @@ export const nextSceneDefinitions: Record<
     blocks: [
       q(
         'Dr Lena Voss',
-        'If you authorize nothing further, no further adaptation is authorized. Yesterday does not undo itself because you leave the next page blank. Care, assessment and another stage are separate decisions.',
+        'Without another procedure, the changes already made remain. I can still assess symptoms and provide ordinary care. Another stage would need a separate decision.',
       ),
     ],
   },
@@ -65,7 +66,7 @@ export const nextSceneDefinitions: Record<
     place: '10:35 · Two separate threads',
     blocks: [
       p(
-        'The sender asks whether you checked. The patient-record request and this reply are separate transmissions. The monitored handset makes messages available to Axiom systems; it does not establish that Sloane personally read them.',
+        'The sender asks whether you checked. You open the unknown-number thread on the monitored handset. There is no read receipt from Sloane.',
       ),
     ],
   },
@@ -94,8 +95,9 @@ export function nextBlocks(s: GameState): Block[] {
   return blocks;
 }
 export function nextChoices(s: GameState): NextChoice[] {
+  if (s.contentRevision !== 17) return frozenChoices(s as Parameters<typeof frozenChoices>[0]) as unknown as NextChoice[];
   if (s.scene !== 'chapter3') return [];
-  if (s.phase === 'nightComplete' && (s.contentRevision === 13 || s.contentRevision === 14))
+  if (s.phase === 'nightComplete')
     return [
       choice(
         'begin-followup',
@@ -104,7 +106,7 @@ export function nextChoices(s: GameState): NextChoice[] {
         'morningPlan',
       ),
     ];
-  if (s.contentRevision !== 14) return [];
+  if (s.contentRevision !== 17) return [];
   const c: NextChoice[] = [...opportunityChoices(s), ...autonomyChoices(s)];
   const once = (
     key: string,
@@ -488,12 +490,12 @@ export function nextChoices(s: GameState): NextChoice[] {
         return [
           q(
             'Sloane · reply',
-            'I have your report. Retain the message. I am not providing a program history on this channel.',
+            'Received. Keep the original message. Program history will not be discussed on this channel.',
           ),
         ];
       },
     );
-    once(
+    if (flag(s, 'verified-date') && s.ledger.some(e => e.action.type === 'CHAPTER3_CHOOSE' && e.action.id === 'chapter3.verify-date')) once(
       'partial-rook',
       'Tell Sloane only that you requested a date',
       'Do not identify the sender or transmit the extract.',
@@ -582,7 +584,7 @@ export function applyNextChoice(state: GameState, id: string): GameState {
   if (!c) return state;
   const s = structuredClone(state);
   s.revision++;
-  s.contentRevision = 14;
+  s.contentRevision = state.contentRevision === 17 ? 17 : 14;
   const blocks = c.apply?.(s) ?? [];
   s.history.push({
     node: `chapter3.${state.phase}` as NodeId,

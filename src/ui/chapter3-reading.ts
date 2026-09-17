@@ -35,7 +35,7 @@ const edits: [string, string, string][] = [
   [
     'rookReply',
     'The sender asks whether you checked. The patient-record request and this reply are separate transmissions. The monitored handset makes messages available to Axiom systems; it does not establish that Sloane personally read them.',
-    'The sender asks whether you checked. You switch from the patient-record thread to the unknown number. Both run through the monitored handset. You have no receipt showing Sloane read either.',
+    'The sender asks whether you checked. You open the unknown-number thread on the monitored handset. There is no read receipt from Sloane.',
   ],
 ];
 export function chapter3Reading(block: Block, node?: string): Block | undefined {

@@ -2,8 +2,8 @@
   "chapter": 5,
   "contentRevision": 16,
   "saveSchema": 5,
-  "planningOnly": true,
-  "runtimeBindingChanged": false,
+  "planningOnly": false,
+  "runtimeBindingChanged": true,
   "completeChapterCoverage": false,
   "stagingReview": {
     "status": "promoted",
@@ -36,7 +36,7 @@
       "jacket": "inside-wardrobe",
       "phones": 2,
       "approvalDate": "2026-09-17",
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s06.shot12-entrance",
@@ -60,7 +60,7 @@
         "coffeeCount": 1,
         "contact": false
       },
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s06.shot15-departed",
@@ -84,7 +84,7 @@
         "coffeeCount": 1,
         "contact": false
       },
-      "runtimeBound": false
+      "runtimeBound": true
     }
   ],
   "referenceOnly": [
@@ -104,5 +104,10 @@
     "canonical body reference",
     "canonical wardrobe master",
     "universal final apartment state"
-  ]
+  ],
+  "runtimeContentRevisions": [
+    16,
+    17
+  ],
+  "runtimeBinding": "src/ui/chapter5-beats.ts"
 }

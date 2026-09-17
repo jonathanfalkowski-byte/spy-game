@@ -47,7 +47,7 @@ export const chapter3Scenes = [
 export const chapter3SceneById = Object.fromEntries(chapter3Scenes.map((s) => [s.id, s]));
 
 export function chapter3Blocks(state: GameState) {
-  if (state.contentRevision === 14 && nextSceneDefinitions[state.phase]) return nextBlocks(state);
+  if ((state.contentRevision === 14 || state.contentRevision === 17) && nextSceneDefinitions[state.phase]) return nextBlocks(state);
   if (eveningScenes.some(scene => scene.id === 'chapter3.' + state.phase)) return eveningBlocks(state);
   const scene = chapter3SceneById[('chapter3.' + state.phase) as keyof typeof chapter3SceneById];
   const blocks = [...scene.blocks];

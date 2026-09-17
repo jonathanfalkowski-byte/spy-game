@@ -56,6 +56,8 @@ export const publicScenes5: Record<string, C5Scene> = {
     ],
   },
 };
+export const asterConcepts = ['professional', 'glamorous', 'provocative', 'private'] as const;
+export const proposal5 = (s: GameState, concept: string): GameState => ({...s, choices: {...s.choices, 'c5.concept': concept}});
 export const concept5 = (s: GameState) => get5(s, 'concept') ?? 'professional';
 export const fee5 = (s: GameState) =>
   (({ professional: 400, glamorous: 600, provocative: 800, private: 100 })[concept5(s)] ?? 400) +
@@ -197,7 +199,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
             return [
               q('Harbour host', 'My favourite piece is the one almost everyone walks past.'),
               p(
-                'You follow the host from the programme table to the painting on the near wall. For ten minutes you argue pleasantly about the colour of the water. Then you both return to the table.',
+                'You follow the host to the painting on the near wall. “Green,” you say. “Look at the reflection.” The host shakes their head. “That is the bank. The water is grey.” Neither of you concedes it. Ten minutes later you return to the programme table together.',
               ),
             ];
           },
@@ -231,7 +233,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
               x,
               'event-artifact',
               'Harbour programme page publishes one approved photograph, named Evelynn Vale. Audience: programme visitors, thirty days; no ads or reuse.',
-              'Photographer shows the published page',
+              'Harbour host shows the published programme page on the table tablet',
             );
             return [
               p(
@@ -278,7 +280,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
               return [
                 q('Julian · reply', 'I am nearby. Ten minutes would be welcome.'),
                 p(
-                  'You leave the programme table and wait outside the entrance with a coffee from the refreshment table. Julian arrives without an assistant. You talk for ten minutes about the programme, then he says goodbye and leaves. You go back inside to the host at the programme table.',
+                  'You leave the programme table and wait outside the entrance with a coffee from the refreshment table. Julian arrives without an assistant. “Which piece?” he asks. You name a title from the programme. “That one deserves longer than the space they gave it.” He considers that. “Then I will start there.” Ten minutes pass. He says goodbye and leaves. You go back inside to the host at the programme table, still carrying your cup.',
                 ),
               ];
             },
@@ -368,7 +370,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
                   'Aster editor',
                   id === 'private'
                     ? 'A private research sitting, one hundred. No public issue or future rights.'
-                    : 'I can work with that direction. Read the fee and use together before agreeing.',
+                    : 'That direction works. I have put the fee and usage beside it in the proposal.',
                 ),
               ];
             },
@@ -408,7 +410,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
         'Ask for the studio’s public professional directory',
         'directory',
         'yes',
-        'Here is the public directory. An address is not a promise from the person at it.',
+        'Here is our public directory. You would need to approach them yourself.',
       ],
     ])
       if (!get5(s, 'negotiated-' + id))
@@ -438,12 +440,20 @@ export function publicChoices5(s: GameState): C5Choice[] {
           note5(x, 'editorial-terms', rights5(x), 'Written terms accepted before production');
           return [
             p(
-              'You confirm the 11:30 appointment, leave home and arrive at the studio on time, wearing the same selected outfit. The editor reads the scope back before the sitting begins. You spend the next two hours talking and choosing what belongs in the proof.',
+              'You confirm the 11:30 appointment, leave home and arrive at the studio on time in the same selected outfit. After reading back the scope, the editor asks, “What would you keep out of the frame?” You describe the work without naming a client. The editor crosses a phrase out. “That is the sentence, then.” Over the next two hours you choose what belongs in the proof.',
             ),
           ];
         },
       ),
     );
+    // Draft changes are presentation-only; accepting a reviewed concept is one durable event.
+    const accept = c.find(choice => choice.id === 'chapter5.offer-accept')!;
+    for (const concept of asterConcepts) c.push({
+      ...accept, id: 'chapter5.offer-accept-' + concept,
+      hint: rights5(proposal5(s, concept)),
+      apply: x => { set5(x, 'concept', concept); return accept.apply?.(x) ?? []; },
+    });
+    c.splice(c.indexOf(accept), 1);
     c.push(
       offer5(
         'offer-decline',

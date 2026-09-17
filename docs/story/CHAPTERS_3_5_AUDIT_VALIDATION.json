@@ -1,0 +1,59 @@
+{
+  "baselineCommit": "7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6",
+  "branch": "story/chapter-3-design",
+  "frozenContent16Commit": "fe1f6084a7affeec775e9d7b25e883c91f5d5fa4",
+  "newContentRevision": 17,
+  "saveSchema": 5,
+  "continuation": "explicit authenticated CONTINUE_AUDIT_REVISION event; no silent save upgrade",
+  "corridorPlanReview": "performed before code",
+  "unitStateRoute": {
+    "result": "PASS",
+    "files": 43,
+    "tests": 429,
+    "command": "npx.cmd vitest run --maxWorkers=2 --testTimeout=30000 --reporter=dot"
+  },
+  "compositor": {
+    "result": "PASS",
+    "tests": 17,
+    "command": "python -m unittest discover -s tools/visual/compositor -p test_*.py",
+    "pillow": "12.3.0",
+    "apartment": "approved output and both local derivatives reproduce by SHA256; zero changed uncovered pixels",
+    "harbour": "both approved compositions reproduce and departure changes only removed Julian coverage"
+  },
+  "browser": {
+    "result": "PASS",
+    "distinctTests": 17,
+    "finalAffectedRetest": 4,
+    "viewports": [
+      1440,
+      390
+    ],
+    "coverage": [
+      "new revision17 desktop/mobile Julian-capable coffee and exact two-phone ending",
+      "new revision17 desktop/mobile non-Julian Aster negotiation/publication, final state and journal",
+      "existing Chapter3 next, Chapter4, Chapter5 and six approved home-art routes"
+    ],
+    "notRun": "Full browser suite outside these affected chapter/art flows",
+    "screenshots": "docs/art/audit-revision17-review",
+    "manualReview": "PASS for runtime presentation within existing bounded art approvals; no new art approval"
+  },
+  "typecheck": "PASS",
+  "build": {
+    "result": "PASS",
+    "warning": "Large minified chunk advisory; no performance benchmark claimed"
+  },
+  "references": "PASS — prototype HTML and GDD unchanged",
+  "historicalIntegrity": "Existing legacy modules and expected historical hashes unchanged; source provenance regression for new frozen16 archive passed",
+  "gitDiffCheck": "PASS",
+  "art": {
+    "runtimeBoundExactVariants": 3,
+    "rasterArtifactBeatIds": 100,
+    "allBranchCoverageComplete": false,
+    "asterArrival": "REVISE — staging",
+    "newCredits": 0,
+    "pilotTotalCredits": 14,
+    "newPromotions": 0
+  },
+  "rawLogs": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\audit-revision17-validation",
+  "commitPush": "Neither performed; reviewable unstaged/untracked diff only"
+}

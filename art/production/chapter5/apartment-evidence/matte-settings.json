@@ -1,0 +1,97 @@
+{
+  "operation": "alpha-cleanup",
+  "sourceSHA256": "bb60acdcfced8ec1b49d969ac9518e1f37c25ecba445aa883a4f0e4f2d1e26b7",
+  "dimensions": [
+    1464,
+    1821
+  ],
+  "settings": {
+    "fadeStart": 210,
+    "transparentAt": 242,
+    "maxChannelSpread": 25,
+    "edgeRadius": 2,
+    "cleanupPolygons": [
+      [
+        [
+          420,
+          0
+        ],
+        [
+          1030,
+          0
+        ],
+        [
+          1030,
+          485
+        ],
+        [
+          420,
+          485
+        ]
+      ]
+    ],
+    "protectedPolygons": [
+      [
+        [
+          561,
+          202
+        ],
+        [
+          638,
+          183
+        ],
+        [
+          806,
+          249
+        ],
+        [
+          891,
+          332
+        ],
+        [
+          831,
+          410
+        ],
+        [
+          704,
+          494
+        ],
+        [
+          634,
+          454
+        ],
+        [
+          565,
+          370
+        ],
+        [
+          552,
+          288
+        ]
+      ],
+      [
+        [
+          675,
+          495
+        ],
+        [
+          855,
+          495
+        ],
+        [
+          855,
+          915
+        ],
+        [
+          675,
+          915
+        ]
+      ]
+    ]
+  },
+  "notes": [
+    "Only existing alpha decreases; RGB remains bit-identical everywhere.",
+    "Hair region removes enclosed backing, edge-neighbor mask reduces neutral white fringes.",
+    "Face protected explicitly; skin, clothing, pose and ear detail are not repainted."
+  ]
+}

@@ -30,7 +30,7 @@ export const benefitScenes5: Record<string, C5Scene> = {
     ],
   },
   terms: {
-    title: 'The price is not money',
+    title: 'The workroom extension',
     place: '16:00 · The written extension',
     blocks: [
       p(
@@ -59,11 +59,13 @@ const extensionStart5 = (s: GameState) =>
     ? 'after the current seven-day booking'
     : 'tomorrow';
 export function benefitBlocks5(s: GameState): Block[] {
-  if (s.phase === 'infrastructure' && julian5(s))
+  if (s.phase === 'infrastructure')
     return [
+      ...(get4(s, 'favor') === 'accept' ? [p('The workroom slip covered that afternoon, until five. Your permanent reader pass still gets you a public desk; a private room for the week would be a new booking.')] : get4(s, 'favor') === 'narrow' ? [p('The certified copy you chose is filed with the packet. Your reader pass still covers a public desk; no private room was included.')] : []),
+      ...(julian5(s) ? [
       p(
         'Julian’s professional thread is still open. You could tell him about the crowded table, if you want help with this particular problem.',
-      ),
+      ),] : []),
     ];
   if (s.phase === 'terms')
     return [

@@ -1,5 +1,7 @@
 # Chapter 5 cinematic shot plan — final pre-freeze specification
 
+**Current audit status:** three existing approved exact Chapter5 variants are now runtime-bound; no new promotion/generation. Current authority index supersedes the historical no-binding and earlier-spend statements retained below. Revision17 is opt-in; frozen semantics remain preserved.
+
 **Harbour production update (2026-09-17):** Owner-approved V2 promoted for c05.s06.shot12-entrance; zero-credit completed-departure derivative PASS and promoted under explicit conditional authorization for c05.s06.shot15-departed. Exact evening/attend/professional/Julian-access/coffee state only. Julian absent after goodbye, before Evelynn re-enters; identical background and Evelynn placement/coffee. LOW/POLISH edge notes retained. Neither creates canonical identity/wardrobe authority. [Approval and evidence](../../art/production/chapter5/harbour-approvals.json). Other branches and return shot remain pending. No runtime binding change.
 
 
@@ -352,3 +354,10 @@ The subsequent home arrival is summarized before the next morning scene; use `c0
 - No newly visible sink is required for tea/cup actions: use existing wide/cabinet crop after the routine gesture. No new furniture or unsupported reverse angle is required.
 
 Every active row is SPEC / MISSING ASSET. Exact screen text should be typeset from authored records; no generated text may create knowledge, permissions or payments. Manual Art Bible review and explicit owner approval remain required after future generation. READY FOR ART PRODUCTION means the story/shot specification is coherent, not that images are present or approved.
+
+
+## Current audit implementation — revision17 presentation update
+
+The current authority/status index is [CURRENT_AUTHORITY_INDEX.md](CURRENT_AUTHORITY_INDEX.md). It supersedes older “runtime binding0/no binding” status statements, not their historical receipts or approvals. Three already approved exact variants are now bound by the reading presenter. No new promotion or generation. Full coverage remains 3/100 indexed raster/artifact beats and is not all-branch coverage. Pilot spend remains14 credits; this audit spends0.
+
+Coffee sequence follows the authenticated prose: message → Evelynn waits alone with coffee → Julian arrives / dialogue hold → Julian leaves → Evelynn returns. The shorthand sequence in the implementation request does not authorize rewriting that established chronology or adding another wait. On return and any subsequent table/editor/photo beat, acquired coffee remains in Evelynn’s custody, carried or explicitly off-frame. No disposal, consumption, new cup or Julian-held coffee is inferred. Shot14 remains an unapproved reuse candidate; the departed image is not silently reused there. Retired and reserved IDs are unchanged.

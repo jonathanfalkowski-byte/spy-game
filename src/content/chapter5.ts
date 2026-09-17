@@ -1,3 +1,4 @@
+import { chapter5Blocks as frozenBlocks, chapter5Choices as frozenChoices } from '../persistence/legacy-v16/content/chapter5';
 import type { GameState } from '../state/schema';
 import type { NodeId } from './schema';
 import { desireScenes5, desireBlocks5, desireChoices5 } from './chapter5-desire';
@@ -16,6 +17,7 @@ export const chapter5Scenes = Object.entries(chapter5Definitions).map(([phase, s
   ...scene,
 }));
 export const chapter5Blocks = (s: GameState) => {
+  if (s.contentRevision !== 17) return frozenBlocks(s);
   const fixed = chapter5Definitions[s.phase as keyof typeof chapter5Definitions]?.blocks ?? [];
   const dynamic = [
     ...rewardBlocks5(s),
@@ -27,7 +29,8 @@ export const chapter5Blocks = (s: GameState) => {
   return ['room', 'return'].includes(s.phase) ? [...dynamic, ...fixed] : [...fixed, ...dynamic];
 };
 export function chapter5Choices(s: GameState): C5Choice[] {
-  if (s.contentRevision === 15 && s.scene === 'chapter4' && s.phase === 'complete')
+  if (s.contentRevision !== 17) return frozenChoices(s as Parameters<typeof frozenChoices>[0]);
+  if (s.contentRevision === 17 && s.scene === 'chapter4' && s.phase === 'complete')
     return [
       offer5(
         'begin',
@@ -43,7 +46,7 @@ export function chapter5Choices(s: GameState): C5Choice[] {
         },
       ),
     ];
-  if (s.contentRevision !== 16 || s.scene !== 'chapter5') return [];
+  if (s.contentRevision !== 17 || s.scene !== 'chapter5') return [];
   return [...rewardChoices5(s), ...publicChoices5(s), ...benefitChoices5(s), ...desireChoices5(s)];
 }
 export function applyChapter5Choice(state: GameState, id: string): GameState {
@@ -51,7 +54,7 @@ export function applyChapter5Choice(state: GameState, id: string): GameState {
   if (!choice) return state;
   const s = structuredClone(state);
   s.revision++;
-  s.contentRevision = 16;
+  s.contentRevision = state.contentRevision === 17 ? 17 : 16;
   s.history.push({
     node: `${state.scene}.${state.phase}` as NodeId,
     blocks: [{ kind: 'notice', text: 'Your choice: ' + choice.label }],

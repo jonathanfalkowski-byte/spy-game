@@ -18,7 +18,7 @@
       "cameraFraming": "Locked apartment wide; 1920x1080; original furniture and mirror.",
       "lighting": "Owner-approved shot-specific deterministic night-lighting derivative; restrained warm practical.",
       "timeOfDay": "22:30-22:35",
-      "intendedUse": "ONLY c05.s12.shot05-phone after place-phone; professional, phone purchased/unboxed, editorial declined, no publication/event photograph/new evening arrangement. Hold at complete. Offline production asset; no runtime binding added.",
+      "intendedUse": "ONLY c05.s12.shot05-phone after place-phone; professional, phone purchased/unboxed, editorial declined, no publication/event photograph/new evening arrangement. Hold at complete. Runtime presentation is restricted to the authenticated completed-placement beat in src/ui/chapter5-beats.ts.",
       "canonicalReferences": [
         "evelynn-canon-front-v1",
         "evelynn-canon-three-quarter-v1"
@@ -85,7 +85,7 @@
         "evelynn-canon-front-v1",
         "evelynn-canon-three-quarter-v1"
       ],
-      "intendedUse": "ONLY c05.s06.shot12-entrance reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added.",
+      "intendedUse": "ONLY c05.s06.shot12-entrance reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added. Runtime presentation follows the authenticated coffee reading sequence; exact approved arrival/departure beat only.",
       "dimensions": {
         "width": 1920,
         "height": 1080
@@ -141,7 +141,7 @@
         "evelynn-canon-front-v1",
         "evelynn-canon-three-quarter-v1"
       ],
-      "intendedUse": "ONLY c05.s06.shot15-departed reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added.",
+      "intendedUse": "ONLY c05.s06.shot15-departed reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added. Runtime presentation follows the authenticated coffee reading sequence; exact approved arrival/departure beat only.",
       "dimensions": {
         "width": 1920,
         "height": 1080

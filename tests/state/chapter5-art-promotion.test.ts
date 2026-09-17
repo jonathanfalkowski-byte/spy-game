@@ -56,7 +56,7 @@ it('keeps production coverage bounded to the completed professional two-phone st
   expect(shot.excludedState).toEqual(['c5.published','c5.event-photo','new evening arrangement']);
   expect(shot.phones).toBe(2);
   expect(shot.jacket).toBe('inside-wardrobe');
-  expect(shot.runtimeBound).toBe(false);
+  expect(shot.runtimeBound).toBe(true);
   expect(coverage.completeChapterCoverage).toBe(false);
   expect(approval.retainedNotes).toHaveLength(4);
   expect(approval.scope).toBe('SHOT-SPECIFIC ONLY');

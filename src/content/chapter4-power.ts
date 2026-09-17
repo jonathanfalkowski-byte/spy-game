@@ -32,7 +32,7 @@ export const powerScenes4: Record<string, C4Scene> = {
     blocks: [p('You check the phone before opening the next file.')],
   },
   power: {
-    title: 'Evelynn uses someone',
+    title: 'The routing copy',
     place: '14:00 · The routing-copy request',
     blocks: [
       p(

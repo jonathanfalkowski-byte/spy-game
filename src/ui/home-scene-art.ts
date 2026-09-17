@@ -12,7 +12,7 @@ export function homeSceneArt(state: GameState) {
   if (state.clinic.stage !== 'complete' || (outfit !== 'executive' && outfit !== 'socialite' && outfit !== 'shadow')) return null;
   const moment = state.scene === 'mission' && ['home', 'homePresentation', 'homeContact'].includes(state.phase)
     ? 'pre-glasshouse'
-    : state.scene === 'chapter3' && ['home', 'surveillance', 'complete'].includes(state.phase)
+    : state.scene === 'chapter3' && state.phase === 'home' && !state.day.completed.some(id => id.startsWith('chapter3.'))
       ? 'post-glasshouse'
       : null;
   if (!moment) return null;

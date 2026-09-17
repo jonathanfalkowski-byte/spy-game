@@ -2,8 +2,10 @@ import { test, expect, type Page } from '@playwright/test';
 import { end4 } from '../chapter5-helpers';
 import { SAVE_KEY, encodeSave, decodeSave } from '../../src/persistence/saves';
 import { cash5, get5, read5 } from '../../src/content/chapter5-model';
-const select = (p: Page, id: string) =>
-  p.locator(`[data-chapter5-choice="chapter5.${id}"]`).click();
+const select = async (p: Page, id: string) => {
+  await p.locator(`[data-chapter5-choice="chapter5.${id}"]`).click();
+  if (id === 'attention-coffee') for (let i=0;i<3;i++) await p.getByRole('button',{name:'Continue scene',exact:true}).click();
+};
 async function seed(p: Page, mode = 'public') {
   await p.goto('/');
   await p.evaluate(({ key, raw }) => localStorage.setItem(key, raw), {

@@ -1,3 +1,6 @@
+import { coffeeBeats5 } from './chapter5-beats';
+import { Chapter5BeatSequence } from './Chapter5BeatSequence';
+import { useMemo } from 'react';
 import { conversationHistory } from './chapter4-presentation';
 import type { Ref } from 'react';
 import type { GameState } from '../state/schema';
@@ -7,10 +10,13 @@ import { Narrative } from './Narrative';
 export function ClinicConversation({
   state,
   latest,
+  onSceneRead,
 }: {
   state: GameState;
   latest: Ref<HTMLDivElement>;
+  onSceneRead?: () => void;
 }) {
+  const beatMap = useMemo(() => new Map(state.history.map(h => [h, coffeeBeats5(state,h)])), [state]);
   const node = state.scene + '.' + state.phase;
   const visibleHistory = conversationHistory(state);
   let start = visibleHistory.length;
@@ -38,7 +44,7 @@ export function ClinicConversation({
           aria-label={i === 0 ? 'Scene opening' : 'Conversation exchange'}
           style={{ scrollMarginTop: 90 }}
         >
-          <Narrative blocks={entry.blocks} node={entry.node} />
+          {beatMap.get(entry) ? <Chapter5BeatSequence beats={beatMap.get(entry)!} onComplete={onSceneRead} /> : <Narrative blocks={entry.blocks} node={entry.node} />}
           {i === exchanges.length - 1 && presentation.length > 0 && (
             <div data-mission-presentation aria-label="Operational context">
               <Narrative blocks={presentation} node={node} />

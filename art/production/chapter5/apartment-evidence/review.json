@@ -1,0 +1,131 @@
+{
+  "compositionId": "C5-S12-SHOT05-PHONE-COMPOSITE-V2",
+  "shotId": "c05.s12.shot05-phone",
+  "review": "PASS",
+  "severity": "LOW/POLISH",
+  "status": "STAGING",
+  "reviewer": "Codex full-resolution and measured game-size inspection, Art Bible/checklist",
+  "reviewDate": "2026-09-17",
+  "humanAcceptancePending": false,
+  "productionApproved": true,
+  "promoted": true,
+  "promotion": {"date":"2026-09-17","reviewer":"Project owner","scope":"SHOT-SPECIFIC ONLY","assetId":"c5-s12-shot05-phone-composite-v2-production","record":"art/production/chapter5/approval.json","runtimeBindingChanged":false},
+  "canonicalCharacterMaster": false,
+  "canonicalWardrobeMaster": false,
+  "authorityIfApproved": [
+    "exact c05.s12.shot05-phone reached branch",
+    "apartment composition",
+    "unchanged character placement",
+    "unchanged phone placement",
+    "derived nighttime lighting",
+    "applicable professional wardrobe state only"
+  ],
+  "unchangedAuthorities": [
+    "canonical Evelynn face/three-quarter",
+    "existing body/proportion reference",
+    "approved professional wardrobe spec and bounded v4 wardrobe reference"
+  ],
+  "matte": {
+    "review": "PASS",
+    "alphaPixelsChanged": 12335,
+    "rgbPixelsChanged": 0,
+    "dimensionsUnchanged": true,
+    "protectedFaceAlphaUnchanged": true,
+    "settings": "matte-settings.json",
+    "receipt": "evelynn-character-layer-clean-v2.derivation.json",
+    "fullResolutionNote": "Sparse source-resolution flyaway/antialias pixels remain; no distracting halo at production composition scale or game size."
+  },
+  "night": {
+    "review": "PASS",
+    "assetId": "apartment-night-canon-derived-v1",
+    "settings": "night-settings.json",
+    "receipt": "apartment-night-canon-derived-v1.derivation.json",
+    "sourceUnchanged": true,
+    "geometryCoordinatesIdentical": true,
+    "spatialResampling": false,
+    "rgbIdenticalToOriginal": false,
+    "note": "Separate lighting-only candidate, original master untouched. New night plate is immutable within the V2 composition."
+  },
+  "pixelStability": {
+    "uncoveredPixels": 2014484,
+    "changedUncoveredPixels": 0,
+    "comparison": "derived night background, not original brighter background"
+  },
+  "placementsIdenticalToV1": true,
+  "phoneCount": 2,
+  "phoneCustody": "personal purchased/unboxed beside Axiom on original tabletop after place-phone; neutral screens; no duplicates",
+  "jacketCustody": "Adrian jacket unseen inside closed wardrobe; mirror unaltered",
+  "intendedState": {
+    "contentRevision": 16,
+    "saveSchema": 5,
+    "wardrobe": "c05.professional",
+    "purchase": "phone",
+    "placement": "phone",
+    "personalLocation": "table-unboxed",
+    "axiomLocation": "table-home",
+    "editorial": "declined",
+    "published": false,
+    "eventPhoto": false,
+    "evening": "no-new-arrangement",
+    "time": "22:30-22:35"
+  },
+  "inspections": {
+    "fullResolution": [
+      1920,
+      1080
+    ],
+    "gameSizeDesktop": [
+      [
+        880,
+        495
+      ],
+      [
+        896,
+        504
+      ]
+    ],
+    "gameSizeMobile": [
+      350,
+      196.875
+    ],
+    "deviceScaleFactor": 1,
+    "method": "Offline Chromium harness using actual unchanged runtime CSS; no staging runtime binding",
+    "evidence": "game-size-measurements.json"
+  },
+  "findings": [
+    {
+      "area": "heels",
+      "severity": "LOW/POLISH",
+      "fullResolution": "Isolated source has higher/narrower heels than canonical low-heel spec.",
+      "gameSize": "Ordinary black pump silhouette, heel shaft detail not clearly identifiable as stiletto at desktop/mobile native display size.",
+      "disposition": "Does not redefine footwear canon; recommend shot acceptance, no new generation."
+    },
+    {
+      "area": "shoulder",
+      "severity": "LOW/POLISH",
+      "fullResolution": "Peach color follows outer shoulder/sleeve and jacket contours, consistent with warm rim highlight; source-level interpretation is ambiguous.",
+      "gameSize": "Thin warm contour/seam highlight, no clearly exposed-skin opening materially changing the professional jacket.",
+      "disposition": "Non-authoritative shading detail, not a new cutout garment."
+    },
+    {
+      "area": "ear",
+      "severity": "LOW/POLISH",
+      "fullResolution": "Ambiguous loop/strand visible in isolated source.",
+      "gameSize": "Too small to identify as dangling jewelry; no conspicuous earring.",
+      "disposition": "Noncanonical jewelry exception remains; not a jewelry reference."
+    }
+  ],
+  "recommendation": "Human acceptance of this exact staging shot with polish notes instead of another generation; promotion still requires human approval.",
+  "cost": {
+    "newCredits": 0,
+    "pilotTotal": 12,
+    "generationCalls": 0
+  },
+  "harbourExecuted": false,
+  "chapter6": false,
+  "runtimeChanged": false,
+  "toolingCommit": "ea9add0aa68ab5a58b75e1082c6a12c64d9b65e1",
+  "push": "Verified origin/story/chapter-3-design at the same SHA",
+  "workingTreeClean": true,
+  "validation": {"compositorTestsPassed": 15, "artToolingTestsPassed": 34, "artTestFiles": 7, "gitDiffCheck": "PASS"}
+}

@@ -1,0 +1,19 @@
+{
+  "commit": "7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6",
+  "sourceSha256": {
+    "src/content/chapter5-benefit.ts": "028358b36c614899a90529b4f6c237df50739842b9cc481a1c69a32bc2bf2942",
+    "src/content/chapter5-continuity.ts": "3d1734fc78e167fdc2c3ac6d0ad98677ca5a644700575fa8266341f8de5bf435",
+    "src/content/chapter5-desire.ts": "b1aed5a5f22ad25535b9cac33a550a011f4a61bf7a6918e1274fc5f4bf88f9f9",
+    "src/content/chapter5-harbour-shots.ts": "e53e6fbb83913f7af609f617a15649422d516f28bfcac83afb136064322b497a",
+    "src/content/chapter5-model.ts": "fb3af5da134e4503a9ce7e994313547709fa84ba580a62e1b03c69da054be43c",
+    "src/content/chapter5-public.ts": "9991c8bb1c43dad873e5a9c1ce31c350fda32e7c585f239655d01d543a8b2028",
+    "src/content/chapter5-reward.ts": "cc53a966227990f53acff7e362fa508ec7b80d29573da916cf9771a01e891eae",
+    "src/content/chapter5.ts": "e02c3edee71bea152c58d26c2fad425701e9dbc65c495e142a5861735c7ad03e",
+    "src/content/chapter4-model.ts": "939844caaf0abb9dcf66c4305eadc5cfc2e12bfbf1c94d419f294ea75adf8714",
+    "src/content/schema.ts": "a8d763c2133e0d0f7ecf7d3516d7d29977a9e456200d7a3027d20d98be685c2c",
+    "src/content/characters.ts": "df6756ce95a91d6294b0519162c118a594bea525b501981aa3087ba44f1727fb",
+    "src/content/character-schema.ts": "5ccc5b14e7ba9e45a7e6cd9b635ed256603f9140e75ccdbaa5336c849873158b",
+    "src/state/chapter3-provenance.ts": "5c76a1c6e7f17da25c4913993532bd57c8bef98a3f30ed802d7b449313198378"
+  },
+  "note": "Snapshot before revision17. Only relative state import paths adapted. Historical engines v1-v15 remain in place."
+}

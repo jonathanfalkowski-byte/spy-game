@@ -3,12 +3,12 @@ import { get5, julian5 } from './chapter5-model';
 import { wardrobe5 } from './chapter5-continuity';
 
 /** Ordered production specification, NOT an asset selector. Each anchor must be reached
- * before a future presenter may show its shot. Current Chapter 5 displays no scene art.
+ * before a future presenter may show its shot. Only separately approved exact variants are bound by the reading presenter.
  * Call with the state BEFORE the recorded action; later state must never backfill props.
  */
 export function harbourShotPlan5(before: GameState, action: string) {
   if (
-    before.contentRevision !== 16 ||
+    (before.contentRevision !== 16 && before.contentRevision !== 17) ||
     before.scene !== 'chapter5' ||
     before.phase !== 'room' ||
     get5(before, 'harbour-position') !== 'programme-table'
@@ -40,7 +40,7 @@ export function harbourShotPlan5(before: GameState, action: string) {
     wardrobe: wardrobe.id,
     event,
     time,
-    props,
+    props: [...props, ...(get5(before, 'coffee') && !props.includes('coffee') ? ['coffee-carried-or-off-frame'] : [])],
     // Only actual prior publication can appear in an earlier shot of a later action.
     priorProgrammePage: !!get5(before, 'event-photo'),
   });
@@ -138,7 +138,7 @@ export function harbourShotPlan5(before: GameState, action: string) {
           ['evelynn'],
           ['coffee'],
         ),
-        { ...table(), anchor: 'go back inside to the host' },
+        { ...table(), anchor: 'go back inside to the host', props: ['coffee-carried-or-off-frame'] },
       ];
     case 'flirt':
       return [

@@ -1,5 +1,7 @@
 # Chapter 5 art requirements — pending production
 
+**Current audit status:** three existing approved exact Chapter5 variants are now runtime-bound; no new promotion/generation. Current authority index supersedes the historical no-binding and earlier-spend statements retained below. Revision17 is opt-in; frozen semantics remain preserved.
+
 **Harbour production update (2026-09-17):** Owner-approved V2 promoted for c05.s06.shot12-entrance; zero-credit completed-departure derivative PASS and promoted under explicit conditional authorization for c05.s06.shot15-departed. Exact evening/attend/professional/Julian-access/coffee state only. Julian absent after goodbye, before Evelynn re-enters; identical background and Evelynn placement/coffee. LOW/POLISH edge notes retained. Neither creates canonical identity/wardrobe authority. [Approval and evidence](../../art/production/chapter5/harbour-approvals.json). Other branches and return shot remain pending. No runtime binding change.
 
 
@@ -141,3 +143,10 @@ New beats after the first audit: s01.shot08-change; s02.shot10-home; s06.shot13-
 Production should design/review one location master plus coherent character-position and light variants, not generate every table row from scratch. Empty backgrounds, face references and compatible held frames can be reused; branch-specific garments/props require distinct reviewed composites. Do not inflate count for dialogue, expressions, menu changes, an unpictured journey, or the fade. The current corpus cannot provide an honest final raster count until shared masters and crops are reviewed. Obtain an actual provider quote and owner approval for a concrete batch before spending credits.
 
 The previous OPEN Harbour finding is **resolved in prose and tested planning data**: programme-table actions return there before the next choice; J arrives and departs outside; E re-enters. Municipal request/payment are online at home. Voucher custody, garment IDs, hairstyle/accessory continuity and old-jacket wardrobe placement are now fixed in the detailed plan. Remaining work is image production, manual Art Bible review, owner approval and timed runtime binding—not an unresolved story action.
+
+
+## Current audit implementation — revision17 presentation update
+
+The current authority/status index is [CURRENT_AUTHORITY_INDEX.md](CURRENT_AUTHORITY_INDEX.md). It supersedes older “runtime binding0/no binding” status statements, not their historical receipts or approvals. Three already approved exact variants are now bound by the reading presenter. No new promotion or generation. Full coverage remains 3/100 indexed raster/artifact beats and is not all-branch coverage. Pilot spend remains14 credits; this audit spends0.
+
+Coffee sequence follows the authenticated prose: message → Evelynn waits alone with coffee → Julian arrives / dialogue hold → Julian leaves → Evelynn returns. The shorthand sequence in the implementation request does not authorize rewriting that established chronology or adding another wait. On return and any subsequent table/editor/photo beat, acquired coffee remains in Evelynn’s custody, carried or explicitly off-frame. No disposal, consumption, new cup or Julian-held coffee is inferred. Shot14 remains an unapproved reuse candidate; the departed image is not silently reused there. Retired and reserved IDs are unchanged.

@@ -1,0 +1,79 @@
+{
+  "compositionId": "C5-S12-SHOT05-PHONE-COMPOSITE-V2",
+  "shotId": "c05.s12.shot05-phone",
+  "backgroundAssetId": "apartment-night-derived",
+  "outputSize": [
+    1920,
+    1080
+  ],
+  "environmentCanonVersion": "apartment-night-canon-derived-v1-staging",
+  "calibrationId": "apartment-evening-wide-v1",
+  "branchState": {
+    "contentRevision": 16,
+    "saveSchema": 5,
+    "wardrobe": "c05.professional",
+    "purchase": "phone",
+    "placement": "phone",
+    "personalLocation": "table-unboxed",
+    "axiomLocation": "table-home",
+    "oldJacket": "inside-wardrobe",
+    "editorial": "declined",
+    "published": false,
+    "eventPhoto": false,
+    "evening": "no-new-arrangement",
+    "actionCompleted": true
+  },
+  "characters": [
+    {
+      "characterAssetId": "evelynn-character-only",
+      "identityReference": "evelynn-canonical-face",
+      "x": 600,
+      "y": 615,
+      "scale": 0.2,
+      "anchor": "top-left",
+      "zIndex": 30,
+      "wardrobeId": "c05.professional",
+      "poseId": "crouch-release-phone",
+      "flipX": false
+    }
+  ],
+  "props": [
+    {
+      "assetId": "phone-axiom",
+      "x": 481,
+      "y": 956,
+      "scale": 0.48,
+      "anchor": "center",
+      "zIndex": 20,
+      "custodyNote": "Existing Axiom handset on original tabletop, neutral screen."
+    },
+    {
+      "assetId": "phone-personal",
+      "x": 560,
+      "y": 931,
+      "scale": 0.48,
+      "anchor": "center",
+      "zIndex": 21,
+      "custodyNote": "Evelynn's purchased personal phone, unboxed and placed beside Axiom after place-phone."
+    }
+  ],
+  "shadows": [
+    {
+      "assetId": "contact-shadow",
+      "x": 821,
+      "y": 975,
+      "scale": 0.72,
+      "anchor": "center",
+      "zIndex": 10,
+      "opacity": 0.55,
+      "custodyNote": "Simple contact shadow for grounded crouch; foreground overlay only."
+    }
+  ],
+  "notes": [
+    "ZERO-CREDIT local derivatives only; no image generation.",
+    "Character alpha cleaned, all source RGB identical. Wardrobe/identity authority unchanged.",
+    "Night background is a separate lighting-only derivative; original master unchanged.",
+    "All character, phone and shadow transforms exactly match V1.",
+    "Staging review candidate for this exact shot/state only, not a character or wardrobe master."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "characters": [
+    {
+      "characterAssetId": "evelynn-character-only",
+      "identityReference": "evelynn-canonical-face",
+      "x": 600,
+      "y": 615,
+      "scale": 0.2,
+      "anchor": "top-left",
+      "zIndex": 30,
+      "wardrobeId": "c05.professional",
+      "poseId": "crouch-release-phone",
+      "flipX": false
+    }
+  ],
+  "props": [
+    {
+      "assetId": "phone-axiom",
+      "x": 481,
+      "y": 956,
+      "scale": 0.48,
+      "anchor": "center",
+      "zIndex": 20,
+      "custodyNote": "Existing Axiom handset on original tabletop, neutral screen."
+    },
+    {
+      "assetId": "phone-personal",
+      "x": 560,
+      "y": 931,
+      "scale": 0.48,
+      "anchor": "center",
+      "zIndex": 21,
+      "custodyNote": "Evelynn's purchased personal phone, unboxed and placed beside Axiom after place-phone."
+    }
+  ],
+  "shadows": [
+    {
+      "assetId": "contact-shadow",
+      "x": 821,
+      "y": 975,
+      "scale": 0.72,
+      "anchor": "center",
+      "zIndex": 10,
+      "opacity": 0.55,
+      "custodyNote": "Simple contact shadow for grounded crouch; foreground overlay only."
+    }
+  ]
+}

@@ -74,7 +74,7 @@ it.each(destinations)(
     expect(get4(s, 'finding')).toBe('bounded');
     expect(get4(s, 'income')).toBeUndefined();
     expect(s.proof.some((p) => p.key === 'c4.retained-packet')).toBe(true);
-    expect(availableIntents(s)).toEqual([{type:'CHAPTER5_CHOOSE',id:'chapter5.begin'}]);
+    expect(availableIntents(s)).toEqual([{type:'CONTINUE_AUDIT_REVISION'},{type:'CHAPTER5_CHOOSE',id:'chapter5.begin'}]);
     expect(decodeSave(encodeSave(s))).toEqual(s);
     expect(StateSchema.safeParse(s).success).toBe(true);
     expect(s.day).toEqual(old.day);

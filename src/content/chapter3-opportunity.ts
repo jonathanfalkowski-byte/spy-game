@@ -56,7 +56,7 @@ export const opportunityScenes: Record<string, { title: string; place: string; b
         ),
         q(
           'Julian Mercer',
-          'I do not need a confident answer to the question we cannot yet answer. I need to know what you would ask next.',
+          'Leave the price for a moment. What would you ask for before valuing this business?',
         ),
       ],
     },
@@ -69,7 +69,7 @@ export const opportunityScenes: Record<string, { title: string; place: string; b
         ),
         q(
           'Julian Mercer',
-          'You can leave with the completed fee. Or we can agree on how I introduce you. Neither choice gives me a claim on the rest of your afternoon.',
+          'Your fee is settled. If you would like an introduction, let us agree on the wording first.',
         ),
       ],
     },

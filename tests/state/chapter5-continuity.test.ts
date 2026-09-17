@@ -127,9 +127,9 @@ for (const look of ['professional', 'glamorous', 'provocative', 'minimal'] as co
             if (action !== 'attention-coffee')
               expect(plan.every((p) => !p.physical.includes('julian'))).toBe(true);
             if (action === 'attention-photo') {
-              expect(plan[0].props).toEqual(['unpublished-camera-frame']);
+              expect(plan[0].props).toEqual(['unpublished-camera-frame', ...(get5(s,'coffee') ? ['coffee-carried-or-off-frame'] : [])]);
               expect(plan[0].priorProgrammePage).toBe(false);
-              expect(plan[1].props).toEqual(['authorized-programme-page']);
+              expect(plan[1].props).toEqual(['authorized-programme-page', ...(get5(s,'coffee') ? ['coffee-carried-or-off-frame'] : [])]);
             }
             if (action === 'attention-coffee') {
               expect(plan.map((p) => p.id)).toEqual(

@@ -1,0 +1,20 @@
+{
+  "placementsIdenticalToV1": true,
+  "characterRGBBitIdentical": true,
+  "characterDimensionsIdentical": true,
+  "backgroundDimensionsIdentical": true,
+  "backgroundAlphaIdentical": true,
+  "backgroundGeometryResampled": false,
+  "originalBackgroundSHA256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+  "derivedBackgroundRGBIdentical": false,
+  "pixelStabilityRelativeToNightPlate": {
+    "uncoveredPixels": 2014484,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  },
+  "compositeRepeatIdentical": true,
+  "nightRepeatIdentical": true,
+  "matteRepeatIdentical": true,
+  "artCreditsSpent": 0,
+  "pilotTotalCredits": 12
+}

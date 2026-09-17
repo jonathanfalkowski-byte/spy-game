@@ -1,0 +1,51 @@
+{
+  "assetRoots": [
+    "../apartment-components"
+  ],
+  "assets": {
+    "apartment-empty-accepted": {
+      "path": "../apartment-components/apartment-evening-v1.png",
+      "sha256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+      "kind": "background",
+      "immutable": true,
+      "environmentCanonVersion": "apartment-evening-v1-owner-accepted-2026-09-16"
+    },
+    "evelynn-crouch-extracted": {
+      "path": "../apartment-components/evelynn-crouch-extracted-v1.png",
+      "sha256": "56396123a018bee857936d28b084117f0176046ffb4ac6c64d7cf2bf1e5114ff",
+      "kind": "character"
+    },
+    "evelynn-canonical-face": {
+      "path": "../apartment-components/evelynn-canon-three-quarter-v1.png",
+      "sha256": "4f1252ed22c25695bc40abb0a46ae77e6efba86567b35a2b0a5dbc39db2abf9c",
+      "kind": "reference"
+    },
+    "phone-personal": {
+      "path": "../apartment-components/phone-personal.png",
+      "sha256": "89280ee6ed12c2b3a7e9ca50c6c9e3bf725080fa8b6a54e0b4aa8976be758690",
+      "kind": "prop"
+    },
+    "phone-axiom": {
+      "path": "../apartment-components/phone-axiom.png",
+      "sha256": "128fa811edebd4b8a3151d8dd7f43b43f8ceb46be4f6e496484eaeb9f3bb10da",
+      "kind": "prop"
+    },
+    "contact-shadow": {
+      "path": "../apartment-components/contact-shadow.png",
+      "sha256": "7ed7cd01af134814785fdb67c696eb09874f69ebb0f00ec04ba0ee5a4705fac0",
+      "kind": "shadow"
+    },
+    "evelynn-character-only": {
+      "path": "../apartment-components/evelynn-character-layer-clean-v2.png",
+      "sha256": "962cf58940c45f9f78091e6f13bba67eeccece946f803d53a3a1f3bd95bf112a",
+      "kind": "character"
+    },
+    "apartment-night-derived": {
+      "path": "../apartment-components/apartment-night-canon-derived-v1.png",
+      "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
+      "kind": "background",
+      "immutable": true,
+      "environmentCanonVersion": "apartment-night-canon-derived-v1-staging"
+    }
+  }
+}
