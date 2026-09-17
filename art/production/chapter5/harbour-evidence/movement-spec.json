@@ -1,0 +1,51 @@
+{
+  "previousShotId": "c05.s06.shot12-entrance",
+  "newShotId": "c05.s06.shot15-departed",
+  "movementTrigger": "then he says goodbye and leaves",
+  "sourceProse": "src/content/chapter5-public.ts:281",
+  "sourceShotPlan": "src/content/chapter5-harbour-shots.ts:135-140; physical participants evelynn only",
+  "backgroundAssetId": "harbour-master",
+  "evelynnPlacement": {
+    "characterAssetId": "harbour-evelynn-coffee-layer-v1",
+    "identityReference": "evelynn-identity",
+    "x": 366.6,
+    "y": 299.4,
+    "scale": 0.8,
+    "anchor": "top-left",
+    "zIndex": 30,
+    "wardrobeId": "c05.professional",
+    "poseId": "outside-conversation-coffee",
+    "flipX": false
+  },
+  "julianOldPlacement": {
+    "characterAssetId": "harbour-julian-generated-layer-v1",
+    "identityReference": "julian-identity",
+    "x": 597.0,
+    "y": 277.0,
+    "scale": 0.8,
+    "anchor": "top-left",
+    "zIndex": 30,
+    "wardrobeId": "julian-approved-dark-suit",
+    "poseId": "outside-conversation",
+    "flipX": false
+  },
+  "julianNewPlacement": null,
+  "julianNewState": "absent: departure completed, before Evelynn re-enters",
+  "julianPoseSource": "Approved V2 Julian layer omitted; no visible departure pose required",
+  "poseQualityGate": "PASS: completed off-frame absence; no sliding, distortion or invented walking beat",
+  "coffeePropState": "One coffee in unchanged Evelynn layer; no Julian coffee",
+  "wardrobeState": "c05.professional unchanged",
+  "branchRequirements": {
+    "contentRevision": 16,
+    "event": "attend",
+    "wardrobe": "c05.professional",
+    "julianAccess": true,
+    "attention": "coffee",
+    "julianArrived": true,
+    "julianDeparted": true,
+    "coffeeCount": 1,
+    "contact": false
+  },
+  "cutPolicy": "HOLD ON DIALOGUE; CUT ON ACTION; no camera/environment regeneration",
+  "costCredits": 0
+}

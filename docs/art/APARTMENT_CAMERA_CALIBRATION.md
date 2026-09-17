@@ -101,11 +101,11 @@ This distinguishes game visibility from magnifying the isolated character source
 The external review and screenshots live under
 `eve-chapter-5-art-production/staging/compositor/apartment-phone-v2`.
 
-**V2 review: PASS with LOW/POLISH notes, pending human acceptance/promotion.** At the
+**V2 review: PASS with LOW/POLISH notes; owner approved shot-specific promotion on 2026-09-17.** At the
 measured display sizes the shoes read as ordinary dark pumps, shoulder color reads
 as warm contour light, and the tiny ear line is not identifiable as dangling jewelry.
 The source's higher heels remain a non-authoritative source detail; this scene does
 not redefine footwear canon or become a character/wardrobe master. Hair no longer
 draws attention as a cutout; nighttime read is established without geometry change.
-If accepted, authority is limited to this exact shot, placement, lighting and reached
+Approved authority is limited to this exact shot, placement, lighting and reached
 professional phone-state branch. No other branch is approved by this review.

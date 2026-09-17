@@ -1,0 +1,15 @@
+{
+  "pixelStability": {
+    "uncoveredPixels": 2000981,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  },
+  "repeatSHA256Identical": true,
+  "outsideJulianCanvasPixels": 2010348,
+  "changedOutsideJulianCanvasPixels": 0,
+  "backgroundSHA256": "271edbe4d9ad4c6fc3e81b1ef153f2e60009723d1d769c03bf9e4f82e5406717",
+  "evelynnCoffeeSHA256": "468c654684cfb988ad109385c96227696fe524d3be391228a42699d73ad3ec5c",
+  "placementRecordsUnchangedExceptJulianAssetId": true,
+  "outputSHA256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
+  "runtimeModified": false
+}

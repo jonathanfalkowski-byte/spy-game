@@ -1,0 +1,46 @@
+{
+  "assetId": "c5-s12-shot05-phone-composite-v2-production",
+  "sourceCompositionId": "C5-S12-SHOT05-PHONE-COMPOSITE-V2",
+  "shotId": "c05.s12.shot05-phone",
+  "date": "2026-09-17",
+  "reviewer": "Project owner",
+  "decision": "APPROVE AND PROMOTE",
+  "scope": "SHOT-SPECIFIC ONLY",
+  "establishes": [
+    "final Chapter5 apartment composition for exact branch/state",
+    "night lighting for this shot",
+    "Evelynn placement/scale",
+    "exact two-phone placement",
+    "jacket inside wardrobe",
+    "applicable professional wardrobe appearance at game scale"
+  ],
+  "excludes": [
+    "canonical Evelynn identity reference",
+    "canonical body reference",
+    "canonical wardrobe master",
+    "universal final-apartment state"
+  ],
+  "retainedNotes": [
+    "source heels slightly higher than spec, LOW/POLISH only",
+    "no identifiable dangling earring at game size",
+    "shoulder appearance accepted as contour lighting",
+    "matte cleanup accepted"
+  ],
+  "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054",
+  "files": {
+    "production": "art/production/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
+    "delivery": "public/art/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png"
+  },
+  "provenance": {
+    "method": "Deterministic Pillow alpha cleanup, separately authorized lighting-only plate derivative and composite",
+    "toolingCommit": "ea9add0aa68ab5a58b75e1082c6a12c64d9b65e1",
+    "originalEnvironmentSHA256": "326579ca20394213b388ab204e328303cf81fd0b67a5734ede57f73984fc65ee",
+    "nightEnvironmentSHA256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
+    "cleanCharacterSHA256": "962cf58940c45f9f78091e6f13bba67eeccece946f803d53a3a1f3bd95bf112a",
+    "stagingEvidence": "eve-chapter-5-art-production/staging/compositor/apartment-phone-v2"
+  },
+  "runtimeBindingChanged": false,
+  "contentRevision": 16,
+  "saveSchema": 5,
+  "pilotCredits": 12
+}

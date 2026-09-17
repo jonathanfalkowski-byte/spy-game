@@ -1,0 +1,43 @@
+{
+  "compositionId": "C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1",
+  "shotId": "c05.s06.shot15-departed",
+  "backgroundAssetId": "harbour-master",
+  "outputSize": [
+    1920,
+    1080
+  ],
+  "environmentCanonVersion": "harbour-pilot-01-v1-owner-approved-environment",
+  "calibrationId": "harbour-entrance-exterior-plane-v1",
+  "characters": [
+    {
+      "characterAssetId": "harbour-evelynn-coffee-layer-v1",
+      "identityReference": "evelynn-identity",
+      "x": 366.6,
+      "y": 299.4,
+      "scale": 0.8,
+      "anchor": "top-left",
+      "zIndex": 30,
+      "wardrobeId": "c05.professional",
+      "poseId": "outside-conversation-coffee",
+      "flipX": false
+    }
+  ],
+  "props": [],
+  "shadows": [],
+  "branchState": {
+    "contentRevision": 16,
+    "event": "attend",
+    "wardrobe": "c05.professional",
+    "julianAccess": true,
+    "attention": "coffee",
+    "julianArrived": true,
+    "julianDeparted": true,
+    "coffeeCount": 1,
+    "contact": false
+  },
+  "notes": [
+    "Completed authored departure; Julian absent. Evelynn has not yet gone back inside.",
+    "Remove Julian layer only; background, Evelynn, coffee, camera and lighting unchanged.",
+    "Pose quality gate: no visible Julian at this authored endpoint; no pose simulation or new layer needed."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "assetRoots": [
+    "..",
+    "../../../reference",
+    "../../../staging/cast-scenes"
+  ],
+  "assets": {
+    "harbour-master": {
+      "path": "../harbour-components/harbour-master.png",
+      "sha256": "271edbe4d9ad4c6fc3e81b1ef153f2e60009723d1d769c03bf9e4f82e5406717",
+      "kind": "background",
+      "immutable": true,
+      "environmentCanonVersion": "harbour-pilot-01-v1-owner-approved-environment"
+    },
+    "evelynn-identity": {
+      "path": "../../../reference/evelynn/evelynn-canon-three-quarter-v1.png",
+      "sha256": "4f1252ed22c25695bc40abb0a46ae77e6efba86567b35a2b0a5dbc39db2abf9c",
+      "kind": "reference"
+    },
+    "julian-identity": {
+      "path": "../../../staging/cast-scenes/eve-cast-executive-v1.png",
+      "sha256": "85ec6d5033938819c30e4c93abd976eea34e90572434b602a3e3792ac94a27f3",
+      "kind": "reference"
+    },
+    "harbour-evelynn-coffee-layer-v1": {
+      "path": "../harbour-components/harbour-evelynn-coffee-layer-v1.png",
+      "sha256": "468c654684cfb988ad109385c96227696fe524d3be391228a42699d73ad3ec5c",
+      "kind": "character"
+    },
+    "harbour-julian-generated-layer-v1": {
+      "path": "../harbour-components/harbour-julian-generated-layer-v1.png",
+      "sha256": "6a024a37204e4c7acf750c641215226d59452488a6116be2201e24fa74319c67",
+      "kind": "character"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "chapter": 5,
+  "contentRevision": 16,
+  "saveSchema": 5,
+  "planningOnly": true,
+  "runtimeBindingChanged": false,
+  "completeChapterCoverage": false,
+  "stagingReview": {
+    "status": "promoted",
+    "candidate": "C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2",
+    "decision": "PASS",
+    "julianLeaves": "promoted exact shot after conditional PASS"
+  },
+  "productionShots": [
+    {
+      "shotId": "c05.s12.shot05-phone",
+      "assetId": "c5-s12-shot05-phone-composite-v2-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.return",
+      "holdScene": "chapter5.complete",
+      "trigger": "place-phone completed",
+      "requiredState": {
+        "c5.presentation": "professional",
+        "c5.wardrobe": "c05.professional",
+        "c5.purchase": "phone",
+        "c5.placement": "phone",
+        "c5.personal-location": "table-unboxed",
+        "c5.axiom-location": "table-home",
+        "c5.offer": "declined"
+      },
+      "excludedState": [
+        "c5.published",
+        "c5.event-photo",
+        "new evening arrangement"
+      ],
+      "jacket": "inside-wardrobe",
+      "phones": 2,
+      "approvalDate": "2026-09-17",
+      "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s06.shot12-entrance",
+      "assetId": "c5-harbour-evelynn-julian-composite-v2-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.room",
+      "trigger": "Julian arrives",
+      "requiredState": {
+        "c5.presentation": "professional",
+        "c5.wardrobe": "c05.professional",
+        "c5.event": "attend"
+      },
+      "requiredBeatState": {
+        "contentRevision": 16,
+        "event": "attend",
+        "wardrobe": "c05.professional",
+        "julianAccess": true,
+        "attention": "coffee",
+        "julianArrived": true,
+        "julianDeparted": false,
+        "coffeeCount": 1,
+        "contact": false
+      },
+      "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s06.shot15-departed",
+      "assetId": "c5-harbour-julian-departed-composite-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.room",
+      "trigger": "Julian says goodbye and leaves; departure completed",
+      "requiredState": {
+        "c5.presentation": "professional",
+        "c5.wardrobe": "c05.professional",
+        "c5.event": "attend"
+      },
+      "requiredBeatState": {
+        "contentRevision": 16,
+        "event": "attend",
+        "wardrobe": "c05.professional",
+        "julianAccess": true,
+        "attention": "coffee",
+        "julianArrived": true,
+        "julianDeparted": true,
+        "coffeeCount": 1,
+        "contact": false
+      },
+      "runtimeBound": false
+    }
+  ],
+  "referenceOnly": [
+    "Harbour environment master",
+    "Aster environment master",
+    "Evelynn v4 wardrobe-only",
+    "Wave2 E/Julian character-composition-only"
+  ],
+  "pending": [
+    "All other c05.s12.shot05-phone wardrobe/publication/photo/evening states",
+    "Other final placement actions",
+    "Remaining shots/branches in CHAPTER_5_SHOT_PLAN_REVIEW.md",
+    "Other Harbour wardrobe/time/attention states and c05.s06.shot13-return remain pending"
+  ],
+  "authorityExclusions": [
+    "canonical identity reference",
+    "canonical body reference",
+    "canonical wardrobe master",
+    "universal final apartment state"
+  ]
+}

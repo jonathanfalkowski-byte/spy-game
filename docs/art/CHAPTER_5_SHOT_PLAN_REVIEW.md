@@ -1,6 +1,9 @@
 # Chapter 5 cinematic shot plan — final pre-freeze specification
 
-**Status: READY FOR ART PRODUCTION — specification complete; all new scene assets remain missing. No generation, spending, promotion or runtime binding is authorized in this pass.**
+**Harbour production update (2026-09-17):** Owner-approved V2 promoted for c05.s06.shot12-entrance; zero-credit completed-departure derivative PASS and promoted under explicit conditional authorization for c05.s06.shot15-departed. Exact evening/attend/professional/Julian-access/coffee state only. Julian absent after goodbye, before Evelynn re-enters; identical background and Evelynn placement/coffee. LOW/POLISH edge notes retained. Neither creates canonical identity/wardrobe authority. [Approval and evidence](../../art/production/chapter5/harbour-approvals.json). Other branches and return shot remain pending. No runtime binding change.
+
+
+**Current production update (2026-09-17):** Owner approved/promoted `C5-S12-SHOT05-PHONE-COMPOSITE-V2` for the exact professional `c05.s12.shot05-phone` state only; see [bounded coverage](../../art/production/chapter5/coverage.json). Other states remain pending. Runtime binding is unchanged. The following pre-freeze specification and its original no-generation boundary are historical planning context, superseded only by explicit later owner approvals.
 
 Scope confirmed by the owner: all twelve Chapter 5 movements, including `proof`, `handoff` and `complete` (fifteen runtime nodes). Audited 2026-09-17 against the current uncommitted revision-16 work on `story/chapter-3-design`, HEAD `999e6e5`. The final pre-freeze pass corrects current revision-16 prose and continuity only; frozen revision 15 remains exact. See the [final report](../story/CHAPTER_5_FINAL_PROSE_LOGIC_ART_PASS.md).
 
@@ -248,7 +251,7 @@ Source: desire `return`, `desireBlocks5`, `place-*`, `complete`. Same apartment 
 | c05.s12.shot02-stay | Stayed home; cup rinsed/replaced | No went-out | E at established counter, cup returned. No false arrival or second cup close-up | M: established wide/counter at night, sink outside frame |
 | c05.s12.shot04-holdings | Earned objects become the current focus | Actual corresponding records only | One optional purchase: boxed phone / paper-covered blouse / boxed clasp / no new item. Actual issue/booking/voucher only | M/U: prop-state variants; may share preceding wide if fully truthful |
 | HOLD current home shot | Remaining cash/services reflection; final menu | No final action chosen | No proposed placement or altered jacket yet | None |
-| c05.s12.shot05-phone | place-phone completed | purchase=phone, placement=phone | New personal phone beside Axiom handset on table: exactly two, correct identities | M: hands/placement result |
+| c05.s12.shot05-phone | place-phone completed | purchase=phone, placement=phone | New personal phone beside Axiom handset on table: exactly two, correct identities | APPROVED production: C5-S12-SHOT05-PHONE-COMPOSITE-V2 for professional / editorial-declined / no issue-photo-new-evening only; other states pending. See Chapter 5 coverage. |
 | c05.s12.shot06-clothes | place-clothes: paper cover off, blouse on rail | purchase=wardrobe, placement=clothes | Same one blouse now hanging; no second blouse still packaged | M: wardrobe reach/perspective |
 | c05.s12.shot07-clasp | place-clasp outside box on dresser | purchase=accessory, placement=clasp | Same clasp; out of its box, never worn | M: same silver hair clasp as purchase, no second clasp |
 | c05.s12.shot08-visible | Leave approved issue open | published=yes, placement=visible | Exact public issue remains open; if already visible, HOLD current valid frame rather than unnecessary cut | U/HOLD: name/image rights must match |

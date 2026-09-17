@@ -1,0 +1,92 @@
+[
+  {
+    "assetId": "c5-harbour-evelynn-julian-composite-v2-production",
+    "sourceCompositionId": "C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2",
+    "shotId": "c05.s06.shot12-entrance",
+    "date": "2026-09-17",
+    "decision": "APPROVE AND PROMOTE",
+    "scope": "SHOT-SPECIFIC / COMPOSITION-SPECIFIC",
+    "approvalBasis": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state.",
+    "reviewer": "Project owner",
+    "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
+    "files": {
+      "production": "art/production/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
+      "delivery": "public/art/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png"
+    },
+    "requiredBeatState": {
+      "contentRevision": 16,
+      "event": "attend",
+      "wardrobe": "c05.professional",
+      "julianAccess": true,
+      "attention": "coffee",
+      "julianArrived": true,
+      "julianDeparted": false,
+      "coffeeCount": 1,
+      "contact": false
+    },
+    "establishes": [
+      "exact shot environment/camera/evening lighting",
+      "Evelynn scale/placement/professional wardrobe/coffee",
+      "Julian placement and conversational spacing"
+    ],
+    "excludes": [
+      "canonical Evelynn identity master",
+      "canonical Julian identity master",
+      "universal Harbour composition",
+      "universal wardrobe reference"
+    ],
+    "retainedNotes": [
+      "LOW/POLISH edge notes from approved V2 remain; no canonical-reference authority"
+    ],
+    "runtimeBindingChanged": false,
+    "contentRevision": 16,
+    "saveSchema": 5,
+    "pilotCredits": 13,
+    "additionalMovementCredits": 0
+  },
+  {
+    "assetId": "c5-harbour-julian-departed-composite-v1-production",
+    "sourceCompositionId": "C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1",
+    "shotId": "c05.s06.shot15-departed",
+    "date": "2026-09-17",
+    "decision": "APPROVE AND PROMOTE",
+    "scope": "SHOT-SPECIFIC / COMPOSITION-SPECIFIC",
+    "approvalBasis": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied.",
+    "reviewer": "Project owner; conditional technical review by Codex for departure",
+    "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
+    "files": {
+      "production": "art/production/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
+      "delivery": "public/art/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png"
+    },
+    "requiredBeatState": {
+      "contentRevision": 16,
+      "event": "attend",
+      "wardrobe": "c05.professional",
+      "julianAccess": true,
+      "attention": "coffee",
+      "julianArrived": true,
+      "julianDeparted": true,
+      "coffeeCount": 1,
+      "contact": false
+    },
+    "establishes": [
+      "exact shot environment/camera/evening lighting",
+      "Evelynn scale/placement/professional wardrobe/coffee",
+      "Julian absent after authored departure; Evelynn not yet re-entered"
+    ],
+    "excludes": [
+      "canonical Evelynn identity master",
+      "canonical Julian identity master",
+      "universal Harbour composition",
+      "universal wardrobe reference"
+    ],
+    "retainedNotes": [
+      "LOW/POLISH edge notes from approved V2 remain; no canonical-reference authority"
+    ],
+    "runtimeBindingChanged": false,
+    "contentRevision": 16,
+    "saveSchema": 5,
+    "pilotCredits": 13,
+    "additionalMovementCredits": 0
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "compositionId": "C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2",
+  "shotId": "c05.s06.shot12-entrance",
+  "backgroundAssetId": "harbour-master",
+  "outputSize": [
+    1920,
+    1080
+  ],
+  "environmentCanonVersion": "harbour-pilot-01-v1-owner-approved-environment",
+  "calibrationId": "harbour-entrance-exterior-plane-v1",
+  "characters": [
+    {
+      "characterAssetId": "harbour-evelynn-coffee-layer-v1",
+      "identityReference": "evelynn-identity",
+      "x": 366.6,
+      "y": 299.4,
+      "scale": 0.8,
+      "anchor": "top-left",
+      "zIndex": 30,
+      "wardrobeId": "c05.professional",
+      "poseId": "outside-conversation-coffee",
+      "flipX": false
+    },
+    {
+      "characterAssetId": "harbour-julian-generated-layer-v1",
+      "identityReference": "julian-identity",
+      "x": 597.0,
+      "y": 277.0,
+      "scale": 0.8,
+      "anchor": "top-left",
+      "zIndex": 30,
+      "wardrobeId": "julian-approved-dark-suit",
+      "poseId": "outside-conversation",
+      "flipX": false
+    }
+  ],
+  "props": [],
+  "shadows": [],
+  "branchState": {
+    "contentRevision": 16,
+    "event": "attend",
+    "wardrobe": "c05.professional",
+    "julianAccess": true,
+    "attention": "coffee",
+    "julianArrived": true,
+    "julianDeparted": false,
+    "coffeeCount": 1,
+    "contact": false
+  },
+  "notes": [
+    "STAGING only. Original Harbour plate/camera unchanged; both people outside, viewed through clear glazing.",
+    "Coffee remains in Evelynn source layer, not duplicated. Julian age49 reference retained.",
+    "Camera differs from Wave2 reference; extracted profiles are evaluated against authoritative master, not its rejected room.",
+    "Exactly one approved Julian-only generation. RGB-preserving alpha cleanup plus uniform layer normalization; prior world placements, scales and z-order unchanged.",
+    "No Julian-leaves shot. STAGING only; human production approval pending."
+  ]
+}

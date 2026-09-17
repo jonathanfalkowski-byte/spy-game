@@ -94,3 +94,17 @@ Once chosen as a composition background, that variant is again immutable and the
 compositor checks all uncovered RGB pixels against **it**. Deriving a variant does
 not approve its lighting or authorize production promotion. No image synthesis,
 content-aware fill, body reshaping or garment changes occur in these helpers.
+
+## Approved Chapter 5 movement proof
+
+`art/production/chapter5/harbour-evidence` contains portable master/departed specs,
+the shared manifest, movement contract and review evidence. Technical source layers
+live in `harbour-components`; those copies grant no new character-reference authority.
+The existing `c05.s06.shot15-departed` beat has Julian absent, so the only operation
+is removing his layer. Evelynn/coffee placement and the environment stay identical.
+`test_production_pair.py` reproduces both approved PNG hashes and verifies that no
+pixel outside Julian's former alpha changes. Run all compositor checks with:
+
+```powershell
+python -m unittest discover -s tools/visual/compositor -p 'test_*.py'
+```

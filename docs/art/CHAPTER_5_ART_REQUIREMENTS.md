@@ -1,5 +1,22 @@
 # Chapter 5 art requirements — pending production
 
+**Harbour production update (2026-09-17):** Owner-approved V2 promoted for c05.s06.shot12-entrance; zero-credit completed-departure derivative PASS and promoted under explicit conditional authorization for c05.s06.shot15-departed. Exact evening/attend/professional/Julian-access/coffee state only. Julian absent after goodbye, before Evelynn re-enters; identical background and Evelynn placement/coffee. LOW/POLISH edge notes retained. Neither creates canonical identity/wardrobe authority. [Approval and evidence](../../art/production/chapter5/harbour-approvals.json). Other branches and return shot remain pending. No runtime binding change.
+
+
+## Production update — 2026-09-17
+
+Owner approved and promoted **C5-S12-SHOT05-PHONE-COMPOSITE-V2** for
+`c05.s12.shot05-phone` only: professional wardrobe, purchased personal phone unboxed
+after place-phone, beside Axiom on the original table; editorial declined; no issue,
+event photo or new evening arrangement. Jacket stays inside wardrobe. Composition,
+scale, night lighting and game-scale wardrobe appearance are approved for that state.
+Retain heels LOW/POLISH; no identifiable dangling earring at game size; shoulders
+accepted as contour lighting; matte cleanup accepted. No identity/body/wardrobe master
+authority or approval for other branches. [Coverage](../../art/production/chapter5/coverage.json)
+and [production record](../../art/production/chapter5/README.md) are authoritative for
+this bounded promotion. Runtime behavior remains unchanged. Historical pre-production
+status below applies to remaining coverage, not this newly promoted shot.
+
 **Current review package:** [Chapter 5 per-scene cinematic shot plan](CHAPTER_5_SHOT_PLAN_REVIEW.md), covering all twelve movements and fifteen runtime nodes. It expands this initial map with exact source actions, ordered beat timing, branch exclusions, continuity and missing-art requirements. Its detailed constraints take precedence over shorthand below. Final pre-freeze specification is READY FOR ART PRODUCTION; images and owner approval remain pending. No generation is authorized in this pass.
 
 Inspected the Art Bible, apartment canon proposal, production apartment README/records, approved Evelynn reference README/records and staged executive catalog. Visually inspected `art/reference/evelynn/evelynn-canon-front-v1.png`, `art/production/apartment/apartment-post-glasshouse-executive-v1.png`, and `art/staging/cast-scenes/eve-cast-executive-v1.png`.

@@ -1,0 +1,61 @@
+{
+  "cssSource": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-3-design\\src\\ui\\styles.css",
+  "cssSHA256": "850105e51137bbb6ac7f45ab35d3ac89d3dbffcde027c193299adb89afa376c6",
+  "method": "Chromium offline harness using unchanged runtime stylesheet, .layout/.rail/.story/.home-scene-art; candidate never bound to live runtime",
+  "sizes": [
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "deviceScaleFactor": 1,
+      "imageBounds": {
+        "x": 600,
+        "y": 65,
+        "width": 880,
+        "height": 495
+      },
+      "sourcePixels": [
+        1920,
+        1080
+      ],
+      "runtimeModified": false
+    },
+    {
+      "viewport": [
+        1440,
+        1000
+      ],
+      "deviceScaleFactor": 1,
+      "imageBounds": {
+        "x": 352,
+        "y": 52,
+        "width": 896,
+        "height": 504
+      },
+      "sourcePixels": [
+        1920,
+        1080
+      ],
+      "runtimeModified": false
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "deviceScaleFactor": 1,
+      "imageBounds": {
+        "x": 20,
+        "y": 88,
+        "width": 350,
+        "height": 196.875
+      },
+      "sourcePixels": [
+        1920,
+        1080
+      ],
+      "runtimeModified": false
+    }
+  ]
+}

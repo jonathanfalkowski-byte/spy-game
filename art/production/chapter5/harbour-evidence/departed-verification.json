@@ -1,0 +1,15 @@
+{
+  "uncoveredBackground": {
+    "uncoveredPixels": 2039954,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  },
+  "changedPixels": 38785,
+  "changedPixelsOutsidePriorJulianAlpha": 0,
+  "evelynnPlacementNumericallyIdentical": true,
+  "deterministicRepeatIdentical": true,
+  "outputSHA256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
+  "previousSHA256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
+  "costCredits": 0,
+  "pilotTotalCredits": 13
+}

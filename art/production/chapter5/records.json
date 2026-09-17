@@ -1,0 +1,177 @@
+[
+  {
+    "spec": {
+      "assetId": "c5-s12-shot05-phone-composite-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.complete",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-phone-final",
+      "pose": "Crouched after placing purchased phone beside the Axiom handset; approved scale and pose.",
+      "cameraFraming": "Locked apartment wide; 1920x1080; original furniture and mirror.",
+      "lighting": "Owner-approved shot-specific deterministic night-lighting derivative; restrained warm practical.",
+      "timeOfDay": "22:30-22:35",
+      "intendedUse": "ONLY c05.s12.shot05-phone after place-phone; professional, phone purchased/unboxed, editorial declined, no publication/event photograph/new evening arrangement. Hold at complete. Offline production asset; no runtime binding added.",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only; never an identity/body/wardrobe master or universal apartment ending.",
+        "Exactly two phones: purchased personal phone table-unboxed beside existing Axiom table-home; no third phone or box.",
+        "Adrian jacket remains unseen inside wardrobe. Original mirror, room, furniture and camera preserved.",
+        "Applicable professional wardrobe appearance accepted at measured game scale; alternate wardrobes excluded.",
+        "Source heels slightly higher than spec: retained LOW/POLISH, not canonical low-heel redesign.",
+        "No identifiable dangling earring at game size; dangling earrings remain noncanonical.",
+        "Shoulder appearance accepted as contour lighting; matte cleanup accepted.",
+        "All unearned gifts, publication, event photo and Julian objects excluded."
+      ],
+      "notes": "Human explicitly APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for c05.s12.shot05-phone only, 2026-09-17. Composition, review, branch/authority exclusions and provenance in approval.json. No revision16 runtime changes."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
+    "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex technical/full-resolution/game-size review; Project owner acceptance",
+      "date": "2026-09-17",
+      "reasons": [
+        "Explicit owner shot-specific production promotion.",
+        "Alpha cleanup accepted; environment/night/placement approved; no canonical character-reference authority.",
+        "Heels LOW/POLISH, no identifiable dangling earring at game size, shoulders accepted as contour lighting."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-17",
+      "source": "Human review decision: APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for exact shot c05.s12.shot05-phone. Shot-specific only: composition, night lighting, Evelynn placement/scale, two phones, wardrobe-hidden jacket and professional appearance at game scale. Excludes canonical identity/body/wardrobe reference and other ending branches."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-harbour-evelynn-julian-composite-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "julian-mercer"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-coffee-evening",
+      "pose": "Conversational distance outside entrance; Evelynn holds coffee; Julian stands facing her.",
+      "cameraFraming": "Locked Harbour1920x1080 inside-out view through entrance glazing.",
+      "lighting": "Exact approved Harbour evening master pixels.",
+      "timeOfDay": "18:30-19:15",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "intendedUse": "ONLY c05.s06.shot12-entrance reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot/composition-specific; never canonical character, wardrobe or universal Harbour authority.",
+        "Harbour architecture/floor/glazing/camera/lighting unchanged.",
+        "Evelynn source, scale, position, professional outfit and one held coffee unchanged.",
+        "No contact, future props, re-entry or unearned intimacy.",
+        "Julian49 approved likeness/dark suit retained; LOW/POLISH edge notes."
+      ],
+      "notes": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
+    "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution/game-size review; Project owner authorization",
+      "date": "2026-09-17",
+      "reasons": [
+        "Exact authored shot and branch; unchanged master environment.",
+        "LOW/POLISH edge notes retained."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-17",
+      "source": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-harbour-julian-departed-composite-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-coffee-evening",
+      "pose": "Evelynn alone outside entrance after Julian has left; same position and coffee, before re-entry.",
+      "cameraFraming": "Locked Harbour1920x1080 inside-out view through entrance glazing.",
+      "lighting": "Exact approved Harbour evening master pixels.",
+      "timeOfDay": "18:30-19:15",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "intendedUse": "ONLY c05.s06.shot15-departed reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot/composition-specific; never canonical character, wardrobe or universal Harbour authority.",
+        "Harbour architecture/floor/glazing/camera/lighting unchanged.",
+        "Evelynn source, scale, position, professional outfit and one held coffee unchanged.",
+        "No contact, future props, re-entry or unearned intimacy.",
+        "Julian absent after goodbye/departure; no new visible movement pose."
+      ],
+      "notes": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
+    "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution/game-size review; Project owner authorization",
+      "date": "2026-09-17",
+      "reasons": [
+        "Exact authored shot and branch; unchanged master environment.",
+        "LOW/POLISH edge notes retained."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-17",
+      "source": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
+    }
+  }
+]

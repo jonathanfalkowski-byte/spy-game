@@ -8,6 +8,7 @@ import correctionCandidates from '../../art/staging/cast-scenes/continuity-recor
 import approvedCorrections from '../../art/production/continuity/records.json';
 import apartmentSpecs from '../../art/staging/apartment/records.json';
 import approvedHomeArt from '../../art/production/apartment/records.json';
+import approvedChapter5Art from '../../art/production/chapter5/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
   // Generator receipts are always pending; human approval is a separate catalog edit.
@@ -37,7 +38,7 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Approved portrait records require explicit canonical approval');
     return portrait;
   }),
-  ...approvedHomeArt.map((record) => {
+  ...[...approvedHomeArt, ...approvedChapter5Art].map((record) => {
     const asset = VisualAssetRecordSchema.parse(record);
     if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || !asset.approval)
       throw Error('Home scene artwork requires explicit owner production approval');

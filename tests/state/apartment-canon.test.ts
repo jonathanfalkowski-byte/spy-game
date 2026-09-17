@@ -34,8 +34,10 @@ it('keeps stable apartment specs and real candidates pending without approval', 
   }
 });
 
-it('inventories every selected apartment source and preserves hashes without approving old PASS reviews', () => {
+it('preserves the historical apartment source inventory without approving old PASS reviews', () => {
   const existing = visualCatalog.filter(r => !r.spec.assetId.startsWith('apartment-') &&
+    // This proposal snapshot predates the separately tested shot-specific Chapter 5 promotion.
+    !r.file?.startsWith('art/production/chapter5/') &&
     (r.spec.locationId?.includes('apartment') || r.spec.environment?.includes('apartment')));
   expect(inspection.assets.map(a => a.assetId).sort()).toEqual(existing.map(a => a.spec.assetId).sort());
   expect(inspection.assets).toHaveLength(12);
