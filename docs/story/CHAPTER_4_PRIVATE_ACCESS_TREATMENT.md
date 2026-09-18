@@ -40,3 +40,61 @@ Actual reachable fixtures for six departure types, both 18:45 variants, no-call 
 ## Art
 
 Text is fully playable without new art. Reuse Julian’s approved visual base and current Art Bible. New needs: river-path call/walk, records desk, bounded professional workroom, reception investigation, copy collection and optional non-graphic private conversation. All remain specifications/staging until reviewed; no paid generation or automatic asset promotion is part of this task.
+
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT FROZEN RUNTIME
+
+Authority: [EVE Master GDD](../design/EVE_MASTER_GDD.md) and [Adult Thriller Pacing Map](ADULT_THRILLER_PACING_MAP.md).
+
+This amendment does not reinterpret revision 15. It defines future full-game options if Chapter 4 is revisited in a later content revision.
+
+### Adult-heat balance
+
+The current chapter has a strong Julian progression:
+professional curiosity → personal interest → outside-office tension → optional earned intimacy.
+
+Future design should preserve that route while adding at least one **non-Julian adult-life opportunity** so Evelynn's sexuality and social confidence exist outside Sloane and Julian.
+
+### After-Hours Evelynn
+
+After professional work, an eligible route may offer a voluntary evening choice:
+
+- go home;
+- meet Maya where existing relationship/knowledge permits;
+- visit a sophisticated bar, lounge, gallery after-hours event, or music venue;
+- remain socially visible for Evelynn's own reasons.
+
+A canonically adult supporting person may show interest. Evelynn may:
+
+- ignore it;
+- enjoy the attention;
+- flirt;
+- test her new social confidence;
+- use the interaction strategically;
+- exchange contact details;
+- leave.
+
+No mandatory romance is created. Any later intimate handoff would require separately earned mutual interest and fresh authorization.
+
+Purpose:
+- give independent/non-Julian players adult-life agency;
+- create social observation and contact opportunities;
+- show that attraction can be pleasurable, useful, distracting, or irrelevant;
+- allow the world to respond to Evelynn outside institutional relationships.
+
+### Charm as tradecraft
+
+Scene 10, "Evelynn Uses Someone," may later gain an adult-social leverage branch with a canonically adult target.
+
+Possible uses:
+- charm;
+- flirtation;
+- elicitation;
+- allowing someone to underestimate her;
+- gaining a private conversation or introduction.
+
+Core evidence must remain obtainable through non-intimate alternatives. Intimacy is never required to solve the case.
+
+### Pacing target
+
+A compatible Chapter 4 playthrough may contain roughly 3–4 adult heat beats, but typically 0–1 actual intimate handoff. Adult heat should remain connected to investigation, identity, relationship, or power rather than functioning as disconnected fan service.
