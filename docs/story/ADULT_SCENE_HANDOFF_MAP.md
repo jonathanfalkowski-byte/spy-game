@@ -101,3 +101,68 @@ Use the existing sequence only after a real chapter is approved: authenticated e
 Check semantic equivalence as well as structural validation: a valid hash does not establish that prose preserves consent, avoids spoilers or delivers a required fact. Each presentation needs its own editorial approval; changes to canon, policy or text require renewed review. No writer may add state mutations or unsupported choices/effects.
 
 **Current result:** zero Chapter 3 handoffs; later executive intimacy deferred; voluntary career and exploitation/recovery mapped separately; no new adult eligibility, attraction, relationship fact or canonical outcome approved. Do not code, commission explicit material, modify the frozen slice or implement future trajectories from this roadmap.
+
+
+## Full-game handoff alignment — 2026-09-18
+
+Authority: [EVE Master GDD](../design/EVE_MASTER_GDD.md) and [Adult Thriller Pacing Map](ADULT_THRILLER_PACING_MAP.md).
+
+The full game may include significantly darker adult-life and relationship trajectories, including dependency, manipulation, coercion, abuse, public/adult careers, trophy-wife or kept-life states, and body/image pressure.
+
+### Handoff boundary
+
+AdultSceneSpec remains for **mutually authorized adult intimate outcomes** with fresh current eligibility.
+
+Do **not** use a mutually-willing AdultSceneSpec to represent:
+- coercion;
+- forced compliance;
+- abusive demands;
+- blackmail-backed participation;
+- lack of meaningful alternatives;
+- a bodily or intimate act imposed by a controlling actor.
+
+Those circumstances remain separate canonical story events, represented non-graphically in runtime, with their own evidence, harm, aftermath, leverage, recovery and counterpower state.
+
+A character's desire, pleasure, affection, prior participation, profession, marriage, or financial support does not establish current consent.
+
+### Public / celebrity / adult-career handoffs
+
+Future career progression can include:
+- editorial and luxury work;
+- public celebrity;
+- sensual professional presentation;
+- adult-media professional opportunities;
+- adult-entertainment career.
+
+Every professional intimate outcome requires separate current authorization from:
+- employment or representation terms;
+- image/distribution rights;
+- compensation;
+- partner/participant identity;
+- publication rights.
+
+One project never authorizes the next project.
+
+### Executive / spouse handoffs
+
+Executive companionship may develop into:
+- chosen relationship;
+- strategic partnership;
+- marriage;
+- trophy-wife presentation;
+- kept/dependent life;
+- exploitative control.
+
+Neither marriage nor prior intimacy creates blanket authorization. A later controlling or abusive circumstance requires its own authored power sequence and cannot reuse prior romance state as proof of willingness.
+
+### Body-change boundary
+
+Body modification is not itself an adult-scene handoff. Its authorship must preserve:
+- who requested it;
+- whether Evelynn wants it;
+- pressure/cost of refusal;
+- who pays;
+- permanence;
+- accepted scope.
+
+A later intimate scene must not infer consent from a body change, and a body change must not infer sexual availability.
