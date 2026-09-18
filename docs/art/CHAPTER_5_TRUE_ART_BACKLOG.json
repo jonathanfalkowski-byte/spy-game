@@ -11,12 +11,12 @@
     "authoredOriginalShotBeats": 102,
     "documentedDialogueHoldBeats": 22,
     "totalVisualBeats": 124,
-    "coveredByProduction": 4,
+    "coveredByProduction": 6,
     "coveredByIntentionalReuse": 2,
     "requiredUniqueCompositionFamilies": 95,
-    "approvedRequiredUniqueShots": 4,
-    "missingUniqueCompositionFamilies": 91,
-    "uniqueArtCoveragePercent": 4.21,
+    "approvedRequiredUniqueShots": 6,
+    "missingUniqueCompositionFamilies": 89,
+    "uniqueArtCoveragePercent": 6.32,
     "pendingReuseBeatRequirements": 25,
     "notRequiredAuthoredFadeBeats": 2,
     "reservedNonAuthoredSlots": 1,
@@ -32,9 +32,9 @@
     "statusCounts": {
       "BLOCKED": 26,
       "INTENTIONAL_REUSE": 2,
-      "MISSING_UNIQUE": 90,
+      "MISSING_UNIQUE": 88,
       "NOT_REQUIRED": 3,
-      "PRODUCTION": 4,
+      "PRODUCTION": 6,
       "STAGING_REVISE": 0
     },
     "allBranchCompletionPercent": null
@@ -775,21 +775,23 @@
       "shotId": "c05.s06.shot01-preview",
       "scene": "chapter5.room",
       "trigger": "look-* completed; event=attend; arrival at 18:30 reached",
-      "status": "MISSING_UNIQUE",
+      "status": "PRODUCTION",
       "currentAsset": "C5-S06-SHOT01-PREVIEW-COMPOSITE-V2 (STAGING REVISE)",
       "reuseSource": [],
       "uniqueArtRequired": true,
       "additionalUniqueArtRequired": true,
       "requirementId": "c05.s06.shot01-preview",
-      "priority": "P0",
+      "priority": "DONE (bounded)",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
       "branch": "look-* completed; event=attend; arrival at 18:30 reached",
       "composition": "Inside entrance, programme table, E and host; Checked name, programme with tomorrow's guest card; editor at table end",
-      "generationType": "COMPOSITE",
+      "generationType": "REUSE",
       "supportingAuthority": "Approved Harbour environment; canonical faces; professional wardrobe reference where applicable",
       "runtimeBound": false,
-      "notes": "Host-only candidate generated; stylistic mismatch and off-frame editor blocking pending review. Bag omitted per owner verified-custody direction. Existing Harbour master authoritative."
+      "notes": "Host-only candidate generated; stylistic mismatch and off-frame editor blocking pending review. Bag omitted per owner verified-custody direction. Existing Harbour master authoritative.",
+      "assetId": "c5-h1-arrival-composite-v3-production",
+      "missing": false
     },
     {
       "shotId": "c05.s06.shot02-salon",
@@ -995,21 +997,23 @@
       "shotId": "c05.s06.shot13-return",
       "scene": "chapter5.room",
       "trigger": "after conversation/observe OR coffee, authored return reached",
-      "status": "MISSING_UNIQUE",
+      "status": "PRODUCTION",
       "currentAsset": null,
       "reuseSource": [],
       "uniqueArtRequired": true,
       "additionalUniqueArtRequired": true,
       "requirementId": "c05.s06.shot13-return",
-      "priority": "P0",
+      "priority": "DONE (bounded)",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
       "branch": "after conversation/observe OR coffee, authored return reached",
       "composition": "Programme table, E/host again; Same wardrobe and carried possessions; source-position variant/crop may reuse reviewed arrival base",
-      "generationType": "COMPOSITE",
+      "generationType": "REUSE",
       "supportingAuthority": "Approved Harbour environment; canonical faces; professional wardrobe reference where applicable",
       "runtimeBound": false,
-      "notes": "A cut back to a reviewed programme-table base may eventually suffice. Post-coffee state must keep the acquired cup in E custody, visible or truthfully off-frame. No approved table/return base exists yet; conservatively retain a required return composition until exact reuse review."
+      "notes": "A cut back to a reviewed programme-table base may eventually suffice. Post-coffee state must keep the acquired cup in E custody, visible or truthfully off-frame. No approved table/return base exists yet; conservatively retain a required return composition until exact reuse review.",
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "missing": false
     },
     {
       "shotId": "c05.s06.shot14-wait",
@@ -2836,12 +2840,14 @@
     }
   ],
   "latestProductionUpdate": {
-    "shotId": "c05.s07.shot03-arrival",
-    "assetId": "c5-s07-aster-arrival-composite-v2-production",
-    "scope": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
-    "pilotCredits": 18,
-    "additionalGenerationCredits": 1,
-    "harbourArrival": "STAGING; not approved coverage"
+    "date": "2026-09-18",
+    "assets": [
+      "c5-h1-arrival-composite-v3-production",
+      "c5-h2-coffee-return-composite-v1-production"
+    ],
+    "scope": "exact Harbour H1/H2 only; no runtime binding",
+    "pilotCredits": 22,
+    "harbour": "DONE"
   },
   "evidenceRefreshNote": "Current documentation/approval evidence refreshed after Aster V2 promotion; original runtime/source baseline retained.",
   "originalAuditActivity": {
@@ -2851,43 +2857,43 @@
     "promotions": 0
   },
   "currentPassActivity": {
-    "artGenerated": 1,
-    "creditsSpent": 1,
-    "pilotCredits": 18,
-    "promotions": 1
+    "artGenerated": 2,
+    "creditsSpent": 2,
+    "pilotCredits": 22,
+    "promotions": 3,
+    "note": "H1/H2 owner promotions; preceding new layer spend is already included in the 22-credit cumulative pilot total."
   },
   "harbourCurrentSequenceDecision": {
     "environment": "existing approved Harbour master",
     "daylightCourtyard": "DEFERRED",
     "note": "Owner decision: current Harbour arrival/programme-table/coffee-return sequence uses existing approved Harbour environment unchanged. Separate daylight/courtyard concept DEFERRED; not a blocker for evening-preview production. Frozen15:00 salon branch remains outside this candidate and unillustrated; no story or lighting change.",
-    "arrivalCandidate": "C5-S06-SHOT01-PREVIEW-COMPOSITE-V2",
-    "review": "REVISE",
-    "currentPilotCredits": 19,
-    "approvedUniqueCompositionCount": 4,
-    "coveragePercent": 4.21
+    "arrivalCandidate": "c5-h1-arrival-composite-v3-production",
+    "review": "PRODUCTION \u2014 H1/H2/H3/H4 done",
+    "currentPilotCredits": 22,
+    "approvedUniqueCompositionCount": 6,
+    "coveragePercent": 6.32
   },
   "readerV2HarbourUpdate": {
     "date": "2026-09-18",
-    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
-    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
-    "H1": {
-      "shotId": "c05.s06.shot01-preview",
-      "candidate": "c5-h1-arrival-composite-v3-staging",
-      "review": "PASS with LOW/POLISH",
-      "approval": "pending",
-      "runtimeBound": false
-    },
-    "H2": {
-      "shotId": "c05.s06.shot13-return",
-      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
-      "paidCall": false
-    },
-    "H3": "existing approved pair unchanged",
-    "H4": "existing approved departure unchanged",
-    "approvedUniqueCompositions": 4,
-    "requiredUniqueCompositions": 95,
-    "coveragePercent": 4.21,
-    "cumulativePilotCredits": 20,
-    "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+    "decision": "Owner approved and promoted Harbour H1/H2. Harbour Chapter 5 is done: H1 arrival/programme table, H2 return with coffee, H3 Julian conversation, H4 Julian departure.",
+    "assets": [
+      {
+        "assetId": "c5-h1-arrival-composite-v3-production",
+        "shotId": "c05.s06.shot01-preview",
+        "review": "PASS with LOW/POLISH",
+        "runtimeBound": false
+      },
+      {
+        "assetId": "c5-h2-coffee-return-composite-v1-production",
+        "shotId": "c05.s06.shot13-return",
+        "review": "PASS with LOW/POLISH",
+        "runtimeBound": false
+      }
+    ],
+    "excluded": "No additional Chapter 5 Harbour angles. Daylight/courtyard remains deferred and is not Chapter 5 canon.",
+    "cumulativePilotCredits": 22,
+    "approvedUniqueCompositions": 6,
+    "coveragePercent": 6.32,
+    "harbourDone": true
   }
 }

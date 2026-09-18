@@ -230,5 +230,113 @@
       "date": "2026-09-17",
       "source": "Explicit APPROVE Aster arrival candidate for production for EXACT authored shot/state only. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change."
     }
+  },
+  {
+    "spec": {
+      "assetId": "c5-h1-arrival-composite-v3-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "Evelynn faces left toward the supporting Harbour host after completed arrival, name check and programme handover; bag and guest-card custody remain off-frame.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; head-to-toe figures at original calibration.",
+      "lighting": "Approved evening master, unchanged.",
+      "intendedUse": "ONLY c05.s06.shot01-preview after the completed arrival/name-check/programme-handover on the attend, 18:30, c05.professional route; host is an unnamed supporting adult; no coffee, Julian or physical contact.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only. It is not a canonical Evelynn identity, body or wardrobe master, and it does not authorize another Harbour state.",
+        "Approved evening Harbour master architecture, flooring, glazing, camera and lighting are preserved.",
+        "LOW/POLISH: subtle Evelynn hair-edge fringe and business-pump difference are unobtrusive at gameplay size.",
+        "Bag, programme and guest card remain Evelynn custody. Their visible placement is unspecified and intentionally omitted; the host never holds them.",
+        "No runtime selector is added by this promotion."
+      ],
+      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging.",
+      "presentationVariant": "professional-arrival-programme-table"
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
+    "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex technical/full-resolution/game-size review; Project owner approval",
+      "date": "2026-09-18",
+      "reasons": [
+        "Exact c05.s06.shot01-preview after arrival/name check/programme handover, event=attend 18:30, c05.professional only; no coffee or Julian.",
+        "1920x1080, desktop896x504, Reader stage620x349 and mobile350x197 reviewed. Clean host silhouette, compatible semi-cel rendering, adult supporting role only.",
+        "Locked Harbour background SHA unchanged; 1934876 uncovered pixels compared, zero changed. Numeric calibration and Evelynn layer/position unchanged. RGB preserved in host alpha extraction.",
+        "LOW/POLISH: subtle Evelynn hair fringe and existing business-pump difference are unobtrusive at gameplay size. No visible new jewelry. No new identity/reference authority.",
+        "Frame is E plus host after handover. Editor remains at the left table end outside frame; no invented departure or new biography. Bag remains E custody, not visibly staged or handed away; existing owner-permitted omission retained.",
+        "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Human decision: APPROVE Harbour H1 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "Evelynn returns to the Harbour programme table facing the supporting host, carrying one coffee after Julian has left.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; H1 placement and floor-plane calibration retained.",
+      "lighting": "Approved evening Harbour master, unchanged.",
+      "intendedUse": "ONLY c05.s06.shot13-return after the completed Julian coffee conversation and return to the programme table on the attend, 18:30, c05.professional route; one Evelynn-held coffee; Julian absent; no physical contact.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only. It is not a canonical Evelynn identity, body or wardrobe master, and it does not authorize another Harbour state.",
+        "Approved evening Harbour master architecture, flooring, glazing, camera and lighting are preserved.",
+        "LOW/POLISH: ordinary scene-scale business-pump silhouette only; no new identity, body or wardrobe authority.",
+        "Bag and guest card remain Evelynn custody but are off-frame because the authored visible placement is unspecified.",
+        "No runtime selector is added by this promotion."
+      ],
+      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging.",
+      "presentationVariant": "professional-coffee-return-programme-table"
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+    "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex technical/full-resolution/game-size review; Project owner approval",
+      "date": "2026-09-18",
+      "reasons": [
+        "H2 exact coffee-return action is legible at full, desktop and mobile sizes.",
+        "Harbour master is preserved outside composited layers; no new environment output.",
+        "No visible new dangling earring or unearned prop; ordinary pump treatment is low polish only.",
+        "Human production approval remains required."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Human decision: APPROVE Harbour H2 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+    }
   }
 ]

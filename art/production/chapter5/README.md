@@ -34,3 +34,9 @@ harbour-components and harbour-evidence/assets.json preserve portable determinis
 The current authority/status index is [CURRENT_AUTHORITY_INDEX.md](../../../docs/art/CURRENT_AUTHORITY_INDEX.md). It supersedes older “runtime binding0/no binding” status statements, not their historical receipts or approvals. Three already approved exact variants are now bound by the reading presenter. No new promotion or generation. Full coverage remains 3/100 indexed raster/artifact beats and is not all-branch coverage. Pilot spend remains14 credits; this audit spends0.
 
 Coffee sequence follows the authenticated prose: message → Evelynn waits alone with coffee → Julian arrives / dialogue hold → Julian leaves → Evelynn returns. The shorthand sequence in the implementation request does not authorize rewriting that established chronology or adding another wait. On return and any subsequent table/editor/photo beat, acquired coffee remains in Evelynn’s custody, carried or explicitly off-frame. No disposal, consumption, new cup or Julian-held coffee is inferred. Shot14 remains an unapproved reuse candidate; the departed image is not silently reused there. Retired and reserved IDs are unchanged.
+
+## Harbour H1/H2 closure
+
+The owner promoted `C5-H1-ARRIVAL-COMPOSITE-V3.png` and `C5-H2-COFFEE-RETURN-COMPOSITE-V1.png` on 2026-09-18. They are exact production records for `c05.s06.shot01-preview` and `c05.s06.shot13-return`; see `harbour-approvals.json`. Their delivery PNG bytes match their staging provenance. Both retain LOW/POLISH notes, neither is a canonical reference, and neither has a runtime selector.
+
+With the existing H3/H4 assets, Harbour is complete for Chapter 5. Do not add Harbour angles or a daylight/courtyard variant.

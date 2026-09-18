@@ -1,0 +1,15 @@
+{
+  "taskId": "eeb9a06a-7fc5-4657-9519-c95e81a832a9",
+  "callId": "17fc0b9a-b8aa-4fc0-bcdd-0eef6113a19d",
+  "providerAssetId": "2c81e6fd-08dc-4d52-a1b4-1a1e9f52c63e",
+  "tool": "image_editor",
+  "model": "WAN_2_7_IMAGE",
+  "estimatedCredits": 1,
+  "actualCredits": 1,
+  "outputs": 1,
+  "format": "image/png",
+  "references": {
+    "bodyPoseWardrobe": "1fde6677-5c66-4191-8be2-e3fcb2bb2092",
+    "canonicalEvelynnIdentity": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+  }
+}

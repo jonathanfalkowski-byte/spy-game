@@ -88,5 +88,96 @@
     "saveSchema": 5,
     "pilotCredits": 13,
     "additionalMovementCredits": 0
+  },
+  {
+    "assetId": "c5-h1-arrival-composite-v3-production",
+    "sourceCompositionId": "C5-H1-ARRIVAL-COMPOSITE-V3",
+    "shotId": "c05.s06.shot01-preview",
+    "date": "2026-09-18",
+    "decision": "APPROVE AND PROMOTE",
+    "scope": "SHOT-SPECIFIC / COMPOSITION-SPECIFIC",
+    "approvalBasis": "Owner explicitly approved the completed Chapter 5 Harbour H1/H2 core family for production.",
+    "reviewer": "Project owner",
+    "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
+    "files": {
+      "production": "art/production/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
+      "delivery": "public/art/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png"
+    },
+    "requiredBeatState": {
+      "contentRevision": 17,
+      "event": "attend",
+      "wardrobe": "c05.professional",
+      "arrivalCompleted": true,
+      "programmeHandoverCompleted": true,
+      "coffeeCount": 0,
+      "julianPresent": false,
+      "contact": false
+    },
+    "establishes": [
+      "exact c05.s06.shot01-preview composition, camera and evening Harbour lighting",
+      "shot-specific Evelynn position and professional wardrobe at gameplay scale"
+    ],
+    "excludes": [
+      "canonical Evelynn identity master",
+      "canonical body or wardrobe master",
+      "universal Harbour composition",
+      "daylight/courtyard Harbour canon",
+      "any other Chapter 5 Harbour angle or branch state"
+    ],
+    "retainedNotes": [
+      "LOW/POLISH: subtle Evelynn hair-edge fringe and business-pump difference are unobtrusive at gameplay size.",
+      "Bag, programme and guest card remain Evelynn custody. Their visible placement is unspecified and intentionally omitted; the host never holds them."
+    ],
+    "runtimeBindingChanged": false,
+    "contentRevision": 17,
+    "saveSchema": 5,
+    "pilotCredits": 22,
+    "additionalMovementCredits": 0
+  },
+  {
+    "assetId": "c5-h2-coffee-return-composite-v1-production",
+    "sourceCompositionId": "C5-H2-COFFEE-RETURN-COMPOSITE-V1",
+    "shotId": "c05.s06.shot13-return",
+    "date": "2026-09-18",
+    "decision": "APPROVE AND PROMOTE",
+    "scope": "SHOT-SPECIFIC / COMPOSITION-SPECIFIC",
+    "approvalBasis": "Owner explicitly approved the completed Chapter 5 Harbour H1/H2 core family for production.",
+    "reviewer": "Project owner",
+    "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+    "files": {
+      "production": "art/production/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+      "delivery": "public/art/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png"
+    },
+    "requiredBeatState": {
+      "contentRevision": 17,
+      "event": "attend",
+      "wardrobe": "c05.professional",
+      "julianAccess": true,
+      "julianArrivalCompleted": true,
+      "julianDeparted": true,
+      "coffeeCount": 1,
+      "returnCompleted": true,
+      "contact": false
+    },
+    "establishes": [
+      "exact c05.s06.shot13-return composition, camera and evening Harbour lighting",
+      "shot-specific Evelynn position and professional wardrobe at gameplay scale"
+    ],
+    "excludes": [
+      "canonical Evelynn identity master",
+      "canonical body or wardrobe master",
+      "universal Harbour composition",
+      "daylight/courtyard Harbour canon",
+      "any other Chapter 5 Harbour angle or branch state"
+    ],
+    "retainedNotes": [
+      "LOW/POLISH: ordinary scene-scale business-pump silhouette only; no new identity, body or wardrobe authority.",
+      "Bag and guest card remain Evelynn custody but are off-frame because the authored visible placement is unspecified."
+    ],
+    "runtimeBindingChanged": false,
+    "contentRevision": 17,
+    "saveSchema": 5,
+    "pilotCredits": 22,
+    "additionalMovementCredits": 0
   }
 ]

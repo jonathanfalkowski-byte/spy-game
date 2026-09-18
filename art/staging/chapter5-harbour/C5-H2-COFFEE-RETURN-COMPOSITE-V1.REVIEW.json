@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-18",
+  "artBible": "1.0",
+  "shotId": "c05.s06.shot13-return",
+  "candidate": "C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+  "decision": "PASS",
+  "polish": "LOW/POLISH",
+  "ownerApproval": "pending",
+  "generation": {
+    "taskId": "eeb9a06a-7fc5-4657-9519-c95e81a832a9",
+    "callId": "17fc0b9a-b8aa-4fc0-bcdd-0eef6113a19d",
+    "providerAssetId": "2c81e6fd-08dc-4d52-a1b4-1a1e9f52c63e",
+    "tool": "image_editor",
+    "model": "WAN_2_7_IMAGE",
+    "estimatedCredits": 1,
+    "actualCredits": 1,
+    "outputs": 1,
+    "format": "image/png"
+  },
+  "continuity": {
+    "environment": "Approved Harbour master SHA 271edbe4d9ad4c6fc3e81b1ef153f2e60009723d1d769c03bf9e4f82e5406717; uncovered background pixels 1933909; changed uncovered pixels 0.",
+    "characters": "Evelynn has one naturally held takeaway coffee; host remains an unnamed supporting adult at the programme table; Julian is absent after the completed outside conversation.",
+    "custody": "Exactly one cup, carried by Evelynn. Bag and guest card remain Evelynn custody but are omitted because their visible placement is not authored. No phone, publication, photograph, voucher, or second drink.",
+    "camera": "H1 master camera, floor plane, host, foreground table and calibrated standing height are retained."
+  },
+  "review": {
+    "fullResolution": "PASS",
+    "desktop": "PASS",
+    "mobile": "PASS",
+    "identity": "Recognizable canonical Evelynn at scene scale; no visible dangling earring.",
+    "wardrobe": "Professional suit and ordinary pumps remain consistent at gameplay size; heel treatment is LOW/POLISH only.",
+    "composition": "The completed return and carried-coffee state are legible without adding intimacy or a future-state prop."
+  },
+  "notes": [
+    "This is a staging PASS only; it is not a production promotion, canonical identity reference, body reference, or universal wardrobe authority.",
+    "The historical 15:00 salon/courtyard route remains frozen and excluded from this evening Harbour candidate.",
+    "No retry was submitted."
+  ]
+}

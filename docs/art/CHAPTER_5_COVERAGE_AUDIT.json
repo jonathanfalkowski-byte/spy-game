@@ -7,14 +7,14 @@
   "summary": {
     "registeredActiveOrReservedIds": 103,
     "rasterOrArtifactBeatIds": 100,
-    "productionShotIdsWithAtLeastOneApprovedVariant": 4,
-    "productionIndexCoveragePercent": 4.0,
+    "productionShotIdsWithAtLeastOneApprovedVariant": 6,
+    "productionIndexCoveragePercent": 6.0,
     "allBranchCompletionPercent": null,
     "runtimeBoundShots": 3,
     "statusCounts": {
-      "MISSING": 94,
+      "MISSING": 92,
       "BLOCKED": 1,
-      "PRODUCTION": 4,
+      "PRODUCTION": 6,
       "REUSE": 1,
       "STAGING": 0,
       "NOT REQUIRED": 3
@@ -479,12 +479,12 @@
       "branch": "look-* completed; event=attend; arrival at 18:30 reached",
       "composition": "Inside entrance, programme table, E and host; Checked name, programme with tomorrow's guest card; editor at table end",
       "sourceRequirement": "M",
-      "status": "MISSING",
-      "asset": "\u2014",
-      "authoritySource": "Final Harbour sequence + Harbour environment authority",
-      "missing": "YES",
-      "priority": "HIGH",
-      "generationType": "COMPOSITE",
+      "status": "PRODUCTION",
+      "asset": "c5-h1-arrival-composite-v3-production",
+      "authoritySource": "Owner exact-shot approval; art/production/chapter5/harbour-approvals.json",
+      "missing": "NO",
+      "priority": "DONE (bounded)",
+      "generationType": "REUSE",
       "runtimeBound": false
     },
     {
@@ -663,12 +663,12 @@
       "branch": "after conversation/observe OR coffee, authored return reached",
       "composition": "Programme table, E/host again; Same wardrobe and carried possessions; source-position variant/crop may reuse reviewed arrival base",
       "sourceRequirement": "M",
-      "status": "MISSING",
-      "asset": "\u2014",
-      "authoritySource": "Final Harbour sequence + Harbour environment authority",
-      "missing": "YES",
-      "priority": "HIGH",
-      "generationType": "COMPOSITE",
+      "status": "PRODUCTION",
+      "asset": "c5-h2-coffee-return-composite-v1-production",
+      "authoritySource": "Owner exact-shot approval; art/production/chapter5/harbour-approvals.json",
+      "missing": "NO",
+      "priority": "DONE (bounded)",
+      "generationType": "REUSE",
       "runtimeBound": false,
       "coffeeCustody": "If coffee was acquired: Evelynn carries one cup or it remains explicitly off-frame in her custody; no invented disposal or duplicate."
     },
@@ -1666,31 +1666,38 @@
     "credits": 1,
     "humanApproval": false
   },
-  "pilotCreditsCurrent": 20,
+  "pilotCreditsCurrent": 22,
   "currentImplementationRevision": 17,
-  "latestPromotion": "2026-09-17 Aster V2; four approved exact variants, three runtime-bound; original audit baseline retained.",
+  "latestPromotion": {
+    "date": "2026-09-18",
+    "assets": [
+      "c5-h1-arrival-composite-v3-production",
+      "c5-h2-coffee-return-composite-v1-production"
+    ],
+    "scope": "exact production approvals; no runtime binding",
+    "pilotCredits": 22
+  },
   "readerV2HarbourUpdate": {
     "date": "2026-09-18",
-    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
-    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
-    "H1": {
-      "shotId": "c05.s06.shot01-preview",
-      "candidate": "c5-h1-arrival-composite-v3-staging",
-      "review": "PASS with LOW/POLISH",
-      "approval": "pending",
-      "runtimeBound": false
-    },
-    "H2": {
-      "shotId": "c05.s06.shot13-return",
-      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
-      "paidCall": false
-    },
-    "H3": "existing approved pair unchanged",
-    "H4": "existing approved departure unchanged",
-    "approvedUniqueCompositions": 4,
-    "requiredUniqueCompositions": 95,
-    "coveragePercent": 4.21,
-    "cumulativePilotCredits": 20,
-    "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+    "decision": "Owner approved and promoted Harbour H1/H2. Harbour Chapter 5 is done: H1 arrival/programme table, H2 return with coffee, H3 Julian conversation, H4 Julian departure.",
+    "assets": [
+      {
+        "assetId": "c5-h1-arrival-composite-v3-production",
+        "shotId": "c05.s06.shot01-preview",
+        "review": "PASS with LOW/POLISH",
+        "runtimeBound": false
+      },
+      {
+        "assetId": "c5-h2-coffee-return-composite-v1-production",
+        "shotId": "c05.s06.shot13-return",
+        "review": "PASS with LOW/POLISH",
+        "runtimeBound": false
+      }
+    ],
+    "excluded": "No additional Chapter 5 Harbour angles. Daylight/courtyard remains deferred and is not Chapter 5 canon.",
+    "cumulativePilotCredits": 22,
+    "approvedUniqueCompositions": 6,
+    "coveragePercent": 6.32,
+    "harbourDone": true
   }
 }

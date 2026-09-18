@@ -62,5 +62,21 @@
     "width": 1920,
     "height": 1080,
     "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78"
+  },
+  {
+    "id": "c5-h1-arrival-composite-v3-production",
+    "src": "art/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
+    "location": "harbour",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee"
+  },
+  {
+    "id": "c5-h2-coffee-return-composite-v1-production",
+    "src": "art/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+    "location": "harbour",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56"
   }
 ]

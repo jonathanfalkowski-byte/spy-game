@@ -1,0 +1,92 @@
+{
+  "compositionId": "C5-H2-COFFEE-RETURN-COMPOSITE-V1",
+  "shotId": "c05.s06.shot13-return",
+  "backgroundAssetId": "background",
+  "outputSize": [
+    1920,
+    1080
+  ],
+  "environmentCanonVersion": "harbour-pilot-01-v1-owner-approved-environment",
+  "calibrationId": "harbour-arrival-interior-from-entrance-v1",
+  "characters": [
+    {
+      "characterAssetId": "evelynn",
+      "identityReference": "identity",
+      "x": 460,
+      "y": 934,
+      "scale": 0.2787286063569682,
+      "anchor": "bottom-center",
+      "zIndex": 30,
+      "flipX": false,
+      "wardrobeId": "c05.professional",
+      "poseId": "return-facing-left-single-coffee"
+    },
+    {
+      "characterAssetId": "host",
+      "identityReference": "host-design",
+      "x": 205,
+      "y": 918,
+      "scale": 0.2854359473940575,
+      "anchor": "bottom-center",
+      "zIndex": 25,
+      "flipX": false,
+      "wardrobeId": "harbour-supporting-host-slate-shirt",
+      "poseId": "programme-handover-completed-facing-right"
+    }
+  ],
+  "props": [
+    {
+      "assetId": "table-foreground",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 40,
+      "custodyNote": "Exact same master table pixels restored as foreground occlusion. Not a new table or prop."
+    }
+  ],
+  "shadows": [
+    {
+      "assetId": "shadow",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 10,
+      "custodyNote": "Local soft floor contact only"
+    },
+    {
+      "assetId": "host-shadow",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 9,
+      "custodyNote": "Local host contact shadow only"
+    }
+  ],
+  "branchState": {
+    "contentRevision": 17,
+    "saveSchema": 5,
+    "event": "attend",
+    "time": "18:30",
+    "wardrobe": "c05.professional",
+    "coffeeCount": 1,
+    "julianPresent": false,
+    "arrivalCompleted": true,
+    "hostLayer": "present unnamed supporting adult",
+    "editorLayer": "physically present at table end; proposed off-frame left-end blocking",
+    "bagAndProgramme": "Bag carried by Evelynn, strap/hand/set-down position unspecified; omitted per explicit owner direction. Guest card state=bag.",
+    "coffeeOwner": "Evelynn",
+    "coffeeState": "one plain takeaway cup still carried after the completed outside conversation",
+    "attentionCoffeeCompleted": true,
+    "returnToProgrammeTableCompleted": true
+  },
+  "notes": [
+    "STAGING only; no production approval or runtime binding.",
+    "Derived from the locked H1 programme-table family. Harbour master, host, table, camera, scale calibration and lighting are reused without generation.",
+    "Change from H1: Evelynn now carries exactly one earned coffee after Julian's completed outside conversation and return to the host.",
+    "Bag remains Evelynn custody and is deliberately omitted because its visible placement is not authored. No Julian, publication, photo, second drink or future-state prop.",
+    "The historical 15:00 salon/courtyard route is excluded from this evening production candidate."
+  ]
+}

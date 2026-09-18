@@ -19,6 +19,12 @@ The local forearm failure shows why a simple cut/rotation is insufficient: the n
 
 Smallest prospective paid input: **one elbow-to-hand character correction patch, including sleeve junction**, referenced to current figure/lighting, hand naturally lowered at the existing table edge after release. Keep face/head/body/wardrobe/feet from the existing source outside the correction mask. A full apartment or whole-character redesign is unnecessary. No apartment quote or paid submission made; a concrete workflow/quote must precede any later approval.
 
+### Superseding one-output character attempt — 2026-09-18
+
+One live-quoted one-credit `image_editor / WAN_2_7_IMAGE` output was submitted for the smallest available repair: task `8f2e8bc7-670b-4f57-98e6-f92785a484ef`, call `24e5797f-9839-4293-a943-809db0df3344`, provider asset `9e5e662b-d82c-4ea2-9645-8d8fdabca9a3`, PNG. It used the existing crouched layer for pose/body and the canonical three-quarter reference for identity. The apartment was not an input or a generated output.
+
+**REVISE; no composite built.** The new output retains a palm-up presentation gesture rather than a credible post-placement withdrawal, adds a visible dangling ear detail, and has a sharper high-heel silhouette. It cannot replace the character layer for `c05.s01.shot01`. The one authorized attempt is exhausted; no retry was submitted. The remaining blocker is a new, human-approved way to obtain a character layer with a naturally lowered/withdrawing elbow-to-hand pose.
+
 V2 source differs from V1 only within(292,799)–(354,825), **1,095pixels**. All other final pixels identical. Approved background file unchanged; **1,998,140uncovered pixels,0changed**. Repeat render hash identical:
 `d9c2c1a568cd3e7d9f1e107293b18b6ce39d50c66e2f6f50f344fa39a9484b46`.
 Full1920x1080 and current-game-CSS desktop880x495/896x504, mobile350x197 inspected. These are offline review frames, not runtime bindings.
@@ -61,3 +67,8 @@ Single figure occupies about65% of tall frame height; ≥15% blank space above h
 - Recommended next action: owner review of Aster PASS and apartment V2. For art creation, approve the minimal apartment gesture-region workflow after its quote, or explicitly approve the quoted1credit Harbour Evelynn-only replacement with the remaining host dependency understood. Do not spend on Aster footwear.
 - No production promotion, runtime/story/Chapter6 edit, commit or push. Existing dirty Wave B report preserved. This pass adds this report and updates current Markdown authority status only.
 
+## Daytime apartment V3 reframing — 2026-09-18
+
+**REJECT, zero-credit staging study.** `C5-S01-DAYTIME-APARTMENT-ANCHOR-V3` is a deterministic 16:9 crop/resample of `DAYTIME-APARTMENT-V2`, with no regeneration, repainting or source overwrite. The proposed medium framing either leaves the raised palm in frame or, when framed tightly enough to hide it, removes both the bag/card evidence needed for the completed placement beat. It does not meet the authored-shot requirement and is not promoted.
+
+The apartment environment, bag correction, lighting, camera relationship and V2 source remain unchanged. The smallest future paid solution is a **medium Evelynn-only after-placement layer** whose lowered/occluded arm does not become the shot’s focal point; it must include a live quote and fresh approval before generation. No additional attempt was submitted.

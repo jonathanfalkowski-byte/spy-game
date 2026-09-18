@@ -48,5 +48,52 @@
         "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
       ]
     }
+  },
+  {
+    "spec": {
+      "assetId": "c5-h2-coffee-return-composite-v1-staging",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "Evelynn faces left toward the supporting Harbour host while carrying one coffee after returning from the completed outside conversation.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; H1 placement and floor-plane calibration retained.",
+      "lighting": "Approved evening Harbour master, unchanged.",
+      "intendedUse": "H2 coffee return, c05.s06.shot13-return; staging review candidate only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "event=attend at 18:30; c05.professional; completed Julian coffee conversation and return to programme table.",
+        "Exactly one Evelynn-held takeaway cup. Julian absent. Host remains unnamed supporting adult; no intimacy or future-state prop.",
+        "Approved Harbour pixels retain 1933909 uncovered pixels with zero changes; host, table, camera and lighting are reused.",
+        "Bag and guest card remain Evelynn custody but are not staged because their visible position is unspecified.",
+        "PASS is technical art review only; production approval and runtime binding remain pending."
+      ],
+      "notes": "Provider receipt, deterministic composition and review are co-located in this staging folder."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/chapter5-harbour/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+    "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full/desktop/mobile visual review",
+      "date": "2026-09-18",
+      "reasons": [
+        "H2 exact coffee-return action is legible at full, desktop and mobile sizes.",
+        "Harbour master is preserved outside composited layers; no new environment output.",
+        "No visible new dangling earring or unearned prop; ordinary pump treatment is low polish only.",
+        "Human production approval remains required."
+      ]
+    }
   }
 ]

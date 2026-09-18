@@ -114,6 +114,43 @@
       ],
       "approvalDate": "2026-09-17",
       "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s06.shot01-preview",
+      "assetId": "c5-h1-arrival-composite-v3-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.room",
+      "trigger": "ONLY c05.s06.shot01-preview after the completed arrival/name-check/programme-handover on the attend, 18:30, c05.professional route; host is an unnamed supporting adult; no coffee, Julian or physical contact.",
+      "requiredBeatState": {
+        "contentRevision": 17,
+        "event": "attend",
+        "wardrobe": "c05.professional",
+        "arrivalCompleted": true,
+        "programmeHandoverCompleted": true,
+        "coffeeCount": 0,
+        "julianPresent": false,
+        "contact": false
+      },
+      "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s06.shot13-return",
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.room",
+      "trigger": "ONLY c05.s06.shot13-return after the completed Julian coffee conversation and return to the programme table on the attend, 18:30, c05.professional route; one Evelynn-held coffee; Julian absent; no physical contact.",
+      "requiredBeatState": {
+        "contentRevision": 17,
+        "event": "attend",
+        "wardrobe": "c05.professional",
+        "julianAccess": true,
+        "julianArrivalCompleted": true,
+        "julianDeparted": true,
+        "coffeeCount": 1,
+        "returnCompleted": true,
+        "contact": false
+      },
+      "runtimeBound": false
     }
   ],
   "referenceOnly": [
@@ -126,7 +163,7 @@
     "All other c05.s12.shot05-phone wardrobe/publication/photo/evening states",
     "Other final placement actions",
     "Remaining shots/branches in CHAPTER_5_SHOT_PLAN_REVIEW.md",
-    "Other Harbour wardrobe/time/attention states and c05.s06.shot13-return remain pending"
+    "No additional Chapter 5 Harbour angles: H1/H2/H3/H4 are complete; daylight/courtyard remains deferred and excluded."
   ],
   "authorityExclusions": [
     "canonical identity reference",
@@ -140,33 +177,35 @@
   ],
   "runtimeBinding": "src/ui/chapter5-beats.ts",
   "latestApproval": {
-    "assetId": "c5-s07-aster-arrival-composite-v2-production",
-    "shotId": "c05.s07.shot03-arrival",
+    "assetId": "c5-h2-coffee-return-composite-v1-production",
+    "shotId": "c05.s06.shot13-return",
     "review": "PASS with LOW/POLISH",
     "runtimeBindingChanged": false
   },
   "readerV2HarbourUpdate": {
     "date": "2026-09-18",
-    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
-    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
+    "design": "One evening Harbour venue with four production-approved core families H1 arrival, H2 coffee return, H3 Julian conversation and H4 Julian departure. Daylight/courtyard remains deferred and is not Chapter 5 canon.",
+    "historicalConflict": "Revision17 event=decline retains a historical 15:00 courtyard salon. Preserve historical semantics; these evening assets are not bound to that branch.",
     "H1": {
       "shotId": "c05.s06.shot01-preview",
-      "candidate": "c5-h1-arrival-composite-v3-staging",
+      "assetId": "c5-h1-arrival-composite-v3-production",
       "review": "PASS with LOW/POLISH",
-      "approval": "pending",
+      "approval": "approved",
       "runtimeBound": false
     },
     "H2": {
       "shotId": "c05.s06.shot13-return",
-      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
-      "paidCall": false
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "review": "PASS with LOW/POLISH",
+      "approval": "approved",
+      "runtimeBound": false
     },
     "H3": "existing approved pair unchanged",
     "H4": "existing approved departure unchanged",
-    "approvedUniqueCompositions": 4,
+    "approvedUniqueCompositions": 6,
     "requiredUniqueCompositions": 95,
-    "coveragePercent": 4.21,
-    "cumulativePilotCredits": 20,
+    "coveragePercent": 6.32,
+    "cumulativePilotCredits": 22,
     "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
   }
 }

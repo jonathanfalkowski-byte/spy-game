@@ -1,0 +1,13 @@
+{
+  "deterministicRepeat": true,
+  "outputSHA256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+  "pixelStability": {
+    "uncoveredPixels": 1933909,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  },
+  "environmentSHA256": "271edbe4d9ad4c6fc3e81b1ef153f2e60009723d1d769c03bf9e4f82e5406717",
+  "evelynnLayerSHA256": "12f24163e7a2ed6af441ef50bf0c03505587924a1409f8a6013cfa30ae41b879",
+  "h1CalibratedStandingHeightPx": 570,
+  "h2StandingHeightPx": 570
+}

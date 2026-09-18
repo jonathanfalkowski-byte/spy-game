@@ -1329,6 +1329,39 @@
       "scope": "H1 evening professional preview arrival only; LOW/POLISH",
       "authorityRecord": "art/staging/chapter5-harbour/records.json",
       "supersedingRecord": null
+    },
+    {
+      "assetId": "c5-h2-coffee-return-composite-v1-staging",
+      "file": "art/staging/chapter5-harbour/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+      "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+      "role": "staging",
+      "status": "pending",
+      "review": "PASS with LOW/POLISH",
+      "scope": "H2 evening professional coffee return only: one Evelynn-held cup after the completed Julian conversation, Harbour master and H1 camera/host/table retained.",
+      "authorityRecord": "art/staging/chapter5-harbour/C5-H2-COFFEE-RETURN-COMPOSITE-V1.REVIEW.json",
+      "supersedingRecord": null
+    },
+    {
+      "assetId": "c5-h1-arrival-composite-v3-production",
+      "status": "approved",
+      "role": "production",
+      "scope": "shot-specific only; no canonical identity/body/wardrobe/environment authority",
+      "shotId": "c05.s06.shot01-preview",
+      "review": "PASS with LOW/POLISH",
+      "approvalDate": "2026-09-18",
+      "runtimeBound": false,
+      "controllingRecord": "art/production/chapter5/harbour-approvals.json"
+    },
+    {
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "status": "approved",
+      "role": "production",
+      "scope": "shot-specific only; no canonical identity/body/wardrobe/environment authority",
+      "shotId": "c05.s06.shot13-return",
+      "review": "PASS with LOW/POLISH",
+      "approvalDate": "2026-09-18",
+      "runtimeBound": false,
+      "controllingRecord": "art/production/chapter5/harbour-approvals.json"
     }
   ],
   "harbourCurrentSequenceDecision": {
@@ -1341,32 +1374,40 @@
     "courtyardConcept": "DEFERRED",
     "runtimeChanged": false,
     "review": "docs/art/HARBOUR_CURRENT_SEQUENCE_CANON_AND_HOST_REVIEW.md",
-    "currentPilotCredits": 19,
-    "arrivalCandidate": "C5-S06-SHOT01-PREVIEW-COMPOSITE-V2",
-    "arrivalStatus": "REVISE"
+    "currentPilotCredits": 22,
+    "arrivalCandidate": "c5-h1-arrival-composite-v3-production",
+    "arrivalStatus": "PRODUCTION \u2014 PASS with LOW/POLISH, exact c05.s06.shot01-preview",
+    "coffeeReturnCandidate": "c5-h2-coffee-return-composite-v1-production",
+    "coffeeReturnStatus": "PRODUCTION \u2014 PASS with LOW/POLISH, exact c05.s06.shot13-return",
+    "approvedUniqueCompositionCount": 6,
+    "coveragePercent": 6.32,
+    "chapter5Harbour": "DONE \u2014 H1/H2/H3/H4 only; no new Harbour Chapter 5 angles"
   },
   "readerV2HarbourUpdate": {
     "date": "2026-09-18",
-    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
-    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
+    "design": "One evening Harbour venue with four production-approved core families H1 arrival, H2 coffee return, H3 Julian conversation and H4 Julian departure.",
+    "historicalConflict": "Revision17 event=decline retains a historical 15:00 courtyard salon. Preserve its history; no evening Harbour production asset is bound to it.",
     "H1": {
+      "assetId": "c5-h1-arrival-composite-v3-production",
       "shotId": "c05.s06.shot01-preview",
-      "candidate": "c5-h1-arrival-composite-v3-staging",
       "review": "PASS with LOW/POLISH",
-      "approval": "pending",
-      "runtimeBound": false
+      "runtimeBound": false,
+      "approval": "approved"
     },
     "H2": {
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
       "shotId": "c05.s06.shot13-return",
-      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
-      "paidCall": false
+      "review": "PASS with LOW/POLISH",
+      "runtimeBound": false,
+      "approval": "approved"
     },
-    "H3": "existing approved pair unchanged",
-    "H4": "existing approved departure unchanged",
-    "approvedUniqueCompositions": 4,
+    "H3": "existing production-approved Julian conversation",
+    "H4": "existing production-approved Julian departure",
+    "harbourDone": true,
+    "approvedUniqueCompositions": 6,
     "requiredUniqueCompositions": 95,
-    "coveragePercent": 4.21,
-    "cumulativePilotCredits": 20,
+    "coveragePercent": 6.32,
+    "cumulativePilotCredits": 22,
     "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
   }
 }

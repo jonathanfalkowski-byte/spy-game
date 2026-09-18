@@ -34,12 +34,20 @@ Reviewed source, full composite1920x1080, desktop896x504, reader-stage620x349 an
 
 ## H2 coffee return
 
-**BLOCKED; no new candidate or paid call.** The left-facing H1 Evelynn layer has relaxed lowered arms and empty hands. A cup placed against those fingers would not form a believable grip. The approved H3 coffee layer faces the opposite way; transplanting its bent arm would change shoulder/torso anatomy and illumination, and flipping the figure would violate established pose/identity continuity.
+**PASS with LOW/POLISH; staging, human production approval pending.** Exactly one `image_editor / WAN_2_7_IMAGE` character-only output was generated after a live one-credit quote: task `eeb9a06a-7fc5-4657-9519-c95e81a832a9`, call `17fc0b9a-b8aa-4fc0-bcdd-0eef6113a19d`, asset `2c81e6fd-08dc-4d52-a1b4-1a1e9f52c63e`, PNG. No retry was submitted.
 
-Smallest missing component: a matching left-facing coffee-holding forearm/hand region preserving this H1 torso/face/clothes. If a clean anatomical join cannot be supplied, the fallback is one Evelynn-only left-facing coffee pose layer. No quote or purchase is authorized in this pass. Retain same room, host, camera, table, scale, bag custody and single Evelynn-held cup. Do not reuse the empty-handed H1 shot over an acquired-coffee result.
+The resulting full-body Evelynn layer supplies a natural left-facing waist-height grip on one plain takeaway cup. It is composited onto the existing H1 programme-table family as `C5-H2-COFFEE-RETURN-COMPOSITE-V1`: same Harbour master, host, foreground table, camera, floor plane, evening lighting and standing-height calibration. The master has `1,933,909` uncovered pixels with zero changes. Julian is absent after the completed outside conversation; the cup is the only new visible state. Bag and guest card remain Evelynn custody but are omitted because their visible location is not authored.
+
+Reviewed full-resolution, desktop, reader-stage and mobile renders. Evelynn's likeness, hair, pose, scale, coffee custody, host spacing and non-intimate blocking pass. The pump silhouette remains an ordinary scene-scale LOW/POLISH item. This staging pass neither promotes the shot nor makes its figure an identity, body, wardrobe or universal Harbour authority.
 
 ## Coverage, spend and stop
 
-H3/H4 remain approved and unchanged. Harbour is **NOT DONE**: H1 awaits human promotion; H2 lacks its natural grip/pose; the historical salon conflict remains version-gated. Approved unique coverage remains **4/95 = 4.21%**; three Chapter 5 exact shots are reader-bound. Aster is approved but requires its arrival-only reading boundary before binding. Passing H1 review alone does not add a production-covered family.
+H3/H4 remain approved and unchanged. The four-family evening Harbour sequence is **technically complete in staging**, but is **not production complete**: H1 and H2 both await human promotion, and the historical salon conflict remains version-gated. Approved unique coverage remains **4/95 = 4.21%**; three Chapter 5 exact shots are reader-bound. Aster is approved but requires its arrival-only reading boundary before binding. A staging PASS never adds a production-covered family.
 
-Ledger before this pass was19 credits (including the previous host output), despite the brief's18-credit carry-forward. This pass1, cumulative20. No second paid call, environment generation, automatic promotion, runtime/story change, Chapter6, commit or push.
+Ledger before this pass was20 credits. The H2 layer cost1 credit and the separate Daytime Apartment character-only correction cost1 credit; cumulative Chapter 5 pilot spend is **22 credits**. No retry, environment generation, automatic promotion, runtime/story change, Chapter 6 implementation, commit or push occurred.
+
+## Owner promotion — 2026-09-18
+
+The owner approved and promoted H1 `c05.s06.shot01-preview` and H2 `c05.s06.shot13-return` for their exact reviewed states. The production files are `C5-H1-ARRIVAL-COMPOSITE-V3.png` and `C5-H2-COFFEE-RETURN-COMPOSITE-V1.png`; their SHA-256 values match the reviewed staging source bytes. H1 retains the hair-edge/business-pump LOW/POLISH note. H2 retains the scene-scale business-pump LOW/POLISH note. Neither approval grants identity, body, wardrobe, universal environment or future-branch authority.
+
+**Chapter 5 Harbour is DONE:** H1 arrival/programme table; H2 return with coffee; H3 Julian conversation; H4 Julian departure. No additional Chapter 5 Harbour angles will be generated. The daylight/courtyard concept remains deferred and outside Chapter 5 canon. No runtime selector was added; the existing reader bindings remain unchanged.
