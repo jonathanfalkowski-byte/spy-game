@@ -38,3 +38,13 @@ The night-apartment anchor for Movement 10 should first be tested as a zero-cred
 ## Core gate
 
 Chapter 5 reaches cinematic-core complete when the four missing anchors and the Aster result transition are approved, or when a future review explicitly records an alternative as a truthful hold. The 95-family backlog remains an optional P1/P2 richness ledger and does not block Chapter 6 design.
+
+## Current pass update — 2026-09-18
+
+- Movement 01 Home remains **TRUE MISSING**. Home V4 cannot place the clean layer at truthful floor scale while preserving the completed table action; its heels remain visibly noncanonical.
+- Movement 02 Spend remains **TRUE MISSING**. Its environment is staging pending human approval; a later exact Evelynn layer is still needed.
+- Movement 05 Presentation remains **TRUE MISSING**. The shared framing prototype is **REVISE** because the borrowed placeholder does not yet prove a credible three-quarter character envelope. Four wardrobe layers remain planned only.
+- Movement 10 People remains **TRUE MISSING**. The deterministic night master is **PASSABLE NIGHT AUTHORITY** in staging only; the tea/messages character layer remains missing.
+- Movement 07 Aster remains **APPROVED ANCHOR + TRUE MISSING conditional endpoint**.
+
+**True missing primary anchors: 4.**
