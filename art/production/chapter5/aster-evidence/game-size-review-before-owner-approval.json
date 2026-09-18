@@ -1,0 +1,41 @@
+{
+  "assetId": "C5-S07-ASTER-ARRIVAL-COMPOSITE-V2",
+  "shotId": "c05.s07.shot03-arrival",
+  "review": "PASS",
+  "status": "STAGING",
+  "productionApproved": false,
+  "supersedes": "WaveB shot04 REVISE judgment for heel height; source image and original historical review retained",
+  "basis": "Owner explicitly requests actual-game-size tolerance and LOW/POLISH instead of generation for minor heel height.",
+  "scope": {
+    "wardrobe": "c05.professional",
+    "offer": "accepted",
+    "concept": "professional",
+    "time": "11:30",
+    "trigger": "actual studio arrival, editor reads scope, before sitting",
+    "published": false,
+    "proofPrepared": false,
+    "coffeeCount": 0,
+    "julianPresent": false,
+    "intimacy": false
+  },
+  "fullResolution": "Room/identity/wardrobe/proportions/props/trigger/style reviewed; heels visibly medium rather than low in large source.",
+  "desktop": "At880x495 and896x504, shoes read as ordinary black business pumps; heel shape does not create a conspicuous high-heel presentation. No crop/occlusion needed.",
+  "mobile": "At350x197, feet grounded and silhouette natural; face/jewelry too small for independent detail judgment.",
+  "lowPolish": [
+    "Heel-height detail remains in original pixels; bounded scene-scale tolerance only, not a wardrobe-canon change.",
+    "Minor hair-edge softness/face simplification; likeness remains recognizable."
+  ],
+  "otherChecks": [
+    "No dangling earring",
+    "Full head/hands/feet",
+    "Clear chair separation and adequate contact shadow",
+    "Editor proposed appearance can pass art review without gaining identity/biography canon",
+    "No future publication or sitting state",
+    "Aster environment pixel-stable"
+  ],
+  "sourceSHA256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
+  "paidGenerations": 0,
+  "credits": 0,
+  "promotion": "Not performed; PASS alone does not grant production/reference authority.",
+  "reviewDate": "2026-09-17 America/New_York"
+}

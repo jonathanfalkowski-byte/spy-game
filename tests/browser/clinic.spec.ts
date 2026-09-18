@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { replay as clinicV5Replay } from '../../src/persistence/legacy-v5/state/reducer';
 import { EventSchema as ClinicV5Event } from '../../src/persistence/legacy-v5/state/actions';
@@ -143,7 +144,7 @@ test('clinic navigation and keyboard focus fit narrow screens at large text', as
 }, info) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await seed(page, traverse(start, {}, 'authorization'));
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   const review = page.locator('[data-clinic-choice="auth.review"]');
   await review.focus();
   await page.keyboard.press('Enter');
@@ -187,6 +188,7 @@ test('clinic storage failure stays truthful and restart requires confirmation', 
   await expect(page.getByRole('alert')).toContainText('not saved');
   await page.reload();
   expect((await current(page)).clinic.authorized).toBe(false);
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: 'Close dialog' }).click();

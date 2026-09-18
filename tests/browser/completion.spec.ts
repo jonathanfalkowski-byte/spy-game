@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { test, expect, type Page } from '@playwright/test';
 import { encodeSave, decodeSave, SAVE_KEY } from '../../src/persistence/saves';
 import { missionStart, runMission } from '../mission-helpers';
@@ -25,6 +26,7 @@ test('simulation answer is visible before authorization, stays in history and su
   await expect(page.locator('.confirmation')).toHaveCount(0);
   await page.reload();
   await expect(page.locator('#story')).toContainText('variation during recovery');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Conversation history', exact: true }).click();
   await expect(page.getByRole('dialog')).toContainText(
     'the model cannot promise how you will feel',
@@ -71,13 +73,15 @@ test('earned ending recap and differentiated journal work at narrow width withou
   const s = runMission(missionStart('socialite'), { method: 'method.token' });
   await page.setViewportSize({ width: 390, height: 844 });
   await seed(page, s);
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
+  await page.getByText('Review assessment', { exact: true }).click();
   await expect(page.getByRole('region', { name: 'Choices you carried here' })).toContainText(
     'socialite outfit',
   );
   await expect(page.locator('.personal-recap')).toContainText('left the identity details out');
   await expect(page.locator('.personal-recap')).not.toContainText('You have become');
-  await expect(page.locator('.ending-summary')).toContainText('Held by: Evelynn');
+  await expect(page.getByRole('dialog')).toContainText('Held by: Evelynn');
+  await page.keyboard.press('Escape');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole('button', { name: 'Review your evidence', exact: true }).click();
   await expect(page.getByRole('dialog')).toContainText(

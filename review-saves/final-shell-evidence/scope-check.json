@@ -1,0 +1,25 @@
+{
+  "head": "6ef6f68ad1690d0ddaf9f94c5f152171b2491670",
+  "changed": [
+    "docs/design/CINEMATIC_READER_V2.md",
+    "tests/browser/cinematic-reader.spec.ts",
+    "tests/browser/cinematic-shell.spec.ts",
+    "src/ui/App.tsx",
+    "src/ui/Casework.tsx",
+    "src/ui/Missionwork.tsx",
+    "src/ui/styles.css",
+    "tests/browser/completion.spec.ts",
+    "tests/browser/mission.spec.ts",
+    "tests/browser/opening.spec.ts"
+  ],
+  "missing": [],
+  "added": [
+    "docs/design/FINAL_EVE_READER_SHELL.md",
+    "review-saves/final-eve-reader-review.html",
+    "review-saves/final-shell-evidence/preflight.json",
+    "review-saves/final-shell-evidence/rejected-three-column-design.md",
+    "src/ui/assessment-status.ts",
+    "tests/browser/assessment-attention.spec.ts",
+    "tests/state/assessment-status.test.ts"
+  ]
+}

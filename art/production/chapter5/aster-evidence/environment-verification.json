@@ -1,0 +1,9 @@
+{
+  "deterministicRepeat": true,
+  "outputSHA256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
+  "pixelStability": {
+    "uncoveredPixels": 2010493,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  }
+}

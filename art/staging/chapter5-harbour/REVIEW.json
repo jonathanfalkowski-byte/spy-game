@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-18",
+  "artBible": "1.0",
+  "shotId": "c05.s06.shot01-preview",
+  "candidate": "C5-H1-ARRIVAL-COMPOSITE-V3.png",
+  "decision": "PASS",
+  "polish": "LOW/POLISH",
+  "ownerApproval": "pending",
+  "hostGeneration": "1ea80eb2-9400-4ad4-ae94-bd704e0dcdd0",
+  "hostLayerReview": "PASS",
+  "h2Status": "BLOCKED - coffee-holding pose required",
+  "h2Minimum": "Matching left-facing Evelynn forearm/hand coffee-grip layer; if clean arm-only integration cannot preserve anatomy, one matching Evelynn-only pose layer. No purchase authorized or submitted.",
+  "notes": [
+    "Exact c05.s06.shot01-preview after arrival/name check/programme handover, event=attend 18:30, c05.professional only; no coffee or Julian.",
+    "1920x1080, desktop896x504, Reader stage620x349 and mobile350x197 reviewed. Clean host silhouette, compatible semi-cel rendering, adult supporting role only.",
+    "Locked Harbour background SHA unchanged; 1934876 uncovered pixels compared, zero changed. Numeric calibration and Evelynn layer/position unchanged. RGB preserved in host alpha extraction.",
+    "LOW/POLISH: subtle Evelynn hair fringe and existing business-pump difference are unobtrusive at gameplay size. No visible new jewelry. No new identity/reference authority.",
+    "Frame is E plus host after handover. Editor remains at the left table end outside frame; no invented departure or new biography. Bag remains E custody, not visibly staged or handed away; existing owner-permitted omission retained.",
+    "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
+  ],
+  "creditsThisPass": 1,
+  "cumulativePilotCredits": 20
+}

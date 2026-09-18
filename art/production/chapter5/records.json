@@ -173,5 +173,62 @@
       "date": "2026-09-17",
       "source": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
     }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s07-aster-arrival-composite-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "aster-studio",
+      "sceneId": "chapter5.offer",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-arrival-before-sitting",
+      "pose": "Evelynn listens standing; editor reads scope.",
+      "cameraFraming": "Locked Aster wide 1920x1080; original room and table.",
+      "lighting": "Unchanged approved Aster environment daylight.",
+      "timeOfDay": "11:30",
+      "intendedUse": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+        "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change.",
+        "Shot approval does not establish identity/body/wardrobe master authority.",
+        "No future proof, publication, payment, coffee, Julian or contact.",
+        "Editor appearance is scene-specific, not new biography."
+      ],
+      "notes": "Human APPROVE and PROMOTE; bounded approval and evidence in aster-approval.json. No runtime selector change."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
+    "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner; technical/game-size review",
+      "date": "2026-09-17",
+      "reasons": [
+        "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+        "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change.",
+        "Approved environment pixel-stable."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-17",
+      "source": "Explicit APPROVE Aster arrival candidate for production for EXACT authored shot/state only. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change."
+    }
   }
 ]

@@ -23,11 +23,11 @@ it('keeps every runtime shot in the active registry and an existing explicit app
       true,
     );
   }
-  expect(production.productionShots).toHaveLength(3);
+  expect(production.productionShots).toHaveLength(4);
   expect(coverage.summary.runtimeBoundShots).toBe(3);
-  expect(coverage.summary.productionIndexCoveragePercent).toBe(3);
+  expect(coverage.summary.productionIndexCoveragePercent).toBe(4);
   expect(registry.get('c05.s06.shot14-wait')?.status).toBe('REUSE');
-  expect(registry.get('c05.s07.shot03-arrival')?.status).toBe('STAGING');
+  expect(registry.get('c05.s07.shot03-arrival')?.status).toBe('PRODUCTION');
 });
 it('current authority does not promote rejected/candidate art or expand bounded references', () => {
   const aster = authority.assets.find((a) => a.assetId === 'C5-WAVE-A-ASTER-ARRIVAL-COMPOSITE-V1')!;

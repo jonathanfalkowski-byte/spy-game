@@ -1,6 +1,6 @@
 # Chapter 5 coverage audit —2026-09-17
 
-**Historical raw-index snapshot.** The current production-planning metric, dialogue-hold ledger, deduplicated requirements and next wave are in [CHAPTER_5_TRUE_ART_BACKLOG.md](CHAPTER_5_TRUE_ART_BACKLOG.md). Revision17 is committed/pushed at `198feada20cc15aa47d6e64f37149079efe187a4`; the uncommitted status below describes the earlier review. The JSON snapshot remains unchanged for existing provenance/regression checks. Do not use its raw 3/100 as the primary art-production metric.
+**Historical raw-index snapshot.** The current production-planning metric, dialogue-hold ledger, deduplicated requirements and next wave are in [CHAPTER_5_TRUE_ART_BACKLOG.md](CHAPTER_5_TRUE_ART_BACKLOG.md). Revision17 is committed/pushed at `198feada20cc15aa47d6e64f37149079efe187a4`; the uncommitted status below describes the earlier review. The JSON now includes the explicitly approved Aster V2 promotion: four approved exact variants, three runtime-bound. Do not use its raw 3/100 as the primary art-production metric.
 
 Audited pushed baseline7c91a242; this implementation is an uncommitted revision17 diff. 3/100 raster/artifact beat IDs have at least one approved variant (3.0%). This is **not full-branch completion**; runtime-bound exact variants **3** (presentation for authenticated revision16/17, branch guarded). 3 reserved/fade IDs need no raster. Retired IDs and dialogue holds are excluded.
 
@@ -66,7 +66,7 @@ LOW/optional: street return/leave positions after the street master; short-roof 
 | c05.s06.shot17-hung | chapter5.room | MISSING | — | Final Harbour sequence + Harbour environment authority | YES | MEDIUM | COMPOSITE | Owned selected outfit on hanger; crop only; no invented nightwear |
 | c05.s07.shot01 | chapter5.offer/proof | MISSING | — | Final shot plan + locked apartment; branch wardrobe/props | YES | MEDIUM | COMPOSITE | room exited; actual next day |
 | c05.s07.shot02-contract | chapter5.offer/proof | MISSING | — | Final shot plan + locked apartment; branch wardrobe/props | YES | MEDIUM | ARTIFACT | offer=accepted, exact concept/fee/name/image scope |
-| c05.s07.shot03-arrival | chapter5.offer/proof | STAGING | C5-WAVE-A-ASTER-ARRIVAL-COMPOSITE-V1 | Final shot plan + PASS Aster environment; character layers missing | REVISE: heel height + floor contact/chair tangency; human review pending | HIGH | COMPOSITE | accepted professional concept/professional outfit;11:30arrival before sitting; no coffee/publication |
+| c05.s07.shot03-arrival | chapter5.offer/proof | PRODUCTION | c5-s07-aster-arrival-composite-v2-production | Explicit owner approval | Other variants pending; LOW/POLISH footwear | HIGH | COMPOSITE | accepted professional concept/outfit;11:30arrival before sitting; runtime unbound |
 | c05.s07.shot04-sitting | chapter5.offer/proof | MISSING | — | Final shot plan + PASS Aster environment; character layers missing | YES | HIGH | COMPOSITE | Accepted concept, image-use not none |
 | c05.s07.shot04-text | chapter5.offer/proof | MISSING | — | Final shot plan + PASS Aster environment; character layers missing | YES | HIGH | COMPOSITE | image-use=none |
 | c05.s07.shot05-proof | chapter5.offer/proof | MISSING | — | Final shot plan + PASS Aster environment; character layers missing | YES | HIGH | COMPOSITE | concept !=private, image-use !=none; no publish yet |
@@ -138,3 +138,13 @@ No scene production is inferred from old global PASS labels. Source authority: f
 ## Wave A result
 
 **REVISE — STAGING.** One Aster arrival pair generated for1credit and composited locally. Pilot total14. Wardrobe heel mismatch and character floor-contact/chair-edge issues require review; earring noncanonical, flagged separately. No retry or promotion. Production remains3/100beat IDs; one additional staged candidate, not approved coverage. See [wave report](CHAPTER_5_WAVE_A_REVIEW.md).
+
+## Subsequent owner approval — Aster V2
+
+ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change. Production-index count now4/100; planning count4/95 (4.21%). Historical Wave A statements above refer to V1.
+
+## Reader V2 / Harbour review update - 2026-09-18
+
+Owner direction locks new Chapter 5 production to one evening Harbour venue and four core families H1 arrival, H2 coffee return, H3 Julian conversation, H4 Julian departed. Historical revision 17 still contains the 15:00 salon/courtyard branch: it is preserved, excluded from evening art, and cannot be silently relabelled. Stable IDs and the 95-family denominator are retained until an authorized versioned content/backlog migration; real phone/photo/painting/exit actions are not erased by this family grouping.
+
+H1 `c05.s06.shot01-preview`: **PASS with LOW/POLISH**, candidate `c5-h1-arrival-composite-v3-staging`, human production approval pending. H2 `c05.s06.shot13-return`: **BLOCKED** on a natural left-facing coffee grip/pose; no further generation. H3/H4 unchanged approved. No promotion: approved coverage remains **4/95 (4.21%)**, three runtime-bound Chapter 5 shots. Pilot spend is **20 credits** (19 verified ledger +1 this pass). See [full review](HARBOUR_READER_V2_REVIEW.md) and staging catalog receipt; these current statuses supersede earlier host-missing/revise and spend statements without replacing historical evidence.

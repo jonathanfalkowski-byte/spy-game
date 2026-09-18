@@ -85,6 +85,35 @@
         "contact": false
       },
       "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s07.shot03-arrival",
+      "assetId": "c5-s07-aster-arrival-composite-v2-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.offer",
+      "trigger": "actual 11:30 studio arrival; editor reads scope before sitting",
+      "requiredState": {
+        "offer": "accepted",
+        "concept": "professional",
+        "wardrobe": "c05.professional",
+        "time": "11:30",
+        "arrivalCompleted": true,
+        "sittingCompleted": false,
+        "proofPrepared": false,
+        "published": false,
+        "coffeeCount": 0,
+        "julianPresent": false,
+        "contact": false
+      },
+      "excludedState": [
+        "sitting completed",
+        "proof prepared",
+        "publication",
+        "payment",
+        "other wardrobe/concept"
+      ],
+      "approvalDate": "2026-09-17",
+      "runtimeBound": false
     }
   ],
   "referenceOnly": [
@@ -109,5 +138,35 @@
     16,
     17
   ],
-  "runtimeBinding": "src/ui/chapter5-beats.ts"
+  "runtimeBinding": "src/ui/chapter5-beats.ts",
+  "latestApproval": {
+    "assetId": "c5-s07-aster-arrival-composite-v2-production",
+    "shotId": "c05.s07.shot03-arrival",
+    "review": "PASS with LOW/POLISH",
+    "runtimeBindingChanged": false
+  },
+  "readerV2HarbourUpdate": {
+    "date": "2026-09-18",
+    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
+    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
+    "H1": {
+      "shotId": "c05.s06.shot01-preview",
+      "candidate": "c5-h1-arrival-composite-v3-staging",
+      "review": "PASS with LOW/POLISH",
+      "approval": "pending",
+      "runtimeBound": false
+    },
+    "H2": {
+      "shotId": "c05.s06.shot13-return",
+      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
+      "paidCall": false
+    },
+    "H3": "existing approved pair unchanged",
+    "H4": "existing approved departure unchanged",
+    "approvedUniqueCompositions": 4,
+    "requiredUniqueCompositions": 95,
+    "coveragePercent": 4.21,
+    "cumulativePilotCredits": 20,
+    "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+  }
 }

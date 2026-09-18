@@ -1,0 +1,43 @@
+{
+  "assetId": "c5-s07-aster-arrival-composite-v2-production",
+  "shotId": "c05.s07.shot03-arrival",
+  "scope": "SHOT-SPECIFIC ONLY",
+  "decision": "PASS",
+  "approvalStatus": "approved",
+  "reviewer": "Project owner",
+  "date": "2026-09-17",
+  "files": {
+    "production": "art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
+    "public": "public/art/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png"
+  },
+  "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
+  "requiredState": {
+    "offer": "accepted",
+    "concept": "professional",
+    "wardrobe": "c05.professional",
+    "time": "11:30",
+    "arrivalCompleted": true,
+    "sittingCompleted": false,
+    "proofPrepared": false,
+    "published": false,
+    "coffeeCount": 0,
+    "julianPresent": false,
+    "contact": false
+  },
+  "retainedNotes": [
+    "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change.",
+    "Minor hair-edge softness and face simplification accepted at scene scale."
+  ],
+  "excludedAuthority": [
+    "canonical Evelynn identity",
+    "canonical body",
+    "universal wardrobe master",
+    "incompatible branches",
+    "editor biography"
+  ],
+  "runtimeBindingChanged": false,
+  "runtimeBound": false,
+  "runtimeNote": "Asset promoted and published; arrival-specific reader timing remains unbound. Do not show arrival over the completed sitting/proof node.",
+  "source": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\wave-b-p0\\shot04\\C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
+  "sourceReview": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\wave-b-corrections\\ASTER-GAME-SIZE-REVIEW.json"
+}

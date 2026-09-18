@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { EventSchema as DayV3Event } from '../../src/persistence/legacy-v3/state/actions';
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { checkpoint, atOffer, evening, endAccepted } from '../day-helpers';
@@ -185,6 +186,7 @@ test('new phase save failure is visible, retry works and restart remains confirm
     page.getByRole('heading', { name: 'Become Evelynn for the operation' }),
   ).toBeVisible();
   await choose(page, 'offer.refuse');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: 'Close dialog' }).click();
@@ -195,7 +197,7 @@ test('Sloane and evening remain readable on a narrow screen with large text', as
 }, info) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await seed(page, atOffer());
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('sloane-mobile.png'), fullPage: true });
   await choose(page, 'offer.accept');

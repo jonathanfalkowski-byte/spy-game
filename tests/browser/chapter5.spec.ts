@@ -1,3 +1,4 @@
+import { openNavigation } from './reader-navigation';
 import { test, expect, type Page } from '@playwright/test';
 import { end4 } from '../chapter5-helpers';
 import { SAVE_KEY, encodeSave, decodeSave } from '../../src/persistence/saves';
@@ -70,10 +71,13 @@ test('explicit bridge, alternate salon, negotiated publication and owned ending 
   expect(cash5(s)).toBe(840);
   expect(read5(s, 'publication')?.text).toContain('text only');
   expect(get5(s, 'obligation-count')).toBe('2');
-  await expect(page.locator('.rail')).toContainText('Chapter 5');
+  await openNavigation(page);
+  await expect(page.getByRole('navigation', { name: 'Story navigation' })).toContainText('Chapter 5');
+  if (await page.getByRole('dialog', { name: 'Story menu' }).isVisible()) await page.keyboard.press('Escape');
   await expect(page.locator('[data-chapter5-choice]')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('public-ending-mobile.png'), fullPage: true });
+  await openNavigation(page);
   await page.getByRole('button', { name: /^Evidence journal/ }).click();
   await expect(page.getByRole('dialog')).toContainText('Aster');
   expect(errors).toEqual([]);

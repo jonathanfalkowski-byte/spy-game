@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { test, expect } from '@playwright/test';
 import { encodeSave, SAVE_KEY } from '../../src/persistence/saves';
 import { runMission } from '../mission-helpers';
@@ -16,6 +17,7 @@ test('restore previews without replacing, confirms, survives reload, filters jou
   await page.locator('[data-choice="bond.friend"]').click();
   const before = await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY);
   const end = runMission();
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restore save backup', exact: true }).click();
   await page.getByLabel('Save backup file').setInputFiles(upload(encodeSave(end)));
   await expect(page.getByLabel('Validated backup')).toContainText('The Glass House is behind you');
@@ -23,6 +25,7 @@ test('restore previews without replacing, confirms, survives reload, filters jou
   await page.getByRole('button', { name: 'Confirm restore and replace save' }).click();
   await expect(page.getByRole('heading', { name: 'The Glass House is behind you' })).toBeVisible();
   await page.reload();
+  await openNavigation(page);
   await page.getByRole('button', { name: /^Evidence journal/ }).click();
   await expect(page.getByLabel('Milestone', { exact: true })).toHaveValue('mission');
   await page.getByLabel('Information type').selectOption('capture');
@@ -33,7 +36,8 @@ test('restore previews without replacing, confirms, survives reload, filters jou
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: /^Evidence journal/ })).toBeFocused();
   await page.setViewportSize({width:390,height:844});
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
+  await openNavigation(page);
   await page.getByRole('button', {name: /^Evidence journal/}).click();
   expect(await page.getByRole('dialog').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
   await page.screenshot({path:'review-results/journal-narrow-final.png'});
@@ -45,6 +49,7 @@ test('invalid, unsupported, oversized and conflicting backups never replace the 
   await page.goto('/');
   await page.locator('[data-choice="bond.friend"]').click();
   const before = await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY);
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restore save backup', exact: true }).click();
   for (const raw of ['{bad', '{"schemaVersion":999}', 'x'.repeat(2_000_001)]) {
     await page.getByLabel('Save backup file').setInputFiles(upload(raw));
@@ -84,7 +89,7 @@ test('day questions append and retain focus order through reload; large text per
   const speech = await page.locator('[data-clinic-exchange]').allTextContents();
   expect(speech.at(-2)).toContain('Why use an analyst');
   expect(speech.at(-1)).toContain('Who is the insider');
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   await page.reload();
   await expect(page.getByLabel('Reading size')).toHaveValue('24');
   await expect(page.locator('[data-clinic-exchange]').last()).toContainText('Who is the insider');
@@ -103,8 +108,9 @@ test('failed restore write preserves live scene and save; reading preference fai
       throw Error('Storage unavailable');
     };
   });
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   await expect(page.getByLabel('Reading size')).toHaveValue('24');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restore save backup', exact: true }).click();
   await page.getByLabel('Save backup file').setInputFiles(upload(encodeSave(runMission())));
   await page.getByRole('button', { name: 'Confirm restore and replace save' }).click();

@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { missionStart, runMission, missionDefaults } from '../mission-helpers';
 import { encodeSave, decodeSave, SAVE_KEY } from '../../src/persistence/saves';
@@ -46,8 +47,10 @@ async function seed(page: Page, state = start) {
   });
   await page.reload();
 }
-const click = (page: Page, id: string) =>
-  page.locator('[data-mission-choice="' + id + '"]').click();
+const click = async (page: Page, id: string) => {
+  if (id.startsWith('source.') && !(await page.getByRole('dialog').count())) await page.getByRole('button', { name: 'Open assessment', exact: true }).click();
+  await page.locator('[data-mission-choice="' + id + '"]').click();
+};
 const current = async (page: Page) =>
   decodeSave((await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY))!);
 
@@ -133,7 +136,9 @@ test('full operation with two leads reaches the garage, reloads every phase, and
   expect(end.mission.outcome).toBe('complete');
   expect(end.mission.completed).toContain('cover.test');
   await expect(page.getByRole('heading', { name: 'The Glass House is behind you' })).toBeVisible();
-  await expect(page.locator('.ending-summary')).toContainText('Sloane');
+  await page.getByRole('button', { name: 'Review assessment', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Sloane');
+  await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Download save backup' })).toBeVisible();
   expect(errors).toEqual([]);
   await page.screenshot({ path: info.outputPath('glass-house-complete.png'), fullPage: true });
@@ -176,7 +181,7 @@ test('narrow screen, large text, keyboard choices, free reread and restart confi
 }, info) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await seed(page, runMission(start, {}, 'hub'));
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   const button = page.locator('[data-mission-choice="lead.service"]');
   await button.focus();
   await page.keyboard.press('Enter');
@@ -188,10 +193,12 @@ test('narrow screen, large text, keyboard choices, free reread and restart confi
   await expect(page.locator('#story')).toContainText('do not follow the lead again');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('glass-house-narrow.png'), fullPage: true });
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: 'Close dialog' }).click();
   expect((await current(page)).phase).toBe('leadRead');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await page.getByRole('button', { name: 'Restart and replace save' }).click();
   expect((await current(page)).scene).toBe('apartment');

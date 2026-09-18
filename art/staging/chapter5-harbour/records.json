@@ -1,0 +1,52 @@
+[
+  {
+    "spec": {
+      "assetId": "c5-h1-arrival-composite-v3-staging",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "E faces left toward supporting host at programme table after completed handover.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; head-to-toe figures at original calibration.",
+      "lighting": "Approved evening master, unchanged.",
+      "intendedUse": "H1 arrival, c05.s06.shot01-preview; review candidate only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Exact c05.s06.shot01-preview after arrival/name check/programme handover, event=attend 18:30, c05.professional only; no coffee or Julian.",
+        "1920x1080, desktop896x504, Reader stage620x349 and mobile350x197 reviewed. Clean host silhouette, compatible semi-cel rendering, adult supporting role only.",
+        "Locked Harbour background SHA unchanged; 1934876 uncovered pixels compared, zero changed. Numeric calibration and Evelynn layer/position unchanged. RGB preserved in host alpha extraction.",
+        "LOW/POLISH: subtle Evelynn hair fringe and existing business-pump difference are unobtrusive at gameplay size. No visible new jewelry. No new identity/reference authority.",
+        "Frame is E plus host after handover. Editor remains at the left table end outside frame; no invented departure or new biography. Bag remains E custody, not visibly staged or handed away; existing owner-permitted omission retained.",
+        "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
+      ],
+      "notes": "Provider receipt and review in art/staging/chapter5-harbour. Compositor sources remain in sibling art-production staging; production packaging requires owner approval."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/chapter5-harbour/C5-H1-ARRIVAL-COMPOSITE-V3.png",
+    "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full/desktop/mobile visual review",
+      "date": "2026-09-18",
+      "reasons": [
+        "Exact c05.s06.shot01-preview after arrival/name check/programme handover, event=attend 18:30, c05.professional only; no coffee or Julian.",
+        "1920x1080, desktop896x504, Reader stage620x349 and mobile350x197 reviewed. Clean host silhouette, compatible semi-cel rendering, adult supporting role only.",
+        "Locked Harbour background SHA unchanged; 1934876 uncovered pixels compared, zero changed. Numeric calibration and Evelynn layer/position unchanged. RGB preserved in host alpha extraction.",
+        "LOW/POLISH: subtle Evelynn hair fringe and existing business-pump difference are unobtrusive at gameplay size. No visible new jewelry. No new identity/reference authority.",
+        "Frame is E plus host after handover. Editor remains at the left table end outside frame; no invented departure or new biography. Bag remains E custody, not visibly staged or handed away; existing owner-permitted omission retained.",
+        "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
+      ]
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "source": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\harbour-reader-v2-host\\C5-HARBOUR-HOST-LAYER-V2-source.png",
+  "sourceSHA256": "d6f56b3856d4218aedf34848cb998e49fc5a19a677818f53d2217557aabdc7ff",
+  "crop": [
+    479,
+    178,
+    1069,
+    2231
+  ],
+  "method": "Edge-connected near-white key; threshold235; no RGB repaint",
+  "outputSHA256": "7d7f2501acf9fe74c9af20cf3f24e98faee7734ec9858b974443ab15e64bd112",
+  "size": [
+    590,
+    2053
+  ],
+  "limitations": [
+    "Enclosed white holes or antialias fringes require manual visual review"
+  ],
+  "finalSHA256": "7c86bfc63180064d04474a7474eea57ba232c75d493008f6a7b725350c16a455",
+  "rgbPreserved": true,
+  "cleanup": "One source-pixel alpha contraction only"
+}

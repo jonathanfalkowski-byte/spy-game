@@ -363,3 +363,19 @@ Every active row is SPEC / MISSING ASSET. Exact screen text should be typeset fr
 The current authority/status index is [CURRENT_AUTHORITY_INDEX.md](CURRENT_AUTHORITY_INDEX.md). It supersedes older “runtime binding0/no binding” status statements, not their historical receipts or approvals. Three already approved exact variants are now bound by the reading presenter. No new promotion or generation. Full coverage remains 3/100 indexed raster/artifact beats and is not all-branch coverage. Pilot spend remains14 credits; this audit spends0.
 
 Coffee sequence follows the authenticated prose: message → Evelynn waits alone with coffee → Julian arrives / dialogue hold → Julian leaves → Evelynn returns. The shorthand sequence in the implementation request does not authorize rewriting that established chronology or adding another wait. On return and any subsequent table/editor/photo beat, acquired coffee remains in Evelynn’s custody, carried or explicitly off-frame. No disposal, consumption, new cup or Julian-held coffee is inferred. Shot14 remains an unapproved reuse candidate; the departed image is not silently reused there. Retired and reserved IDs are unchanged.
+
+## Owner-approved Aster arrival V2 production amendment — 2026-09-17
+
+ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy. Asset: art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png. **PASS with LOW/POLISH**: LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change. No canonical identity/body/wardrobe authority; no compatible-branch expansion. Production approval covers only `c05.s07.shot03-arrival`; other variants remain missing. Reader binding remains pending an arrival-only timing boundary; do not reuse at sitting/proof.
+
+## Harbour owner canon decision and arrival custody amendment
+
+Owner decision: current Harbour arrival/programme-table/coffee-return sequence uses existing approved Harbour environment unchanged. Separate daylight/courtyard concept DEFERRED; not a blocker for evening-preview production. Frozen15:00 salon branch remains outside this candidate and unillustrated; no story or lighting change.
+
+For `c05.s06.shot01-preview`: host and Aster editor are distinct supporting adults. E brings her own bag; exact visible placement unspecified, so omit it under owner instruction. Guest card=bag; Axiom=carried; no coffee yet. Candidate proposes editor off-frame at the left table end; this blocking is pending review, not an authored exit. See [canon and host review](HARBOUR_CURRENT_SEQUENCE_CANON_AND_HOST_REVIEW.md). No shot IDs or prose changed.
+
+## Reader V2 / Harbour review update - 2026-09-18
+
+Owner direction locks new Chapter 5 production to one evening Harbour venue and four core families H1 arrival, H2 coffee return, H3 Julian conversation, H4 Julian departed. Historical revision 17 still contains the 15:00 salon/courtyard branch: it is preserved, excluded from evening art, and cannot be silently relabelled. Stable IDs and the 95-family denominator are retained until an authorized versioned content/backlog migration; real phone/photo/painting/exit actions are not erased by this family grouping.
+
+H1 `c05.s06.shot01-preview`: **PASS with LOW/POLISH**, candidate `c5-h1-arrival-composite-v3-staging`, human production approval pending. H2 `c05.s06.shot13-return`: **BLOCKED** on a natural left-facing coffee grip/pose; no further generation. H3/H4 unchanged approved. No promotion: approved coverage remains **4/95 (4.21%)**, three runtime-bound Chapter 5 shots. Pilot spend is **20 credits** (19 verified ledger +1 this pass). See [full review](HARBOUR_READER_V2_REVIEW.md) and staging catalog receipt; these current statuses supersede earlier host-missing/revise and spend statements without replacing historical evidence.

@@ -1,3 +1,4 @@
+import harbourReaderCandidates from '../../art/staging/chapter5-harbour/records.json';
 import chapter3RuntimeSpecs from '../../art/staging/chapter3-runtime-specs.json';
 // Human-maintained production catalog, not a runtime manifest or approval service.
 import { VisualAssetRecordSchema, type VisualAssetRecord } from './schema';
@@ -50,7 +51,7 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Production corrections require explicit passing review and owner authorization');
     return asset;
   }),
-  ...[...chapter3RuntimeSpecs, ...stagingRecords, ...castSceneRecords, ...correctionCandidates, ...apartmentSpecs].map((record) => {
+  ...[...harbourReaderCandidates, ...chapter3RuntimeSpecs, ...stagingRecords, ...castSceneRecords, ...correctionCandidates, ...apartmentSpecs].map((record) => {
     const candidate = VisualAssetRecordSchema.parse(record);
     if (candidate.role !== 'staging' || candidate.approvalStatus !== 'pending')
       throw Error('Staging receipts cannot approve or promote artwork');

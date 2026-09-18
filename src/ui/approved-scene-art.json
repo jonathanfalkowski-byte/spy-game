@@ -1,0 +1,66 @@
+[
+  {
+    "id": "apartment-post-glasshouse-executive-v1-production",
+    "src": "art/apartment/apartment-post-glasshouse-executive-v1.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a"
+  },
+  {
+    "id": "eve-bg-wardrobe-continuity-v2",
+    "src": "art/continuity/eve-bg-wardrobe-continuity-v2.png",
+    "location": "wardrobe",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "c93d718ef20cdf4d01c334a907d7eff12020616b5ed71af5582a325a97be303a"
+  },
+  {
+    "id": "eve-scene-maya-evening-continuity-v2",
+    "src": "art/continuity/eve-scene-maya-evening-continuity-v2.png",
+    "location": "bar",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "f990e9ddf9d57793cb0ca2f46cdf9eb2ef8f12fb16639c053a7d4cc644ef39c0"
+  },
+  {
+    "id": "eve-bg-sloane-office-continuity-v2",
+    "src": "art/continuity/eve-bg-sloane-office-continuity-v2.png",
+    "location": "sloane-office",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "cef805860650cbc6c0ca4165c779cc4c6e227e8f25ec37d997aafa4771629668"
+  },
+  {
+    "id": "c5-s12-shot05-phone-composite-v2-production",
+    "src": "art/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054"
+  },
+  {
+    "id": "c5-harbour-evelynn-julian-composite-v2-production",
+    "src": "art/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
+    "location": "harbour",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7"
+  },
+  {
+    "id": "c5-harbour-julian-departed-composite-v1-production",
+    "src": "art/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
+    "location": "harbour",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78"
+  },
+  {
+    "id": "c5-s07-aster-arrival-composite-v2-production",
+    "src": "art/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
+    "location": "aster-studio",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78"
+  }
+]

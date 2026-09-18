@@ -4,7 +4,15 @@ import { assess, nodeOf } from '../state/reducer';
 import type { GameState } from '../state/schema';
 import type { Intent } from '../state/actions';
 import type { Relation } from '../content/schema';
-export function Casework({ state, send }: { state: GameState; send: (a: Intent) => void }) {
+export function Casework({
+  state,
+  send,
+  assessmentOnly = false,
+}: {
+  state: GameState;
+  send: (a: Intent) => void;
+  assessmentOnly?: boolean;
+}) {
   const node = nodeOf(state);
   const resultRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -13,7 +21,7 @@ export function Casework({ state, send }: { state: GameState; send: (a: Intent) 
       resultRef.current?.scrollIntoView({ block: 'center' });
     }
   }, [state.investigation]);
-  if (node === 'helix.submitted' && state.report)
+  if (assessmentOnly && state.report)
     return (
       <section className="report">
         <span className="tag">Report delivered · {state.report.quality}</span>
@@ -32,7 +40,7 @@ export function Casework({ state, send }: { state: GameState; send: (a: Intent) 
         <p className="muted">Casework is closed. Your journal remains available.</p>
       </section>
     );
-  if (node === 'helix.review' && state.draft) {
+  if (assessmentOnly && node === 'helix.review' && state.draft) {
     const result = assess(state, state.draft);
     return (
       <section className="report">
@@ -74,6 +82,27 @@ export function Casework({ state, send }: { state: GameState; send: (a: Intent) 
       </section>
     );
   }
+  if (assessmentOnly)
+    return node === 'helix.analysis' ? (
+      <section className="workspace" aria-label="Assessment">
+        <span className="eyebrow">03 / Assess</span>
+        <h2>What will you put on the record?</h2>
+        <p>
+          You can submit without resolving the case. The next screen explains what your report
+          supports and the consequences of sending it.
+        </p>
+        <div className="choice-list">
+          {assessments
+            .filter((a) => a.id !== 'bounded' || state.knowledge.includes('patent_conflict'))
+            .map((a) => (
+              <button key={a.id} onClick={() => send({ type: 'REVIEW_ASSESSMENT', id: a.id })}>
+                {a.label}
+                <small>Review this assessment before committing.</small>
+              </button>
+            ))}
+        </div>
+      </section>
+    ) : null;
   if (node !== 'helix.documents' && node !== 'helix.analysis') return null;
   return (
     <>
@@ -220,24 +249,6 @@ export function Casework({ state, send }: { state: GameState; send: (a: Intent) 
                 ))}
               </div>
             )}
-          </section>
-          <section className="workspace" aria-label="Assessment">
-            <span className="eyebrow">03 / Assess</span>
-            <h2>What will you put on the record?</h2>
-            <p>
-              You can submit without resolving the case. The next screen explains what your report
-              supports and the consequences of sending it.
-            </p>
-            <div className="choice-list">
-              {assessments
-                .filter((a) => a.id !== 'bounded' || state.knowledge.includes('patent_conflict'))
-                .map((a) => (
-                  <button key={a.id} onClick={() => send({ type: 'REVIEW_ASSESSMENT', id: a.id })}>
-                    {a.label}
-                    <small>Review this assessment before committing.</small>
-                  </button>
-                ))}
-            </div>
           </section>
         </>
       )}

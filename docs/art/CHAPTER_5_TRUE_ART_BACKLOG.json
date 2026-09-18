@@ -11,20 +11,20 @@
     "authoredOriginalShotBeats": 102,
     "documentedDialogueHoldBeats": 22,
     "totalVisualBeats": 124,
-    "coveredByProduction": 3,
+    "coveredByProduction": 4,
     "coveredByIntentionalReuse": 2,
     "requiredUniqueCompositionFamilies": 95,
-    "approvedRequiredUniqueShots": 3,
-    "missingUniqueCompositionFamilies": 92,
-    "uniqueArtCoveragePercent": 3.16,
+    "approvedRequiredUniqueShots": 4,
+    "missingUniqueCompositionFamilies": 91,
+    "uniqueArtCoveragePercent": 4.21,
     "pendingReuseBeatRequirements": 25,
     "notRequiredAuthoredFadeBeats": 2,
     "reservedNonAuthoredSlots": 1,
     "stagedProductionReadyCandidates": 0,
-    "stagedReviseCandidates": 1,
+    "stagedReviseCandidates": 0,
     "boundedPassReferenceAssets": 4,
     "priorityCounts": {
-      "P0": 37,
+      "P0": 36,
       "P1": 42,
       "P2": 13,
       "P3": 0
@@ -34,15 +34,15 @@
       "INTENTIONAL_REUSE": 2,
       "MISSING_UNIQUE": 90,
       "NOT_REQUIRED": 3,
-      "PRODUCTION": 3,
-      "STAGING_REVISE": 1
+      "PRODUCTION": 4,
+      "STAGING_REVISE": 0
     },
     "allBranchCompletionPercent": null
   },
   "sourceEvidence": [
     {
       "file": "docs/art/CHAPTER_5_SHOT_PLAN_REVIEW.md",
-      "sha256": "cdefe5ca5b12ee9eccc2bf50d75960d734a7c275900711e0abf39375db9ee0bc"
+      "sha256": "4fa96aa75decefba8b4bc0cfa6afc4eb7fce84c37eae8a90ec8938fd3974271a"
     },
     {
       "file": "docs/art/GLOBAL_CINEMATIC_ART_RULES.md",
@@ -58,11 +58,11 @@
     },
     {
       "file": "docs/art/CHAPTER_5_COVERAGE_AUDIT.json",
-      "sha256": "862337235e7e3c112e48c3f0b6466a8bd019c989e5aae4339ffab6cec966fafc"
+      "sha256": "c1ab9f604c84e9abb1af48c3f5acf6e8db2cc8384b3f25dab4b5d06344f0f546"
     },
     {
       "file": "docs/art/CURRENT_AUTHORITY_INDEX.json",
-      "sha256": "d84c456fbcb2bf07c5fc7c6d7b6309bf01816f79abfc3e5853fb62a2498d6231"
+      "sha256": "fd2dffbc55b517096e76d7f6bbb0d5200c758b1c65d455ce41f624008faf9ec1"
     },
     {
       "file": "docs/art/CHAPTER_5_WAVE_A_REVIEW.md",
@@ -74,11 +74,11 @@
     },
     {
       "file": "art/production/chapter5/coverage.json",
-      "sha256": "35ff59f110bcdaaec5fcf84faf114904ea0b1831bd3013800f43534e3a8d056a"
+      "sha256": "efda4b7574b42af407cadd2da227b3dbeeb2a34003c0bfc501caef9220753187"
     },
     {
       "file": "art/production/chapter5/records.json",
-      "sha256": "207f7517aa5e3d13e45de60181bd1b2495aa20a49af3e2125487e6d8a1b2783f"
+      "sha256": "ca53621c4c180ad42877e9d268164ef5b38f39eabbe2b14a170b4e0b4364aa33"
     },
     {
       "file": "art/production/chapter5/approval.json",
@@ -126,7 +126,7 @@
     },
     {
       "file": "src/ui/Chapter5BeatSequence.tsx",
-      "sha256": "124e2552626c4edb215c884679470ca5536d2ad56df9d2dfbccd94744a0daac3"
+      "sha256": "ee2c919678ba646c4c620e3cde2cd400d9e8505359f584c46fbee9b53cdcefea"
     },
     {
       "file": "src/ui/Chapter5work.tsx",
@@ -171,7 +171,7 @@
     {
       "shotId": "c05.s01.shot01",
       "scene": "chapter5.home",
-      "trigger": "`begin`: “reader card goes beside the packet”",
+      "trigger": "`begin`: \u201creader card goes beside the packet\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -254,7 +254,7 @@
     {
       "shotId": "c05.s01.shot05",
       "scene": "chapter5.home",
-      "trigger": "`go-spend`: “close the folder before going out”",
+      "trigger": "`go-spend`: \u201cclose the folder before going out\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -274,7 +274,7 @@
     {
       "shotId": "c05.s01.shot06-receipts",
       "scene": "chapter5.home",
-      "trigger": "“put the settled receipts in order”",
+      "trigger": "\u201cput the settled receipts in order\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -294,7 +294,7 @@
     {
       "shotId": "c05.s01.shot07-expired",
       "scene": "chapter5.home",
-      "trigger": "“file it behind the permanent reader pass”",
+      "trigger": "\u201cfile it behind the permanent reader pass\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -354,7 +354,7 @@
     {
       "shotId": "c05.s02.shot02-accounts",
       "scene": "chapter5.spend",
-      "trigger": "Redeem: “clerk stamps it and counts out the cash”",
+      "trigger": "Redeem: \u201cclerk stamps it and counts out the cash\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -374,7 +374,7 @@
     {
       "shotId": "c05.s02.shot03-return",
       "scene": "chapter5.spend",
-      "trigger": "“Back on the shopping street”",
+      "trigger": "\u201cBack on the shopping street\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -404,7 +404,7 @@
       "priority": "P1",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Pre-action cash ≥120; purchase=phone after action",
+      "branch": "Pre-action cash \u2265120; purchase=phone after action",
       "composition": "E at shop, one new boxed device; existing Axiom handset remains distinct, no assertion of privacy",
       "generationType": "NEW MASTER + CHARACTER/PROP LAYERS",
       "supportingAuthority": "Canonical identity/body and exact shot-plan location/wardrobe contract",
@@ -424,7 +424,7 @@
       "priority": "P1",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Cash ≥80; purchase=wardrobe",
+      "branch": "Cash \u226580; purchase=wardrobe",
       "composition": "E/assistant, one unworn blouse held against body then retained on its paper-covered hanger",
       "generationType": "NEW MASTER + CHARACTER/PROP LAYERS",
       "supportingAuthority": "Canonical identity/body and exact shot-plan location/wardrobe contract",
@@ -444,7 +444,7 @@
       "priority": "P1",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Cash ≥45; purchase=accessory",
+      "branch": "Cash \u226545; purchase=accessory",
       "composition": "Single silver hair clasp in palm, never in hair or attached to clothing",
       "generationType": "NEW MASTER + CHARACTER/PROP LAYERS",
       "supportingAuthority": "Canonical identity/body and exact shot-plan location/wardrobe contract",
@@ -464,7 +464,7 @@
       "priority": "P2",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Cash ≥60; purchase=dinner",
+      "branch": "Cash \u226560; purchase=dinner",
       "composition": "E alone at daytime restaurant table, food; no business/intimate guest",
       "generationType": "NEW MASTER + CHARACTER/PROP LAYERS",
       "supportingAuthority": "Canonical identity/body and exact shot-plan location/wardrobe contract",
@@ -776,7 +776,7 @@
       "scene": "chapter5.room",
       "trigger": "look-* completed; event=attend; arrival at 18:30 reached",
       "status": "MISSING_UNIQUE",
-      "currentAsset": null,
+      "currentAsset": "C5-S06-SHOT01-PREVIEW-COMPOSITE-V2 (STAGING REVISE)",
       "reuseSource": [],
       "uniqueArtRequired": true,
       "additionalUniqueArtRequired": true,
@@ -789,7 +789,7 @@
       "generationType": "COMPOSITE",
       "supportingAuthority": "Approved Harbour environment; canonical faces; professional wardrobe reference where applicable",
       "runtimeBound": false,
-      "notes": "Cut/state change comes from the authored trigger. A shared base reduces work, not the need to review resulting visible state. Preserve exact branch custody and wardrobe; missing supporting design remains a production prerequisite."
+      "notes": "Host-only candidate generated; stylistic mismatch and off-frame editor blocking pending review. Bag omitted per owner verified-custody direction. Existing Harbour master authoritative."
     },
     {
       "shotId": "c05.s06.shot02-salon",
@@ -809,7 +809,7 @@
       "generationType": "LIGHTING/LOCATION VARIANT + COMPOSITE",
       "supportingAuthority": "Approved Harbour environment; canonical faces; professional wardrobe reference where applicable",
       "runtimeBound": false,
-      "notes": "No approved daylight/courtyard view or supporting cast composition. Evening entrance master cannot silently become the courtyard/salon or be relit under an existing approval."
+      "notes": "No approved daylight/courtyard view or supporting cast composition. Evening entrance master cannot silently become the courtyard/salon or be relit under an existing approval. Separate daylight/courtyard art concept DEFERRED by owner; do not relight current preview sequence."
     },
     {
       "shotId": "c05.s06.shot03-editor",
@@ -1136,22 +1136,22 @@
     {
       "shotId": "c05.s07.shot03-arrival",
       "scene": "chapter5.offer/proof",
-      "trigger": "“travel to the studio”; editor reads scope",
-      "status": "STAGING_REVISE",
-      "currentAsset": "C5-WAVE-A-ASTER-ARRIVAL-COMPOSITE-V1 (STAGING ONLY)",
+      "trigger": "\u201ctravel to the studio\u201d; editor reads scope",
+      "status": "PRODUCTION",
+      "currentAsset": "c5-s07-aster-arrival-composite-v2-production",
       "reuseSource": [],
       "uniqueArtRequired": true,
-      "additionalUniqueArtRequired": true,
+      "additionalUniqueArtRequired": false,
       "requirementId": "c05.s07.shot03-arrival",
       "priority": "P0",
-      "coverage": "MISSING_UNIQUE",
+      "coverage": "PRODUCTION",
       "countsAsAuthoredVisualBeat": true,
       "branch": "Accepted work and actual arrival",
       "composition": "E/editor, new studio geography, prior selected wardrobe ID as source specifies",
       "generationType": "COMPOSITE",
-      "supportingAuthority": "PASS Aster environment; proposed editor / REVISE arrival layers",
+      "supportingAuthority": "Owner approval: art/production/chapter5/aster-approval.json",
       "runtimeBound": false,
-      "notes": "Aster V1 remains REVISE: low heels, floor contact/shadows and editor shoe/chair tangency; editor appearance is proposed. Existing studio master is usable environment authority, not a promoted scene."
+      "notes": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change. Runtime timing unbound; all other state variants remain missing."
     },
     {
       "shotId": "c05.s07.shot04-sitting",
@@ -1276,7 +1276,7 @@
     {
       "shotId": "c05.s07.shot09-withheld",
       "scene": "chapter5.offer/proof",
-      "trigger": "“collect your copy of the agreement before leaving”",
+      "trigger": "\u201ccollect your copy of the agreement before leaving\u201d",
       "status": "BLOCKED",
       "currentAsset": null,
       "reuseSource": [
@@ -1318,7 +1318,7 @@
     {
       "shotId": "c05.s08.shot01",
       "scene": "chapter5.infrastructure",
-      "trigger": "“By three, you are at home”",
+      "trigger": "\u201cBy three, you are at home\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1358,7 +1358,7 @@
     {
       "shotId": "c05.s08.shot03-desk",
       "scene": "chapter5.infrastructure",
-      "trigger": "“visit the desk to collect the booking card”",
+      "trigger": "\u201cvisit the desk to collect the booking card\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1378,7 +1378,7 @@
     {
       "shotId": "c05.s08.shot04-home",
       "scene": "chapter5.infrastructure",
-      "trigger": "“then return home”",
+      "trigger": "\u201cthen return home\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1408,7 +1408,7 @@
       "priority": "P0",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Cash ≥60 beforehand; service=self",
+      "branch": "Cash \u226560 beforehand; service=self",
       "composition": "E at Harbour counter, receipt/card received; no Helix sponsorship",
       "generationType": "COMPOSITE",
       "supportingAuthority": "Locked apartment geography; canonical Evelynn face/body; exact wardrobe contract",
@@ -1418,7 +1418,7 @@
     {
       "shotId": "c05.s08.shot06-home",
       "scene": "chapter5.infrastructure",
-      "trigger": "“take them home”",
+      "trigger": "\u201ctake them home\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1509,7 +1509,7 @@
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
       "branch": "Accepted 28 days/two calls",
-      "composition": "+7/+14 from offer date, 10–11; extension starts after current seven-day booking or tomorrow as stored",
+      "composition": "+7/+14 from offer date, 10\u201311; extension starts after current seven-day booking or tomorrow as stored",
       "generationType": "ARTIFACT",
       "supportingAuthority": "Locked apartment geography; canonical Evelynn face/body; exact wardrobe contract",
       "runtimeBound": false,
@@ -1529,7 +1529,7 @@
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
       "branch": "Accepted 7 days/one call",
-      "composition": "+7, 10–11 only; same provider/start rules",
+      "composition": "+7, 10\u201311 only; same provider/start rules",
       "generationType": "ARTIFACT",
       "supportingAuthority": "Locked apartment geography; canonical Evelynn face/body; exact wardrobe contract",
       "runtimeBound": false,
@@ -1568,7 +1568,7 @@
       "priority": "P1",
       "coverage": "MISSING_UNIQUE",
       "countsAsAuthoredVisualBeat": true,
-      "branch": "Cash ≥60; terms=self-funded",
+      "branch": "Cash \u226560; terms=self-funded",
       "composition": "Online Harbour payment at home, digital receipt on Axiom phone; no feedback calls/exclusivity",
       "generationType": "ARTIFACT",
       "supportingAuthority": "Locked apartment geography; canonical Evelynn face/body; exact wardrobe contract",
@@ -1738,7 +1738,7 @@
     {
       "shotId": "c05.s11.shot03-card",
       "scene": "chapter5.want/handoff",
-      "trigger": "Salon accepted: “take the guest card”",
+      "trigger": "Salon accepted: \u201ctake the guest card\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1900,7 +1900,7 @@
     {
       "shotId": "c05.s11.shot09-withdraw",
       "scene": "chapter5.want/handoff",
-      "trigger": "“collect your things”; way to door clear",
+      "trigger": "\u201ccollect your things\u201d; way to door clear",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -1960,7 +1960,7 @@
     {
       "shotId": "c05.s11.shot12-goodnight",
       "scene": "chapter5.want/handoff",
-      "trigger": "“Later, you say goodnight and take your things”",
+      "trigger": "\u201cLater, you say goodnight and take your things\u201d",
       "status": "MISSING_UNIQUE",
       "currentAsset": null,
       "reuseSource": [],
@@ -2739,6 +2739,11 @@
       "shotId": "c05.s12.shot05-phone",
       "scope": "ONLY c05.professional, purchased personal phone, completed place-phone, personal=table-unboxed, Axiom=table-home, old jacket=wardrobe, editorial declined, no published issue/event photo/went-out/authorization/intimacy, actual want-none event. Other states require review/variants.",
       "remaining": "All visually incompatible wardrobe/time/prop states remain missing. Pixel-compatible exclusions still require explicit scope review; this documentation does not broaden approval."
+    },
+    {
+      "shotId": "c05.s07.shot03-arrival",
+      "scope": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+      "remaining": "Other wardrobe/concept variants; arrival-only runtime binding pending."
     }
   ],
   "branchVariantRules": [
@@ -2805,7 +2810,7 @@
     {
       "assetId": "C5-PILOT-02-professional-master-fresh-v4",
       "status": "STAGING_PASS",
-      "authorityStatus": "PASS — WARDROBE REFERENCE ONLY",
+      "authorityStatus": "PASS \u2014 WARDROBE REFERENCE ONLY",
       "role": "wardrobe-reference",
       "file": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\C5-PILOT-02-professional-master-fresh-v4.png",
       "scope": "Professional garment design and low-heel guide only. Face/body/jewelry excluded; dangling earring NONCANONICAL.",
@@ -2814,7 +2819,7 @@
     {
       "assetId": "C5-PILOT-03-harbour-evelynn-julian-master-v1",
       "status": "STAGING_PASS",
-      "authorityStatus": "PASS — CHARACTER / COMPOSITION REFERENCE ONLY",
+      "authorityStatus": "PASS \u2014 CHARACTER / COMPOSITION REFERENCE ONLY",
       "role": "character-composition-reference",
       "file": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\C5-PILOT-03-harbour-evelynn-julian-master-v1.png",
       "scope": "People, spacing, coffee, pose only; all environment geometry excluded. Final production shot superseded by Harbour V2.",
@@ -2830,8 +2835,59 @@
       "isProductionCoverage": false
     }
   ],
-  "artGenerated": 0,
-  "creditsSpent": 0,
-  "pilotCreditsUnchanged": 14,
-  "promotions": 0
+  "latestProductionUpdate": {
+    "shotId": "c05.s07.shot03-arrival",
+    "assetId": "c5-s07-aster-arrival-composite-v2-production",
+    "scope": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+    "pilotCredits": 18,
+    "additionalGenerationCredits": 1,
+    "harbourArrival": "STAGING; not approved coverage"
+  },
+  "evidenceRefreshNote": "Current documentation/approval evidence refreshed after Aster V2 promotion; original runtime/source baseline retained.",
+  "originalAuditActivity": {
+    "artGenerated": 0,
+    "creditsSpent": 0,
+    "pilotCreditsUnchanged": 14,
+    "promotions": 0
+  },
+  "currentPassActivity": {
+    "artGenerated": 1,
+    "creditsSpent": 1,
+    "pilotCredits": 18,
+    "promotions": 1
+  },
+  "harbourCurrentSequenceDecision": {
+    "environment": "existing approved Harbour master",
+    "daylightCourtyard": "DEFERRED",
+    "note": "Owner decision: current Harbour arrival/programme-table/coffee-return sequence uses existing approved Harbour environment unchanged. Separate daylight/courtyard concept DEFERRED; not a blocker for evening-preview production. Frozen15:00 salon branch remains outside this candidate and unillustrated; no story or lighting change.",
+    "arrivalCandidate": "C5-S06-SHOT01-PREVIEW-COMPOSITE-V2",
+    "review": "REVISE",
+    "currentPilotCredits": 19,
+    "approvedUniqueCompositionCount": 4,
+    "coveragePercent": 4.21
+  },
+  "readerV2HarbourUpdate": {
+    "date": "2026-09-18",
+    "design": "One evening Harbour venue, four core production families H1/H2/H3/H4. Daylight/courtyard deferred for new production.",
+    "historicalConflict": "Revision17 event=decline still authors 15:00 courtyard salon. Preserve historical semantics; no evening asset bound to it. A versioned migration requires separate scope.",
+    "H1": {
+      "shotId": "c05.s06.shot01-preview",
+      "candidate": "c5-h1-arrival-composite-v3-staging",
+      "review": "PASS with LOW/POLISH",
+      "approval": "pending",
+      "runtimeBound": false
+    },
+    "H2": {
+      "shotId": "c05.s06.shot13-return",
+      "status": "BLOCKED - natural coffee grip unavailable in current left-facing arrival pose",
+      "paidCall": false
+    },
+    "H3": "existing approved pair unchanged",
+    "H4": "existing approved departure unchanged",
+    "approvedUniqueCompositions": 4,
+    "requiredUniqueCompositions": 95,
+    "coveragePercent": 4.21,
+    "cumulativePilotCredits": 20,
+    "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+  }
 }

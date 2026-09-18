@@ -1,0 +1,90 @@
+{
+  "compositionId": "C5-H1-ARRIVAL-COMPOSITE-V3",
+  "shotId": "c05.s06.shot01-preview",
+  "backgroundAssetId": "background",
+  "outputSize": [
+    1920,
+    1080
+  ],
+  "environmentCanonVersion": "harbour-pilot-01-v1-owner-approved-environment",
+  "calibrationId": "harbour-arrival-interior-from-entrance-v1",
+  "characters": [
+    {
+      "characterAssetId": "evelynn",
+      "identityReference": "identity",
+      "x": 460,
+      "y": 934,
+      "scale": 0.2813425468904245,
+      "anchor": "bottom-center",
+      "zIndex": 30,
+      "flipX": false,
+      "wardrobeId": "c05.professional",
+      "poseId": "arrival-facing-left-empty-hands"
+    },
+    {
+      "characterAssetId": "host",
+      "identityReference": "host-design",
+      "x": 205,
+      "y": 918,
+      "scale": 0.2854359473940575,
+      "anchor": "bottom-center",
+      "zIndex": 25,
+      "flipX": false,
+      "wardrobeId": "harbour-supporting-host-slate-shirt",
+      "poseId": "programme-handover-completed-facing-right"
+    }
+  ],
+  "props": [
+    {
+      "assetId": "table-foreground",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 40,
+      "custodyNote": "Exact same master table pixels restored as foreground occlusion. Not a new table or prop."
+    }
+  ],
+  "shadows": [
+    {
+      "assetId": "shadow",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 10,
+      "custodyNote": "Local soft floor contact only"
+    },
+    {
+      "assetId": "host-shadow",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "anchor": "top-left",
+      "zIndex": 9,
+      "custodyNote": "Local host contact shadow only"
+    }
+  ],
+  "branchState": {
+    "contentRevision": 17,
+    "saveSchema": 5,
+    "event": "attend",
+    "time": "18:30",
+    "wardrobe": "c05.professional",
+    "coffeeCount": 0,
+    "julianPresent": false,
+    "arrivalCompleted": true,
+    "hostLayer": "present unnamed supporting adult",
+    "editorLayer": "physically present at table end; proposed off-frame left-end blocking",
+    "bagAndProgramme": "Bag carried by Evelynn, strap/hand/set-down position unspecified; omitted per explicit owner direction. Guest card state=bag."
+  },
+  "notes": [
+    "STAGING; no production approval.",
+    "Evelynn layer/placement/scale and master camera unchanged. Host at table, both empty hands after handover.",
+    "Editor is distinct from host, physically waits at one table end. Proposed left-end off-frame blocking is a staging interpretation requiring review, not a new exit or biography.",
+    "Bag omitted by explicit owner instruction because prose does not specify visible placement. No coffee/Julian/publication.",
+    "Existing Harbour master is current sequence authority; daylight/courtyard concept deferred.",
+    "Reader V2 owner instruction: four core Harbour families, same evening venue; historical salon branch is not rewritten.",
+    "Host V2 style correction replaces host layer only; all other placement, camera, table, Evelynn and shadows unchanged."
+  ]
+}

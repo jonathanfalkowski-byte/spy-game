@@ -34,44 +34,47 @@ export function MissionSummary({ state }: { state: GameState }) {
       <p>
         {sourceNames[m.source]}. {reasoningText(state)}
       </p>
-      {m.capture && (
-        <>
-          <h3>What you brought back</h3>
-          <p>{displayName(m.capture.text)}</p>
-          <p>{displayName(m.capture.limits)}</p>
-          <p>
-            Held by: {displayName(m.capture.owner)}. {displayName(m.capture.axiomAccess)}
-          </p>
-        </>
-      )}
-      {m.outcome && (
-        <>
-          <h3>What remains unresolved</h3>
-          <p>
-            Marcus noticed your interest and signalled security. You left through the east elevator.
-            Neither his attention nor Benton’s reaction established that they identified Adrian.
-          </p>
-          <p>
-            Sloane says your judgment was another objective. The unknown sender claims she could
-            have stopped the exchange. Neither account resolves Evelynn’s earlier history or
-            identifies the sender.
-          </p>
-        </>
-      )}
-      {m.outcome && (
-        <section className="personal-recap" aria-label="Choices you carried here">
-          <h3>Choices you carried here</h3>
-          {personalRecap(state).map((line) => (
-            <p key={line}>{line}</p>
-          ))}
-          <p>
-            {state.day.employment === 'terminated'
-              ? 'Your employment remains terminated; the original housing notice still stands.'
-              : 'Your office access remains suspended.'}{' '}
-            The phone remains monitored.
-          </p>
-        </section>
-      )}
+      <div className="assessment-detail">
+        {m.capture && (
+          <>
+            <h3>What you brought back</h3>
+            <p>{displayName(m.capture.text)}</p>
+            <p>{displayName(m.capture.limits)}</p>
+            <p>
+              Held by: {displayName(m.capture.owner)}. {displayName(m.capture.axiomAccess)}
+            </p>
+          </>
+        )}
+        {m.outcome && (
+          <>
+            <h3>What remains unresolved</h3>
+            <p>
+              Marcus noticed your interest and signalled security. You left through the east
+              elevator. Neither his attention nor Benton’s reaction established that they identified
+              Adrian.
+            </p>
+            <p>
+              Sloane says your judgment was another objective. The unknown sender claims she could
+              have stopped the exchange. Neither account resolves Evelynn’s earlier history or
+              identifies the sender.
+            </p>
+          </>
+        )}
+        {m.outcome && (
+          <section className="personal-recap" aria-label="Choices you carried here">
+            <h3>Choices you carried here</h3>
+            {personalRecap(state).map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+            <p>
+              {state.day.employment === 'terminated'
+                ? 'Your employment remains terminated; the original housing notice still stands.'
+                : 'Your office access remains suspended.'}{' '}
+              The phone remains monitored.
+            </p>
+          </section>
+        )}
+      </div>
     </>
   );
 }

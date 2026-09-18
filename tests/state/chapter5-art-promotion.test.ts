@@ -44,7 +44,7 @@ it('promotes the exact owner-approved apartment PNG without making a character r
 });
 
 it('keeps production coverage bounded to the completed professional two-phone state', () => {
-  expect(coverage.productionShots).toHaveLength(3);
+  expect(coverage.productionShots).toHaveLength(4);
   const shot=coverage.productionShots[0];
   expect(shot.shotId).toBe('c05.s12.shot05-phone');
   expect(shot.trigger).toBe('place-phone completed');

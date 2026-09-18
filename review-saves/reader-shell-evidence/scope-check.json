@@ -1,0 +1,22 @@
+{
+  "head": "6ef6f68ad1690d0ddaf9f94c5f152171b2491670",
+  "changed": [
+    "src/ui/Missionwork.tsx",
+    "tests/browser/completion.spec.ts",
+    "docs/design/CINEMATIC_READER_V2.md",
+    "src/ui/App.tsx",
+    "tests/browser/cinematic-reader.spec.ts",
+    "docs/art/OPENING_VISUAL_BACKLOG.md",
+    "src/ui/SceneArtStage.tsx",
+    "src/ui/styles.css"
+  ],
+  "missing": [],
+  "added": [
+    "review-saves/cinematic-reader-shell-review.html",
+    "review-saves/reader-shell-evidence/preflight.json",
+    "review-saves/reader-shell-evidence/prior-reader-v2.md",
+    "src/ui/reader-preferences.ts",
+    "tests/browser/cinematic-shell.spec.ts",
+    "tests/state/reader-preferences.test.ts"
+  ]
+}

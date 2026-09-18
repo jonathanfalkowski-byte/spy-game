@@ -1,3 +1,4 @@
+import { openNavigation, setReadingSize } from './reader-navigation';
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { SAVE_KEY } from '../../src/persistence/saves';
 import {
@@ -128,13 +129,17 @@ for (const scenario of scenarios)
       await page.reload();
       await expect(page.locator('.search-result')).toBeVisible();
     }
+    await page.getByRole('button', { name: 'Open assessment', exact: true }).click();
     await page.getByRole('button', { name: scenario.label }).click();
-    await expect(page.getByRole('heading', { name: 'Before you send' })).toBeVisible();
+    await expect(page.getByRole('dialog')).toContainText('Your exact conclusion');
     await expect(page.locator('.report')).toContainText('Benton only');
     await page.reload();
     await expect(page.getByRole('heading', { name: 'Before you send' })).toBeVisible();
+    await page.getByRole('button', { name: 'Open assessment', exact: true }).click();
     await continueWith(page, 'Submit this assessment');
+    await page.getByRole('button', { name: 'Review assessment', exact: true }).click();
     await expect(page.locator('.report')).toContainText(scenario.quality);
+    await page.keyboard.press('Escape');
     await mayaEnd(page, scenario.disclosure);
     await page.reload();
     await expect(page.getByRole('heading', { name: 'The morning stays with you' })).toBeVisible();
@@ -185,13 +190,16 @@ test('incorrect evidence feedback is retryable; selection never changes automati
   await expect(page.locator('[aria-pressed=true]')).toHaveCount(2);
   await expect(page.getByRole('button', { name: 'Challenge the patent rationale' })).toHaveCount(0);
   await page.getByRole('button', { name: 'They conflict', exact: true }).click();
+  await page.getByRole('button', { name: 'Open assessment', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Challenge the patent rationale' })).toBeVisible();
+  await page.keyboard.press('Escape');
   await expect(
     page.getByRole('heading', { name: '1 investigation opportunity remains' }),
   ).toBeVisible();
 });
 test('unknown disclosures stay hidden; all Maya phases survive reload', async ({ page }) => {
   await analysis(page);
+  await page.getByRole('button', { name: 'Open assessment', exact: true }).click();
   await page.getByRole('button', { name: 'The evidence does not support one conclusion.' }).click();
   await continueWith(page, 'Submit this assessment');
   await continueWith(page, 'Look up from the terminal');
@@ -243,9 +251,11 @@ test('corrupted save is retained and downloadable; restart requires confirmation
   const downloaded = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Download original save data' }).click();
   expect((await downloaded).suggestedFilename()).toBe('eve-unreadable-save.json');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await page.keyboard.press('Escape');
   expect(await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY)).toBe('{bad save');
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Restart story', exact: true }).click();
   await page.getByRole('button', { name: 'Restart and replace save' }).click();
   await expect(page.getByRole('heading', { name: 'Promotion day' })).toBeVisible();
@@ -288,7 +298,7 @@ test('responsive layout and extra-large reading remain within the viewport', asy
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByLabel('Reading size').selectOption('24');
+  await setReadingSize(page, '24');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('mobile-apartment.png'), fullPage: true });
   await analysis(page);
@@ -296,6 +306,7 @@ test('responsive layout and extra-large reading remain within the viewport', asy
   await page.getByRole('button', { name: 'Audit the payment structure' }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('mobile-investigation.png'), fullPage: true });
+  await openNavigation(page);
   await page.getByRole('button', { name: 'Evidence journal' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

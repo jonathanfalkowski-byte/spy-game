@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-18",
+  "head": "6ef6f68ad1690d0ddaf9f94c5f152171b2491670",
+  "branch": "story/chapter-3-design",
+  "contentRevision": 17,
+  "saveSchema": 5,
+  "unit": {
+    "passed": 436,
+    "files": 44,
+    "command": "npm test -- --maxWorkers=2",
+    "initialFailure": "8 resource-contention timeouts in unrestricted concurrent run; bounded rerun passed without changing expectations"
+  },
+  "finalCatalogGuards": {
+    "passed": 17,
+    "files": 4
+  },
+  "browser": {
+    "fullRunPassed": 97,
+    "fullRunTotal": 98,
+    "soleFailure": "Outdated mobile .rail assertion",
+    "correction": "Verify same chapter through Menu",
+    "affectedRerunPassed": 16,
+    "affectedRerunTotal": 16,
+    "finalReaderScreenshotsPassed": 14,
+    "finalReaderScreenshotsTotal": 14,
+    "distinctCasesCovered": 99
+  },
+  "typecheck": "PASS",
+  "build": "PASS with pre-existing bundle-size warning",
+  "diffCheck": "PASS",
+  "storyStatePersistenceDiff": "empty",
+  "artPromotion": false,
+  "creditsThisPass": 1,
+  "cumulativePilotCredits": 20,
+  "H1": "PASS with LOW/POLISH - STAGING",
+  "H2": "BLOCKED - natural coffee grip layer needed",
+  "workingTree": "dirty, prior work preserved",
+  "committed": false,
+  "pushed": false
+}

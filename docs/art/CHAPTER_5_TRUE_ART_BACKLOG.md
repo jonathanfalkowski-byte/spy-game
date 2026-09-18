@@ -1,32 +1,32 @@
 # Chapter 5 true art backlog
 
-Audited 2026-09-17 against CONTENT REVISION 17 baseline `198feada20cc15aa47d6e64f37149079efe187a4`, save schema **5**. Documentation only: **0 generations, 0 credits, 0 promotions**. Pilot total remains **14 credits**. Story/runtime and frozen history are unchanged.
+Audited 2026-09-17 against CONTENT REVISION 17 baseline `198feada20cc15aa47d6e64f37149079efe187a4`, save schema **5**. Updated after explicit Aster V2 promotion and one authorized Harbour Evelynn layer: pilot total **18 credits**. Harbour remains staging and adds no approved coverage. Story/runtime and frozen history are unchanged.
 
 ## Summary
 
 | Measure | Count |
 |---|---:|
 | Total authored visual beats | 124 |
-| Covered by approved production at the cut/result | 3 |
+| Covered by approved production at the cut/result | 4 (3 runtime-bound) |
 | Covered by intentional dialogue/ending reuse | 2 |
 | Required unique composition families | 95 |
-| Approved unique shots (exact variants) | 3 |
-| Missing unique composition families | 92 |
+| Approved unique shots (exact variants) | 4 |
+| Missing unique composition families | 91 |
 | Staged production-ready shot candidates | 0 |
-| Staged REVISE shot candidates | 1 (Aster arrival) |
+| Staged REVISE shot candidates | See current wave review; no staging asset counts as coverage |
 | PASS assets usable only as bounded references | 4 |
 | Planned dialogue/ending hold groups | 22 (2 covered, 20 awaiting source art) |
 | Other shared-source beat requirements | 5 (none newly approved here) |
 | Authored fades needing no raster | 2 |
 | Reserved transit slot, excluded from visual beats | 1 |
 
-**Primary production-planning metric: 3 / 95 = 3.16% unique-composition coverage.** This is a count of required shot/composition families with one initial exact-state variant, **not all-branch completion**. All three approved families still have unapproved other-state variants. A final total of branch-specific rendered outputs cannot be inferred from the shot list; the branch register below keeps that work explicit. Do not convert 92 into a paid-output/credit quote, or call a family complete when only its professional branch exists.
+**Primary production-planning metric: 4 / 95 = 4.21% unique-composition coverage.** This is a count of required shot/composition families with one initial exact-state variant, **not all-branch completion**. All four approved families still have unapproved other-state variants. A final total of branch-specific rendered outputs cannot be inferred from the shot list; the branch register below keeps that work explicit. Do not convert 91 into a paid-output/credit quote, or call a family complete when only its professional branch exists.
 
 The old raw 3/100 measure is historical. Its 100 rows were already mostly action/artifact beats, not individual dialogue lines; applying HOLD ON DIALOGUE does not turn those meaningful actions into covered dialogue. We remove five duplicate/new-image obligations (listed below) and explicitly inventory dialogue holds instead of inflating the numerator.
 
 Counting unit: 102 authored stable shot beats (including two fades) + 22 contiguous hold groups = **124**; one reserved journey is not authored. The 22 comprise the plan's 15 HOLD rows plus seven embedded holds: Harbour editor/painting/observing/Julian conversation, service voice call, rooftop listening and Julian phone conversation. No count per speaker, choice option, arbitrary sentence, repeated UI visit or possible playthrough. Documentation-only `.holdNN` labels preserve all runtime shot IDs.
 
-The four requested numbers are not a partition: **124 beats, 3 production beats, 2 currently covered reuse beats, 92 missing unique composition families**. There are also 25 uncovered shared-source/hold beats, dependent on source production or approval; they create no additional unique art tasks. Reconcile registry statuses in the JSON: 125 rows = 124 authored beats + 1 reserved row.
+The four requested numbers are not a partition: **124 beats, 4 production beats, 2 currently covered reuse beats, 91 missing unique composition families**. There are also 25 uncovered shared-source/hold beats, dependent on source production or approval; they create no additional unique art tasks. Reconcile registry statuses in the JSON: 125 rows = 124 authored beats + 1 reserved row.
 
 ## Production approvals and active holds
 
@@ -38,7 +38,7 @@ The four requested numbers are not a partition: **124 beats, 3 production beats,
 
 Only two hold groups are presently covered: `c05.s06.hold05` retains the approved pair during the programme conversation; `c05.s12.hold02` retains the approved apartment image at the exact phone-ending state. Neither licenses reuse at a different location, time, outfit or unearned object state.
 
-Aster arrival remains **STAGING_REVISE**. Aster's PASS empty studio, Harbour environment, Evelynn V4 wardrobe-only and Wave2 character/composition-only references are useful inputs, not completed shots. The V4 earring remains NONCANONICAL; face authority stays with canonical Evelynn portraits. Earlier rejected/revise apartment/wardrobe candidates stay unpromoted. Production/catalog/approval records were inspected; no other promoted Chapter5 shot was found.
+Aster arrival V2 is now **PRODUCTION, exact accepted professional arrival only**; LOW/POLISH footwear accepted. Its arrival-specific runtime binding remains pending. V1 remains historical REVISE. Aster's PASS empty studio, Harbour environment, Evelynn V4 wardrobe-only and Wave2 character/composition-only references are useful inputs, not completed shots. The V4 earring remains NONCANONICAL; face authority stays with canonical Evelynn portraits. Earlier rejected/revise apartment/wardrobe candidates stay unpromoted. Four exact-state shots are now promoted.
 
 ## Deduplication decisions
 
@@ -56,7 +56,7 @@ These five mappings are planning decisions, not new production approvals. In par
 
 | Priority | Missing unique requirements |
 |---|---:|
-| P0 | 37 |
+| P0 | 36 |
 | P1 | 42 |
 | P2 | 13 |
 | P3 | 0 |
@@ -77,7 +77,6 @@ P0: primary locations, major payoffs and branch-critical movement/prop states. P
 - **c05.s06.shot06-page** — reviewed frame authorized, photographer leaves, host shows page. Programme table, E/host; Host's tablet shows actual published programme page; photographer no longer in frame
 - **c05.s06.shot13-return** — after conversation/observe OR coffee, authored return reached. Programme table, E/host again; Same wardrobe and carried possessions; source-position variant/crop may reuse reviewed arrival base A cut back to a reviewed programme-table base may eventually suffice. Post-coffee state must keep the acquired cup in E custody, visible or truthfully off-frame. No approved table/return base exists yet; conservatively retain a required return composition until exact reuse review.
 - **c05.s06.shot16-home** — Programme/card placed on table after Harbour return. Apartment
-- **c05.s07.shot03-arrival** — “travel to the studio”; editor reads scope. E/editor, new studio geography, prior selected wardrobe ID as source specifies **STAGING_REVISE**.
 - **c05.s07.shot04-sitting** — Two-hour agreed sitting. E in agreed fully clothed presentation, editor, agreed work setup; no nudity or public page
 - **c05.s07.shot04-text** — Accepted text-only work. Interview/work without an authorized publishable portrait; no visible portrait in proof
 - **c05.s07.shot05-proof** — Finished public sitting at separate proof table. E/editor at table away from camera; exact draft caption/portrait, pencil
@@ -171,7 +170,7 @@ No additional required images. Retain accepted LOW/POLISH notes on Harbour edges
 ## Blocked
 
 - **c05.s06.shot02-salon (P0, one missing unique family):** No approved daylight/courtyard view or supporting cast composition. Evening entrance master cannot silently become the courtyard/salon or be relit under an existing approval.
-- **c05.s07.shot03-arrival (P0, STAGING_REVISE):** Aster V1 remains REVISE: low heels, floor contact/shadows and editor shoe/chair tangency; editor appearance is proposed. Existing studio master is usable environment authority, not a promoted scene. Sitting/proof work depends on resolving editor design/scale first. No later approval was found.
+- **c05.s07.shot03-arrival:** V2 owner-promoted for accepted professional arrival only; LOW/POLISH footwear retained. V1 historical REVISE. Other outfits/concepts and arrival-only runtime binding remain outstanding.
 - **c05.s06.shot14-wait (P0 approval-only, zero additional unique composition):** reuse of departure pixels needs exact earlier-wait scope approval, then a future reviewed binding. The former two-character Harbour compositing blocker is resolved by approved V2; do not resurrect it.
 - **Twenty planned hold groups plus four other shared-source mappings:** not currently covered because their source art is missing. They inherit the source requirement's priority and do not add 24 new commissions. The detailed ledger names each source.
 - **Variant production gates:** no blanket approval of daylight Harbour, alternate looks, Aster editor, hotel/roof layouts, or other final phone branches. These are attached to affected source families in the branch register, not extra duplicate counts.
@@ -228,7 +227,7 @@ This is a proposal only; no generation, quote or spend authorization is exercise
 | c05.s01.shot01 | Chapter opening, daytime E at table with earned packet/pass; choose one authenticated no-extra-copy state. | COMPOSITE; missing daytime character/prop layers only | Locked apartment geography + canonical Evelynn face/body + c05.daytime spec; daylight variant needs its own review. | Shared table/camera calibration for receipt, packet and message variants; do not transfer night phone pose or approval. |
 | c05.s06.shot01-preview | Main social-room entry: professional/evening E + host at programme table, editor only where authored; no Julian or coffee before coffee action. | COMPOSITE; host/editor/entry pose layers as needed | Approved Harbour master with original floor/glazing/camera. Canonical E identity/body; V4 garment design only. | Establishes table geography/cast for editor contact, later page/photo and return. Existing entrance view may not expose all table anchors: any necessary new view must be a reviewed derived layout, never casual world regeneration. |
 | c05.s06.shot13-return | Complete the visible coffee sequence by returning indoors with the cup still in E custody. First target is professional/evening after coffee. | MOVEMENT VARIANT / COMPOSITE; zero-new-image REUSE if the reviewed table base proves exact | Same Harbour master and approved table base from preceding item, existing E/coffee layer only where perspective fits. | Required return after wall conversation/observing/coffee. Cup-visible/off-frame and no-cup cases get separate scope review. If exact base reuse passes, reduce this four-asset proposal to three rather than buying a duplicate. |
-| c05.s07.shot03-arrival | Resolve the existing arrival candidate before further editorial work; professional look / accepted professional brief /11:30 before sitting. | COMPOSITE CORRECTION; local grounding/matte/placement first; footwear layer only if unavoidable and separately authorized | PASS Aster studio; canonical E identity/body; V4 outfit; existing WaveA layers/spec, proposed editor subject to owner approval. | Locks editor, scale and standing positions for scope dialogue; enables sitting/proof variants. Do not regenerate the studio or silently accept high heels. |
+| c05.s07.shot03-arrival | Completed: owner-promoted V2, exact professional11:30 arrival before sitting. | PRODUCTION | Explicit shot-specific approval; LOW/POLISH footwear retained. | Arrival-only runtime timing remains pending; no master identity/wardrobe authority. |
 
 Separate **zero-image approval opportunity**: review c05.s06.shot14-wait against the unchanged departed image for the exact professional/evening/coffee state. It is not one of the four new assets and is not approved by this audit. No additional Julian-only generation is needed for the existing pair.
 
@@ -328,7 +327,7 @@ Machine-readable companion: [CHAPTER_5_TRUE_ART_BACKLOG.json](CHAPTER_5_TRUE_ART
 |---|---|---|---|---|---|---|---|---|
 | c05.s07.shot01 | chapter5.offer/proof | Next morning brief opened at home | MISSING_UNIQUE | — | — | YES / YES | P1 | room exited; actual next day Cut/state change comes from the authored trigger. A shared base reduces work, not the need to review resulting visible state. Preserve exact branch custody and wardrobe; missing supporting design remains a production prerequisite. |
 | c05.s07.shot02-contract | chapter5.offer/proof | offer-accept confirms sitting terms | MISSING_UNIQUE | — | — | YES / YES | P1 | offer=accepted, exact concept/fee/name/image scope Accepted terms are a state-correct digital artifact, not a pen-signing pose. Current proposal/negotiation UI already renders variable wording; never create separate portraits for concept, price or name switches. |
-| c05.s07.shot03-arrival | chapter5.offer/proof | “travel to the studio”; editor reads scope | STAGING_REVISE | C5-WAVE-A-ASTER-ARRIVAL-COMPOSITE-V1 (STAGING ONLY) | — | YES / YES | P0 | Accepted work and actual arrival Aster V1 remains REVISE: low heels, floor contact/shadows and editor shoe/chair tangency; editor appearance is proposed. Existing studio master is usable environment authority, not a promoted scene. |
+| c05.s07.shot03-arrival | Completed: owner-promoted V2, exact professional11:30 arrival before sitting. | PRODUCTION | Explicit shot-specific approval; LOW/POLISH footwear retained. | Arrival-only runtime timing remains pending; no master identity/wardrobe authority. |
 | c05.s07.shot04-sitting | chapter5.offer/proof | Two-hour agreed sitting | MISSING_UNIQUE | — | — | YES / YES | P0 | Accepted concept, image-use not none Cut/state change comes from the authored trigger. A shared base reduces work, not the need to review resulting visible state. Preserve exact branch custody and wardrobe; missing supporting design remains a production prerequisite. |
 | c05.s07.shot04-text | chapter5.offer/proof | Accepted text-only work | MISSING_UNIQUE | — | — | YES / YES | P0 | image-use=none Cut/state change comes from the authored trigger. A shared base reduces work, not the need to review resulting visible state. Preserve exact branch custody and wardrobe; missing supporting design remains a production prerequisite. |
 | c05.s07.shot05-proof | chapter5.offer/proof | Finished public sitting at separate proof table | MISSING_UNIQUE | — | — | YES / YES | P0 | concept !=private, image-use !=none; no publish yet Cut/state change comes from the authored trigger. A shared base reduces work, not the need to review resulting visible state. Preserve exact branch custody and wardrobe; missing supporting design remains a production prerequisite. |
@@ -429,3 +428,17 @@ Machine-readable companion: [CHAPTER_5_TRUE_ART_BACKLOG.json](CHAPTER_5_TRUE_ART
 - Deterministic specs: production Harbour pair/departed and apartment composition bundles; external staging/wave-a-aster/composition.json and review. Historical STAGING text in immutable receipts is superseded only by later explicit approval records.
 - Focused post-commit validation: **20 tests / 4 files PASS**, including authentication/continuation, revision16 source provenance, runtime art registry and exact promotions. Full suite not rerun; prior 429 unit/17 compositor/17 affected browser results stand because implementation content is unchanged.
 - All 92 committed paths match the reviewed manifest; runtime commit already pushed. No unrelated files found. No source/story/test/art/approval file changes in this follow-up. Baseline and release evidence: [CONTENT_REVISION_17_BASELINE.md](../story/CONTENT_REVISION_17_BASELINE.md).
+
+### Aster V2 approval scope
+
+ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change. Approval metadata: `art/production/chapter5/aster-approval.json`. Runtime-bound count remains 3; production-approved family count is 4. Apartment/Harbour staging work is not approved coverage.
+
+## Current Harbour sequence decision / host pass
+
+Owner decision: current Harbour arrival/programme-table/coffee-return sequence uses existing approved Harbour environment unchanged. Separate daylight/courtyard concept DEFERRED; not a blocker for evening-preview production. Frozen15:00 salon branch remains outside this candidate and unillustrated; no story or lighting change. Current host-only correction is STAGING **REVISE**, not new approved coverage. Bag visibility resolved by omission under explicit owner direction. Pilot total19; approved4/95(4.21%),91missing. Earlier courtyard design gates above refer to the deferred salon concept, not the current preview sequence. [Review](HARBOUR_CURRENT_SEQUENCE_CANON_AND_HOST_REVIEW.md).
+
+## Reader V2 / Harbour review update - 2026-09-18
+
+Owner direction locks new Chapter 5 production to one evening Harbour venue and four core families H1 arrival, H2 coffee return, H3 Julian conversation, H4 Julian departed. Historical revision 17 still contains the 15:00 salon/courtyard branch: it is preserved, excluded from evening art, and cannot be silently relabelled. Stable IDs and the 95-family denominator are retained until an authorized versioned content/backlog migration; real phone/photo/painting/exit actions are not erased by this family grouping.
+
+H1 `c05.s06.shot01-preview`: **PASS with LOW/POLISH**, candidate `c5-h1-arrival-composite-v3-staging`, human production approval pending. H2 `c05.s06.shot13-return`: **BLOCKED** on a natural left-facing coffee grip/pose; no further generation. H3/H4 unchanged approved. No promotion: approved coverage remains **4/95 (4.21%)**, three runtime-bound Chapter 5 shots. Pilot spend is **20 credits** (19 verified ledger +1 this pass). See [full review](HARBOUR_READER_V2_REVIEW.md) and staging catalog receipt; these current statuses supersede earlier host-missing/revise and spend statements without replacing historical evidence.

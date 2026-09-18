@@ -1,0 +1,11 @@
+{
+  "deterministicRepeat": true,
+  "outputSHA256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
+  "pixelStability": {
+    "uncoveredPixels": 1934876,
+    "changedUncoveredPixels": 0,
+    "backgroundFileUnchanged": true
+  },
+  "evelynnPlacementUnchanged": true,
+  "evelynnLayerSHA256": "2e953e4fded4905e74f3d36f8ddec3db8f60279d3535a29644b79bedf7a7a84c"
+}

@@ -1,3 +1,4 @@
+import { openNavigation } from './reader-navigation';
 import { test, expect, type Page } from '@playwright/test';
 import { departure, assignment } from '../chapter4-helpers';
 import { SAVE_KEY, encodeSave, decodeSave } from '../../src/persistence/saves';
@@ -23,7 +24,11 @@ test('explicit Chapter 4 bridge, pending calendar and independent completion on 
   page.on('pageerror', (e) => errors.push(e.message));
   await seed(page, departure('own', { extra: ['move-maya'] }));
   await select(page, 'begin');
-  await expect(page.locator('.rail')).toContainText('Chapter 4');
+  await openNavigation(page);
+  await expect(page.getByRole('navigation', { name: 'Story navigation' })).toContainText(
+    'Chapter 4',
+  );
+  await page.keyboard.press('Escape');
   await select(page, 'payoff');
   await select(page, 'keep-maya');
   for (let i = 0; i < 10; i++) {

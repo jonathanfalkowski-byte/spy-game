@@ -1,3 +1,4 @@
+import { openNavigation } from './reader-navigation';
 import { test, expect, type Page } from '@playwright/test';
 import { end4, walk5 } from '../chapter5-helpers';
 import { act } from '../../src/state/reducer';
@@ -38,22 +39,28 @@ for (const width of [1440, 390]) {
       await select(page, id);
     const panel = page.getByRole('region', { name: 'Harbour scene' });
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot14-wait');
-    await expect(panel.locator('img')).toHaveCount(0);
+    await expect(page.locator('.scene-art-stage img')).toHaveCount(0);
     await expect(page.locator('[data-chapter5-choice]')).toHaveCount(0);
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot12-entrance');
     await expect
-      .poll(() => panel.locator('img').evaluate((im: HTMLImageElement) => im.naturalWidth))
+      .poll(() =>
+        page.locator('.scene-art-stage img').evaluate((im: HTMLImageElement) => im.naturalWidth),
+      )
       .toBe(1920);
-    await panel.screenshot({ path: info.outputPath('harbour-arrived.png') });
+    await page
+      .locator('.scene-art-stage')
+      .screenshot({ path: info.outputPath('harbour-arrived.png') });
     const raw = encodeSave(await saved(page));
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot15-departed');
-    await panel.screenshot({ path: info.outputPath('harbour-departed.png') });
+    await page
+      .locator('.scene-art-stage')
+      .screenshot({ path: info.outputPath('harbour-departed.png') });
     expect(encodeSave(await saved(page))).toBe(raw);
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot13-return');
-    await expect(panel.locator('img')).toHaveCount(0);
+    await expect(page.locator('.scene-art-stage img')).toHaveCount(0);
     for (const id of [
       'leave-room',
       'offer-decline',
@@ -132,6 +139,7 @@ for (const width of [1440, 390]) {
     expect(final.phase).toBe('complete');
     expect(final.choices['c5.cash']).toBe('440');
     await expect(page.locator('.chapter5-scene-art')).toHaveCount(0);
+    await openNavigation(page);
     await page.getByRole('button', { name: /^Evidence journal/ }).click();
     await expect(page.getByRole('dialog')).toContainText('Aster');
     expect(errors).toEqual([]);

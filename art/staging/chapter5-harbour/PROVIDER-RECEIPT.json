@@ -1,0 +1,35 @@
+{
+  "asset": "C5-HARBOUR-HOST-LAYER-V2",
+  "taskId": "8733033f-266e-4ff7-815a-0fa38cd3d256",
+  "callId": "1ea80eb2-9400-4ad4-ae94-bd704e0dcdd0",
+  "providerAssetId": "cdc14614-9dd9-4e43-a1a8-1c2227c79a51",
+  "tool": "image_editor",
+  "model": "WAN_2_7_IMAGE",
+  "estimatedCredits": 1,
+  "actualCredits": 1,
+  "outputs": 1,
+  "retries": 0,
+  "balanceBefore": 635,
+  "balanceAfter": 634,
+  "mediaType": "image/png",
+  "outputDimensions": {
+    "width": 1536,
+    "height": 2304
+  },
+  "inputs": {
+    "image_assets": [
+      "4fac65a3-b2a1-4c8c-bbca-f0e015a07a85",
+      "1fde6677-5c66-4191-8be2-e3fcb2bb2092"
+    ],
+    "model": "WAN_2_7_IMAGE",
+    "ratio": "2:3",
+    "width": 1536,
+    "height": 2304,
+    "number_of_images": 1,
+    "batch_mode": false,
+    "sequential_generation": false,
+    "rewrite_prompt": false,
+    "prompt": "Restyle ONLY the adult male host from reference1 into the clean semi-cel graphic-novel rendering of reference2. Reference2 supplies LINEWORK AND SHADING STYLE ONLY, not its woman's face/body/clothes. Output the SAME MAN ALONE, same mature face, short salt-and-pepper hair, slate-blue collared shirt, dark trousers, black flat shoes, natural body proportions, upright three-quarter IMAGE RIGHT orientation, neutral expression and relaxed empty hands. Replace painterly grain, sketch strokes and crosshatching with smooth flat color areas, crisp deliberate ink contours and two or three controlled shadow tones matching reference2. Preserve man's pose, adult age appearance and clothing silhouette. Full body with entire head/hair, hands and both shoes; generous white margins on all sides. Pure uniform white removable background, no floor shadow. Warm upper-right illumination with gentle cool left fill. No woman, scenery, table, bag, coffee, tablet, badge or text. Supporting event host only; no new scene."
+  },
+  "createdAt": "2026-09-18T15:30:21.668788Z"
+}
