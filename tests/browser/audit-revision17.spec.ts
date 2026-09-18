@@ -34,10 +34,21 @@ for (const width of [1440, 390]) {
       'echo-listing',
       'invitation-attend',
       'look-professional',
-      'attention-coffee',
     ])
       await select(page, id);
     const panel = page.getByRole('region', { name: 'Harbour scene' });
+    await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot01-preview');
+    await expect
+      .poll(() =>
+        page
+          .locator('.scene-art-stage .scene-art-image')
+          .evaluate((im: HTMLImageElement) => im.naturalWidth),
+      )
+      .toBe(1920);
+    await page
+      .locator('.scene-art-stage')
+      .screenshot({ path: info.outputPath('harbour-h1-arrival.png') });
+    await select(page, 'attention-coffee');
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot14-wait');
     await expect(page.locator('.scene-art-stage img')).toHaveCount(0);
     await expect(page.locator('[data-chapter5-choice]')).toHaveCount(0);
@@ -45,7 +56,9 @@ for (const width of [1440, 390]) {
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot12-entrance');
     await expect
       .poll(() =>
-        page.locator('.scene-art-stage img').evaluate((im: HTMLImageElement) => im.naturalWidth),
+        page
+          .locator('.scene-art-stage .scene-art-image')
+          .evaluate((im: HTMLImageElement) => im.naturalWidth),
       )
       .toBe(1920);
     await page
@@ -60,7 +73,16 @@ for (const width of [1440, 390]) {
     expect(encodeSave(await saved(page))).toBe(raw);
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await expect(panel).toHaveAttribute('data-reading-shot', 'c05.s06.shot13-return');
-    await expect(page.locator('.scene-art-stage img')).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page
+          .locator('.scene-art-stage .scene-art-image')
+          .evaluate((im: HTMLImageElement) => im.naturalWidth),
+      )
+      .toBe(1920);
+    await page
+      .locator('.scene-art-stage')
+      .screenshot({ path: info.outputPath('harbour-h2-return.png') });
     for (const id of [
       'leave-room',
       'offer-decline',
@@ -97,8 +119,8 @@ for (const width of [1440, 390]) {
       'go-spend',
       'spend-nothing',
       'echo-listing',
-      'invitation-decline',
-      'look-minimal',
+      'invitation-attend',
+      'look-professional',
       'leave-room',
     ]);
     await seed(page, state);
@@ -125,6 +147,23 @@ for (const width of [1440, 390]) {
       .screenshot({ path: info.outputPath('current-proposal.png') });
     await select(page, 'offer-accept-professional');
     expect(read5(await saved(page), 'editorial-terms')?.text).toBe(terms);
+    const aster = page.getByRole('region', { name: 'Harbour scene' });
+    await expect(aster).toHaveAttribute('data-reading-shot', 'c05.s07.shot03-arrival');
+    await expect
+      .poll(() =>
+        page
+          .locator('.scene-art-stage .scene-art-image')
+          .evaluate((im: HTMLImageElement) => im.naturalWidth),
+      )
+      .toBe(1920);
+    await page
+      .locator('.scene-art-stage')
+      .screenshot({ path: info.outputPath('aster-arrival.png') });
+    await page.reload();
+    await expect(page.getByRole('region', { name: 'Harbour scene' })).toHaveAttribute(
+      'data-reading-shot',
+      'c05.s07.shot03-arrival',
+    );
     for (const id of [
       'publish',
       'service-self',

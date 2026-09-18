@@ -4,15 +4,44 @@ import { replayPrefix } from '../state/reducer';
 import { julian5 } from '../content/chapter5-model';
 
 export type ReadingBeat = { shotId: string; blocks: Block[]; file?: string; alt: string };
-export const coffeeAction5 = (s: GameState) => {
+const lastChoice5 = (s: GameState, id: string) => {
   const a = s.ledger.at(-1)?.action;
-  return (
-    s.scene === 'chapter5' &&
-    s.phase === 'room' &&
-    a?.type === 'CHAPTER5_CHOOSE' &&
-    a.id === 'chapter5.attention-coffee'
-  );
+  return a?.type === 'CHAPTER5_CHOOSE' && a.id === id;
 };
+export const coffeeAction5 = (s: GameState) =>
+  s.scene === 'chapter5' && s.phase === 'room' && lastChoice5(s, 'chapter5.attention-coffee');
+
+/** The completed evening arrival is one exact production hold, before any room action. */
+export function harbourArrivalBeats5(s: GameState): ReadingBeat[] | undefined {
+  if (
+    s.scene !== 'chapter5' ||
+    s.phase !== 'room' ||
+    !lastChoice5(s, 'chapter5.look-professional') ||
+    s.choices['c5.event'] !== 'attend' ||
+    s.choices['c5.presentation'] !== 'professional' ||
+    s.choices['c5.wardrobe'] !== 'c05.professional' ||
+    s.choices['c5.harbour-position'] !== 'programme-table' ||
+    s.choices['c5.coffee'] ||
+    s.choices['c5.attention']
+  )
+    return;
+  const entry = s.history.at(-1);
+  if (
+    entry?.node !== 'chapter5.room' ||
+    !entry.blocks.some((b) =>
+      b.text.startsWith('Inside, the host checks your name at the programme table'),
+    )
+  )
+    return;
+  return [
+    {
+      shotId: 'c05.s06.shot01-preview',
+      blocks: entry.blocks,
+      file: 'C5-H1-ARRIVAL-COMPOSITE-V3.png',
+      alt: 'Evelynn has arrived at Harbour’s evening preview. The host has checked her name and handed over the programme and guest card.',
+    },
+  ];
+}
 /** Resolve against the action's authentic prefix, never later final flags. */
 export function coffeeBeats5(
   s: GameState,
@@ -75,9 +104,61 @@ export function coffeeBeats5(
     {
       shotId: 'c05.s06.shot13-return',
       blocks: [p(text.slice(returned))],
-      alt: 'Evelynn returns to the host at the programme table; her cup remains in her custody, off-frame if necessary.',
+      file: eligible ? 'C5-H2-COFFEE-RETURN-COMPOSITE-V1.png' : undefined,
+      alt: 'Evelynn returns to the host at the programme table; her cup remains in her custody.',
     },
   ];
+}
+
+/** The approved Aster arrival holds only until the player proceeds from accepted terms. */
+export function asterArrivalBeats5(s: GameState): ReadingBeat[] | undefined {
+  if (
+    s.scene !== 'chapter5' ||
+    s.phase !== 'proof' ||
+    !lastChoice5(s, 'chapter5.offer-accept-professional') ||
+    s.choices['c5.offer'] !== 'accepted' ||
+    s.choices['c5.concept'] !== 'professional' ||
+    s.choices['c5.presentation'] !== 'professional' ||
+    s.choices['c5.wardrobe'] !== 'c05.professional' ||
+    s.choices['c5.coffee'] ||
+    s.choices['c5.published'] ||
+    s.choices['c5.authorization']
+  )
+    return;
+  const entry = [...s.history]
+    .reverse()
+    .find(
+      (candidate) =>
+        candidate.node === 'chapter5.offer' &&
+        candidate.blocks.some((b) => b.text.startsWith('You confirm the 11:30 appointment')),
+    );
+  if (!entry) return;
+  return [
+    {
+      shotId: 'c05.s07.shot03-arrival',
+      blocks: entry.blocks,
+      file: 'C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png',
+      alt: 'Evelynn arrives at Aster’s studio for the agreed professional sitting while the editor reads the scope back before work begins.',
+    },
+  ];
+}
+
+export function chapter5ReadingBeats(
+  s: GameState,
+): { beats: ReadingBeat[]; entry: GameState['history'][number] } | undefined {
+  const direct = harbourArrivalBeats5(s) ?? asterArrivalBeats5(s);
+  if (direct) {
+    for (let i = s.history.length - 1; i >= 0; i--) {
+      if (direct.some((beat) => s.history[i].blocks === beat.blocks))
+        return { beats: direct, entry: s.history[i] };
+    }
+    return;
+  }
+  if (!coffeeAction5(s)) return;
+  for (let i = s.history.length - 1; i >= 0; i--) {
+    const beats = coffeeBeats5(s, s.history[i]);
+    if (beats) return { beats, entry: s.history[i] };
+  }
 }
 
 export function apartmentEndingArt5(s: GameState) {

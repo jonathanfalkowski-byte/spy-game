@@ -1,7 +1,7 @@
 import type { GameState } from '../state/schema';
 import production from './approved-scene-art.json';
 import { homeSceneArt } from './home-scene-art';
-import { apartmentEndingArt5, coffeeAction5, coffeeBeats5 } from './chapter5-beats';
+import { apartmentEndingArt5, chapter5ReadingBeats } from './chapter5-beats';
 
 export type ArtIssue =
   | 'SHOT_WITHOUT_APPROVED_ASSET'
@@ -35,6 +35,10 @@ export const homeBindings = {
 export const shotBindings: Record<string, { assetId: string; location: string }> = {
   'clinic.wardrobe.shot01': { assetId: 'eve-bg-wardrobe-continuity-v2', location: 'wardrobe' },
   'evening.lantern.shot01': { assetId: 'eve-scene-maya-evening-continuity-v2', location: 'bar' },
+  'c05.s06.shot01-preview': {
+    assetId: 'c5-h1-arrival-composite-v3-production',
+    location: 'harbour',
+  },
   'c05.s06.shot12-entrance': {
     assetId: 'c5-harbour-evelynn-julian-composite-v2-production',
     location: 'harbour',
@@ -42,6 +46,14 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
   'c05.s06.shot15-departed': {
     assetId: 'c5-harbour-julian-departed-composite-v1-production',
     location: 'harbour',
+  },
+  'c05.s06.shot13-return': {
+    assetId: 'c5-h2-coffee-return-composite-v1-production',
+    location: 'harbour',
+  },
+  'c05.s07.shot03-arrival': {
+    assetId: 'c5-s07-aster-arrival-composite-v2-production',
+    location: 'aster-studio',
   },
   'c05.s12.shot05-phone': {
     assetId: 'c5-s12-shot05-phone-composite-v2-production',
@@ -63,27 +75,14 @@ export function unboundProductionAssets() {
     }));
 }
 
-/** The four existing authored Harbour beats, tied to the latest authenticated action only. */
-type ReadingSequence = {
-  beats: NonNullable<ReturnType<typeof coffeeBeats5>>;
-  entry: GameState['history'][number];
-};
-// Reducer snapshots are immutable. Replay the authentic prefix once per snapshot, not per cut.
-// Weak keys release departed runs and never put a cursor or cache in the save envelope.
+/** Reader cuts are transient UI state and always derive from the reached immutable snapshot. */
+type ReadingSequence = NonNullable<ReturnType<typeof chapter5ReadingBeats>>;
 const readingCache = new WeakMap<GameState, ReadingSequence | undefined>();
 export function currentReadingBeats(state: GameState) {
-  if (!coffeeAction5(state)) return undefined;
   if (readingCache.has(state)) return readingCache.get(state);
-  for (let i = state.history.length - 1; i >= 0; i--) {
-    const beats = coffeeBeats5(state, state.history[i]);
-    if (beats) {
-      const sequence = { beats, entry: state.history[i] };
-      readingCache.set(state, sequence);
-      return sequence;
-    }
-  }
-  readingCache.set(state, undefined);
-  return undefined;
+  const sequence = chapter5ReadingBeats(state);
+  readingCache.set(state, sequence);
+  return sequence;
 }
 
 /** Independent guard checks also used by the development inspector and authoring tests. */
@@ -126,9 +125,12 @@ export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[]
       if (node !== 'chapter5.complete') issues.push('LOCATION_MISMATCH');
       if (!apartmentEndingArt5(state)) issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
     } else {
-      if (node !== 'chapter5.room') issues.push('LOCATION_MISMATCH');
-      // Reuse authenticated prefix validation; final branch flags cannot fabricate the coffee event.
-      if (!currentReadingBeats(state)?.beats.some((b) => b.shotId === shot.shotId && b.file))
+      const reading = currentReadingBeats(state);
+      const asterArrival = shot.shotId === 'c05.s07.shot03-arrival';
+      if (node !== (asterArrival ? 'chapter5.proof' : 'chapter5.room'))
+        issues.push('LOCATION_MISMATCH');
+      // Exact reached-beat validation prevents later flags or sibling branches from fabricating an asset.
+      if (!reading?.beats.some((b) => b.shotId === shot.shotId && b.file))
         issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
     }
   }

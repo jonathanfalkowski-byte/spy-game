@@ -38,11 +38,17 @@ export function ClinicConversation({
     <>
       {incoming.map((entry, i) =>
         // Other incoming entries can establish the current shot (e.g. phone placement).
-        reading ||
-        (illustrated &&
-          state.scene === 'chapter3' &&
-          state.phase === 'home' &&
-          entry.node.startsWith('mission.')) ? (
+        reading?.entry === entry ? (
+          <Chapter5BeatSequence
+            beats={reading.beats}
+            position={readingPosition}
+            onPosition={onReadMoment}
+          />
+        ) : reading ||
+          (illustrated &&
+            state.scene === 'chapter3' &&
+            state.phase === 'home' &&
+            entry.node.startsWith('mission.')) ? (
           <details key={'incoming' + i} className="scene-recap">
             <summary>Previous scene</summary>
             <Narrative blocks={entry.blocks} node={entry.node} />
