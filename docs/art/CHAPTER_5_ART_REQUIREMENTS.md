@@ -1,5 +1,7 @@
 # Chapter 5 art requirements — pending production
 
+**Current production planning:** [CHAPTER_5_TRUE_ART_BACKLOG.md](CHAPTER_5_TRUE_ART_BACKLOG.md) replaces raw-index percentages with required compositions, explicit holds, branch constraints and a four-asset proposal. Runtime baseline is `198feada20cc15aa47d6e64f37149079efe187a4`. Existing approval scopes and the specification below are preserved; no new generation or promotion is authorized by this accounting update.
+
 **Current audit status:** three existing approved exact Chapter5 variants are now runtime-bound; no new promotion/generation. Current authority index supersedes the historical no-binding and earlier-spend statements retained below. Revision17 is opt-in; frozen semantics remain preserved.
 
 **Harbour production update (2026-09-17):** Owner-approved V2 promoted for c05.s06.shot12-entrance; zero-credit completed-departure derivative PASS and promoted under explicit conditional authorization for c05.s06.shot15-departed. Exact evening/attend/professional/Julian-access/coffee state only. Julian absent after goodbye, before Evelynn re-enters; identical background and Evelynn placement/coffee. LOW/POLISH edge notes retained. Neither creates canonical identity/wardrobe authority. [Approval and evidence](../../art/production/chapter5/harbour-approvals.json). Other branches and return shot remain pending. No runtime binding change.

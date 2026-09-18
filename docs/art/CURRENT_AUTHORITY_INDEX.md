@@ -1,5 +1,7 @@
 # Current art authority — audit implementation
 
+**Current release:** CONTENT REVISION 17 is frozen at `198feada20cc15aa47d6e64f37149079efe187a4`, save schema5. Approval scopes below are unchanged. Use the [true art backlog](CHAPTER_5_TRUE_ART_BACKLOG.md) for current production-planning metrics and holds; this authority index grants no new approval.
+
 Date: 2026-09-17. Baseline: `7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6`.
 See [machine-readable asset/hash/role/scope index](CURRENT_AUTHORITY_INDEX.json).
 This index supersedes stale status summaries, **not** historical generation receipts or owner decisions. It grants no new approval.
@@ -29,7 +31,7 @@ Post-Glass-House home art remains an approved opening illustration. It now stops
 
 Coffee acquired outside remains with Evelynn on re-entry and on later compatible table/editor/photo shots. Carry it visibly or frame it off-screen without suggesting disposal; never add a second cup or move it to Julian. No authored disposal exists.
 
-Coverage remains **3/100 raster/artifact IDs**, each with only one approved exact variant. The 103-ID register also contains three reserved/fade entries. All retired IDs remain retired. The departed-to-wait reuse remains a candidate requiring scope approval. Aster arrival remains staged REVISE; missing raster, wardrobe, publication and branch variants remain missing.
+The [true backlog](CHAPTER_5_TRUE_ART_BACKLOG.md) inventories **124 authored visual beats**, **95 required composition families**, **3 approved exact variants** and **2 currently covered holds**. Unique-composition planning coverage is **3.16%**, not all-branch completion. The old 103-ID register and its raw ratio remain historical diagnostics. All retired IDs remain retired. The departed-to-wait reuse remains a candidate requiring scope approval. Aster arrival remains staged REVISE; missing raster, wardrobe, publication and branch variants remain missing.
 
 ## Unresolved canon / production blockers
 

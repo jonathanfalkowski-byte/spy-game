@@ -1,5 +1,7 @@
 # Chapters 3–5 audit implementation review
 
+**Release addendum:** This reviewed implementation was subsequently committed and pushed as CONTENT REVISION 17 baseline `198feada20cc15aa47d6e64f37149079efe187a4`. See [release/post-commit verification](CONTENT_REVISION_17_BASELINE.md) and [current true art backlog](../art/CHAPTER_5_TRUE_ART_BACKLOG.md). The review-stage “uncommitted” statements and raw coverage figures below remain historical evidence.
+
 Baseline: `7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6`, branch `story/chapter-3-design`.
 The canonical revision16 story baseline remains `fe1f6084a7affeec775e9d7b25e883c91f5d5fa4`.
 This work introduces an explicit, opt-in **content revision17**, retaining save schema **5**. It is an uncommitted review diff; no push, paid generation, asset promotion or Chapter6 work.

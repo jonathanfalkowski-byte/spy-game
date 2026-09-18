@@ -1,5 +1,7 @@
 # Chapter 5 coverage audit —2026-09-17
 
+**Historical raw-index snapshot.** The current production-planning metric, dialogue-hold ledger, deduplicated requirements and next wave are in [CHAPTER_5_TRUE_ART_BACKLOG.md](CHAPTER_5_TRUE_ART_BACKLOG.md). Revision17 is committed/pushed at `198feada20cc15aa47d6e64f37149079efe187a4`; the uncommitted status below describes the earlier review. The JSON snapshot remains unchanged for existing provenance/regression checks. Do not use its raw 3/100 as the primary art-production metric.
+
 Audited pushed baseline7c91a242; this implementation is an uncommitted revision17 diff. 3/100 raster/artifact beat IDs have at least one approved variant (3.0%). This is **not full-branch completion**; runtime-bound exact variants **3** (presentation for authenticated revision16/17, branch guarded). 3 reserved/fade IDs need no raster. Retired IDs and dialogue holds are excluded.
 
 Production approvals remain exact branch/shot only. Staging environment/wardrobe references do not count as completed character scenes. One image can serve multiple IDs only after exact-state reuse review.
