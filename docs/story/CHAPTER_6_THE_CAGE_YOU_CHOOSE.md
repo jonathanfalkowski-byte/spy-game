@@ -66,3 +66,174 @@ The climax shows an actual exit cost attached to one previously useful arrangeme
 ## Implementation gates
 
 Before runtime work: approve the proof artifact/corroborator; identify each new state field and migration; specify every actor’s knowledge; define an exact consequence and recovery route; add AdultSceneSpec only if earned; write a visual beat map; and verify revision-15/16/17 replay remains byte/authentication stable.
+
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT RUNTIME
+
+Authority: [EVE Master GDD](../design/EVE_MASTER_GDD.md), [Full Game Route Architecture](FULL_GAME_ROUTE_ARCHITECTURE.md), and [Adult Thriller Pacing Map](ADULT_THRILLER_PACING_MAP.md).
+
+Chapter 6 remains investigation-heavy, but the full-game version should also contain route-sensitive adult-life and erotic-power lanes. These are design lanes, not mandatory scenes and not current runtime.
+
+### A. Executive / Julian lane
+
+Where actual relationship history supports it, possible developments include:
+
+- private travel;
+- exclusivity discussion;
+- shared residence or practical arrangement;
+- public-partner role;
+- deeper emotional commitment;
+- strategic companionship;
+- marriage / trophy-wife seed;
+- consensual intimacy;
+- dependency negotiation.
+
+The same offer may be accepted because of:
+- affection;
+- attraction;
+- luxury;
+- strategy;
+- safety;
+- ambition;
+- mixed motives.
+
+Never infer which motive applies.
+
+A luxurious relationship can remain healthy, become strategically useful to Evelynn, or gradually become controlling only if resources and alternatives actually narrow.
+
+### B. Public / celebrity lane
+
+Visibility can create larger opportunities:
+
+- agent or representative;
+- luxury campaign;
+- high-profile editorial;
+- public appearance;
+- provocative but bounded campaign;
+- sponsor;
+- interview;
+- image contract.
+
+Introduce explicit **body/image negotiation**.
+
+A representative or sponsor may suggest:
+- styling changes;
+- fitness/image requirements;
+- optional cosmetic consultation;
+- later body modification.
+
+The player may:
+- want it;
+- negotiate it;
+- reject it;
+- pay independently;
+- accept sponsorship;
+- accept strategically;
+- feel pressured.
+
+Body state alone never records whether the choice was wanted.
+
+### C. Adult-entertainment career seed
+
+If prior appetite, visibility, professional boundaries, and self-directed interest support it, Chapter 6 or later may seed a reputable adult-media professional offer.
+
+The offer should be treated as real work, with:
+- compensation;
+- image rights;
+- distribution scope;
+- attribution;
+- participant boundaries;
+- approval rights;
+- exit terms.
+
+The player may:
+- decline;
+- ask questions;
+- negotiate;
+- accept only non-explicit promotional work;
+- accept a bounded first professional adult project;
+- delay;
+- pursue the contact later.
+
+Any actual intimate professional outcome requires fresh AdultSceneSpec eligibility and current authorization. This is a trajectory seed, not an instant route lock.
+
+### D. Spy / seduction lane
+
+Give Evelynn an OPTIONAL tradecraft route using attraction with a canonically adult target.
+
+Possible functions:
+- elicitation;
+- distraction;
+- gaining a private conversation;
+- close observation;
+- obtaining an invitation;
+- encouraging someone to underestimate her.
+
+Sex is never required to solve the core case. Public records, evidence, stealth, direct questioning, or other leverage remain viable where authored.
+
+Evelynn may manipulate attraction without being attracted herself.
+
+### E. Dark dependency / exploitation lane
+
+If actual state supports:
+- financial dependency;
+- controlling relationship;
+- blackmail;
+- reputation vulnerability;
+- contract trap;
+- housing/security dependency;
+- prior boundary erosion;
+- concentrated control over Evelynn's public image or body,
+
+then Chapter 6 may contain a substantially darker event.
+
+Possible non-graphic forms:
+- demand tied to support;
+- threat of exposure;
+- controlling appearance expectation;
+- forced social/public role;
+- abusive private confrontation;
+- coercive demand;
+- bodily pressure.
+
+If circumstances become coercive, do **not** route them through a mutually-willing AdultSceneSpec.
+
+Track:
+- source of pressure;
+- meaningful alternatives available or lost;
+- compliance/refusal;
+- harm;
+- witnesses/evidence;
+- aftermath;
+- recovery or counterpower options.
+
+The player may:
+- submit;
+- resist;
+- conceal;
+- gather proof;
+- manipulate the exploiter;
+- seek outside support;
+- plan escape;
+- retaliate;
+- deepen dependency knowingly;
+- later recover.
+
+### F. Investigation integration
+
+Every lane must still serve the chapter's case question.
+
+Possible questions:
+- Who arranged the opportunity?
+- Why are they willing to pay or provide access?
+- What obligation is hidden inside the benefit?
+- Who benefits from Evelynn becoming more visible?
+- Is a body/image suggestion genuinely professional, personally motivated, or a control test?
+- Is a partner protecting Evelynn, monitoring her, or both?
+- Is an adult-media offer independent, or connected to another actor's influence?
+
+The player should form competing interpretations before the chapter resolves them.
+
+### Pacing target
+
+A compatible Chapter 6 playthrough should usually contain 2–4 adult heat beats and 0–2 possible intimate handoffs depending on history. The chapter must not become Julian-only, and the adult material must not displace the Rook/ORACLE investigation.
