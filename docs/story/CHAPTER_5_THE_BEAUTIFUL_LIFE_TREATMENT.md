@@ -35,3 +35,91 @@ Use the same apartment; approved art inspection is recorded separately. Chapter 
 
 
 Final pre-freeze continuity refinements are recorded in [the final pass](CHAPTER_5_FINAL_PROSE_LOGIC_ART_PASS.md) and [continuous-route table](CHAPTER_5_CONTINUITY_TABLE.md). They preserve these twelve movements and add no major scene.
+
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT FROZEN RUNTIME
+
+Authority: [EVE Master GDD](../design/EVE_MASTER_GDD.md) and [Adult Thriller Pacing Map](ADULT_THRILLER_PACING_MAP.md).
+
+This amendment does not reinterpret revision 16 or 17. It preserves the current twelve movements and identifies full-game route seeds if Chapter 5 is revisited in a future content revision.
+
+### Dress for Yourself
+
+Professional, glamorous, deliberately sensual, and private-minimal presentation remain separate from consent, morality, desire, affection, and future career commitment.
+
+This scene should continue to function as a visible self-authorship payoff.
+
+### The Room Wants Evelynn
+
+Julian should not be the only possible source of adult attention.
+
+Where current event geography and cast permit, future design may add brief adult social attention from other canonically adult guests.
+
+Possible responses:
+- enjoy being noticed;
+- shut it down;
+- flirt;
+- use the attention to gain information or an introduction;
+- allow a scoped public image;
+- leave.
+
+No new mandatory romance follows.
+
+### Aster career seed
+
+After completed work, Aster may create a bounded FUTURE opportunity such as:
+
+- additional editorial work;
+- luxury campaign work;
+- more sensual professional work;
+- representation introduction;
+- public appearance or interview.
+
+This is an opportunity, not a route lock.
+
+Aster does not automatically lead to adult entertainment.
+
+A later adult-media professional contact requires its own:
+- provider;
+- terms;
+- compensation;
+- image/distribution rights;
+- scope;
+- current player choice.
+
+### Wanting Something — non-Julian lane
+
+Preserve the current Julian private-time option where earned.
+
+Future design should also support a non-Julian adult-life route through a rooftop event, afterparty, nightlife contact, or other independent social setting already supported by world geography.
+
+A Free Agent/Public Evelynn may:
+- enjoy attention;
+- flirt;
+- exchange contact;
+- use the interaction strategically;
+- leave;
+- pursue a later mutually chosen relationship.
+
+No intimate outcome is mandatory.
+
+### Celebrity / adult-career bridge
+
+Chapter 5 may seed, but should not complete:
+
+PUBLIC VISIBILITY
+→ RECOGNITION
+→ REPRESENTATION / CAREER OFFER
+→ LATER CAREER DECISION
+
+High appetite plus high autonomy can create a celebratory public trajectory.
+
+High visibility plus concentrated external control can create a darker trajectory.
+
+Do not infer either from clothing or one published image.
+
+### Pacing target
+
+A compatible Chapter 5 playthrough may contain 3–5 adult heat beats, typically 0–1 actual intimate handoff.
+
+The chapter should remain attractive and pleasurable in its own right. Not every offer should secretly be a trap.
