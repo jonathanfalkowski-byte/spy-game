@@ -73,3 +73,71 @@ Reject: gratuitous public degradation after refusal; secret photography to nulli
 ## Review boundary
 
 No fixed runtime or new long-term route is promised. The surveillance and public-reception direction is approved; Marcus's record must preserve discussion versus formal agreement and support his plausibly defensible wording. No interaction means no invented willingness and potentially no bargaining material. Outside testing of the completed slice continues independently. No gameplay code, schema/version change, new provider or explicit writing follows from this document.
+
+
+## Full-game darkness alignment — 2026-09-18
+
+Authority: [EVE Master GDD](../design/EVE_MASTER_GDD.md).
+
+The full game is allowed to become substantially darker than the vertical slice. The design does **not** guarantee that Evelynn remains in control. It requires the game to preserve how control changed hands and what meaningful alternatives remained.
+
+Future dark-power situations may include, when earned by actual state:
+
+- economic dependency;
+- abusive or controlling relationships;
+- professional exploitation;
+- blackmail and reputation control;
+- isolation;
+- contract traps;
+- public-image control;
+- body/image pressure;
+- forced compliance;
+- coercive demands;
+- cruelty;
+- evidence used to control Evelynn;
+- Evelynn manipulating, exploiting or controlling others in return.
+
+Preserve as distinct state:
+- consent;
+- compliance;
+- desire;
+- pleasure;
+- affection;
+- dependency;
+- control;
+- strategy.
+
+A later positive feeling never retroactively makes a coercive event voluntary.
+
+### Body and career power
+
+Body modification and public/adult career systems can become power battlegrounds.
+
+A change can be:
+- self-directed;
+- career-directed;
+- sponsored;
+- relationship-directed;
+- dependency-pressured;
+- coerced.
+
+Career visibility can produce real power through money, audience, access and ownership, or real vulnerability through contracts, image rights, blackmail and external control.
+
+Adult entertainment is not intrinsically exploitation. Trophy-wife or kept-life presentation is not intrinsically victimhood. The darker condition is the actual loss of meaningful alternatives.
+
+### Dark outcome rule
+
+Dark outcomes may remain dark. Recovery must remain possible where the fiction still permits it, but the story does not have to instantly neutralize abuse, dependency or coercion after one scene.
+
+When an abusive event occurs, later gameplay may involve:
+- concealment;
+- evidence gathering;
+- strategic accommodation;
+- seeking help;
+- escape planning;
+- retaliation;
+- counter-manipulation;
+- recovery;
+- deeper dependence.
+
+These are consequence paths, not retroactive consent.
