@@ -151,3 +151,48 @@ The proposed male executive may progress through respect, access, private meetin
 ## Boundary for the current project
 
 Do not implement these trajectories, add meters or assign existing NPCs to predetermined intimate roles. Chapter 3 and future situation design is now separately authorized in the story-design worktree; the playable vertical slice remains frozen for outside testing. Implementation and future route selection still require separate approval and should account for that evidence.
+
+
+## Full-game Master GDD alignment — 2026-09-18
+
+Authority: [EVE Master GDD](EVE_MASTER_GDD.md), [Full Game Route Architecture](../story/FULL_GAME_ROUTE_ARCHITECTURE.md), and [Adult Thriller Pacing Map](../story/ADULT_THRILLER_PACING_MAP.md).
+
+These trajectories are now explicitly allowed to **overlap and cross over**. Profession is not faction and outward lifestyle does not reveal underlying power.
+
+- Celebrity Evelynn may also be a Free Agent, Sloane operative, Julian partner, adult performer, corporate owner, or exploitation survivor.
+- Adult Entertainment Career may develop into independent business ownership, mainstream celebrity, intelligence access, controlled performance, or executive partnership.
+- Executive Companion may deepen into mutual partnership, strategic marriage, trophy-wife presentation, kept dependency, or later separation/recovery.
+- Ornamental Dependency / Kept Life can coexist with high strategic intelligence activity; an outwardly decorative role does not prove who has more leverage.
+- Exploitation / Recovery remains an overlay that can emerge from any route family.
+
+### Body-autonomy rule
+
+Visible body state never establishes authorship.
+
+For future body modification or appearance changes, preserve where relevant:
+- who requested the change;
+- whether Evelynn wanted it;
+- who paid;
+- pressure or cost of refusal;
+- reversibility/permanence;
+- accepted scope;
+- resulting appearance;
+- who believes the change gives them influence over Evelynn.
+
+The same appearance may represent self-authorship, career strategy, relationship choice, dependency pressure, or coercion.
+
+### Trophy-wife / strategic spouse trajectory
+
+Treat this as a possible development inside Executive Companion / Corporate / Kept-Life space rather than a separate morality route.
+
+Possible expressions include:
+- loving high-status partnership;
+- strategic marriage;
+- socially ornamental role with private influence;
+- access to elite domestic/executive networks;
+- financial dependency;
+- controlled public image;
+- abusive relationship;
+- apparent dependency used by Evelynn as camouflage while she accumulates leverage.
+
+Do not assign the controlling role permanently to either partner in advance.
