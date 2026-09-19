@@ -236,7 +236,7 @@ it.each([16, 17])(
       'c05.s06.shot15-departed',
       'c05.s06.shot13-return',
     ]);
-    expect(beats.map((b) => !!b.file)).toEqual([false, true, true, false]);
+    expect(beats.map((b) => !!b.file)).toEqual([false, true, true, true]);
     expect(beats[0].blocks.map((b) => b.text).join(' ')).not.toContain('Julian arrives');
     expect(beats[1].blocks.map((b) => b.text).join(' ')).not.toContain('goodbye');
     expect(harbourShotPlan5(before, 'attention-coffee').at(-1)?.props).toContain(

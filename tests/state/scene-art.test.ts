@@ -5,6 +5,7 @@ import production from '../../src/ui/approved-scene-art.json';
 import homes from '../../art/production/apartment/records.json';
 import continuity from '../../art/production/continuity/records.json';
 import chapter5 from '../../art/production/chapter5/records.json';
+import opening from '../../art/production/opening/records.json';
 import { resolveSceneArt, validateSceneShot } from '../../src/ui/scene-art';
 import { initialState, act } from '../../src/state/reducer';
 import { encodeSave, decodeSave } from '../../src/persistence/saves';
@@ -12,6 +13,7 @@ import { day, evening } from '../day-helpers';
 import { traverse, clinic } from '../clinic-helpers';
 import { runMission, missionStart } from '../mission-helpers';
 import { end4, walk5 } from '../chapter5-helpers';
+import { advance, choice, toAnalysis, toMaya } from '../helpers';
 import type { GameState } from '../../src/state/schema';
 
 let coffee: GameState, final: GameState, harbourArrival: GameState, asterArrival: GameState;
@@ -50,7 +52,7 @@ beforeAll(() => {
 }, 30000);
 
 it('small runtime manifest contains exactly production + owner approval + PASS originals; no staging or review exceptions', () => {
-  const records = [...homes, ...continuity, ...chapter5];
+  const records = [...homes, ...continuity, ...chapter5, ...opening];
   const eligible = records.filter(
     (r) =>
       r.role === 'production' &&
@@ -60,7 +62,7 @@ it('small runtime manifest contains exactly production + owner approval + PASS o
   );
   expect(production.map((a) => a.id)).toEqual(eligible.map((r) => r.spec.assetId));
   for (const a of production) {
-    expect(a.src).toMatch(/^art\/(apartment|chapter5|continuity)\/[\w-]+\.png$/);
+    expect(a.src).toMatch(/^art\/(apartment|chapter5|continuity|opening)\/[\w-]+\.png$/);
     expect(
       createHash('sha256')
         .update(readFileSync('public/' + a.src))
@@ -69,18 +71,82 @@ it('small runtime manifest contains exactly production + owner approval + PASS o
   }
 });
 
-it('opening dialogue holds; inspection switches authored shot without inventing an asset', () => {
+it('opening dialogue holds the approved master; inspection switches to truthful fallback', () => {
   const opening = initialState();
   const shot = resolveSceneArt(opening);
   expect(shot.shot?.shotId).toBe('opening.apartment.shot01');
-  expect(shot.art).toBeUndefined();
-  expect(shot.issues).toEqual(['SHOT_WITHOUT_APPROVED_ASSET']);
+  expect(shot.art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(shot.issues).toEqual([]);
   const reply = act(opening, { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
   expect(reply.phase).toBe('reply');
   expect(resolveSceneArt(reply).shot?.shotId).toBe(shot.shot?.shotId);
+  expect(resolveSceneArt(reply).art?.asset.id).toBe(shot.art?.asset.id);
   const inspected = act(reply, { type: 'INSPECT_APARTMENT', id: 'mirror' });
   expect(resolveSceneArt(inspected).shot?.shotId).toBe('opening.apartment.inspect-mirror');
   expect(resolveSceneArt(inspected).art).toBeUndefined();
+});
+
+it('binds only the approved opening apartment hold; other opening compositions remain unbound', () => {
+  const opening = initialState();
+  const reply = choice(opening, 'bond.friend');
+  const lease = act(reply, { type: 'INSPECT_APARTMENT', id: 'lease' });
+  const medical = act(reply, { type: 'INSPECT_APARTMENT', id: 'medical' });
+  const jacket = act(reply, { type: 'INSPECT_APARTMENT', id: 'jacket' });
+  const departure = choice(reply, 'morning.yes');
+  const commute = advance(departure);
+  const desk = advance(commute);
+  const benton = choice(desk, 'promotion.angry');
+  const file = choice(benton, 'benton.push');
+  const brief = advance(file);
+  const documents = advance(brief);
+  const analysis = toAnalysis();
+  const mayaPromotion = toMaya();
+  const mayaInvitation = choice(mayaPromotion, 'mayaPromotion.hurt');
+  const mayaCase = choice(mayaInvitation, 'invitation.yes');
+  const mayaGoodbye = choice(mayaCase, 'disclosure.private');
+  const ending = advance(mayaGoodbye);
+  const openingShots = [
+    opening,
+    lease,
+    medical,
+    jacket,
+    commute,
+    desk,
+    benton,
+    file,
+    brief,
+    documents,
+    analysis,
+    mayaPromotion,
+    mayaInvitation,
+    mayaCase,
+    mayaGoodbye,
+    ending,
+  ].map((state) => resolveSceneArt(state));
+  expect(openingShots.map((visual) => visual.shot?.shotId)).toEqual([
+    'opening.apartment.shot01',
+    'opening.apartment.inspect-lease',
+    'opening.apartment.inspect-medical',
+    'opening.apartment.inspect-jacket',
+    'opening.axiom.shot04-desk',
+    'opening.office.shot01-daniel',
+    'opening.office.shot02-benton',
+    'opening.office.shot03-file',
+    'opening.helix.shot01-brief',
+    'opening.helix.shot02-documents',
+    'opening.helix.shot02-documents',
+    'opening.maya.shot01-coffee',
+    'opening.maya.shot01-coffee',
+    'opening.maya.shot01-coffee',
+    'opening.maya.shot02-departure',
+    'opening.office.shot04-alone',
+  ]);
+  expect(openingShots[0].art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(openingShots[0].issues).toEqual([]);
+  for (const visual of openingShots.slice(1)) {
+    expect(visual.art).toBeUndefined();
+    expect(visual.issues).toEqual(['SHOT_WITHOUT_APPROVED_ASSET']);
+  }
 });
 
 it('Lantern holds for dialogue only on the meeting route, then cuts for authored touch/exit', () => {

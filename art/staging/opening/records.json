@@ -1,0 +1,284 @@
+[
+  {
+    "spec": {
+      "assetId": "apartment-opening-master-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "environment": "Adrian's compact apartment on a rainy promotion morning: two-column window toward Axiom Tower, chair, counter, closet, and readable central living space.",
+      "cameraFraming": "16:9 eye-level master wide with clear object zones and no character required.",
+      "lighting": "Blue rainy dawn with one restrained warm practical light.",
+      "intendedUse": "P0 opening environment authority for apartment.bond, apartment.reply, and apartment.departure dialogue holds.",
+      "editSources": ["apartment-post-glasshouse-executive-v1-production"],
+      "continuityRequirements": [
+        "Pre-transformation Adrian state only; do not use Evelynn Chapter 3 apartment art.",
+        "Axiom Tower, chair, counter, closet, and object surfaces must remain readable at desktop and mobile sizes.",
+        "No later medical, Glass House, or Chapter 5 props."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "One staging environment variant generated from the approved later apartment composition. It remains unapproved and unbound after review."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/apartment-opening-master-v1.png",
+    "sha256": "b3b58c9274452eeab5a8d9f17d378abab3a4c9285c799817c8c08cb1bf47403e",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "taskId": "8987fe15-abb8-4c2d-a76f-255e69465d1a",
+      "callId": "6b119588-e2ab-4c22-b484-987c6b28d361",
+      "providerAssetId": "fcd825c2-e5dd-4a40-a917-d1ad33df3b85",
+      "model": "SEEDREAM_5",
+      "sourceReferences": [
+        {
+          "assetId": "apartment-post-glasshouse-executive-v1-production",
+          "providerAssetId": "a9f29914-39df-42c2-816d-5b5206688ed8"
+        }
+      ],
+      "promptVersion": "eve-opening-v1",
+      "promptComponents": {
+        "STYLE": "EVE polished illustrated espionage-thriller style.",
+        "SUBJECT": "Environment only; remove the visible person and do not add a character or reflection.",
+        "SCENE": "Promotion morning at 06:42 in Adrian's apartment.",
+        "CAMERA": "Preserve the approved apartment camera, room scale, and spatial relationships.",
+        "LIGHTING": "Rainy subdued morning with cool window light and restrained warm practical light.",
+        "CONTINUITY": "No future-state phones, packets, purchases, or post-transformation wardrobe."
+      },
+      "prompt": "Using the approved apartment composition as the exact spatial source, produce an environment-only opening master for Adrian's promotion morning at 06:42. Preserve the camera, apartment geography, windows, furniture, wardrobe, mirror, door, counter, room scale, and square-tile floor exactly. Remove the visible person and do not add any person or reflection. Shift only to a rainy subdued morning with cool window light and restrained warm practical light. Do not add future-state phones, packets, purchases, post-transformation wardrobe, medical materials, or new story props.",
+      "settings": {
+        "ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-18T20:15:52.129223Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": { "width": 1920, "height": 1080 }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-18",
+      "reasons": [
+        "The apartment geometry, rainy-morning atmosphere, empty composition, camera, furniture, and square-tile floor are usable.",
+        "The generated wall clock is a new unapproved prop and its visible time conflicts with the authored 06:42 opening state.",
+        "No retry was submitted; this remains staging-only and cannot bind to opening.apartment.shot01."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-opening-insert-housing-notice-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored Axiom housing notice on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "P0 inspection cut only after INSPECT_APARTMENT lease.",
+      "continuityRequirements": [
+        "The notice states subsidized housing converts to market rate after thirty days; it is not an eviction today.",
+        "No invented deadline, signature, account number, or later story state."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing inspection insert."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-opening-insert-medical-package-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored annual endocrine screening package on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "P0 inspection cut only after INSPECT_APARTMENT medical.",
+      "continuityRequirements": [
+        "Axiom preventative-care framing and the unexpected extended panel are visible; no medical result is invented.",
+        "No later clinic material, diagnosis, or identity interpretation."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing inspection insert."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-opening-insert-jacket-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led closet insert of Adrian's authored jacket before the commute.",
+      "cameraFraming": "16:9 medium insert with garment and closet context; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "P0 inspection cut only after INSPECT_APARTMENT jacket; may support the departure transition if state remains identical.",
+      "continuityRequirements": [
+        "Adrian's pre-transformation jacket only; no later outfit, badge, token, Glass House case, or altered ownership state.",
+        "The image does not infer feelings, presentation, or a future wardrobe choice."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing inspection insert."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "apartment-opening-insert-mirror-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Mirror and bathroom context for Adrian's authored opening inspection; no transformation or changed reflection.",
+      "cameraFraming": "16:9 object-led medium insert with readable mirror context.",
+      "lighting": "Cool rainy-morning spill with restrained bathroom practical.",
+      "intendedUse": "P0 cut only after INSPECT_APARTMENT mirror.",
+      "continuityRequirements": [
+        "Reflect only the actual pre-transformation Adrian state if a reflection is visible.",
+        "Do not reuse for clinic or Chapter 3 mirror beats."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing mirror inspection asset."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-office-master-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "sceneId": "office.daniel",
+      "locationId": "axiom-strategic-intelligence",
+      "environment": "Axiom Strategic Intelligence office floor: Adrian's desk, Daniel's nearby desk, Benton office sightline, terminals, smoked glass, and controlled morning circulation.",
+      "cameraFraming": "16:9 eye-level master wide with clear entry paths and desk evidence zone.",
+      "lighting": "Rain-muted corporate morning light with restrained practicals.",
+      "intendedUse": "P1 environment authority for office.daniel, office.benton, office.departure, Helix work holds, Maya coffee, and ending.complete where exact state permits.",
+      "continuityRequirements": [
+        "No later clinic, Helix outcome, or altered identity state.",
+        "Leave modular space for separately reviewed Daniel, Benton, Maya, dossier, and document layers."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing Axiom master."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-daniel-entry-layer-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "office.daniel",
+      "locationId": "axiom-strategic-intelligence",
+      "pose": "Daniel stands beside Adrian's desk after the commute, serious and not performing a joke; clean silhouette for compositing.",
+      "cameraFraming": "Full figure or three-quarter layer compatible with the Axiom office master.",
+      "lighting": "Matches Axiom morning master without baked background geometry.",
+      "intendedUse": "P1 character-entry layer for opening.office.shot01-daniel.",
+      "continuityRequirements": [
+        "Age, office wardrobe, and described dark curls must follow authored opening canon.",
+        "No inferred private motive or future knowledge."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing character layer."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-benton-entry-layer-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "office.benton",
+      "locationId": "axiom-strategic-intelligence",
+      "pose": "Benton reaches the edge of Adrian's desk carrying the thin black data slate; clean silhouette for compositing.",
+      "cameraFraming": "Full figure or three-quarter layer compatible with the Axiom office master.",
+      "lighting": "Matches Axiom morning master without baked background geometry.",
+      "intendedUse": "P1 character-entry layer for opening.office.shot02-benton.",
+      "continuityRequirements": [
+        "Fifty-eight, compact, silver-haired, charcoal suit; the slate carries no invented readable conclusion.",
+        "No promotion outcome or later case result shown."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing character layer."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-helix-dossier-table-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "helix.brief",
+      "locationId": "axiom-strategic-intelligence",
+      "pose": "Object-led desk/table composition with the thin black Helix acquisition slate and controlled document workspace.",
+      "cameraFraming": "Readable 16:9 evidence composition; no person required.",
+      "lighting": "Matches the Axiom office master.",
+      "intendedUse": "P1 composition family for opening.office.shot03-file and opening.helix.shot01-brief through opening.helix.shot04-submitted when state-specific overlays pass review.",
+      "continuityRequirements": [
+        "Show only the authored Helix-Novagen brief and records; no solved assessment, undisclosed evidence, or future state.",
+        "Object legibility supports investigation without turning text into a fake document dump."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing dossier composition family."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-maya-coffee-layer-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "maya.promotion",
+      "locationId": "axiom-strategic-intelligence",
+      "pose": "Maya arrives beside Adrian's desk carrying two paper cups, with one cup placed only after the authored arrival beat; clean silhouette for compositing.",
+      "cameraFraming": "Full figure or three-quarter layer compatible with the Axiom office master.",
+      "lighting": "Matches Axiom midday office continuity without baked background geometry.",
+      "intendedUse": "P1 character-entry composition for opening.maya.shot01-coffee and a later exact departure variant.",
+      "continuityRequirements": [
+        "Maya's established opening appearance and office wardrobe only.",
+        "No Helix detail visible to Maya before the authored maya.case beat; no evening outcome, intimacy, or future knowledge."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing Maya opening layer."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-alone-aftermath-v1",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "ending.complete",
+      "locationId": "axiom-strategic-intelligence",
+      "pose": "Quiet object-led office aftermath: Adrian's desk, a warm coffee, and the absence left after Maya departs; no visible report contents required.",
+      "cameraFraming": "16:9 medium-wide hold derived from the approved Axiom office master.",
+      "lighting": "Early-afternoon office light consistent with the opening office master.",
+      "intendedUse": "P1 exact ending hold for opening.office.shot04-alone.",
+      "continuityRequirements": [
+        "The submitted assessment is already gone; no selected conclusion is displayed.",
+        "No future-day, clinic, or post-transformation state."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Planning-only missing ending hold."
+    },
+    "role": "staging",
+    "approvalStatus": "pending"
+  }
+]

@@ -11,6 +11,27 @@ const lastChoice5 = (s: GameState, id: string) => {
 export const coffeeAction5 = (s: GameState) =>
   s.scene === 'chapter5' && s.phase === 'room' && lastChoice5(s, 'chapter5.attention-coffee');
 
+/** Object-led home insert: only the authentic Chapter 5 entry may show this exact pre-purchase state. */
+export function homeReaderPacketBeats5(s: GameState): ReadingBeat[] | undefined {
+  if (
+    s.scene !== 'chapter5' ||
+    s.phase !== 'home' ||
+    !lastChoice5(s, 'chapter5.begin') ||
+    s.choices['c5.purchase'] ||
+    s.choices['c5.personal-location'] ||
+    s.choices['c5.axiom-location']
+  )
+    return;
+  const entry = s.history.at(-1);
+  if (!entry || entry.node !== 'chapter5.home' || !entry.blocks.some((b) => b.text.startsWith('You take the permitted packet home'))) return;
+  return [{
+    shotId: 'c05.s01.shot01',
+    blocks: entry.blocks,
+    file: 'C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png',
+    alt: 'The reader card rests beside the permitted packet on the cleared table. Evelynn’s bag remains on the sofa.',
+  }];
+}
+
 /** The completed evening arrival is one exact production hold, before any room action. */
 export function harbourArrivalBeats5(s: GameState): ReadingBeat[] | undefined {
   if (
@@ -146,7 +167,7 @@ export function asterArrivalBeats5(s: GameState): ReadingBeat[] | undefined {
 export function chapter5ReadingBeats(
   s: GameState,
 ): { beats: ReadingBeat[]; entry: GameState['history'][number] } | undefined {
-  const direct = harbourArrivalBeats5(s) ?? asterArrivalBeats5(s);
+  const direct = homeReaderPacketBeats5(s) ?? harbourArrivalBeats5(s) ?? asterArrivalBeats5(s);
   if (direct) {
     for (let i = s.history.length - 1; i >= 0; i--) {
       if (direct.some((beat) => s.history[i].blocks === beat.blocks))

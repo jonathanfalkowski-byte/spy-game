@@ -338,5 +338,129 @@
       "date": "2026-09-18",
       "source": "Human decision: APPROVE Harbour H2 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
     }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s01-daytime-apartment-anchor-v5-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "apartment",
+      "sceneId": "chapter5.home",
+      "presentationVariant": "object-led-reader-packet",
+      "pose": "Object-led insert: reader card beside permitted packet on cleared table; bag on sofa; Evelynn intentionally outside frame.",
+      "cameraFraming": "Locked apartment object insert, 1920x1080.",
+      "lighting": "Locked daytime apartment lighting.",
+      "timeOfDay": "10:30",
+      "intendedUse": "ONLY c05.s01.shot01 after authentic chapter5.begin. Reader card beside permitted packet; bag on sofa; before purchase and phone state. Never generic apartment fallback.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific approval only; existing apartment master remains architectural authority.",
+        "No character/body/wardrobe authority.",
+        "No purchase, phone, later prop, or Echo/home authority beyond this exact state."
+      ],
+      "notes": "Owner-approved Home V5 object-led exact state."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png",
+    "sha256": "56c603bcc5193e734413c1fab899b9ed71ff678c177aa8d35a3f987b5b14270e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner; technical full/desktop/mobile review",
+      "date": "2026-09-18",
+      "reasons": [
+        "Owner approved exact object-led Home V5.",
+        "No floating character, footwear, or invented gesture."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Owner decision: APPROVE Home V5 for exact c05.s01.shot01 state only."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s02-shopping-street-master-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "shopping-street",
+      "sceneId": "chapter5.spend",
+      "pose": "Environment-only authority; no character or prop state.",
+      "cameraFraming": "Approved fixed 1920x1080 master.",
+      "lighting": "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only.",
+      "intendedUse": "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Environment-only authority.",
+        "No character, wardrobe, purchase, tea, phone or later-state authority."
+      ],
+      "notes": "Explicit owner bounded approval; not runtime-selectable."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png",
+    "sha256": "5514240b41e3c1e4b3574d3c78b00719f7497634bc582fe0f89e5aaaf32c8a96",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "reasons": [
+        "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Explicit owner bounded environment authority approval."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-people-night-apartment-master-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "apartment",
+      "sceneId": "chapter5.people",
+      "pose": "Environment-only authority; no character or prop state.",
+      "cameraFraming": "Approved fixed 1920x1080 master.",
+      "lighting": "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only.",
+      "intendedUse": "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Environment-only authority.",
+        "No character, wardrobe, purchase, tea, phone or later-state authority."
+      ],
+      "notes": "Explicit owner bounded approval; not runtime-selectable."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/chapter5/C5-PEOPLE-NIGHT-APARTMENT-MASTER-V1.png",
+    "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "reasons": [
+        "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Explicit owner bounded environment authority approval."
+    }
   }
 ]

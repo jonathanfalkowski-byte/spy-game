@@ -33,6 +33,14 @@ export const homeBindings = {
   },
 } as const;
 export const shotBindings: Record<string, { assetId: string; location: string }> = {
+  'opening.apartment.shot01': {
+    assetId: 'opening-apartment-master-v2-production',
+    location: 'apartment',
+  },
+  'c05.s01.shot01': {
+    assetId: 'c5-s01-daytime-apartment-anchor-v5-production',
+    location: 'apartment',
+  },
   'clinic.wardrobe.shot01': { assetId: 'eve-bg-wardrobe-continuity-v2', location: 'wardrobe' },
   'evening.lantern.shot01': { assetId: 'eve-scene-maya-evening-continuity-v2', location: 'bar' },
   'c05.s06.shot01-preview': {
@@ -115,6 +123,11 @@ export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[]
     if (state.day.evening !== 'meet' || !['evening.disclosure', 'evening.closure'].includes(node))
       issues.push('LOCATION_MISMATCH');
     if (state.clinic.stage !== 'unchanged') issues.push('FUTURE_STATE_VISUAL');
+  } else if (shot.shotId === 'opening.apartment.shot01') {
+    if (!['apartment.bond', 'apartment.reply', 'apartment.departure'].includes(node))
+      issues.push('LOCATION_MISMATCH');
+    if (state.ledger.some((entry) => entry.action.type === 'INSPECT_APARTMENT'))
+      issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
   } else if (shot.shotId.startsWith('c05.')) {
     if (
       state.choices['c5.wardrobe'] !== 'c05.professional' ||
@@ -143,13 +156,11 @@ function openingShot(state: GameState): SceneShot | undefined {
     const action = [...state.ledger]
       .reverse()
       .find((e) => e.action.type === 'INSPECT_APARTMENT')?.action;
-    return {
-      shotId:
-        action?.type === 'INSPECT_APARTMENT'
-          ? `opening.apartment.inspect-${action.id}`
-          : 'opening.apartment.shot01',
-      alt: '',
-    };
+    const shotId =
+      action?.type === 'INSPECT_APARTMENT'
+        ? `opening.apartment.inspect-${action.id}`
+        : 'opening.apartment.shot01';
+    return { shotId, assetId: shotBindings[shotId]?.assetId, alt: '' };
   }
   const ids: Record<string, string> = {
     'commute.arrival': 'opening.axiom.shot04-desk',
@@ -167,7 +178,7 @@ function openingShot(state: GameState): SceneShot | undefined {
     'maya.goodbye': 'opening.maya.shot02-departure',
     'ending.complete': 'opening.office.shot04-alone',
   };
-  return ids[node] ? { shotId: ids[node], alt: '' } : undefined;
+  return ids[node] ? { shotId: ids[node], assetId: shotBindings[ids[node]]?.assetId, alt: '' } : undefined;
 }
 
 /** Cursor is transient UI state. No change to GameState, ledger, content revision or saved bytes. */

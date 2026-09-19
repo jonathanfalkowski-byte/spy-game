@@ -151,6 +151,23 @@
         "contact": false
       },
       "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s01.shot01",
+      "assetId": "c5-s01-daytime-apartment-anchor-v5-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.home",
+      "trigger": "chapter5.begin completed placement",
+      "requiredState": {
+        "c5.reader-card": "table-beside-packet",
+        "c5.bag": "sofa"
+      },
+      "excludedState": [
+        "purchase",
+        "phone",
+        "later apartment state"
+      ],
+      "runtimeBound": true
     }
   ],
   "referenceOnly": [

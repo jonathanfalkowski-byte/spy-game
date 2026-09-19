@@ -31,7 +31,7 @@ const ending = () =>
 for (const [name, width, makeState] of [
   ['opening-desktop', 1440, initialState],
   ['opening-mobile', 375, initialState],
-  ['opening-tablet', 820, initialState],
+  ['opening-medium', 820, initialState],
   ['chapter3-desktop', 1440, home],
   ['chapter3-medium', 1000, home],
   ['chapter3-mobile', 350, home],
@@ -54,7 +54,7 @@ for (const [name, width, makeState] of [
     });
     await page.goto('/');
     await expect(page.locator('h1')).toBeVisible();
-    const hasArt = !name.startsWith('opening');
+    const hasArt = true;
     if (hasArt)
       await expect
         .poll(() => page.locator('main img').evaluate((im: HTMLImageElement) => im.naturalWidth))
@@ -148,6 +148,28 @@ test('dialogue hold reuses one image; history and reading-size controls keep the
   expect(await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY)).toBe(saved);
 });
 
+test('opening apartment master holds through unchanged dialogue and survives reload', async ({ page }) => {
+  const raw = encodeSave(initialState());
+  await page.addInitScript(({ key, raw }) => localStorage.setItem(key, raw), { key: SAVE_KEY, raw });
+  await page.goto('/');
+  const stage = page.locator('.scene-art-stage');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  const source = await page.locator('.scene-art-image').getAttribute('src');
+  await page.locator('[data-choice="bond.friend"]').click();
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  expect(await page.locator('.scene-art-image').getAttribute('src')).toBe(source);
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'review-saves/opening-dialogue-hold.png',
+    fullPage: true,
+  });
+  await page.reload();
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+});
+
 test('unavailable image collapses safely without breaking text or decisions', async ({ page }) => {
   test.skip(before);
   await page.route('**/art/apartment/*.png', (route) => route.abort());
@@ -211,8 +233,8 @@ for (const reducedMotion of ['reduce', 'no-preference'] as const) {
     await expect(stage.locator('.scene-art-outgoing')).toHaveCount(0);
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
-    await expect(stage).toHaveCount(0);
-    await expect(page.locator('.reader')).toHaveClass('reader reader--text');
+    await expect(stage).toHaveAttribute('data-reading-shot', 'c05.s06.shot13-return');
+    await expect(stage).toHaveAttribute('data-asset-id', 'c5-h2-coffee-return-composite-v1-production');
     expect(await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY)).toBe(raw);
     await page.reload();
     await expect(stage).toHaveCount(0);

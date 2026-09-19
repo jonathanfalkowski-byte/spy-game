@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname } from 'node:path';
-const records = ['apartment', 'continuity', 'chapter5'].flatMap((group) =>
+const records = ['apartment', 'continuity', 'chapter5', 'opening'].flatMap((group) =>
   JSON.parse(readFileSync(`art/production/${group}/records.json`, 'utf8')),
 );
 const assets = records

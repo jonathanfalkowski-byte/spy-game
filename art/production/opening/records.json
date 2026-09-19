@@ -1,0 +1,46 @@
+[
+  {
+    "spec": {
+      "assetId": "opening-apartment-master-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "sceneId": "apartment.bond",
+      "environment": "Adrian's compact apartment on a rainy promotion morning: two-column window toward Axiom Tower, chair, counter, closet, and readable central living space.",
+      "cameraFraming": "16:9 eye-level master wide with clear object zones and no character.",
+      "lighting": "Blue rainy dawn with one restrained warm practical light.",
+      "timeOfDay": "06:42 rainy morning",
+      "intendedUse": "Exact opening environment authority for opening.apartment.shot01 only, before any inspection-specific visual takes over.",
+      "editSources": [
+        "apartment-opening-master-v1",
+        "apartment-post-glasshouse-executive-v1-production"
+      ],
+      "continuityRequirements": [
+        "Pre-transformation Adrian state only; no character, reflection, future wardrobe, medical material, Glass House, Chapter 5 purchase, phone, packet, or card.",
+        "Preserve the approved apartment architecture, camera, room scale, square-tile floor, window, sofa, chair, wardrobe, mirror, door, counter, rainy exterior, and restrained interior warmth.",
+        "This asset is bounded authority for the opening promotion-morning lighting, camera, rainy exterior, and exact first-screen environment. It is not authority for Adrian or Evelynn identity, later apartment states, or inspection close-ups."
+      ],
+      "dimensions": { "width": 1920, "height": 1080 },
+      "notes": "Zero-credit deterministic local derivative of the staging V1. The only changed pixels are the repaired invented-clock region; the rest of V1 remains intact."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/opening/opening-apartment-master-v2-production.png",
+    "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-18",
+      "reasons": [
+        "The invented clock is removed with a deterministic local wall repair confined to the declared circular region.",
+        "Apartment geometry, furniture, camera, floor, windows, rainy exterior, lighting, and empty first-screen composition remain intact.",
+        "At full resolution and reader scale, the image reads as a deliberate, prestige illustrated rainy-morning hold without future-state props or transformation spoilers."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Explicit instruction in the opening-art review gate authorizes promotion and exact binding when the sole clock blocker is removed without a new blocker."
+    }
+  }
+]

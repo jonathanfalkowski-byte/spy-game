@@ -78,5 +78,37 @@
     "width": 1920,
     "height": 1080,
     "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56"
+  },
+  {
+    "id": "c5-s01-daytime-apartment-anchor-v5-production",
+    "src": "art/chapter5/C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "56c603bcc5193e734413c1fab899b9ed71ff678c177aa8d35a3f987b5b14270e"
+  },
+  {
+    "id": "c5-s02-shopping-street-master-v1-production",
+    "src": "art/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png",
+    "location": "shopping-street",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "5514240b41e3c1e4b3574d3c78b00719f7497634bc582fe0f89e5aaaf32c8a96"
+  },
+  {
+    "id": "c5-people-night-apartment-master-v1-production",
+    "src": "art/chapter5/C5-PEOPLE-NIGHT-APARTMENT-MASTER-V1.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f"
+  },
+  {
+    "id": "opening-apartment-master-v2-production",
+    "src": "art/opening/opening-apartment-master-v2-production.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99"
   }
 ]
