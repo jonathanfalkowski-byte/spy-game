@@ -21,7 +21,8 @@
     "qa:narrative:prepare": "node scripts/qa-narrative.mjs prepare",
     "qa:narrative:test": "node scripts/qa-narrative.mjs test",
     "qa:narrative": "node scripts/qa-narrative.mjs narrative",
-    "qa:narrative:deep": "node scripts/qa-narrative.mjs deep"
+    "qa:narrative:deep": "node scripts/qa-narrative.mjs deep",
+    "qa:narrative:preflight": "vitest --config vitest.qa.config.ts run tests/qa/m2-preflight.qa.ts --reporter=dot"
   },
   "dependencies": {
     "react": "^19.3.0",
