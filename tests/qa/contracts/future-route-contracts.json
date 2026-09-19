@@ -1,0 +1,13 @@
+[
+  {"id":"free-agent","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["investigation","refusal","independent-evidence"],"mustNotImply":["sexual-availability","global-npc-knowledge"]},
+  {"id":"sloane-operative","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["scope-choice","refusal"],"mustNotImply":["compliance-is-consent","desire-is-compliance"]},
+  {"id":"rook-aligned","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["independent-custody"],"mustNotImply":["rook-knows-unsourced-facts"]},
+  {"id":"corporate-predator","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["strategy"],"mustNotImply":["control-is-attraction","intimacy-is-consent"]},
+  {"id":"executive-companion","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["current-authorization","refusal"],"mustNotImply":["handoff-is-automatic"]},
+  {"id":"trophy-wife","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["public-refusal","private-agency"],"mustNotImply":["public-identity-is-sexual-availability"]},
+  {"id":"kept-dependent","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["resource-exit"],"mustNotImply":["dependency-without-resource-concentration"]},
+  {"id":"celebrity","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["investigation","individual-publicity-refusal","independent-evidence"],"mustNotImply":["adrian-identity-public","universal-npc-knowledge"]},
+  {"id":"adult-entertainment-high-autonomy","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["authorized-adult-state","reversal"],"mustNotImply":["adult-state-is-publicity"]},
+  {"id":"adult-entertainment-controlled","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["recovery","refusal"],"mustNotImply":["coercion-is-mutual-willingness"]},
+  {"id":"exploitation-recovery","status":"DESIGN CONTRACT / FUTURE","mustRemainPossible":["recovery","evidence-custody"],"mustNotImply":["recovery-erases-history"]}
+]

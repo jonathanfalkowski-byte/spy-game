@@ -17,7 +17,11 @@
     "qa:story": "vitest --config vitest.qa.config.ts run tests/qa/qa-story.qa.ts --reporter=dot",
     "qa:deep": "vitest --config vitest.qa.config.ts run tests/qa/qa-deep.qa.ts --reporter=dot",
     "qa:benchmark": "vitest --config vitest.qa.config.ts run tests/qa/qa-benchmark.qa.ts --reporter=dot",
-    "qa:replay": "node scripts/qa-replay.mjs"
+    "qa:replay": "node scripts/qa-replay.mjs",
+    "qa:narrative:prepare": "node scripts/qa-narrative.mjs prepare",
+    "qa:narrative:test": "node scripts/qa-narrative.mjs test",
+    "qa:narrative": "node scripts/qa-narrative.mjs narrative",
+    "qa:narrative:deep": "node scripts/qa-narrative.mjs deep"
   },
   "dependencies": {
     "react": "^19.3.0",
