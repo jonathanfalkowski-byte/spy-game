@@ -37,6 +37,14 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     assetId: 'opening-apartment-master-v2-production',
     location: 'apartment',
   },
+  'opening.apartment.inspect-lease': {
+    assetId: 'opening-apartment-housing-notice-v1-production',
+    location: 'apartment',
+  },
+  'opening.apartment.inspect-medical': {
+    assetId: 'opening-apartment-medical-package-v1-production',
+    location: 'apartment',
+  },
   'c05.s01.shot01': {
     assetId: 'c5-s01-daytime-apartment-anchor-v5-production',
     location: 'apartment',
@@ -128,6 +136,15 @@ export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[]
       issues.push('LOCATION_MISMATCH');
     if (state.ledger.some((entry) => entry.action.type === 'INSPECT_APARTMENT'))
       issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
+  } else if (
+    shot.shotId === 'opening.apartment.inspect-lease' ||
+    shot.shotId === 'opening.apartment.inspect-medical'
+  ) {
+    const expectedId = shot.shotId.endsWith('lease') ? 'lease' : 'medical';
+    const latestAction = state.ledger[state.ledger.length - 1]?.action;
+    if (!['apartment.bond', 'apartment.reply'].includes(node)) issues.push('LOCATION_MISMATCH');
+    if (latestAction?.type !== 'INSPECT_APARTMENT' || latestAction.id !== expectedId)
+      issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
   } else if (shot.shotId.startsWith('c05.')) {
     if (
       state.choices['c5.wardrobe'] !== 'c05.professional' ||
@@ -153,9 +170,7 @@ export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[]
 function openingShot(state: GameState): SceneShot | undefined {
   const node = state.scene + '.' + state.phase;
   if (state.scene === 'apartment') {
-    const action = [...state.ledger]
-      .reverse()
-      .find((e) => e.action.type === 'INSPECT_APARTMENT')?.action;
+    const action = state.ledger[state.ledger.length - 1]?.action;
     const shotId =
       action?.type === 'INSPECT_APARTMENT'
         ? `opening.apartment.inspect-${action.id}`

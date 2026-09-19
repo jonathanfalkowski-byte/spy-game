@@ -86,11 +86,29 @@
         "The notice states subsidized housing converts to market rate after thirty days; it is not an eviction today.",
         "No invented deadline, signature, account number, or later story state."
       ],
-      "dimensions": { "width": 1920, "height": 1080 },
-      "notes": "Planning-only missing inspection insert."
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Zero-credit deterministic local composite from opening-apartment-master-v2-production. It depicts only the authored housing notice in opening apartment context; staging-only pending human promotion.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
     },
     "role": "staging",
-    "approvalStatus": "pending"
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/apartment-opening-insert-housing-notice-v1.png",
+    "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex visual review — staging candidate only",
+      "date": "2026-09-18",
+      "reasons": [
+        "The notice communicates the exact authored pressure: Axiom support converts to market rate after thirty days, without inventing eviction, an account number, or an immediate deadline.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: this is an editorial document-in-context composite rather than a fully perspective-grounded counter prop; it remains staging-only pending human review."
+      ]
+    }
   },
   {
     "spec": {
@@ -107,11 +125,29 @@
         "Axiom preventative-care framing and the unexpected extended panel are visible; no medical result is invented.",
         "No later clinic material, diagnosis, or identity interpretation."
       ],
-      "dimensions": { "width": 1920, "height": 1080 },
-      "notes": "Planning-only missing inspection insert."
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Zero-credit deterministic local composite from opening-apartment-master-v2-production. It depicts only the authored preventative-care screening package in opening apartment context; staging-only pending human promotion.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
     },
     "role": "staging",
-    "approvalStatus": "pending"
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/apartment-opening-insert-medical-package-v1.png",
+    "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex visual review — staging candidate only",
+      "date": "2026-09-18",
+      "reasons": [
+        "The package identifies annual endocrine screening and the unexpected extended panel without inventing a clinical result, diagnosis, later clinic material, or Evelynn-era object.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: the package is an editorial object-in-context composite rather than a fully perspective-grounded physical package; it remains staging-only pending human review."
+      ]
+    }
   },
   {
     "spec": {
@@ -128,11 +164,29 @@
         "Adrian's pre-transformation jacket only; no later outfit, badge, token, Glass House case, or altered ownership state.",
         "The image does not infer feelings, presentation, or a future wardrobe choice."
       ],
-      "dimensions": { "width": 1920, "height": 1080 },
-      "notes": "Planning-only missing inspection insert."
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Zero-credit deterministic local composite from opening-apartment-master-v2-production. It preserves Adrian-only, pre-commute jacket custody but requires a more natural closet integration before any promotion.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
     },
     "role": "staging",
-    "approvalStatus": "pending"
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/apartment-opening-insert-jacket-v1.png",
+    "sha256": "2790d45852c3bffd1c2572094b53973d725b4f389ce308f2aa013e96c50c747f",
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review — staging candidate only",
+      "date": "2026-09-18",
+      "reasons": [
+        "The insert preserves the correct Adrian-only pre-transformation jacket state and does not imply a presentation choice or future ownership state.",
+        "The garment treatment reads as schematic and the closet integration is not sufficiently physical for a production inspection cut.",
+        "No retry was performed; this remains staging-only."
+      ]
+    }
   },
   {
     "spec": {
@@ -141,16 +195,23 @@
       "styleBibleVersion": "1.0",
       "sceneId": "apartment.bond",
       "locationId": "apartment",
-      "pose": "Mirror and bathroom context for Adrian's authored opening inspection; no transformation or changed reflection.",
-      "cameraFraming": "16:9 object-led medium insert with readable mirror context.",
-      "lighting": "Cool rainy-morning spill with restrained bathroom practical.",
+      "pose": "Mirror and bathroom context for Adrian’s authored 06:42 opening inspection; emotionally neutral, pre-transformation Adrian only if a reflection is visible.",
+      "cameraFraming": "16:9 object-led medium insert: mirror, bathroom threshold, and a truthful non-dramatic Adrian reflection only after canonical authority exists.",
+      "lighting": "Cool rainy-morning spill with restrained bathroom practical; no heightened or transformation-coded lighting.",
       "intendedUse": "P0 cut only after INSPECT_APARTMENT mirror.",
       "continuityRequirements": [
-        "Reflect only the actual pre-transformation Adrian state if a reflection is visible.",
-        "Do not reuse for clinic or Chapter 3 mirror beats."
+        "Reflect only actual pre-transformation Adrian at 06:42: adult, ordinary opening-morning clothing, neutral posture and expression.",
+        "Require human-approved canonical Adrian face/three-quarter identity reference, full-body/proportion reference, and opening-morning wardrobe reference before any artwork.",
+        "Do not reuse for clinic or Chapter 3 mirror beats; do not infer an identity choice, changed reflection, or later state."
       ],
-      "dimensions": { "width": 1920, "height": 1080 },
-      "notes": "Planning-only missing mirror inspection asset."
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "BLOCKED ON CANONICAL ADRIAN VISUAL. The existing Adrian portrait and scenes are provisional staging references only; prompt-only invention is forbidden. Requires an owner-approved face/identity reference plus body/proportion and ordinary opening wardrobe authority.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
     },
     "role": "staging",
     "approvalStatus": "pending"

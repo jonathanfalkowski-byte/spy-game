@@ -170,6 +170,64 @@ test('opening apartment master holds through unchanged dialogue and survives rel
   await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
 });
 
+test('opening evidence inspections cut only on their exact action and survive reload', async ({ page }) => {
+  const reply = act(initialState(), { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
+  const load = async (state: ReturnType<typeof initialState>, width: number) => {
+    await page.setViewportSize({ width, height: 950 });
+    await page.goto('/');
+    await page.evaluate(
+      ({ key, raw }) => localStorage.setItem(key, raw),
+      { key: SAVE_KEY, raw: encodeSave(state) },
+    );
+    await page.reload();
+  };
+  const stage = page.locator('.scene-art-stage');
+
+  await load(reply, 1440);
+  await page.getByRole('button', { name: /Axiom housing notice/i }).click();
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.inspect-lease');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v1-production');
+  await expect(page.locator('.scene-art-image')).toHaveAttribute(
+    'src',
+    /art\/opening\/opening-apartment-housing-notice-v1-production\.png$/,
+  );
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'review-saves/opening-housing-desktop.png',
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 375, height: 950 });
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'review-saves/opening-housing-mobile.png',
+    fullPage: true,
+  });
+  await page.reload();
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v1-production');
+
+  await load(reply, 1440);
+  await page.getByRole('button', { name: /Medical package/i }).click();
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.inspect-medical');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v1-production');
+  await expect(page.locator('.scene-art-image')).toHaveAttribute(
+    'src',
+    /art\/opening\/opening-apartment-medical-package-v1-production\.png$/,
+  );
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'review-saves/opening-medical-desktop.png',
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 375, height: 950 });
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'review-saves/opening-medical-mobile.png',
+    fullPage: true,
+  });
+  await page.reload();
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v1-production');
+});
+
 test('unavailable image collapses safely without breaking text or decisions', async ({ page }) => {
   test.skip(before);
   await page.route('**/art/apartment/*.png', (route) => route.abort());

@@ -20,7 +20,10 @@
         "Preserve the approved apartment architecture, camera, room scale, square-tile floor, window, sofa, chair, wardrobe, mirror, door, counter, rainy exterior, and restrained interior warmth.",
         "This asset is bounded authority for the opening promotion-morning lighting, camera, rainy exterior, and exact first-screen environment. It is not authority for Adrian or Evelynn identity, later apartment states, or inspection close-ups."
       ],
-      "dimensions": { "width": 1920, "height": 1080 },
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
       "notes": "Zero-credit deterministic local derivative of the staging V1. The only changed pixels are the repaired invented-clock region; the rest of V1 remains intact."
     },
     "role": "production",
@@ -41,6 +44,96 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Explicit instruction in the opening-art review gate authorizes promotion and exact binding when the sole clock blocker is removed without a new blocker."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "opening-apartment-housing-notice-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored Axiom housing notice on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "ONLY opening.apartment.inspect-lease, immediately after INSPECT_APARTMENT lease; no generic apartment fallback, later housing/medical consequence, character authority, diagnosis, or future state.",
+      "continuityRequirements": [
+        "The notice states subsidized housing converts to market rate after thirty days; it is not an eviction today.",
+        "No invented deadline, signature, account number, or later story state."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Owner-approved promotion from apartment-opening-insert-housing-notice-v1; bounded production authority for opening.apartment.inspect-lease only. Retains the staging LOW/POLISH editorial object-in-context note.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/opening/opening-apartment-housing-notice-v1-production.png",
+    "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution/desktop/mobile review; Project owner approval",
+      "date": "2026-09-18",
+      "reasons": [
+        "The notice communicates the exact authored pressure: Axiom support converts to market rate after thirty days, without inventing eviction, an account number, or an immediate deadline.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: this is an editorial document-in-context composite rather than a fully perspective-grounded counter prop; bounded production approval retains this LOW/POLISH note.",
+        "Explicit owner approval applies only to the exact inspection shot and does not establish character, outcome, or broader apartment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Owner design decision: APPROVE for production, subject to exact runtime-state verification, apartment-opening-insert-housing-notice-v1; bind ONLY to opening.apartment.inspect-lease. Do not approve jacket V1 or the mirror."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "opening-apartment-medical-package-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored annual endocrine screening package on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "ONLY opening.apartment.inspect-medical, immediately after INSPECT_APARTMENT medical; no generic apartment fallback, later housing/medical consequence, character authority, diagnosis, or future state.",
+      "continuityRequirements": [
+        "Axiom preventative-care framing and the unexpected extended panel are visible; no medical result is invented.",
+        "No later clinic material, diagnosis, or identity interpretation."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Owner-approved promotion from apartment-opening-insert-medical-package-v1; bounded production authority for opening.apartment.inspect-medical only. Retains the staging LOW/POLISH editorial object-in-context note.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "file": "art/production/opening/opening-apartment-medical-package-v1-production.png",
+    "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution/desktop/mobile review; Project owner approval",
+      "date": "2026-09-18",
+      "reasons": [
+        "The package identifies annual endocrine screening and the unexpected extended panel without inventing a clinical result, diagnosis, later clinic material, or Evelynn-era object.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: the package is an editorial object-in-context composite rather than a fully perspective-grounded physical package; bounded production approval retains this LOW/POLISH note.",
+        "Explicit owner approval applies only to the exact inspection shot and does not establish character, outcome, or broader apartment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Owner design decision: APPROVE for production, subject to exact runtime-state verification, apartment-opening-insert-medical-package-v1; bind ONLY to opening.apartment.inspect-medical. Do not approve jacket V1 or the mirror."
     }
   }
 ]

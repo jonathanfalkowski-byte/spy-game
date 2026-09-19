@@ -86,7 +86,7 @@ it('opening dialogue holds the approved master; inspection switches to truthful 
   expect(resolveSceneArt(inspected).art).toBeUndefined();
 });
 
-it('binds only the approved opening apartment hold; other opening compositions remain unbound', () => {
+it('binds each approved opening inspection only to its immediately reached apartment action', () => {
   const opening = initialState();
   const reply = choice(opening, 'bond.friend');
   const lease = act(reply, { type: 'INSPECT_APARTMENT', id: 'lease' });
@@ -141,12 +141,31 @@ it('binds only the approved opening apartment hold; other opening compositions r
     'opening.maya.shot02-departure',
     'opening.office.shot04-alone',
   ]);
-  expect(openingShots[0].art?.asset.id).toBe('opening-apartment-master-v2-production');
-  expect(openingShots[0].issues).toEqual([]);
-  for (const visual of openingShots.slice(1)) {
+  expect(openingShots.slice(0, 3).map((visual) => visual.art?.asset.id)).toEqual([
+    'opening-apartment-master-v2-production',
+    'opening-apartment-housing-notice-v1-production',
+    'opening-apartment-medical-package-v1-production',
+  ]);
+  for (const visual of openingShots.slice(0, 3)) expect(visual.issues).toEqual([]);
+  for (const visual of openingShots.slice(3)) {
     expect(visual.art).toBeUndefined();
     expect(visual.issues).toEqual(['SHOT_WITHOUT_APPROVED_ASSET']);
   }
+});
+
+it('returns to the unbound opening state after an inspection is no longer the latest action', () => {
+  const reply = choice(initialState(), 'bond.friend');
+  const inspected = act(reply, { type: 'INSPECT_APARTMENT', id: 'lease' });
+  expect(resolveSceneArt(inspected).art?.asset.id).toBe(
+    'opening-apartment-housing-notice-v1-production',
+  );
+  const departure = choice(inspected, 'morning.yes');
+  expect(resolveSceneArt(departure).shot?.shotId).toBe('opening.apartment.shot01');
+  expect(resolveSceneArt(departure).art).toBeUndefined();
+  expect(resolveSceneArt(departure).issues).toEqual([
+    'PROP_CUSTODY_MISMATCH',
+    'FUTURE_STATE_VISUAL',
+  ]);
 });
 
 it('Lantern holds for dialogue only on the meeting route, then cuts for authored touch/exit', () => {

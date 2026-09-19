@@ -110,5 +110,21 @@
     "width": 1920,
     "height": 1080,
     "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99"
+  },
+  {
+    "id": "opening-apartment-housing-notice-v1-production",
+    "src": "art/opening/opening-apartment-housing-notice-v1-production.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7"
+  },
+  {
+    "id": "opening-apartment-medical-package-v1-production",
+    "src": "art/opening/opening-apartment-medical-package-v1-production.png",
+    "location": "apartment",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f"
   }
 ]

@@ -1,17 +1,17 @@
 # Opening Visual Production Plan
 
-**Status:** `opening.apartment.shot01` is approved, promoted, and exact-bound. The remaining opening families are planning/staging-spec only.
+**Status:** `opening.apartment.shot01`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` are approved, promoted, and exact-bound. Jacket and mirror remain staging/blocker work; all later opening families remain planning/staging-spec only.
 
 ## Current truth
 
-The opening path emits authored shot IDs, but none currently map to approved production art. `resolveSceneArt` correctly returns the textual fallback with `SHOT_WITHOUT_APPROVED_ASSET` from the first apartment screen through the early office, Helix, Maya, and ending beats. The approved apartment images are Chapter 3 Evelynn states; they cannot cover Adrian’s promotion morning. The approved Lantern image covers a later meeting route only.
+`opening.apartment.shot01`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` map to exact approved production art. Jacket, mirror, office, Helix, Maya, and aftermath beats correctly retain the textual fallback with `SHOT_WITHOUT_APPROVED_ASSET` until an exact approved asset exists. The Chapter 3 Evelynn apartment images and the later Lantern image remain incompatible with the opening states.
 
 ## Composition-family audit
 
 | Family | Shot IDs | Current coverage | Runtime state | Production decision |
 |---|---|---|---|---|
-| Apartment opening hold | `opening.apartment.shot01` | Missing; historical day apartment is staging-only and incomplete for this state. | Text fallback. | P0 new apartment master. |
-| Apartment inspections | `opening.apartment.inspect-mirror`, `-lease`, `-medical`, `-jacket` | Missing. | Text fallback after exact inspection action. | P0 four object/mirror inserts; no generic cut. |
+| Apartment opening hold | `opening.apartment.shot01` | `opening-apartment-master-v2-production` is approved and exact-bound. | Production art. | Complete for this exact hold only. |
+| Apartment inspections | `opening.apartment.inspect-mirror`, `-lease`, `-medical`, `-jacket` | Lease and medical are exact-bound production inserts. Jacket is REVISE; mirror is blocked on Adrian. | Production art only at the latest exact lease/medical inspection action; otherwise text fallback. | Housing and medical complete; jacket nonblocking; mirror blocked. |
 | Axiom arrival / desk | `opening.axiom.shot04-desk` | Missing. | Text fallback. | P1 Axiom office master may cover only after exact arrival review. |
 | Daniel / Benton entries | `opening.office.shot01-daniel`, `opening.office.shot02-benton` | Missing. | Text fallback. | P1 derive character layers from the office master. |
 | Helix investigation | `opening.office.shot03-file`, `opening.helix.shot01-brief`, `-shot02-documents`, `-shot03-review`, `-shot04-submitted` | Missing. | Text fallback. | P1 dossier/table family with exact state variants only where needed. |
@@ -67,3 +67,30 @@ Create one opening-era Axiom office environment master only after the apartment 
 ### Opening completion gate
 
 Opening coverage can be called complete only when all required composition families have a human-approved production asset and exact runtime binding: apartment base hold; four inspection inserts; Axiom office master; Daniel and Benton entrance states; Helix dossier states; Maya arrival/departure states; and the office-alone aftermath. For each binding, verify the actual trigger, branch/state, wardrobe, prop custody, full-resolution appearance, desktop-reader appearance, mobile-reader appearance, and fallback behavior for any unbound shot.
+
+
+### Zero-credit inspection-insert review — 2026-09-18
+
+The deterministic local `apartment-opening-insert-housing-notice-v1` and `apartment-opening-insert-medical-package-v1` candidates passed review and are now promoted as exact, bounded production assets. Each retains a **LOW/POLISH** note because its readable object treatment is editorial rather than fully perspective-grounded. The notice says the subsidy converts to market rate after thirty days; the medical package shows annual endocrine screening and an unexpected extended panel without a diagnosis or result.
+
+`apartment-opening-insert-jacket-v1` is **REVISE**. A zero-credit source review found no usable isolated garment/closet source: the morning scene contains a character-and-room composition rather than an extractable closet garment, and V1 remains schematic. No V2 was created and no retry was made. `apartment-opening-insert-mirror-v1` is **BLOCKED ON CANONICAL ADRIAN VISUAL**: it requires human-approved face identity, body/proportion, and ordinary opening-morning wardrobe references.
+
+
+### Opening authority and coverage update — 2026-09-18
+
+| Opening core | Status |
+|---|---|
+| First screen | **COMPLETE** — `opening.apartment.shot01` only |
+| Housing | **COMPLETE** — `opening.apartment.inspect-lease` only |
+| Medical | **COMPLETE** — `opening.apartment.inspect-medical` only |
+| Jacket | **REVISE / NONBLOCKING** |
+| Mirror | **BLOCKED — ADRIAN** |
+| Axiom office | **MISSING** |
+| Daniel | **MISSING** |
+| Benton | **MISSING** |
+| Helix case | **MISSING** |
+| Maya | **MISSING** — the later Lantern image does not cover opening Maya scenes |
+
+Housing and medical bind only while their respective `INSPECT_APARTMENT` action is the latest action in the opening apartment. A following meaningful action returns to the appropriate unbound text state; there is no broad apartment fallback and no cut on ordinary dialogue.
+
+`docs/art/ADRIAN_REFERENCE_AUTHORITY.md` now separates Adrian identity, body, opening wardrobe, environment and shot-composite authority. Once those three character authorities are human-approved, a single derived Adrian reference should support commute/arrival, Daniel, Benton, Helix, Maya and aftermath compositions rather than creating unrelated Adrians per scene.
