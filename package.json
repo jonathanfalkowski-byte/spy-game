@@ -11,7 +11,13 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:browser": "playwright test",
-    "check:references": "node scripts/check-references.mjs"
+    "check:references": "node scripts/check-references.mjs",
+    "qa:self": "vitest --config vitest.qa.config.ts run tests/qa/qa-m1.test.ts --reporter=dot",
+    "qa:fast": "vitest --config vitest.qa.config.ts run tests/qa/qa-fast.qa.ts --reporter=dot",
+    "qa:story": "vitest --config vitest.qa.config.ts run tests/qa/qa-story.qa.ts --reporter=dot",
+    "qa:deep": "vitest --config vitest.qa.config.ts run tests/qa/qa-deep.qa.ts --reporter=dot",
+    "qa:benchmark": "vitest --config vitest.qa.config.ts run tests/qa/qa-benchmark.qa.ts --reporter=dot",
+    "qa:replay": "node scripts/qa-replay.mjs"
   },
   "dependencies": {
     "react": "^19.3.0",

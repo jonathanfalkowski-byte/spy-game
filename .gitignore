@@ -4,6 +4,7 @@ test-results/
 playwright-report/
 *.local
 coverage/
+qa/reports/
 .env
 .env.*
 review-saves/*.png
