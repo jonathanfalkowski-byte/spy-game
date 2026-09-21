@@ -3,6 +3,7 @@ import { decodeSave, MAX_SAVE_BYTES } from '../persistence/saves';
 import type { GameState } from '../state/schema';
 import { sceneById } from '../content/scenes';
 import { milestoneOf, milestoneNames } from './journal-entries';
+import { displayName } from './reading-presentation';
 export function RestoreBackup({
   backup,
   restore,
@@ -52,8 +53,8 @@ export function RestoreBackup({
       {candidate && (
         <section aria-label="Validated backup">
           <h3>{milestoneNames[milestoneOf(candidate)]}</h3>
-          <p>{sceneById[candidate.scene + '.' + candidate.phase].title}</p>
-          <p>{sceneById[candidate.scene + '.' + candidate.phase].place}</p>
+          <p>{displayName(sceneById[candidate.scene + '.' + candidate.phase].title)}</p>
+          <p>{displayName(sceneById[candidate.scene + '.' + candidate.phase].place)}</p>
           <p>
             {candidate.revision} committed actions. Restoring replaces the run stored in this
             browser.

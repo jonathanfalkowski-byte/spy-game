@@ -3,6 +3,7 @@ import type { Intent } from '../state/actions';
 import type { GameState } from '../state/schema';
 import { chapter5Choices } from '../content/chapter5';
 import { asterConcepts, concept5, proposal5, rights5 } from '../content/chapter5-public';
+import { displayName } from './reading-presentation';
 export function Chapter5work(props: { state: GameState; send: (a: Intent) => void }) {
   return <Chapter5Decisions key={props.state.scene + '.' + props.state.phase} {...props} />;
 }
@@ -40,7 +41,7 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
             </label>
           )}
           <p data-current-terms aria-live="polite">
-            {rights5(proposal ? proposal5(state, concept) : state)}
+            {displayName(rights5(proposal ? proposal5(state, concept) : state))}
           </p>
           {proposal && (
             <small>
@@ -59,8 +60,8 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
             onClick={() => send({ type: 'CHAPTER5_CHOOSE', id: c.id })}
           >
             <span className="choice-copy">
-              {c.label}
-              <small>{c.hint}</small>
+              {displayName(c.label)}
+              <small>{displayName(c.hint)}</small>
             </span>
             <span aria-hidden="true">→</span>
           </button>

@@ -503,7 +503,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 tabIndex={0}
               >
                 <div className="story-content">
-                  <span className="eyebrow">{currentPlace(state, sceneById[node].place)}</span>
+                  <span className="eyebrow">
+                    {displayName(currentPlace(state, sceneById[node].place))}
+                  </span>
                   <h1 ref={heading} tabIndex={-1}>
                     {displayName(sceneById[node].title)}
                   </h1>
@@ -545,8 +547,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                             'warning',
                             'dayend',
                           ].includes(state.scene)
-                            ? state.feedback.replace(/^Recorded: /, '')
-                            : state.feedback}
+                            ? displayName(state.feedback.replace(/^Recorded: /, ''))
+                            : displayName(state.feedback)}
                         </p>
                       </div>
                     )}
@@ -602,12 +604,12 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                               disabled={state.inspected.includes(i.id)}
                               onClick={() => send({ type: 'INSPECT_APARTMENT', id: i.id })}
                             >
-                              {i.title}
+                              {displayName(i.title)}
                               <small>
                                 {state.inspected.includes(i.id) ? 'Observed' : 'Inspect'}
                               </small>
                             </button>
-                            {state.inspected.includes(i.id) && <p>{i.text}</p>}
+                            {state.inspected.includes(i.id) && <p>{displayName(i.text)}</p>}
                           </div>
                         ))}
                       </div>
@@ -755,7 +757,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         disabled={!canContinue(state)}
                         onClick={() => send({ type: 'CONTINUE' })}
                       >
-                        {sceneById[node].continueLabel} <span aria-hidden="true">→</span>
+                        {displayName(sceneById[node].continueLabel ?? '')}{' '}
+                        <span aria-hidden="true">→</span>
                       </button>
                     </div>
                   )}
@@ -763,8 +766,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     <section className="ending-summary">
                       <span className="tag">Decisions retained</span>
                       <h2>What remains</h2>
-                      <p>{state.report?.text}</p>
-                      <p>{state.report?.feedback}</p>
+                      <p>{state.report?.text && displayName(state.report.text)}</p>
+                      <p>{state.report?.feedback && displayName(state.report.feedback)}</p>
                       <p>
                         {choiceById[state.choices.invitation]?.value === 'yes'
                           ? 'You promised Maya eight o’clock.'
@@ -914,7 +917,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           <div className="history">
             {conversationHistory(state).map((h, i) => (
               <section key={i}>
-                <h3>{sceneById[h.node].place}</h3>
+                <h3>{displayName(sceneById[h.node].place)}</h3>
                 <Narrative blocks={h.blocks} node={h.node} />
               </section>
             ))}

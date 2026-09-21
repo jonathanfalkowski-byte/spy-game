@@ -10,9 +10,28 @@ const p = (text: string): Block => ({ kind: 'narrative', text });
 const q = (speaker: string, text: string): Block => ({ kind: 'speech', speaker, text });
 const t = (text: string): Block => ({ kind: 'thought', text });
 
-export function displayName(text: string): string {
-  return text.replace(/\bEvelyn\b/g, 'Evelynn').replace(/\bEVELYN\b/g, 'EVELYNN');
+/**
+ * Normalize the legacy operational identity spelling at the presentation
+ * boundary only. The input is authored/state text and must remain untouched;
+ * callers use the returned value only for player-facing UI.
+ *
+ * Keep the replacements ordered from the most specific forms to the
+ * standalone name so that archival phrases such as `Evelyn Vale` and both
+ * apostrophe styles retain their punctuation and case. Stable IDs such as
+ * `evelyn` are intentionally not matched.
+ */
+export function renderCanonicalIdentityText(rawText: string): string {
+  return rawText
+    .replace(/\bEVELYN\s+VALE\b/g, 'EVELYNN VALE')
+    .replace(/\bEvelyn\s+Vale\b/g, 'Evelynn Vale')
+    .replace(/\bEVELYN([’'])S\b/g, 'EVELYNN$1S')
+    .replace(/\bEvelyn([’'])s\b/g, 'Evelynn$1s')
+    .replace(/\bEVELYN\b/g, 'EVELYNN')
+    .replace(/\bEvelyn\b/g, 'Evelynn');
 }
+
+/** Backwards-compatible name for existing player-facing presentation callers. */
+export const displayName = renderCanonicalIdentityText;
 
 export function readingBlocks(blocks: Block[], node?: string): Block[] {
   return blocks.flatMap((b): Block[] => {

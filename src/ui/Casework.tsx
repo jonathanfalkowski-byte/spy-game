@@ -4,6 +4,7 @@ import { assess, nodeOf } from '../state/reducer';
 import type { GameState } from '../state/schema';
 import type { Intent } from '../state/actions';
 import type { Relation } from '../content/schema';
+import { displayName } from './reading-presentation';
 export function Casework({
   state,
   send,
@@ -26,8 +27,8 @@ export function Casework({
       <section className="report">
         <span className="tag">Report delivered · {state.report.quality}</span>
         <h2>Your submitted assessment</h2>
-        <p>{state.report.text}</p>
-        <p>{state.report.feedback}</p>
+        <p>{displayName(state.report.text)}</p>
+        <p>{displayName(state.report.feedback)}</p>
         {state.report.quality === 'unresolved' && (
           <blockquote>
             <span className="eyebrow">Benton · terminal message</span>
@@ -46,7 +47,9 @@ export function Casework({
       <section className="report">
         <span className="tag">Draft · not yet submitted</span>
         <h2>Your exact conclusion</h2>
-        <p className="report-text">{assessments.find((a) => a.id === state.draft)!.text}</p>
+        <p className="report-text">
+          {displayName(assessments.find((a) => a.id === state.draft)!.text)}
+        </p>
         <div className="notice">
           <strong>
             {result.quality === 'supported'
@@ -57,17 +60,19 @@ export function Casework({
                   ? 'Unsupported accusation'
                   : 'Unresolved work'}
           </strong>
-          <p>{result.feedback}</p>
+          <p>{displayName(result.feedback)}</p>
         </div>
         <p>
-          Attachments:{' '}
-          {state.documents.map((id) => documents.find((d) => d.id === id)!.title).join(', ')}.
+          Reviewed records included:{' '}
+          {displayName(
+            state.documents.map((id) => documents.find((d) => d.id === id)!.title).join(', '),
+          )}.
         </p>
         <p>
-          {state.inferences.length} tested connections.{' '}
+          {state.inferences.length} recorded connection{state.inferences.length === 1 ? '' : 's'} included with submission.{' '}
           {state.investigation
-            ? `Follow-up: ${searches.find((s) => s.id === state.investigation)!.title}.`
-            : 'No follow-up attached.'}
+            ? `Follow-up: ${displayName(searches.find((s) => s.id === state.investigation)!.title)}.`
+            : 'No follow-up recorded.'}
         </p>
         <p>
           Cost: closes the case and ends {state.opportunities} remaining investigation{' '}
@@ -124,18 +129,18 @@ export function Casework({
                 </span>
                 <span className="tag">{state.documents.includes(d.id) ? 'Read' : 'Unread'}</span>
               </div>
-              <h3>{d.title}</h3>
-              <p className="muted">{d.source}</p>
+              <h3>{displayName(d.title)}</h3>
+              <p className="muted">{displayName(d.source)}</p>
               {state.documents.includes(d.id) ? (
                 <details open={node === 'helix.documents' ? true : undefined}>
-                  <summary>Review {d.title}</summary>
-                  <p>{d.body}</p>
-                  <p className="source">{d.reliability}</p>
-                  <p className="muted">{d.limits}</p>
+                  <summary>Review {displayName(d.title)}</summary>
+                  <p>{displayName(d.body)}</p>
+                  <p className="source">{displayName(d.reliability)}</p>
+                  <p className="muted">{displayName(d.limits)}</p>
                 </details>
               ) : (
                 <button onClick={() => send({ type: 'READ_DOCUMENT', id: d.id })}>
-                  Read {d.title}
+                  Read {displayName(d.title)}
                 </button>
               )}
             </article>
@@ -163,9 +168,9 @@ export function Casework({
                     disabled={!state.selected.includes(d.id) && state.selected.length === 2}
                     onClick={() => send({ type: 'TOGGLE_EVIDENCE', id: d.id })}
                   >
-                    <span>{d.summary}</span>
+                    <span>{displayName(d.summary)}</span>
                     <small>
-                      {d.layer === 'claim' ? 'Attributed claim' : 'Recorded fact'} · {d.source}
+                      {d.layer === 'claim' ? 'Attributed claim' : 'Recorded fact'} · {displayName(d.source)}
                       {state.selected.includes(d.id) ? ' · Selected' : ''}
                     </small>
                   </button>
@@ -189,7 +194,7 @@ export function Casework({
                           {relationLabels[relation]}
                           {previous ? ' · Recorded' : ''}
                         </button>
-                        {previous && <p className="notice">{previous.text}</p>}
+                        {previous && <p className="notice">{displayName(previous.text)}</p>}
                       </div>
                     );
                   })}
@@ -225,11 +230,11 @@ export function Casework({
             {state.investigation ? (
               <article className="search-result" ref={resultRef} tabIndex={-1}>
                 <span className="tag">Investigation completed · 0 remain</span>
-                <h3>{searches.find((s) => s.id === state.investigation)!.title}</h3>
-                <p>{searches.find((s) => s.id === state.investigation)!.action}</p>
-                <p>{searches.find((s) => s.id === state.investigation)!.result}</p>
+                <h3>{displayName(searches.find((s) => s.id === state.investigation)!.title)}</h3>
+                <p>{displayName(searches.find((s) => s.id === state.investigation)!.action)}</p>
+                <p>{displayName(searches.find((s) => s.id === state.investigation)!.result)}</p>
                 <p className="muted">
-                  {searches.find((s) => s.id === state.investigation)!.limits}
+                  {displayName(searches.find((s) => s.id === state.investigation)!.limits)}
                 </p>
                 <p>
                   This follow-up consumed the one investigation opportunity available before the
@@ -243,8 +248,8 @@ export function Casework({
                     key={s.id}
                     onClick={() => send({ type: 'SPEND_INVESTIGATION', id: s.id })}
                   >
-                    <span>{s.title}</span>
-                    <small>{s.action} Cost: 1 opportunity. Leaves 0.</small>
+                    <span>{displayName(s.title)}</span>
+                    <small>{displayName(s.action)} Cost: 1 opportunity. Leaves 0.</small>
                   </button>
                 ))}
               </div>

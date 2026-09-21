@@ -32,7 +32,7 @@ export function MissionSummary({ state }: { state: GameState }) {
     <>
       <h3>Your assessment</h3>
       <p>
-        {sourceNames[m.source]}. {reasoningText(state)}
+        {displayName(sourceNames[m.source])}. {displayName(reasoningText(state))}
       </p>
       <div className="assessment-detail">
         {m.capture && (
