@@ -4,7 +4,7 @@ The official provider is identified as `openai` and uses the OpenAI Responses AP
 
 `https://api.openai.com/v1/responses`
 
-The current allowlisted narrative-review model is `gpt-5.6-sol`. Official requests use the model default plus `reasoning.effort = medium` and a 1,200-token output ceiling. The generic `openai-compatible` provider remains separate and continues to use its Chat Completions contract.
+The current allowlisted narrative-review model is `gpt-5.6-sol`. Official requests use the model default plus `reasoning.effort = medium` and a 3,000-token output ceiling for the authorized real-review path. The generic `openai-compatible` provider remains separate and continues to use its Chat Completions contract with the 1,200-token ceiling.
 
 Configuration is process-only:
 

@@ -121,7 +121,10 @@ function awaitableFixture(kind: 'continuity-contradiction' | 'unsourced-knowledg
     entries: [
       {
         step: 0,
+        kind: 'initial' as const,
+        nextNode: 'chapter5.presentation',
         node: 'chapter5.presentation',
+        emittedHistory: [{ node: 'chapter5.presentation', blocks }],
         blocks,
         evidence: [],
         knowledge: [],

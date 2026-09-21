@@ -28,6 +28,25 @@ export type QaAction = {
   intent: Intent;
 };
 
+/** Machine-readable semantics for one executed transition in a QA transcript. */
+export type QaTranscriptAction = {
+  id: string;
+  type: Intent['type'];
+  source: string;
+  intent: Intent;
+  previousNode: string;
+  nextNode: string;
+  choiceId?: string;
+  choiceLabel?: string;
+  choiceSpeaker?: string;
+  choiceMode?: string;
+};
+
+export type QaTranscriptHistoryEntry = {
+  node: string;
+  blocks: GameState['history'][number]['blocks'];
+};
+
 export type QaInvariantResult = {
   id: string;
   status: QaStatus;
@@ -80,9 +99,14 @@ export type QaSimulation = {
 
 export type QaTranscriptEntry = {
   step: number;
+  kind: 'initial' | 'transition';
+  previousNode?: string;
+  nextNode: string;
   node: string;
+  action?: QaTranscriptAction;
+  emittedHistory: QaTranscriptHistoryEntry[];
+  /** Flattened emitted blocks retained for consumers that only need prose. */
   blocks: GameState['history'][number]['blocks'];
-  action?: string;
   evidence: string[];
   knowledge: string[];
   custody: GameState['mission']['capture'];
@@ -93,6 +117,19 @@ export type QaTranscriptEntry = {
     missionRemaining: number;
     relationships: GameState['relationships'];
   };
+  /** Additional deterministic state needed to rehydrate a lossless M2 context. */
+  facts?: string[];
+  claims?: string[];
+  inferences?: GameState['inferences'];
+  proof?: GameState['proof'];
+  selected?: string[];
+  draft?: GameState['draft'];
+  report?: GameState['report'];
+  feedback?: string;
+  inspected?: string[];
+  investigation?: GameState['investigation'];
+  hintUsed?: boolean;
+  choices?: GameState['choices'];
 };
 
 export type QaTranscript = {
@@ -357,16 +394,77 @@ function pickAction(actions: QaAction[], rng: Lcg, policy: QaChooserPolicy, seen
   return pool[rng.next() % pool.length];
 }
 
-function transcriptFor(states: GameState[], seed: number | undefined, trace: string[]): QaTranscript {
-  const state = states.at(-1)!;
+function transcriptAction(action: QaAction, previous: GameState, next: GameState, emittedHistory: QaTranscriptHistoryEntry[]): QaTranscriptAction {
+  const choiceBlock = action.type.includes('CHOOSE')
+    ? emittedHistory
+      .flatMap((entry) => entry.blocks)
+      .find((block) => block.kind === 'thought' || block.speaker === 'Adrian' || block.speaker?.startsWith('You')) as { kind?: string; speaker?: string; text?: string } | undefined
+    : undefined;
+  const choiceId = 'id' in action.intent && typeof action.intent.id === 'string' ? action.intent.id : undefined;
   return {
-    seed,
-    contentRevision: state.contentRevision ?? 13,
-    entries: states.map((snapshot, index) => ({
+    id: action.id,
+    type: action.type,
+    source: action.source,
+    intent: action.intent,
+    previousNode: nodeOf(previous),
+    nextNode: nodeOf(next),
+    ...(choiceId ? { choiceId } : {}),
+    ...(choiceBlock?.text ? { choiceLabel: choiceBlock.text } : {}),
+    ...(choiceBlock?.speaker ? { choiceSpeaker: choiceBlock.speaker } : {}),
+    ...(choiceBlock?.kind ? { choiceMode: choiceBlock.kind } : {}),
+  };
+}
+
+export function transcriptFromSnapshots(states: GameState[], actions: QaAction[], seed: number | undefined, trace: string[]): QaTranscript {
+  const state = states.at(-1)!;
+  if (states.length !== actions.length + 1) throw new Error('QA transcript requires one action per state transition.');
+  const entries: QaTranscriptEntry[] = [];
+  const initial = states[0];
+  const initialHistory = initial.history.map(({ node, blocks }) => ({ node, blocks }));
+  entries.push({
+    step: 0,
+    kind: 'initial',
+    nextNode: nodeOf(initial),
+    node: nodeOf(initial),
+    emittedHistory: initialHistory,
+    blocks: initialHistory.flatMap((entry) => entry.blocks),
+    evidence: [...initial.documents],
+    knowledge: [...initial.knowledge],
+    custody: initial.mission.capture,
+    npcKnowledge: initial.npcs,
+    resources: {
+      opportunities: initial.opportunities,
+      clinicOpportunity: initial.clinic.opportunity,
+      missionRemaining: initial.mission.remaining,
+      relationships: initial.relationships,
+    },
+    facts: [...initial.facts],
+    claims: [...initial.claims],
+    inferences: initial.inferences,
+    proof: initial.proof,
+    selected: [...initial.selected],
+    draft: initial.draft,
+    report: initial.report,
+    feedback: initial.feedback,
+    inspected: [...initial.inspected],
+    investigation: initial.investigation,
+    hintUsed: initial.hintUsed,
+    choices: initial.choices,
+  });
+  for (let index = 1; index < states.length; index++) {
+    const previous = states[index - 1];
+    const snapshot = states[index];
+    if (snapshot.history.length < previous.history.length) throw new Error('QA transcript history regressed during a transition.');
+    const emittedHistory = snapshot.history.slice(previous.history.length).map(({ node, blocks }) => ({ node, blocks }));
+    entries.push({
       step: index,
+      kind: 'transition',
+      previousNode: nodeOf(previous),
+      nextNode: nodeOf(snapshot),
       node: nodeOf(snapshot),
-      blocks: snapshot.history.at(-1)?.blocks ?? [],
-      action: index > 0 ? trace[index - 1] : undefined,
+      action: transcriptAction(actions[index - 1], previous, snapshot, emittedHistory),
+      emittedHistory,
+      blocks: emittedHistory.flatMap((entry) => entry.blocks),
       evidence: [...snapshot.documents],
       knowledge: [...snapshot.knowledge],
       custody: snapshot.mission.capture,
@@ -377,7 +475,24 @@ function transcriptFor(states: GameState[], seed: number | undefined, trace: str
         missionRemaining: snapshot.mission.remaining,
         relationships: snapshot.relationships,
       },
-    })),
+      facts: [...snapshot.facts],
+      claims: [...snapshot.claims],
+      inferences: snapshot.inferences,
+      proof: snapshot.proof,
+      selected: [...snapshot.selected],
+      draft: snapshot.draft,
+      report: snapshot.report,
+      feedback: snapshot.feedback,
+      inspected: [...snapshot.inspected],
+      investigation: snapshot.investigation,
+      hintUsed: snapshot.hintUsed,
+      choices: snapshot.choices,
+    });
+  }
+  return {
+    seed,
+    contentRevision: state.contentRevision ?? 13,
+    entries,
     routeTrace: trace,
   };
 }
@@ -495,7 +610,7 @@ export function simulateRandomRoute(options: SimulationOptions): QaSimulation {
     failures,
     stateDigest: stateDigest(state),
     state,
-    transcript: transcriptFor(snapshots, seed, trace),
+    transcript: transcriptFromSnapshots(snapshots, choices, seed, trace),
   };
 }
 
@@ -799,8 +914,12 @@ export function transcriptMarkdown(transcript: QaTranscript) {
   const lines = [`# QA transcript${transcript.seed === undefined ? '' : ` · seed ${transcript.seed}`}`, '', `Content revision: ${transcript.contentRevision}`, ''];
   for (const entry of transcript.entries) {
     lines.push(`## ${entry.step}. ${entry.node}`);
-    for (const block of entry.blocks) lines.push(`- **${block.kind}**${block.speaker ? ` · ${block.speaker}` : ''}: ${block.text}`);
-    if (entry.action) lines.push(`- Choice: \`${entry.action}\``);
+    if (entry.kind === 'transition') lines.push(`- Transition: \`${entry.previousNode}\` → \`${entry.nextNode}\``);
+    for (const emitted of entry.emittedHistory) {
+      lines.push(`- History record: \`${emitted.node}\``);
+      for (const block of emitted.blocks) lines.push(`  - **${block.kind}**${block.speaker ? ` · ${block.speaker}` : ''}: ${block.text}`);
+    }
+    if (entry.action) lines.push(`- Action: \`${entry.action.id}\` (${entry.action.type}, ${entry.action.source})`);
     lines.push('');
   }
   return lines.join('\n');

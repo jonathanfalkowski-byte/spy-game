@@ -35,7 +35,7 @@ describe('EVE QA M2 contracts', () => {
     const candidate = fixtureCandidate('context-route', 'GOLDEN_ROUTE', 'clean');
     const context = buildNarrativeContext(candidate);
     expect(context.currentScene.node).toBe('chapter5.presentation');
-    expect(context.transcript.length).toBe(2);
+    expect(context.transcript.transitions.length).toBe(1);
     expect(contextDigest(context)).toBe(contextDigest(JSON.parse(JSON.stringify(context))));
   });
 

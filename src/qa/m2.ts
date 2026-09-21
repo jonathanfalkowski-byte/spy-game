@@ -2,13 +2,185 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { z } from 'zod';
-import { initialState, nodeOf, reducer } from '../state/reducer';
-import { stableState, stateDigest, type QaTranscript, type QaTranscriptEntry } from './m1';
+import { initialState, reducer } from '../state/reducer';
+import { availableQaActions, stableState, stateDigest, transcriptFromSnapshots, type QaAction, type QaTranscript, type QaTranscriptEntry } from './m1';
+import { InteractionSemanticsSchema, interactionSemanticsForActionTypes } from './m2-interaction-semantics';
 import type { GameEvent } from '../state/actions';
 import type { GameState } from '../state/schema';
 
 /** M1 is deterministic truth; M2 is an advisory, evidence-gated reviewer. */
 export const M2_VERSION = 'm2-v1';
+
+export const M2_TRANSITION_REVIEW_RULE =
+  'Before claiming that state provenance contradicts dialogue, inspect the entire action transition: the player-selected utterance or thought, every emitted history record, the immediate response, next-scene narration, and resulting state. Do not infer speaker attribution solely from the final line in a transition. Do not infer gameplay semantics solely from action names. For evidence, selection, disclosure, attachment, consent, refusal, resource transfer, or relationship claims, consult runtime state, transition history, and interactionSemantics before making a causal claim.';
+
+/** Lossless context format. State is delta encoded, never semantically summarized. */
+export const M2_CONTEXT_COMPRESSION_VERSION = 'm2-context-delta-v1' as const;
+
+const StateSnapshotSchema = z
+  .object({
+    node: z.string().max(120),
+    claims: z.array(z.string().max(500)).max(500),
+    facts: z.array(z.string().max(500)).max(500),
+    inferences: z.array(z.unknown()).max(1000),
+    evidence: z.array(z.string().max(80)).max(20),
+    custody: z.unknown().nullable(),
+    knowledge: z.array(z.string().max(500)).max(500),
+    npcKnowledge: z.record(z.string(), z.object({ known: z.array(z.unknown()).max(500), beliefs: z.array(z.unknown()).max(500) }).strict()),
+    relationships: z.record(z.string(), z.unknown()),
+    resources: z.record(z.string(), z.unknown()),
+    draft: z.unknown().nullable(),
+    report: z.unknown().nullable(),
+  })
+  .strict();
+export type M2StateSnapshot = z.infer<typeof StateSnapshotSchema>;
+
+const ListDeltaSchema = z.object({ added: z.array(z.unknown()).default([]), removed: z.array(z.unknown()).default([]) }).strict();
+const StateDeltaSchema = z
+  .object({
+    knowledge: ListDeltaSchema.optional(),
+    evidence: ListDeltaSchema.optional(),
+    facts: ListDeltaSchema.optional(),
+    claims: ListDeltaSchema.optional(),
+    inferences: ListDeltaSchema.optional(),
+    npcKnowledgeAdded: z.array(z.object({ npc: z.string(), value: z.unknown() }).strict()).default([]),
+    npcKnowledgeRemoved: z.array(z.object({ npc: z.string(), value: z.unknown() }).strict()).default([]),
+    npcBeliefsAdded: z.array(z.object({ npc: z.string(), value: z.unknown() }).strict()).default([]),
+    npcBeliefsRemoved: z.array(z.object({ npc: z.string(), value: z.unknown() }).strict()).default([]),
+    custodyChanged: z.object({ from: z.unknown(), to: z.unknown() }).strict().optional(),
+    relationshipChanges: z.record(z.string(), z.object({ from: z.unknown(), to: z.unknown() }).strict()).default({}),
+    resourceChanges: z.record(z.string(), z.object({ from: z.unknown(), to: z.unknown() }).strict()).default({}),
+    fieldChanges: z.record(z.string(), z.object({ from: z.unknown(), to: z.unknown() }).strict()).default({}),
+  })
+  .strict();
+export type M2StateDelta = z.infer<typeof StateDeltaSchema>;
+
+const CompressedTransitionSchema = z
+  .object({
+    step: z.number().int().positive(),
+    previousNode: z.string().max(120),
+    nextNode: z.string().max(120),
+    action: z.object({
+      id: z.string().max(300),
+      type: z.string().max(80),
+      source: z.string().max(160),
+      intent: z.unknown(),
+      previousNode: z.string().max(120),
+      nextNode: z.string().max(120),
+      choiceId: z.string().max(120).optional(),
+    }).strict(),
+    emittedHistory: z.array(z.object({ node: z.string().max(120), blocks: z.array(z.unknown()).max(100) }).strict()).max(100),
+    stateDelta: StateDeltaSchema,
+  })
+  .strict();
+export type M2CompressedTransition = z.infer<typeof CompressedTransitionSchema>;
+
+function compactAction(action: NonNullable<ReturnType<typeof finalEntry>['action']>) {
+  return {
+    id: action.id,
+    type: action.type,
+    source: action.source,
+    intent: action.intent,
+    previousNode: action.previousNode,
+    nextNode: action.nextNode,
+    ...(action.choiceId ? { choiceId: action.choiceId } : {}),
+  };
+}
+
+const CheckpointSchema = z.object({
+  step: z.number().int().nonnegative(),
+  node: z.string().max(120),
+  reason: z.enum(['initial', 'chapter-entry', 'chapter-completion', 'reconvergence', 'milestone']),
+  stateDigest: z.string().regex(/^[a-f0-9]{64}$/),
+}).strict();
+export type M2ContextCheckpoint = z.infer<typeof CheckpointSchema>;
+
+const CompressedTranscriptSchema = z.object({
+  version: z.literal(M2_CONTEXT_COMPRESSION_VERSION),
+  initialState: StateSnapshotSchema,
+  transitions: z.array(CompressedTransitionSchema).max(10000),
+  checkpoints: z.array(CheckpointSchema).max(2000),
+  finalState: StateSnapshotSchema,
+}).strict();
+export type M2CompressedTranscript = z.infer<typeof CompressedTranscriptSchema>;
+
+export const M2FindingClassificationSchema = z.enum([
+  'TRUE_ISSUE',
+  'USEFUL_WARNING',
+  'FALSE_POSITIVE',
+  'INSUFFICIENT_EVIDENCE',
+]);
+export type M2FindingClassification = z.infer<typeof M2FindingClassificationSchema>;
+
+/** Human follow-up disposition is calibration/reporting metadata, separate from finding classification. */
+export const M2HumanDispositionSchema = z.enum([
+  'ACTIONABLE_CURRENT',
+  'KNOWN_FROZEN_HISTORICAL',
+  'ACCEPTED_DESIGN_DEBT',
+  'RESOLVED_CURRENT',
+  'NEEDS_DECISION',
+]);
+export type M2HumanDisposition = z.infer<typeof M2HumanDispositionSchema>;
+
+export const M2HumanClassificationRecordSchema = z
+  .object({
+    reviewer: z.string().min(1).max(80),
+    classification: M2FindingClassificationSchema,
+    disposition: M2HumanDispositionSchema.optional(),
+    routeId: z.string().min(1).max(160).optional(),
+    findingId: z.string().min(1).max(200).optional(),
+  })
+  .strict();
+export type M2HumanClassificationRecord = z.infer<typeof M2HumanClassificationRecordSchema>;
+
+/** Explicit route authority for reports; this is derived from runtime revision metadata, never prose. */
+export const M2RouteAuthoritySchema = z
+  .object({
+    source: z.enum(['AUTHENTICATED_FROZEN', 'CURRENT_AUTHORING']),
+    authenticated: z.boolean(),
+    frozen: z.boolean(),
+    currentAuthoring: z.boolean(),
+  })
+  .strict();
+export type M2RouteAuthority = z.infer<typeof M2RouteAuthoritySchema>;
+
+/** Revision 17 is the current authoring line; revisions through 16 are authenticated frozen history. */
+export function routeAuthorityForRevision(contentRevision: number): M2RouteAuthority {
+  const currentAuthoring = contentRevision >= 17;
+  return currentAuthoring
+    ? { source: 'CURRENT_AUTHORING', authenticated: false, frozen: false, currentAuthoring: true }
+    : { source: 'AUTHENTICATED_FROZEN', authenticated: true, frozen: true, currentAuthoring: false };
+}
+
+export type M2HumanClassificationMetrics = {
+  reviewedFindings: number;
+  trueIssues: number;
+  usefulWarnings: number;
+  falsePositives: number;
+  insufficientEvidence: number;
+};
+
+/** Aggregate human labels by reviewer; this never auto-labels a finding. */
+export function summarizeHumanClassifications(records: readonly M2HumanClassificationRecord[]): Record<string, M2HumanClassificationMetrics> {
+  const summary: Record<string, M2HumanClassificationMetrics> = {};
+  for (const record of records) {
+    const parsed = M2HumanClassificationRecordSchema.parse(record);
+    const metrics = summary[parsed.reviewer] ?? {
+      reviewedFindings: 0,
+      trueIssues: 0,
+      usefulWarnings: 0,
+      falsePositives: 0,
+      insufficientEvidence: 0,
+    };
+    metrics.reviewedFindings += 1;
+    if (parsed.classification === 'TRUE_ISSUE') metrics.trueIssues += 1;
+    if (parsed.classification === 'USEFUL_WARNING') metrics.usefulWarnings += 1;
+    if (parsed.classification === 'FALSE_POSITIVE') metrics.falsePositives += 1;
+    if (parsed.classification === 'INSUFFICIENT_EVIDENCE') metrics.insufficientEvidence += 1;
+    summary[parsed.reviewer] = metrics;
+  }
+  return summary;
+}
 
 export const M2SeveritySchema = z.enum(['BLOCKER', 'HIGH', 'MEDIUM', 'LOW']);
 export type M2Severity = z.infer<typeof M2SeveritySchema>;
@@ -116,6 +288,7 @@ export const QaNarrativeCandidateSchema = z
       .object({
         node: z.string().max(120),
         contentRevision: z.number().int().nonnegative(),
+        authority: M2RouteAuthoritySchema,
         stateDigest: z.string().regex(/^[a-f0-9]{64}$/),
         steps: z.number().int().nonnegative(),
       })
@@ -129,11 +302,15 @@ export type QaNarrativeCandidate = QaNarrativeCandidateMetadata & { transcript: 
 
 export const NarrativeContextSchema = z
   .object({
+    compressionVersion: z.literal(M2_CONTEXT_COMPRESSION_VERSION),
+    sourceTranscriptDigest: z.string().regex(/^[a-f0-9]{64}$/),
+    compressedContextDigest: z.string().regex(/^[a-f0-9]{64}$/),
     route: z
       .object({
         routeId: z.string().min(1).max(160),
         seed: z.number().int().nonnegative().optional(),
         contentRevision: z.number().int().nonnegative(),
+        authority: M2RouteAuthoritySchema,
         reason: M2ReasonSchema,
         riskSignals: z.array(z.string().max(160)).max(30),
         equivalenceSignature: z.string().regex(/^[a-f0-9]{64}$/),
@@ -148,31 +325,13 @@ export const NarrativeContextSchema = z
         time: z.string().max(80).optional(),
       })
       .strict(),
-    playerState: z
-      .object({
-        knownFacts: z.array(z.string().max(500)).max(100),
-        claims: z.array(z.string().max(500)).max(100),
-        evidence: z.array(z.string().max(80)).max(20),
-        evidenceCustody: z.unknown().nullable(),
-        relationships: z.record(z.string(), z.unknown()),
-      })
-      .strict(),
-    npcState: z.record(
-      z.string(),
-      z
-        .object({
-          known: z.array(z.unknown()).max(100),
-          beliefs: z.array(z.unknown()).max(100),
-        })
-        .strict(),
-    ),
     routeHistory: z
       .object({
-        actions: z.array(z.string().max(300)).max(10000),
-        majorChoices: z.array(z.string().max(300)).max(1000),
         milestones: z.array(z.string().max(120)).max(1000),
+        checkpoints: z.array(z.object({ step: z.number().int().nonnegative(), node: z.string().max(120), reason: z.string().max(80) }).strict()).max(2000),
       })
       .strict(),
+    interactionSemantics: InteractionSemanticsSchema,
     visualState: z
       .object({
         shotId: z.string().max(160).optional(),
@@ -181,21 +340,8 @@ export const NarrativeContextSchema = z
         bodyState: z.string().max(500).optional(),
       })
       .strict(),
-    transcript: z
-      .array(
-        z
-          .object({
-            step: z.number().int().nonnegative(),
-            node: z.string().max(120),
-            action: z.string().max(300).optional(),
-            blocks: z.array(z.unknown()).max(100),
-            evidence: z.array(z.string().max(80)).max(20),
-            knowledge: z.array(z.string().max(500)).max(100),
-          })
-          .strict(),
-      )
-      .max(10000),
-    fixture: z.enum(['continuity-contradiction', 'unsourced-knowledge', 'reconverged-preserved', 'clean']).optional(),
+    transcript: CompressedTranscriptSchema,
+    fixture: z.enum(['continuity-contradiction', 'unsourced-knowledge', 'semantic-misinterpretation', 'reconverged-preserved', 'clean']).optional(),
   })
   .strict();
 export type NarrativeContext = z.infer<typeof NarrativeContextSchema>;
@@ -228,10 +374,10 @@ export type M2Report = z.infer<typeof M2ReportSchema>;
 
 export const REVIEWER_CONTRACTS: readonly ReviewerContract[] = [
   { reviewer: 'CONTINUITY', version: 'v1', promptPath: 'docs/qa/prompts/continuity.v1.md', checks: ['location/time', 'wardrobe/props', 'evidence custody', 'relationships', 'prior event references'] },
-  { reviewer: 'LOGIC', version: 'v1', promptPath: 'docs/qa/prompts/logic.v1.md', checks: ['causes precede consequences', 'refusal/acceptance remain meaningful', 'state-supported route changes'] },
+  { reviewer: 'LOGIC', version: 'v1', promptPath: 'docs/qa/prompts/logic.v1.md', checks: ['causes precede consequences', 'refusal/acceptance remain meaningful', 'state-supported route changes', 'interaction semantics distinguish read, analyze, connect, and submit'] },
   { reviewer: 'KNOWLEDGE', version: 'v1', promptPath: 'docs/qa/prompts/knowledge.v1.md', checks: ['NPC knowledge has a source', 'beliefs are distinct from canon truth'] },
   { reviewer: 'CHARACTER', version: 'v1', promptPath: 'docs/qa/prompts/character.v1.md', checks: ['voice', 'goals and values', 'behavioral reversals'] },
-  { reviewer: 'INVESTIGATION', version: 'v1', promptPath: 'docs/qa/prompts/investigation.v1.md', checks: ['evidence provenance', 'proof custody', 'wrong hypotheses remain valid'] },
+  { reviewer: 'INVESTIGATION', version: 'v1', promptPath: 'docs/qa/prompts/investigation.v1.md', checks: ['evidence provenance', 'proof custody', 'wrong hypotheses remain valid', 'read, analyze, infer, submit, and recipient state remain distinct'] },
   { reviewer: 'AGENCY_POWER', version: 'v1', promptPath: 'docs/qa/prompts/agency-power.v1.md', checks: ['consent/compliance', 'desire/action', 'dependency/love', 'control/care'] },
   { reviewer: 'ADULT_THRILLER', version: 'v1', promptPath: 'docs/qa/prompts/adult-thriller.v1.md', checks: ['adult tension follows state', 'coercion is not mutual willingness', 'non-Julian possibilities remain'] },
   { reviewer: 'PROSE', version: 'v1', promptPath: 'docs/qa/prompts/prose.v1.md', checks: ['repetition', 'transitions', 'POV', 'tonal continuity'] },
@@ -244,63 +390,39 @@ function digest(value: unknown) {
   return createHash('sha256').update(stableState(value)).digest('hex');
 }
 
-function actionLabel(action: Record<string, unknown>) {
-  return Object.entries(action)
-    .filter(([key]) => key !== 'expectedRevision')
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([key, value]) => `${key}=${String(value)}`)
-    .join('|');
-}
-
-function entryFor(snapshot: GameState, step: number, action?: string): QaTranscriptEntry {
-  return {
-    step,
-    node: nodeOf(snapshot),
-    blocks: snapshot.history.at(-1)?.blocks ?? [],
-    action,
-    evidence: [...snapshot.documents],
-    knowledge: [...snapshot.knowledge],
-    custody: snapshot.mission.capture,
-    npcKnowledge: snapshot.npcs,
-    resources: {
-      opportunities: snapshot.opportunities,
-      clinicOpportunity: snapshot.clinic.opportunity,
-      missionRemaining: snapshot.mission.remaining,
-      relationships: snapshot.relationships,
-    },
-  };
-}
-
 /** Convert a completed M1 state to a compact, replay-authenticated transcript. */
 export function transcriptFromGameState(state: GameState, seed?: number): QaTranscript {
   let current = initialState(state.contentRevision ?? 13);
   const snapshots = [current];
+  const actions: QaAction[] = [];
   const trace: string[] = [];
   for (const event of state.ledger as GameEvent[]) {
+    const { expectedRevision: _expectedRevision, ...intent } = event.action;
+    const action = availableQaActions(current).find((candidate) => stableState(candidate.intent) === stableState(intent));
+    if (!action) throw new Error(`M2 transcript conversion could not resolve action ${event.action.type}.`);
     current = reducer(current, event.action);
     snapshots.push(current);
-    trace.push(actionLabel(event.action));
+    actions.push(action);
+    trace.push(action.id);
   }
   if (stateDigest(current) !== stateDigest(state)) throw new Error('M2 transcript conversion diverged from the M1 state.');
-  return {
-    seed,
-    contentRevision: state.contentRevision ?? 13,
-    entries: snapshots.map((snapshot, index) => entryFor(snapshot, index, index ? trace[index - 1] : undefined)),
-    routeTrace: trace,
-  };
+  return transcriptFromSnapshots(snapshots, actions, seed, trace);
 }
 
-function finalEntry(transcript: QaTranscript) {
+function finalEntry(transcript: QaTranscript): QaTranscriptEntry {
   return transcript.entries.at(-1) ?? {
     step: 0,
+    kind: 'initial',
+    nextNode: 'unknown',
     node: 'unknown',
+    emittedHistory: [],
     blocks: [],
     evidence: [],
     knowledge: [],
     custody: null,
     npcKnowledge: {},
     resources: { opportunities: 0, clinicOpportunity: 0, missionRemaining: 0, relationships: {} },
-  };
+  } as unknown as QaTranscriptEntry;
 }
 
 /** Signature uses history and state-bearing milestones; it never uses node alone. */
@@ -337,6 +459,7 @@ export function candidateFromTranscript(input: {
     stateSummary: {
       node: final.node,
       contentRevision: input.transcript.contentRevision,
+      authority: routeAuthorityForRevision(input.transcript.contentRevision),
       stateDigest: digest(final),
       steps: input.transcript.routeTrace.length,
     },
@@ -400,14 +523,235 @@ function majorChoices(routeTrace: string[]) {
   return routeTrace.filter((action) => /CHOOSE|CONTINUE|SUBMIT|SPEND|CONNECT|REVIEW/.test(action));
 }
 
+function entrySnapshot(entry: ReturnType<typeof finalEntry>): M2StateSnapshot {
+  return {
+    node: entry.node,
+    claims: [...(entry.claims ?? [])],
+    facts: [...(entry.facts ?? [])],
+    inferences: [...(entry.inferences ?? [])],
+    evidence: [...entry.evidence],
+    custody: entry.custody,
+    knowledge: [...entry.knowledge],
+    npcKnowledge: entry.npcKnowledge as M2StateSnapshot['npcKnowledge'],
+    relationships: entry.resources.relationships,
+    resources: {
+      opportunities: entry.resources.opportunities,
+      clinicOpportunity: entry.resources.clinicOpportunity,
+      missionRemaining: entry.resources.missionRemaining,
+    },
+    draft: entry.draft ?? null,
+    report: entry.report ?? null,
+  };
+}
+
+function same(a: unknown, b: unknown) {
+  return stableState(a) === stableState(b);
+}
+
+function listDelta(previous: unknown[], next: unknown[]) {
+  if (same(previous, next)) return undefined;
+  const remaining = [...previous];
+  const removed: unknown[] = [];
+  for (const value of previous) {
+    const index = remaining.findIndex((candidate) => same(candidate, value));
+    const nextIndex = next.findIndex((candidate) => same(candidate, value));
+    if (index >= 0 && nextIndex >= 0) remaining.splice(index, 1);
+    else if (index >= 0) {
+      remaining.splice(index, 1);
+      removed.push(value);
+    }
+  }
+  const added = next.filter((value) => !previous.some((candidate) => same(candidate, value)));
+  const replayed = [...previous.filter((value) => !removed.some((candidate) => same(candidate, value))), ...added];
+  if (!same(replayed, next)) return { added: [...next], removed: [...previous] };
+  return { added, removed };
+}
+
+function keyedNpcDelta(previous: Record<string, { known?: unknown[]; beliefs?: unknown[] }>, next: Record<string, { known?: unknown[]; beliefs?: unknown[] }>) {
+  const result = { knownAdded: [] as Array<{ npc: string; value: unknown }>, knownRemoved: [] as Array<{ npc: string; value: unknown }>, beliefsAdded: [] as Array<{ npc: string; value: unknown }>, beliefsRemoved: [] as Array<{ npc: string; value: unknown }> };
+  const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+  for (const npc of names) {
+    const oldKnown = previous[npc]?.known ?? [];
+    const newKnown = next[npc]?.known ?? [];
+    const oldBeliefs = previous[npc]?.beliefs ?? [];
+    const newBeliefs = next[npc]?.beliefs ?? [];
+    const known = listDelta(oldKnown, newKnown);
+    const beliefs = listDelta(oldBeliefs, newBeliefs);
+    for (const value of known?.added ?? []) result.knownAdded.push({ npc, value });
+    for (const value of known?.removed ?? []) result.knownRemoved.push({ npc, value });
+    for (const value of beliefs?.added ?? []) result.beliefsAdded.push({ npc, value });
+    for (const value of beliefs?.removed ?? []) result.beliefsRemoved.push({ npc, value });
+  }
+  return result;
+}
+
+function deltaBetween(previous: M2StateSnapshot, next: M2StateSnapshot): M2StateDelta {
+  const delta: M2StateDelta = {
+    npcKnowledgeAdded: [], npcKnowledgeRemoved: [], npcBeliefsAdded: [], npcBeliefsRemoved: [],
+    relationshipChanges: {}, resourceChanges: {}, fieldChanges: {},
+  };
+  for (const field of ['knowledge', 'evidence', 'facts', 'claims', 'inferences'] as const) {
+    const value = listDelta(previous[field], next[field]);
+    if (value) delta[field] = value as M2StateDelta[typeof field];
+  }
+  const npc = keyedNpcDelta(previous.npcKnowledge, next.npcKnowledge);
+  delta.npcKnowledgeAdded = npc.knownAdded;
+  delta.npcKnowledgeRemoved = npc.knownRemoved;
+  delta.npcBeliefsAdded = npc.beliefsAdded;
+  delta.npcBeliefsRemoved = npc.beliefsRemoved;
+  if (!same(previous.custody, next.custody)) delta.custodyChanged = { from: previous.custody, to: next.custody };
+  for (const key of new Set([...Object.keys(previous.relationships), ...Object.keys(next.relationships)])) {
+    if (!same(previous.relationships[key], next.relationships[key])) delta.relationshipChanges[key] = { from: previous.relationships[key], to: next.relationships[key] };
+  }
+  for (const key of new Set([...Object.keys(previous.resources), ...Object.keys(next.resources)])) {
+    if (!same(previous.resources[key], next.resources[key])) delta.resourceChanges[key] = { from: previous.resources[key], to: next.resources[key] };
+  }
+  for (const key of ['draft', 'report'] as const) {
+    if (!same(previous[key], next[key])) delta.fieldChanges[key] = { from: previous[key], to: next[key] };
+  }
+  return delta;
+}
+
+function applyListDelta(values: unknown[], change: { added: unknown[]; removed: unknown[] } | undefined) {
+  if (!change) return [...values];
+  const result = [...values];
+  for (const value of change.removed) {
+    const index = result.findIndex((candidate) => same(candidate, value));
+    if (index >= 0) result.splice(index, 1);
+  }
+  result.push(...change.added);
+  return result;
+}
+
+function applyStateDelta(previous: M2StateSnapshot, delta: M2StateDelta, nextNode: string): M2StateSnapshot {
+  const next = JSON.parse(JSON.stringify(previous)) as M2StateSnapshot;
+  next.node = nextNode;
+  for (const field of ['knowledge', 'evidence', 'facts', 'claims', 'inferences'] as const) {
+    next[field] = applyListDelta(next[field], delta[field]) as never;
+  }
+  for (const item of delta.npcKnowledgeRemoved ?? []) {
+    next.npcKnowledge[item.npc] ??= { known: [], beliefs: [] };
+    next.npcKnowledge[item.npc].known = applyListDelta(next.npcKnowledge[item.npc].known, { added: [], removed: [item.value] });
+  }
+  for (const item of delta.npcKnowledgeAdded ?? []) {
+    next.npcKnowledge[item.npc] ??= { known: [], beliefs: [] };
+    next.npcKnowledge[item.npc].known.push(item.value);
+  }
+  for (const item of delta.npcBeliefsRemoved ?? []) {
+    next.npcKnowledge[item.npc] ??= { known: [], beliefs: [] };
+    next.npcKnowledge[item.npc].beliefs = applyListDelta(next.npcKnowledge[item.npc].beliefs, { added: [], removed: [item.value] });
+  }
+  for (const item of delta.npcBeliefsAdded ?? []) {
+    next.npcKnowledge[item.npc] ??= { known: [], beliefs: [] };
+    next.npcKnowledge[item.npc].beliefs.push(item.value);
+  }
+  if (delta.custodyChanged) next.custody = delta.custodyChanged.to;
+  for (const [key, change] of Object.entries(delta.relationshipChanges ?? {})) next.relationships[key] = change.to;
+  for (const [key, change] of Object.entries(delta.resourceChanges ?? {})) next.resources[key] = change.to;
+  for (const [key, change] of Object.entries(delta.fieldChanges ?? {})) (next as Record<string, unknown>)[key] = change.to;
+  return next;
+}
+
+function pruneDelta(delta: M2StateDelta): M2StateDelta {
+  const compact: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(delta)) {
+    if (Array.isArray(value) && value.length === 0) continue;
+    if (value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0) continue;
+    compact[key] = value;
+  }
+  return compact as M2StateDelta;
+}
+
+function checkpointReason(previousNode: string, nextNode: string, emittedHistory: unknown[], step: number): M2ContextCheckpoint['reason'] | undefined {
+  const previousChapter = previousNode.match(/^(chapter\d+)/)?.[1];
+  const nextChapter = nextNode.match(/^(chapter\d+)/)?.[1];
+  if (nextChapter && previousChapter !== nextChapter) return 'chapter-entry';
+  if (/^chapter\d+\.complete$/.test(nextNode)) return 'chapter-completion';
+  if (/invitation|presentation|assessment|handoff/.test(nextNode) || step % 25 === 0) return 'milestone';
+  return undefined;
+}
+
+export function compressNarrativeTranscript(transcript: QaTranscript): M2CompressedTranscript {
+  const initialState = entrySnapshot(transcript.entries[0] ?? finalEntry(transcript));
+  let previous = initialState;
+  const transitions: M2CompressedTransition[] = [];
+  const checkpoints: M2ContextCheckpoint[] = [{ step: 0, node: initialState.node, reason: 'initial', stateDigest: digest(initialState) }];
+  const seenNodes = new Set([initialState.node]);
+  for (const entry of transcript.entries.slice(1)) {
+    const next = entrySnapshot(entry);
+    const action = entry.action;
+    if (!action) throw new Error(`M2 compression requires an action for transition ${entry.step}.`);
+    const emittedHistory = entry.emittedHistory;
+    transitions.push({ step: entry.step, previousNode: entry.previousNode ?? previous.node, nextNode: entry.nextNode, action: compactAction(action), emittedHistory, stateDelta: deltaBetween(previous, next) });
+    const reason = checkpointReason(previous.node, next.node, emittedHistory, entry.step) ?? (emittedHistory.length > 1 && seenNodes.has(next.node) ? 'reconvergence' : undefined);
+    if (reason) checkpoints.push({ step: entry.step, node: next.node, reason, stateDigest: digest(next) });
+    seenNodes.add(next.node);
+    previous = next;
+  }
+  const finalState = previous;
+  const parsed = CompressedTranscriptSchema.parse({ version: M2_CONTEXT_COMPRESSION_VERSION, initialState, transitions, checkpoints, finalState });
+  return { ...parsed, transitions: parsed.transitions.map((transition) => ({ ...transition, stateDelta: pruneDelta(transition.stateDelta) })) };
+}
+
+export function rehydrateNarrativeTranscript(transcript: M2CompressedTranscript) {
+  let state = transcript.initialState;
+  for (const transition of transcript.transitions) state = applyStateDelta(state, transition.stateDelta, transition.nextNode);
+  return state;
+}
+
+/** Rehydrate every checkpoint and verify its digest against the serialized proof. */
+export function rehydrateNarrativeCheckpoints(transcript: M2CompressedTranscript) {
+  const states = new Map<number, M2StateSnapshot>([[0, transcript.initialState]]);
+  let state = transcript.initialState;
+  for (const transition of transcript.transitions) {
+    state = applyStateDelta(state, transition.stateDelta, transition.nextNode);
+    states.set(transition.step, state);
+  }
+  return transcript.checkpoints.map((checkpoint) => {
+    const checkpointState = states.get(checkpoint.step);
+    if (!checkpointState || digest(checkpointState) !== checkpoint.stateDigest) throw new Error(`M2 checkpoint digest mismatch at step ${checkpoint.step}.`);
+    return checkpointState;
+  });
+}
+
+export function projectNarrativeContext(context: NarrativeContext, _reviewer: M2Reviewer): NarrativeContext {
+  // The first implementation deliberately shares the complete lossless packet.
+  // Reviewer-specific projections can be added later only if required causal evidence is retained.
+  return compactNarrativeContext(context);
+}
+
+/** Validate and retain the sparse wire representation; Zod defaults are not re-emitted. */
+export function compactNarrativeContext(context: NarrativeContext): NarrativeContext {
+  const parsed = NarrativeContextSchema.parse(JSON.parse(JSON.stringify(context)));
+  return {
+    ...parsed,
+    transcript: {
+      ...parsed.transcript,
+      transitions: parsed.transcript.transitions.map((transition) => ({ ...transition, stateDelta: pruneDelta(transition.stateDelta) })),
+    },
+  } as NarrativeContext;
+}
+
+export function compressedActionTrace(context: NarrativeContext) {
+  return context.transcript.transitions.map((transition) => transition.action.id);
+}
+
 /** Keep only state and prose a specialist needs; omit the full GameState dump. */
 export function buildNarrativeContext(candidate: QaNarrativeCandidate, fixture?: NarrativeContext['fixture']): NarrativeContext {
   const final = finalEntry(candidate.transcript);
+  const compressedTranscript = compressNarrativeTranscript(candidate.transcript);
+  const finalState = compressedTranscript.finalState;
+  const sourceTranscriptDigest = transcriptDigest(candidate.transcript);
+  const compressedContextDigest = digest(compressedTranscript);
   const context: NarrativeContext = {
+    compressionVersion: M2_CONTEXT_COMPRESSION_VERSION,
+    sourceTranscriptDigest,
+    compressedContextDigest,
     route: {
       routeId: candidate.routeId,
       ...(candidate.seed === undefined ? {} : { seed: candidate.seed }),
       contentRevision: candidate.transcript.contentRevision,
+      authority: routeAuthorityForRevision(candidate.transcript.contentRevision),
       reason: candidate.reason,
       riskSignals: candidate.riskSignals,
       equivalenceSignature: candidate.equivalenceSignature,
@@ -418,36 +762,23 @@ export function buildNarrativeContext(candidate: QaNarrativeCandidate, fixture?:
       movement: final.node.split('.')[1],
       location: final.node.split('.')[0],
     },
-    playerState: {
-      knownFacts: final.knowledge.slice(-100),
-      claims: [],
-      evidence: final.evidence,
-      evidenceCustody: final.custody,
-      relationships: final.resources.relationships,
-    },
-    npcState: Object.fromEntries(
-      Object.entries(final.npcKnowledge as Record<string, { known?: unknown[]; beliefs?: unknown[] }>).map(([name, npc]) => [name, {
-        known: npc.known ?? [],
-        beliefs: npc.beliefs ?? [],
-      }]),
-    ),
     routeHistory: {
-      actions: candidate.transcript.routeTrace,
-      majorChoices: majorChoices(candidate.transcript.routeTrace),
-      milestones: candidate.transcript.entries.map((entry) => entry.node),
+      milestones: compressedTranscript.checkpoints.map((checkpoint) => checkpoint.node),
+      checkpoints: compressedTranscript.checkpoints.map(({ step, node, reason }) => ({ step, node, reason })),
     },
+    interactionSemantics: interactionSemanticsForActionTypes(compressedTranscript.transitions.map((transition) => transition.action.type)),
     visualState: {},
-    transcript: candidate.transcript.entries.map((entry) => ({
-      step: entry.step,
-      node: entry.node,
-      ...(entry.action === undefined ? {} : { action: entry.action }),
-      blocks: entry.blocks,
-      evidence: entry.evidence,
-      knowledge: entry.knowledge.slice(-100),
-    })),
+    transcript: compressedTranscript,
     fixture,
   };
-  return NarrativeContextSchema.parse(context);
+  const parsed = NarrativeContextSchema.parse(context);
+  return {
+    ...parsed,
+    transcript: {
+      ...parsed.transcript,
+      transitions: parsed.transcript.transitions.map((transition) => ({ ...transition, stateDelta: pruneDelta(transition.stateDelta) })),
+    },
+  } as NarrativeContext;
 }
 
 export function reviewersForCandidate(candidate: QaNarrativeCandidate): M2Reviewer[] {
@@ -502,6 +833,19 @@ function fixtureFinding(context: NarrativeContext, contract: ReviewerContract): 
       stateEvidence: [evidence('npc.known', 'maya.known', 'No matching sourced observation is present.')],
       whyItMatters: 'NPC knowledge should be traceable to witnessed, disclosed, or public authored events.',
       confidence: 'MEDIUM', humanReviewRequired: true,
+    };
+  }
+  if (context.fixture === 'semantic-misinterpretation' && contract.reviewer === 'LOGIC') {
+    return {
+      reviewer: 'LOGIC', reviewerVersion: 'v1', provider: 'MOCK', model: 'fixture',
+      transcriptDigest: digest(context.transcript), contextDigest: digest(context), severity: 'MEDIUM', category: 'LOGIC',
+      routeId: context.route.routeId, seed: context.route.seed, chapter: context.currentScene.chapter, node: context.currentScene.node,
+      finding: 'Only selected evidence should be attached to the submitted report.',
+      currentEvidence: [evidence('state', 'report.documents', 'The report contains email, finance, news, and intel.')],
+      priorEvidence: [evidence('transition', 'TOGGLE_EVIDENCE', 'Only email and finance were selected for relationship testing.')],
+      stateEvidence: [evidence('interaction-semantics', 'TOGGLE_EVIDENCE.doesNotMean', 'Selection for connection does not control report attachment.')],
+      whyItMatters: 'A reviewer must not infer attachment agency from an analytical selection action when the runtime attaches all reviewed documents.',
+      confidence: 'HIGH', humanReviewRequired: true,
     };
   }
   return undefined;
@@ -594,7 +938,7 @@ export function reviewSelectedCandidates(
       const parsed = parseReviewerResult(provider.review(context, contract));
       rejected.push(...parsed.rejected);
       for (const input of parsed.findings) {
-        const checked = enforceFindingEvidence({ ...input, reproductionTrace: context.routeHistory.actions });
+        const checked = enforceFindingEvidence({ ...input, reproductionTrace: compressedActionTrace(context) });
         if (checked.finding) accepted.push(checked.finding);
         if (checked.rejected) rejected.push(checked.rejected);
       }
@@ -635,7 +979,7 @@ export function renderM2Markdown(report: M2Report) {
     '',
     '## Selected routes',
     '',
-    ...report.selected.map((candidate) => `- \`${candidate.routeId}\` — ${candidate.reason}; ${candidate.riskSignals.join(', ') || 'no extra risk signal'}`),
+    ...report.selected.map((candidate) => `- \`${candidate.routeId}\` — revision ${candidate.stateSummary.contentRevision}; ${candidate.stateSummary.authority.source}; ${candidate.reason}; ${candidate.riskSignals.join(', ') || 'no extra risk signal'}`),
     '',
     '## Findings',
     '',

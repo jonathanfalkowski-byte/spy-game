@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
 import {
-  NarrativeContextSchema,
+  compactNarrativeContext,
   ReviewerContractSchema,
   contextDigest,
   enforceFindingEvidence,
+  M2_TRANSITION_REVIEW_RULE,
   parseReviewerResult,
   type M2Finding,
   type NarrativeContext,
@@ -12,6 +13,10 @@ import {
 } from './m2';
 
 export const M2_1_OUTPUT_TOKEN_CEILING = 1200;
+/** Headroom for the authorized official OpenAI smoke/pilot reviewer. */
+export const M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING = 3000;
+/** Recomputed from the compressed opening-bad-assessment pilot packet (28,915 UTF-8 bytes / 4). */
+export const M2_1_SMOKE_INPUT_TOKEN_BASELINE = 7229;
 export const M2_1_DEFAULT_TIMEOUT_MS = 30_000;
 export const M2_1_SUPPORTED_PROVIDER = 'openai-compatible' as const;
 export const M2_1_SUPPORTED_MODELS = ['gpt-4.1-mini', 'gpt-4o-mini'] as const;
@@ -117,7 +122,15 @@ export type ProviderReviewResult = {
   usage?: ProviderUsage;
   pricing?: ProviderPricing;
   estimatedCostUsd?: number;
-  error?: { code: NarrativeProviderErrorCode; message: string; status?: number };
+  error?: { code: NarrativeProviderErrorCode; message: string; status?: number; details?: SafeOpenAIErrorDetails };
+};
+
+export type SafeOpenAIErrorDetails = {
+  code?: string;
+  type?: string;
+  param?: string;
+  message?: string;
+  reason?: string;
 };
 
 type ProviderEnv = Record<string, string | undefined>;
@@ -293,7 +306,7 @@ export class OpenAICompatibleNarrativeProvider implements NarrativeReviewerProvi
   }
 
   async reviewAsync(context: NarrativeContext, contract: ReviewerContract): Promise<ProviderReviewResult> {
-    const parsedContext = NarrativeContextSchema.parse(context);
+    const parsedContext = compactNarrativeContext(context);
     const parsedContract = ReviewerContractSchema.parse(contract);
     const expectedContextDigest = contextDigest(parsedContext);
     // The provider receives a compact transcript, so its digest is over that exact packet.
@@ -301,7 +314,7 @@ export class OpenAICompatibleNarrativeProvider implements NarrativeReviewerProvi
     const messages = [
       {
         role: 'system',
-        content: 'You are an advisory EVE narrative QA reviewer. Return only a JSON array of evidence-backed findings. Never rewrite runtime state or canon. High and blocker claims require current plus prior or state evidence.',
+        content: `You are an advisory EVE narrative QA reviewer. Return only a JSON array of evidence-backed findings. Never rewrite runtime state or canon. High and blocker claims require current plus prior or state evidence. ${M2_TRANSITION_REVIEW_RULE}`,
       },
       {
         role: 'user',
@@ -378,7 +391,7 @@ export class OpenAICompatibleNarrativeProvider implements NarrativeReviewerProvi
   }
 }
 
-const M2_FINDING_JSON_SCHEMA = {
+export const M2_FINDING_JSON_SCHEMA = {
   type: 'object',
   additionalProperties: false,
   properties: {
@@ -389,29 +402,29 @@ const M2_FINDING_JSON_SCHEMA = {
         type: 'object',
         additionalProperties: false,
         properties: {
-          reviewer: { type: 'string' },
-          reviewerVersion: { type: 'string' },
-          transcriptDigest: { type: 'string' },
-          contextDigest: { type: 'string' },
+          reviewer: { type: 'string', enum: ['CONTINUITY', 'LOGIC', 'KNOWLEDGE', 'CHARACTER', 'INVESTIGATION', 'AGENCY_POWER', 'ADULT_THRILLER', 'PROSE', 'ROUTE_COHESION'] },
+          reviewerVersion: { type: 'string', pattern: '^v\\d+$' },
+          transcriptDigest: { type: 'string', pattern: '^[a-f0-9]{64}$' },
+          contextDigest: { type: 'string', pattern: '^[a-f0-9]{64}$' },
           severity: { type: 'string', enum: ['BLOCKER', 'HIGH', 'MEDIUM', 'LOW'] },
-          category: { type: 'string' },
+          category: { type: 'string', enum: ['CONTINUITY', 'LOGIC', 'KNOWLEDGE', 'CHARACTER', 'INVESTIGATION', 'AGENCY_POWER', 'ADULT_THRILLER', 'PROSE', 'ROUTE_COHESION'] },
           routeId: { type: 'string' },
           seed: { type: ['integer', 'null'] },
           chapter: { type: ['string', 'null'] },
           node: { type: 'string' },
           finding: { type: 'string' },
-          currentEvidence: { type: 'array' },
-          priorEvidence: { type: 'array' },
-          stateEvidence: { type: 'array' },
-          reproductionTrace: { type: 'array' },
+          currentEvidence: { type: 'array', items: { type: 'object', additionalProperties: false, properties: { type: { type: 'string' }, reference: { type: 'string' }, excerpt: { type: ['string', 'null'] } }, required: ['type', 'reference', 'excerpt'] } },
+          priorEvidence: { type: 'array', items: { type: 'object', additionalProperties: false, properties: { type: { type: 'string' }, reference: { type: 'string' }, excerpt: { type: ['string', 'null'] } }, required: ['type', 'reference', 'excerpt'] } },
+          stateEvidence: { type: 'array', items: { type: 'object', additionalProperties: false, properties: { type: { type: 'string' }, reference: { type: 'string' }, excerpt: { type: ['string', 'null'] } }, required: ['type', 'reference', 'excerpt'] } },
+          reproductionTrace: { type: 'array', items: { type: 'string' } },
           whyItMatters: { type: 'string' },
           confidence: { type: 'string', enum: ['HIGH', 'MEDIUM', 'LOW'] },
           humanReviewRequired: { type: 'boolean', const: true },
         },
         required: [
           'reviewer', 'reviewerVersion', 'transcriptDigest', 'contextDigest', 'severity', 'category', 'routeId',
-          'node', 'finding', 'currentEvidence', 'priorEvidence', 'stateEvidence', 'whyItMatters', 'confidence',
-          'humanReviewRequired',
+          'seed', 'chapter', 'node', 'finding', 'currentEvidence', 'priorEvidence', 'stateEvidence', 'reproductionTrace',
+          'whyItMatters', 'confidence', 'humanReviewRequired',
         ],
       },
     },
@@ -419,12 +432,49 @@ const M2_FINDING_JSON_SCHEMA = {
   required: ['findings'],
 } as const;
 
-function extractResponsesContent(payload: unknown): { structured?: unknown; refusal?: string; incomplete?: string } {
+function normalizeNullableFinding(value: unknown): unknown {
+  if (!value || typeof value !== 'object') return value;
+  const finding = value as Record<string, unknown>;
+  const normalizeEvidence = (items: unknown) => Array.isArray(items)
+    ? items.map((item) => {
+      if (!item || typeof item !== 'object') return item;
+      const evidence = item as Record<string, unknown>;
+      if (evidence.excerpt === null) {
+        const { excerpt: _excerpt, ...withoutExcerpt } = evidence;
+        return withoutExcerpt;
+      }
+      return evidence;
+    })
+    : items;
+  return {
+    ...finding,
+    ...(finding.seed === null ? { seed: undefined } : {}),
+    ...(finding.chapter === null ? { chapter: undefined } : {}),
+    currentEvidence: normalizeEvidence(finding.currentEvidence),
+    priorEvidence: normalizeEvidence(finding.priorEvidence),
+    stateEvidence: normalizeEvidence(finding.stateEvidence),
+  };
+}
+
+function normalizeStructuredFindings(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(normalizeNullableFinding);
+  if (value && typeof value === 'object') {
+    const findings = (value as Record<string, unknown>).findings;
+    if (Array.isArray(findings)) return findings.map(normalizeNullableFinding);
+  }
+  return value;
+}
+
+function extractResponsesContent(payload: unknown): { structured?: unknown; refusal?: string; incomplete?: string; incompleteReason?: string } {
   if (!payload || typeof payload !== 'object') return {};
   const record = payload as Record<string, unknown>;
   if (record.status === 'incomplete') {
     const details = record.incomplete_details;
-    return { incomplete: typeof details === 'string' ? details : 'The Responses API returned an incomplete response.' };
+    const reason = details && typeof details === 'object' && typeof (details as Record<string, unknown>).reason === 'string'
+      ? (details as Record<string, unknown>).reason as string
+      : undefined;
+    const safeReason = reason ? redactSensitiveText(reason, 160) : undefined;
+    return { incomplete: typeof details === 'string' ? details : 'The Responses API returned an incomplete response.', ...(safeReason ? { incompleteReason: safeReason } : {}) };
   }
   if (typeof record.output_text === 'string') {
     try { return { structured: JSON.parse(record.output_text) }; } catch { return { structured: record.output_text }; }
@@ -487,6 +537,36 @@ function classifyOpenAIError(status: number, payload: unknown): NarrativeProvide
   return 'PROVIDER_ERROR';
 }
 
+function redactSensitiveText(value: unknown, maxLength: number, additionalSecrets: readonly string[] = []): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  let redacted = value
+    .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, 'Bearer [REDACTED]')
+    .replace(/\bsk-[A-Za-z0-9_-]+\b/g, '[REDACTED]')
+    .replace(/[\u0000-\u001F\u007F]/g, ' ');
+  for (const secret of additionalSecrets) {
+    if (secret) redacted = redacted.split(secret).join('[REDACTED]');
+  }
+  return redacted.slice(0, maxLength);
+}
+
+export function extractSafeOpenAIErrorDetails(payload: unknown, additionalSecrets: readonly string[] = []): SafeOpenAIErrorDetails {
+  if (!payload || typeof payload !== 'object') return {};
+  const payloadRecord = payload as Record<string, unknown>;
+  const source = payloadRecord.error && typeof payloadRecord.error === 'object'
+    ? payloadRecord.error as Record<string, unknown>
+    : payloadRecord;
+  const details: SafeOpenAIErrorDetails = {};
+  const code = redactSensitiveText(source.code, 120, additionalSecrets);
+  const type = redactSensitiveText(source.type, 120, additionalSecrets);
+  const param = redactSensitiveText(source.param, 200, additionalSecrets);
+  const message = redactSensitiveText(source.message, 1000, additionalSecrets);
+  if (code) details.code = code;
+  if (type) details.type = type;
+  if (param) details.param = param;
+  if (message) details.message = message;
+  return details;
+}
+
 export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvider {
   readonly name = M2_1_OFFICIAL_PROVIDER;
   readonly model: (typeof M2_1_OFFICIAL_OPENAI_MODELS)[number];
@@ -510,23 +590,23 @@ export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvide
   }
 
   async reviewAsync(context: NarrativeContext, contract: ReviewerContract): Promise<ProviderReviewResult> {
-    const parsedContext = NarrativeContextSchema.parse(context);
+    const parsedContext = compactNarrativeContext(context);
     const parsedContract = ReviewerContractSchema.parse(contract);
     const expectedContextDigest = contextDigest(parsedContext);
     const expectedTranscriptDigest = jsonDigest(parsedContext.transcript);
     const input = [
-      { role: 'system', content: [{ type: 'input_text', text: 'You are an advisory EVE narrative QA reviewer. Return only evidence-backed structured findings. Never rewrite runtime state or canon. Distinguish canonical truth, player knowledge, inference, and report. Consent is not compliance; desire is not action; dependency is not love.' }] },
+      { role: 'system', content: [{ type: 'input_text', text: `You are an advisory EVE narrative QA reviewer. Return only evidence-backed structured findings. Never rewrite runtime state or canon. Distinguish canonical truth, player knowledge, inference, and report. Consent is not compliance; desire is not action; dependency is not love. ${M2_TRANSITION_REVIEW_RULE}` }] },
       { role: 'user', content: [{ type: 'input_text', text: JSON.stringify({
         contract: parsedContract,
         context: parsedContext,
         requiredDigests: { contextDigest: expectedContextDigest, transcriptDigest: expectedTranscriptDigest },
-        output: { maxFindings: 5, maxOutputTokens: M2_1_OUTPUT_TOKEN_CEILING },
+        output: { maxFindings: 5, maxOutputTokens: M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING },
       }) }] },
     ];
     const request = {
       model: this.model,
       reasoning: { effort: this.config.reasoningEffort },
-      max_output_tokens: M2_1_OUTPUT_TOKEN_CEILING,
+      max_output_tokens: M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING,
       input,
       text: { format: { type: 'json_schema', name: 'm2_finding_bundle', strict: true, schema: M2_FINDING_JSON_SCHEMA } },
     };
@@ -565,7 +645,9 @@ export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvide
     if (!response.ok) {
       const code = classifyOpenAIError(response.status, payload);
       const message = `OpenAI request failed (${code}).`;
-      return { findings: [], rejected: [message], provenance: responseProvenance, usage, pricing, estimatedCostUsd: usage ? estimateProviderCostUsd(usage, pricing) : undefined, error: { code, message, status: response.status } };
+      const details = extractSafeOpenAIErrorDetails(payload, [this.config.apiKey]);
+      const rejected = details.message ? [message, `OpenAI detail: ${details.message}`] : [message];
+      return { findings: [], rejected, provenance: responseProvenance, usage, pricing, estimatedCostUsd: usage ? estimateProviderCostUsd(usage, pricing) : undefined, error: { code, message, status: response.status, details } };
     }
     const extracted = extractResponsesContent(payload);
     if (extracted.refusal) {
@@ -574,12 +656,10 @@ export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvide
     }
     if (extracted.incomplete) {
       const message = 'OpenAI returned an incomplete narrative review.';
-      return { findings: [], rejected: [message], provenance: responseProvenance, usage, pricing, estimatedCostUsd: usage ? estimateProviderCostUsd(usage, pricing) : undefined, error: { code: 'INCOMPLETE_RESPONSE', message } };
+      const details = extracted.incompleteReason ? { reason: extracted.incompleteReason } : undefined;
+      return { findings: [], rejected: [message], provenance: responseProvenance, usage, pricing, estimatedCostUsd: usage ? estimateProviderCostUsd(usage, pricing) : undefined, error: { code: 'INCOMPLETE_RESPONSE', message, ...(details ? { details } : {}) } };
     }
-    const structured = extracted.structured && typeof extracted.structured === 'object' && Array.isArray((extracted.structured as Record<string, unknown>).findings)
-      ? (extracted.structured as Record<string, unknown>).findings
-      : extracted.structured;
-    const parsed = parseReviewerResult(structured);
+    const parsed = parseReviewerResult(normalizeStructuredFindings(extracted.structured));
     const rejected = [...parsed.rejected];
     const findings: M2Finding[] = [];
     for (const item of parsed.findings) {

@@ -26,6 +26,10 @@ human review
 
 The source implementation is `src/qa/m2.ts`. It consumes `QaTranscript` values and never calls the reducer while reviewing. A context packet contains the route, current node, selected player/NPC state, major route history, visual fields when available, and the transcript blocks needed by the reviewer; it intentionally omits an irrelevant full `GameState` dump.
 
+## Transition-complete review rule
+
+Reviewers must inspect the entire executed action transition before claiming that state provenance contradicts dialogue. The supplied transcript preserves the player-selected utterance or thought, every history record emitted by the action, the immediate response, next-scene narration, and resulting state. Speaker attribution must never be inferred solely from the final line in a transition.
+
 ## Scale and selection
 
 M1 may run thousands of cheap deterministic simulations. M2 reviews a small, high-value subset. Selection priority is `CHANGED_ROUTE`, `NEW_CONTENT`, deterministic failure/warning, high-risk reconvergence, golden route, rare state combination, then fuzz sample. The configured review budget is a ceiling, not a quota: equivalent or low-value routes are not added merely to reach the ceiling.

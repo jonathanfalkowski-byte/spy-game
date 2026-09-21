@@ -3,6 +3,7 @@ import {
   REVIEWER_CONTRACTS,
   buildNarrativeContext,
   contextDigest,
+  M2_TRANSITION_REVIEW_RULE,
   type NarrativeContext,
 } from '../../src/qa/m2';
 import { fixtureCandidate } from './m2-fixtures';
@@ -12,7 +13,10 @@ import {
   M2_1_OFFICIAL_OPENAI_ENDPOINT,
   OfficialOpenAINarrativeProvider,
   OpenAICompatibleNarrativeProvider,
+  M2_FINDING_JSON_SCHEMA,
+  M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING,
   createNarrativeProviderFromEnv,
+  extractSafeOpenAIErrorDetails,
   inspectNarrativeProviderPreflight,
   type NarrativeProviderConfig,
   type NarrativeTransport,
@@ -66,6 +70,31 @@ function validFinding(request: Record<string, any>, overrides: Record<string, un
 }
 
 describe('M2.1 narrative provider adapter', () => {
+  it('keeps the official strict schema closed, fully required, and item-typed', () => {
+    const visit = (schema: any) => {
+      if (schema?.type === 'object') {
+        expect(schema.additionalProperties).toBe(false);
+        expect(schema.required).toEqual(Object.keys(schema.properties));
+        for (const child of Object.values(schema.properties)) visit(child);
+      }
+      if (schema?.type === 'array') {
+        expect(schema.items).toBeDefined();
+        visit(schema.items);
+      }
+    };
+    visit(M2_FINDING_JSON_SCHEMA);
+    const finding = (M2_FINDING_JSON_SCHEMA as any).properties.findings.items;
+    expect(finding.required).toEqual(Object.keys(finding.properties));
+    expect(finding.properties.seed.type).toEqual(['integer', 'null']);
+    expect(finding.properties.chapter.type).toEqual(['string', 'null']);
+    expect(finding.properties.reproductionTrace.items.type).toBe('string');
+    for (const key of ['currentEvidence', 'priorEvidence', 'stateEvidence']) {
+      const evidence = finding.properties[key].items;
+      expect(evidence.required).toEqual(['type', 'reference', 'excerpt']);
+      expect(evidence.properties.excerpt.type).toEqual(['string', 'null']);
+    }
+  });
+
   it('returns a structured success with trusted digests and provenance', async () => {
     const capture: { request?: Record<string, any> } = {};
     const provider = new OpenAICompatibleNarrativeProvider(config, { transport: successTransport((request) => validFinding(request), 200, capture) });
@@ -171,8 +200,32 @@ describe('M2.1 narrative provider adapter', () => {
     expect(result.usage).toEqual({ inputTokens: 120, outputTokens: 30, reasoningTokens: 8, totalTokens: 150 });
     expect(result.estimatedCostUsd).toBeCloseTo(0.00108, 8);
     expect(capture.request?.reasoning).toEqual({ effort: 'medium' });
+    expect(capture.request?.max_output_tokens).toBe(M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING);
+    expect(capture.request?.input?.[1]?.content?.[0]?.text).toContain(`"maxOutputTokens":${M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING}`);
+    expect(capture.request?.input?.[0]?.content?.[0]?.text).toContain(M2_TRANSITION_REVIEW_RULE);
     expect(capture.request?.text?.format?.type).toBe('json_schema');
     expect(capture.request?.input?.[0]?.content?.[0]?.type).toBe('input_text');
+  });
+
+  it('normalizes nullable official fields before the local Zod parser', async () => {
+    const provider = new OfficialOpenAINarrativeProvider({ provider: M2_1_OFFICIAL_PROVIDER, model: 'gpt-5.6-sol', apiKey: 'secret', timeoutMs: 5_000, reasoningEffort: 'medium' }, {
+      transport: async (_input, init) => {
+        const request = JSON.parse(String(init?.body)) as Record<string, any>;
+        const finding = validFinding(request, {
+          seed: null,
+          chapter: null,
+          reproductionTrace: [],
+          currentEvidence: [{ type: 'transcript', reference: 'step:1', excerpt: null }],
+        });
+        return new Response(JSON.stringify({ status: 'completed', output_text: JSON.stringify({ findings: finding }) }), { status: 200 });
+      },
+    });
+    const result = await provider.reviewAsync(contextFixture(), REVIEWER_CONTRACTS[0]);
+    expect(result.error).toBeUndefined();
+    expect(result.findings).toHaveLength(1);
+    expect(result.findings[0].seed).toBeUndefined();
+    expect(result.findings[0].chapter).toBeUndefined();
+    expect(result.findings[0].currentEvidence[0].excerpt).toBeUndefined();
   });
 
   it('handles official Responses refusal and incomplete responses', async () => {
@@ -186,6 +239,7 @@ describe('M2.1 narrative provider adapter', () => {
     });
     const incompleteResult = await incomplete.reviewAsync(contextFixture(), REVIEWER_CONTRACTS[0]);
     expect(incompleteResult.error?.code).toBe('INCOMPLETE_RESPONSE');
+    expect(incompleteResult.error?.details).toEqual({ reason: 'max_output_tokens' });
   });
 
   it('rejects malformed official structured output and classifies context limits', async () => {
@@ -211,6 +265,21 @@ describe('M2.1 narrative provider adapter', () => {
       });
       expect((await provider.reviewAsync(contextFixture(), REVIEWER_CONTRACTS[0])).error?.code).toBe(code);
     }
+  });
+
+  it('returns only safe structured details for an official HTTP 400', async () => {
+    const secret = 'sk-live-should-never-appear';
+    const provider = new OfficialOpenAINarrativeProvider({ provider: M2_1_OFFICIAL_PROVIDER, model: 'gpt-5.6-sol', apiKey: secret, timeoutMs: 5_000, reasoningEffort: 'medium' }, {
+      transport: async () => new Response(JSON.stringify({ error: {
+        code: 'invalid_request_error', type: 'invalid_request_error', param: 'text.format.schema', message: `bad schema Bearer ${secret}`,
+        headers: { authorization: secret },
+      } }), { status: 400 }),
+    });
+    const result = await provider.reviewAsync(contextFixture(), REVIEWER_CONTRACTS[0]);
+    expect(result.error?.status).toBe(400);
+    expect(result.error?.details).toMatchObject({ code: 'invalid_request_error', type: 'invalid_request_error', param: 'text.format.schema', message: expect.stringContaining('[REDACTED]') });
+    expect(JSON.stringify(result)).not.toContain(secret);
+    expect(extractSafeOpenAIErrorDetails({ error: { message: secret, code: 'x' }, headers: { authorization: secret } })).not.toHaveProperty('headers');
   });
 
   it('keeps official provider preflight distinct from API-key availability and supports the fallback key alias', () => {

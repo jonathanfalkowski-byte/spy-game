@@ -19,9 +19,9 @@ The current checkout has official OpenAI support in the adapter, but no configur
 
 In the current empty environment, `qa:narrative:preflight` reports provider and model as `MISSING` as well, because those selection variables are not set. It does not expose or infer credentials.
 
-The uncommitted adapter in `src/qa/m2-provider.ts` now separates the official `openai` Responses API from the generic `openai-compatible` Chat Completions adapter. Official OpenAI defaults to `/v1/responses`, supports the allowlisted `gpt-5.6-sol` model, sends `reasoning: { effort: "medium" }`, and prefers `OPENAI_API_KEY` with `EVE_NARRATIVE_API_KEY` as a compatibility fallback. The key is never included in logs, reports, digests, or this plan.
+The uncommitted adapter in `src/qa/m2-provider.ts` now separates the official `openai` Responses API from the generic `openai-compatible` Chat Completions adapter. Official OpenAI defaults to `/v1/responses`, supports the allowlisted `gpt-5.6-sol` model, sends `reasoning: { effort: "medium" }`, and prefers `OPENAI_API_KEY` with `EVE_NARRATIVE_API_KEY` as a compatibility fallback. The key is never included in logs, reports, digests, or this plan. M2.1F adds route-scoped interaction semantics so reviewers do not infer gameplay meaning from action names.
 
-The official adapter captures provider-reported input, output, reasoning, and total token usage where present. Pilot pricing is configured as an estimate of $4 per million input tokens and $20 per million output tokens, sourced from the owner authorization dated 2026-09-19. API billing is separate from ChatGPT billing. The prepared maximum remains approximately $2.35 against the $3.00 owner ceiling.
+The official adapter captures provider-reported input, output, reasoning, and total token usage where present. Pilot pricing is configured as an estimate of $4 per million input tokens and $20 per million output tokens, sourced from the owner authorization dated 2026-09-19. API billing is separate from ChatGPT billing. M2.1E lossless compression reduces the prepared ten-call estimate to approximately **$2.35**. No call is made by this preparation pass.
 
 ## Exact pilot scope
 
@@ -29,18 +29,18 @@ The pilot is exactly three current golden routes and exactly ten reviewer calls:
 
 | Call | Route | Reviewer | Context bytes | Estimated input tokens* | Output ceiling |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `opening-bad-assessment` | LOGIC | 21,295 | 5,324 | 1,200 |
-| 2 | `opening-bad-assessment` | KNOWLEDGE | 21,295 | 5,324 | 1,200 |
-| 3 | `opening-bad-assessment` | INVESTIGATION | 21,295 | 5,324 | 1,200 |
-| 4 | `chapter5-no-intimacy` | CONTINUITY | 295,509 | 73,878 | 1,200 |
-| 5 | `chapter5-no-intimacy` | AGENCY_POWER | 295,509 | 73,878 | 1,200 |
-| 6 | `chapter5-no-intimacy` | ADULT_THRILLER | 295,509 | 73,878 | 1,200 |
-| 7 | `chapter5-no-intimacy` | ROUTE_COHESION | 295,509 | 73,878 | 1,200 |
-| 8 | `chapter5-public-visibility` | CONTINUITY | 289,523 | 72,381 | 1,200 |
-| 9 | `chapter5-public-visibility` | ADULT_THRILLER | 289,523 | 72,381 | 1,200 |
-| 10 | `chapter5-public-visibility` | ROUTE_COHESION | 289,523 | 72,381 | 1,200 |
+| 1 | `opening-bad-assessment` | LOGIC | 31,662 | 7,916 | 3,000 |
+| 2 | `opening-bad-assessment` | KNOWLEDGE | 31,662 | 7,916 | 3,000 |
+| 3 | `opening-bad-assessment` | INVESTIGATION | 31,662 | 7,916 | 3,000 |
+| 4 | `chapter5-no-intimacy` | CONTINUITY | 243,114 | 60,779 | 3,000 |
+| 5 | `chapter5-no-intimacy` | AGENCY_POWER | 243,114 | 60,779 | 3,000 |
+| 6 | `chapter5-no-intimacy` | ADULT_THRILLER | 243,114 | 60,779 | 3,000 |
+| 7 | `chapter5-no-intimacy` | ROUTE_COHESION | 243,114 | 60,779 | 3,000 |
+| 8 | `chapter5-public-visibility` | CONTINUITY | 236,672 | 59,168 | 3,000 |
+| 9 | `chapter5-public-visibility` | ADULT_THRILLER | 236,672 | 59,168 | 3,000 |
+| 10 | `chapter5-public-visibility` | ROUTE_COHESION | 236,672 | 59,168 | 3,000 |
 
-Totals are **2,114,490 context bytes** and **528,627 estimated input tokens** across the ten calls. The token estimate is the deterministic planning heuristic `ceil(UTF-8 bytes / 4)`; it is not a provider tokenizer quote. The configured output ceiling is **1,200 tokens per call**, or **12,000 tokens maximum across the ten calls**.
+The current M2.1F plan is **1,777,428 context bytes** and **444,359 estimated input tokens** across the ten calls. The token estimate is the deterministic planning heuristic `ceil(UTF-8 bytes / 4)`; it is not a provider tokenizer quote. The configured output ceiling is **3,000 tokens per call**, or **30,000 tokens maximum across the ten calls**. At the owner-provided planning rates, the resulting ten-call maximum is approximately **$2.377436**. The opening LOGIC smoke alone is estimated at **$0.091652**.
 
 The route set is intentionally bounded. No fuzz samples, future route contracts, image review, Chapter 6 content, or additional reviewer categories are included.
 
@@ -75,3 +75,7 @@ npm.cmd run qa:narrative:pilot
 ```
 
 This command was **not run**. No provider call is authorized by this preparation pass. The pilot command remains fail-closed with `PILOT_NOT_AUTHORIZED` or `PROVIDER_NOT_CONFIGURED` until both gates are present.
+
+## Post-calibration selection checkpoint
+
+The opening `LOGIC` call is now a completed human calibration record, so the remaining selection is nine calls: opening `KNOWLEDGE` and `INVESTIGATION`; chapter5-no-intimacy `CONTINUITY`, `AGENCY_POWER`, `ADULT_THRILLER`, and `ROUTE_COHESION`; and chapter5-public-visibility `CONTINUITY`, `ADULT_THRILLER`, and `ROUTE_COHESION`. The selection is recorded in `src/qa/m2-calibration.ts` and is not executed by this checkpoint.
