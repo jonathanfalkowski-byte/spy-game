@@ -750,7 +750,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                       </div>
                     </section>
                   )}
-                  {sceneById[node].next && (
+                  {sceneById[node].next && !readingScene && (
                     <div className="continue-row">
                       <button
                         className="primary"
