@@ -2,12 +2,16 @@ import { describe, expect, it } from 'vitest';
 import {
   M2_OPENING_LOGIC_CALIBRATION,
   M2_OPENING_LOGIC_CALIBRATION_STATUS,
+  M2_INCOMPLETE_PILOT_EXECUTIONS,
+  M2_REMAINING_PILOT_CLASSIFICATIONS,
   M2_REMAINING_PILOT_SELECTION,
   M2CalibrationRecordSchema,
   isKnownFrozenHistoricalCalibration,
+  summarizeRemainingPilotClassifications,
   summarizeCalibrationClassifications,
   summarizeCalibrationDispositions,
   validateCalibrationRegistry,
+  validateRemainingPilotClassifications,
 } from '../../src/qa/m2-calibration';
 import { buildNarrativeContext, candidateFromTranscript, M2HumanClassificationRecordSchema, routeAuthorityForRevision } from '../../src/qa/m2';
 import { transcriptFromSnapshots } from '../../src/qa/m1';
@@ -67,5 +71,31 @@ describe('M2 human calibration and route authority metadata', () => {
     expect(M2_REMAINING_PILOT_SELECTION.map((call) => call.ordinal)).toEqual([2, 3, 4, 5, 6, 7, 8, 9, 10]);
     expect(M2_REMAINING_PILOT_SELECTION).not.toContainEqual({ ordinal: 1, routeId: 'opening-bad-assessment', reviewer: 'LOGIC' });
     for (const record of M2_OPENING_LOGIC_CALIBRATION) expect(M2CalibrationRecordSchema.safeParse(record).success).toBe(true);
+  });
+
+  it('records the nine raw classifications and converges them into five issue families', () => {
+    expect(validateRemainingPilotClassifications()).toHaveLength(9);
+    expect(M2_REMAINING_PILOT_CLASSIFICATIONS).toHaveLength(9);
+    expect(summarizeRemainingPilotClassifications()).toEqual({
+      reviewedFindings: 9,
+      trueIssues: 6,
+      usefulWarnings: 0,
+      falsePositives: 3,
+      insufficientEvidence: 0,
+      uniqueIssueFamilies: 5,
+      uniqueTrueIssueFamilies: 4,
+    });
+    expect(M2_INCOMPLETE_PILOT_EXECUTIONS).toEqual([expect.objectContaining({
+      routeId: 'chapter5-public-visibility',
+      reviewer: 'ROUTE_COHESION',
+      status: 'INCOMPLETE_RESPONSE',
+      reason: 'max_output_tokens',
+      inputTokens: 57544,
+      outputTokens: 3000,
+      reasoningTokens: 1350,
+      totalTokens: 60544,
+      estimatedCostUsd: 0.290176,
+      retried: false,
+    })]);
   });
 });

@@ -30,6 +30,7 @@ it('prepares the exact M2.1 three-route ten-call plan without external calls', (
   expect(plan.routes).toEqual(['opening-bad-assessment', 'chapter5-no-intimacy', 'chapter5-public-visibility']);
   expect(plan.calls).toHaveLength(10);
   expect(plan.outputTokenCeiling).toBe(M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING);
+  expect(plan.estimatedMaximumOutputTokens).toBe(33000);
   expect(plan.externalCalls).toBe(0);
   const reportDir = resolve(process.cwd(), 'qa', 'reports');
   mkdirSync(reportDir, { recursive: true });

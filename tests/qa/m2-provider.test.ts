@@ -15,6 +15,8 @@ import {
   OpenAICompatibleNarrativeProvider,
   M2_FINDING_JSON_SCHEMA,
   M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING,
+  M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING,
+  outputTokenCeilingForReviewer,
   createNarrativeProviderFromEnv,
   extractSafeOpenAIErrorDetails,
   inspectNarrativeProviderPreflight,
@@ -70,6 +72,11 @@ function validFinding(request: Record<string, any>, overrides: Record<string, un
 }
 
 describe('M2.1 narrative provider adapter', () => {
+  it('raises only long official ROUTE_COHESION reviews to 4500 output tokens', () => {
+    expect(outputTokenCeilingForReviewer('ROUTE_COHESION', 50_000, 'openai')).toBe(M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING);
+    expect(outputTokenCeilingForReviewer('CONTINUITY', 60_000, 'openai')).toBe(M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING);
+    expect(outputTokenCeilingForReviewer('ROUTE_COHESION', 60_000, 'openai-compatible')).toBe(M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING);
+  });
   it('keeps the official strict schema closed, fully required, and item-typed', () => {
     const visit = (schema: any) => {
       if (schema?.type === 'object') {
@@ -205,6 +212,30 @@ describe('M2.1 narrative provider adapter', () => {
     expect(capture.request?.input?.[0]?.content?.[0]?.text).toContain(M2_TRANSITION_REVIEW_RULE);
     expect(capture.request?.text?.format?.type).toBe('json_schema');
     expect(capture.request?.input?.[0]?.content?.[0]?.type).toBe('input_text');
+  });
+
+  it('uses 4500 output tokens for a long official ROUTE_COHESION context', async () => {
+    const capture: { request?: Record<string, any> } = {};
+    const longContext = structuredClone(contextFixture());
+    longContext.transcript.transitions = Array.from({ length: 3000 }, () => structuredClone(longContext.transcript.transitions[0]));
+    const provider = new OfficialOpenAINarrativeProvider({
+      provider: M2_1_OFFICIAL_PROVIDER,
+      model: 'gpt-5.6-sol',
+      apiKey: 'official-test-key',
+      timeoutMs: 5_000,
+      reasoningEffort: 'medium',
+    }, {
+      transport: async (_input, init) => {
+        const request = JSON.parse(String(init?.body)) as Record<string, any>;
+        capture.request = request;
+        const content = JSON.stringify({ findings: validFinding(request) });
+        return new Response(JSON.stringify({ status: 'completed', output: [{ type: 'message', content: [{ type: 'output_text', text: content }] }] }), { status: 200 });
+      },
+    });
+    const routeContract = REVIEWER_CONTRACTS.find((contract) => contract.reviewer === 'ROUTE_COHESION')!;
+    await provider.reviewAsync(longContext, routeContract);
+    expect(capture.request?.max_output_tokens).toBe(M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING);
+    expect(capture.request?.input?.[1]?.content?.[0]?.text).toContain(`"maxOutputTokens":${M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING}`);
   });
 
   it('normalizes nullable official fields before the local Zod parser', async () => {

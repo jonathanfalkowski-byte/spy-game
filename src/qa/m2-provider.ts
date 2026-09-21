@@ -10,11 +10,15 @@ import {
   type NarrativeContext,
   type NarrativeReviewerProvider,
   type ReviewerContract,
+  type M2Reviewer,
 } from './m2';
 
 export const M2_1_OUTPUT_TOKEN_CEILING = 1200;
 /** Headroom for the authorized official OpenAI smoke/pilot reviewer. */
 export const M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING = 3000;
+/** Long official ROUTE_COHESION reviews need additional structured-output headroom. */
+export const M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING = 4500;
+export const M2_1_LONG_CONTEXT_INPUT_TOKEN_THRESHOLD = 50_000;
 /** Recomputed from the compressed opening-bad-assessment pilot packet (28,915 UTF-8 bytes / 4). */
 export const M2_1_SMOKE_INPUT_TOKEN_BASELINE = 7229;
 export const M2_1_DEFAULT_TIMEOUT_MS = 30_000;
@@ -31,6 +35,16 @@ export const M2_1_GPT_56_SOL_PRICING = {
   source: 'Owner-provided pilot authorization',
   sourceDate: '2026-09-19',
 } as const;
+
+export function outputTokenCeilingForReviewer(
+  reviewer: M2Reviewer,
+  estimatedInputTokens: number,
+  provider: 'openai' | 'openai-compatible' = 'openai',
+) {
+  if (provider === 'openai' && reviewer === 'ROUTE_COHESION' && estimatedInputTokens >= M2_1_LONG_CONTEXT_INPUT_TOKEN_THRESHOLD)
+    return M2_1_ROUTE_COHESION_OUTPUT_TOKEN_CEILING;
+  return M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING;
+}
 
 export type M21SupportedModel = (typeof M2_1_SUPPORTED_MODELS)[number];
 
@@ -592,6 +606,8 @@ export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvide
   async reviewAsync(context: NarrativeContext, contract: ReviewerContract): Promise<ProviderReviewResult> {
     const parsedContext = compactNarrativeContext(context);
     const parsedContract = ReviewerContractSchema.parse(contract);
+    const estimatedInputTokens = Math.ceil(Buffer.byteLength(JSON.stringify(parsedContext), 'utf8') / 4);
+    const outputTokenCeiling = outputTokenCeilingForReviewer(parsedContract.reviewer, estimatedInputTokens, 'openai');
     const expectedContextDigest = contextDigest(parsedContext);
     const expectedTranscriptDigest = jsonDigest(parsedContext.transcript);
     const input = [
@@ -600,13 +616,13 @@ export class OfficialOpenAINarrativeProvider implements NarrativeReviewerProvide
         contract: parsedContract,
         context: parsedContext,
         requiredDigests: { contextDigest: expectedContextDigest, transcriptDigest: expectedTranscriptDigest },
-        output: { maxFindings: 5, maxOutputTokens: M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING },
+        output: { maxFindings: 5, maxOutputTokens: outputTokenCeiling },
       }) }] },
     ];
     const request = {
       model: this.model,
       reasoning: { effort: this.config.reasoningEffort },
-      max_output_tokens: M2_1_REAL_REVIEW_OUTPUT_TOKEN_CEILING,
+      max_output_tokens: outputTokenCeiling,
       input,
       text: { format: { type: 'json_schema', name: 'm2_finding_bundle', strict: true, schema: M2_FINDING_JSON_SCHEMA } },
     };

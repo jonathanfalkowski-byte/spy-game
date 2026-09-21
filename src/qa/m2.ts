@@ -7,12 +7,16 @@ import { availableQaActions, stableState, stateDigest, transcriptFromSnapshots, 
 import { InteractionSemanticsSchema, interactionSemanticsForActionTypes } from './m2-interaction-semantics';
 import type { GameEvent } from '../state/actions';
 import type { GameState } from '../state/schema';
+import { sceneById } from '../content/scenes';
+import { sceneById as historicalSceneById } from '../persistence/legacy-v13/content/scenes';
+import { chapter5Definitions as historicalChapter5Definitions } from '../persistence/legacy-v16/content/chapter5';
+import type { NodeId } from '../content/schema';
 
 /** M1 is deterministic truth; M2 is an advisory, evidence-gated reviewer. */
 export const M2_VERSION = 'm2-v1';
 
 export const M2_TRANSITION_REVIEW_RULE =
-  'Before claiming that state provenance contradicts dialogue, inspect the entire action transition: the player-selected utterance or thought, every emitted history record, the immediate response, next-scene narration, and resulting state. Do not infer speaker attribution solely from the final line in a transition. Do not infer gameplay semantics solely from action names. For evidence, selection, disclosure, attachment, consent, refusal, resource transfer, or relationship claims, consult runtime state, transition history, and interactionSemantics before making a causal claim.';
+  'Before claiming that state provenance contradicts dialogue, inspect the entire action transition: the player-selected utterance or thought, every emitted history record, the immediate response, next-scene narration, and resulting state. Do not infer speaker attribution solely from the final line in a transition. Do not infer gameplay semantics solely from action names. For time or location claims, inspect the previous and entered scene title/place metadata before reporting a missing transition. For evidence, selection, disclosure, attachment, consent, refusal, resource transfer, or relationship claims, consult runtime state, transition history, and interactionSemantics before making a causal claim.';
 
 /** Lossless context format. State is delta encoded, never semantically summarized. */
 export const M2_CONTEXT_COMPRESSION_VERSION = 'm2-context-delta-v1' as const;
@@ -70,10 +74,25 @@ const CompressedTransitionSchema = z
       choiceId: z.string().max(120).optional(),
     }).strict(),
     emittedHistory: z.array(z.object({ node: z.string().max(120), blocks: z.array(z.unknown()).max(100) }).strict()).max(100),
+    enteredScene: z.object({ sceneTitle: z.string().max(240), scenePlace: z.string().max(240) }).strict().optional(),
     stateDelta: StateDeltaSchema,
   })
   .strict();
 export type M2CompressedTransition = z.infer<typeof CompressedTransitionSchema>;
+
+const SceneMetadataSchema = z.object({ sceneTitle: z.string().max(240), scenePlace: z.string().max(240) }).strict();
+export type M2SceneMetadata = z.infer<typeof SceneMetadataSchema>;
+
+function sceneMetadataForNode(node: string, contentRevision: number): M2SceneMetadata | undefined {
+  const nodeId = node as NodeId;
+  const phase = node.startsWith('chapter5.') ? node.slice('chapter5.'.length) : undefined;
+  const authored = contentRevision >= 17
+    ? sceneById[nodeId]
+    : phase
+      ? { ...historicalChapter5Definitions[phase as keyof typeof historicalChapter5Definitions], id: nodeId }
+      : historicalSceneById[nodeId];
+  return authored?.title && authored.place ? { sceneTitle: authored.title, scenePlace: authored.place } : undefined;
+}
 
 function compactAction(action: NonNullable<ReturnType<typeof finalEntry>['action']>) {
   return {
@@ -323,6 +342,8 @@ export const NarrativeContextSchema = z
         movement: z.string().max(80).optional(),
         location: z.string().max(80).optional(),
         time: z.string().max(80).optional(),
+        sceneTitle: z.string().max(240).optional(),
+        scenePlace: z.string().max(240).optional(),
       })
       .strict(),
     routeHistory: z
@@ -341,7 +362,7 @@ export const NarrativeContextSchema = z
       })
       .strict(),
     transcript: CompressedTranscriptSchema,
-    fixture: z.enum(['continuity-contradiction', 'unsourced-knowledge', 'semantic-misinterpretation', 'reconverged-preserved', 'clean']).optional(),
+    fixture: z.enum(['continuity-contradiction', 'unsourced-knowledge', 'semantic-misinterpretation', 'next-day-context-misinterpretation', 'reconverged-preserved', 'clean']).optional(),
   })
   .strict();
 export type NarrativeContext = z.infer<typeof NarrativeContextSchema>;
@@ -373,7 +394,7 @@ export const M2ReportSchema = z
 export type M2Report = z.infer<typeof M2ReportSchema>;
 
 export const REVIEWER_CONTRACTS: readonly ReviewerContract[] = [
-  { reviewer: 'CONTINUITY', version: 'v1', promptPath: 'docs/qa/prompts/continuity.v1.md', checks: ['location/time', 'wardrobe/props', 'evidence custody', 'relationships', 'prior event references'] },
+  { reviewer: 'CONTINUITY', version: 'v1', promptPath: 'docs/qa/prompts/continuity.v1.md', checks: ['location/time', 'authored scene title/place metadata before missing-transition claims', 'wardrobe/props', 'evidence custody', 'relationships', 'prior event references'] },
   { reviewer: 'LOGIC', version: 'v1', promptPath: 'docs/qa/prompts/logic.v1.md', checks: ['causes precede consequences', 'refusal/acceptance remain meaningful', 'state-supported route changes', 'interaction semantics distinguish read, analyze, connect, and submit'] },
   { reviewer: 'KNOWLEDGE', version: 'v1', promptPath: 'docs/qa/prompts/knowledge.v1.md', checks: ['NPC knowledge has a source', 'beliefs are distinct from canon truth'] },
   { reviewer: 'CHARACTER', version: 'v1', promptPath: 'docs/qa/prompts/character.v1.md', checks: ['voice', 'goals and values', 'behavioral reversals'] },
@@ -381,7 +402,7 @@ export const REVIEWER_CONTRACTS: readonly ReviewerContract[] = [
   { reviewer: 'AGENCY_POWER', version: 'v1', promptPath: 'docs/qa/prompts/agency-power.v1.md', checks: ['consent/compliance', 'desire/action', 'dependency/love', 'control/care'] },
   { reviewer: 'ADULT_THRILLER', version: 'v1', promptPath: 'docs/qa/prompts/adult-thriller.v1.md', checks: ['adult tension follows state', 'coercion is not mutual willingness', 'non-Julian possibilities remain'] },
   { reviewer: 'PROSE', version: 'v1', promptPath: 'docs/qa/prompts/prose.v1.md', checks: ['repetition', 'transitions', 'POV', 'tonal continuity'] },
-  { reviewer: 'ROUTE_COHESION', version: 'v1', promptPath: 'docs/qa/prompts/route-cohesion.v1.md', checks: ['consequences persist', 'chapter transitions', 'reconvergence history'] },
+  { reviewer: 'ROUTE_COHESION', version: 'v1', promptPath: 'docs/qa/prompts/route-cohesion.v1.md', checks: ['consequences persist', 'authored scene title/place metadata before missing-transition claims', 'chapter transitions', 'reconvergence history'] },
 ];
 
 const contractByReviewer = new Map(REVIEWER_CONTRACTS.map((contract) => [contract.reviewer, contract]));
@@ -682,7 +703,16 @@ export function compressNarrativeTranscript(transcript: QaTranscript): M2Compres
     const action = entry.action;
     if (!action) throw new Error(`M2 compression requires an action for transition ${entry.step}.`);
     const emittedHistory = entry.emittedHistory;
-    transitions.push({ step: entry.step, previousNode: entry.previousNode ?? previous.node, nextNode: entry.nextNode, action: compactAction(action), emittedHistory, stateDelta: deltaBetween(previous, next) });
+    const enteredScene = sceneMetadataForNode(entry.nextNode, transcript.contentRevision);
+    transitions.push({
+      step: entry.step,
+      previousNode: entry.previousNode ?? previous.node,
+      nextNode: entry.nextNode,
+      action: compactAction(action),
+      emittedHistory,
+      ...(enteredScene ? { enteredScene } : {}),
+      stateDelta: deltaBetween(previous, next),
+    });
     const reason = checkpointReason(previous.node, next.node, emittedHistory, entry.step) ?? (emittedHistory.length > 1 && seenNodes.has(next.node) ? 'reconvergence' : undefined);
     if (reason) checkpoints.push({ step: entry.step, node: next.node, reason, stateDigest: digest(next) });
     seenNodes.add(next.node);
@@ -736,6 +766,16 @@ export function compressedActionTrace(context: NarrativeContext) {
   return context.transcript.transitions.map((transition) => transition.action.id);
 }
 
+export const M2_MISSING_CONTEXT_FALSE_POSITIVE = 'MISSING_CONTEXT_FALSE_POSITIVE' as const;
+
+/** Classifies the bounded fixture where authored scene place metadata disproves a missing-day claim. */
+export function classifyMissingSceneMetadataFalsePositive(finding: string, context: NarrativeContext) {
+  const normalized = finding.toLowerCase();
+  const hasMissingDayClaim = normalized.includes('no next-day transition') || normalized.includes('no overnight') || normalized.includes('missing next-day');
+  const hasAuthoredFollowingDay = context.transcript.transitions.some((transition) => transition.enteredScene?.scenePlace.toLowerCase().includes('following day'));
+  return hasMissingDayClaim && hasAuthoredFollowingDay ? M2_MISSING_CONTEXT_FALSE_POSITIVE : undefined;
+}
+
 /** Keep only state and prose a specialist needs; omit the full GameState dump. */
 export function buildNarrativeContext(candidate: QaNarrativeCandidate, fixture?: NarrativeContext['fixture']): NarrativeContext {
   const final = finalEntry(candidate.transcript);
@@ -743,6 +783,7 @@ export function buildNarrativeContext(candidate: QaNarrativeCandidate, fixture?:
   const finalState = compressedTranscript.finalState;
   const sourceTranscriptDigest = transcriptDigest(candidate.transcript);
   const compressedContextDigest = digest(compressedTranscript);
+  const currentSceneMetadata = sceneMetadataForNode(final.node, candidate.transcript.contentRevision);
   const context: NarrativeContext = {
     compressionVersion: M2_CONTEXT_COMPRESSION_VERSION,
     sourceTranscriptDigest,
@@ -761,6 +802,7 @@ export function buildNarrativeContext(candidate: QaNarrativeCandidate, fixture?:
       ...(chapterFromNode(final.node) ? { chapter: chapterFromNode(final.node) } : {}),
       movement: final.node.split('.')[1],
       location: final.node.split('.')[0],
+      ...(currentSceneMetadata ?? {}),
     },
     routeHistory: {
       milestones: compressedTranscript.checkpoints.map((checkpoint) => checkpoint.node),
@@ -845,6 +887,19 @@ function fixtureFinding(context: NarrativeContext, contract: ReviewerContract): 
       priorEvidence: [evidence('transition', 'TOGGLE_EVIDENCE', 'Only email and finance were selected for relationship testing.')],
       stateEvidence: [evidence('interaction-semantics', 'TOGGLE_EVIDENCE.doesNotMean', 'Selection for connection does not control report attachment.')],
       whyItMatters: 'A reviewer must not infer attachment agency from an analytical selection action when the runtime attaches all reviewed documents.',
+      confidence: 'HIGH', humanReviewRequired: true,
+    };
+  }
+  if (context.fixture === 'next-day-context-misinterpretation' && ['CONTINUITY', 'ROUTE_COHESION'].includes(contract.reviewer)) {
+    return {
+      reviewer: contract.reviewer, reviewerVersion: 'v1', provider: 'MOCK', model: 'fixture',
+      transcriptDigest: digest(context.transcript), contextDigest: digest(context), severity: 'MEDIUM', category: contract.reviewer,
+      routeId: context.route.routeId, seed: context.route.seed, chapter: context.currentScene.chapter, node: context.currentScene.node,
+      finding: 'There is no next-day transition between the invitation and the presentation scene.',
+      currentEvidence: [evidence('scene-metadata', 'chapter5.presentation', context.currentScene.scenePlace)],
+      priorEvidence: [evidence('scene-metadata', 'chapter5.invitation', '15:00 · An invitation for tomorrow')],
+      stateEvidence: [evidence('transition', 'enteredScene.scenePlace', 'The following day · Apartment')],
+      whyItMatters: 'This fixture proves the reviewer must inspect authored scene metadata before reporting a missing temporal transition.',
       confidence: 'HIGH', humanReviewRequired: true,
     };
   }
