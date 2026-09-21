@@ -576,7 +576,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                       illustrated={!!displayedArt}
                     />
                   ) : (
-                    <Narrative blocks={sceneBlocks(state)} />
+                    <Narrative blocks={sceneBlocks(state)} node={node} />
                   )}
                   {canContinueAudit(state) && !readingScene && (
                     <section className="decision" aria-label="Story revision continuation">
@@ -894,7 +894,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           )}
           {assessment.status === 'required' && assessment.flow === 'mission' && (
             <>
-              <Narrative blocks={sceneBlocks(state)} />
+              <Narrative blocks={sceneBlocks(state)} node={node} />
               <Missionwork state={state} send={send} />
             </>
           )}

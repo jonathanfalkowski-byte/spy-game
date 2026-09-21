@@ -33,7 +33,23 @@ export function renderCanonicalIdentityText(rawText: string): string {
 /** Backwards-compatible name for existing player-facing presentation callers. */
 export const displayName = renderCanonicalIdentityText;
 
-export function readingBlocks(blocks: Block[], node?: string): Block[] {
+const historicalHelixSubmittedCopy =
+  'The report leaves your terminal addressed to Benton only. Your selected conclusion remains in it, with the records and connections you chose to attach.';
+const currentHelixSubmittedCopy =
+  'The report leaves your terminal addressed to Benton only. Your selected conclusion remains in it, with the records you reviewed and the connections you recorded.';
+
+/**
+ * Apply narrowly scoped current-authoring compatibility at the player-facing
+ * boundary. Authenticated history and save data remain unchanged.
+ */
+export function renderCurrentPresentationText(rawText: string, node?: string): string {
+  const rendered = renderCanonicalIdentityText(rawText);
+  return node === 'helix.submitted' && rendered === historicalHelixSubmittedCopy
+    ? currentHelixSubmittedCopy
+    : rendered;
+}
+
+function readingBlocksRaw(blocks: Block[], node?: string): Block[] {
   return blocks.flatMap((b): Block[] => {
     const polished = chapter3Reading(b, node);
     if (polished) return [polished];
@@ -216,6 +232,14 @@ export function readingBlocks(blocks: Block[], node?: string): Block[] {
       ];
     return [b];
   });
+}
+
+export function readingBlocks(blocks: Block[], node?: string): Block[] {
+  return readingBlocksRaw(blocks, node).map((block) => ({
+    ...block,
+    speaker: block.speaker ? renderCurrentPresentationText(block.speaker, node) : block.speaker,
+    text: renderCurrentPresentationText(block.text, node),
+  }));
 }
 
 export function missionActionLabel(id: string, fallback: string, s: GameState): string {
