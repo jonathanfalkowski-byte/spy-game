@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { departure, destinations, choose4 as c, assignment, evening } from '../chapter4-helpers';
 import { chapter4Choices, chapter4Scenes } from '../../src/content/chapter4';
+import { sceneById, sceneBlocks } from '../../src/content/scenes';
 import { get4, records4 } from '../../src/content/chapter4-model';
 import { createChapter4Handoff } from '../../src/narrative/adult-scenes/chapter4';
 import { replay, act, availableIntents, initialState } from '../../src/state/reducer';
@@ -30,6 +31,23 @@ it('freezes all revision-14 dependencies against their exact Git bytes', () => {
     expect(frozen.equals(bytes.subarray(end + 1, end + 1 + size)), f).toBe(true);
     pos = end + size + 2;
   }
+});
+it('keeps authenticated history old while current revision-17 authoring carries the copy fix', () => {
+  const historical = departure();
+  const historicalEntry = historical.history.find((entry) => entry.node === 'helix.submitted');
+  expect(historicalEntry?.blocks.at(-1)?.text).toContain(
+    'the records and connections you chose to attach',
+  );
+  expect(sceneById['helix.submitted'].blocks[0].text).toContain(
+    'the records you reviewed and the connections you recorded',
+  );
+
+  const current = act(historical, { type: 'CONTINUE_AUDIT_REVISION' });
+  const currentNode = { ...current, scene: 'helix' as const, phase: 'submitted' };
+  expect(current.contentRevision).toBe(17);
+  expect(sceneBlocks(currentNode)[0].text).toContain(
+    'the records you reviewed and the connections you recorded',
+  );
 });
 it.each(destinations)(
   'preserves the exact revision-14 prefix and completes the %s public route',

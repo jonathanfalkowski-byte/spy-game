@@ -6,6 +6,7 @@ import {
   type Block,
   type NodeId,
 } from './schema';
+import { sceneById as historicalSceneById } from '../persistence/legacy-v13/content/scenes';
 import { choiceById } from './dialogue';
 import type { GameState } from '../state/schema';
 import { dayScenes, dayBlocks } from './day';
@@ -214,7 +215,7 @@ export const scenes = SceneSchema.array().parse([
     place: '11:54 · Assessment submitted',
     blocks: [
       p(
-        'The report leaves your terminal addressed to Benton only. Your selected conclusion remains in it, with the records and connections you chose to attach.',
+        'The report leaves your terminal addressed to Benton only. Your selected conclusion remains in it, with the records you reviewed and the connections you recorded.',
       ),
     ],
     next: 'maya.promotion',
@@ -296,6 +297,7 @@ const responseSlot: Partial<Record<NodeId, string>> = {
 };
 export function sceneBlocks(state: GameState): Block[] {
   const node = `${state.scene}.${state.phase}` as NodeId;
+  const authoredSceneById = state.contentRevision === 17 ? sceneById : historicalSceneById;
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
   if (state.scene === 'chapter5') return chapter5Blocks(state);
   if (state.scene === 'chapter4') return chapter4Blocks(state);
@@ -328,7 +330,7 @@ export function sceneBlocks(state: GameState): Block[] {
       colleague:
         'Maya is the colleague I trust more than anyone in this building. Trust is not intimacy, even when she keeps testing the boundary. Her arrival makes me feel less alone—and that is already more dependence than I intended.',
     };
-    const content = sceneById[node].blocks;
+    const content = authoredSceneById[node].blocks;
     return [
       ...content.slice(0, 1),
       t(bonds[choiceById[state.choices.bond]?.value] ?? bonds.friend),
@@ -344,7 +346,7 @@ export function sceneBlocks(state: GameState): Block[] {
     };
     blocks.push(s('Maya', callbacks[choiceById[state.choices.morning]?.value] ?? callbacks.ignore));
   }
-  blocks.push(...sceneById[node].blocks);
+  blocks.push(...authoredSceneById[node].blocks);
   if (node === 'maya.goodbye') {
     const invitation = choiceById[state.choices.invitation]?.value;
     blocks.push(
