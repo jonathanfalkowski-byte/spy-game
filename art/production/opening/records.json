@@ -276,334 +276,334 @@
       "source": "Owner approval: Axiom Approach V2 is APPROVED FOR PRODUCTION AND RUNTIME; promote and bind ONLY opening.axiom.shot01-approach after focused and live verification."
     }
   },
-{
-  "spec": {
-    "assetId": "axiom-office-arrival-v1-production",
-    "assetType": "environment",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-office-arrival",
-    "sceneId": "commute.arrival",
-    "environment": "Strategic Intelligence office arrival viewed immediately beyond the Axiom elevator and locked inner security gate: central desk, smoked-glass director-zone language, paired visitor chairs, clear circulation lane, cool-grey material palette, and restrained warm practical lighting.",
-    "cameraFraming": "Owner-approved 16:9 elevator-and-inner-gate threshold establishing shot looking into the office; distinct from M5 camera while retaining the same department geometry.",
-    "lighting": "Owner-approved dark-but-readable prestige graphic-novel office lighting with cool institutional surfaces and restrained warm horizontal practicals.",
-    "intendedUse": "ONLY opening.axiom.shot03-office-arrival during commute.arrival. CUT from security to office arrival, HOLD through unchanged arrival prose, and CUT away when Daniel becomes active. No other opening node, character scene, office composite, or later chapter state is authorized.",
-    "continuityRequirements": [
-      "Preserve the M5 central desk relationship, right-side smoked-glass divider language, terminal/work-surface position, furniture scale, floor plane, lighting direction, circulation lane, and material palette.",
-      "No Daniel, Adrian, Benton, Maya, coffee, Helix file, plot document, readable signage, name, clock, time, future-state interaction, or character authority.",
-      "Do not serve this asset during apartment, Approach, Security, Daniel, Benton, Maya, Helix, or ending beats. M5 remains the distinct component-only office-environment authority."
-    ],
-    "editSources": [
-      "axiom-office-clean-structural-conditioning-plate",
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+  {
+    "spec": {
+      "assetId": "axiom-office-arrival-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-office-arrival",
+      "sceneId": "commute.arrival",
+      "environment": "Strategic Intelligence office arrival viewed immediately beyond the Axiom elevator and locked inner security gate: central desk, smoked-glass director-zone language, paired visitor chairs, clear circulation lane, cool-grey material palette, and restrained warm practical lighting.",
+      "cameraFraming": "Owner-approved 16:9 elevator-and-inner-gate threshold establishing shot looking into the office; distinct from M5 camera while retaining the same department geometry.",
+      "lighting": "Owner-approved dark-but-readable prestige graphic-novel office lighting with cool institutional surfaces and restrained warm horizontal practicals.",
+      "intendedUse": "ONLY opening.axiom.shot03-office-arrival during commute.arrival. CUT from security to office arrival, HOLD through unchanged arrival prose, and CUT away when Daniel becomes active. No other opening node, character scene, office composite, or later chapter state is authorized.",
+      "continuityRequirements": [
+        "Preserve the M5 central desk relationship, right-side smoked-glass divider language, terminal/work-surface position, furniture scale, floor plane, lighting direction, circulation lane, and material palette.",
+        "No Daniel, Adrian, Benton, Maya, coffee, Helix file, plot document, readable signage, name, clock, time, future-state interaction, or character authority.",
+        "Do not serve this asset during apartment, Approach, Security, Daniel, Benton, Maya, Helix, or ending beats. M5 remains the distinct component-only office-environment authority."
+      ],
+      "editSources": [
+        "axiom-office-clean-structural-conditioning-plate",
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Owner-approved promotion of the single paid Office Arrival V1 provider original. The staging provider original and its receipt retain task, reference, credit, review, and hash provenance; M5 remains component-only and unbound."
     },
-    "notes": "Owner-approved promotion of the single paid Office Arrival V1 provider original. The staging provider original and its receipt retain task, reference, credit, review, and hash provenance; M5 remains component-only and unbound."
-  },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-office-arrival-v1-production.png",
-  "sha256": "38a7de40c13fc4547617db6b400d613d05c5c59e4868982b7f58a58f460f235d",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex V1 comparison review; Project owner approval",
-    "date": "2026-09-22",
-    "reasons": [
-      "All 18 review criteria pass: clear elevator and inner-gate threshold, office identity, M5 structural continuity, character and future-prop absence, no unauthorized text or clock, valid HOLD coverage, and production quality.",
-      "The single-reference V1 keeps the established desk, divider, floor, material, lighting, furniture-scale, and circulation language while using an arrival-specific camera.",
-      "The owner approved this exact V1 source for production and runtime binding to the Office Arrival beat only."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner",
-    "date": "2026-09-22",
-    "source": "Owner approval: Axiom Office Arrival V1 is APPROVED FOR PRODUCTION AND RUNTIME; promote and bind ONLY opening.axiom.shot03-office-arrival after focused and live verification."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-casework-file-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-casework",
-    "sceneId": "office.departure",
-    "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
-    "cameraFraming": "Same-perspective M5 crop [670, 540, 1150, 810], enlarged to 1920x1080. Characters and circulation outside frame.",
-    "intendedUse": "Only opening.office.shot03-file at office.departure. Exact reached-node binding, no broader office fallback.",
-    "continuityRequirements": [
-      "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
-      "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
-      "Keep M5 itself component-only; no staging source is promoted or served."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-office-arrival-v1-production.png",
+    "sha256": "38a7de40c13fc4547617db6b400d613d05c5c59e4868982b7f58a58f460f235d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex V1 comparison review; Project owner approval",
+      "date": "2026-09-22",
+      "reasons": [
+        "All 18 review criteria pass: clear elevator and inner-gate threshold, office identity, M5 structural continuity, character and future-prop absence, no unauthorized text or clock, valid HOLD coverage, and production quality.",
+        "The single-reference V1 keeps the established desk, divider, floor, material, lighting, furniture-scale, and circulation language while using an arrival-specific camera.",
+        "The owner approved this exact V1 source for production and runtime binding to the Office Arrival beat only."
+      ]
     },
-    "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-22",
+      "source": "Owner approval: Axiom Office Arrival V1 is APPROVED FOR PRODUCTION AND RUNTIME; promote and bind ONLY opening.axiom.shot03-office-arrival after focused and live verification."
+    }
   },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-casework-file-v1-production.png",
-  "sha256": "b2025b84c72b1ed4543443ab2fc902e6a8d8b6ab8ee42b055e22a561fb5973ea",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex source and deterministic composite inspection",
-    "date": "2026-09-22",
-    "reasons": [
-      "Approved M5 geometry preserved by cropping; base unchanged.",
-      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
-      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
-      "Five distinct cuts; documents/analysis share one image."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner (scope authorization); Codex (composite verification)",
-    "date": "2026-09-22",
-    "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-casework-brief-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-casework",
-    "sceneId": "helix.brief",
-    "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
-    "cameraFraming": "Same-perspective M5 crop [716, 601, 940, 727], enlarged to 1920x1080. Characters and circulation outside frame.",
-    "intendedUse": "Only opening.helix.shot01-brief at helix.brief. Exact reached-node binding, no broader office fallback.",
-    "continuityRequirements": [
-      "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
-      "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
-      "Keep M5 itself component-only; no staging source is promoted or served."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+  {
+    "spec": {
+      "assetId": "axiom-casework-file-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "office.departure",
+      "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
+      "cameraFraming": "Same-perspective M5 crop [670, 540, 1150, 810], enlarged to 1920x1080. Characters and circulation outside frame.",
+      "intendedUse": "Only opening.office.shot03-file at office.departure. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
     },
-    "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
-  },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-casework-brief-v1-production.png",
-  "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex source and deterministic composite inspection",
-    "date": "2026-09-22",
-    "reasons": [
-      "Approved M5 geometry preserved by cropping; base unchanged.",
-      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
-      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
-      "Five distinct cuts; documents/analysis share one image."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner (scope authorization); Codex (composite verification)",
-    "date": "2026-09-22",
-    "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-casework-documents-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-casework",
-    "sceneId": "helix.documents",
-    "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
-    "cameraFraming": "Same-perspective M5 crop [706, 558, 1154, 810], enlarged to 1920x1080. Characters and circulation outside frame.",
-    "intendedUse": "Only opening.helix.shot02-documents at helix.documents, helix.analysis. Exact reached-node binding, no broader office fallback.",
-    "continuityRequirements": [
-      "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
-      "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
-      "Keep M5 itself component-only; no staging source is promoted or served."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-file-v1-production.png",
+    "sha256": "b2025b84c72b1ed4543443ab2fc902e6a8d8b6ab8ee42b055e22a561fb5973ea",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex source and deterministic composite inspection",
+      "date": "2026-09-22",
+      "reasons": [
+        "Approved M5 geometry preserved by cropping; base unchanged.",
+        "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+        "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+        "Five distinct cuts; documents/analysis share one image."
+      ]
     },
-    "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+    "approval": {
+      "reviewer": "Project owner (scope authorization); Codex (composite verification)",
+      "date": "2026-09-22",
+      "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
   },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-casework-documents-v1-production.png",
-  "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex source and deterministic composite inspection",
-    "date": "2026-09-22",
-    "reasons": [
-      "Approved M5 geometry preserved by cropping; base unchanged.",
-      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
-      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
-      "Five distinct cuts; documents/analysis share one image."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner (scope authorization); Codex (composite verification)",
-    "date": "2026-09-22",
-    "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-casework-review-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-casework",
-    "sceneId": "helix.review",
-    "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
-    "cameraFraming": "Same-perspective M5 crop [730, 588, 1114, 804], enlarged to 1920x1080. Characters and circulation outside frame.",
-    "intendedUse": "Only opening.helix.shot03-review at helix.review. Exact reached-node binding, no broader office fallback.",
-    "continuityRequirements": [
-      "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
-      "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
-      "Keep M5 itself component-only; no staging source is promoted or served."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+  {
+    "spec": {
+      "assetId": "axiom-casework-brief-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.brief",
+      "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
+      "cameraFraming": "Same-perspective M5 crop [716, 601, 940, 727], enlarged to 1920x1080. Characters and circulation outside frame.",
+      "intendedUse": "Only opening.helix.shot01-brief at helix.brief. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
     },
-    "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
-  },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-casework-review-v1-production.png",
-  "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex source and deterministic composite inspection",
-    "date": "2026-09-22",
-    "reasons": [
-      "Approved M5 geometry preserved by cropping; base unchanged.",
-      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
-      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
-      "Five distinct cuts; documents/analysis share one image."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner (scope authorization); Codex (composite verification)",
-    "date": "2026-09-22",
-    "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-casework-submitted-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-casework",
-    "sceneId": "helix.submitted",
-    "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
-    "cameraFraming": "Same-perspective M5 crop [920, 552, 1176, 696], enlarged to 1920x1080. Characters and circulation outside frame.",
-    "intendedUse": "Only opening.helix.shot04-submitted at helix.submitted. Exact reached-node binding, no broader office fallback.",
-    "continuityRequirements": [
-      "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
-      "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
-      "Keep M5 itself component-only; no staging source is promoted or served."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-brief-v1-production.png",
+    "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex source and deterministic composite inspection",
+      "date": "2026-09-22",
+      "reasons": [
+        "Approved M5 geometry preserved by cropping; base unchanged.",
+        "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+        "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+        "Five distinct cuts; documents/analysis share one image."
+      ]
     },
-    "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+    "approval": {
+      "reviewer": "Project owner (scope authorization); Codex (composite verification)",
+      "date": "2026-09-22",
+      "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
   },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-casework-submitted-v1-production.png",
-  "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Codex source and deterministic composite inspection",
-    "date": "2026-09-22",
-    "reasons": [
-      "Approved M5 geometry preserved by cropping; base unchanged.",
-      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
-      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
-      "Five distinct cuts; documents/analysis share one image."
-    ]
-  },
-  "approval": {
-    "reviewer": "Project owner (scope authorization); Codex (composite verification)",
-    "date": "2026-09-22",
-    "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
-  }
-},
-{
-  "spec": {
-    "assetId": "axiom-opening-office-shot01-daniel-v1-production",
-    "assetType": "scene-cg",
-    "styleBibleVersion": "1.0",
-    "locationId": "axiom-strategic-intelligence",
-    "sceneId": "office.daniel",
-    "environment": "Daniel-focused view of the owner-approved M5 Strategic Intelligence office, with the desk edge, terminal, low divider, west workstations and circulation language preserved.",
-    "cameraFraming": "Owner-approved 16:9 Daniel-focused shared HOLD frame; Daniel is floor-registered at the desk and Adrian remains outside the illustrated field until Approach your desk.",
-    "lighting": "M5 controlled practical warmth with restrained cool office fill; no new time-of-day or dramatic lighting change.",
-    "intendedUse": "ONLY opening.office.shot01-daniel during the commute.arrival Daniel-waiting beat and office.daniel dialogue HOLD. Daniel becomes visible before the Approach your desk action; Adrian must not be shown already at the desk.",
-    "continuityRequirements": [
-      "Preserve M5 desk, terminal, divider, floor plane, west-workstation relationship, camera family and material language.",
-      "Daniel is the only visible active participant; Adrian is intentionally off-frame before the authored approach action.",
-      "Daniel has empty relaxed hands and no slate, coffee, badge, Helix file or future case prop.",
-      "Do not serve this asset at office.benton, office.departure, Maya beats or ending.complete. M5 remains component-only and unbound."
-    ],
-    "editSources": [
-      "axiom-opening-office-master-v1-production",
-      "daniel-opening-office-waiting-v1-provider-original"
-    ],
-    "dimensions": {
-      "width": 1920,
-      "height": 1080
+  {
+    "spec": {
+      "assetId": "axiom-casework-documents-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.documents",
+      "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
+      "cameraFraming": "Same-perspective M5 crop [706, 558, 1154, 810], enlarged to 1920x1080. Characters and circulation outside frame.",
+      "intendedUse": "Only opening.helix.shot02-documents at helix.documents, helix.analysis. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
     },
-    "notes": "Owner-approved Daniel-focused shared-HOLD composite. Deterministic local edge cleanup and contact-shadow polish only; opaque Daniel pixels and M5 environment remain unchanged. Source review and local-polish receipts remain in art/staging/opening."
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-documents-v1-production.png",
+    "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex source and deterministic composite inspection",
+      "date": "2026-09-22",
+      "reasons": [
+        "Approved M5 geometry preserved by cropping; base unchanged.",
+        "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+        "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+        "Five distinct cuts; documents/analysis share one image."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner (scope authorization); Codex (composite verification)",
+      "date": "2026-09-22",
+      "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
   },
-  "role": "production",
-  "approvalStatus": "approved",
-  "runtimeEligibility": "runtime-approved",
-  "file": "art/production/opening/axiom-opening-office-shot01-daniel-v1-production.png",
-  "sha256": "f87f6f3e19fa1474012e5311744e284feb12f3775f0ec2e55e12026c0d0c2e49",
-  "review": {
-    "decision": "PASS",
-    "reviewer": "Delegated design review under owner-approved opening completion plan",
-    "date": "2026-09-22",
-    "reasons": [
-      "Full-resolution, desktop and mobile review passed for the Daniel-focused shared-HOLD frame.",
-      "Daniel is cleanly grounded with empty hands and restrained office wardrobe; no unearned props or future participants appear.",
-      "The frame preserves the M5 office language and deliberately keeps Adrian off-frame before Approach your desk.",
-      "The same shot remains truthful through office.daniel dialogue while positions remain unchanged."
-    ],
-    "limitations": [
-      "Approval is exact-shot only; it is not canonical Daniel identity authority, M5 authority, or approval for Benton/Maya/ending composites."
-    ]
+  {
+    "spec": {
+      "assetId": "axiom-casework-review-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.review",
+      "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
+      "cameraFraming": "Same-perspective M5 crop [730, 588, 1114, 804], enlarged to 1920x1080. Characters and circulation outside frame.",
+      "intendedUse": "Only opening.helix.shot03-review at helix.review. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-review-v1-production.png",
+    "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex source and deterministic composite inspection",
+      "date": "2026-09-22",
+      "reasons": [
+        "Approved M5 geometry preserved by cropping; base unchanged.",
+        "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+        "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+        "Five distinct cuts; documents/analysis share one image."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner (scope authorization); Codex (composite verification)",
+      "date": "2026-09-22",
+      "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
   },
-  "approval": {
-    "reviewer": "Delegated design review under owner-approved opening completion plan",
-    "date": "2026-09-22",
-    "source": "Delegated design review under the owner-approved opening completion plan for the polished Daniel-focused shared-HOLD composite covering opening.office.shot01-daniel and office.daniel HOLD."
-  }
+  {
+    "spec": {
+      "assetId": "axiom-casework-submitted-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.submitted",
+      "environment": "Object-focused crop of the approved M5 central desk and terminal with a neutral black slate on the evidence surface.",
+      "cameraFraming": "Same-perspective M5 crop [920, 552, 1176, 696], enlarged to 1920x1080. Characters and circulation outside frame.",
+      "intendedUse": "Only opening.helix.shot04-submitted at helix.submitted. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-submitted-v1-production.png",
+    "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex source and deterministic composite inspection",
+      "date": "2026-09-22",
+      "reasons": [
+        "Approved M5 geometry preserved by cropping; base unchanged.",
+        "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+        "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+        "Five distinct cuts; documents/analysis share one image."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner (scope authorization); Codex (composite verification)",
+      "date": "2026-09-22",
+      "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-opening-office-shot01-daniel-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.daniel",
+      "environment": "Daniel-focused view of the owner-approved M5 Strategic Intelligence office, with the desk edge, terminal, low divider, west workstations and circulation language preserved.",
+      "cameraFraming": "Owner-approved 16:9 Daniel-focused shared HOLD frame; Daniel is floor-registered at the desk and Adrian remains outside the illustrated field until Approach your desk.",
+      "lighting": "M5 controlled practical warmth with restrained cool office fill; no new time-of-day or dramatic lighting change.",
+      "intendedUse": "ONLY opening.office.shot01-daniel during the commute.arrival Daniel-waiting beat and office.daniel dialogue HOLD. Daniel becomes visible before the Approach your desk action; Adrian must not be shown already at the desk.",
+      "continuityRequirements": [
+        "Preserve M5 desk, terminal, divider, floor plane, west-workstation relationship, camera family and material language.",
+        "Daniel is the only visible active participant; Adrian is intentionally off-frame before the authored approach action.",
+        "Daniel has empty relaxed hands and no slate, coffee, badge, Helix file or future case prop.",
+        "Do not serve this asset at office.benton, office.departure, Maya beats or ending.complete. M5 remains component-only and unbound."
+      ],
+      "editSources": [
+        "axiom-opening-office-master-v1-production",
+        "daniel-opening-office-waiting-v1-provider-original"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Owner-approved Daniel-focused shared-HOLD composite. Deterministic local edge cleanup and contact-shadow polish only; opaque Daniel pixels and M5 environment remain unchanged. Source review and local-polish receipts remain in art/staging/opening."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot01-daniel-v1-production.png",
+    "sha256": "f87f6f3e19fa1474012e5311744e284feb12f3775f0ec2e55e12026c0d0c2e49",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved opening completion plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution, desktop and mobile review passed for the Daniel-focused shared-HOLD frame.",
+        "Daniel is cleanly grounded with empty hands and restrained office wardrobe; no unearned props or future participants appear.",
+        "The frame preserves the M5 office language and deliberately keeps Adrian off-frame before Approach your desk.",
+        "The same shot remains truthful through office.daniel dialogue while positions remain unchanged."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical Daniel identity authority, M5 authority, or approval for Benton/Maya/ending composites."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved opening completion plan",
+      "date": "2026-09-22",
+      "source": "Delegated design review under the owner-approved opening completion plan for the polished Daniel-focused shared-HOLD composite covering opening.office.shot01-daniel and office.daniel HOLD."
+    }
   },
   {
     "spec": {
@@ -624,15 +624,13 @@
       ],
       "editSources": [
         "axiom-opening-office-master-v1-production",
-        "benton-opening-office-carrying-slate-v1-provider-original",
-        "benton-opening-office-carrying-slate-v1-medium-desk-side-receipt",
-        "benton-opening-office-carrying-slate-v1-grip-correction-receipt"
+        "benton-opening-office-carrying-slate-v1-provider-original"
       ],
       "dimensions": {
         "width": 1920,
         "height": 1080
       },
-      "notes": "Owner-approved bounded medium desk-side composition. Existing M5 crop and Benton pixels are preserved from the approved staging candidate; only exact production/public copies are registered."
+      "notes": "Owner-approved bounded medium desk-side composition. Existing M5 crop and Benton pixels are preserved from the approved staging candidate; only exact production/public copies are registered. Provenance receipts: art/staging/opening/benton-opening-office-carrying-slate-v1-medium-desk-side-receipt.json, art/staging/opening/benton-opening-office-carrying-slate-v1-grip-correction-receipt.json."
     },
     "role": "production",
     "approvalStatus": "approved",
@@ -678,14 +676,13 @@
       ],
       "editSources": [
         "axiom-opening-office-master-v1-production",
-        "maya-opening-office-coffee-v1-provider-original",
-        "maya-opening-office-coffee-v1-medium-left-facing-receipt"
+        "maya-opening-office-coffee-v1-provider-original"
       ],
       "dimensions": {
         "width": 1920,
         "height": 1080
       },
-      "notes": "Delegated design-approved bounded medium desk-side composition. Maya foreground orientation is a deterministic local mirror of the reviewed transparent layer; no new environment or prop pixels were generated."
+      "notes": "Delegated design-approved bounded medium desk-side composition. Maya foreground orientation is a deterministic local mirror of the reviewed transparent layer; no new environment or prop pixels were generated. Provenance receipts: art/staging/opening/maya-opening-office-coffee-v1-medium-left-facing-receipt.json."
     },
     "role": "production",
     "approvalStatus": "approved",
@@ -731,14 +728,13 @@
       ],
       "editSources": [
         "axiom-opening-office-master-v1-production",
-        "adrian-opening-office-alone-sip-v1-provider-original",
-        "adrian-opening-office-alone-sip-v1-composite-receipt"
+        "adrian-opening-office-alone-sip-v1-provider-original"
       ],
       "dimensions": {
         "width": 1920,
         "height": 1080
       },
-      "notes": "Delegated design-approved bounded Adrian-alone medium composition. Deterministic local foreground registration and M5 crop preserve the approved slate and single-cup custody."
+      "notes": "Delegated design-approved bounded Adrian-alone medium composition. Deterministic local foreground registration and M5 crop preserve the approved slate and single-cup custody. Provenance receipts: art/staging/opening/adrian-opening-office-alone-sip-v1-composite-receipt.json."
     },
     "role": "production",
     "approvalStatus": "approved",

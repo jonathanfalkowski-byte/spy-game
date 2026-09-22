@@ -34,5 +34,53 @@
     "approvalStatus": "pending",
     "file": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png",
     "sha256": "c0740ff5c7e900f772091689de5827c702a3d11a126994d2748debeacc53e5f9"
+  },
+  {
+    "spec": {
+      "assetId": "daniel-opening-office-waiting-v1-provider-original",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Provider original retained for provenance only. No canonical approval or runtime eligibility is granted by this source record."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/daniel-opening-office-waiting-v1-provider-original.png",
+    "sha256": "5c72e960f68df93c763e57c1748e9e57264993174888c0e5e92336cbe9c219c2"
+  },
+  {
+    "spec": {
+      "assetId": "benton-opening-office-carrying-slate-v1-provider-original",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Provider original retained for provenance only. No canonical approval or runtime eligibility is granted by this source record."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/benton-opening-office-carrying-slate-v1-provider-original.png",
+    "sha256": "d0ae4e13c4be2b35fb9c0ad9acbdd603d8600a850a202b49e9008f05eb6b0bcf"
+  },
+  {
+    "spec": {
+      "assetId": "maya-opening-office-coffee-v1-provider-original",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Provider original retained for provenance only. No canonical approval or runtime eligibility is granted by this source record."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/maya-opening-office-coffee-v1-provider-original.png",
+    "sha256": "5c785fa05e8611beb1f70230ba1de743f8f429e5c71b9cf8250da0ea42014bea"
+  },
+  {
+    "spec": {
+      "assetId": "adrian-opening-office-alone-sip-v1-provider-original",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Provider original retained for provenance only. No canonical approval or runtime eligibility is granted by this source record."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/adrian-opening-office-alone-sip-v1-provider-original.png",
+    "sha256": "93d6431ad1ef1befd7d17d756b976b54f51bd4c94bd667737bfb5310d6e59010"
   }
 ]

@@ -15,7 +15,7 @@ import {
 } from '../../tools/visual/zencreator/pack.mjs';
 const uuid = '3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6';
 it('keeps imported opening provenance sources pending and outside runtime authority', () => {
-  for (const id of ['axiom-security-lobby-v1', 'axiom-approach-v1-provider-original', 'axiom-office-clean-structural-conditioning-plate']) {
+  for (const id of ['axiom-security-lobby-v1', 'axiom-approach-v1-provider-original', 'axiom-office-clean-structural-conditioning-plate', 'daniel-opening-office-waiting-v1-provider-original', 'benton-opening-office-carrying-slate-v1-provider-original', 'maya-opening-office-coffee-v1-provider-original', 'adrian-opening-office-alone-sip-v1-provider-original']) {
     const source = visualCatalog.find((record) => record.spec.assetId === id)!;
     expect(source.role).toBe('staging');
     expect(source.approvalStatus).toBe('pending');
