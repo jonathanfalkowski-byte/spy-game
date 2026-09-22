@@ -1,0 +1,52 @@
+{
+  "status": "read-only provider diagnosis; no retry submitted",
+  "failedTask": {
+    "taskId": "b696bb02-59e4-4b6b-8668-4dff29fe69d6",
+    "callId": "a67afa16-bf47-4d63-928a-b4e0b22fa2fa",
+    "tool": "image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "submittedPayload": {
+      "image_assets": [
+        "e216c850-b8be-4e54-be8c-6c0b6e8c977c",
+        "0e106971-3aa2-4e1e-b96f-74b40e86d2a2"
+      ],
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "prompt": "Reference 1 is the established Maya Reyes conversation layer: preserve her exact face, warm brown skin, watchful dark eyes, loose black knot, navy suit with turned cuffs, and the ordinary unmarked paper cup. Reference 2 is the departure construction guide: use its distinct walking action and hand-to-cup contact. Create exactly one full-body character-only Maya departure layer. Maya is walking decisively toward screen-right toward the compliance wing, torso and face oriented in that direction with a natural forward stride, carrying her own paper cup away in a physically credible grip. This must be a real departure pose, not a translated, mirrored, or stationary version of the conversation stance. Keep the cup in the hand with fingers visibly contacting and partly occluding it. Polished 2D prestige espionage graphic-novel style, clean controlled linework, semi-cel rendering, mature corporate palette. Use a simple uniform neutral gray extraction background, full hair to shoes visible. No office, desk, terminal, floor, furniture, other people, Adrian, Daniel, Benton, slate, report, second cup, readable text, logos, labels, romance cue, photorealism, CGI, anime, or action-hero styling."
+    },
+    "providerError": {
+      "category": "invalid_input",
+      "exceptionType": "ValueError",
+      "message": "The call input was invalid or unsupported."
+    }
+  },
+  "currentSchemaFacts": {
+    "checked": "2026-09-22",
+    "imageAssets": "array of asset IDs; schema describes one or several references as supported",
+    "requiredFields": ["image_assets", "prompt"],
+    "wanProListed": true,
+    "16by9Listed": true,
+    "schemaDoesNotExpose": "a per-model maximum reference count or a more specific invalid-input reason"
+  },
+  "diagnosis": "The provider returned only a generic invalid_input ValueError. The live schema accepts an image_assets array and does not identify which submitted field caused the failure. No cause is asserted.",
+  "unsubmittedRetryProposal": {
+    "change": "Use the established Maya conversation layer as the single reference and express the departure pose and cup contact in prompt text. This removes the second reference while retaining schema-supported required fields.",
+    "payload": {
+      "image_assets": ["e216c850-b8be-4e54-be8c-6c0b6e8c977c"],
+      "model": "WAN_2_7_IMAGE_PRO",
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "prompt": "Transform the supplied Maya Reyes conversation layer into exactly one full-body character-only departure layer. Preserve Maya’s face, warm brown skin, watchful dark eyes, loose black knot, navy suit with turned cuffs, and ordinary unmarked paper cup. Change her from the stationary conversation pose to a distinct natural rightward walking departure toward the compliance wing, torso and face directed right, one foot in a believable forward stride, carrying her cup away in an integrated hand grip with fingers visibly contacting and partly occluding it. Plain neutral gray extraction background, full hair to shoes visible, polished 2D prestige espionage graphic-novel style. No office, M5, furniture, other people, second cup, slate, text, logos, report, or romance cue."
+    },
+    "freshQuoteCredits": 2,
+    "submission": "not authorized and not submitted"
+  }
+}

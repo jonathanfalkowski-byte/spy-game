@@ -1,0 +1,89 @@
+{
+  "spec": {
+    "assetId": "adrian-canon-identity-v2-candidate",
+    "assetType": "portrait",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "adrian"
+      }
+    ],
+    "canonicalReferences": [],
+    "cameraFraming": "3:4 head-and-shoulders portrait with complete hair visible and a slight three-quarter view.",
+    "pose": "Quietly attentive neutral expression with restrained confidence.",
+    "lighting": "Controlled soft illustrated portrait lighting on a simple neutral background.",
+    "environment": "Simple non-story-specific neutral background only.",
+    "intendedUse": "Staging-only Adrian identity candidate for human review; not production, runtime, or body/wardrobe authority.",
+    "continuityRequirements": [
+      "Original fictional adult Adrian generation; no Evelynn image or biological-resemblance instruction was supplied to the provider.",
+      "Age 34, clean-shaven, practical dark hair, pleasant slightly bookish analyst read, restrained social presence.",
+      "Subtle thin rectangular professional glasses are a review choice, not a permanent canon decision until human approval.",
+      "Human comparison against Evelynn is review-only and must not establish gender-swapped identity or twin resemblance."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2048
+    },
+    "notes": "Fresh text-only portrait after the prior reference-edit provider refusal. Full portrait, face crop, and comparison board are deterministic review derivatives; all remain staging."
+  },
+  "role": "canonical-reference",
+  "approvalStatus": "approved",
+  "file": "art/staging/adrian/adrian-canon-identity-v2-candidate.png",
+  "sha256": "0809F5F17547FB2FE44AA9EAA5F014B292CBFA9D1656B10E827FD77A39612C58",
+  "reviewDerivatives": [
+    "art/staging/adrian/adrian-canon-identity-v2-candidate-face-crop.png",
+    "art/staging/adrian/adrian-canon-identity-v2-review-board.png"
+  ],
+  "generation": {
+    "provider": "zencreator",
+    "tool": "by_prompt",
+    "model": "QWEN_IMAGE",
+    "taskId": "46a97bb4-078b-4559-9358-13a32dee545a",
+    "callId": "201aa52b-9b82-46bf-8d98-57de137f8448",
+    "providerAssetId": "8940fe55-abcf-4425-b300-b6b1c3c7da59",
+    "sourceReferences": [],
+    "promptVersion": "adrian-v2-text-only-portrait-v1",
+    "promptComponents": {
+      "SUBJECT": "Original fictional adult man, Adrian Vale, age 34, intelligent corporate intelligence analyst.",
+      "APPEARANCE": "Lean facial structure, thoughtful eyes, pleasant features, clean-shaven, practical dark hair, subtle thin rectangular glasses, slightly bookish, understated.",
+      "CAMERA": "3:4 head-and-shoulders, slight three-quarter view, complete hair visible.",
+      "STYLE": "Polished 2D illustrated espionage graphic novel, precise linework, semi-cel shading, controlled shadows, prestige noir palette.",
+      "BOUNDARY": "No Evelynn reference, no gender transformation, no body/scene/prop generation."
+    },
+    "prompt": "A fictional adult man named Adrian Vale, age 34, an intelligent corporate intelligence analyst. Lean facial structure, thoughtful observant eyes, pleasant approachable features, mild reserve, clean-shaven face, practical short dark hair, subtle thin rectangular professional glasses, slightly bookish understated appearance, restrained confidence, quietly attentive neutral expression. Head, neck, and upper shoulders in a slight three-quarter view, complete hair visible, clean simple neutral background. Polished 2D illustrated espionage graphic novel, precise linework, semi-cel shading, controlled shadows, sophisticated adult proportions, prestige noir palette.",
+    "negativePrompt": "photorealism, anime, superhero, action hero, fashion model, exaggerated square jaw, aggressive expression, broad muscular shoulders, childish caricature",
+    "settings": {
+      "ratio": "3:4",
+      "batch_size": 1
+    },
+    "createdAt": "2026-09-19T15:10:37.811502Z",
+    "estimatedCredits": 1,
+    "actualCredits": 1,
+    "mediaType": "image/png",
+    "outputDimensions": {
+      "width": 1536,
+      "height": 2048
+    }
+  },
+  "review": {
+    "decision": "PASS",
+    "reviewer": "Codex preliminary visual review",
+    "date": "2026-09-19",
+    "criteria": {
+      "identityQuality": "PASS — owner approved as canonical Adrian identity authority.",
+      "analystGeekyRead": "PASS — owner approved.",
+      "attractivenessBalance": "PASS — owner approved.",
+      "age34": "PASS / LOW-POLISH — plausible mid-thirties; no correction spend authorized.",
+      "glasses": "OPENING ACCESSORY AUTHORITY — thin understated rectangular professional glasses; exact frame geometry is not canonical.",
+      "style": "PASS — EVE graphic-novel linework and semi-cel shading are coherent.",
+      "evelynnFamilyResemblance": "PASS — sufficient subtle lineage for current canon; no twin resemblance required."
+    },
+    "notes": [
+      "Owner approved the V2 face as canonical Adrian identity authority.",
+      "The image does not establish body, height, pose, full wardrobe, shoe design, exact glasses geometry, or runtime scene composition.",
+      "The full-body candidate must use this identity authority and remains a separate staging review."
+    ],
+    "recommendation": "PASS — OWNER APPROVED IDENTITY AUTHORITY"
+  }
+}

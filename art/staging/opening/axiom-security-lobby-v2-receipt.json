@@ -1,0 +1,46 @@
+{
+  "assetId": "axiom-security-lobby-v2",
+  "status": "staging-review-required",
+  "shotId": "opening.axiom.shot02-security",
+  "generation": {
+    "provider": "zencreator",
+    "tool": "image_editor",
+    "model": "SEEDREAM_5",
+    "mode": "single-reference V1 surgical image-to-image edit",
+    "taskId": "98acaf7d-d630-4519-91dd-4c7b99781ae2",
+    "callId": "e6ab343c-3cd0-4795-b14e-eeec248c9baa",
+    "providerAssetId": "5720084c-2760-4b15-bbd6-6a2c97191bcb",
+    "outputsRequested": 1,
+    "outputsReturned": 1,
+    "createdAt": "2026-09-21T22:29:32.418911Z",
+    "finishedAt": "2026-09-21T22:30:23.333592Z"
+  },
+  "reference": {
+    "path": "art/staging/opening/axiom-security-lobby-v1-provider-original.png",
+    "sha256": "68D1E4A16EA105BB82D3CB5AE8DD0032895625AD8912E21F89CBFF26B514DBA0",
+    "providerAssetId": "9e9c3d67-f0b0-4438-a765-614b79211178",
+    "referenceCount": 1,
+    "constraint": "V1 was the sole visual source. No structural plate, cast, gala, M5, character, style, or other environment reference was supplied."
+  },
+  "output": {
+    "path": "art/staging/opening/axiom-security-lobby-v2-provider-original.png",
+    "sha256": "17FAB43E4A3E5D4D45062F87E15EC74761795FB8E9818474827A01A7408DDE62",
+    "dimensions": [1920, 1080],
+    "mediaType": "image/png"
+  },
+  "billing": {
+    "providerQuotedCostCredits": 1,
+    "balanceBefore": 461,
+    "balanceAfterObserved": 460,
+    "observedAccountDelta": -1,
+    "taskLevelBillingAvailable": true,
+    "taskLevelBillingCredits": -1,
+    "taskLevelLedgerTransactionId": "bca76f21-5aae-402a-a6bb-50f52298dfed"
+  },
+  "review": {
+    "decision": "PASS",
+    "runtimeBinding": false,
+    "productionPromotion": false,
+    "automaticRetry": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "assetId": "axiom-opening-office-master-v1-retry-v1",
+  "role": "staging-review-candidate",
+  "approvalStatus": "pending-human-review",
+  "classification": "REVISE",
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "by_prompt",
+    "model": "SEEDREAM_5",
+    "taskId": "ba43e258-983c-4a81-acca-ea20a34002d3",
+    "callId": "7bc68bce-5f3a-4f88-92a1-414c64c4e410",
+    "assetId": "ef1cdbb0-ab4c-47c4-a0e5-1bde868c14b0",
+    "taskCreatedUtc": "2026-09-20T23:03:51Z",
+    "taskFinishedUtc": "2026-09-20T23:04:40Z",
+    "completedCalls": 1,
+    "completedOutputs": 1,
+    "taskLevelBillingReturned": false
+  },
+  "spend": {
+    "quotedArtCredits": 1,
+    "accountBalanceBefore": 353,
+    "accountBalanceAfter": 352,
+    "observedAccountDelta": 1,
+    "actualTaskDebit": "unreconciled-provider-does-not-return-per-task-billing",
+    "apiQaCredits": 0,
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "master": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m2-retry.jpeg",
+    "mimeType": "image/jpeg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 318631,
+    "sha256": "3B4FD9C3BB6E09BFE04A973EF18A44097D285B9D617FE633D5470034D8D700EA"
+  },
+  "reviewDerivatives": {
+    "comparisonBoard": "art/staging/opening/axiom-opening-office-master-v1-m2-retry-comparison-board.png",
+    "comparisonBoardSha256": "23A3CA2C293B5093BF1F67CAE3ECF171E85D12C9445B0E29C1C801F31ECB0144",
+    "anchorBProposedCrop": "art/staging/opening/axiom-opening-office-master-v1-m2-retry-anchor-b-proposed.jpeg",
+    "anchorBSourceBounds": [560, 450, 1980, 1249],
+    "anchorBProposedCropSha256": "452B89272D715995BC3A46DB43F2AE07B6F2EBA4726358E9640ED90D5F4F3A65"
+  },
+  "reviewFindings": {
+    "improvements": ["smoked-glass director doorway", "secondary workstations", "separate desk surface", "right-side aisle"],
+    "blocking": ["tall cubicle divider", "front-facing desk lacks registered guest zone", "readable wall clock", "insufficient common floor-plane for character blocking"],
+    "important": ["photoreal rendering", "dominant white palette", "multiple foreground chairs", "restricted anchor B"],
+    "newRegressions": ["wall clock", "photoreal style", "multiple foreground chairs", "tall cubicle treatment"]
+  }
+}

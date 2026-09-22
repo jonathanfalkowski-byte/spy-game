@@ -19,24 +19,29 @@ The previous 14-row table mixed that HOLD anchor with the 13 corridor cuts and
 omitted the two required inspection CUTs. The table below separates the anchor
 from the exact 15-entry code list.
 
-| Order | Mode | Cut shot | Reader state(s) held by the shot | Canonical asset status | Current production note | Cumulative primary states occupied when approved |
+| Order | Mode | Cut shot | Reader-state occupancy supplied by this unique asset | Canonical asset status | Current production note | Cumulative primary states occupied when approved |
 | --- | --- | --- | --- | --- | --- | --- |
-| H0 | HOLD | `opening.apartment.shot01` | `apartment.bond`, `apartment.reply`, `apartment.departure`; mirror/jacket fallback | `RUNTIME_APPROVED` | Existing approved apartment master | 3 / 20 |
-| 1 | CUT | `opening.apartment.inspect-lease` | Lease inspection from `apartment.bond` or `apartment.reply` | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
-| 2 | CUT | `opening.apartment.inspect-medical` | Medical inspection from `apartment.bond` or `apartment.reply` | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
-| 3 | CUT | `opening.axiom.shot01-approach` | `commute.arrival` beat 1 | `MISSING` | Zero-credit staging prepared; no runtime asset | 4 / 20 |
-| 4 | CUT | `opening.axiom.shot02-security` | `commute.arrival` beat 2 | `STAGING` | Zero-credit staging prepared; no runtime asset | 5 / 20 |
-| 5 | CUT | `opening.axiom.shot03-office-arrival` | `commute.arrival` beat 3 | `COMPONENT_ONLY` | M5 component reference only; no runtime composite | 6 / 20 |
-| 6 | CUT | `opening.office.shot01-daniel` | `commute.arrival` beat 4; then HOLD through `office.daniel` dialogue, thought, choices and immediate response | `MISSING` | Adrian V2 orientation is pending generation; Daniel not generated | 8 / 20 |
-| 7 | CUT | `opening.office.shot02-benton` | `office.benton` | `STAGING` | Benton staging candidate exists; no runtime composite | 9 / 20 |
-| 8 | CUT | `opening.office.shot03-file` | `office.departure` | `MISSING` | Adrian + Benton/file action composite required | 10 / 20 |
-| 9 | CUT | `opening.helix.shot01-brief` | `helix.brief` | `MISSING` | Helix brief desk state required | 11 / 20 |
-| 10 | CUT | `opening.helix.shot02-documents` | `helix.documents`; then HOLD through `helix.analysis` | `MISSING` | Documents/casework composite required | 13 / 20 |
-| 11 | CUT | `opening.helix.shot03-review` | `helix.review` | `MISSING` | Review work-mode composite required | 14 / 20 |
-| 12 | CUT | `opening.helix.shot04-submitted` | `helix.submitted` | `MISSING` | Submitted-report composite required | 15 / 20 |
-| 13 | CUT | `opening.maya.shot01-coffee` | `maya.promotion`; then HOLD through `maya.invitation` and `maya.case` | `STAGING` | Maya coffee staging candidate exists; no runtime composite | 18 / 20 |
-| 14 | CUT | `opening.maya.shot02-departure` | `maya.goodbye` | `MISSING` | Maya departure composite required | 19 / 20 |
-| 15 | CUT | `opening.office.shot04-alone` | `ending.complete` | `MISSING` | Adrian alone at central desk required | 20 / 20 |
+| H0 | HOLD | `opening.apartment.shot01` | 3: `apartment.bond`, `apartment.reply`, `apartment.departure`; mirror/jacket fallback | `RUNTIME_APPROVED` | Existing approved apartment master | 3 / 20 |
+| 1 | CUT | `opening.apartment.inspect-lease` | 1 transient inspection state | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
+| 2 | CUT | `opening.apartment.inspect-medical` | 1 transient inspection state | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
+| 3 | CUT | `opening.axiom.shot01-approach` | 1: `commute.arrival` beat 1 | `MISSING` | Zero-credit staging prepared; no runtime asset | 4 / 20 |
+| 4 | CUT | `opening.axiom.shot02-security` | 1 canonical reader state: all security prose in `commute.arrival` beat 2 | `STAGING` | Zero-credit staging prepared; no runtime asset | 5 / 20 |
+| 5 | CUT | `opening.axiom.shot03-office-arrival` | 1: `commute.arrival` beat 3 | `COMPONENT_ONLY` | M5 component reference only; no runtime composite | 6 / 20 |
+| 6 | CUT | `opening.office.shot01-daniel` | 2: `commute.arrival` beat 4, then HOLD through `office.daniel` dialogue, thought, choices and immediate response | `MISSING` | Adrian V2 orientation is pending generation; Daniel not generated | 8 / 20 |
+| 7 | CUT | `opening.office.shot02-benton` | 1: `office.benton` | `STAGING` | Benton staging candidate exists; no runtime composite | 9 / 20 |
+| 8 | CUT | `opening.office.shot03-file` | 1: `office.departure` | `MISSING` | Adrian + Benton/file action composite required | 10 / 20 |
+| 9 | CUT | `opening.helix.shot01-brief` | 1: `helix.brief` | `MISSING` | Helix brief desk state required | 11 / 20 |
+| 10 | CUT | `opening.helix.shot02-documents` | 2: `helix.documents`, then HOLD through `helix.analysis` | `MISSING` | Documents/casework composite required | 13 / 20 |
+| 11 | CUT | `opening.helix.shot03-review` | 1: `helix.review` | `MISSING` | Review work-mode composite required | 14 / 20 |
+| 12 | CUT | `opening.helix.shot04-submitted` | 1: `helix.submitted` | `MISSING` | Submitted-report composite required | 15 / 20 |
+| 13 | CUT | `opening.maya.shot01-coffee` | 3: `maya.promotion`, then HOLD through `maya.invitation` and `maya.case` | `STAGING` | Maya coffee staging candidate exists; no runtime composite | 18 / 20 |
+| 14 | CUT | `opening.maya.shot02-departure` | 1: `maya.goodbye` | `MISSING` | Maya departure composite required | 19 / 20 |
+| 15 | CUT | `opening.office.shot04-alone` | 1: `ending.complete` | `MISSING` | Adrian alone at central desk required | 20 / 20 |
+
+The security image fills one canonical reader state because its full screening
+prose is one ordered reading beat. If the reader later pages that one beat into
+separate displays, the same state-safe security master must HOLD across each of
+those displays; it does not create another paid asset requirement.
 
 ## Zero-credit staging prepared in this pass
 
@@ -82,9 +87,55 @@ Adrian’s desk. The Daniel beat is the CUT; the same `opening.office.shot01-dan
 shot then HOLDS into `office.daniel` dialogue. The security and office-arrival
 IDs remain fail-closed until approved runtime composites exist.
 
-## Next paid-generation recommendation
+## Immediate environment production specifications
 
-Authorize at most one **Adrian V2 character-only standing layer** from the prepared orientation pose plate, followed by human review before Daniel. It is the shortest path to the high-priority Daniel composition while preserving the rule that M5 is never supplied to the character provider. Approach and security remain staged until separately authorized.
+These are exact **one-output maximum** methods for owner review. A provider
+submission must record the account balance before and after completion, retain
+the provider task receipt, and stop for human review. There is no automatic
+retry. No prompt includes an API key or any other credential.
+
+### `opening.axiom.shot01-approach`
+
+- **One structural input:** `art/staging/opening/axiom-approach-zero-credit-staging.png`; use it for camera and entrance blocking, never as a style reference.
+- **Output:** one 16:9 environment-first master, target 1920 by 1080.
+- **Exact prompt:** `EVE opening, cinematic 16:9 Axiom Tower employee entrance in rain at early morning. Low-medium camera from the curb, tower and controlled employee entrance on the right, wet pavement and restrained reflections, a single lean adult office worker in a charcoal coat seen only from behind at a distance on the left third walking toward the entrance. Dark prestige graphic-novel, semi-cel rendering, controlled diffuse gray-blue morning light, architectural scale and quiet institutional pressure. Environment-first composition; the distant worker is only arrival blocking, not a face or character reference. No readable clock, signage, badge text, screens, logos, plot evidence, security incident, or additional named characters.`
+- **Accept only if:** it reads as exterior approach; entrance is usable as the destination; the person remains distant and non-identifying; no legible invented text or state-sensitive plot prop appears.
+
+### `opening.axiom.shot02-security` — current blank-screen priority
+
+- **One structural input:** `art/staging/opening/axiom-security-zero-credit-staging.png`; use it only for the camera, lane, gate, and camera-bank geometry. Do not supply M5, a cast reference, a gala/style image, or a prior generated environment.
+- **Output:** one 16:9 reusable security-environment HOLD master, target 1920 by 1080.
+- **Exact prompt:** `EVE opening, cinematic 16:9 Axiom security lobby at early morning, viewed down a long controlled perspective through glass screening partitions and three employee lanes. Show a restrained employee queue, uniformed security staff, a ceiling camera bank, one scanner, an empty neutral belongings tray, a badge-reader plinth, a face-check floor marker, and a second line of locked inner gates leading toward elevators. Include one small non-identifying lean employee in a charcoal coat in the central lane as Adrian's spatial role; keep his face unreadable and do not make him a character portrait. Dark prestige graphic-novel, semi-cel rendering, controlled diffuse cool lighting, smoked glass, institutional order, usable negative space, precise durable architecture. This is a state-safe environment hold across queue, tray, badge, face check, scanner, green-light wait, and gate release. No readable clocks, signs, badge text, screens, logos, names, plot evidence, alarms, emergency action, visible scan result, or other state-specific event.`
+- **Accept only if:** every required environmental anchor is visible; the gates, lanes, and camera bank have clear depth; the tray is generic and empty; no screen or light claims that a specific scan has already passed; Adrian is a non-identifying positional figure; Daniel and office furniture are absent.
+
+### `opening.axiom.shot03-office-arrival`
+
+- **One structural input:** `art/staging/opening/axiom-office-arrival-zero-credit-staging.png`, used only in an **environment** task to preserve the empty approach lane and central-desk relationship. It is never supplied to a character-generation task.
+- **Output:** one 16:9 Strategic Intelligence arrival master, target 1920 by 1080.
+- **Exact prompt:** `EVE opening, cinematic 16:9 Strategic Intelligence arrival immediately beyond Axiom's elevator and inner gate. Establish the quiet office threshold, smoked-glass director office relationship, restrained terminal glow, and a clear empty circulation lane from elevator arrival toward Adrian's central desk area. Adrian may be a small back-facing arrival figure near the threshold, never seated or already at the desk. Daniel must be absent. Dark prestige graphic-novel, semi-cel rendering, controlled diffuse office light, broad usable negative space, durable office architecture. This is an environment arrival master, not a desk conversation composite. No readable signage, clocks, terminal text, badges, report contents, character portrait, case evidence, coffee, or plot-state prop.`
+- **Accept only if:** elevator/inner-gate-to-office continuity reads clearly; Adrian has not reached the desk; the central desk orientation and empty approach lane remain compatible with M5; Daniel is absent; the image is not presented as an M5 replacement or a runtime composite.
+
+## Proposed paid-generation order
+
+1. **Security environment master** — the current blank reader state; one reusable asset fills the complete security reading beat.
+2. **Approach environment master** — completes the preceding exterior cut.
+3. **Office-arrival environment master** — completes the post-elevator office-establishing cut.
+4. **Adrian V2 character-only standing layer**, then human review.
+5. **Daniel character-only layer** and deterministic M5 composite only after Adrian V2 passes.
+
+After runtime approval and binding, the first three environment assets reduce the
+primary blank-reader count from 17 to 14: approach 17 to 16, security 16 to 15,
+and office arrival 15 to 14. The approved Daniel composite would then reduce it
+from 14 to 12 because it occupies both the final commute beat and the unchanged
+`office.daniel` dialogue hold.
+
+## Exact next paid-generation recommendation
+
+Authorize exactly one **security environment HOLD master** using the security
+specification above and the single prepared security staging board. It is the
+lowest-risk response to the live blank screen: no M5 reference, no character
+identity reference, no state-sensitive plot prop, and no dependency on the
+Adrian/Daniel layer pipeline. Stop for human review when the one output returns.
 
 ## Spend and repository status
 

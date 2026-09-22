@@ -16,6 +16,7 @@ import { clinicScenes, clinicBlocks } from './clinic';
 import { chapter5Blocks,chapter5Scenes } from './chapter5';
 import { chapter4Blocks, chapter4Scenes } from './chapter4';
 import { chapter3Blocks, chapter3Scenes } from './chapter3';
+import { isCurrentAuthoringRevision } from './revision';
 
 export const inspections = [
   {
@@ -297,7 +298,7 @@ const responseSlot: Partial<Record<NodeId, string>> = {
 };
 export function sceneBlocks(state: GameState): Block[] {
   const node = `${state.scene}.${state.phase}` as NodeId;
-  const authoredSceneById = state.contentRevision === 17 ? sceneById : historicalSceneById;
+  const authoredSceneById = isCurrentAuthoringRevision(state.contentRevision) ? sceneById : historicalSceneById;
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
   if (state.scene === 'chapter5') return chapter5Blocks(state);
   if (state.scene === 'chapter4') return chapter4Blocks(state);

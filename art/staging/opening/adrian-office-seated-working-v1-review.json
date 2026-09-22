@@ -1,0 +1,54 @@
+{
+  "assetId": "adrian-office-seated-working-v1",
+  "role": "staging-review-candidate",
+  "approvalStatus": "rejected-human-review-required",
+  "classification": "REJECT",
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "image_editor",
+    "mode": "single-reference image editor with approved flat-neutral extraction fallback",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "0f6964d3-be39-445a-90af-a923e3bc6f5b",
+    "callId": "ed8cf36b-33eb-43ad-a401-02bc3e64fa14",
+    "assetId": "4cbcdfed-7541-4a6b-9379-624995315943",
+    "soleReference": {
+      "path": "art/production/opening/axiom-opening-office-master-v1-production.png",
+      "providerAssetId": "e768cbb3-729e-4543-a563-2c7a7eee9d45"
+    },
+    "completedCalls": 1,
+    "completedOutputs": 1,
+    "taskLevelBillingReturned": true
+  },
+  "spend": {
+    "quotedArtCredits": 2,
+    "accountBalanceBefore": 331,
+    "accountBalanceAfter": 329,
+    "observedAccountDelta": 2,
+    "taskLevelProviderDebit": 2,
+    "creditTransactionId": "a55cc34a-0d1e-4eeb-b6a6-378e7173223d",
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "providerOutput": {
+    "path": "art/staging/opening/adrian-office-seated-working-v1-provider-flat.png",
+    "mimeType": "image/png",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "B4F945330B8EDFD53A8569600FE08A996AF63257C84A464E2340A1D05A75CA24"
+  },
+  "diagnosticBoard": "art/staging/opening/adrian-office-seated-working-v1-review-board.png",
+  "assessment": {
+    "identity": "MINOR ISSUE — glasses, charcoal wardrobe, clean-shaven analyst read and graphic-novel rendering are broadly present; this cannot overcome layer failures.",
+    "proportionScale": "BLOCKING ISSUE — person is scaled and placed for the west neighboring workstation, not the approved Adrian station.",
+    "deskChairRegistration": "BLOCKING ISSUE — central Adrian desk/chair remain empty; person is seated at the wrong workstation.",
+    "style": "MINOR ISSUE — 2D linework broadly fits but the retained/repainted environment does not match canonical M5 pixels.",
+    "extraction": "BLOCKING ISSUE — no transparent or flat-neutral backing; office background was retained and altered, so deterministic matte extraction is not valid.",
+    "seatedWorkingReuse": "BLOCKING ISSUE — invalid for states 4–8 and anchor B because M5 desk, terminal, evidence surface and camera registration are not preserved."
+  },
+  "compositeTest": {
+    "result": "NOT CREATED",
+    "reason": "A deterministic M5-plus-layer preview would misrepresent the frozen environment because the only provider output is a baked altered-office image, not a separable layer."
+  }
+}

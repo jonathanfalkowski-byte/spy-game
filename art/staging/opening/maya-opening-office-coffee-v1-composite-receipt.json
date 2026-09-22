@@ -1,0 +1,139 @@
+{
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "sources": {
+    "m5": {
+      "path": "art\\production\\opening\\axiom-opening-office-master-v1-production.png",
+      "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+      "providerUpload": false
+    },
+    "mayaProviderOriginal": {
+      "path": "art\\staging\\opening\\maya-opening-office-coffee-v1-provider-original.png",
+      "sha256": "5C785FA05E8611BEB1F70230BA1DE743F8F429E5C71B9CF8250DA0EA42014BEA"
+    },
+    "adrianV4": {
+      "path": "art\\staging\\opening\\adrian-opening-office-standing-v4-extracted-layer.png",
+      "sha256": "BB81F59CB5343AEEA1464629A4AF258527285D7CF8EE4FA71CE849308B598F15"
+    }
+  },
+  "extraction": {
+    "method": "OpenCV GrabCut character-plus-held-cup rectangle, then 0.55px alpha feather",
+    "sourceCrop": [
+      751,
+      72,
+      1197,
+      1030
+    ],
+    "layer": {
+      "path": "art\\staging\\opening\\maya-opening-office-coffee-v1-extracted-layer.png",
+      "sha256": "DD286006F9CB8AA6E13B64D970603B4F9951BE11F1CCB9C4A7C42A35CC3061F7"
+    }
+  },
+  "registration": {
+    "maya": {
+      "bbox": [
+        1202,
+        492,
+        1334,
+        784
+      ],
+      "footPoint": [
+        1268,
+        784
+      ],
+      "eyeLine": [
+        1266,
+        558
+      ],
+      "ownCup": "provider cup held in Maya hand"
+    },
+    "adrian": {
+      "bbox": [
+        849,
+        614,
+        941,
+        904
+      ]
+    },
+    "adrianCup": {
+      "localDeterministicProp": "plain unmarked cup left of terminal",
+      "baseAnchor": [
+        985,
+        690
+      ],
+      "baseBounds": [
+        985,
+        690,
+        1026,
+        740
+      ],
+      "deflectAnchor": [
+        955,
+        690
+      ],
+      "deflectBounds": [
+        955,
+        690,
+        996,
+        740
+      ]
+    },
+    "daniel": "absent",
+    "benton": "absent after departure",
+    "slate": {
+      "status": "retained on desk after Benton departure",
+      "approvedPolygon": [
+        [
+          775,
+          636
+        ],
+        [
+          883,
+          636
+        ],
+        [
+          891,
+          691
+        ],
+        [
+          765,
+          691
+        ]
+      ],
+      "approvedShadowMaxX": 898,
+      "mediumCrop": "wholly outside illustrated field; crop begins x=1052"
+    }
+  },
+  "fullComposite": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot01-maya-v4-adrian-maya-v1-coffee-composite.png",
+    "sha256": "350D2E4473D92EF1B425FC08AC4F14CA23C6FC6E1EF7C4D7D304E3B2BE29E6BC"
+  },
+  "deflectPositionProof": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot01-maya-v4-adrian-maya-v1-coffee-deflect-position-proof.png",
+    "sha256": "1816C40F3AA31642DC5960C305C765E48290F808EFE506AEEF01CE09E51DFB85",
+    "adrianCupBounds": [
+      955,
+      690,
+      996,
+      740
+    ]
+  },
+  "mediumCandidate": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot01-maya-v1-medium-desk-side-hold-candidate.png",
+    "sha256": "CDF780AC6317A58867E4D9C12E73905AE823210979174379A06B765C467D4850",
+    "literalM5Crop": [
+      1052,
+      480,
+      1500,
+      732
+    ],
+    "adrianPixelsIncluded": false,
+    "adrianCup": "outside illustrated field: base and deflect bounds both end before crop x=1052",
+    "foreground": "re-rendered from full-resolution provider source"
+  },
+  "stateAssessment": {
+    "maya.promotion": "full composition is truthful after Maya has set Adrian cup left of terminal and retains her own",
+    "maya.invitation": "holds",
+    "maya.case": "holds; no report text is shown",
+    "mayaPromotion.deflect": "separate zero-cost position proof moves Adrian cup toward Adrian while keeping it outside medium crop"
+  }
+}

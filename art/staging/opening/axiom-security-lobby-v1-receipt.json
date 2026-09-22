@@ -1,0 +1,47 @@
+{
+  "assetId": "axiom-security-lobby-v1",
+  "status": "staging-review-required",
+  "shotId": "opening.axiom.shot02-security",
+  "generation": {
+    "provider": "zencreator",
+    "tool": "image_editor",
+    "model": "SEEDREAM_5",
+    "mode": "single-reference image-to-image",
+    "taskId": "71e49de1-325b-4982-b534-60bfacaab71d",
+    "callId": "23078d5e-8bab-4784-90f6-3f28562fdf03",
+    "providerAssetId": "9e9c3d67-f0b0-4438-a765-614b79211178",
+    "outputsRequested": 1,
+    "outputsReturned": 1,
+    "createdAt": "2026-09-21T21:30:57.102824Z",
+    "finishedAt": "2026-09-21T21:31:52.553062Z"
+  },
+  "reference": {
+    "path": "art/staging/opening/axiom-security-clean-structural-conditioning-plate.png",
+    "sha256": "F42BBC6660D62CF587A3A1046776CE36960DB6747499F9B4C772BECC6A455476",
+    "providerAssetId": "96291ab1-5a18-4b6a-b6b2-8ed86a94bc7d",
+    "referenceCount": 1,
+    "cleanliness": "Derived locally from the annotated zero-credit staging board after visual inspection. The supplied provider reference has no text, labels, arrows, camera guides, character names, colored route zones, review annotations, or state-specific placeholder props."
+  },
+  "output": {
+    "path": "art/staging/opening/axiom-security-lobby-v1-provider-original.png",
+    "sha256": "68D1E4A16EA105BB82D3CB5AE8DD0032895625AD8912E21F89CBFF26B514DBA0",
+    "dimensions": [1920, 1080],
+    "mediaType": "image/png"
+  },
+  "billing": {
+    "providerQuotedCostCredits": 1,
+    "balanceBefore": 509,
+    "balanceAfterObserved": 496,
+    "observedAccountDelta": -13,
+    "taskLevelBillingAvailable": true,
+    "taskLevelBillingCredits": -1,
+    "taskLevelLedgerTransactionId": "be2ba51b-a9a8-47ab-ac17-d579c0c975f3",
+    "note": "Other concurrent provider tasks changed the account after this submission. The observed account delta is not attributed to this task; task-level billing records the exact -1 credit charge."
+  },
+  "review": {
+    "decision": "REVISE",
+    "runtimeBinding": false,
+    "productionPromotion": false,
+    "automaticRetry": false
+  }
+}

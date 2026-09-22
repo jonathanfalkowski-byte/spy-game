@@ -1,0 +1,92 @@
+{
+  "spec": {
+    "assetId": "adrian-opening-full-body-v3-v2-identity",
+    "assetType": "full-body",
+    "styleBibleVersion": "1.0",
+    "subjects": [
+      {
+        "characterId": "player-character",
+        "identityId": "adrian"
+      }
+    ],
+    "canonicalReferences": [
+      "adrian-canon-identity-v2"
+    ],
+    "cameraFraming": "3:4 full-figure portrait with requested 12–15% head and shoe margins.",
+    "pose": "Neutral standing reference requested with relaxed shoulders, arms at sides, and restrained analytical presence.",
+    "lighting": "Neutral illustrated studio lighting on a removable pale background.",
+    "environment": "Simple removable neutral background only.",
+    "intendedUse": "Staging-only candidate for Adrian body/proportion and promotion-day wardrobe review; never runtime scene art.",
+    "continuityRequirements": [
+      "Use adrian-canon-identity-v2 as the sole identity authority; do not restore the superseded broad V1 body direction.",
+      "Promotion-day wardrobe: matte charcoal business shirt, charcoal tailored trousers, black leather belt, understated matte black dress shoes, no tie, no jewelry, clean-shaven, subtle professional glasses.",
+      "The closet jacket remains unworn and separate from the later dark commute coat.",
+      "Full-body authority requires complete hair, head, hands, trousers, legs, shoes, and generous breathing room."
+    ],
+    "dimensions": {
+      "width": 1536,
+      "height": 2048
+    },
+    "notes": "One owner-authorized V2-identity full-body attempt. It remains staging-only because framing, body read, pose, and footwear do not satisfy the authority gate."
+  },
+  "role": "staging",
+  "approvalStatus": "pending",
+  "file": "art/staging/adrian/adrian-opening-full-body-v3-v2-identity.png",
+  "sha256": "D6E8AF9C40A47D405FCE2B96627493F1D9CC98806337EC9D297A738AC7102C4A",
+  "generation": {
+    "provider": "zencreator",
+    "tool": "image_editor",
+    "model": "SEEDREAM_5",
+    "taskId": "7e421834-0fb7-40ef-8aad-d3f8c6f74086",
+    "callId": "c93568fc-99cb-4230-81e0-c0eed960f8b7",
+    "providerAssetId": "dad3372b-7fae-4819-ae0c-7d38a499ff84",
+    "sourceReferences": [
+      {
+        "assetId": "adrian-canon-identity-v2",
+        "providerAssetId": "8940fe55-abcf-4425-b300-b6b1c3c7da59"
+      }
+    ],
+    "promptVersion": "eve-opening-v1",
+    "promptComponents": {
+      "STYLE": "Polished 2D EVE espionage-graphic-novel linework, semi-cel shading, restrained shadows.",
+      "SUBJECT": "Same approved Adrian V2 identity, age 34, lean ordinary analyst, clean-shaven, practical hair, subtle professional glasses.",
+      "SCENE": "Reusable full-body professional reference on a simple removable neutral background.",
+      "CAMERA": "3:4 full figure, complete head/hands/shoes, 60–70% height occupancy, 12–15% top and bottom margins requested.",
+      "LIGHTING": "Neutral illustrated studio lighting.",
+      "CONTINUITY": "Promotion-day charcoal shirt, charcoal trousers, black belt, understated black dress shoes, no tie, jewelry, watch, coat, or props."
+    },
+    "prompt": "Use the man in the reference image as the exact Adrian Vale identity anchor and extend him into a reusable full-body professional reference. He is a fictional adult intelligence analyst, age 34, lean with average-to-slightly-narrow shoulders and ordinary adult proportions. Preserve his face, clean-shaven grooming, practical dark hair, thoughtful eyes, restrained analyst read, and understated thin rectangular dark-neutral professional glasses. Show him standing naturally with relaxed shoulders, feet slightly narrower than shoulder width, arms comfortably at his sides, both hands fully visible, chin neutral, and a contained analytical presence. Dress him in a matte charcoal business shirt, charcoal tailored trousers, plain black leather belt, and understated matte black dress shoes; no tie, jewelry, watch, coat, or props. Use a simple removable neutral background with polished 2D EVE espionage graphic-novel linework, semi-cel shading, and restrained shadows. Use a portrait canvas with the complete figure occupying about 60–70 percent of the height, leaving generous 12–15 percent breathing room above the hair and below the shoes.",
+    "settings": {
+      "ratio": "3:4",
+      "width": 1536,
+      "height": 2048,
+      "number_of_images": 1,
+      "batch_mode": false,
+      "sequential_generation": false,
+      "rewrite_prompt": false
+    },
+    "createdAt": "2026-09-19T15:32:29.670308Z",
+    "estimatedCredits": 1,
+    "mediaType": "image/png",
+    "outputDimensions": {
+      "width": 1536,
+      "height": 2048
+    }
+  },
+  "review": {
+    "decision": "REVISE",
+    "reviewer": "Codex visual review",
+    "date": "2026-09-19",
+    "reasons": [
+      "FACE CONTINUITY — PASS: clearly carries the approved V2 Adrian face and clean-shaven identity at full resolution.",
+      "ANALYST BODY READ — REVISE: torso and chest read more imposing than the contained analyst direction.",
+      "BODY PROPORTIONS — REVISE: shoulders and stance are broader and more forceful than the lean ordinary target.",
+      "PROMOTION-DAY WARDROBE — REVISE: shirt, trousers, and belt are usable; footwear reads heavier and more boot-like than understated matte dress shoes.",
+      "GLASSES — PASS/LOW-POLISH: thin professional frames remain visible and secondary at game scale.",
+      "POSE — REVISE: chest-forward stance is too assertive for the reference authority.",
+      "FULL-FIGURE FRAMING — REJECT: hair is clipped at the top and shoes meet the bottom edge; required 12–15% margins are absent.",
+      "STYLE — PASS: EVE linework, semi-cel shading, and neutral removable background remain coherent."
+    ]
+  },
+  "reviewBoard": "art/staging/adrian/adrian-opening-full-body-v3-review-board.png"
+}

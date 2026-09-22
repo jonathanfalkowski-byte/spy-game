@@ -41,6 +41,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
     "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054",
     "review": {
@@ -101,6 +102,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
     "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
     "review": {
@@ -157,6 +159,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
     "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
     "review": {
@@ -213,6 +216,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
     "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
     "review": {
@@ -265,6 +269,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
     "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
     "review": {
@@ -320,6 +325,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
     "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
     "review": {
@@ -366,6 +372,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png",
     "sha256": "56c603bcc5193e734413c1fab899b9ed71ff678c177aa8d35a3f987b5b14270e",
     "review": {
@@ -407,6 +414,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png",
     "sha256": "5514240b41e3c1e4b3574d3c78b00719f7497634bc582fe0f89e5aaaf32c8a96",
     "review": {
@@ -447,6 +455,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/chapter5/C5-PEOPLE-NIGHT-APARTMENT-MASTER-V1.png",
     "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
     "review": {

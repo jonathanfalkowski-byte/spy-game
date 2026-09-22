@@ -1,0 +1,46 @@
+{
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "sourceLayer": {
+    "path": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-extracted-layer.png",
+    "sha256": "CC55CEDC47BFC0B13C97B7058373CD4D7985718FCE3D5CB09B5CDD58DB276C79"
+  },
+  "originalFailedComposite": "art/staging/opening/axiom-opening-office-shot02-benton-v4-adrian-benton-v1-composite.png",
+  "repair": {
+    "method": "separate existing disconnected slate alpha component; translate (-12,+8) pixels; alpha-composite existing human pixels over it for existing curled-hand occlusion",
+    "newAnatomy": false,
+    "newPropPixels": false,
+    "slateTranslationLayerPixels": [
+      -12,
+      8
+    ],
+    "salvagedLayer": {
+      "path": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-grip-corrected-extracted-layer.png",
+      "sha256": "B31E776E3950F9FF3FA545E7F89930C6E81B0330B87ECEFB1048376CE1A1A3A1"
+    },
+    "enlargedInspection": {
+      "path": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-grip-corrected-enlarged.png",
+      "sha256": "DE331087333ABDF54BA8B339CDE69876B1105C0B11A40BCAA2A293BD8D9111E5"
+    }
+  },
+  "composite": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot02-benton-v4-adrian-benton-v1-grip-corrected-composite.png",
+    "sha256": "817F53FF48722C5213D279BF2BA5CC068D757494B19A8C8D5AE1F1E0C226A58E",
+    "m5Modified": false
+  },
+  "deskSideHoldCandidate": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot02-benton-v1-desk-side-hold-candidate.png",
+    "sha256": "F2ADBA37E0C40D5875FAEE17FE0B4F4AAAC2CA21F743E6C8B9F1687A6F6A11C4",
+    "crop": [
+      960,
+      350,
+      1920,
+      890
+    ],
+    "adrianPixelsIncluded": false
+  },
+  "remainingLimits": [
+    "Benton remains frontal rather than southwest-facing Adrian",
+    "Benton's extended foot still reads as mid-step",
+    "candidate has no production approval or runtime binding"
+  ]
+}

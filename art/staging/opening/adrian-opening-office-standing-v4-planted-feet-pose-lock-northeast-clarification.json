@@ -1,0 +1,40 @@
+{
+  "assetId": "adrian-opening-office-standing-v4-planted-feet-pose-guide",
+  "status": "zero-credit-staging-prepared-not-submitted",
+  "providerCallsThisPass": 0,
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "background": "uniform flat neutral slate-gray",
+  "figureBounds": [
+    742,
+    108,
+    1176,
+    940
+  ],
+  "figureHeight": 832,
+  "occupancyPercentHeight": 77.0,
+  "pose": {
+    "orientation": "three-quarter northeast; face plane, shoulders, torso, pelvis, and both grounded shoes point northeast toward Daniel/central desk",
+    "stance": "stopped neutral stance; both full feet planted on matching ground contacts; settled weight over near leg; relaxed arms",
+    "exclusions": [
+      "walking",
+      "stride",
+      "lifted heel",
+      "crossed legs",
+      "front-facing torso",
+      "fashion pose",
+      "heroic stance"
+    ]
+  },
+  "identityScope": "Structural pose only. Do not infer face identity from this mannequin; use canonical Adrian identity and property-scoped wardrobe only in the generation prompt.",
+  "output": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v4-planted-feet-pose-guide.png",
+    "sha256": "14ee2bd23d0fa70d0d70a197e5ba22805367a2799ab55b180e2579838edc8dcd"
+  },
+  "runtimeBound": false,
+  "productionPromoted": false
+}

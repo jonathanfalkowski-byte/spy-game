@@ -1,0 +1,35 @@
+{
+  "package": "opening-visual-spine-zero-credit-staging",
+  "status": "planning-only",
+  "createdAt": "2026-09-21",
+  "providerCalls": 0,
+  "creditsSpent": 0,
+  "runtimeBinding": false,
+  "productionPromotion": false,
+  "artifacts": [
+    {
+      "shotId": "opening.axiom.shot01-approach",
+      "path": "art/staging/opening/axiom-approach-zero-credit-staging.png",
+      "sha256": "3B561ACA27170BF4CFDFB2539F0C9D1324A857580D68FCC8B9C2AF0DB63055A0",
+      "purpose": "review-only exterior approach camera and blocking staging"
+    },
+    {
+      "shotId": "opening.axiom.shot02-security",
+      "path": "art/staging/opening/axiom-security-zero-credit-staging.png",
+      "sha256": "E99179C1EDCE2BE67342CAE01036CDCB3F25FE1595CB708C89584ABE1C555CAF",
+      "purpose": "review-only security-lobby camera and lane staging"
+    },
+    {
+      "shotId": "opening.axiom.shot03-office-arrival",
+      "path": "art/staging/opening/axiom-office-arrival-zero-credit-staging.png",
+      "sha256": "A6B800847037F276617633F6E7927231626CE839D91181E7A5B5F49000967807",
+      "purpose": "review-only M5 desk/approach-lane continuity staging; not a final arrival composite",
+      "localReferenceOnly": "art/production/opening/axiom-opening-office-master-v1-production.png"
+    }
+  ],
+  "prohibitions": [
+    "No provider generation was submitted.",
+    "M5 was not supplied to a character provider.",
+    "No artifact is a production asset or runtime binding."
+  ]
+}

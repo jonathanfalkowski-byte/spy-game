@@ -9,7 +9,7 @@ import { replay as replayContentV6 } from './legacy-v6/state/reducer';
 import { StateSchema as ContentV6StateSchema } from './legacy-v6/state/schema';
 import { z } from 'zod';
 import { StateSchema, type GameState } from '../state/schema';
-import { initialState, replay } from '../state/reducer';
+import { newGameState, replay } from '../state/reducer';
 import { replay as replayContentV1 } from './legacy-v1/state/reducer';
 import { replay as replayContentV2 } from './legacy-v2/state/reducer';
 import { StateSchema as LegacyStateSchema } from './legacy-v2/state/schema';
@@ -24,7 +24,7 @@ import { StateSchema as ContentV5StateSchema } from './legacy-v5/state/schema';
 export const SAVE_KEY = 'eve.production.opening';
 export const MAX_SAVE_BYTES = 2_000_000;
 export const SaveSchema = z
-  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12), z.literal(13), z.literal(14), z.literal(15), z.literal(16), z.literal(17)]), state: StateSchema })
+  .object({ schemaVersion: z.literal(5), contentVersion: z.union([z.literal(9), z.literal(10), z.literal(11), z.literal(12), z.literal(13), z.literal(14), z.literal(15), z.literal(16), z.literal(17), z.literal(18)]), state: StateSchema })
   .strict();
 const DayV3SaveSchema = z
   .object({ schemaVersion: z.literal(3), contentVersion: z.literal(3), state: DayV3StateSchema })
@@ -209,7 +209,7 @@ export function loadGame(storage: StoragePort): LoadResult {
   let raw: string | null = null;
   try {
     raw = storage.getItem(SAVE_KEY);
-    return { kind: 'ready', state: raw === null ? initialState() : decodeSave(raw), raw };
+    return { kind: 'ready', state: raw === null ? newGameState() : decodeSave(raw), raw };
   } catch (error) {
     return { kind: 'invalid', raw, error: error instanceof Error ? error.message : String(error) };
   }

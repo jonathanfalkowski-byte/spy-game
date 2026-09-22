@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "contentRevision": 17,
+  "baselineCommit": "ba027c6597c22f006a24d2767a1d2d300c325f09",
+  "sourceState": "pre-revision-18-authenticated-baseline",
+  "files": {
+    "src/content/chapter3-autonomy.ts": {
+      "sha256": "6a73631446bc017de480de736fb481502ca7ae73f7e4301829d4c5bb542f190f"
+    },
+    "src/content/chapter3-evening.ts": {
+      "sha256": "6433785ae58a5db228f40d1b055586d4922bbd12048cdc89498e18d84052b466"
+    },
+    "src/content/chapter3-next-model.ts": {
+      "sha256": "2bcbb60e1946a475282c65c9996f714cb89fbdd2913d77f92dd7ef303d1beb09"
+    },
+    "src/content/chapter3-next.ts": {
+      "sha256": "11ac771eb78a64f954ada92d68b86ee557ee4a437fee84d1ba70e2a023d659c9"
+    },
+    "src/content/chapter3-opportunity.ts": {
+      "sha256": "152b804ad803c05b6114f368414d2f94d106fb3a2762554b777ae5544ebdd170"
+    },
+    "src/content/chapter3.ts": {
+      "sha256": "0c0367f91aa3d8904ff56a556ce8ba7e9d4a531680193021ac355c75da7dd29d"
+    },
+    "src/content/chapter4-callbacks.ts": {
+      "sha256": "dfe99014a09064ec323ff49b41096dd0c2a97da1078e5853076a948248e6a074"
+    },
+    "src/content/chapter4-case.ts": {
+      "sha256": "af054871e914f1052257c7dba895804ddeccf4f5532e6499b411e4552289a469"
+    },
+    "src/content/chapter4-entry.ts": {
+      "sha256": "9e4b861ad60e192df10af2e23c48579de70c046de0997ab2fe0955add13e4915"
+    },
+    "src/content/chapter4-model.ts": {
+      "sha256": "939844caaf0abb9dcf66c4305eadc5cfc2e12bfbf1c94d419f294ea75adf8714"
+    },
+    "src/content/chapter4-power.ts": {
+      "sha256": "7c4e8444e7cb57e0d98b0a3189c90b83931e8b570ae4b5570c58fdb64eb72256"
+    },
+    "src/content/chapter4.ts": {
+      "sha256": "3d6d286c8416f9f38b081025de0d64ae568dba50f879c3945aaa96857dc7b4a7"
+    },
+    "src/content/chapter5-benefit.ts": {
+      "sha256": "07de0ebd9114e268e342ac4d6a2e0a843999b27d5ffc3788817d87a40b637a22"
+    },
+    "src/content/chapter5-continuity.ts": {
+      "sha256": "77915348bb4b1209364a14cbb44fc36ae92fc187a45b67f9e1632e416387ef59"
+    },
+    "src/content/chapter5-desire.ts": {
+      "sha256": "ef8c60bb9475aae0ffeda70a7845c8bd590f106fda33c3e1d8eed24efbaac9c9"
+    },
+    "src/content/chapter5-harbour-shots.ts": {
+      "sha256": "c9bd398e292f4826e8c884c5d1eae245ad713a462690ce6b7372612dd4989c5d"
+    },
+    "src/content/chapter5-model.ts": {
+      "sha256": "fb3af5da134e4503a9ce7e994313547709fa84ba580a62e1b03c69da054be43c"
+    },
+    "src/content/chapter5-public.ts": {
+      "sha256": "d7f90a8d51b8b688a2089ddcb13a26f5797de11f06022c94a08870b3b17faab7"
+    },
+    "src/content/chapter5-reward.ts": {
+      "sha256": "16f7a272f79cca354f835a483cd7a638f75e3221170f331838cf59989c2ba23f"
+    },
+    "src/content/chapter5.ts": {
+      "sha256": "324d9d6dc48f9fa766a7fca1485a43aef490514e104cd6cf46b0de5f1a58a03c"
+    },
+    "src/content/character-schema.ts": {
+      "sha256": "5ccc5b14e7ba9e45a7e6cd9b635ed256603f9140e75ccdbaa5336c849873158b"
+    },
+    "src/content/characters.ts": {
+      "sha256": "df6756ce95a91d6294b0519162c118a594bea525b501981aa3087ba44f1727fb"
+    },
+    "src/content/clinic.ts": {
+      "sha256": "afd533cc82a2622865afbb5cb6749b2e05a4cdccc16dbd53324548af386130f4"
+    },
+    "src/content/consequence-rules.ts": {
+      "sha256": "13b0a7eeaafc24bd70e92c1508873440cbeeddecd2a5957bbfec89f50f6c997a"
+    },
+    "src/content/day.ts": {
+      "sha256": "ac3ce9ccf8408fc6696ea16c604db4fe529d766fcfff73d6292f9f4cb5844c90"
+    },
+    "src/content/dialogue.ts": {
+      "sha256": "52ef24c2a3e4eb592a4ee590e918660cedcc9e056a815bf1e33ec8a1e6408cab"
+    },
+    "src/content/evidence.ts": {
+      "sha256": "3ecc8836be7e6710c2fba7f549e30b235bb8c2455b3acb1580e172c46a29aab7"
+    },
+    "src/content/identities.ts": {
+      "sha256": "8f66bb20c7dda3e3be0ec577228e608629c42c52c79aa046dc92ccc058abb510"
+    },
+    "src/content/mission-presentation.ts": {
+      "sha256": "3feb8e0527bf0b0ec56e590f12aac643da953066bcdd571701b87017f9751c29"
+    },
+    "src/content/mission.ts": {
+      "sha256": "564b24b0cd78e8d06cce8b0160a30c6632ac4cafcf5b9e632403a6a62e304565"
+    },
+    "src/content/scenes.ts": {
+      "sha256": "b88abb2436806fcb41e5b0b8d3f8bdb6c7f888e859cc60ea77be9f16a137385b"
+    },
+    "src/content/schema.ts": {
+      "sha256": "a8d763c2133e0d0f7ecf7d3516d7d29977a9e456200d7a3027d20d98be685c2c"
+    },
+    "src/content/validate.ts": {
+      "sha256": "dd24a7ee9572fcfc6bf4e54a0870fb43caa0345931fa65e04c349131095e86f4"
+    },
+    "src/state/reducer.ts": {
+      "sha256": "f92b4ef9753b32cc3dad9b9937b4e0c3ba0255e60c7dab7d76b3882683674212"
+    },
+    "src/state/schema.ts": {
+      "sha256": "adb676ca60355ed4b9a0184ac74281d2fd414ee46a19618a377b2bd5011bffdc"
+    },
+    "src/persistence/saves.ts": {
+      "sha256": "96e0abe8c2b1c0f3946d4132c9875993b90b6642a247205351bf8602009fcd1a"
+    }
+  }
+}

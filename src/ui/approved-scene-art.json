@@ -126,5 +126,101 @@
     "width": 1920,
     "height": 1080,
     "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f"
+  },
+  {
+    "id": "axiom-security-lobby-v2-production",
+    "src": "art/opening/axiom-security-lobby-v2-production.png",
+    "location": "axiom-security-lobby",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "17fab43e4a3e5d4d45062f87e15ec74761795fb8e9818474827a01a7408dde62"
+  },
+  {
+    "id": "axiom-approach-v2-production",
+    "src": "art/opening/axiom-approach-v2-production.png",
+    "location": "axiom-approach",
+    "width": 2736,
+    "height": 1536,
+    "sha256": "1722005b77d0ff8f450c76c34eb3840a189a311cd033cf129db83e9796e0e553"
+  },
+  {
+    "id": "axiom-office-arrival-v1-production",
+    "src": "art/opening/axiom-office-arrival-v1-production.png",
+    "location": "axiom-office-arrival",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "38a7de40c13fc4547617db6b400d613d05c5c59e4868982b7f58a58f460f235d"
+  },
+  {
+    "id": "axiom-casework-file-v1-production",
+    "src": "art/opening/axiom-casework-file-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "b2025b84c72b1ed4543443ab2fc902e6a8d8b6ab8ee42b055e22a561fb5973ea"
+  },
+  {
+    "id": "axiom-casework-brief-v1-production",
+    "src": "art/opening/axiom-casework-brief-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417"
+  },
+  {
+    "id": "axiom-casework-documents-v1-production",
+    "src": "art/opening/axiom-casework-documents-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca"
+  },
+  {
+    "id": "axiom-casework-review-v1-production",
+    "src": "art/opening/axiom-casework-review-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1"
+  },
+  {
+    "id": "axiom-casework-submitted-v1-production",
+    "src": "art/opening/axiom-casework-submitted-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252"
+  },
+  {
+    "id": "axiom-opening-office-shot01-daniel-v1-production",
+    "src": "art/opening/axiom-opening-office-shot01-daniel-v1-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "f87f6f3e19fa1474012e5311744e284feb12f3775f0ec2e55e12026c0d0c2e49"
+  },
+  {
+    "id": "axiom-opening-office-shot02-benton-v1-production",
+    "src": "art/opening/axiom-opening-office-shot02-benton-v1-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "31bf3790d753b7a5568a674f08e089cd44e8eda092a1fabd00853c24d38e6481"
+  },
+  {
+    "id": "axiom-opening-office-shot01-maya-v1-production",
+    "src": "art/opening/axiom-opening-office-shot01-maya-v1-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "43863fc23f89dd0294c255163fd8ad4b9e5bfac293b53d3b372f743d4295691b"
+  },
+  {
+    "id": "axiom-opening-office-shot04-alone-v1-production",
+    "src": "art/opening/axiom-opening-office-shot04-alone-v1-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "ce5b367250db5e0a0c32f1686999924168c23e208b9cb0f00f9c16dab5366de3"
   }
 ]

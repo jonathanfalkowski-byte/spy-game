@@ -4,7 +4,7 @@ import type { GameState } from '../state/schema';
 import { documents, searches } from '../content/evidence';
 import { inspections } from '../content/scenes';
 import { reasoningText, sourceNames, findings, leadNames } from '../content/mission';
-import { displayName } from './reading-presentation';
+import { displayName, renderCurrentPresentationText } from './reading-presentation';
 export const milestoneNames = {
   opening: 'The opening',
   day: 'The rest of Adrian’s day',
@@ -42,6 +42,8 @@ export interface JournalEntry {
   text: string;
   source: string;
   limits?: string;
+  /** Internal presentation scope; stripped from the returned journal record. */
+  presentationNode?: string;
 }
 const titles: Record<string, string> = {
   anomaly: 'The uninvited file',
@@ -183,6 +185,14 @@ export function journalEntries(s: GameState): JournalEntry[] {
         : r.layer === 'claim'
           ? 'Records the source’s account; it is not independent confirmation.'
           : undefined,
+      presentationNode:
+        action === 'CHAPTER3_CHOOSE'
+          ? 'chapter3.record'
+          : action === 'MISSION_CHOOSE'
+            ? 'mission.record'
+            : action === 'CLINIC_CHOOSE'
+              ? 'clinic.record'
+              : 'day.record',
     });
   }
   for (const i of s.inferences)
@@ -205,6 +215,7 @@ export function journalEntries(s: GameState): JournalEntry[] {
       title: 'Submitted Helix assessment',
       text: s.report.text + ' ' + s.report.feedback,
       source: 'Adrian’s report, sent to Benton only',
+      presentationNode: 'helix.submitted',
     });
   if (s.mission.source)
     entries.push({
@@ -244,6 +255,7 @@ export function journalEntries(s: GameState): JournalEntry[] {
         : record.key.slice(3).replaceAll('-', ' '),
       text: record.text.replace(/^rook received:/, 'Unknown sender received:'),
       source: record.source,
+      presentationNode: 'chapter4.record',
     });
   for (const r of records5(s))
     entries.push({
@@ -255,12 +267,20 @@ export function journalEntries(s: GameState): JournalEntry[] {
         : r.key.slice(3).replaceAll('-', ' '),
       text: r.text,
       source: r.source,
+      presentationNode: 'chapter5.record',
     });
-  return entries.map((e) => ({
-    ...e,
-    title: displayName(e.title),
-    text: displayName(e.text),
-    source: displayName(e.source),
-    ...(e.limits ? { limits: displayName(e.limits) } : {}),
-  }));
+  return entries.map((e) => {
+    const rendered = (value: string) =>
+      e.presentationNode && s.contentRevision === 18
+        ? renderCurrentPresentationText(value, e.presentationNode, s.contentRevision)
+        : displayName(value);
+    const { presentationNode: _presentationNode, ...publicEntry } = e;
+    return {
+      ...publicEntry,
+      title: rendered(e.title),
+      text: rendered(e.text),
+      source: rendered(e.source),
+      ...(e.limits ? { limits: rendered(e.limits) } : {}),
+    };
+  });
 }

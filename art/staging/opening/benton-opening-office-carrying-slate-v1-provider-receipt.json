@@ -1,0 +1,32 @@
+{
+  "assetId": "benton-opening-office-carrying-slate-v1-provider-original",
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "provider": {
+    "tool": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "referenceCount": 1,
+    "referenceAssetId": "95db6206-e0d0-460d-b1f3-72e58a09be0b",
+    "referenceRole": "clean structural guide only; M5 office excluded",
+    "ratio": "16:9",
+    "requestedPixels": [1920, 1080],
+    "outputCount": 1,
+    "taskId": "532854ce-7dd2-4124-997d-fa1409e9d504",
+    "callId": "8c607cb7-e1dd-4127-8964-38a2cad87a9e",
+    "providerAssetId": "ca2d3dba-8b3a-45f7-be49-1b5696262e75"
+  },
+  "spend": {
+    "quotedCredits": 2,
+    "balanceBefore": 262,
+    "balanceAfter": 260,
+    "observedBalanceDelta": 2,
+    "taskLevelBillingSupplied": false,
+    "exactTaskDebit": null,
+    "note": "The provider did not supply task-level billing. The quoted 2 credits and observed account delta of 2 are recorded separately."
+  },
+  "provenance": {
+    "providerOriginal": "art/staging/opening/benton-opening-office-carrying-slate-v1-provider-original.png",
+    "providerOriginalSha256": "D0AE4E13C4BE2B35FB9C0AD9ACBDD603D8600A850A202B49E9008F05EB6B0BCF",
+    "cleanGuide": "art/staging/opening/benton-opening-office-carrying-slate-clean-conditioning-plate.png",
+    "cleanGuideSha256": "93BCA46BAE08CE454DFDF137D9410C4E226E5FD49919521495D65A01562C0937"
+  }
+}

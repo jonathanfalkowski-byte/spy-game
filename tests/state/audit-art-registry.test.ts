@@ -5,6 +5,7 @@ import coverage from '../../docs/art/CHAPTER_5_COVERAGE_AUDIT.json';
 import production from '../../art/production/chapter5/coverage.json';
 import records from '../../art/production/chapter5/records.json';
 import authority from '../../docs/art/CURRENT_AUTHORITY_INDEX.json';
+import { shotBindings } from '../../src/ui/scene-art';
 
 it('keeps every runtime shot in the active registry and an existing explicit approval', () => {
   const registry = new Map(coverage.shots.map((s) => [s.shotId, s]));
@@ -17,15 +18,26 @@ it('keeps every runtime shot in the active registry and an existing explicit app
     const record = records.find((r) => r.spec.assetId === shot.assetId)!;
     expect(record.approvalStatus).toBe('approved');
     expect(record.role).toBe('production');
+    expect(shotBindings[shot.shotId]?.assetId).toBe(shot.assetId);
+    expect(shot.runtimeBound).toBe(true);
+    expect(registry.get(shot.shotId)?.runtimeBound).toBe(true);
     const bytes = readFileSync(record.file);
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(record.sha256);
     expect(bytes.equals(readFileSync(record.file.replace('art/production/', 'public/art/')))).toBe(
       true,
     );
   }
-  expect(production.productionShots).toHaveLength(4);
-  expect(coverage.summary.runtimeBoundShots).toBe(3);
-  expect(coverage.summary.productionIndexCoveragePercent).toBe(4);
+  const boundIds = Object.keys(shotBindings).filter((id) => id.startsWith('c05.')).sort();
+  expect(production.productionShots.map((s) => s.shotId).sort()).toEqual(boundIds);
+  expect(boundIds).toHaveLength(7);
+  expect(coverage.summary.runtimeBoundShots).toBe(boundIds.length);
+  expect(coverage.summary.productionShotIdsWithAtLeastOneApprovedVariant).toBe(7);
+  expect(coverage.summary.productionIndexCoveragePercent).toBe(
+    (production.productionShots.length / coverage.summary.rasterOrArtifactBeatIds) * 100,
+  );
+  // Authored binding is not proof of reachability; home is still guard-blocked.
+  expect(coverage.currentRuntimeStatus.unreachableShotIds).toEqual(['c05.s01.shot01']);
+  expect(coverage.currentRuntimeStatus.reachableDistinctAssets).toBe(6);
   expect(registry.get('c05.s06.shot14-wait')?.status).toBe('REUSE');
   expect(registry.get('c05.s07.shot03-arrival')?.status).toBe('PRODUCTION');
 });

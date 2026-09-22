@@ -1,0 +1,38 @@
+{
+  "assetId": "maya-opening-office-departure-clean-conditioning-plate",
+  "kind": "zero-cost clean character-only departure pose and cup-contact guide",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9"
+  },
+  "sha256": "12DC6A3DED9E5B9982D664BEA6F7CF298952B49EE4C6530BC9647D18AFC97227",
+  "providerUploadAuthority": "Maya coffee V1 identity reference plus this departure guide only; M5 excluded",
+  "figure": {
+    "subject": "Maya Reyes",
+    "pose": "rightward departure walk toward compliance, not a translated or mirrored stationary stance",
+    "cup": "one plain unmarked paper cup physically overlapped by existing hand",
+    "identity": "same warm brown skin, loose black knot, navy suit with turned cuffs"
+  },
+  "m5RegistrationTarget": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "bbox": [
+      1385,
+      476,
+      1517,
+      768
+    ],
+    "footPoint": [
+      1451,
+      768
+    ],
+    "direction": "east/right toward compliance exit",
+    "adrian": "remains at central desk",
+    "adrianCup": "retained at base or deflect position",
+    "slate": "retained on desk but outside intended medium departure crop"
+  },
+  "status": "staging-only; not production-approved; not runtime-bound"
+}

@@ -6,7 +6,11 @@ import { visualCatalog, canonicalReference, validateVisualCatalog } from '../../
 import { initialState, reducer } from '../../src/state/reducer';
 import { encodeSave } from '../../src/persistence/saves';
 
-const minimal = { assetId: 'candidate', assetType: 'background', styleBibleVersion: '1.0' } as const;
+const minimal = {
+  assetId: 'candidate',
+  assetType: 'background',
+  styleBibleVersion: '1.0',
+} as const;
 
 it('validates minimal and detailed production specs without fabricating optional information', () => {
   const spec = VisualAssetSpecSchema.parse(minimal);
@@ -48,9 +52,13 @@ it('keeps staging/rejected/production assets distinct from approved canonical re
     VisualAssetRecordSchema.safeParse({ ...staging, approvalStatus: 'approved' }).success,
   ).toBe(false);
   const reference = canonicalReference('evelynn-helix-gala-v1');
-  expect(() =>
-    canonicalReference(reference.spec.assetId, [{ ...reference, role: 'production' }]),
-  ).toThrow('not an approved');
+  const production = visualCatalog.find(
+    (asset) => asset.role === 'production' && asset.runtimeEligibility === 'runtime-approved',
+  )!;
+  expect(production).toBeDefined();
+  expect(() => canonicalReference(production.spec.assetId, [production])).toThrow(
+    'not an approved',
+  );
   expect(
     VisualAssetRecordSchema.safeParse({
       spec: minimal,

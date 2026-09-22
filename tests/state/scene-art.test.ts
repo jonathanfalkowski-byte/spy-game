@@ -15,6 +15,7 @@ import { runMission, missionStart } from '../mission-helpers';
 import { end4, walk5 } from '../chapter5-helpers';
 import { advance, choice, toAnalysis, toMaya } from '../helpers';
 import type { GameState } from '../../src/state/schema';
+import { isRuntimeApprovedProductionRecord } from '../../scripts/runtime-eligibility.mjs';
 
 let coffee: GameState, final: GameState, harbourArrival: GameState, asterArrival: GameState;
 beforeAll(() => {
@@ -51,16 +52,17 @@ beforeAll(() => {
   ]);
 }, 30000);
 
-it('small runtime manifest contains exactly production + owner approval + PASS originals; no staging or review exceptions', () => {
+it('small runtime manifest contains exactly explicit runtime-approved production records', () => {
   const records = [...homes, ...continuity, ...chapter5, ...opening];
-  const eligible = records.filter(
-    (r) =>
-      r.role === 'production' &&
-      r.approvalStatus === 'approved' &&
-      r.approval &&
-      r.review.decision === 'PASS',
-  );
+  const eligible = records.filter(isRuntimeApprovedProductionRecord);
+  expect(eligible).toHaveLength(28);
   expect(production.map((a) => a.id)).toEqual(eligible.map((r) => r.spec.assetId));
+  expect(production.map((a) => a.id)).not.toContain('axiom-opening-office-master-v1-production');
+  expect(
+    isRuntimeApprovedProductionRecord(
+      opening.find((r) => r.spec.assetId === 'axiom-opening-office-master-v1-production')!,
+    ),
+  ).toBe(false);
   for (const a of production) {
     expect(a.src).toMatch(/^art\/(apartment|chapter5|continuity|opening)\/[\w-]+\.png$/);
     expect(
@@ -71,7 +73,7 @@ it('small runtime manifest contains exactly production + owner approval + PASS o
   }
 });
 
-it('opening dialogue holds the approved master; inspection switches to truthful fallback', () => {
+it('opening dialogue holds the approved master; unillustrated inspections hold that same room master', () => {
   const opening = initialState();
   const shot = resolveSceneArt(opening);
   expect(shot.shot?.shotId).toBe('opening.apartment.shot01');
@@ -82,8 +84,9 @@ it('opening dialogue holds the approved master; inspection switches to truthful 
   expect(resolveSceneArt(reply).shot?.shotId).toBe(shot.shot?.shotId);
   expect(resolveSceneArt(reply).art?.asset.id).toBe(shot.art?.asset.id);
   const inspected = act(reply, { type: 'INSPECT_APARTMENT', id: 'mirror' });
-  expect(resolveSceneArt(inspected).shot?.shotId).toBe('opening.apartment.inspect-mirror');
-  expect(resolveSceneArt(inspected).art).toBeUndefined();
+  expect(resolveSceneArt(inspected).shot?.shotId).toBe('opening.apartment.shot01');
+  expect(resolveSceneArt(inspected).art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(resolveSceneArt(inspected).issues).toEqual([]);
 });
 
 it('binds each approved opening inspection only to its immediately reached apartment action', () => {
@@ -127,8 +130,8 @@ it('binds each approved opening inspection only to its immediately reached apart
     'opening.apartment.shot01',
     'opening.apartment.inspect-lease',
     'opening.apartment.inspect-medical',
-    'opening.apartment.inspect-jacket',
-    'opening.axiom.shot04-desk',
+    'opening.apartment.shot01',
+    'opening.axiom.shot01-approach',
     'opening.office.shot01-daniel',
     'opening.office.shot02-benton',
     'opening.office.shot03-file',
@@ -147,13 +150,31 @@ it('binds each approved opening inspection only to its immediately reached apart
     'opening-apartment-medical-package-v1-production',
   ]);
   for (const visual of openingShots.slice(0, 3)) expect(visual.issues).toEqual([]);
-  for (const visual of openingShots.slice(3)) {
+  expect(openingShots[3].art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(openingShots[3].issues).toEqual([]);
+  expect(openingShots[4].art?.asset.id).toBe('axiom-approach-v2-production');
+  expect(openingShots[4].issues).toEqual([]);
+  expect(openingShots[5].art?.asset.id).toBe('axiom-opening-office-shot01-daniel-v1-production');
+  expect(openingShots[5].issues).toEqual([]);
+  expect(openingShots[6].art?.asset.id).toBe('axiom-opening-office-shot02-benton-v1-production');
+  expect(openingShots[6].issues).toEqual([]);
+  expect(openingShots[11].art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+  expect(openingShots[12].art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+  expect(openingShots[13].art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+  for (const visual of openingShots.slice(11, 14)) expect(visual.issues).toEqual([]);
+  expect(openingShots[15].art?.asset.id).toBe('axiom-opening-office-shot04-alone-v1-production');
+  expect(openingShots[15].issues).toEqual([]);
+  for (const visual of openingShots.slice(7, 11)) {
+    expect(visual.art?.asset.id).toMatch(/^axiom-casework-/);
+    expect(visual.issues).toEqual([]);
+  }
+  for (const visual of [openingShots[14]]) {
     expect(visual.art).toBeUndefined();
     expect(visual.issues).toEqual(['SHOT_WITHOUT_APPROVED_ASSET']);
   }
 });
 
-it('returns to the unbound opening state after an inspection is no longer the latest action', () => {
+it('returns to the approved opening master after an inspection is no longer the active state', () => {
   const reply = choice(initialState(), 'bond.friend');
   const inspected = act(reply, { type: 'INSPECT_APARTMENT', id: 'lease' });
   expect(resolveSceneArt(inspected).art?.asset.id).toBe(
@@ -161,11 +182,8 @@ it('returns to the unbound opening state after an inspection is no longer the la
   );
   const departure = choice(inspected, 'morning.yes');
   expect(resolveSceneArt(departure).shot?.shotId).toBe('opening.apartment.shot01');
-  expect(resolveSceneArt(departure).art).toBeUndefined();
-  expect(resolveSceneArt(departure).issues).toEqual([
-    'PROP_CUSTODY_MISMATCH',
-    'FUTURE_STATE_VISUAL',
-  ]);
+  expect(resolveSceneArt(departure).art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(resolveSceneArt(departure).issues).toEqual([]);
 });
 
 it('Lantern holds for dialogue only on the meeting route, then cuts for authored touch/exit', () => {

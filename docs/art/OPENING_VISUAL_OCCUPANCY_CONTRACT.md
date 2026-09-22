@@ -25,17 +25,17 @@ The canonical opening corridor contains 20 reader states when the four ordered
 OPENING VISUAL OCCUPANCY
 total playable screens: 20
 total reachable screens/states: 20
-screens with runtime-visible art: 3
-currently art-visible: 3
-screens currently blank: 17
-currently blank: 17
+screens with runtime-visible art: 19
+currently art-visible: 19
+screens currently blank: 1
+currently blank: 1
 unique required cuts: 15
 HOLD-covered screens: 6
 status: INCOMPLETE
 ```
 
-The three visible states are the apartment bond, apartment reply and apartment
-departure screens. Apartment inspection states are additional transient states;
+The current blank state is Maya’s goodbye beat.
+Apartment inspection states are additional transient states;
 lease and medical use their approved CUT inserts, while mirror and jacket use a
 HOLD of the approved apartment master. After an inspection is complete and the player
 chooses to leave, the inspection insert is released and the apartment master is
@@ -43,8 +43,7 @@ held truthfully for `apartment.departure`.
 
 The current blank list is emitted by
 `formatOpeningVisualOccupancyReport()` and names the exact required shot for
-each state. It includes the four commute beats, Daniel/Benton/file, Helix
-casework, Maya’s arrival/conversation/departure and the final Adrian-alone beat.
+each state. The remaining blank state is Maya goodbye.
 
 ## Cut/hold map
 
@@ -97,8 +96,8 @@ The focused test is:
 npx vitest run tests/state/opening-visual-occupancy.test.ts
 ```
 
-The release gate is intentionally red until the missing security, office,
-casework, Maya and ending assets are runtime-approved:
+The release gate is intentionally red until the remaining Benton, Maya and
+ending assets are runtime-approved:
 
 ```text
 npm run qa:opening-visual-occupancy

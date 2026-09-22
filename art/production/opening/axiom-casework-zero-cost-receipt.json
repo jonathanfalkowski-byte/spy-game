@@ -1,0 +1,152 @@
+{
+  "source": "art/production/opening/axiom-opening-office-master-v1-production.png",
+  "sourceSha256": "eae37d43e13e8e6203ffe59ec4c2c1dc047cce5149e6933e83a051bfa5388566",
+  "method": "Pillow 4x supersampled RGB polygon slate overlay then same-perspective 16:9 crop and Lanczos enlargement; no generative fill.",
+  "slatePolygon": [
+    [
+      775,
+      636
+    ],
+    [
+      883,
+      636
+    ],
+    [
+      891,
+      691
+    ],
+    [
+      765,
+      691
+    ]
+  ],
+  "screenPolygon": [
+    [
+      781,
+      643
+    ],
+    [
+      877,
+      643
+    ],
+    [
+      883,
+      681
+    ],
+    [
+      773,
+      681
+    ]
+  ],
+  "shadowPolygon": [
+    [
+      774,
+      641
+    ],
+    [
+      888,
+      641
+    ],
+    [
+      898,
+      701
+    ],
+    [
+      763,
+      701
+    ]
+  ],
+  "screenSemantics": "Unreadable neutral glow only. Game UI owns all evidence and submission information.",
+  "providerCalls": 0,
+  "credits": 0,
+  "outputs": [
+    {
+      "assetId": "axiom-casework-file-v1-production",
+      "shotId": "opening.office.shot03-file",
+      "nodes": [
+        "office.departure"
+      ],
+      "crop": [
+        670,
+        540,
+        1150,
+        810
+      ],
+      "sha256": "b2025b84c72b1ed4543443ab2fc902e6a8d8b6ab8ee42b055e22a561fb5973ea"
+    },
+    {
+      "assetId": "axiom-casework-brief-v1-production",
+      "shotId": "opening.helix.shot01-brief",
+      "nodes": [
+        "helix.brief"
+      ],
+      "crop": [
+        716,
+        601,
+        940,
+        727
+      ],
+      "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417"
+    },
+    {
+      "assetId": "axiom-casework-documents-v1-production",
+      "shotId": "opening.helix.shot02-documents",
+      "nodes": [
+        "helix.documents",
+        "helix.analysis"
+      ],
+      "crop": [
+        706,
+        558,
+        1154,
+        810
+      ],
+      "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca"
+    },
+    {
+      "assetId": "axiom-casework-review-v1-production",
+      "shotId": "opening.helix.shot03-review",
+      "nodes": [
+        "helix.review"
+      ],
+      "crop": [
+        730,
+        588,
+        1114,
+        804
+      ],
+      "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1"
+    },
+    {
+      "assetId": "axiom-casework-submitted-v1-production",
+      "shotId": "opening.helix.shot04-submitted",
+      "nodes": [
+        "helix.submitted"
+      ],
+      "crop": [
+        920,
+        552,
+        1176,
+        696
+      ],
+      "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252"
+    }
+  ],
+  "authorization": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings.",
+  "review": {
+    "decision": "PASS",
+    "reviewer": "Codex source and deterministic composite inspection",
+    "date": "2026-09-22",
+    "reasons": [
+      "Approved M5 geometry preserved by cropping; base unchanged.",
+      "All images object-focused: no on-screen characters, future props, cups, clocks or readable evidence.",
+      "Slate appears only after Benton leaves. Submission is terminal-focused with no invented success or recipient UI.",
+      "Five distinct cuts; documents/analysis share one image."
+    ],
+    "limitations": [
+      "Enlarged source crops retain limited original detail.",
+      "Coverage-first object inserts; they do not establish character pose or replace later character compositions.",
+      "Current user authorized zero-cost completion; no separate human image review is claimed."
+    ]
+  }
+}

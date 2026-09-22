@@ -1,0 +1,42 @@
+{
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "m5": {
+    "path": "art\\production\\opening\\axiom-opening-office-master-v1-production.png",
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+    "literalCrop": [
+      1052,
+      480,
+      1500,
+      732
+    ],
+    "adrianPixelsIncluded": false
+  },
+  "foreground": {
+    "providerOriginal": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-provider-original.png",
+    "providerOriginalSha256": "D0AE4E13C4BE2B35FB9C0AD9ACBDD603D8600A850A202B49E9008F05EB6B0BCF",
+    "method": "full-resolution GrabCut extraction; source-equivalent existing-slate translation; one final resize to crop-equivalent registration",
+    "sourceCrop": [
+      781,
+      92,
+      1172,
+      1035
+    ],
+    "slateTranslationSourcePixels": [
+      -36,
+      26
+    ],
+    "newAnatomy": false,
+    "newPropPixels": false,
+    "targetRect": [
+      694,
+      51,
+      1251,
+      1311
+    ]
+  },
+  "output": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot02-benton-v1-medium-desk-side-hold-candidate.png",
+    "sha256": "31BF3790D753B7A5568A674F08E089CD44E8EDA092A1FABD00853C24D38E6481"
+  },
+  "scope": "medium conversation framing; character legs leave at bottom image boundary by design; no claim of full-figure authority"
+}

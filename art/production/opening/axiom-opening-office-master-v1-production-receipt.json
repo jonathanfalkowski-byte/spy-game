@@ -1,0 +1,41 @@
+{
+  "assetId": "axiom-opening-office-master-v1-production",
+  "status": "OWNER APPROVED ENVIRONMENT MASTER",
+  "source": {
+    "cleanStructuralConditioningPlate": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png",
+    "m5StagingMaster": "art/staging/opening/axiom-opening-office-master-v1-m5-single-reference.png"
+  },
+  "generation": {
+    "method": "single-reference image_editor using the clean structural conditioning plate",
+    "provider": "zencreator",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "378b0070-6ad4-4552-8b32-aa28a91b8499",
+    "callId": "d654b7aa-7e70-4556-a243-7a5cc1b5477d",
+    "providerAssetId": "e768cbb3-729e-4543-a563-2c7a7eee9d45",
+    "credits": 2
+  },
+  "productionFile": {
+    "path": "art/production/opening/axiom-opening-office-master-v1-production.png",
+    "publicMirror": "public/art/opening/axiom-opening-office-master-v1-production.png",
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+    "dimensions": { "width": 1920, "height": 1080 }
+  },
+  "methodLock": {
+    "approved": "single-reference image_editor using the clean structural conditioning plate",
+    "rejected": [
+      "text-only blind generation",
+      "annotated control plate as image input",
+      "multi-reference structure plus character/style reference generation"
+    ]
+  },
+  "geometryFrozen": [
+    "camera/perspective", "desk footprint/orientation", "divider", "common floor plane",
+    "Daniel workstation relationship", "smoked-glass office", "evidence surface", "terminal",
+    "furniture scale", "architectural circulation"
+  ],
+  "productionPromoted": true,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0
+}

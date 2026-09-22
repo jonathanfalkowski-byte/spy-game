@@ -1,8 +1,9 @@
 import type { GameState } from '../state/schema';
 import type { Intent } from '../state/actions';
 import { availableMissionChoices, reasoningText, sourceNames } from '../content/mission';
-import { displayName, missionActionLabel, personalRecap } from './reading-presentation';
+import { displayName, missionActionLabel, personalRecap, renderChoiceText } from './reading-presentation';
 export function Missionwork({ state, send }: { state: GameState; send: (a: Intent) => void }) {
+  const node = `${state.scene}.${state.phase}`;
   const choices = availableMissionChoices(state);
   return choices.length ? (
     <section className="decision" aria-label="Glass House choices">
@@ -15,8 +16,8 @@ export function Missionwork({ state, send }: { state: GameState; send: (a: Inten
             onClick={() => send({ type: 'MISSION_CHOOSE', id: c.id })}
           >
             <span className="choice-copy">
-              {missionActionLabel(c.id, c.label, state)}
-              <small>{displayName(c.hint)}</small>
+              {displayName(renderChoiceText(missionActionLabel(c.id, c.label, state), node, state.contentRevision))}
+              <small>{displayName(renderChoiceText(c.hint, node, state.contentRevision))}</small>
             </span>
             <span aria-hidden="true">→</span>
           </button>

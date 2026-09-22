@@ -170,6 +170,31 @@ test('opening apartment master holds through unchanged dialogue and survives rel
   await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
 });
 
+test('unillustrated apartment inspections keep the room master visible', async ({ page }) => {
+  test.skip(before);
+  const reply = act(initialState(), { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
+  await page.addInitScript(({ key, raw }) => localStorage.setItem(key, raw), {
+    key: SAVE_KEY,
+    raw: encodeSave(reply),
+  });
+  await page.goto('/');
+  const stage = page.locator('.scene-art-stage');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+
+  await page.getByRole('button', { name: /Bathroom mirror/i }).click();
+
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage.locator('img')).toHaveAttribute(
+    'src',
+    /art\/opening\/opening-apartment-master-v2-production\.png$/,
+  );
+  await expect
+    .poll(() => stage.locator('img').evaluate((im: HTMLImageElement) => im.naturalWidth))
+    .toBe(1920);
+});
+
 test('opening evidence inspections cut only on their exact action and survive reload', async ({ page }) => {
   const reply = act(initialState(), { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
   const load = async (state: ReturnType<typeof initialState>, width: number) => {

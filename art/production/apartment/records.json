@@ -46,6 +46,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-pre-glasshouse-executive-v1.png",
     "sha256": "39e7ae564395d6a3f8c1b9826017920cee4e1ab3edf12f194c004cfc4a340374",
     "generation": {
@@ -154,6 +155,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-pre-glasshouse-socialite-v1.png",
     "sha256": "b0c9d596651d9a541da04857f5b1715ea6faacdcb08a217c85cb953fb41a6de7",
     "generation": {
@@ -262,6 +264,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-pre-glasshouse-shadow-v1.png",
     "sha256": "41363cab8916be7615b3d8f4717998b1176a83c1886119e7fc9962623fe1199d",
     "generation": {
@@ -370,6 +373,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/apartment/apartment-post-glasshouse-executive-v1.png",
     "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a",
     "generation": {
@@ -478,6 +482,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-post-glasshouse-socialite-v1.png",
     "sha256": "d90f7841cca746b204b9e0a79f25b43b686777ef9af45130a1bc4b33a58f3ebc",
     "generation": {
@@ -586,6 +591,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-post-glasshouse-shadow-v1.png",
     "sha256": "7119a70f0c5df18e29a05b4ab040edd415a26d8cf10efef5ace4cf862bcc0154",
     "generation": {

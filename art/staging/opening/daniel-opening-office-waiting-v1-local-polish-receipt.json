@@ -1,0 +1,43 @@
+{
+  "assetId": "opening-office-shot01-daniel-v1-daniel-focused-hold-polished",
+  "status": "staging-review-only",
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "sourceProviderOriginal": {
+    "file": "art/staging/opening/daniel-opening-office-waiting-v1-provider-original.png",
+    "sha256": "5c72e960f68df93c763e57c1748e9e57264993174888c0e5e92336cbe9c219c2",
+    "modified": false
+  },
+  "baseEnvironment": {
+    "file": "art/production/opening/axiom-opening-office-master-v1-production.png",
+    "modified": false
+  },
+  "method": {
+    "edgeCleanup": "Corner-sampled uniform-background alpha rebuild plus edge-only backdrop matte decontamination; opaque hair/interior pixels unchanged.",
+    "contactShadow": "One local blurred low-opacity ellipse beneath Daniel foot contact; no environment pixels edited.",
+    "crop": [
+      850,
+      280,
+      1810,
+      820
+    ],
+    "adrianPresent": false
+  },
+  "outputs": {
+    "layer": {
+      "file": "art/staging/opening/daniel-opening-office-waiting-v1-defringed-extracted-layer.png",
+      "sha256": "a30ac7aac24b47c54262a551ba51aca2eeb7a6bb7de9b541116ba4559980ff93"
+    },
+    "candidate": {
+      "file": "art/staging/opening/axiom-opening-office-shot01-daniel-v1-daniel-focused-hold-polished.png",
+      "sha256": "f87f6f3e19fa1474012e5311744e284feb12f3775f0ec2e55e12026c0d0c2e49"
+    }
+  },
+  "review": {
+    "decision": "PASS",
+    "desktop": "The complete 16:9 candidate retains Daniel, desk edge, terminal, divider, and off-screen Adrian implication.",
+    "mobile": "Runtime object-fit contain preserves the same full 16:9 candidate; no mobile crop hides or changes the story state."
+  },
+  "runtimeBound": false,
+  "productionPromoted": false
+}

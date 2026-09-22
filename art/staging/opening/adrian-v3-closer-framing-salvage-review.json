@@ -1,0 +1,72 @@
+{
+  "assetId": "adrian-v3-closer-framing-salvage-review",
+  "status": "staging-review-only",
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "baseEnvironment": {
+    "file": "art/production/opening/axiom-opening-office-master-v1-production.png",
+    "sha256": "eae37d43e13e8e6203ffe59ec4c2c1dc047cce5149e6933e83a051bfa5388566",
+    "modified": false
+  },
+  "source": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v3-rejected-extracted-layer.png",
+    "sha256": "a74a168d266f8a9cfa9a45b35984bc339f4aa3e1004332d335c4e834b2f38799",
+    "providerOriginal": "art/staging/opening/adrian-opening-office-standing-v3-provider-original.png",
+    "providerOriginalModified": false
+  },
+  "blocking": {
+    "daniel": "Procedural neutral silhouette transformed from locked registration; placement-only, not production character art."
+  },
+  "framing": {
+    "runtime": "SceneArtStage uses object-fit: contain for the 16:9 source on desktop and mobile; neither runtime layout crops the asset.",
+    "previews": [
+      {
+        "file": "art/staging/opening/adrian-v3-closer-frame-a-full-body-stride-preview.png",
+        "crop": [
+          650,
+          365,
+          1610,
+          905
+        ],
+        "v3Registration": {
+          "layerTopLeft": [
+            814,
+            614
+          ],
+          "upperBodyClipY": null
+        },
+        "sha256": "225b38f6d1686cdbc00283467caca397c45ff0cde065fa15c42682465dff96ff"
+      },
+      {
+        "file": "art/staging/opening/adrian-v3-closer-frame-b-upper-body-preview.png",
+        "crop": [
+          650,
+          300,
+          1610,
+          840
+        ],
+        "v3Registration": {
+          "layerTopLeft": [
+            814,
+            614
+          ],
+          "upperBodyClipY": 780
+        },
+        "sha256": "35c80f68b8f9134fc6a4c1d3f43bab20027351b92e207270d5b16e0aed0b8eaa"
+      }
+    ]
+  },
+  "review": {
+    "decision": "FAIL",
+    "reasons": [
+      "Preview A preserves native V3 registration and leaves the lifted forward foot plainly visible.",
+      "Preview B excludes the foot but also excludes the lower body; the resulting open cut-off figure has no environmental occluder and does not read as a credible stationary conversation stance.",
+      "M5\u2019s top-down desk geometry cannot naturally hide V3\u2019s stride without moving Adrian behind the desk or altering the frozen environment/blocking."
+    ]
+  },
+  "runtime": {
+    "productionPromoted": false,
+    "runtimeBound": false,
+    "registryOrManifestChanged": false
+  }
+}

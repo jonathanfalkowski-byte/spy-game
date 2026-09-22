@@ -4,6 +4,9 @@ import { expect, it } from 'vitest';
 import plan from '../../tools/visual/zencreator/cast-scenes-plan.json';
 import { VisualAssetSpecSchema, VisualAssetRecordSchema } from '../../src/visual/schema';
 import { canonicalReference, validateVisualCatalog, visualCatalog } from '../../src/visual/catalog';
+import openingProduction from '../../art/production/opening/records.json';
+import productionManifest from '../../src/ui/approved-scene-art.json';
+import { isRuntimeApprovedProductionRecord } from '../../scripts/runtime-eligibility.mjs';
 import {
   buildPackRequest,
   buildTextCastRequest,
@@ -11,10 +14,44 @@ import {
   type PackEntry,
 } from '../../tools/visual/zencreator/pack.mjs';
 const uuid = '3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6';
+it('keeps imported opening provenance sources pending and outside runtime authority', () => {
+  for (const id of ['axiom-security-lobby-v1', 'axiom-approach-v1-provider-original', 'axiom-office-clean-structural-conditioning-plate']) {
+    const source = visualCatalog.find((record) => record.spec.assetId === id)!;
+    expect(source.role).toBe('staging');
+    expect(source.approvalStatus).toBe('pending');
+    expect(source.approval).toBeUndefined();
+    expect(source.runtimeEligibility).toBeUndefined();
+    expect(isRuntimeApprovedProductionRecord(source)).toBe(false);
+    expect(() => canonicalReference(id)).toThrow();
+    expect(createHash('sha256').update(readFileSync(source.file!)).digest('hex')).toBe(source.sha256);
+  }
+});
 const entries = plan.map((e) => ({
   ...e,
   spec: VisualAssetSpecSchema.parse(e.spec),
 })) as PackEntry[];
+// The shared prompt-version label also appears on two standalone Adrian jobs.
+// Preserve their actual custom receipts; they were never cast-pack plan entries.
+const standaloneReceiptHashes: Record<string, string> = {
+  'adrian-opening-full-body-v1': '60d3e2cee68b183b213f156d9910c9b092dc25045bb6c0161345d05f5122a595',
+  'adrian-opening-full-body-v2-outpaint': '666216a1789de3a5a03748f3a60e513b1b7bfb36b6631f000b9f63d2581bae4a',
+};
+const adrianReceipts: Array<{ spec: { assetId: string }; generation: unknown }> = JSON.parse(
+  readFileSync(new URL('../../art/staging/adrian/records.json', import.meta.url), 'utf8'),
+);
+
+it('models M5 as an approved production component rather than runtime scene art', () => {
+  const m5 = openingProduction.find(
+    (record) => record.spec.assetId === 'axiom-opening-office-master-v1-production',
+  )!;
+  const parsed = VisualAssetRecordSchema.parse(m5);
+  expect(parsed.role).toBe('production');
+  expect(parsed.approvalStatus).toBe('approved');
+  expect(parsed.runtimeEligibility).toBe('component-only');
+  expect(isRuntimeApprovedProductionRecord(parsed)).toBe(false);
+  expect(productionManifest.map((asset) => asset.id)).not.toContain(parsed.spec.assetId);
+  expect(visualCatalog.find((asset) => asset.spec.assetId === parsed.spec.assetId)).toEqual(parsed);
+});
 
 it('validates scoped cast, locations and scene specs without registering proposed story IDs', () => {
   expect(entries).toHaveLength(65);
@@ -97,14 +134,26 @@ it('checks staged pack provenance and original file hashes without promoting reu
   for (const record of visualCatalog.filter(
     (r) => r.generation?.promptVersion === 'eve-cast-scenes-v1',
   )) {
-    const entry = entries.find((e) => e.spec.assetId === record.spec.assetId)!;
-    expect(entry).toBeDefined();
-    const request =
-      record.generation!.tool === 'by_prompt'
-        ? buildTextCastRequest(entry)
-        : buildPackRequest(entry, record.generation!.sourceReferences);
-    expect(request.inputs.prompt ?? request.inputs.positive_prompt).toBe(record.generation!.prompt);
-    expect(request.settings).toEqual(record.generation!.settings);
+    const entry = entries.find((e) => e.spec.assetId === record.spec.assetId);
+    if (entry) {
+      const request =
+        record.generation!.tool === 'by_prompt'
+          ? buildTextCastRequest(entry)
+          : buildPackRequest(entry, record.generation!.sourceReferences);
+      expect(request.inputs.prompt ?? request.inputs.positive_prompt).toBe(record.generation!.prompt);
+      expect(request.settings).toEqual(record.generation!.settings);
+    } else {
+      // Unknown jobs still fail; no blanket exemption by directory or tool.
+      expect(standaloneReceiptHashes[record.spec.assetId], record.spec.assetId).toBeDefined();
+      expect(record.generation!.tool).toBe('image_editor');
+      const original = adrianReceipts.find((r) => r.spec.assetId === record.spec.assetId)!;
+      expect(original).toBeDefined();
+      expect(VisualAssetRecordSchema.parse(original)).toEqual(record);
+      // Hash the preserved raw receipt, before schema parsing reorders its keys.
+      expect(createHash('sha256').update(JSON.stringify(original.generation)).digest('hex')).toBe(
+        standaloneReceiptHashes[record.spec.assetId],
+      );
+    }
     expect(
       createHash('sha256')
         .update(readFileSync(new URL('../../' + record.file, import.meta.url)))
@@ -113,4 +162,8 @@ it('checks staged pack provenance and original file hashes without promoting reu
     expect(record.role).toBe('staging');
     expect(record.approval).toBeUndefined();
   }
+  const receipts = visualCatalog.filter((r) => r.generation?.promptVersion === 'eve-cast-scenes-v1');
+  expect(receipts.map((r) => r.spec.assetId).sort()).toEqual(
+    [...entries.map((e) => e.spec.assetId), ...Object.keys(standaloneReceiptHashes)].sort(),
+  );
 });

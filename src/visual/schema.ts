@@ -144,9 +144,9 @@ export const VisualGenerationSchema = z.union([
         .strict(),
       z
         .object({
-          ratio: z.enum(['3:4', '16:9']),
+          ratio: z.enum(['3:4', '2:3', '16:9']),
           width: z.union([z.literal(1536), z.literal(1920)]),
-          height: z.union([z.literal(2048), z.literal(1080)]),
+          height: z.union([z.literal(2048), z.literal(2304), z.literal(1080)]),
           number_of_images: z.literal(1),
           batch_mode: z.literal(false),
           sequential_generation: z.literal(false),
@@ -157,7 +157,9 @@ export const VisualGenerationSchema = z.union([
           (s) =>
             s.ratio === '3:4'
               ? s.width === 1536 && s.height === 2048
-              : s.width === 1920 && s.height === 1080,
+              : s.ratio === '2:3'
+                ? s.width === 1536 && s.height === 2304
+                : s.width === 1920 && s.height === 1080,
           'Dimensions must match ratio',
         ),
     ]),
@@ -175,6 +177,9 @@ export const VisualAssetRecordSchema = z
     spec: VisualAssetSpecSchema,
     role: z.enum(['canonical-reference', 'production', 'staging', 'rejected']),
     approvalStatus: z.enum(['pending', 'approved', 'rejected']),
+    runtimeEligibility: z
+      .enum(['runtime-approved', 'component-only', 'not-runtime'])
+      .optional(),
     file: localArtPath.optional(),
     generation: VisualGenerationSchema.optional(),
     review: z
@@ -183,6 +188,7 @@ export const VisualAssetRecordSchema = z
         reviewer: text,
         date: z.iso.date(),
         reasons: z.array(text).min(1),
+        limitations: z.array(text).max(20).optional(),
       })
       .strict()
       .optional(),
@@ -226,5 +232,21 @@ export const VisualAssetRecordSchema = z
       });
     if (!approved && asset.approval)
       ctx.addIssue({ code: 'custom', message: 'Unapproved asset cannot carry an approval' });
+    if (asset.role !== 'production' && asset.runtimeEligibility !== undefined)
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Only production records may declare runtime eligibility',
+      });
+    if (asset.role === 'production' && !asset.runtimeEligibility)
+      ctx.addIssue({ code: 'custom', message: 'Production records require runtime eligibility' });
+    if (
+      asset.role === 'production' &&
+      (asset.runtimeEligibility === 'runtime-approved' || asset.runtimeEligibility === 'component-only') &&
+      (!asset.approval || !asset.file || !asset.sha256 || asset.review?.decision !== 'PASS')
+    )
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Runtime-approved and component-only production records require approval, PASS review, file and hash',
+      });
   });
 export type VisualAssetRecord = z.infer<typeof VisualAssetRecordSchema>;

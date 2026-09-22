@@ -2,8 +2,9 @@ import { calendarInvites, calendarStatus, recipientNames } from '../content/chap
 import type { Intent } from '../state/actions';
 import type { GameState } from '../state/schema';
 import { availableChapter3Choices, availableIntents } from '../state/reducer';
-import { displayName } from './reading-presentation';
+import { displayName, renderChoiceText } from './reading-presentation';
 export function Chapter3work({ state, send }: { state: GameState; send: (a: Intent) => void }) {
+  const node = `${state.scene}.${state.phase}`;
   if (availableIntents(state).some((a) => a.type === 'CONTINUE_CHAPTER3_SCENE2'))
     return (
       <section className="decision" aria-label="Chapter 3 continuation">
@@ -17,7 +18,7 @@ export function Chapter3work({ state, send }: { state: GameState; send: (a: Inte
   return choices.length ? (
     <section className="decision" aria-label="Chapter 3 action">
       <span className="eyebrow">Your next action</span>
-      {(state.contentRevision === 14 || state.contentRevision === 17) && state.phase === 'calendar' && (
+      {(state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18) && state.phase === 'calendar' && (
         <ul aria-label="Current appointments">
           {calendarInvites(state).map((r) => (
             <li key={r}>
@@ -34,8 +35,8 @@ export function Chapter3work({ state, send }: { state: GameState; send: (a: Inte
             onClick={() => send({ type: 'CHAPTER3_CHOOSE', id: c.id })}
           >
             <span className="choice-copy">
-              {displayName(c.label)}
-              <small>{displayName(c.hint)}</small>
+              {displayName(renderChoiceText(c.label, node, state.contentRevision))}
+              <small>{displayName(renderChoiceText(c.hint, node, state.contentRevision))}</small>
             </span>
             <span aria-hidden="true">→</span>
           </button>

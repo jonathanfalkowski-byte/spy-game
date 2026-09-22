@@ -1,0 +1,56 @@
+{
+  "assetId": "axiom-opening-office-master-v1-m3-reference-guided",
+  "role": "staging-review-candidate",
+  "approvalStatus": "rejected-human-review-required",
+  "classification": "REJECT",
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "image_editor",
+    "model": "QWEN_IMAGE",
+    "taskId": "8da7786a-2493-4804-a419-7797806c2205",
+    "callId": "e04f3007-f9aa-4e20-a829-ac3179f23e09",
+    "assetId": "885fcf46-3325-4c11-a6d4-0d60756198ea",
+    "referenceGuided": true,
+    "referenceAssets": [
+      {
+        "localPath": "art/staging/opening/axiom-office-geometry-locked-control-plate.png",
+        "providerAssetId": "4fc80046-7732-4769-b1f6-9a73e3764d5b",
+        "role": "geometry-structural-authority"
+      }
+    ],
+    "completedCalls": 1,
+    "completedOutputs": 1,
+    "taskLevelBillingReturned": false
+  },
+  "spend": {
+    "quotedArtCredits": 1,
+    "accountBalanceBefore": 347,
+    "accountBalanceAfter": 346,
+    "observedAccountDelta": 1,
+    "actualTaskDebit": "unreconciled-provider-does-not-return-per-task-billing",
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "master": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m3-reference-guided.png",
+    "mimeType": "image/png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 2658926,
+    "sha256": "A480A30FB761815B1BB04DE8A42CC1503AEF1038717AC92E199CB0AE9F50ED2F"
+  },
+  "reviewBoard": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m3-reference-guided-review-board.png",
+    "sha256": "3492550348ABDB51E565A08F3571A16A2F1B5CDBD8426C2E3323B7307EC5DF60"
+  },
+  "geometryResults": {
+    "pass": ["low divider", "smoked-glass office-door"],
+    "minorDrift": ["desk footprint", "Daniel workstation relationship", "blank terminal"],
+    "blockingDrift": ["guest zone", "common floor plane", "Daniel path", "Benton path", "Maya coffee blocking", "evidence surface", "anchor A/B crops"]
+  },
+  "nineStateResults": {
+    "1": "BLOCKED", "2": "BLOCKED", "3": "BLOCKED", "4": "BLOCKED", "5": "BLOCKED", "6": "BLOCKED", "7": "BLOCKED", "8": "BLOCKED", "9": "BLOCKED"
+  }
+}

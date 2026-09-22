@@ -113,7 +113,7 @@
         "other wardrobe/concept"
       ],
       "approvalDate": "2026-09-17",
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s06.shot01-preview",
@@ -131,7 +131,7 @@
         "julianPresent": false,
         "contact": false
       },
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s06.shot13-return",
@@ -150,7 +150,7 @@
         "returnCompleted": true,
         "contact": false
       },
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s01.shot01",
@@ -224,5 +224,24 @@
     "coveragePercent": 6.32,
     "cumulativePilotCredits": 22,
     "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+  },
+  "m1PriorBindingFlags": {
+    "c05.s12.shot05-phone": true,
+    "c05.s06.shot12-entrance": true,
+    "c05.s06.shot15-departed": true,
+    "c05.s07.shot03-arrival": false,
+    "c05.s06.shot01-preview": false,
+    "c05.s06.shot13-return": false,
+    "c05.s01.shot01": true
+  },
+  "currentRuntimeStatus": {
+    "date": "2026-09-20",
+    "authoredBindings": 7,
+    "reachableDistinctAssets": 6,
+    "unreachableShotIds": [
+      "c05.s01.shot01"
+    ],
+    "runtimeChangedThisPass": false,
+    "note": "Inspection corrects metadata only. Earlier dated readerV2HarbourUpdate/latestApproval are retained historical snapshots. Production approval receipts untouched."
   }
 }

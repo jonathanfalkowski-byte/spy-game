@@ -1,0 +1,53 @@
+{
+  "assetId": "adrian-opening-office-standing-v2-orientation-pose-lock",
+  "status": "zero-credit-staging-review-only",
+  "providerCallsThisPass": 0,
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "baseEnvironment": {
+    "path": "art/production/opening/axiom-opening-office-master-v1-production.png",
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+    "modified": false
+  },
+  "registration": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "bounds": [
+      805,
+      625,
+      985,
+      915
+    ],
+    "foot": [
+      895,
+      904
+    ],
+    "eyeLine": [
+      891,
+      666
+    ],
+    "orientation": "three-quarter northeast; face, shoulders, torso, pelvis and shoes all point toward Daniel/central desk"
+  },
+  "outputs": {
+    "adrian-opening-office-standing-v2-orientation-pose-plate.png": {
+      "path": "art/staging/opening/adrian-opening-office-standing-v2-orientation-pose-plate.png",
+      "sha256": "BD1972FB6DDD606EBF0677B6AEF5F4028A84B3D30311F3B697C52E3E0E9D4C77"
+    },
+    "adrian-opening-office-standing-v2-orientation-mannequin-layer.png": {
+      "path": "art/staging/opening/adrian-opening-office-standing-v2-orientation-mannequin-layer.png",
+      "sha256": "6894D3AAE614A3A38560B17E789E295F1A26FAB769D8745BCCEB7FEAE48B424E"
+    },
+    "axiom-opening-office-shot01-daniel-adrian-v2-orientation-mannequin-preview.png": {
+      "path": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-v2-orientation-mannequin-preview.png",
+      "sha256": "152526492012C9244D8CC4200300D3888EBF5E63B633E8556524AA9C4D222605"
+    },
+    "axiom-opening-office-shot01-daniel-adrian-v2-orientation-plus-daniel-silhouette-preview.png": {
+      "path": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-v2-orientation-plus-daniel-silhouette-preview.png",
+      "sha256": "772916582BF3883D9BB2AD10326B3FBEE057C05E8D147C15427F736CA03EEF0C"
+    }
+  },
+  "runtimeBound": false,
+  "productionPromoted": false
+}

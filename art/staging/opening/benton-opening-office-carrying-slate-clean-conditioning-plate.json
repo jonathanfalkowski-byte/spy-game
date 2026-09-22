@@ -1,0 +1,48 @@
+{
+  "assetId": "benton-opening-office-carrying-slate-clean-conditioning-plate",
+  "kind": "zero-cost clean structural character-only conditioning guide",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9"
+  },
+  "sha256": "93BCA46BAE08CE454DFDF137D9410C4E226E5FD49919521495D65A01562C0937",
+  "providerUploadAuthority": "single clean guide only; M5 office master excluded",
+  "figure": {
+    "subject": "Elias Benton",
+    "body": "compact adult male, age 58, settled planted stance, three-quarter southwest orientation",
+    "prop": "one thin blank black data slate carried in hand; not on desk",
+    "background": "plain neutral extraction background",
+    "exclusions": [
+      "text",
+      "logos",
+      "office environment",
+      "Adrian",
+      "Daniel",
+      "additional props"
+    ]
+  },
+  "m5RegistrationTarget": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "bbox": [
+      1214,
+      492,
+      1344,
+      786
+    ],
+    "footPoint": [
+      1278,
+      786
+    ],
+    "eyeLine": [
+      1275,
+      559
+    ],
+    "orientation": "southwest, facing Adrian at central desk",
+    "spacing": "east-side guest/approach zone; clear of terminal and divider; slate remains off the desk"
+  },
+  "status": "staging-only; not production-approved; not runtime-bound"
+}

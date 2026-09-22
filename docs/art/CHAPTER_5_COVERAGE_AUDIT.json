@@ -3,20 +3,19 @@
   "contentRevision": 16,
   "saveSchema": 5,
   "pilotCreditsBeforeWave": 13,
-  "countDefinition": "At least one approved exact variant per raster/artifact beat ID. Not all-branch completion; three exact variants now runtime-bound.",
+  "countDefinition": "At least one approved exact variant per raster/artifact ID, not all-branch completion. M1 current inspection: seven authored bindings; six reachable distinct assets; home entry is guard-blocked. Prior snapshot retained.",
   "summary": {
     "registeredActiveOrReservedIds": 103,
     "rasterOrArtifactBeatIds": 100,
-    "productionShotIdsWithAtLeastOneApprovedVariant": 6,
-    "productionIndexCoveragePercent": 6.0,
+    "productionShotIdsWithAtLeastOneApprovedVariant": 7,
+    "productionIndexCoveragePercent": 7.000000000000001,
     "allBranchCompletionPercent": null,
-    "runtimeBoundShots": 3,
+    "runtimeBoundShots": 7,
     "statusCounts": {
-      "MISSING": 92,
+      "PRODUCTION": 7,
+      "MISSING": 91,
       "BLOCKED": 1,
-      "PRODUCTION": 6,
       "REUSE": 1,
-      "STAGING": 0,
       "NOT REQUIRED": 3
     },
     "additionalStagedShotIds": 0
@@ -29,13 +28,13 @@
       "branch": "Authenticated Chapter 4 completion and actual arrival",
       "composition": "E at cleared table, bag, issued pass and permitted packet. No restricted annex or new spending",
       "sourceRequirement": "M: daytime table composition within the established wide; no unseen room extension",
-      "status": "MISSING",
-      "asset": "\u2014",
+      "status": "PRODUCTION",
+      "asset": "c5-s01-daytime-apartment-anchor-v5-production",
       "authoritySource": "Final shot plan + locked apartment; branch wardrobe/props",
-      "missing": "YES",
+      "missing": "NO",
       "priority": "HIGH",
       "generationType": "COMPOSITE",
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s01.shot02-packet",
@@ -485,7 +484,7 @@
       "missing": "NO",
       "priority": "DONE (bounded)",
       "generationType": "REUSE",
-      "runtimeBound": false
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s06.shot02-salon",
@@ -634,7 +633,7 @@
       "status": "PRODUCTION",
       "asset": "c5-harbour-evelynn-julian-composite-v2-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
-      "missing": "Other branches remain",
+      "missing": "NO",
       "priority": "DONE (bounded)",
       "generationType": "REUSE",
       "approvedBranch": {
@@ -669,7 +668,7 @@
       "missing": "NO",
       "priority": "DONE (bounded)",
       "generationType": "REUSE",
-      "runtimeBound": false,
+      "runtimeBound": true,
       "coffeeCustody": "If coffee was acquired: Evelynn carries one cup or it remains explicitly off-frame in her custody; no invented disposal or duplicate."
     },
     {
@@ -697,7 +696,7 @@
       "status": "PRODUCTION",
       "asset": "c5-harbour-julian-departed-composite-v1-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
-      "missing": "Other branches remain",
+      "missing": "NO",
       "priority": "DONE (bounded)",
       "generationType": "REUSE",
       "approvedBranch": {
@@ -789,12 +788,12 @@
       "status": "PRODUCTION",
       "asset": "c5-s07-aster-arrival-composite-v2-production",
       "authoritySource": "art/production/chapter5/aster-approval.json",
-      "missing": "Other wardrobe/concept variants only",
+      "missing": "NO",
       "priority": "HIGH",
       "generationType": "COMPOSITE",
       "review": "REVISE",
       "candidateBranch": "accepted professional concept/professional outfit;11:30arrival before sitting; no coffee/publication",
-      "runtimeBound": false,
+      "runtimeBound": true,
       "approvalScope": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
       "lowPolish": "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change."
     },
@@ -1483,7 +1482,7 @@
       "status": "PRODUCTION",
       "asset": "c5-s12-shot05-phone-composite-v2-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
-      "missing": "Other branches remain",
+      "missing": "NO",
       "priority": "DONE (bounded)",
       "generationType": "REUSE",
       "approvedBranch": {
@@ -1699,5 +1698,88 @@
     "approvedUniqueCompositions": 6,
     "coveragePercent": 6.32,
     "harbourDone": true
+  },
+  "m1PriorSnapshot": {
+    "recordedOn": "2026-09-20",
+    "baseline": "7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6",
+    "countDefinition": "At least one approved exact variant per raster/artifact beat ID. Not all-branch completion; three exact variants now runtime-bound.",
+    "summary": {
+      "registeredActiveOrReservedIds": 103,
+      "rasterOrArtifactBeatIds": 100,
+      "productionShotIdsWithAtLeastOneApprovedVariant": 6,
+      "productionIndexCoveragePercent": 6.0,
+      "allBranchCompletionPercent": null,
+      "runtimeBoundShots": 3,
+      "statusCounts": {
+        "MISSING": 92,
+        "BLOCKED": 1,
+        "PRODUCTION": 6,
+        "REUSE": 1,
+        "STAGING": 0,
+        "NOT REQUIRED": 3
+      },
+      "additionalStagedShotIds": 0
+    },
+    "affectedShotStatuses": [
+      {
+        "shotId": "c05.s01.shot01",
+        "status": "MISSING",
+        "asset": "\u2014",
+        "missing": "YES",
+        "runtimeBound": false
+      },
+      {
+        "shotId": "c05.s06.shot01-preview",
+        "status": "PRODUCTION",
+        "asset": "c5-h1-arrival-composite-v3-production",
+        "missing": "NO",
+        "runtimeBound": false
+      },
+      {
+        "shotId": "c05.s06.shot12-entrance",
+        "status": "PRODUCTION",
+        "asset": "c5-harbour-evelynn-julian-composite-v2-production",
+        "missing": "Other branches remain",
+        "runtimeBound": true
+      },
+      {
+        "shotId": "c05.s06.shot13-return",
+        "status": "PRODUCTION",
+        "asset": "c5-h2-coffee-return-composite-v1-production",
+        "missing": "NO",
+        "runtimeBound": false
+      },
+      {
+        "shotId": "c05.s06.shot15-departed",
+        "status": "PRODUCTION",
+        "asset": "c5-harbour-julian-departed-composite-v1-production",
+        "missing": "Other branches remain",
+        "runtimeBound": true
+      },
+      {
+        "shotId": "c05.s07.shot03-arrival",
+        "status": "PRODUCTION",
+        "asset": "c5-s07-aster-arrival-composite-v2-production",
+        "missing": "Other wardrobe/concept variants only",
+        "runtimeBound": false
+      },
+      {
+        "shotId": "c05.s12.shot05-phone",
+        "status": "PRODUCTION",
+        "asset": "c5-s12-shot05-phone-composite-v2-production",
+        "missing": "Other branches remain",
+        "runtimeBound": true
+      }
+    ]
+  },
+  "currentRuntimeStatus": {
+    "date": "2026-09-20",
+    "reachableDistinctAssets": 6,
+    "unreachableShotIds": [
+      "c05.s01.shot01"
+    ],
+    "source": "src/ui/scene-art.ts; src/ui/chapter5-beats.ts; src/content/chapter5.ts",
+    "reconciliation": "docs/art/ART_M1_RECONCILIATION.md",
+    "runtimeChanged": false
   }
 }

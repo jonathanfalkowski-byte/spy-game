@@ -74,9 +74,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian'],
     props: ['Phone', 'Usual coat', 'Employee badge', 'Security tray'],
     reasonForCut: 'The authored action crosses the inner gate and changes the scene from security to the office corridor.',
-    requiredAssetStatus: 'COMPONENT_ONLY',
-    referenceAssetId: 'axiom-opening-office-master-v1-production',
-    statusNote: 'M5 is an environment component only; it is not a completed office-arrival composite and is not runtime-bound.',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-office-arrival-v1-production',
+    statusNote: 'Office Arrival V1 is a dedicated owner-approved runtime asset. M5 remains a separate component-only environment authority.',
   },
   {
     shotId: 'opening.office.shot01-daniel',
@@ -85,7 +85,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     location: 'Strategic Intelligence desk',
     characters: ['Adrian', 'Daniel'],
     reasonForCut: 'Daniel becomes an active participant at the desk.',
-    requiredAssetStatus: 'MISSING',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot01-daniel-v1-production',
+    statusNote: 'Owner-approved Daniel-focused shared-HOLD composite; Adrian remains off-frame until Approach your desk.',
   },
   {
     shotId: 'opening.office.shot02-benton',
@@ -95,8 +97,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Benton'],
     props: ['Black data slate'],
     reasonForCut: 'The active participant changes from Daniel to Benton and the assignment prop enters.',
-    requiredAssetStatus: 'STAGING',
-    statusNote: 'A Benton staging candidate exists; no exact runtime-approved composite is bound.',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot02-benton-v1-production',
+    statusNote: 'Owner-approved bounded medium desk-side composition; Adrian remains off-screen and no full-figure/feet authority is claimed.',
   },
   {
     shotId: 'opening.office.shot03-file',
@@ -156,8 +159,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Maya'],
     props: ['Two paper cups', 'Terminal'],
     reasonForCut: 'Maya becomes a new active participant and the coffee exchange changes the desk state.',
-    requiredAssetStatus: 'STAGING',
-    statusNote: 'A Maya coffee staging candidate exists; no exact runtime-approved composition is bound.',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot01-maya-v1-production',
+    statusNote: 'Delegated design-approved bounded medium conversation frame; Maya faces off-screen Adrian and cup custody remains exact for the three HOLD beats.',
   },
   {
     shotId: 'opening.maya.shot02-departure',
@@ -177,7 +181,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian'],
     props: ['Adrian’s retained coffee', 'Submitted Helix report'],
     reasonForCut: 'The active participant set changes to Adrian alone.',
-    requiredAssetStatus: 'MISSING',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot04-alone-v1-production',
+    statusNote: 'Delegated design-approved bounded Adrian-alone sip frame; exact ending shot only, with no sitting or full-body authority.',
   },
 ] as const;
 

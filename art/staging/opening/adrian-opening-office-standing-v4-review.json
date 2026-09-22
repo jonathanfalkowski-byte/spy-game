@@ -1,0 +1,79 @@
+{
+  "assetId": "adrian-opening-office-standing-v4-provider-original",
+  "role": "staging",
+  "approvalStatus": "pass-pending-final-composite",
+  "runtimeEligibility": "not-approved",
+  "shotId": "opening.office.shot01-daniel",
+  "source": {
+    "provider": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "ec94a343-9f63-4423-921e-a0cf48de09ec",
+    "callId": "a9e36599-90da-4cc5-9229-9148896c1620",
+    "providerAssetId": "806f969f-8668-4f4a-ba3a-21fb42323ef3",
+    "quotedCredits": 2,
+    "taskLevelDebit": null,
+    "accountCreditsBefore": 266,
+    "accountCreditsAfter": 264,
+    "observedBalanceDelta": 2
+  },
+  "reference": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v4-planted-feet-pose-guide.png",
+    "sha256": "14ee2bd23d0fa70d0d70a197e5ba22805367a2799ab55b180e2579838edc8dcd",
+    "referenceCount": 1
+  },
+  "output": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v4-provider-original.png",
+    "sha256": "ef429b9be68db4d331548aa713368f1291ea25be395a5890d321e88517bd5cfc",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "PASS",
+    "reviewer": "Codex delegated opening-art review",
+    "date": "2026-09-22",
+    "scope": "Passing isolated Adrian V4 staging layer only. This is not a final Daniel composite, production asset, or runtime approval.",
+    "criteria": {
+      "identity": "PASS: clean-shaven adult analyst read, restrained dark hair, thin rectangular glasses, charcoal wardrobe, and no heroic/action presentation.",
+      "feet": "PASS: both shoes are visibly grounded; no lifted heel, stride, or walking read.",
+      "orientation": "PASS: face and torso turn three-quarter northeast toward the intended desk-side colleague.",
+      "scale": "PASS: locked height 290px, foreground bounds 92x290px; it occupies the approved central operator lane without covering terminal or divider.",
+      "extraction": "PASS: uniform separable gray background produced a clean alpha layer.",
+      "camera": "PASS: deterministic composite uses untouched M5 pixels and retains central desk, workstation, divider, circulation, and Daniel clearance."
+    },
+    "limitations": [
+      "Daniel in the registration preview is a procedural blocking silhouette only and has no production or character-art authority.",
+      "A final shot needs a separately reviewed Daniel layer and final composite before any promotion or runtime binding."
+    ]
+  },
+  "localReview": {
+    "extractedLayer": "art/staging/opening/adrian-opening-office-standing-v4-extracted-layer.png",
+    "extractedLayerSha256": "bb81f59cb5343aeea1464629a4af258527285d7cf8ee4fa71ce849308b598f15",
+    "composite": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-v4-registration-preview.png",
+    "compositeSha256": "5d763e120e1ef1e51de54e80b313082ff672b72bfb91dbee7a4edf6a6eb90c29",
+    "registration": {
+      "sourceForegroundBounds": "x=805..1105,y=85..1036",
+      "registeredSize": "92x290",
+      "topLeft": "849,614",
+      "foot": "895,904",
+      "result": "Pass: planted stationary Adrian at central workstation approach lane."
+    }
+  },
+  "package": {
+    "authorizedBudgetCredits": 16,
+    "spentBeforeV4": 4,
+    "spentV4": 2,
+    "spentTotal": 6,
+    "remainingBudget": 10,
+    "automaticRetryAttempted": false,
+    "dependentGenerationsAttempted": 0
+  },
+  "runtime": {
+    "productionPromoted": false,
+    "runtimeBound": false,
+    "registryOrManifestChanged": false,
+    "commitCreated": false,
+    "pushCreated": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "assetId": "axiom-opening-office-shot01-daniel-zero-credit-registration-v1",
+  "status": "staging-review-only",
+  "providerCallsThisPass": 0,
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "baseEnvironment": "art/production/opening/axiom-opening-office-master-v1-production.png",
+  "baseEnvironmentSha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+  "baseEnvironmentModified": false,
+  "sceneId": "office.daniel",
+  "shotId": "opening.office.shot01-daniel",
+  "centralDeskBounds": [
+    590,
+    503,
+    1238,
+    795
+  ],
+  "neighboringWestWorkstationsBounds": [
+    200,
+    390,
+    590,
+    605
+  ],
+  "characters": {
+    "adrian": {
+      "name": "ADRIAN \u2014 STANDING / APPROACHING",
+      "bounds": [
+        805,
+        625,
+        985,
+        915
+      ],
+      "foot": [
+        895,
+        904
+      ],
+      "eye": [
+        891,
+        666
+      ],
+      "orientation": "three-quarter northeast toward the central desk and Daniel",
+      "fill": [
+        91,
+        135,
+        144,
+        255
+      ],
+      "line": [
+        207,
+        231,
+        230,
+        255
+      ],
+      "file": "adrian-opening-office-standing-approach-pose-plate.png"
+    },
+    "daniel": {
+      "name": "DANIEL \u2014 WAITING BESIDE ADRIAN'S DESK",
+      "bounds": [
+        1240,
+        495,
+        1410,
+        780
+      ],
+      "foot": [
+        1325,
+        775
+      ],
+      "eye": [
+        1315,
+        540
+      ],
+      "orientation": "three-quarter southwest, facing Adrian across the desk corner",
+      "fill": [
+        165,
+        132,
+        87,
+        255
+      ],
+      "line": [
+        245,
+        226,
+        188,
+        255
+      ],
+      "file": "daniel-opening-office-waiting-pose-plate.png"
+    }
+  },
+  "interactionSpacing": {
+    "footToFootVector": [
+      -430,
+      129
+    ],
+    "pixelDistance": 449,
+    "meaning": "Daniel occupies the east desk-side guest zone; Adrian occupies the foreground central operator approach lane."
+  },
+  "zOrder": [
+    "M5 immutable environment",
+    "contact shadows",
+    "Adrian standing silhouette",
+    "Daniel waiting silhouette",
+    "review-only labels"
+  ],
+  "outputs": {
+    "adrian-opening-office-standing-approach-pose-plate.png": {
+      "path": "art/staging/opening/adrian-opening-office-standing-approach-pose-plate.png",
+      "sha256": "1D1842014699BAE14AE97F5DC0D49E28937C8050DDAE1CEB266DC5DA2EFF1E5C"
+    },
+    "daniel-opening-office-waiting-pose-plate.png": {
+      "path": "art/staging/opening/daniel-opening-office-waiting-pose-plate.png",
+      "sha256": "CCBE8E44F5E97443D944FABB686BF794718486722C40951C33D62698D2D04A7C"
+    },
+    "axiom-opening-office-shot01-daniel-silhouette-composite.png": {
+      "path": "art/staging/opening/axiom-opening-office-shot01-daniel-silhouette-composite.png",
+      "sha256": "52341B454C2291F74112509B2B718236AED3EFB2552A0429B2035D974295E6F5"
+    }
+  }
+}

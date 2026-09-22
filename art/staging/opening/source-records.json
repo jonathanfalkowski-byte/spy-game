@@ -1,0 +1,38 @@
+[
+  {
+    "spec": {
+      "assetId": "axiom-security-lobby-v1",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. This catalog entry adds no visual approval, authority or runtime eligibility. Original source and its receipt remain unchanged."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/axiom-security-lobby-v1-provider-original.png",
+    "sha256": "68d1e4a16ea105bb82d3cb5ae8dd0032895625ad8912e21f89cbff26b514dba0"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-approach-v1-provider-original",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. This catalog entry adds no visual approval, authority or runtime eligibility. Original source and its receipt remain unchanged."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/axiom-approach-v1-provider-original.png",
+    "sha256": "e3c92f80ed83a36cfa58dc7c117ced2ad92c0126be413b10dbd207d01e1577e6"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-office-clean-structural-conditioning-plate",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. This catalog entry adds no visual approval, authority or runtime eligibility. Original source and its receipt remain unchanged."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png",
+    "sha256": "c0740ff5c7e900f772091689de5827c702a3d11a126994d2748debeacc53e5f9"
+  }
+]

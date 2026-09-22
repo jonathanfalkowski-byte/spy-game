@@ -1,6 +1,7 @@
 import type { GameState } from '../state/schema';
 import { get5, julian5 } from './chapter5-model';
 import { wardrobe5 } from './chapter5-continuity';
+import { isCurrentAuthoringRevision } from './revision';
 
 /** Ordered production specification, NOT an asset selector. Each anchor must be reached
  * before a future presenter may show its shot. Only separately approved exact variants are bound by the reading presenter.
@@ -8,7 +9,7 @@ import { wardrobe5 } from './chapter5-continuity';
  */
 export function harbourShotPlan5(before: GameState, action: string) {
   if (
-    (before.contentRevision !== 16 && before.contentRevision !== 17) ||
+    (before.contentRevision !== 16 && !isCurrentAuthoringRevision(before.contentRevision)) ||
     before.scene !== 'chapter5' ||
     before.phase !== 'room' ||
     get5(before, 'harbour-position') !== 'programme-table'

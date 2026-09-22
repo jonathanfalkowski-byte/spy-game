@@ -1,0 +1,74 @@
+{
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "sources": {
+    "m5": {
+      "path": "art\\production\\opening\\axiom-opening-office-master-v1-production.png",
+      "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+      "providerUpload": false
+    },
+    "adrianProviderOriginal": {
+      "path": "art\\staging\\opening\\adrian-opening-office-alone-sip-v1-provider-original.png",
+      "sha256": "93D6431AD1EF1BEFD7D17D756B976B54F51BD4C94BD667737BFB5310D6E59010"
+    }
+  },
+  "foreground": {
+    "method": "full-resolution GrabCut then 0.55px alpha feather",
+    "sourceCrop": [
+      562,
+      57,
+      1369,
+      1070
+    ],
+    "layer": {
+      "path": "art\\staging\\opening\\adrian-opening-office-alone-sip-v1-extracted-layer.png",
+      "sha256": "8486717D168FF655FD3C62F3BF811AD249FF2DA4F512B935EE1D8CA80E7B0BB0"
+    },
+    "targetRect": [
+      900,
+      70,
+      1705,
+      1080
+    ],
+    "framingFix": "foreground translated down 50px; complete hair has top breathing room and torso exits at bottom image boundary"
+  },
+  "composition": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot04-alone-adrian-sip-v1-hold-candidate.png",
+    "sha256": "CE5B367250DB5E0A0C32F1686999924168C23E208B9CB0F00F9C16DAB5366DE3",
+    "literalM5Crop": [
+      640,
+      480,
+      1152,
+      768
+    ],
+    "characters": {
+      "adrian": "one provider layer; Maya, Daniel and Benton absent"
+    },
+    "cups": {
+      "adrian": "one provider-held plain cup at lips",
+      "deskCup": "absent"
+    },
+    "slate": {
+      "retainedOnDesk": true,
+      "fullPolygon": [
+        [
+          775,
+          636
+        ],
+        [
+          883,
+          636
+        ],
+        [
+          891,
+          691
+        ],
+        [
+          765,
+          691
+        ]
+      ],
+      "visibleLeftOfAdrian": true
+    }
+  },
+  "endingState": "Maya gone; Adrian sips retained cup; report absent; neutral reflection only"
+}

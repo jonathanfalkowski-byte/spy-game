@@ -1,0 +1,83 @@
+{
+  "assetId": "axiom-opening-office-master-v1-m5-single-reference",
+  "role": "staging-review-candidate",
+  "approvalStatus": "owner-approved-environment-master",
+  "classification": "PASS",
+  "ownerApproval": {
+    "date": "2026-09-21",
+    "scope": "canonical office environment master only; runtime binding remains prohibited pending human approval of a complete office-shot composite"
+  },
+  "productionPromoted": true,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "image_editor",
+    "mode": "single-image image-to-image stylization",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "378b0070-6ad4-4552-8b32-aa28a91b8499",
+    "callId": "d654b7aa-7e70-4556-a243-7a5cc1b5477d",
+    "assetId": "e768cbb3-729e-4543-a563-2c7a7eee9d45",
+    "referenceAssets": [
+      {
+        "order": 1,
+        "localPath": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png",
+        "providerAssetId": "2ab290cc-a41f-42e4-b19a-c9c6b15ac58b",
+        "role": "sole-structure-and-composition-authority"
+      }
+    ],
+    "secondImageReferenceSupplied": false,
+    "completedCalls": 1,
+    "completedOutputs": 1,
+    "taskLevelBillingReturned": true
+  },
+  "settings": {
+    "numberOfImages": 1,
+    "batchMode": false,
+    "sequentialGeneration": false,
+    "ratio": "omitted to retain source-image aspect and composition",
+    "structuralPreservation": "single source image; image_editor edit-in-place mode; source composition inherited; prompt explicitly locked camera and every spatial relationship",
+    "promptRewrite": "not used"
+  },
+  "spend": {
+    "quotedArtCredits": 2,
+    "accountBalanceBefore": 341,
+    "accountBalanceAfter": 339,
+    "observedAccountDelta": 2,
+    "taskLevelProviderDebit": 2,
+    "creditTransactionId": "9ee94d9d-14f5-4d86-840f-7a662a9a5eb5",
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "master": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m5-single-reference.png",
+    "mimeType": "image/png",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 2753055,
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566"
+  },
+  "reviewBoard": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m5-single-reference-review-board.png",
+    "sha256": "EA0957CFE2966CC11BE0C17B62E003C8DB05E00045346B1B1CEBF5F6D2494A29"
+  },
+  "geometryResults": {
+    "pass": ["camera/perspective", "desk footprint", "desk orientation", "divider", "guest zone", "common floor plane", "Daniel workstation", "Daniel route", "Benton route", "Maya approach/coffee/departure space", "smoked-glass office", "evidence surface", "terminal", "anchor A", "anchor B"],
+    "minorDrift": [],
+    "blockingDrift": []
+  },
+  "nineStateResults": {
+    "1": "PASS", "2": "PASS", "3": "PASS", "4": "PASS", "5": "PASS", "6": "PASS", "7": "PASS", "8": "PASS", "9": "PASS"
+  },
+  "styleReview": {
+    "result": "PASS",
+    "findings": ["2D illustrated appearance", "controlled linework", "semi-cel shading", "restrained noir shadow language", "dark readable palette", "non-photographic materials", "corporate espionage tone"]
+  },
+  "contaminationCheck": {
+    "result": "PASS",
+    "people": false,
+    "annotationsOrReadableText": false,
+    "stateSpecificProps": false,
+    "addedCommonFloorClutter": false
+  },
+  "providerViability": "viable only for the constrained single-reference image-editor method; multi-reference M4 remains rejected and prohibited for this office master"
+}

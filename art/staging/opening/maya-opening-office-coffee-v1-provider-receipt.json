@@ -1,0 +1,32 @@
+{
+  "assetId": "maya-opening-office-coffee-v1-provider-original",
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "provider": {
+    "tool": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "referenceCount": 1,
+    "referenceAssetId": "d704db71-cb29-4135-8c3e-e840dac8e324",
+    "referenceRole": "clean Maya pose and cup-contact guide only; M5 excluded",
+    "ratio": "16:9",
+    "requestedPixels": [1920, 1080],
+    "outputCount": 1,
+    "taskId": "ebe84974-59cd-42a0-9367-1a149319e7ec",
+    "callId": "bf1a7484-0ec9-462d-947f-99e4cd3b46fd",
+    "providerAssetId": "e216c850-b8be-4e54-be8c-6c0b6e8c977c"
+  },
+  "spend": {
+    "quotedCredits": 2,
+    "balanceBefore": 260,
+    "balanceAfter": 258,
+    "observedBalanceDelta": 2,
+    "taskLevelBillingSupplied": false,
+    "exactTaskDebit": null,
+    "note": "Provider task-level billing was unavailable. Quote and observed account delta are recorded separately."
+  },
+  "provenance": {
+    "providerOriginal": "art/staging/opening/maya-opening-office-coffee-v1-provider-original.png",
+    "providerOriginalSha256": "5C785FA05E8611BEB1F70230BA1DE743F8F429E5C71B9CF8250DA0EA42014BEA",
+    "cleanGuide": "art/staging/opening/maya-opening-office-coffee-clean-conditioning-plate.png",
+    "cleanGuideSha256": "9EF3F1661208FE432FEF666B3BD92A39722D5E09168B3CD405A8091ADE4F1B2A"
+  }
+}

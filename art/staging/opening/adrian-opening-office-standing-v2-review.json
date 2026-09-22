@@ -1,0 +1,52 @@
+{
+  "assetId": "adrian-opening-office-standing-v2-provider-original",
+  "role": "staging",
+  "approvalStatus": "rejected",
+  "runtimeEligibility": "not-approved",
+  "shotId": "opening.office.shot01-daniel",
+  "source": {
+    "provider": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "fdeb5bfd-674c-4a81-ab28-2bfb9a2afa56",
+    "callId": "e59cd87a-61d8-403f-8146-15edf1fe6eee",
+    "providerAssetId": "3319f5b0-33fc-463b-b0fb-8bc955de691b",
+    "quotedCredits": 2,
+    "taskLevelDebit": null,
+    "accountCreditsBefore": 372,
+    "accountCreditsAfter": 370,
+    "observedBalanceDelta": 2
+  },
+  "reference": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v2-orientation-pose-plate.png",
+    "sha256": "bd1972fb6ddd606ebf0677b6aef5f4028a84b3d30311f3b697c52e3e0e9d4c77",
+    "referenceCount": 1
+  },
+  "output": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v2-provider-original.png",
+    "sha256": "1c6582c12a7597501595f37cf1dda0c37cdf3e1754febfb67d1f4c85f4ab2a4e",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "REJECT",
+    "reviewer": "Codex delegated opening-art review",
+    "date": "2026-09-22",
+    "reasons": [
+      "The output has the correct isolated character-only background, clean-shaven bookish identity cues, glasses, charcoal wardrobe, and no office or props.",
+      "It fails the mandatory pose gate: one leg is extended in a walking stride rather than a settled stopped stance; shoulders/torso read too front-facing and do not preserve the three-quarter northeast orientation.",
+      "Local registration at the locked M5 bounds creates a walking Adrian in the central operator lane, which cannot truthfully hold Daniel waiting dialogue."
+    ],
+    "correction": "Do not retry automatically. If a correction is authorized, request one V3 isolated Adrian layer using the same sole V2 pose plate, preserving original output only as rejected provenance; strengthen stopped-weight, both-shoes-northeast, and no-stride constraints. Review isolated pose before Daniel."
+  },
+  "localReview": {
+    "extractedLayer": "art/staging/opening/adrian-opening-office-standing-v2-rejected-extracted-layer.png",
+    "composite": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-v2-rejected-composite.png",
+    "registration": {
+      "bounds": "x=805..985,y=625..915",
+      "foot": "895,904",
+      "result": "Rejected: walking silhouette occupies locked lane but fails stationary interaction pose."
+    }
+  }
+}

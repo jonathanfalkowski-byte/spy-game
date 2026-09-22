@@ -1,0 +1,17 @@
+{
+  "id": "axiom-office-clean-structural-conditioning-plate-v1",
+  "role": "production-conditioning-reference-pending-owner-authorization",
+  "method": "Local deterministic Pillow geometry; no generative input/provider call",
+  "sourceAuthority": "axiom-office-geometry-locked-control-plate.png",
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "cleanPlateSha256": "c0740ff5c7e900f772091689de5827c702a3d11a126994d2748debeacc53e5f9",
+  "comparisonOverlayHumanReviewOnly": "axiom-office-clean-structural-conditioning-comparison-overlay.png",
+  "validation": {
+    "annotations": false,
+    "stateSensitiveProps": false,
+    "nineStates": "PASS via separate approved blocking overlay"
+  }
+}

@@ -3,10 +3,11 @@ import type { GameState } from '../../state/schema';
 import { get5, read5 } from '../../content/chapter5-model';
 import { intimate5 } from '../../content/chapter5-desire';
 import { createHandoffWorkspace } from './handoff';
+import { isCurrentAuthoringRevision } from '../../content/revision';
 import type { OutcomeContract, HandoffPolicy } from './schema';
 export function createChapter5Handoff(state: GameState) {
   if (
-    (state.contentRevision !== 16 && state.contentRevision !== 17) ||
+    (state.contentRevision !== 16 && !isCurrentAuthoringRevision(state.contentRevision)) ||
     state.scene !== 'chapter5' ||
     state.phase !== 'handoff' ||
     !intimate5(state) ||

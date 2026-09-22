@@ -1,0 +1,27 @@
+{
+  "assetId": "maya-opening-office-departure-v1",
+  "status": "provider failed; no output; no automatic retry; no production promotion; no runtime binding",
+  "provider": {
+    "tool": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "referenceAssetIds": [
+      "e216c850-b8be-4e54-be8c-6c0b6e8c977c",
+      "0e106971-3aa2-4e1e-b96f-74b40e86d2a2"
+    ],
+    "taskId": "b696bb02-59e4-4b6b-8668-4dff29fe69d6",
+    "callId": "a67afa16-bf47-4d63-928a-b4e0b22fa2fa",
+    "result": "failed",
+    "error": "The call input was invalid or unsupported.",
+    "errorCategory": "invalid_input"
+  },
+  "spend": {
+    "quotedCredits": 2,
+    "balanceBefore": 258,
+    "balanceAfter": 258,
+    "observedBalanceDelta": 0,
+    "taskLevelBillingSupplied": false,
+    "exactTaskDebit": null,
+    "note": "No output asset was supplied. The provider exposed no task-level billing; the observed account balance was unchanged."
+  },
+  "action": "Stopped. No retry, alternate, promotion, runtime binding, commit, or push."
+}

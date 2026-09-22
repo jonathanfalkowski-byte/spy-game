@@ -1,0 +1,68 @@
+{
+  "assetId": "axiom-opening-office-shot02-benton-v4-adrian-benton-v1-composite",
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "sources": {
+    "m5Office": {
+      "path": "art\\production\\opening\\axiom-opening-office-master-v1-production.png",
+      "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+      "providerUpload": false
+    },
+    "bentonProviderOriginal": {
+      "path": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-provider-original.png",
+      "sha256": "D0AE4E13C4BE2B35FB9C0AD9ACBDD603D8600A850A202B49E9008F05EB6B0BCF"
+    },
+    "adrianV4Extracted": {
+      "path": "art\\staging\\opening\\adrian-opening-office-standing-v4-extracted-layer.png",
+      "sha256": "BB81F59CB5343AEEA1464629A4AF258527285D7CF8EE4FA71CE849308B598F15"
+    }
+  },
+  "extraction": {
+    "method": "OpenCV GrabCut subject rectangle then 0.55px alpha feather",
+    "sourceCrop": [
+      781,
+      92,
+      1172,
+      1035
+    ],
+    "output": "art\\staging\\opening\\benton-opening-office-carrying-slate-v1-extracted-layer.png",
+    "sha256": "CC55CEDC47BFC0B13C97B7058373CD4D7985718FCE3D5CB09B5CDD58DB276C79"
+  },
+  "registration": {
+    "benton": {
+      "bbox": [
+        1214,
+        492,
+        1344,
+        786
+      ],
+      "footPoint": [
+        1278,
+        786
+      ],
+      "eyeLine": [
+        1275,
+        559
+      ],
+      "orientation": "southwest toward Adrian",
+      "slate": "held in hand, clear of desk"
+    },
+    "adrianV4": {
+      "bbox": [
+        849,
+        614,
+        941,
+        904
+      ],
+      "footPoint": [
+        895,
+        904
+      ]
+    },
+    "daniel": "absent"
+  },
+  "localComposite": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot02-benton-v4-adrian-benton-v1-composite.png",
+    "sha256": "C9DA0BA3E4B6FCB3838DFAD17CEE4D5E15062EF5AB2487E138F56A9070D6ADD1",
+    "contactShadow": "local soft ellipse at Benton feet only"
+  }
+}

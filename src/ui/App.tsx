@@ -1,6 +1,7 @@
 import { assessmentStatus, assessmentLabels } from './assessment-status';
 import { readNavigation, writeNavigation } from './reader-preferences';
 import { SceneArtStage } from './SceneArtStage';
+import { openingReadingTitle } from './opening-beats';
 import { resolveSceneArt, validateSceneShot, type SceneArt } from './scene-art';
 import { useMediaQuery } from './useMediaQuery';
 import { canContinueAudit } from '../state/audit-continuation';
@@ -11,7 +12,7 @@ import { Chapter4work } from './Chapter4work';
 import { chapter4Scenes } from '../content/chapter4';
 import { chapter3Number, chapter3Progress } from './chapter3-progress';
 import { RestoreBackup } from './RestoreBackup';
-import { displayName } from './reading-presentation';
+import { displayName, renderChoiceText, renderCurrentPresentationText } from './reading-presentation';
 import { readSize, writeSize } from '../persistence/preferences';
 import { Missionwork, MissionSummary } from './Missionwork';
 import { missionSections, missionSection } from '../content/mission';
@@ -25,7 +26,7 @@ import {
   useState,
   type CSSProperties,
 } from 'react';
-import { initialState, reducer, availableChoices, canContinue, nodeOf } from '../state/reducer';
+import { newGameState, reducer, availableChoices, canContinue, nodeOf } from '../state/reducer';
 import { inspections, sceneById, sceneBlocks } from '../content/scenes';
 import { choiceById } from '../content/dialogue';
 import {
@@ -62,7 +63,7 @@ function download(raw: string, name: string) {
 export function App({ storage = browserStorage }: { storage?: StoragePort }) {
   const [loaded, setLoaded] = useState<LoadResult>(() => loadGame(storage));
   const [state, setState] = useState(() =>
-    loaded.kind === 'ready' ? loaded.state : initialState(),
+    loaded.kind === 'ready' ? loaded.state : newGameState(),
   );
   const live = useRef(state);
   const lastRaw = useRef(loaded.raw);
@@ -145,10 +146,10 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
     setReadingCursor({ state, position });
     requestAnimationFrame(() => {
       document
-        .querySelector<HTMLElement>('[aria-label="Harbour scene"]')
+        .querySelector<HTMLElement>('[aria-label="Harbour scene"], [aria-label="Opening scene"]')
         ?.focus({ preventScroll: true });
       document
-        .querySelector('.scene-art-stage, [aria-label="Harbour scene"]')
+        .querySelector('.scene-art-stage, [aria-label="Harbour scene"], [aria-label="Opening scene"]')
         ?.closest('.reader')
         ?.querySelector('.story')
         ?.scrollTo({ top: 0 });
@@ -244,7 +245,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
   function restart() {
     // Restart is the only explicit overwrite operation; the dialog offers a backup first.
     try {
-      const next = initialState();
+      const next = newGameState();
       const raw = encodeSave(next);
       storage.setItem(SAVE_KEY, raw);
       lastRaw.current = raw;
@@ -280,7 +281,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 : state.scene === 'chapter3'
                   ? ['home', 'surveillance', 'complete'].includes(state.phase)
                     ? 'Chapter 3 / Scene 1'
-                    : state.contentRevision === 14 || state.contentRevision === 17
+                    : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18
                       ? 'Chapter 3 / Scene ' + chapter3Number(state)
                       : 'Chapter 3 / Scene 2'
                   : 'Opening / 01'}
@@ -295,7 +296,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         ) : state.scene === 'chapter4' ? (
           'Private Access.'
         ) : state.scene === 'chapter3' ? (
-          state.contentRevision === 14 || state.contentRevision === 17 ? (
+          state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 ? (
             'Second Skin.'
           ) : (
             'Home after Glass House.'
@@ -327,7 +328,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         ['chapter3.surveillance', 'The entry record'],
                         ['chapter3.complete', 'Scene 1 endpoint'],
                       ]
-                    : state.contentRevision === 14 || state.contentRevision === 17
+                    : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18
                       ? chapter3Progress(state)
                       : [
                           ['chapter3.mayaContact', 'What you can tell her'],
@@ -504,10 +505,17 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               >
                 <div className="story-content">
                   <span className="eyebrow">
-                    {displayName(currentPlace(state, sceneById[node].place))}
+                    {displayName(renderCurrentPresentationText(currentPlace(state, sceneById[node].place), node, state.contentRevision))}
                   </span>
                   <h1 ref={heading} tabIndex={-1}>
-                    {displayName(sceneById[node].title)}
+                    {displayName(
+                      renderCurrentPresentationText(
+                        (state.scene === 'commute' && openingReadingTitle(visual.shot?.shotId)) ||
+                          sceneById[node].title,
+                        node,
+                        state.contentRevision,
+                      ),
+                    )}
                   </h1>
                   <div className="chapter-line" />
                   {saveError && (
@@ -520,6 +528,10 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     </div>
                   )}
                   {state.feedback &&
+                    !(
+                      state.contentRevision === 18 &&
+                      state.feedback === 'Chapter 3 continuation recorded. The historical day remains unchanged.'
+                    ) &&
                     ![
                       'clinic',
                       'mission',
@@ -566,6 +578,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'evening',
                     'warning',
                     'dayend',
+                    'commute',
                   ].includes(state.scene) ? (
                     <ClinicConversation
                       state={state}
@@ -576,7 +589,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                       illustrated={!!displayedArt}
                     />
                   ) : (
-                    <Narrative blocks={sceneBlocks(state)} node={node} />
+                    <Narrative blocks={sceneBlocks(state)} node={node} contentRevision={state.contentRevision} />
                   )}
                   {canContinueAudit(state) && !readingScene && (
                     <section className="decision" aria-label="Story revision continuation">
@@ -635,8 +648,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                           >
                             <span className="choice-number">{String(i + 1).padStart(2, '0')}</span>
                             <span className="choice-copy">
-                              {displayName(c.label)}
-                              <small>{displayName(c.hint)}</small>
+                              {displayName(renderChoiceText(c.label, node, state.contentRevision))}
+                              <small>{displayName(renderChoiceText(c.hint, node, state.contentRevision))}</small>
                             </span>
                             <span className="choice-arrow" aria-hidden="true">
                               ↗
@@ -757,7 +770,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         disabled={!canContinue(state)}
                         onClick={() => send({ type: 'CONTINUE' })}
                       >
-                        {displayName(sceneById[node].continueLabel ?? '')}{' '}
+                        {displayName(renderCurrentPresentationText(sceneById[node].continueLabel ?? '', node, state.contentRevision))}{' '}
                         <span aria-hidden="true">→</span>
                       </button>
                     </div>
@@ -856,7 +869,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                             : state.scene === 'chapter3'
                               ? ['home', 'surveillance', 'complete'].includes(state.phase)
                                 ? 'CHAPTER 3 · SCENE 1'
-                                : state.contentRevision === 14 || state.contentRevision === 17
+                                : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18
                                   ? 'CHAPTER 3 · SCENE ' + chapter3Number(state)
                                   : 'CHAPTER 3 · SCENE 2'
                               : 'ADRIAN’S DAY'}
@@ -894,7 +907,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           )}
           {assessment.status === 'required' && assessment.flow === 'mission' && (
             <>
-              <Narrative blocks={sceneBlocks(state)} node={node} />
+              <Narrative blocks={sceneBlocks(state)} node={node} contentRevision={state.contentRevision} />
               <Missionwork state={state} send={send} />
             </>
           )}
@@ -918,7 +931,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             {conversationHistory(state).map((h, i) => (
               <section key={i}>
                 <h3>{displayName(sceneById[h.node].place)}</h3>
-                <Narrative blocks={h.blocks} node={h.node} />
+                <Narrative blocks={h.blocks} node={h.node} contentRevision={state.contentRevision} />
               </section>
             ))}
           </div>

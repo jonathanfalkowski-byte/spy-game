@@ -2,6 +2,7 @@ import { chapter3Reading } from './chapter3-reading';
 import type { Block } from '../content/schema';
 import type { GameState } from '../state/schema';
 import { leadNames } from '../content/mission';
+import { renderRevision18Text } from '../content/revision18-editorial';
 
 // UI copy only. Never feed these blocks back into history, the reducer or saves.
 // Match the originating scene and its authored text, so reviewing old exchanges
@@ -42,8 +43,9 @@ const currentHelixSubmittedCopy =
  * Apply narrowly scoped current-authoring compatibility at the player-facing
  * boundary. Authenticated history and save data remain unchanged.
  */
-export function renderCurrentPresentationText(rawText: string, node?: string): string {
-  const rendered = renderCanonicalIdentityText(rawText);
+export function renderCurrentPresentationText(rawText: string, node?: string, contentRevision?: number): string {
+  const authored = contentRevision === 18 ? renderRevision18Text(rawText, node) : rawText;
+  const rendered = renderCanonicalIdentityText(authored);
   return node === 'helix.submitted' && rendered === historicalHelixSubmittedCopy
     ? currentHelixSubmittedCopy
     : rendered;
@@ -234,12 +236,20 @@ function readingBlocksRaw(blocks: Block[], node?: string): Block[] {
   });
 }
 
-export function readingBlocks(blocks: Block[], node?: string): Block[] {
-  return readingBlocksRaw(blocks, node).map((block) => ({
+export function readingBlocks(blocks: Block[], node?: string, contentRevision?: number): Block[] {
+  const authoredBlocks =
+    contentRevision === 18
+      ? blocks.map((block) => ({ ...block, text: renderRevision18Text(block.text, node) }))
+      : blocks;
+  return readingBlocksRaw(authoredBlocks, node).map((block) => ({
     ...block,
-    speaker: block.speaker ? renderCurrentPresentationText(block.speaker, node) : block.speaker,
-    text: renderCurrentPresentationText(block.text, node),
+    speaker: block.speaker ? renderCurrentPresentationText(block.speaker, node, contentRevision) : block.speaker,
+    text: renderCurrentPresentationText(block.text, node, contentRevision),
   }));
+}
+
+export function renderChoiceText(rawText: string, node: string, contentRevision?: number): string {
+  return renderCurrentPresentationText(rawText, node, contentRevision);
 }
 
 export function missionActionLabel(id: string, fallback: string, s: GameState): string {

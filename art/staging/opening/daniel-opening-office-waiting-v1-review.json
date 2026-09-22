@@ -1,0 +1,85 @@
+{
+  "assetId": "daniel-opening-office-waiting-v1-provider-original",
+  "role": "staging",
+  "approvalStatus": "pass-pending-owner-composite-review",
+  "runtimeEligibility": "not-approved",
+  "shotId": "opening.office.shot01-daniel",
+  "source": {
+    "provider": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "c4833f3e-bfdd-4ecb-9564-18cd1f372fee",
+    "callId": "99b9ec5d-959e-4f4c-9e89-9ebb89f3b04a",
+    "providerAssetId": "ad85103e-7c56-4638-a932-380fa757375b",
+    "quotedCredits": 2,
+    "taskLevelDebit": null,
+    "accountCreditsBefore": 264,
+    "accountCreditsAfter": 262,
+    "observedBalanceDelta": 2
+  },
+  "reference": {
+    "file": "art/staging/opening/daniel-opening-office-waiting-clean-conditioning-plate.png",
+    "sha256": "b4160a23f1633c8fea9577362518144b845ef00feab8815c1820d62cc0807d44",
+    "referenceCount": 1,
+    "derivedFrom": "art/staging/opening/daniel-opening-office-waiting-pose-plate.png"
+  },
+  "output": {
+    "file": "art/staging/opening/daniel-opening-office-waiting-v1-provider-original.png",
+    "sha256": "5c72e960f68df93c763e57c1748e9e57264993174888c0e5e92336cbe9c219c2",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "PASS",
+    "reviewer": "Codex delegated opening-art review",
+    "scope": "Daniel component and Daniel-focused HOLD candidate only; not production or runtime approval.",
+    "criteria": {
+      "identity": "PASS: adult 32, long-limbed, dark curls, quiet concern, intelligent discreet Axiom-professional read.",
+      "pose": "PASS: stationary three-quarter southwest wait; both feet grounded, empty relaxed hands, no props.",
+      "wardrobe": "PASS: restrained open-collar dark office clothing, no slate/cups/badge or plot props.",
+      "extraction": "PASS: uniform separable background produces clean RGBA layer.",
+      "twoPersonGeometry": "PASS as a registration proof: V4 Adrian at (895,904) and Daniel at (1325,775) preserve desk clearance, reciprocal facing, eye-line depth, and the empty west workstations.",
+      "sharedShotTruthfulness": "PASS for Daniel-focused candidate only: commute.arrival says Daniel waits, then the player selects Approach your desk. The candidate omits Adrian, allowing Daniel to look southwest toward the off-screen approaching player through the reveal and office.daniel HOLD."
+    },
+    "limitations": [
+      "The two-person registration proof is not a runtime candidate because it places Adrian at the desk before the approach action.",
+      "The Daniel-focused candidate requires human approval before production promotion, exact runtime binding, or EVE Code integration."
+    ]
+  },
+  "artifacts": {
+    "extractedLayer": "art/staging/opening/daniel-opening-office-waiting-v1-extracted-layer.png",
+    "extractedLayerSha256": "61c7f8011761a01f89262dce16652f22bf2a0cdd2002a119faae3cf3b8e1e88e",
+    "twoPersonRegistrationProof": "art/staging/opening/axiom-opening-office-shot01-daniel-v4-adrian-daniel-v1-clean-registration-proof.png",
+    "twoPersonRegistrationProofSha256": "0157a40d61482cb7bdcf37a6b313fec26da02f80474438db4e4390a3e42042ae",
+    "recommendedSharedHoldCandidate": "art/staging/opening/axiom-opening-office-shot01-daniel-v1-daniel-focused-hold-candidate.png",
+    "recommendedSharedHoldCandidateSha256": "3dd3a351f5212a697eee0ef2dcbe1968790857f1019643b534b31a5d3974fb49",
+    "holdCrop": [
+      850,
+      280,
+      1810,
+      820
+    ],
+    "adrianPresentInHold": false,
+    "danielFootInHold": [
+      950,
+      990
+    ]
+  },
+  "package": {
+    "authorizedBudgetCredits": 16,
+    "spentBeforeDaniel": 6,
+    "spentDaniel": 2,
+    "spentTotal": 8,
+    "remainingBudget": 8,
+    "automaticRetryAttempted": false,
+    "additionalPaidGenerationAttempted": false
+  },
+  "runtime": {
+    "productionPromoted": false,
+    "runtimeBound": false,
+    "registryOrManifestChanged": false,
+    "commitCreated": false,
+    "pushCreated": false
+  }
+}

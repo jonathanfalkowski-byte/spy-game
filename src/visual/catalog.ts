@@ -4,6 +4,8 @@ import chapter3RuntimeSpecs from '../../art/staging/chapter3-runtime-specs.json'
 import { VisualAssetRecordSchema, type VisualAssetRecord } from './schema';
 import stagingRecords from '../../art/staging/evelynn/records.json';
 import approvedPortraits from '../../art/reference/evelynn/approved-portraits.json';
+import approvedAdrianReferences from '../../art/reference/adrian/approved-references.json';
+import adrianStagingRecords from '../../art/staging/adrian/records.json';
 import castSceneRecords from '../../art/staging/cast-scenes/records.json';
 import correctionCandidates from '../../art/staging/cast-scenes/continuity-records.json';
 import approvedCorrections from '../../art/production/continuity/records.json';
@@ -11,6 +13,7 @@ import apartmentSpecs from '../../art/staging/apartment/records.json';
 import approvedHomeArt from '../../art/production/apartment/records.json';
 import approvedChapter5Art from '../../art/production/chapter5/records.json';
 import openingSpecs from '../../art/staging/opening/records.json';
+import openingSourceRecords from '../../art/staging/opening/source-records.json';
 import approvedOpeningArt from '../../art/production/opening/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
@@ -41,6 +44,12 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Approved portrait records require explicit canonical approval');
     return portrait;
   }),
+  ...approvedAdrianReferences.map((record) => {
+    const reference = VisualAssetRecordSchema.parse(record);
+    if (reference.role !== 'canonical-reference' || reference.approvalStatus !== 'approved')
+      throw Error('Approved Adrian references require explicit canonical approval');
+    return reference;
+  }),
   ...[...approvedHomeArt, ...approvedChapter5Art, ...approvedOpeningArt].map((record) => {
     const asset = VisualAssetRecordSchema.parse(record);
     if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || !asset.approval)
@@ -53,8 +62,42 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Production corrections require explicit passing review and owner authorization');
     return asset;
   }),
-  ...[...harbourReaderCandidates, ...chapter3RuntimeSpecs, ...stagingRecords, ...castSceneRecords, ...correctionCandidates, ...apartmentSpecs, ...openingSpecs].map((record) => {
-    const candidate = VisualAssetRecordSchema.parse(record);
+  ...[
+    ...harbourReaderCandidates,
+    ...chapter3RuntimeSpecs,
+    ...stagingRecords,
+    ...adrianStagingRecords,
+    ...castSceneRecords,
+    ...correctionCandidates,
+    ...apartmentSpecs,
+  ...openingSpecs,
+  ...openingSourceRecords,
+  ].map((record) => {
+    // Opening M2–M5 receipts retain review provenance alongside the strict asset spec.
+    const {
+      stagingSource,
+      retryCandidate,
+      geometryLockedControlPlate,
+      m3ReferenceGuidedCandidate,
+      cleanStructuralConditioningPlate,
+      m4MultiReferenceCandidate,
+      m5SingleReferenceCandidate,
+      adrianSeatedWorkingV1,
+      m6CharacterOnlyPosePackage,
+      ...spec
+    } = record.spec as Record<string, unknown>;
+    void [
+      stagingSource,
+      retryCandidate,
+      geometryLockedControlPlate,
+      m3ReferenceGuidedCandidate,
+      cleanStructuralConditioningPlate,
+      m4MultiReferenceCandidate,
+      m5SingleReferenceCandidate,
+      adrianSeatedWorkingV1,
+      m6CharacterOnlyPosePackage,
+    ];
+    const candidate = VisualAssetRecordSchema.parse({ ...record, spec });
     if (candidate.role !== 'staging' || candidate.approvalStatus !== 'pending')
       throw Error('Staging receipts cannot approve or promote artwork');
     return candidate;

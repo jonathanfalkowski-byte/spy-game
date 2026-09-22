@@ -1,0 +1,615 @@
+{
+  "packageVersion": 1,
+  "targetContentRevision": 18,
+  "baseline": "ba027c6597c22f006a24d2767a1d2d300c325f09",
+  "status": "DESIGN_REVIEW_PASS",
+  "rules": "Exact prose-literal substitutions only in revision 18 presentation; historical revisions remain unchanged. Preserve mechanics, NPC knowledge values and ledger actions.",
+  "sources": [
+    "eve-editorial-pilot.json",
+    "eve-editorial-expanded.json"
+  ],
+  "entries": [
+    {
+      "file": "src/content/scenes.ts",
+      "context": "office.daniel",
+      "old": "Daniel Kessler is waiting beside your desk, making no effort to pretend the meeting is accidental. Thirty-two, long-limbed and permanently one button short of Axiom’s dress code, he has dark curls that resist corporate grooming and a face that usually gives away the joke before he tells it. There is no joke this morning.",
+      "new": "Daniel Kessler waits beside your desk. His collar is open, his dark curls untidy; usually the joke reaches his face before he says a word. This morning he watches you approach without smiling.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "office.daniel",
+      "old": "Daniel has worked two desks over from me for four years. Clever, indiscreet, kinder than he wants anyone to notice. I am grateful he told me himself—and angry that I am hearing it from him instead of Benton.",
+      "new": "Four years, two desks away. Daniel can never quite keep a secret. This one should have come from Benton.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "office.benton",
+      "old": "Benton is fifty-eight, compact and silver-haired, his charcoal suit so precisely fitted that it seems less like clothing than policy. He never hurries. He has built a career out of making everyone else adjust their pace to his.",
+      "new": "Compact and silver-haired, Benton wears a charcoal suit without a crease out of place. He never hurries. He has built a career out of making everyone else adjust their pace to his.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "office.benton",
+      "old": "Benton has supervised me for four years. He praises precision when it protects him and calls it overthinking when it does not. He has not mentioned the promotion, and his arrival makes disappointment harden into suspicion. He almost never brings an assignment to someone’s desk himself.",
+      "new": "Four years of Benton praising my precision when it protects him and calling it overthinking when it does not. He has come all the way to my desk with another assignment. Still nothing about the promotion.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "maya.promotion",
+      "old": "Maya Reyes crosses from the compliance wing carrying two paper cups. Thirty-three, with warm brown skin and watchful dark eyes, she wears her black hair in a loose knot and has turned back the cuffs of her navy suit. The small rebellion suits her. She sets one cup beside your terminal and keeps the other. No greeting. This is an old ritual.",
+      "new": "Maya Reyes crosses from compliance with two paper cups, the cuffs of her navy suit turned back. Loose strands of black hair escape her knot. Her dark eyes find yours as she sets one cup beside the terminal and keeps the other. No greeting. You know this ritual.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "maya.promotion love only",
+      "old": "I know the exact moment friendship became something else. I have spent two years pretending I do not. Even now, hurt and angry, part of me is simply relieved that she came.",
+      "new": "Two years of measuring what I say to her. Of knowing when to turn a look into a joke. This morning I have no joke ready. I am just glad she came.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "maya.promotion colleague only",
+      "old": "Maya is the colleague I trust more than anyone in this building. Trust is not intimacy, even when she keeps testing the boundary. Her arrival makes me feel less alone—and that is already more dependence than I intended.",
+      "new": "Maya is the colleague I trust most in this building. I can give her the version I would never put in a report. How much beyond that is mine to decide.",
+      "reason": "Removes unchosen dependency judgment and implied romantic intent from professional branch."
+    },
+    {
+      "file": "src/content/dialogue.ts",
+      "context": "promotion.professional response",
+      "old": "Daniel nods. “Sure,” he says, in a tone that means he believes none of it.",
+      "new": "Daniel nods. “Sure.” He keeps his voice low. Neither of you moves on.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/dialogue.ts",
+      "context": "benton.promotion response",
+      "old": "I do not regret forcing him to say it aloud. I regret giving him one more chance to be honest with me.",
+      "new": "Next quarter. Another three months of doing the work while he decides whether I deserve the title.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/dialogue.ts",
+      "context": "mayaPromotion.hurt response",
+      "old": "Maya’s expression softens. “I know. It should’ve been yours.”",
+      "new": "Maya’s expression softens. “I know.” For once she leaves the silence alone. “It should’ve been yours.”",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "ending.complete",
+      "old": "The first part of the opening is complete. Your decisions and the information you chose to share remain on the record. Review them here, or continue Adrian’s day when you are ready.",
+      "new": "Benton has your report. Maya has what you chose to tell her. Across the floor, the terminals hum on.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.home",
+      "old": "The driver waits until you have settled before asking for the residential address. He knows the route, not what happened upstairs. At the building, the restricted badge opens the lobby reader after a longer pause than it used to require.",
+      "new": "The driver asks for your residential address once you are settled. At the building, you hold the restricted badge over the lobby reader. The pause before it opens is longer than you remember.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.home",
+      "old": "Inside, the tower remains visible beyond the rain. The apartment has the same narrow rooms, the same chair by the window, the same jacket that once meant a day at the office. The phone is warm in your hand. Upstairs, Marcus and Celeste spoke to this face as though it came with a history you could recall.",
+      "new": "The tower is still there beyond the rain. So are the narrow rooms, the chair by the window, the jacket that once meant a day at the office. The phone warms your palm. Marcus and Celeste spoke to this face as though you ought to remember them.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.surveillance",
+      "old": "“Confirm that you are home. The access record closes the movement log; it does not tell me what you do inside.”",
+      "new": "“Confirm you’re home. Your badge entry closes the movement log. It tells me nothing about what you do inside.”",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.surveillance",
+      "old": "My entry time. Down to the minute. I read it again before touching the reply field.",
+      "new": "Down to the minute. I have barely put my keys down.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.complete",
+      "old": "Scene 1 ends here. Maya, Voss and the next decision remain ahead. Your reply, your silence and the evidence you carried forward are recorded for the next scene.",
+      "new": "Beyond the window, the tower is lit. Your keys lie where you left them.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter3.ts",
+      "context": "chapter3.complete place",
+      "old": "20:04 · Scene 1 complete",
+      "new": "20:04 · Adrian’s apartment",
+      "reason": "Remove development marker while preserving time/location."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "handoff",
+      "old": "At the door, Julian waits for you. The encounter has not occurred. You can still leave.",
+      "new": "Julian waits at the door. Away from the working day, there is no file between you, no next question to answer. He leaves you room to decide whether to come in.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "flirt-only sent message",
+      "old": "Conversation and flirtation only. I do not authorize physical or sexual intimacy.",
+      "new": "You can flirt with me over the phone. That’s as far as tonight goes.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "flirt-only response",
+      "old": "Conversation only. I understand.",
+      "new": "Only the call. I understand.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "flirt-only aftermath",
+      "old": "You talk briefly and end the call without making another promise.",
+      "new": "His voice sounds different with no work to discuss. You let the conversation linger for a little while, then say goodnight. Nothing else is arranged.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "intimacy scope no-sex",
+      "old": "Physical closeness only; no sex. Either person can stop.",
+      "new": "I’m willing to be close to you. No sex tonight. If either of us wants to stop, we stop.",
+      "reason": "Same spoken agreement and hint; willingness preserved, no forced desire claim."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "intimacy scope sex",
+      "old": "Voluntary sexual intimacy tonight only; either person can stop. No work or future obligation.",
+      "new": "I’m saying yes to sex tonight. Either of us can stop. This changes nothing about the work, and it isn’t a promise about tomorrow.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "mutual agreement response",
+      "old": "Yes. Those limits suit me. If either of us wants to stop, we stop.",
+      "new": "Yes. Tonight, on those terms. And either of us can change our mind.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "no-sex fade",
+      "old": "The agreed closeness remains within the no-sex boundary. The scene fades.",
+      "new": "You share the closeness you agreed to, without sex. The rest of the evening stays private.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "sex fade",
+      "old": "The private encounter remains off-page. The scene fades.",
+      "new": "For a while, the working day recedes. The encounter remains private as the scene fades.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "want-julian sent invitation",
+      "old": "Would you welcome private time tonight? I have not decided the scope.",
+      "new": "Would you like to see me tonight? I’m still deciding what I want from the evening.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "want-julian reply",
+      "old": "I would like to see you. Tell me what sort of evening you want. We can leave it at conversation, or leave it altogether.",
+      "new": "I’d like that. We can just talk. Tell me what you decide.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "handoff",
+      "old": "Julian meets you at the door and waits. He stands aside, leaving the doorway clear.",
+      "new": "Julian meets you at the door. For a moment you look at each other without the ease of a phone between you. Then he stands aside. The doorway is clear.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "limited call message",
+      "old": "Twenty minutes by phone only. No physical or sexual intimacy tonight.",
+      "new": "Twenty minutes on the phone? I’m staying home tonight. Just conversation.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "flirtatious call message",
+      "old": "A flirtatious phone call only. No physical intimacy.",
+      "new": "You can flirt with me, but only over the phone tonight.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "flirtatious call prose",
+      "old": "You call him. The conversation is easy enough that you notice the time reluctantly, but you end it at the boundary you set.",
+      "new": "On the phone, a pause can carry as much as a sentence. You let a few of them last. When the time comes, you end the call as agreed.",
+      "reason": "Keeps flirtatious behavior without imposing reluctant desire on an instrumental motive."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "scope no-sex",
+      "old": "Physical closeness only; no sex. Either participant can stop.",
+      "new": "I’m willing to be close to you, but no sex tonight. Either of us can stop.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "scope sex",
+      "old": "Voluntary sexual intimacy tonight only; either participant can stop.",
+      "new": "Yes to sex tonight. Either of us can change our mind.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "no-sex fade",
+      "old": "The evening stays within the no-sex boundary. The scene fades.",
+      "new": "The closeness stays within the limits you chose. No sex, no crossing them. The scene fades.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "sex fade",
+      "old": "The private encounter remains off-page. The scene fades.",
+      "new": "The messages and arrangements fall quiet. The encounter remains private as the scene fades.",
+      "reason": "Stronger voice and specificity; unchanged event and branch meaning."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "ending.complete place",
+      "old": "Opening milestone · Complete",
+      "new": "12:11 · Adrian’s desk",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "maya.goodbye continueLabel",
+      "old": "Finish the opening",
+      "new": "Let her go",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "helix.brief",
+      "old": "Your task is to assess the acquisition logic. Establish what the records prove before deciding what they mean.",
+      "new": "Benton wants a narrow answer. The records will decide how narrow you can honestly make it.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "helix.documents",
+      "old": "Each source can establish a fact, repeat a claim or introduce uncertainty. Read at least two records before analysis. You can keep reviewing the documents while you work.",
+      "new": "Read at least two records before analysis; you can return to them while you work. A claim in a document is still a claim.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "helix.analysis",
+      "old": "Select two records you have read, then describe their relationship. Experimenting is free. You can retry, ask for a hint, investigate once, or review an assessment for submission.",
+      "new": "Choose two records you have read and connect them. Retry or ask for a hint freely; one further investigation is available. Review your assessment when you are ready.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/scenes.ts",
+      "context": "helix.review",
+      "old": "The morning has narrowed to the minutes left before lunch. Review your conclusion and attachments below. Submitting sends them to Benton and closes this investigation. You can still revise before committing.",
+      "new": "Seven minutes until lunch. Your conclusion and attachments are ready for a final check. You can still revise; sending delivers them to Benton and closes this investigation.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "file.arrival",
+      "old": "EV_7A_BLACKGLASS. Origin: unresolved. Owner: A. Vale. Status: present in your workspace. The ownership field is a system label, not an explanation.",
+      "new": "EV_7A_BLACKGLASS. Origin: unresolved. Owner: A. Vale. Your name fills the ownership field. There is no explanation.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "security.intervention",
+      "old": "Two officers stand behind your chair. The nearer one is a broad-shouldered woman in her forties, copper-brown hair clipped close and a matte security badge fixed precisely beneath her collarbone. Her younger partner has a narrow face, pale lashes and both hands visible at his sides. Neither reaches for a weapon. She takes your badge while he disconnects the terminal.",
+      "new": "Two officers stand behind your chair. The woman’s copper-brown hair is clipped close; her partner keeps both hands visible at his sides. She takes your badge while he disconnects the terminal. Neither reaches for a weapon. They have everything they need within arm’s reach.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "sloane.intro",
+      "old": "I have never met Sloane. Everyone in Strategic Intelligence knows her name: Director of Executive Intelligence, sealed operations, careers ended by unsigned reviews. I expected menace. Her calm is worse. I am afraid—and angry that she can probably see it.",
+      "new": "Victoria Sloane. Director of Executive Intelligence. In eleven years, I have never been in a room with her. The stories about sealed operations and unsigned reviews offered no advice about where to stand.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "sloane.brief",
+      "old": "You have her account of a planned meeting. You have not seen independent evidence for it. You may question her before asking for the assignment.",
+      "new": "A planned meeting, according to Sloane. So far she has shown you nothing that confirms it. There is time to question her before asking for the assignment.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "refusal.reconsider",
+      "old": "You do not sit this time. The phone is still in your hand; you feel its edge against your palm. Coming back has cost you some of the anger that carried you out. It has not made her terms easier to hear.",
+      "new": "You do not sit this time. The phone’s edge presses into your palm. You know what waits outside this office now. Her terms sound exactly as they did before.",
+      "reason": "Avoid prescribing emotional cost of returning."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "dayend.accepted",
+      "old": "Adrian’s day ends here, before the clinic. Review the information you earned and the choices you made, or save this run for the next milestone.",
+      "new": "The screen dims with the appointment still open. Seven o’clock is getting closer.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "dayend.cautious endpoint",
+      "old": "This route ends at that decision. Your earlier evening plans remain intentions, not events that have already happened. Your findings and choices are available in the journal and history.",
+      "new": "For now, the question stays unanswered. Whatever you told Maya about tonight, the evening has not happened yet.",
+      "reason": "Retains route endpoint meaning without narrating an unwritten continuation."
+    },
+    {
+      "file": "src/content/day.ts",
+      "context": "dayend.walkaway endpoint",
+      "old": "This route ends with your departure. An independent path may continue later; you are not being sent back to Sloane now.",
+      "new": "Maya is still there on the line. You stay outside the gates.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "travel",
+      "old": "Downstairs, you join the morning transit queue. Nobody knows where your appointment is. A woman beside you balances a takeaway cup over her bag; two analysts argue softly about a meeting. You recognize the relief of having a small problem and feel briefly ashamed of envying them.",
+      "new": "Downstairs, you join the morning transit queue. A woman balances a takeaway cup over her bag; two analysts argue softly about a meeting. From here, their morning looks ordinary. You keep your appointment to yourself.",
+      "reason": "Avoid omniscient assertion about strangers and imposed shame."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "privacy",
+      "old": "She looks tired. I want that to mean there is a conscience keeping her awake. Exhaustion can belong to anyone.",
+      "new": "She looks tired. I cannot tell what kept her awake.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "simulation",
+      "old": "I can look at a prediction without promising to want it. I need to remember that before someone writes down the length of my attention.",
+      "new": "I keep looking for the part the model cannot predict: what it would be like to look back from there.",
+      "reason": "Question without assigning desired identity or approval."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "complete",
+      "old": "This milestone ends in transit. Your choices, earned information, and the limits you asserted remain available in the journal and conversation history.",
+      "new": "The car moves on. The invitation’s seven-o’clock arrival time is still ahead.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "complete title",
+      "old": "Sublevel 17 complete — en route to the Glass House",
+      "new": "En route to the Glass House",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/clinic.ts",
+      "context": "complete choice hint",
+      "old": "End this milestone in transit, before the Glass House.",
+      "new": "Continue the journey; you have not reached the Glass House yet.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/mission.ts",
+      "context": "homeContact",
+      "old": "If you send a message, the screen will show exactly what she receives. Axiom may have access to the monitored device; that does not mean Sloane personally reads it.",
+      "new": "The draft shows the words Maya would receive. The phone is still monitored; you have no receipt telling you what Sloane has read.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/mission.ts",
+      "context": "marcus",
+      "old": "He excuses himself and crosses the room. You know his title from the Helix brief: director of strategic acquisitions. Until now it was possible to imagine him as the name at the bottom of a document.",
+      "new": "He excuses himself and crosses the room. Marcus Chen, Helix’s director of strategic acquisitions. Yesterday you could close the file with his name on it. Now he is coming to speak to you.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/mission.ts",
+      "context": "cover",
+      "old": "You have no memory to compare with hers. Her confidence may be care, performance or a test. You can offer a detail that conflicts with the place she just named, ask her to explain, turn the conversation toward the event, or use your presentation to make the interruption public and ordinary. Marcus is close enough to hear; other guests may notice the pause.",
+      "new": "She has supplied a place and a shared memory. You have neither. Marcus is close enough to hear your answer; the pause is beginning to attract attention. You can question her, contradict the detail, or bring the conversation back into the room.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/mission.ts",
+      "context": "complete",
+      "old": "This part of the story ends here. Your decisions, conversations, and the evidence you actually obtained remain available to review.",
+      "new": "The reception continues above you. Down here, the driver waits for an address.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-evening.ts",
+      "context": "nightComplete",
+      "old": "You wake before the building becomes busy. The clothes lie where you left them. Nothing in the night has authorized more treatment or settled the questions you want to ask Voss.",
+      "new": "You wake before the building becomes busy. The clothes lie where you left them. The questions you want to ask Voss have survived the night with you.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-evening.ts",
+      "context": "nightComplete",
+      "old": "Scene 2 ends here. The clinical follow-up and later Chapter 3 scenes remain ahead.",
+      "new": "Outside, the first windows of the tower begin to light.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-evening.ts",
+      "context": "nightComplete place",
+      "old": "06:15 · The following morning · Scene 2 complete",
+      "new": "06:15 · The following morning",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-evening.ts",
+      "context": "mayaFollowup",
+      "old": "Sloane’s exchange has ended. The message to Maya is still unsent. Read the exact words before deciding.",
+      "new": "Sloane’s exchange has ended. Maya’s reply field is still open. These are the words she would receive.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-next.ts",
+      "context": "informationEnd place",
+      "old": "10:45 · Information sequence complete",
+      "new": "10:45 · Apartment",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-next.ts",
+      "context": "voss",
+      "old": "Without another procedure, the changes already made remain. I can still assess symptoms and provide ordinary care. Another stage would need a separate decision.",
+      "new": "If we do nothing further, these changes remain. I can treat symptoms and provide ordinary care. Another stage is a different decision.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-opportunity.ts",
+      "context": "invitation",
+      "old": "Axiom’s switchboard forwards a named business inquiry from Helix’s published executive-office line. The routing note says Helix asked for Evelynn Vale; no private number was supplied to Helix. The switchboard can relay a reply. Routing a message is not arranging the offer, and there is no delivery acknowledgment from Sloane.",
+      "new": "Helix has asked Axiom’s switchboard for Evelynn Vale. The inquiry comes from its published executive-office line; your private number has not been supplied. You can answer through the switchboard. There is no acknowledgment from Sloane and nothing naming Axiom as the arranger.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-opportunity.ts",
+      "context": "executive",
+      "old": "Axiom can decide whether you enter its building. That need not make it the only place that pays for your judgment. The fee covers today. Anything after today requires another agreement.",
+      "new": "Axiom isn’t the only place that can pay for your judgment. Today’s fee is settled in these terms. After today, we would have to agree again.",
+      "reason": "Avoid Julian knowing access suspension he may not have received."
+    },
+    {
+      "file": "src/content/chapter3-opportunity.ts",
+      "context": "opportunityEnd",
+      "old": "You check the records this decision leaves with you before opening another message.",
+      "new": "You check what you have kept from the exchange. Another message waits.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-autonomy.ts",
+      "context": "marcusLeverage",
+      "old": "You did agree to explore the question. I did not say you signed a contract. If you want the distinction appended, give me the words.",
+      "new": "You agreed to explore it. That’s what I wrote. If you want the limits beside it, give me the sentence.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter3-autonomy.ts",
+      "context": "truths",
+      "old": "You return to the apartment with the records you actually obtained. The phone offers several reply routes. A document in your possession is not a document in anyone else’s hands.",
+      "new": "Back at the apartment, you set out the records you brought home. Several reply threads wait on the phone. For the moment, these copies are still yours to withhold.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter4-entry.ts",
+      "context": "resource",
+      "old": "The registration form has a name field and a signature line. No employer’s countersignature. The pass is free; it covers a reading desk and ordinary public-file copies. Certified copies have separate terms.",
+      "new": "A name. A signature. You look for the employer’s countersignature and find none. The free pass covers a desk and ordinary public-file copies; certification has separate terms.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter4-case.ts",
+      "context": "interest",
+      "old": "The report is finished. You close the working file and take a moment before speaking again.",
+      "new": "You close the finished report. For the first time in the conversation, the next words need not be about the case.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter4-case.ts",
+      "context": "outside",
+      "old": "You let the formal review end before beginning another conversation.",
+      "new": "The formal review is over. You take a moment before starting another conversation.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter4-case.ts",
+      "context": "explicit attraction sent and spoken twice",
+      "old": "I am attracted to you. Is this personal interest mutual?",
+      "new": "I’m attracted to you, Julian. Am I reading this correctly?",
+      "reason": "Change BOTH exact occurrences: player sends and says the same explicit attraction. Existing mutual-interest effect remains."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "false-authority consequence reply",
+      "old": "I also withdraw the personal invitation tonight. The completed work remains paid.",
+      "new": "And I don’t want to see you privately tonight. The work is paid; that stays paid.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter4-power.ts",
+      "context": "favor reply",
+      "old": "There is a workroom free until five. I can book it for you. Just the room—no extra work attached.",
+      "new": "There’s a room free until five. Let me book it for you. You’ve done the work; I’m not asking for more.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-reward.ts",
+      "context": "home quiet reward",
+      "old": "The reader card goes beside the packet. You can leave them there for a moment. Nobody is waiting for a report this morning.",
+      "new": "The reader card goes beside the packet. Nobody is waiting for a report this morning. You can leave the folder open without racing to finish it.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-public.ts",
+      "context": "presentation",
+      "old": "You can make an entrance, keep things spare, or enjoy putting the look together without deciding what the evening should become.",
+      "new": "There is time to decide how you want to enter the room. The rest of the evening can remain undecided.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-public.ts",
+      "context": "glamorous look branch",
+      "old": "You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black low heels. You like the way the look holds together.",
+      "new": "You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black low heels. The jacket sharpens the softer line of the gown. You like the balance.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-public.ts",
+      "context": "sensual look branch",
+      "old": "You change into the black floor-length evening gown, keeping the black low heels. You leave the tailored jacket in the wardrobe; the open back is part of the look you want.",
+      "new": "You change into the black floor-length evening gown, keeping the black low heels. Cool air touches your open back. You leave the tailored jacket in the wardrobe. You chose this much of yourself to show.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-public.ts",
+      "context": "Aster proof",
+      "old": "You finish the agreed sitting and review the proof at a small table away from the camera. The editor sets a pencil beside it. The publish button is still untouched.",
+      "new": "The sitting is over. At a small table away from the camera, you study the proof while the editor sets down a pencil. The publish button waits for your decision.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-benefit.ts",
+      "context": "service-julian",
+      "old": "Seven days. No extra work. I would be glad to have a useful professional contact nearby, but that is my hope, not your agreement. Keep your public pass.",
+      "new": "Seven days, no extra work. I’d be glad to have you nearby for work. You haven’t promised me that. Keep your public pass.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-benefit.ts",
+      "context": "people",
+      "old": "You make tea before opening the familiar threads. The people in them have had days of their own. You can send two deliberate messages, or leave the evening quiet.",
+      "new": "You make tea, then open the familiar threads. Some names are easier to approach than others. There is time for two messages, or for an evening without sending either.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "return",
+      "old": "The familiar chair and cabinet are where they were. Adrian’s old jacket is still on its hanger inside the wardrobe. There is room for a small decision without moving any of them.",
+      "new": "The chair, the cabinet, the old jacket in the wardrobe: all where they were. You can leave one thing differently tonight without clearing the room of everything else.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    },
+    {
+      "file": "src/content/chapter5-desire.ts",
+      "context": "complete",
+      "old": "You leave it that way for the night.",
+      "new": "For tonight, you leave it that way.",
+      "reason": "Editorial tightening within existing facts, blocking and choices."
+    }
+  ]
+}

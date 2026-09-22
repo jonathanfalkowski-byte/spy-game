@@ -1,0 +1,27 @@
+{
+  "assetId": "daniel-opening-office-waiting-clean-conditioning-plate",
+  "status": "zero-credit-staging-prepared-for-authorized-single-output",
+  "derivation": "Uses existing Daniel waiting registration/pose authority only; removes its labels/grid and enlarges the structural mannequin for provider face/extraction detail.",
+  "sourceAuthority": {
+    "file": "art/staging/opening/daniel-opening-office-waiting-pose-plate.png",
+    "sha256": "ccbe8e44f5e97443d944fabb686bf794718486722c40951c33d62698d2d04a7c"
+  },
+  "output": {
+    "file": "art/staging/opening/daniel-opening-office-waiting-clean-conditioning-plate.png",
+    "sha256": "b4160a23f1633c8fea9577362518144b845ef00feab8815c1820d62cc0807d44"
+  },
+  "canvas": [
+    1920,
+    1080
+  ],
+  "figureBounds": [
+    742,
+    108,
+    1178,
+    921
+  ],
+  "occupancyPercentHeight": 75.3,
+  "pose": "Stopped three-quarter southwest wait beside Adrian\u2019s desk; both feet planted, relaxed empty hands, no props; face/torso/pelvis/shoes toward Adrian.",
+  "runtimeBound": false,
+  "productionPromoted": false
+}

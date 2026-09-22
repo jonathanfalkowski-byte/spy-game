@@ -1,0 +1,39 @@
+{
+  "assetId": "axiom-opening-office-master-v1-m4-multireference",
+  "role": "staging-review-candidate",
+  "approvalStatus": "rejected-human-review-required",
+  "classification": "REJECT",
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "image_editor",
+    "model": "QWEN_IMAGE",
+    "taskId": "09fb6adc-ef33-4ff8-aec0-1f65f9551101",
+    "callId": "53f9103d-7c53-473f-bce4-2c07255f6596",
+    "assetId": "4f815104-28c5-4bc1-b58b-2a4c3a190cc2",
+    "referenceGuided": true,
+    "referenceRoleSeparated": true,
+    "referenceAssets": [
+      {"order": 1, "localPath": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png", "providerAssetId": "2ab290cc-a41f-42e4-b19a-c9c6b15ac58b", "role": "structure"},
+      {"order": 2, "localPath": "art/reference/evelynn/evelynn-helix-gala-v1.png", "providerAssetId": "3cefac6d-fb4f-47a4-a2d8-d0a43f9971b6", "role": "style-only"}
+    ],
+    "completedCalls": 1,
+    "completedOutputs": 1,
+    "taskLevelBillingReturned": false
+  },
+  "spend": {
+    "quotedArtCredits": 1,
+    "accountBalanceBefore": 346,
+    "accountBalanceAfter": 345,
+    "observedAccountDelta": 1,
+    "actualTaskDebit": "unreconciled-provider-does-not-return-per-task-billing",
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "master": {"path": "art/staging/opening/axiom-opening-office-master-v1-m4-multireference.png", "mimeType": "image/png", "width": 1920, "height": 1080, "bytes": 3088989, "sha256": "0638F136DFC2D8D1C16648693D5C2191194E6531396291E6321A1AF5DC6D940C"},
+  "reviewBoard": {"path": "art/staging/opening/axiom-opening-office-master-v1-m4-multireference-review-board.png", "sha256": "C8BB0B3482DCBB5E2AD95BF6F4698D3F1A7EB5619C5E9CEE6A0B8A89A9340E36"},
+  "structuralResults": {"pass": [], "minorDrift": ["smoked-glass office", "terminal"], "blockingDrift": ["desk footprint", "desk orientation", "divider", "guest zone", "common floor plane", "Daniel workstation", "Daniel route", "Benton route", "Maya coffee blocking", "evidence surface", "anchor A", "anchor B"]},
+  "nineStateResults": {"1": "BLOCKED", "2": "BLOCKED", "3": "BLOCKED", "4": "BLOCKED", "5": "BLOCKED", "6": "BLOCKED", "7": "BLOCKED", "8": "BLOCKED", "9": "BLOCKED"},
+  "styleReferenceLeakage": {"materialFailure": true, "leaked": ["Evelynn", "gala gown", "jewellery", "portrait/pose framing", "wine glass"]}
+}

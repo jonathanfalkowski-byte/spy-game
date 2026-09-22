@@ -1,0 +1,45 @@
+{
+  "assetId": "axiom-office-arrival-v1-provider-original",
+  "role": "staging",
+  "approvalStatus": "pending-human-review",
+  "runtimeEligibility": "not-approved",
+  "shotId": "opening.axiom.shot03-office-arrival",
+  "source": {
+    "provider": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "76261442-6eb1-4bd2-84c2-c623f6d9959a",
+    "callId": "fbe4c86d-d676-43c1-b76c-34a8a26d3030",
+    "providerAssetId": "bc85bf20-52f3-46d3-8b50-734b8f17b51b",
+    "quotedCredits": 2,
+    "taskLevelDebit": null,
+    "accountCreditsBefore": 406,
+    "accountCreditsAfter": 404,
+    "observedBalanceDelta": 2
+  },
+  "reference": {
+    "file": "art/staging/opening/axiom-office-clean-structural-conditioning-plate.png",
+    "sha256": "c0740ff5c7e900f772091689de5827c702a3d11a126994d2748debeacc53e5f9",
+    "referenceCount": 1
+  },
+  "output": {
+    "file": "art/staging/opening/axiom-office-arrival-v1-provider-original.png",
+    "sha256": "38a7de40c13fc4547617db6b400d613d05c5c59e4868982b7f58a58f460f235d",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    },
+    "mediaType": "image/png"
+  },
+  "review": {
+    "decision": "PASS",
+    "date": "2026-09-22",
+    "reasons": [
+      "The elevator jamb, threshold panel, and locked glass-gate handles establish arrival before the empty Strategic Intelligence office.",
+      "The output retains the M5 desk, right-side smoked-glass divider, paired visitor-chair language, cool-grey floor and wall materials, warm horizontal practicals, and empty circulation lane.",
+      "No characters, state-specific props, readable text, or clock are visible; the environment can hold through the arrival prose."
+    ],
+    "limitations": [
+      "Staging only: owner review is required before production promotion or runtime binding."
+    ]
+  }
+}

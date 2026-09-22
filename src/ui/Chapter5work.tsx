@@ -3,16 +3,17 @@ import type { Intent } from '../state/actions';
 import type { GameState } from '../state/schema';
 import { chapter5Choices } from '../content/chapter5';
 import { asterConcepts, concept5, proposal5, rights5 } from '../content/chapter5-public';
-import { displayName } from './reading-presentation';
+import { displayName, renderChoiceText } from './reading-presentation';
 export function Chapter5work(props: { state: GameState; send: (a: Intent) => void }) {
   return <Chapter5Decisions key={props.state.scene + '.' + props.state.phase} {...props} />;
 }
 function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent) => void }) {
+  const node = `${state.scene}.${state.phase}`;
   const currentConcept = concept5(state);
   const [draft, setDraft] = useState({ base: currentConcept, value: currentConcept });
   const concept = draft.base === currentConcept ? draft.value : currentConcept;
   const proposal =
-    state.contentRevision === 17 && state.scene === 'chapter5' && state.phase === 'offer';
+    (state.contentRevision === 17 || state.contentRevision === 18) && state.scene === 'chapter5' && state.phase === 'offer';
   const choices = chapter5Choices(state).filter(
     (c) =>
       !proposal ||
@@ -60,8 +61,8 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
             onClick={() => send({ type: 'CHAPTER5_CHOOSE', id: c.id })}
           >
             <span className="choice-copy">
-              {displayName(c.label)}
-              <small>{displayName(c.hint)}</small>
+              {displayName(renderChoiceText(c.label, node, state.contentRevision))}
+              <small>{displayName(renderChoiceText(c.hint, node, state.contentRevision))}</small>
             </span>
             <span aria-hidden="true">→</span>
           </button>

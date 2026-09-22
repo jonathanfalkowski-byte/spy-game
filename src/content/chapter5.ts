@@ -6,6 +6,7 @@ import { benefitScenes5, benefitBlocks5, benefitChoices5 } from './chapter5-bene
 import { publicScenes5, publicBlocks5, publicChoices5 } from './chapter5-public';
 import { rewardScenes5, rewardBlocks5, rewardChoices5 } from './chapter5-reward';
 import { set5, voucher5, offer5, type C5Choice } from './chapter5-model';
+import { isCurrentAuthoringRevision } from './revision';
 export const chapter5Definitions = {
   ...rewardScenes5,
   ...publicScenes5,
@@ -17,7 +18,7 @@ export const chapter5Scenes = Object.entries(chapter5Definitions).map(([phase, s
   ...scene,
 }));
 export const chapter5Blocks = (s: GameState) => {
-  if (s.contentRevision !== 17) return frozenBlocks(s);
+  if (!isCurrentAuthoringRevision(s.contentRevision)) return frozenBlocks(s);
   const fixed = chapter5Definitions[s.phase as keyof typeof chapter5Definitions]?.blocks ?? [];
   const dynamic = [
     ...rewardBlocks5(s),
@@ -29,8 +30,8 @@ export const chapter5Blocks = (s: GameState) => {
   return ['room', 'return'].includes(s.phase) ? [...dynamic, ...fixed] : [...fixed, ...dynamic];
 };
 export function chapter5Choices(s: GameState): C5Choice[] {
-  if (s.contentRevision !== 17) return frozenChoices(s as Parameters<typeof frozenChoices>[0]);
-  if (s.contentRevision === 17 && s.scene === 'chapter4' && s.phase === 'complete')
+  if (!isCurrentAuthoringRevision(s.contentRevision)) return frozenChoices(s as Parameters<typeof frozenChoices>[0]);
+  if (isCurrentAuthoringRevision(s.contentRevision) && s.scene === 'chapter4' && s.phase === 'complete')
     return [
       offer5(
         'begin',
@@ -46,7 +47,7 @@ export function chapter5Choices(s: GameState): C5Choice[] {
         },
       ),
     ];
-  if (s.contentRevision !== 17 || s.scene !== 'chapter5') return [];
+  if (!isCurrentAuthoringRevision(s.contentRevision) || s.scene !== 'chapter5') return [];
   return [...rewardChoices5(s), ...publicChoices5(s), ...benefitChoices5(s), ...desireChoices5(s)];
 }
 export function applyChapter5Choice(state: GameState, id: string): GameState {
@@ -54,7 +55,7 @@ export function applyChapter5Choice(state: GameState, id: string): GameState {
   if (!choice) return state;
   const s = structuredClone(state);
   s.revision++;
-  s.contentRevision = state.contentRevision === 17 ? 17 : 16;
+  s.contentRevision = isCurrentAuthoringRevision(state.contentRevision) ? state.contentRevision : 16;
   s.history.push({
     node: `${state.scene}.${state.phase}` as NodeId,
     blocks: [{ kind: 'notice', text: 'Your choice: ' + choice.label }],

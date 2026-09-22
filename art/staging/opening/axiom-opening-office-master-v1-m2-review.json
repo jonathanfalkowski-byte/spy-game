@@ -1,0 +1,53 @@
+{
+  "assetId": "axiom-opening-office-master-v1",
+  "revision": "m2-first-paid-output",
+  "role": "staging-review-candidate",
+  "approvalStatus": "pending-human-review",
+  "classification": "REVISE",
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "sceneArtManifestIntegrated": false,
+  "provider": {
+    "tool": "by_prompt",
+    "model": "SEEDREAM_5",
+    "taskId": "92685118-7f92-472e-86e4-367a6db950ae",
+    "callId": "9df2bd70-6e7d-4faf-8bd8-f6f8b3d8d95d",
+    "assetId": "23ab889c-b4f0-4644-bddd-7d8f0f1b33c7",
+    "taskCreatedUtc": "2026-09-20T17:06:00Z",
+    "taskFinishedUtc": "2026-09-20T17:06:51Z",
+    "completedCalls": 1,
+    "completedOutputs": 1
+  },
+  "spend": {
+    "quotedArtCredits": 1,
+    "actualTaskDebit": "unreconciled-provider-does-not-return-per-task-billing",
+    "accountBalanceBefore": 530,
+    "accountBalanceAfter": 517,
+    "observedAccountDelta": 13,
+    "apiQaCredits": 0,
+    "automaticRetries": 0,
+    "alternateGenerations": 0
+  },
+  "master": {
+    "path": "art/staging/opening/axiom-opening-office-master-v1-m2.jpeg",
+    "mimeType": "image/jpeg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 277218,
+    "sha256": "E401C4CCD98EF9306D78D4E5F7C92541C08831E699F7D0028EB25983EE38DFF1"
+  },
+  "reviewDerivatives": {
+    "reviewBoard": "art/staging/opening/axiom-opening-office-master-v1-m2-review-board.png",
+    "reviewBoardSha256": "299DE671180163A4FEC2DB06EFA63037DC7FBA8B823CFB03861D87BF43692669",
+    "anchorBProposedCrop": "art/staging/opening/axiom-opening-office-master-v1-m2-anchor-b-proposed.jpeg",
+    "anchorBSourceBounds": [88, 530, 1504, 1326],
+    "anchorBProposedCropSha256": "EDB725BBC7514E6A73B59DD6EB04F0CEAB063AD4B861B72C4A3DA15449B69D6A"
+  },
+  "reviewFindings": [
+    "Desk, divider, terminal, chair, and aisle are present; no people or state-sensitive props are baked in.",
+    "The director smoked-glass office/door relationship is not legible.",
+    "Daniel's two-desks-over relationship is not established.",
+    "The proposed B crop is weak because chair occlusion and limited desk surface do not support a robust shared evidence view.",
+    "The candidate cannot support all nine planned visual states as a stable production master."
+  ]
+}

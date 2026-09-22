@@ -1,0 +1,218 @@
+[
+  {
+    "bond": "friend",
+    "invitation": "yes",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "yes",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "yes",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "yes",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "maybe",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "maybe",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "maybe",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "maybe",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "no",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "no",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "no",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "friend",
+    "invitation": "no",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "yes",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "yes",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "yes",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "yes",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "maybe",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "maybe",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "maybe",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "maybe",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "no",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "no",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "no",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "love",
+    "invitation": "no",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "yes",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "yes",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "yes",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "yes",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "maybe",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "maybe",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "maybe",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "maybe",
+    "disclosure": "nothing",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "no",
+    "disclosure": "voss",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "no",
+    "disclosure": "contradiction",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "no",
+    "disclosure": "private",
+    "result": "PASS"
+  },
+  {
+    "bond": "colleague",
+    "invitation": "no",
+    "disclosure": "nothing",
+    "result": "PASS"
+  }
+]

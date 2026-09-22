@@ -1,0 +1,82 @@
+[
+  {
+    "mode": "public",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 164,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "professional",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 170,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "intimate",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 171,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "intimate",
+    "motive": "instrumental",
+    "scope": "no-sex",
+    "result": "PASS",
+    "events": 171,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "intimate",
+    "motive": "mixed",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 171,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "withdraw",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 171,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "flirt-only",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 168,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "backfire",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 166,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "intimacy-decline",
+    "motive": "instrumental",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 168,
+    "endpoint": "chapter5.complete"
+  },
+  {
+    "mode": "c5-uncertain",
+    "motive": "personal",
+    "scope": "sex",
+    "result": "PASS",
+    "events": 169,
+    "endpoint": "chapter5.complete"
+  }
+]

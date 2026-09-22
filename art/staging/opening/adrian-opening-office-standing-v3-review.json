@@ -1,0 +1,71 @@
+{
+  "assetId": "adrian-opening-office-standing-v3-provider-original",
+  "role": "staging",
+  "approvalStatus": "rejected",
+  "runtimeEligibility": "not-approved",
+  "shotId": "opening.office.shot01-daniel",
+  "source": {
+    "provider": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "taskId": "53649670-ef6d-460d-b2f8-01d6f29d0975",
+    "callId": "ce291e85-a204-4fd2-bf2e-1b6fbc86e215",
+    "providerAssetId": "e40c1936-7519-4466-bf91-c70f3d9effa3",
+    "quotedCredits": 2,
+    "taskLevelDebit": null,
+    "accountCreditsBefore": 350,
+    "accountCreditsAfter": 348,
+    "observedBalanceDelta": 2
+  },
+  "reference": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v2-orientation-pose-plate.png",
+    "sha256": "bd1972fb6ddd606ebf0677b6aef5f4028a84b3d30311f3b697c52e3e0e9d4c77",
+    "referenceCount": 1
+  },
+  "output": {
+    "file": "art/staging/opening/adrian-opening-office-standing-v3-provider-original.png",
+    "sha256": "cb840d60e7fb3e37a74607a44a78ede7c026ce1ab268e1389808d58522eedf4e",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "review": {
+    "decision": "REJECT",
+    "reviewer": "Codex delegated opening-art review",
+    "date": "2026-09-22",
+    "reasons": [
+      "V3 retains the intended isolated character-only background, glasses, clean-shaven understated identity, and charcoal office wardrobe.",
+      "V3 fails the mandatory stationary-pose gate: its right foot remains visibly lifted and projected forward, so the silhouette reads as a stride rather than a stopped settled-weight stance.",
+      "V3 also fails the locked scene interaction requirement. At the approved M5 registration, the lifted stride crosses the central operator lane and cannot truthfully hold Adrian facing Daniel beside the desk."
+    ],
+    "correction": "Do not retry automatically. The owner-authorized single bounded V3 correction failed. Stop the dependent character package; obtain a new design/production decision before any further Adrian, Daniel, Benton, Maya, or alone layers."
+  },
+  "localReview": {
+    "extractedLayer": "art/staging/opening/adrian-opening-office-standing-v3-rejected-extracted-layer.png",
+    "extractedLayerSha256": "a74a168d266f8a9cfa9a45b35984bc339f4aa3e1004332d335c4e834b2f38799",
+    "composite": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-v3-rejected-composite.png",
+    "compositeSha256": "cd6a6c74092e1cd3d772b64656c610f94f58dda22e713a4834ab5ff9f5597e8e",
+    "registration": {
+      "bounds": "x=805..985,y=625..915",
+      "foot": "895,904",
+      "sourceForegroundBounds": "x=816..990,y=620..931",
+      "result": "Rejected: lifted forward foot makes the layer a walking stride in the locked central-desk lane."
+    }
+  },
+  "package": {
+    "authorizedBudgetCredits": 16,
+    "spentBeforeV3": 2,
+    "spentV3": 2,
+    "spentTotal": 4,
+    "remainingBudget": 12,
+    "dependentGenerationsAttempted": 0,
+    "automaticRetryAttempted": false
+  },
+  "runtime": {
+    "productionPromoted": false,
+    "runtimeBound": false,
+    "registryOrManifestChanged": false,
+    "commitCreated": false,
+    "pushCreated": false
+  }
+}

@@ -34,6 +34,8 @@ export function ClinicConversation({
     (state.contentRevision ?? 0) >= 12 || state.mission.completed.includes('home.begin')
       ? []
       : missionPresentation(state);
+  const readingLabel = reading?.entry.node === 'commute.arrival' ? 'Opening scene' : 'Harbour scene';
+  const readingNode = reading?.entry.node === 'commute.arrival' ? 'commute.arrival' : 'chapter5.room';
   return (
     <>
       {incoming.map((entry, i) =>
@@ -43,6 +45,9 @@ export function ClinicConversation({
             beats={reading.beats}
             position={readingPosition}
             onPosition={onReadMoment}
+            ariaLabel={readingLabel}
+            narrativeNode={readingNode}
+            contentRevision={state.contentRevision}
           />
         ) : reading ||
           (illustrated &&
@@ -51,10 +56,10 @@ export function ClinicConversation({
             entry.node.startsWith('mission.')) ? (
           <details key={'incoming' + i} className="scene-recap">
             <summary>Previous scene</summary>
-            <Narrative blocks={entry.blocks} node={entry.node} />
+            <Narrative blocks={entry.blocks} node={entry.node} contentRevision={state.contentRevision} />
           </details>
         ) : (
-          <Narrative key={'incoming' + i} blocks={entry.blocks} node={entry.node} />
+          <Narrative key={'incoming' + i} blocks={entry.blocks} node={entry.node} contentRevision={state.contentRevision} />
         ),
       )}
       {exchanges.map((entry, i) => (
@@ -71,18 +76,21 @@ export function ClinicConversation({
               beats={reading.beats}
               position={readingPosition}
               onPosition={onReadMoment}
+              ariaLabel={readingLabel}
+              narrativeNode={readingNode}
+              contentRevision={state.contentRevision}
             />
           ) : reading ? (
             <details className="scene-recap">
               <summary>Earlier in this scene</summary>
-              <Narrative blocks={entry.blocks} node={entry.node} />
+              <Narrative blocks={entry.blocks} node={entry.node} contentRevision={state.contentRevision} />
             </details>
           ) : (
-            <Narrative blocks={entry.blocks} node={entry.node} />
+            <Narrative blocks={entry.blocks} node={entry.node} contentRevision={state.contentRevision} />
           )}
           {i === exchanges.length - 1 && presentation.length > 0 && (
             <div data-mission-presentation aria-label="Operational context">
-              <Narrative blocks={presentation} node={node} />
+              <Narrative blocks={presentation} node={node} contentRevision={state.contentRevision} />
             </div>
           )}
         </div>
@@ -94,7 +102,7 @@ export function ClinicConversation({
           aria-label="Operational context"
           style={{ scrollMarginTop: 90 }}
         >
-          <Narrative blocks={presentation} node={node} />
+          <Narrative blocks={presentation} node={node} contentRevision={state.contentRevision} />
         </div>
       )}
     </>

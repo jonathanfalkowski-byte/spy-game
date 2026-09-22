@@ -1,0 +1,31 @@
+{
+  "id": "axiom-office-geometry-locked-control-plate-v1",
+  "role": "staging-blocking-authority",
+  "method": "Local deterministic Pillow vector geometry and simple labeled silhouettes; no generative inputs or provider calls",
+  "paidGenerationsThisPass": 0,
+  "creditsThisPass": 0,
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "anchors": {
+    "A": "southwest desk-wide interaction master",
+    "B": "same-pixel desk-terminal-evidence crop"
+  },
+  "states": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "PASS",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "PASS"
+  },
+  "authority": [
+    "docs/art/AXIOM_OFFICE_PRODUCTION_PACKAGE.md",
+    "art/staging/opening/axiom-office-m1/office-geometry.png",
+    "art/staging/opening/AXIOM_OFFICE_M2_RETRY_CORRECTION_PLAN.md",
+    "art/staging/opening/AXIOM_OFFICE_M2_RETRY_REVIEW.md"
+  ],
+  "failedMasters": "Referenced only as failure-learning records; not used as geometry inputs."
+}

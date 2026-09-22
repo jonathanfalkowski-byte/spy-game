@@ -1,0 +1,19 @@
+{
+  "assetId": "axiom-approach-v2-production",
+  "shotId": "opening.axiom.shot01-approach",
+  "role": "production",
+  "approval": "approved",
+  "review": "PASS",
+  "runtimeEligibility": "runtime-approved",
+  "productionFile": "art/production/opening/axiom-approach-v2-production.png",
+  "productionSha256": "1722005b77d0ff8f450c76c34eb3840a189a311cd033cf129db83e9796e0e553",
+  "stagingSource": "art/staging/opening/axiom-approach-v2-provider-edit-original.png",
+  "stagingSourceSha256": "1722005B77D0FF8F450C76C34EB3840A189A311CD033CF129DB83E9796E0E553",
+  "providerTaskId": "0f3ba703-c251-4882-ab1f-1aaa2e924a0a",
+  "providerAssetId": "ecf02648-f372-4d2a-a52b-c985fb085a5f",
+  "provider": "ZenCreator Image Editor",
+  "model": "Seedream 5 Pro",
+  "generationCostCredits": 3,
+  "approvalSource": "Owner approval received 2026-09-22 after 18/18 PASS review.",
+  "runtimeBinding": "opening.axiom.shot01-approach only"
+}

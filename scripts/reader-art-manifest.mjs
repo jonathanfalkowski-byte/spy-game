@@ -2,17 +2,16 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname } from 'node:path';
+import {
+  assertValidRuntimeEligibility,
+  isRuntimeApprovedProductionRecord,
+} from './runtime-eligibility.mjs';
 const records = ['apartment', 'continuity', 'chapter5', 'opening'].flatMap((group) =>
   JSON.parse(readFileSync(`art/production/${group}/records.json`, 'utf8')),
 );
+for (const record of records) assertValidRuntimeEligibility(record);
 const assets = records
-  .filter(
-    (r) =>
-      r.role === 'production' &&
-      r.approvalStatus === 'approved' &&
-      r.approval &&
-      r.review?.decision === 'PASS',
-  )
+  .filter(isRuntimeApprovedProductionRecord)
   .map((r) => {
     if (!r.file.startsWith('art/production/') || r.file.includes('..'))
       throw Error('Unsafe asset path');

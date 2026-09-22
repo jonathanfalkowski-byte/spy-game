@@ -1,0 +1,103 @@
+{
+  "assetId": "adrian-opening-office-standing-v1",
+  "status": "staging-review-required",
+  "sceneId": "office.daniel",
+  "shotId": "opening.office.shot01-daniel",
+  "generation": {
+    "provider": "zencreator",
+    "tool": "image_editor",
+    "model": "SEEDREAM_5",
+    "taskId": "6ca3c807-cc08-4662-85a4-495b13e01822",
+    "callId": "bedd2898-6ba1-460d-995f-054ec5930191",
+    "providerAssetId": "37fd134e-cd99-45b4-88d5-a85deb53cf20",
+    "referenceAssetIds": [
+      "7910cdc3-2279-4827-878e-afa19459fc8b"
+    ],
+    "referenceFiles": [
+      "art/staging/opening/adrian-opening-office-standing-approach-pose-plate.png"
+    ],
+    "quoteCredits": 1,
+    "taskLevelBilling": "not supplied"
+  },
+  "credits": {
+    "before": 541,
+    "after": 540,
+    "observedDelta": 1,
+    "paidGenerationsThisPass": 1
+  },
+  "baseEnvironment": {
+    "path": "art/production/opening/axiom-opening-office-master-v1-production.png",
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+    "modified": false,
+    "providerSupplied": false
+  },
+  "providerOriginal": {
+    "path": "art/staging/opening/adrian-opening-office-standing-v1-provider-original.png",
+    "sha256": "7875A098B549ADEF6B4B7BB381F22A45F855D5D1F3FB384AD948EFB905E8BF46",
+    "dimensions": [
+      1920,
+      1080
+    ]
+  },
+  "extraction": {
+    "method": "local color-distance matte against border-estimated uniform background, largest connected foreground component",
+    "backgroundEstimateRgb": [
+      126,
+      137,
+      146
+    ],
+    "rawForegroundBounds": [
+      783,
+      440,
+      1005,
+      1046
+    ],
+    "rawCropBounds": [
+      778,
+      435,
+      1010,
+      1051
+    ],
+    "targetRegistrationBounds": [
+      805,
+      625,
+      985,
+      915
+    ],
+    "visibleLayerBounds": [
+      841,
+      614,
+      950,
+      904
+    ],
+    "footRegistration": [
+      895,
+      904
+    ],
+    "eyeLine": [
+      891,
+      666
+    ],
+    "rescaled": true,
+    "reason": "provider figure did not preserve the approved full-canvas registration; local deterministic registration restored the approved target coordinates for review."
+  },
+  "composites": {
+    "adrianOnly": {
+      "path": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-only-composite.png",
+      "sha256": "2AD7F83D0F68131466B6416AC756E4931AD1BD8829DD1179E4D760DBCCA64AF6"
+    },
+    "withDanielSilhouette": {
+      "path": "art/staging/opening/axiom-opening-office-shot01-daniel-adrian-plus-daniel-silhouette-composite.png",
+      "sha256": "D5DBC643BCDCA9DE0214852898735F15F36F016CAB8871102CB1A24E07AD1B14",
+      "danielRegistrationBounds": [
+        1240,
+        495,
+        1410,
+        780
+      ]
+    }
+  },
+  "runtimeBound": false,
+  "productionPromoted": false,
+  "manifestIntegrated": false
+}

@@ -30,6 +30,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/continuity/eve-bg-wardrobe-continuity-v2.png",
     "sha256": "c93d718ef20cdf4d01c334a907d7eff12020616b5ed71af5582a325a97be303a",
     "generation": {
@@ -126,6 +127,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/continuity/eve-scene-maya-evening-continuity-v2.png",
     "sha256": "f990e9ddf9d57793cb0ca2f46cdf9eb2ef8f12fb16639c053a7d4cc644ef39c0",
     "generation": {
@@ -215,6 +217,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
     "file": "art/production/continuity/eve-bg-sloane-office-continuity-v2.png",
     "sha256": "cef805860650cbc6c0ca4165c779cc4c6e227e8f25ec37d997aafa4771629668",
     "generation": {

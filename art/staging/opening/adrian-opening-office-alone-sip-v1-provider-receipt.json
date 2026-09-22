@@ -1,0 +1,30 @@
+{
+  "assetId": "adrian-opening-office-alone-sip-v1-provider-original",
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "provider": {
+    "tool": "ZenCreator image_editor",
+    "model": "WAN_2_7_IMAGE_PRO",
+    "referenceCount": 1,
+    "referenceAssetId": "806f969f-8668-4f4a-ba3a-21fb42323ef3",
+    "referenceRole": "approved Adrian V4 identity only; M5 excluded",
+    "ratio": "16:9",
+    "requestedPixels": [1920, 1080],
+    "outputCount": 1,
+    "taskId": "d0dd9483-e077-46d7-aeb7-b8af14bad2fd",
+    "callId": "938a68b2-2ee8-4160-a012-ce672e3de2b1",
+    "providerAssetId": "85865ffe-5a3a-40dd-a608-4296f70243e4"
+  },
+  "spend": {
+    "quotedCredits": 2,
+    "balanceBefore": 258,
+    "balanceAfter": 256,
+    "observedBalanceDelta": 2,
+    "taskLevelBillingSupplied": false,
+    "exactTaskDebit": null,
+    "note": "Provider task-level billing was unavailable. Quote and observed account delta are recorded separately."
+  },
+  "provenance": {
+    "providerOriginal": "art/staging/opening/adrian-opening-office-alone-sip-v1-provider-original.png",
+    "providerOriginalSha256": "93D6431AD1EF1BEFD7D17D756B976B54F51BD4C94BD667737BFB5310D6E59010"
+  }
+}

@@ -1,0 +1,371 @@
+[
+  {
+    "spec": {
+      "assetId": "adrian-opening-full-body-v1",
+      "assetType": "full-body",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "canonicalReferences": [
+        "adrian-canon-identity-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "cameraFraming": "Requested 3:4 neutral full-body reference with complete head, hands, and shoes visible.",
+      "pose": "Requested neutral upright stance with naturally relaxed arms.",
+      "lighting": "Neutral studio lighting with an EVE graphic-novel treatment.",
+      "environment": "Plain removable charcoal studio background only.",
+      "intendedUse": "Staging-only candidate for Adrian body/proportion and opening-wardrobe review; never runtime scene art.",
+      "continuityRequirements": [
+        "Preserve only Adrian identity, approximate age/read, and core hair from eve-cast-adrian-v1; staging stubble remains noncanonical.",
+        "Opening Adrian must be clean-shaven and pre-transformation, with no later Evelynn, clinic, or mission styling.",
+        "The requested apartment.bond baseline has no outer coat: the closet jacket remains separate and the usual coat belongs to commute.arrival.",
+        "Body and wardrobe authority require full head, hands, and shoes; cropped output is ineligible."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "SALVAGE SOURCE — CENTRAL BODY PASS. One owner-authorized 1-credit output with coherent central anatomy, clothing fit, and EVE style. It is not a full-body authority because the provider cropped head and footwear. Owner wardrobe audit later established the matte charcoal shirt as compatible opening-day visual canon, so it is eligible only for one targeted framing outpaint."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/adrian/adrian-opening-full-body-v1.png",
+    "sha256": "7B9F3A8541898923DE5750D3B7AD6E43F98CF649D9835EB8FB942735F677B651",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "model": "SEEDREAM_5",
+      "taskId": "4be20783-4b5f-4ac6-8faf-4826d1404002",
+      "callId": "5348f9cb-0efd-477b-bf7f-968094d51d83",
+      "providerAssetId": "02eedd58-e702-4cb5-a4bc-468c44e1e42a",
+      "sourceReferences": [
+        {
+          "assetId": "adrian-canon-identity-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        },
+        {
+          "assetId": "evelynn-canon-three-quarter-v1",
+          "providerAssetId": "6bfdd68c-27ab-40a5-b362-6e742e5e3940"
+        }
+      ],
+      "promptVersion": "eve-cast-scenes-v1",
+      "promptComponents": {
+        "STYLE": "Reference 2 constrains EVE polished 2D espionage-graphic-novel linework and semi-cel shading only.",
+        "SUBJECT": "Clean-shaven Adrian Vale, thirty-four, retaining bounded facial identity and short dark hair from Reference 1 only.",
+        "SCENE": "Neutral reusable character reference; no apartment, office, mirror, other character, or prop.",
+        "CAMERA": "3:4 full-body neutral standing reference with head, hands, and shoes requested inside frame.",
+        "LIGHTING": "Plain charcoal studio background with restrained readable lighting.",
+        "CONTINUITY": "Pre-transformation opening baseline: charcoal shirt and trousers, plain black belt and low-profile office shoes; no outer layer or accessory."
+      },
+      "prompt": "Create a neutral full-body reference of the clean-shaven adult man in Reference 1. Preserve only his facial identity, approximate thirty-four-year-old read, and short dark hair; do not copy the visible stubble, wardrobe, body geometry, or pose. Use Reference 2 only for EVE’s polished 2D espionage-graphic-novel linework and semi-cel shading, never as Adrian’s body reference. He stands upright with relaxed arms against a plain, removable charcoal studio background. Show the complete hair, both hands, and both black low-profile office shoes. He wears a matte charcoal shirt, straight charcoal tailored trousers, and a plain black belt, with no outer coat, no watch, no jewellery, no badge, and no props. Believable restrained adult male proportions; no heroic musculature, transformation cue, feminine styling, apartment, office, mirror, or other character.",
+      "settings": {
+        "ratio": "3:4",
+        "width": 1536,
+        "height": 2048,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-19T00:48:08.160523Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2048
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-18",
+      "reasons": [
+        "CENTRAL BODY — PASS FOR SALVAGE: torso, shoulders, arms, hands, waist, trousers, legs, clothing fit, anatomy, and EVE linework are coherent.",
+        "FACE CONTINUITY — REVISE: Adrian's face and hair are cropped out, so identity, age, grooming, and hair continuity cannot be reviewed.",
+        "BODY AUTHORITY — REVISE: head and shoes are outside the frame, so the source is not eligible as a full-body/proportion authority.",
+        "OPENING WARDROBE — REVISE: the matte charcoal shirt, trousers, and belt now match owner-approved opening-day visual canon, but both shoes are absent.",
+        "STYLE — PASS as limited evidence: linework, semi-cel shading, neutral background, and restrained clothing treatment fit EVE, but style alone cannot confer reference authority."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "adrian-opening-full-body-v2-outpaint",
+      "assetType": "full-body",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "canonicalReferences": [
+        "adrian-canon-identity-v1"
+      ],
+      "editSources": [
+        "adrian-opening-full-body-v1"
+      ],
+      "cameraFraming": "Requested 2:3 full-figure reference with 8–12 percent head and shoe margins.",
+      "pose": "Neutral upright standing pose carried forward from the v1 central-body salvage source.",
+      "lighting": "Neutral illustrated studio lighting matched to the v1 body source.",
+      "environment": "Simple removable charcoal studio background and neutral floor only.",
+      "intendedUse": "Staging-only Adrian body/proportion and opening-day wardrobe candidate; never runtime scene art.",
+      "continuityRequirements": [
+        "Adrian identity is constrained by adrian-canon-identity-v1 only; facial hair from the portrait is noncanonical and the output must be clean-shaven.",
+        "Opening-day wardrobe canon: matte charcoal business shirt, charcoal tailored trousers, black leather belt, understated black dress shoes, no tie, no accessory, and no outer layer.",
+        "The authored closet jacket remains unworn and separate from the usual dark commute coat.",
+        "A reusable full-body authority requires whole head, hands, legs, shoes, restrained proportions, and 8–12 percent margins above hair and below footwear."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2304
+      },
+      "notes": "One owner-authorized vertical outpaint derived from the v1 central body. It restores the head and shoes but remains staging-only: the figure is too tightly framed and the shoes are too glossy for the understated opening reference."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/adrian/adrian-opening-full-body-v2-outpaint.png",
+    "sha256": "5A42AD077BB32995242631738EF2EDBA9F848C8FE05005C7D734217D144277E7",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "model": "SEEDREAM_5",
+      "taskId": "d4c81efc-1de9-4c53-9d58-1d04f7fef479",
+      "callId": "ae58b8c4-cdf0-4ba0-ba98-020e91b7a701",
+      "providerAssetId": "7e604842-3e87-4f44-9093-86a4de7ad100",
+      "sourceReferences": [
+        {
+          "assetId": "adrian-opening-full-body-v1",
+          "providerAssetId": "02eedd58-e702-4cb5-a4bc-468c44e1e42a"
+        },
+        {
+          "assetId": "adrian-canon-identity-v1",
+          "providerAssetId": "fd48d3a3-767b-4ab0-b1b3-d07c13cabaee"
+        }
+      ],
+      "promptVersion": "eve-cast-scenes-v1",
+      "promptComponents": {
+        "STYLE": "Preserve the v1 EVE polished 2D espionage-graphic-novel linework and semi-cel shading.",
+        "SUBJECT": "Clean-shaven Adrian Vale, thirty-four, retaining bounded facial identity and core hair from the identity reference only.",
+        "SCENE": "Neutral reusable character reference; no apartment, office, mirror, prop, other character, or future-state styling.",
+        "CAMERA": "Requested 2:3 vertical outpaint preserving the central body, with full figure and breathing room above hair and below shoes.",
+        "LIGHTING": "Continue the source's restrained studio lighting onto a plain charcoal background and neutral floor.",
+        "CONTINUITY": "Preserve charcoal shirt, trousers, belt, arms, hands, legs, pose and central body. Add only clean-shaven head, hair, shoes, and vertical framing extension."
+      },
+      "prompt": "Reference 1 is the successful central-body source. Create a portrait 2:3 vertical outpaint that preserves its torso, matte charcoal shirt, arms, hands, belt, trousers, legs, pose, proportions, linework, and lighting exactly; do not repaint or redesign that central body. Extend only above and below it. Reference 2 supplies Adrian Vale’s face and core short dark hair only: add a clean-shaven, believable thirty-four-year-old Adrian with a natural neck connection. Add complete understated black dress shoes and neutral floor margin. Keep the full figure at about seventy-five percent of image height with visible breathing room above hair and below shoes. Use a simple removable charcoal background; no coat, jacket, tie, watch, jewellery, badge, apartment, office, mirror, props, transformation cues, or other people.",
+      "settings": {
+        "ratio": "2:3",
+        "width": 1536,
+        "height": 2304,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-19T14:35:16.489881Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2304
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-19",
+      "reasons": [
+        "IDENTITY — REVISE: the clean-shaven face and core hair plausibly retain Adrian's broad identity, but the resulting jaw, brow, and nose are more stylized than the bounded portrait authority and need owner review before reference promotion.",
+        "BODY / PROPORTIONS — REVISE: complete limbs are visible and the inherited central anatomy remains coherent, but shoulder breadth and stance read more forcefully than the restrained analyst target.",
+        "OPENING WARDROBE — REVISE: charcoal shirt, trousers, belt, no tie, and no accessories match the opening-day canon; the shoes are overly glossy and conspicuous rather than understated office footwear.",
+        "FULL-FIGURE FRAMING — REJECT: the head and shoes are now visible, but the figure nearly touches the top and bottom edges instead of occupying the required 70–80 percent height with 8–12 percent margins.",
+        "STYLE — PASS: the neutral background and EVE illustrated linework remain coherent."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "adrian-opening-full-body-v3-v2-identity",
+      "assetType": "full-body",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "canonicalReferences": [
+        "adrian-canon-identity-v2"
+      ],
+      "cameraFraming": "3:4 full-figure portrait with requested 12–15% head and shoe margins.",
+      "pose": "Neutral standing reference requested with relaxed shoulders, arms at sides, and restrained analytical presence.",
+      "lighting": "Neutral illustrated studio lighting on a removable pale background.",
+      "environment": "Simple removable neutral background only.",
+      "intendedUse": "Staging-only candidate for Adrian body/proportion and promotion-day wardrobe review; never runtime scene art.",
+      "continuityRequirements": [
+        "Use adrian-canon-identity-v2 as the sole identity authority; do not restore the superseded broad V1 body direction.",
+        "Promotion-day wardrobe: matte charcoal business shirt, charcoal tailored trousers, black leather belt, understated matte black dress shoes, no tie, no jewelry, clean-shaven, subtle professional glasses.",
+        "The closet jacket remains unworn and separate from the later dark commute coat.",
+        "Full-body authority requires complete hair, head, hands, trousers, legs, shoes, and generous breathing room."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "One owner-authorized V2-identity full-body attempt. It remains staging-only because framing, body read, pose, and footwear do not satisfy the authority gate."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/adrian/adrian-opening-full-body-v3-v2-identity.png",
+    "sha256": "D6E8AF9C40A47D405FCE2B96627493F1D9CC98806337EC9D297A738AC7102C4A",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "model": "SEEDREAM_5",
+      "taskId": "7e421834-0fb7-40ef-8aad-d3f8c6f74086",
+      "callId": "c93568fc-99cb-4230-81e0-c0eed960f8b7",
+      "providerAssetId": "dad3372b-7fae-4819-ae0c-7d38a499ff84",
+      "sourceReferences": [
+        {
+          "assetId": "adrian-canon-identity-v2",
+          "providerAssetId": "8940fe55-abcf-4425-b300-b6b1c3c7da59"
+        }
+      ],
+      "promptVersion": "eve-opening-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D EVE espionage-graphic-novel linework, semi-cel shading, restrained shadows.",
+        "SUBJECT": "Same approved Adrian V2 identity, age 34, lean ordinary analyst, clean-shaven, practical hair, subtle professional glasses.",
+        "SCENE": "Reusable full-body professional reference on a simple removable neutral background.",
+        "CAMERA": "3:4 full figure, complete head/hands/shoes, 60–70% height occupancy, 12–15% top and bottom margins requested.",
+        "LIGHTING": "Neutral illustrated studio lighting.",
+        "CONTINUITY": "Promotion-day charcoal shirt, charcoal trousers, black belt, understated black dress shoes, no tie, jewelry, watch, coat, or props."
+      },
+      "prompt": "Use the man in the reference image as the exact Adrian Vale identity anchor and extend him into a reusable full-body professional reference. He is a fictional adult intelligence analyst, age 34, lean with average-to-slightly-narrow shoulders and ordinary adult proportions. Preserve his face, clean-shaven grooming, practical dark hair, thoughtful eyes, restrained analyst read, and understated thin rectangular dark-neutral professional glasses. Show him standing naturally with relaxed shoulders, feet slightly narrower than shoulder width, arms comfortably at his sides, both hands fully visible, chin neutral, and a contained analytical presence. Dress him in a matte charcoal business shirt, charcoal tailored trousers, plain black leather belt, and understated matte black dress shoes; no tie, jewelry, watch, coat, or props. Use a simple removable neutral background with polished 2D EVE espionage graphic-novel linework, semi-cel shading, and restrained shadows. Use a portrait canvas with the complete figure occupying about 60–70 percent of the height, leaving generous 12–15 percent breathing room above the hair and below the shoes.",
+      "settings": {
+        "ratio": "3:4",
+        "width": 1536,
+        "height": 2048,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-19T15:32:29.670308Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2048
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-19",
+      "reasons": [
+        "FACE CONTINUITY — PASS: clearly carries the approved V2 Adrian face and clean-shaven identity at full resolution.",
+        "ANALYST BODY READ — REVISE: torso and chest read more imposing than the contained analyst direction.",
+        "BODY PROPORTIONS — REVISE: shoulders and stance are broader and more forceful than the lean ordinary target.",
+        "PROMOTION-DAY WARDROBE — REVISE: shirt, trousers, and belt are usable; footwear reads heavier and more boot-like than understated matte dress shoes.",
+        "GLASSES — PASS/LOW-POLISH: thin professional frames remain visible and secondary at game scale.",
+        "POSE — REVISE: chest-forward stance is too assertive for the reference authority.",
+        "FULL-FIGURE FRAMING — REJECT: hair is clipped at the top and shoes meet the bottom edge; required 12–15% margins are absent.",
+        "STYLE — PASS: EVE linework, semi-cel shading, and neutral removable background remain coherent."
+      ]
+    }
+  },
+  {
+    "spec": {
+      "assetId": "adrian-opening-three-quarter-reference-v1",
+      "assetType": "character-sheet",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "canonicalReferences": [
+        "adrian-canon-identity-v2"
+      ],
+      "cameraFraming": "Requested 3:4 three-quarter reference with complete head, shoulders, torso, both arms, hands where possible, waist, and trousers to knees or upper shins; generous margin and 60–70% figure-height occupancy.",
+      "pose": "Requested relaxed shoulders, neutral chest, naturally resting arms, and restrained analyst posture without a power or fashion pose.",
+      "lighting": "Neutral illustrated studio lighting with an EVE graphic-novel treatment.",
+      "environment": "Simple removable neutral studio background only.",
+      "intendedUse": "Staging-only candidate for Adrian three-quarter body/proportion and opening-wardrobe review; never runtime scene art.",
+      "continuityRequirements": [
+        "Use adrian-canon-identity-v2 as the sole identity authority; no old broad-shoulder body, Evelynn, transformation cue, or scene-specific identity inference.",
+        "Property-scoped body direction: lean ordinary adult male proportions, average-to-slightly-narrow shoulders, modest footprint, and restrained physical presence.",
+        "Opening wardrobe: matte charcoal business shirt, charcoal tailored trousers, black belt, subtle thin dark rectangular glasses, clean-shaven, no tie, jewelry, coat, closet jacket, or prop.",
+        "This candidate cannot establish full-body proportions below the crop, exact shoes, scene pose, runtime lighting, or runtime composition."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "ONE authorized fresh three-quarter candidate under the property-scoped Adrian strategy. REVISE: provider cropped the hair/head and hands and filled the frame beyond the requested margin; no authority promotion and no retry authorized."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/adrian/adrian-opening-three-quarter-reference-v1.png",
+    "sha256": "5275F71D77223A78534970B0AB7DF8569E1D89D306DA463F67FF55950F2B7E80",
+    "generation": {
+      "provider": "zencreator",
+      "tool": "image_editor",
+      "model": "SEEDREAM_5",
+      "taskId": "cb3be1db-f775-486c-8d57-feac75f50e3a",
+      "callId": "088a1046-9083-40c1-b8e2-3b4e0a011d2a",
+      "providerAssetId": "02cb348b-028b-4a8d-9d26-1e0d372637b1",
+      "sourceReferences": [
+        {
+          "assetId": "adrian-canon-identity-v2",
+          "providerAssetId": "8940fe55-abcf-4425-b300-b6b1c3c7da59"
+        }
+      ],
+      "promptVersion": "eve-opening-v1",
+      "promptComponents": {
+        "STYLE": "Polished 2D EVE espionage-graphic-novel linework, clean lines, semi-cel shading, and restrained shadows.",
+        "SUBJECT": "Adrian Vale, age 34, preserving the approved V2 face, core short dark hair, clean-shaven identity, and analyst/bookish read.",
+        "SCENE": "Reusable three-quarter professional character reference on a simple removable neutral background; no story scene, prop, Evelynn, or transformation cue.",
+        "CAMERA": "3:4 three-quarter framing with complete head, shoulders, torso, arms, hands where possible, waist, trousers to knees or upper shins, generous margins, and 60–70% height occupancy.",
+        "LIGHTING": "Neutral illustrated studio lighting.",
+        "CONTINUITY": "Property-scoped lean ordinary body direction and opening-day charcoal professional wardrobe; no coat, closet jacket, tie, jewelry, or shoes required."
+      },
+      "prompt": "Using the man in the reference as the exact Adrian Vale identity anchor, create one reusable three-quarter professional character reference for Adrian, age 34. Preserve his face, facial structure, approximate age, core short dark hair, clean-shaven grooming, thoughtful eyes, and analyst/bookish read. Extend the visible figure to a natural three-quarter view: complete hair and head, shoulders, torso, both arms, hands where naturally possible, waist, and trousers to approximately the knees or upper shins, with generous margin above the hair and around the figure; target 60–70% image-height occupancy. Make his body lean with ordinary adult proportions and average-to-slightly-narrow shoulders, not broad, muscular, imposing, or frail. Relax the shoulders and keep the chest neutral, arms naturally resting, no power stance or fashion pose. Dress him in the exact opening-day wardrobe: matte charcoal business shirt, charcoal tailored trousers, black belt, subtle thin dark rectangular glasses, clean-shaven, no tie, no jewelry, no coat, no closet jacket, no props. Use a simple removable neutral studio background and polished 2D EVE espionage graphic-novel linework with clean lines, semi-cel shading, and restrained shadows. Do not introduce Evelynn, transformation cues, apartment, office, mirror, or story-specific lighting. Keep the face and identity unchanged.",
+      "settings": {
+        "ratio": "3:4",
+        "width": 1536,
+        "height": 2048,
+        "number_of_images": 1,
+        "batch_mode": false,
+        "sequential_generation": false,
+        "rewrite_prompt": false
+      },
+      "createdAt": "2026-09-19T16:19:07.755353Z",
+      "estimatedCredits": 1,
+      "mediaType": "image/png",
+      "outputDimensions": {
+        "width": 1536,
+        "height": 2048
+      }
+    },
+    "review": {
+      "decision": "REVISE",
+      "reviewer": "Codex visual review",
+      "date": "2026-09-19",
+      "reasons": [
+        "FACE CONTINUITY — PASS: the visible facial structure and clean-shaven Adrian V2 identity remain recognizable at full resolution, though the top crop prevents complete hair review.",
+        "SHOULDER / BODY READ — REVISE: the visible torso and shoulders read more imposing and broad than the ordinary, slightly-narrow analyst direction.",
+        "POSTURE — REVISE: chest and shoulder presentation is more assertive than the requested relaxed, neutral analyst posture.",
+        "WARDROBE — PASS: matte charcoal shirt, charcoal trousers, black belt, and no tie or jewelry match the opening-day visual canon.",
+        "GLASSES — PASS / LOW-POLISH: thin dark rectangular frames are present and visually secondary to the face.",
+        "FRAMING — REJECT: hair/head and hands are cropped, the waist is the lower boundary, and the figure fills nearly the full frame instead of occupying 60–70% with generous margin.",
+        "STYLE — PASS: polished EVE graphic-novel linework, semi-cel shading, and neutral removable background remain coherent."
+      ]
+    }
+  }
+]

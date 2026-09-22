@@ -4,6 +4,7 @@ import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, type Block, type NodeId } from './schema';
 
 import { type NextChoice, flag, mark, record, deliver, choice } from './chapter3-next-model';
+import { isCurrentAuthoringRevision } from './revision';
 import { opportunityScenes, opportunityChoices } from './chapter3-opportunity';
 const hasRecord = (s: GameState, key: string) => s.day.records.some((r) => r.key === key);
 
@@ -95,7 +96,7 @@ export function nextBlocks(s: GameState): Block[] {
   return blocks;
 }
 export function nextChoices(s: GameState): NextChoice[] {
-  if (s.contentRevision !== 17) return frozenChoices(s as Parameters<typeof frozenChoices>[0]) as unknown as NextChoice[];
+  if (!isCurrentAuthoringRevision(s.contentRevision)) return frozenChoices(s as Parameters<typeof frozenChoices>[0]) as unknown as NextChoice[];
   if (s.scene !== 'chapter3') return [];
   if (s.phase === 'nightComplete')
     return [
@@ -106,7 +107,7 @@ export function nextChoices(s: GameState): NextChoice[] {
         'morningPlan',
       ),
     ];
-  if (s.contentRevision !== 17) return [];
+  if (!isCurrentAuthoringRevision(s.contentRevision)) return [];
   const c: NextChoice[] = [...opportunityChoices(s), ...autonomyChoices(s)];
   const once = (
     key: string,
@@ -584,7 +585,7 @@ export function applyNextChoice(state: GameState, id: string): GameState {
   if (!c) return state;
   const s = structuredClone(state);
   s.revision++;
-  s.contentRevision = state.contentRevision === 17 ? 17 : 14;
+  s.contentRevision = isCurrentAuthoringRevision(state.contentRevision) ? state.contentRevision : 14;
   const blocks = c.apply?.(s) ?? [];
   s.history.push({
     node: `chapter3.${state.phase}` as NodeId,

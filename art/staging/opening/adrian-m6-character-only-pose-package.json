@@ -1,0 +1,31 @@
+{
+  "id": "adrian-m6-character-only-pose-package",
+  "status": "prepared-for-human-review",
+  "creditsThisPass": 0,
+  "providerCallsThisPass": 0,
+  "environmentProviderReference": "prohibited",
+  "baseEnvironment": "art/production/opening/axiom-opening-office-master-v1-production.png",
+  "registration": {
+    "canvas": [1920, 1080],
+    "chairSeatCenter": [880, 836],
+    "silhouetteBounds": [798, 608, 962, 910],
+    "anchorA": [0, 0, 1920, 1080],
+    "anchorB": [610, 430, 1260, 830],
+    "floorContactY": 904,
+    "occlusionOrder": ["M5 environment", "Adrian contact shadow", "Adrian character layer", "desk foreground mask", "later state-specific props"]
+  },
+  "outputs": {
+    "plainPosePlate": "art/staging/opening/adrian-m6-seated-working-mannequin-plain.png",
+    "rgbaLayer": "art/staging/opening/adrian-m6-seated-working-mannequin-layer.png",
+    "anchorAProof": "art/staging/opening/adrian-m6-seated-working-anchor-a-proof.png",
+    "anchorBProof": "art/staging/opening/adrian-m6-seated-working-anchor-b-proof.png",
+    "reviewBoard": "art/staging/opening/adrian-m6-seated-working-registration-board.png"
+  },
+  "nextGenerationMethod": {
+    "providerReferences": [],
+    "rule": "Generate Adrian alone on a simple separable background, extract the character layer, then deterministically composite onto M5. Never supply an office image to the character generator.",
+    "prompt": "Character-only full-frame 16:9 seated-working Adrian layer on a uniform flat chroma-free neutral slate-gray background, with isolated soft contact shadow. No office, desk, chair, terminal, floor, room, architecture, furniture, text, UI, props, reflection, or other person. Adrian: male 34, clean-shaven, short restrained dark hair, pleasant intelligent slightly bookish understated analyst, thin rectangular dark-neutral professional glasses, lean ordinary proportions, average-to-slightly-narrow relaxed shoulders. Matte charcoal business shirt, charcoal trousers, black belt, understated black dress shoes; no tie, jewellery, coat. Natural seated competent working posture, slight three-quarter left head turn while attention remains toward an implied desk, relaxed shoulders, plausible hands held forward but empty. Polished 2D prestige espionage graphic-novel linework and semi-cel shading; non-photographic. Avoid action hero physique, broad shoulders, dominant executive posture, model posing, swagger, scowl, smirk, fear, seduction, future-Evelynn styling, CGI, anime, superhero anatomy, coffee, files, phone, slate, weapon, readable paper or props."
+  },
+  "runtimeBound": false,
+  "productionPromoted": false
+}

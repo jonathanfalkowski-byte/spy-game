@@ -14,14 +14,14 @@ The executable contract is [opening-cinematic-coverage.ts](../../src/ui/opening-
 ```text
 OPENING CINEMATIC COVERAGE
 required shots: 15
-runtime approved: 2
-component-only: 1
-staging: 3
-missing: 9
+runtime approved: 14
+component-only: 0
+staging: 0
+missing: 1
 status: INCOMPLETE
 ```
 
-The two runtime-approved cuts are the bounded apartment housing-notice and medical-package inserts. The M5 Axiom office master is component-only and does not count as completed office scene art.
+The runtime-approved cuts include the apartment inserts, the approach/security/office-arrival commute beats, the Daniel and Benton office beats, the bounded Maya coffee HOLD, the bounded Adrian-alone ending, and the five approved casework compositions. Maya departure remains missing. The M5 Axiom office master remains component-only source material and does not count as completed office scene art.
 
 ## Required CUT beats
 
@@ -29,19 +29,19 @@ The two runtime-approved cuts are the bounded apartment housing-notice and medic
 | --- | --- | --- | --- | --- |
 | `opening.apartment.inspect-lease` | Housing-notice inspection / `apartment.reply` | Apartment | Adrian | `RUNTIME_APPROVED` |
 | `opening.apartment.inspect-medical` | Medical-package inspection / `apartment.reply` | Apartment | Adrian | `RUNTIME_APPROVED` |
-| `opening.axiom.shot01-approach` | Leaves apartment / `commute.arrival` | Axiom approach | Adrian | `MISSING` |
-| `opening.axiom.shot02-security` | Joins screening queue / `commute.arrival` | Security lobby | Adrian, security guards | `STAGING` |
-| `opening.axiom.shot03-office-arrival` | Clears inner gate and arrives / `commute.arrival` | Office corridor | Adrian | `COMPONENT_ONLY` |
-| `opening.office.shot01-daniel` | Daniel waits at desk / `office.daniel` | Strategic Intelligence desk | Adrian, Daniel | `MISSING` |
-| `opening.office.shot02-benton` | Benton replaces Daniel / `office.benton` | Strategic Intelligence desk | Adrian, Benton | `STAGING` |
-| `opening.office.shot03-file` | Helix file wakes / `office.departure` | Adrian’s desk | Adrian, Benton | `MISSING` |
-| `opening.helix.shot01-brief` | Opens brief / `helix.brief` | Casework workstation | Adrian | `MISSING` |
-| `opening.helix.shot02-documents` | Opens source workspace / `helix.documents` | Casework workstation | Adrian | `MISSING` |
-| `opening.helix.shot03-review` | Enters assessment review / `helix.review` | Assessment workstation | Adrian | `MISSING` |
-| `opening.helix.shot04-submitted` | Report transmitted / `helix.submitted` | Assessment workstation | Adrian | `MISSING` |
-| `opening.maya.shot01-coffee` | Maya enters with two cups / `maya.promotion` | Strategic Intelligence desk | Adrian, Maya | `STAGING` |
+| `opening.axiom.shot01-approach` | Leaves apartment / `commute.arrival` | Axiom approach | Adrian | `RUNTIME_APPROVED` |
+| `opening.axiom.shot02-security` | Joins screening queue / `commute.arrival` | Security lobby | Adrian, security guards | `RUNTIME_APPROVED` |
+| `opening.axiom.shot03-office-arrival` | Clears inner gate and arrives / `commute.arrival` | Office corridor | Adrian | `RUNTIME_APPROVED` |
+| `opening.office.shot01-daniel` | Daniel waits at desk / `office.daniel` | Strategic Intelligence desk | Adrian, Daniel | `RUNTIME_APPROVED` |
+| `opening.office.shot02-benton` | Benton replaces Daniel / `office.benton` | Strategic Intelligence desk | Adrian, Benton | `RUNTIME_APPROVED` |
+| `opening.office.shot03-file` | Helix file wakes / `office.departure` | Adrian’s desk | Adrian, Benton | `RUNTIME_APPROVED` |
+| `opening.helix.shot01-brief` | Opens brief / `helix.brief` | Casework workstation | Adrian | `RUNTIME_APPROVED` |
+| `opening.helix.shot02-documents` | Opens source workspace / `helix.documents` | Casework workstation | Adrian | `RUNTIME_APPROVED` |
+| `opening.helix.shot03-review` | Enters assessment review / `helix.review` | Assessment workstation | Adrian | `RUNTIME_APPROVED` |
+| `opening.helix.shot04-submitted` | Report transmitted / `helix.submitted` | Assessment workstation | Adrian | `RUNTIME_APPROVED` |
+| `opening.maya.shot01-coffee` | Maya enters with two cups / `maya.promotion` | Strategic Intelligence desk | Adrian, Maya | `RUNTIME_APPROVED` |
 | `opening.maya.shot02-departure` | Maya leaves / `maya.goodbye` | Desk and corridor | Adrian, Maya | `MISSING` |
-| `opening.office.shot04-alone` | Opening milestone / `ending.complete` | Strategic Intelligence desk | Adrian | `MISSING` |
+| `opening.office.shot04-alone` | Opening milestone / `ending.complete` | Strategic Intelligence desk | Adrian | `RUNTIME_APPROVED` |
 
 ## HOLD contract
 

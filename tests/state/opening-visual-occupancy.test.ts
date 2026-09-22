@@ -15,36 +15,20 @@ describe('opening visual occupancy contract', () => {
     const report = openingVisualOccupancyReport();
     console.info(`\n${formatOpeningVisualOccupancyReport(report)}\n`);
     const formatted = formatOpeningVisualOccupancyReport(report);
-    expect(formatted).toContain(
+    expect(formatted).not.toContain(
       'commute.arrival / security -> requires opening.axiom.shot02-security',
     );
     expect(report.totalPlayableScreens).toBe(20);
     expect(report.totalReachableScreens).toBe(20);
-    expect(report.screensWithRuntimeVisibleArt).toBe(3);
-    expect(report.artVisible).toBe(3);
-    expect(report.screensCurrentlyBlank).toBe(17);
-    expect(report.blank).toBe(17);
+    expect(report.screensWithRuntimeVisibleArt).toBe(19);
+    expect(report.artVisible).toBe(19);
+    expect(report.screensCurrentlyBlank).toBe(1);
+    expect(report.blank).toBe(1);
     expect(report.uniqueRequiredCuts).toBe(15);
     expect(report.holdCoveredScreens).toBe(6);
     expect(report.complete).toBe(false);
     expect(report.blankScreens.map((screen) => screen.screenId)).toEqual([
-      'opening.commute.arrival.01-approach',
-      'opening.commute.arrival.02-security',
-      'opening.commute.arrival.03-office-arrival',
-      'opening.commute.arrival.04-daniel',
-      'opening.office.daniel',
-      'opening.office.benton',
-      'opening.office.departure',
-      'opening.helix.brief',
-      'opening.helix.documents',
-      'opening.helix.analysis',
-      'opening.helix.review',
-      'opening.helix.submitted',
-      'opening.maya.promotion',
-      'opening.maya.invitation',
-      'opening.maya.case',
       'opening.maya.goodbye',
-      'opening.ending.complete',
     ]);
   });
 
@@ -125,25 +109,34 @@ describe('opening visual occupancy contract', () => {
       readingBeat: 'security',
       visualMode: 'CUT',
       resolvedShotId: 'opening.axiom.shot02-security',
-      runtimeStatus: 'STAGING',
+      runtimeStatus: 'RUNTIME_APPROVED',
+      artVisible: true,
     });
     expect(officeArrival).toMatchObject({
       node: 'commute.arrival',
       readingBeat: 'office arrival',
       visualMode: 'CUT',
       resolvedShotId: 'opening.axiom.shot03-office-arrival',
+      runtimeStatus: 'RUNTIME_APPROVED',
+      artVisible: true,
     });
   });
 
-  it('keeps incomplete art fail-closed while occupancy remains explicit', () => {
+  it('resolves the promoted approach art while later cuts remain fail-closed', () => {
     const reply = choice(initialState(), 'bond.friend');
     const commute = advance(choice(reply, 'morning.yes'));
     const occupancy = resolveOpeningVisualOccupancy(commute, 0);
     expect(occupancy?.visualMode).toBe('CUT');
     expect(occupancy?.resolvedShotId).toBe('opening.axiom.shot01-approach');
-    expect(occupancy?.artVisible).toBe(false);
-    expect(resolveSceneArt(commute, 0).art).toBeUndefined();
-    expect(resolveSceneArt(commute, 0).issues).toEqual(['SHOT_WITHOUT_APPROVED_ASSET']);
+    expect(occupancy?.artVisible).toBe(true);
+    expect(resolveSceneArt(commute, 0).art?.asset.id).toBe('axiom-approach-v2-production');
+    expect(resolveSceneArt(commute, 0).issues).toEqual([]);
+    expect(resolveSceneArt(commute, 2).art?.asset.id).toBe('axiom-office-arrival-v1-production');
+    expect(resolveSceneArt(commute, 2).issues).toEqual([]);
+    expect(resolveSceneArt(commute, 3).art?.asset.id).toBe(
+      'axiom-opening-office-shot01-daniel-v1-production',
+    );
+    expect(resolveSceneArt(commute, 3).issues).toEqual([]);
   });
 
   it('fails the release occupancy gate while any playable opening state is blank', () => {

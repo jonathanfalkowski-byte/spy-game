@@ -1,0 +1,38 @@
+{
+  "status": "staging review candidate only; no production promotion; no runtime binding",
+  "m5": {
+    "path": "art\\production\\opening\\axiom-opening-office-master-v1-production.png",
+    "sha256": "EAE37D43E13E8E6203FFE59EC4C2C1DC047CCE5149E6933E83A051BFA5388566",
+    "literalCrop": [
+      1052,
+      480,
+      1500,
+      732
+    ],
+    "modified": false
+  },
+  "foreground": {
+    "providerOriginal": "art\\staging\\opening\\maya-opening-office-coffee-v1-provider-original.png",
+    "providerOriginalSha256": "5C785FA05E8611BEB1F70230BA1DE743F8F429E5C71B9CF8250DA0EA42014BEA",
+    "transform": "horizontal mirror of Maya-only transparent full-resolution foreground",
+    "worldRegistration": {
+      "bbox": [
+        1202,
+        492,
+        1334,
+        784
+      ],
+      "mediumTarget": [
+        643,
+        51
+      ]
+    },
+    "identityPixels": "unchanged apart from horizontal orientation",
+    "cup": "same provider-held cup mirrored with the hand"
+  },
+  "output": {
+    "path": "art\\staging\\opening\\axiom-opening-office-shot01-maya-v1-medium-desk-side-left-facing-candidate.png",
+    "sha256": "43863FC23F89DD0294C255163FD8AD4B9E5BFAC293B53D3B372F743D4295691B"
+  },
+  "offscreenDeskDirection": "Maya now faces image-left, toward the desk and offscreen Adrian operator zone"
+}

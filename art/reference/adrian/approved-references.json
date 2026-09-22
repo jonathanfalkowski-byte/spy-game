@@ -1,0 +1,98 @@
+[
+  {
+    "spec": {
+      "assetId": "adrian-canon-identity-v1",
+      "assetType": "portrait",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "cameraFraming": "Single head-and-shoulders portrait with generous space above entire hair and around shoulders",
+      "cameraAngle": "Near-front three-quarter, eye level",
+      "intendedUse": "Historical bounded Adrian Vale character identity reference retained for provenance and biological-lineage comparison; it is not the future Adrian visual direction, scene art, body authority, wardrobe authority, or runtime content.",
+      "continuityRequirements": [
+        "Authoritative only for Adrian Vale facial structure, recognizable facial identity, approximate thirty-four-year-old read, and core short dark hair identity when otherwise consistent.",
+        "Visible staging stubble is explicitly non-authoritative. Opening promotion-morning Adrian is clean-shaven.",
+        "This portrait does not establish body proportions, height, wardrobe, shoes, pose, scene geography, or grooming beyond the clean-shaven opening requirement.",
+        "Its broad, forceful leading-man direction is historical only and must not govern future Adrian generation."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "Historical owner-approved bounded identity record for the existing eve-cast-adrian-v1 staging portrait. The underlying source stays in staging to preserve existing provisional dependencies. The catalog schema has no superseded status, so this record remains approved for provenance and lineage while its broad visual direction is explicitly superseded for future generation."
+    },
+    "role": "canonical-reference",
+    "approvalStatus": "approved",
+    "file": "art/staging/cast-scenes/eve-cast-adrian-v1.png",
+    "sha256": "0B26A2D903E0B4C30327AABC83F463C6F2B8396D3AA10BB300AE3C182CDAFE73",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "reasons": [
+        "Approved as a bounded Adrian identity reference: facial structure, identity, approximate age/read, and core hair only.",
+        "Visible stubble is excluded from authority; canonical opening grooming is clean-shaven.",
+        "The image remains excluded from production scene, body, wardrobe, shoe, and pose authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-18",
+      "source": "Explicit owner decision in the opening visual-production pass: approve eve-cast-adrian-v1.png as a bounded canonical Adrian identity reference, with visible stubble noncanonical and opening Adrian clean-shaven."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "adrian-canon-identity-v2",
+      "assetType": "portrait",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "adrian"
+        }
+      ],
+      "cameraFraming": "Head-and-shoulders portrait with complete hair visible and a slight three-quarter view.",
+      "cameraAngle": "Slight three-quarter, eye level",
+      "intendedUse": "Canonical Adrian Vale identity reference: facial identity, approximate age/read, facial structure, eyes, brows, nose, jaw, core hairstyle, and general analyst/bookish character read. Not body, height, pose, full wardrobe, shoe, exact glasses geometry, scene, or runtime authority.",
+      "continuityRequirements": [
+        "Adrian is a competent man who is easy to overlook: intelligent, observant, slightly bookish, restrained, pleasant, and ordinary enough to disappear inside a corporate environment.",
+        "Canonical grooming is clean-shaven; the portrait establishes face and core hairstyle only.",
+        "The glasses establish opening presentation/accessory authority only: thin, understated, rectangular, professional, dark neutral frame, visually secondary to the face. Exact frame geometry may vary by shot.",
+        "Do not use Evelynn as a generation reference or require gender-swapped-twin resemblance; any biological-lineage comparison is a human review question only.",
+        "The superseded V1 portrait remains historical/provenance material and must not restore the broad leading-man direction."
+      ],
+      "dimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "notes": "Owner-approved V2 Adrian identity direction. Canonical face authority only; body/proportion and promotion-day wardrobe authority remain separate review gates."
+    },
+    "role": "canonical-reference",
+    "approvalStatus": "approved",
+    "file": "art/reference/adrian/adrian-canon-identity-v2.png",
+    "sha256": "0809F5F17547FB2FE44AA9EAA5F014B292CBFA9D1656B10E827FD77A39612C58",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Project owner",
+      "date": "2026-09-19",
+      "reasons": [
+        "Identity quality PASS: approved as the new canonical Adrian identity reference.",
+        "Analyst/bookish read PASS: intelligent, observant, restrained, and easy to overlook without caricature.",
+        "Attractiveness balance PASS: pleasant-looking without a male-model or heroic read.",
+        "Age PASS / LOW-POLISH: plausible mid-thirties; no further correction spend authorized.",
+        "Style PASS: coherent EVE illustrated espionage-graphic-novel treatment.",
+        "Family resemblance sufficient for current canon without requiring gender-swapped-twin geometry."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-19",
+      "source": "Explicit owner approval of adrian-canon-identity-v2-candidate.png as the new canonical Adrian identity reference."
+    }
+  }
+]

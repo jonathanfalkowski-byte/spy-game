@@ -6,6 +6,7 @@ import {
   homeDisclosure,
 } from '../state/chapter3-provenance';
 import { paragraph as p, speech as q, thought as t, type NodeId } from './schema';
+import { isCurrentAuthoringRevision } from './revision';
 
 export const eveningScenes = [
   {
@@ -82,7 +83,7 @@ export interface EveningChoice {
   hint: string;
 }
 export function eveningChoices(s: GameState): EveningChoice[] {
-  if (s.scene !== 'chapter3' || s.contentRevision !== 13) return [];
+  if (s.scene !== 'chapter3' || (s.contentRevision !== 13 && !isCurrentAuthoringRevision(s.contentRevision))) return [];
   const list: EveningChoice[] = [];
   const add = (id: string, next: string, label: string, hint: string) => {
     if (!s.day.completed.includes('chapter3.' + id))

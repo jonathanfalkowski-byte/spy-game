@@ -2,6 +2,8 @@ import type { GameState } from '../state/schema';
 import production from './approved-scene-art.json';
 import { homeSceneArt } from './home-scene-art';
 import { apartmentEndingArt5, chapter5ReadingBeats } from './chapter5-beats';
+import { openingReadingBeats } from './opening-beats';
+import { openingCaseworkShots } from './opening-casework-art';
 
 export type ArtIssue =
   | 'SHOT_WITHOUT_APPROVED_ASSET'
@@ -19,6 +21,26 @@ export type SceneShot = {
 export type SceneArt = SceneShot & { asset: (typeof production)[number] };
 const assets = new Map(production.map((a) => [a.id, a]));
 
+// A previous frame may only be held while its authored scene/node is still
+// active. This is separate from the asset binding: an approved image can be
+// valid for one opening beat and still be wrong after the next participant
+// enters.
+const openingShotNodes: Record<string, readonly string[]> = {
+  'opening.axiom.shot01-approach': ['commute.arrival'],
+  'opening.axiom.shot02-security': ['commute.arrival'],
+  'opening.axiom.shot03-office-arrival': ['commute.arrival'],
+  'opening.office.shot01-daniel': ['commute.arrival', 'office.daniel'],
+  'opening.office.shot02-benton': ['office.benton'],
+  'opening.office.shot03-file': ['office.departure'],
+  'opening.helix.shot01-brief': ['helix.brief'],
+  'opening.helix.shot02-documents': ['helix.documents', 'helix.analysis'],
+  'opening.helix.shot03-review': ['helix.review'],
+  'opening.helix.shot04-submitted': ['helix.submitted'],
+  'opening.maya.shot01-coffee': ['maya.promotion', 'maya.invitation', 'maya.case'],
+  'opening.maya.shot02-departure': ['maya.goodbye'],
+  'opening.office.shot04-alone': ['ending.complete'],
+};
+
 // Explicit authoring bindings. Asset names are not searched, guessed or constructed at runtime.
 export const homeBindings = {
   'pre-glasshouse': {
@@ -33,6 +55,7 @@ export const homeBindings = {
   },
 } as const;
 export const shotBindings: Record<string, { assetId: string; location: string }> = {
+  ...openingCaseworkShots,
   'opening.apartment.shot01': {
     assetId: 'opening-apartment-master-v2-production',
     location: 'apartment',
@@ -44,6 +67,34 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
   'opening.apartment.inspect-medical': {
     assetId: 'opening-apartment-medical-package-v1-production',
     location: 'apartment',
+  },
+  'opening.axiom.shot01-approach': {
+    assetId: 'axiom-approach-v2-production',
+    location: 'axiom-approach',
+  },
+  'opening.axiom.shot02-security': {
+    assetId: 'axiom-security-lobby-v2-production',
+    location: 'axiom-security-lobby',
+  },
+  'opening.axiom.shot03-office-arrival': {
+    assetId: 'axiom-office-arrival-v1-production',
+    location: 'axiom-office-arrival',
+  },
+  'opening.office.shot01-daniel': {
+    assetId: 'axiom-opening-office-shot01-daniel-v1-production',
+    location: 'axiom-strategic-intelligence',
+  },
+  'opening.office.shot02-benton': {
+    assetId: 'axiom-opening-office-shot02-benton-v1-production',
+    location: 'axiom-strategic-intelligence',
+  },
+  'opening.maya.shot01-coffee': {
+    assetId: 'axiom-opening-office-shot01-maya-v1-production',
+    location: 'axiom-strategic-intelligence',
+  },
+  'opening.office.shot04-alone': {
+    assetId: 'axiom-opening-office-shot04-alone-v1-production',
+    location: 'axiom-strategic-intelligence',
   },
   'c05.s01.shot01': {
     assetId: 'c5-s01-daytime-apartment-anchor-v5-production',
@@ -96,7 +147,7 @@ type ReadingSequence = NonNullable<ReturnType<typeof chapter5ReadingBeats>>;
 const readingCache = new WeakMap<GameState, ReadingSequence | undefined>();
 export function currentReadingBeats(state: GameState) {
   if (readingCache.has(state)) return readingCache.get(state);
-  const sequence = chapter5ReadingBeats(state);
+  const sequence = openingReadingBeats(state) ?? chapter5ReadingBeats(state);
   readingCache.set(state, sequence);
   return sequence;
 }
@@ -105,12 +156,21 @@ export function currentReadingBeats(state: GameState) {
 export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[] {
   const binding = shotBindings[shot.shotId];
   const asset = shot.assetId ? assets.get(shot.assetId) : undefined;
+  const apartmentInspectionFallback =
+    shot.shotId.startsWith('opening.apartment.inspect-') &&
+    !binding &&
+    shot.assetId === shotBindings['opening.apartment.shot01'].assetId;
   const issues: ArtIssue[] = [];
-  if (!binding || (shot.assetId && binding.assetId !== shot.assetId))
+  if ((!binding && !apartmentInspectionFallback) || (shot.assetId && binding && binding.assetId !== shot.assetId))
     issues.push('ASSET_WITHOUT_VALID_SHOT');
   if (!asset) issues.push('SHOT_WITHOUT_APPROVED_ASSET');
   if (asset && binding && asset.location !== binding.location) issues.push('LOCATION_MISMATCH');
   const node = state.scene + '.' + state.phase;
+  const allowedOpeningNodes = openingShotNodes[shot.shotId];
+  if (allowedOpeningNodes && !allowedOpeningNodes.includes(node)) issues.push('LOCATION_MISMATCH');
+  const casework = openingCaseworkShots[shot.shotId];
+  if (casework && !casework.nodes.includes(node))
+    issues.push('LOCATION_MISMATCH', 'PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
   if (shot.shotId.startsWith('home.')) {
     if (
       ![
@@ -134,13 +194,8 @@ export function validateSceneShot(state: GameState, shot: SceneShot): ArtIssue[]
   } else if (shot.shotId === 'opening.apartment.shot01') {
     if (!['apartment.bond', 'apartment.reply', 'apartment.departure'].includes(node))
       issues.push('LOCATION_MISMATCH');
-    if (state.ledger.some((entry) => entry.action.type === 'INSPECT_APARTMENT'))
-      issues.push('PROP_CUSTODY_MISMATCH', 'FUTURE_STATE_VISUAL');
-  } else if (
-    shot.shotId === 'opening.apartment.inspect-lease' ||
-    shot.shotId === 'opening.apartment.inspect-medical'
-  ) {
-    const expectedId = shot.shotId.endsWith('lease') ? 'lease' : 'medical';
+  } else if (shot.shotId.startsWith('opening.apartment.inspect-')) {
+    const expectedId = shot.shotId.slice('opening.apartment.inspect-'.length);
     const latestAction = state.ledger[state.ledger.length - 1]?.action;
     if (!['apartment.bond', 'apartment.reply'].includes(node)) issues.push('LOCATION_MISMATCH');
     if (latestAction?.type !== 'INSPECT_APARTMENT' || latestAction.id !== expectedId)
@@ -171,14 +226,17 @@ function openingShot(state: GameState): SceneShot | undefined {
   const node = state.scene + '.' + state.phase;
   if (state.scene === 'apartment') {
     const action = state.ledger[state.ledger.length - 1]?.action;
+    const inspectionShotId =
+      action?.type === 'INSPECT_APARTMENT' ? `opening.apartment.inspect-${action.id}` : undefined;
     const shotId =
-      action?.type === 'INSPECT_APARTMENT'
-        ? `opening.apartment.inspect-${action.id}`
+      inspectionShotId && shotBindings[inspectionShotId]
+        ? inspectionShotId
         : 'opening.apartment.shot01';
-    return { shotId, assetId: shotBindings[shotId]?.assetId, alt: '' };
+    const assetId = shotBindings[shotId]?.assetId ?? shotBindings['opening.apartment.shot01'].assetId;
+    return { shotId, assetId, alt: '' };
   }
   const ids: Record<string, string> = {
-    'commute.arrival': 'opening.axiom.shot04-desk',
+    'commute.arrival': 'opening.axiom.shot01-approach',
     'office.daniel': 'opening.office.shot01-daniel',
     'office.benton': 'opening.office.shot02-benton',
     'office.departure': 'opening.office.shot03-file',
@@ -193,7 +251,7 @@ function openingShot(state: GameState): SceneShot | undefined {
     'maya.goodbye': 'opening.maya.shot02-departure',
     'ending.complete': 'opening.office.shot04-alone',
   };
-  return ids[node] ? { shotId: ids[node], assetId: shotBindings[ids[node]]?.assetId, alt: '' } : undefined;
+  return ids[node] ? { shotId: ids[node], assetId: shotBindings[ids[node]]?.assetId, alt: openingCaseworkShots[ids[node]]?.alt ?? '' } : undefined;
 }
 
 /** Cursor is transient UI state. No change to GameState, ledger, content revision or saved bytes. */

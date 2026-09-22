@@ -1,0 +1,51 @@
+{
+  "assetId": "maya-opening-office-coffee-clean-conditioning-plate",
+  "kind": "zero-cost clean character-only pose and cup-contact conditioning guide",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9"
+  },
+  "sha256": "9EF3F1661208FE432FEF666B3BD92A39722D5E09168B3CD405A8091ADE4F1B2A",
+  "providerUploadAuthority": "one clean guide only; M5 office and prior scene compositions excluded",
+  "figure": {
+    "subject": "Maya Reyes",
+    "identity": "33, warm brown skin, watchful dark eyes, black hair in a loose knot, navy suit with turned-back cuffs",
+    "pose": "settled three-quarter southwest desk-side stance, neutral friendly professional address",
+    "cup": "one plain unmarked paper cup physically overlapped by the existing hand",
+    "background": "uniform neutral extraction background",
+    "exclusions": [
+      "office",
+      "Adrian",
+      "Daniel",
+      "Benton",
+      "second cup",
+      "text",
+      "logos",
+      "case files"
+    ]
+  },
+  "m5RegistrationTarget": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "bbox": [
+      1202,
+      492,
+      1334,
+      784
+    ],
+    "footPoint": [
+      1268,
+      784
+    ],
+    "eyeLine": [
+      1266,
+      558
+    ],
+    "orientation": "southwest toward Adrian at central desk",
+    "ownCup": "held naturally; local Adrian cup will be a separate deterministic desk prop beside terminal"
+  },
+  "status": "staging-only; not production-approved; not runtime-bound"
+}
