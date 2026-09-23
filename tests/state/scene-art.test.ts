@@ -168,9 +168,9 @@ it('binds each approved opening inspection only to its immediately reached apart
   expect(openingShots[15].issues).toEqual([]);
   expect(openingShots.slice(7, 11).map((visual) => visual.art?.asset.id)).toEqual([
     'axiom-opening-office-shot03-file-v3-transparent-production',
-    'axiom-casework-brief-v1-production',
-    'axiom-casework-documents-v1-production',
-    'axiom-casework-documents-v1-production',
+    'axiom-casework-brief-v2-production',
+    'axiom-casework-documents-v2-production',
+    'axiom-casework-documents-v2-production',
   ]);
   for (const visual of openingShots.slice(7, 11)) expect(visual.issues).toEqual([]);
   expect(openingShots[14].art?.asset.id).toBe(

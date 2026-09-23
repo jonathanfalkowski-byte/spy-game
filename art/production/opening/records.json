@@ -391,11 +391,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json. Superseded 2026-09-23 by axiom-casework-brief-v2-production (noir refresh); retained for provenance, not runtime."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-brief-v1-production.png",
     "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417",
     "review": {
@@ -413,6 +413,48 @@
       "reviewer": "Project owner (scope authorization); Codex (composite verification)",
       "date": "2026-09-22",
       "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-brief-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.brief",
+      "environment": "Close three-quarter shot of the glass slate showing the Helix brief on the black leather pad, warm brass-lamp rim, cool screen glow, night office behind.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot01-brief at helix.brief. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 3b7af4ba-9232-4243-827c-5c34614f3828, provider asset 9decb00f-d8e3-4a32-b219-75b9daa4e2ec; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-brief-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-brief-v2-production.png",
+    "sha256": "853409b862b769171570a27b98b5fdfa728b92ec3f6b0d2022b6a84c8399ccce",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Noir cel rendering with ink lines; no photo blur or flat vector.",
+        "Same beat as v1; object-focused, no characters, no readable evidence.",
+        "Consistent desk and lamp/monitor lighting across the casework set."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
     }
   },
   {
@@ -437,11 +479,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json. Superseded 2026-09-23 by axiom-casework-documents-v2-production (noir refresh); retained for provenance, not runtime."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-documents-v1-production.png",
     "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca",
     "review": {
@@ -459,6 +501,48 @@
       "reviewer": "Project owner (scope authorization); Codex (composite verification)",
       "date": "2026-09-22",
       "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-documents-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.documents",
+      "environment": "Three-quarter desk shot: glass slate, warm terminal and fanned source records on the walnut desk under the brass lamp.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot02-documents at helix.documents, helix.analysis. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 0a46cad4-252f-494e-b326-f7fdfcbd4313, provider asset dc172b0c-f3ef-4a2c-a497-896aba5ce143; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-documents-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-documents-v2-production.png",
+    "sha256": "904bad7895683347f1b2a489af6752a16e0ac4c805bd161a20073098b7982d6f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Noir cel rendering with ink lines; no photo blur or flat vector.",
+        "Same beat as v1; object-focused, no characters, no readable evidence.",
+        "Consistent desk and lamp/monitor lighting across the casework set."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
     }
   },
   {
@@ -483,11 +567,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json. Superseded 2026-09-23 by axiom-casework-review-v2-production (noir refresh); retained for provenance, not runtime."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-review-v1-production.png",
     "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1",
     "review": {
@@ -505,6 +589,48 @@
       "reviewer": "Project owner (scope authorization); Codex (composite verification)",
       "date": "2026-09-22",
       "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-review-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.review",
+      "environment": "Close quiet shot of the open case file with a marked page and pen under the brass lamp, slate glowing at frame edge.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot03-review at helix.review. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 216cfa53-af5d-4f6b-99a8-a2fafc1eefd2, provider asset 766b23cd-0b6d-4f69-9b37-0e87bf0f3f3f; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-review-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-review-v2-production.png",
+    "sha256": "2b7d92f374704d25992707708219e3089b19299eba309d2732ead001d8bc828f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Noir cel rendering with ink lines; no photo blur or flat vector.",
+        "Same beat as v1; object-focused, no characters, no readable evidence.",
+        "Consistent desk and lamp/monitor lighting across the casework set."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
     }
   },
   {
@@ -529,11 +655,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json."
+      "notes": "Deterministic zero-credit derivative. Recipe and source/output hashes: art/production/opening/axiom-casework-zero-cost-receipt.json. Superseded 2026-09-23 by axiom-casework-submitted-v2-production (noir refresh); retained for provenance, not runtime."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-submitted-v1-production.png",
     "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252",
     "review": {
@@ -551,6 +677,48 @@
       "reviewer": "Project owner (scope authorization); Codex (composite verification)",
       "date": "2026-09-22",
       "source": "User request 2026-09-22, task 01a0c937-f480-7b81-a1be-e8fccf14d0ce: eliminate every blank truthfully fillable at zero cost by deterministic composites or already-approved production components, preserve CUT/HOLD and no staging bindings."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-submitted-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.submitted",
+      "environment": "Terminal showing an abstract confirmation panel, slate and keyboard on the walnut desk, dark office.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot04-submitted at helix.submitted. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 290fc24f-fb52-433c-a111-ac49566265ff, provider asset 9b44a20c-fa4e-4076-b5b9-88788009b925; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-submitted-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-submitted-v2-production.png",
+    "sha256": "f83dda7eb98e7f2911d3a44c3be9d8449eefd49a27bd6f26d90c45616d747c00",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Noir cel rendering with ink lines; no photo blur or flat vector.",
+        "Same beat as v1; object-focused, no characters, no readable evidence.",
+        "Consistent desk and lamp/monitor lighting across the casework set."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
     }
   },
   {

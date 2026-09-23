@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import packageJson from '../../docs/story/REVISION_18_EDITORIAL_PACKAGE.json' with { type: 'json' };
-import { act, newGameState, replay } from '../../src/state/reducer';
+import { act, initialState, replay } from '../../src/state/reducer';
 import { encodeSave, decodeSave, SAVE_KEY } from '../../src/persistence/saves';
 import { end4, walk5 } from '../chapter5-helpers';
 import { openingVisualFixtures } from '../opening-visual-fixtures';
@@ -8,7 +8,8 @@ const entries: { file: string; context: string; old: string; new: string }[] = p
 const entry = (file: string, context: string) =>
   entries.find((e: any) => e.file.endsWith(file) && e.context === context)!;
 const snapshots = new Map<string, any>();
-let traversed = newGameState();
+// New games start at revision 19; this reader spec pins revision 18 through the frozen engine.
+let traversed = initialState(18);
 for (const event of end4('intimate', 'personal', 'sex').ledger) {
   traversed = act(traversed, event.action);
   const node = traversed.scene + '.' + traversed.phase;
@@ -45,11 +46,11 @@ const assets = [
   'axiom-opening-office-shot01-daniel-v3-transparent-production',
   'axiom-opening-office-shot02-benton-v3-transparent-production',
   'axiom-opening-office-shot03-file-v3-transparent-production',
-  'axiom-casework-brief-v1-production',
-  'axiom-casework-documents-v1-production',
-  'axiom-casework-documents-v1-production',
-  'axiom-casework-review-v1-production',
-  'axiom-casework-submitted-v1-production',
+  'axiom-casework-brief-v2-production',
+  'axiom-casework-documents-v2-production',
+  'axiom-casework-documents-v2-production',
+  'axiom-casework-review-v2-production',
+  'axiom-casework-submitted-v2-production',
   'axiom-opening-office-shot01-maya-v3-transparent-production',
   'axiom-opening-office-shot01-maya-v3-transparent-production',
   'axiom-opening-office-shot01-maya-v3-transparent-production',

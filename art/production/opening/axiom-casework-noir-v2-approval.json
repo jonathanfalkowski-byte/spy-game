@@ -1,0 +1,160 @@
+{
+  "approvals": [
+    {
+      "assetId": "axiom-casework-brief-v2-production",
+      "shot": "brief",
+      "nodes": "helix.brief",
+      "scope": "SHOT-SPECIFIC ONLY",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Owner approved the A picks, ship as-is, in the EVE Design session on 2026-09-23 (relayed). The EVE Art session holds the owner's standing approval to promote owner-approved frames.",
+      "files": {
+        "production": "art/production/opening/axiom-casework-brief-v2-production.png",
+        "staging": "art/staging/full-game/opening-casework/brief-noir-v2-a-candidate.png",
+        "public": null
+      },
+      "supersedes": "art/production/opening/axiom-casework-brief-v1-production.png",
+      "sha256": "853409b862b769171570a27b98b5fdfa728b92ec3f6b0d2022b6a84c8399ccce",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "3b7af4ba-9232-4243-827c-5c34614f3828",
+        "callId": "42fbd21e-3f3f-4124-8aa1-c8c3d790130b",
+        "assetId": "9decb00f-d8e3-4a32-b219-75b9daa4e2ec",
+        "inputAssetIds": [
+          "b0d169e9-993e-4ef2-9f36-0bc78e46b18a",
+          "fb163e61-b577-4f68-a6c3-24ab85c7ba38"
+        ]
+      },
+      "retainedNotes": [],
+      "runtimeBound": false
+    },
+    {
+      "assetId": "axiom-casework-documents-v2-production",
+      "shot": "documents",
+      "nodes": "helix.documents, helix.analysis",
+      "scope": "SHOT-SPECIFIC ONLY",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Owner approved the A picks, ship as-is, in the EVE Design session on 2026-09-23 (relayed). The EVE Art session holds the owner's standing approval to promote owner-approved frames.",
+      "files": {
+        "production": "art/production/opening/axiom-casework-documents-v2-production.png",
+        "staging": "art/staging/full-game/opening-casework/documents-noir-v2-a-candidate.png",
+        "public": null
+      },
+      "supersedes": "art/production/opening/axiom-casework-documents-v1-production.png",
+      "sha256": "904bad7895683347f1b2a489af6752a16e0ac4c805bd161a20073098b7982d6f",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "0a46cad4-252f-494e-b326-f7fdfcbd4313",
+        "callId": "0c801c0b-23bc-4dbc-9b96-f25c95d2dc3e",
+        "assetId": "dc172b0c-f3ef-4a2c-a497-896aba5ce143",
+        "inputAssetIds": [
+          "b0d169e9-993e-4ef2-9f36-0bc78e46b18a",
+          "fb163e61-b577-4f68-a6c3-24ab85c7ba38"
+        ]
+      },
+      "retainedNotes": [],
+      "runtimeBound": false
+    },
+    {
+      "assetId": "axiom-casework-review-v2-production",
+      "shot": "review",
+      "nodes": "helix.review",
+      "scope": "SHOT-SPECIFIC ONLY",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Owner approved the A picks, ship as-is, in the EVE Design session on 2026-09-23 (relayed). The EVE Art session holds the owner's standing approval to promote owner-approved frames.",
+      "files": {
+        "production": "art/production/opening/axiom-casework-review-v2-production.png",
+        "staging": "art/staging/full-game/opening-casework/review-noir-v2-a-candidate.png",
+        "public": null
+      },
+      "supersedes": "art/production/opening/axiom-casework-review-v1-production.png",
+      "sha256": "2b7d92f374704d25992707708219e3089b19299eba309d2732ead001d8bc828f",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "216cfa53-af5d-4f6b-99a8-a2fafc1eefd2",
+        "callId": "26d9b475-f6ca-4fbb-9f86-3fe9649f9c64",
+        "assetId": "766b23cd-0b6d-4f69-9b37-0e87bf0f3f3f",
+        "inputAssetIds": [
+          "b0d169e9-993e-4ef2-9f36-0bc78e46b18a",
+          "fb163e61-b577-4f68-a6c3-24ab85c7ba38"
+        ]
+      },
+      "retainedNotes": [],
+      "runtimeBound": false
+    },
+    {
+      "assetId": "axiom-casework-submitted-v2-production",
+      "shot": "submitted",
+      "nodes": "helix.submitted",
+      "scope": "SHOT-SPECIFIC ONLY",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Owner approved the A picks, ship as-is, in the EVE Design session on 2026-09-23 (relayed). The EVE Art session holds the owner's standing approval to promote owner-approved frames.",
+      "files": {
+        "production": "art/production/opening/axiom-casework-submitted-v2-production.png",
+        "staging": "art/staging/full-game/opening-casework/submitted-noir-v2-a-candidate.png",
+        "public": null
+      },
+      "supersedes": "art/production/opening/axiom-casework-submitted-v1-production.png",
+      "sha256": "f83dda7eb98e7f2911d3a44c3be9d8449eefd49a27bd6f26d90c45616d747c00",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "290fc24f-fb52-433c-a111-ac49566265ff",
+        "callId": "b10d1395-d19b-4154-89b4-7e91facc1d9a",
+        "assetId": "9b44a20c-fa4e-4076-b5b9-88788009b925",
+        "inputAssetIds": [
+          "b0d169e9-993e-4ef2-9f36-0bc78e46b18a",
+          "fb163e61-b577-4f68-a6c3-24ab85c7ba38"
+        ]
+      },
+      "retainedNotes": [
+        "PASS (picked): confirmation screen; note lamp still on (prompt asked off)"
+      ],
+      "runtimeBound": false
+    }
+  ],
+  "v1FilesUntouched": true,
+  "runtimeNote": "EVE Code rebinds src/ui/opening-casework-art.ts assetIds, the office-arrival binding, the reader-art manifest and the public/ copies.",
+  "removedOrphans": {
+    "assets": [
+      "axiom-casework-file-v2-production",
+      "axiom-office-arrival-v2-production"
+    ],
+    "date": "2026-09-23",
+    "reason": "office.departure and office arrival already bind to approved noir composites; the design handoff mislabelled them. Files removed from art/production at EVE Design's request; staging candidates remain in art/staging/full-game/opening-casework/."
+  }
+}

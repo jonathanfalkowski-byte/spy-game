@@ -232,36 +232,36 @@
     "sha256": "b2025b84c72b1ed4543443ab2fc902e6a8d8b6ab8ee42b055e22a561fb5973ea"
   },
   {
-    "id": "axiom-casework-brief-v1-production",
-    "src": "art/opening/axiom-casework-brief-v1-production.png",
+    "id": "axiom-casework-brief-v2-production",
+    "src": "art/opening/axiom-casework-brief-v2-production.png",
     "location": "axiom-casework",
     "width": 1920,
     "height": 1080,
-    "sha256": "299e460fe08a8384e8df9283fb53b3277ebc5953ff46fec8b066820d74160417"
+    "sha256": "853409b862b769171570a27b98b5fdfa728b92ec3f6b0d2022b6a84c8399ccce"
   },
   {
-    "id": "axiom-casework-documents-v1-production",
-    "src": "art/opening/axiom-casework-documents-v1-production.png",
+    "id": "axiom-casework-documents-v2-production",
+    "src": "art/opening/axiom-casework-documents-v2-production.png",
     "location": "axiom-casework",
     "width": 1920,
     "height": 1080,
-    "sha256": "29a17d827475e20ecccc69e456238e532dbbf26c1a4c0b01e79fc9d345ddb7ca"
+    "sha256": "904bad7895683347f1b2a489af6752a16e0ac4c805bd161a20073098b7982d6f"
   },
   {
-    "id": "axiom-casework-review-v1-production",
-    "src": "art/opening/axiom-casework-review-v1-production.png",
+    "id": "axiom-casework-review-v2-production",
+    "src": "art/opening/axiom-casework-review-v2-production.png",
     "location": "axiom-casework",
     "width": 1920,
     "height": 1080,
-    "sha256": "5e22595b694825093a3f3a3b73fb9ce467ac0dfe008c06ff0dd29cae3edc2dd1"
+    "sha256": "2b7d92f374704d25992707708219e3089b19299eba309d2732ead001d8bc828f"
   },
   {
-    "id": "axiom-casework-submitted-v1-production",
-    "src": "art/opening/axiom-casework-submitted-v1-production.png",
+    "id": "axiom-casework-submitted-v2-production",
+    "src": "art/opening/axiom-casework-submitted-v2-production.png",
     "location": "axiom-casework",
     "width": 1920,
     "height": 1080,
-    "sha256": "b64013756f61a8c8b793464e3038fc7d05f3445e2e67cfd07243ec0236f09252"
+    "sha256": "f83dda7eb98e7f2911d3a44c3be9d8449eefd49a27bd6f26d90c45616d747c00"
   },
   {
     "id": "axiom-opening-office-shot01-daniel-v1-production",
