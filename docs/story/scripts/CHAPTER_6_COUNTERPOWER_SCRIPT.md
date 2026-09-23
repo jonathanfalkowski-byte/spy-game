@@ -140,3 +140,17 @@ silently.
 - `route.lane` is **derived, re-derivable and sourced** — never a hidden score. It reads `c6.exit-action` first, then the seeds (Julian reliance, `c5.published`, Sloane ties, `rook-proof`, self-funding, leverage records). Two players with the same action but different seeds can land in different lanes; that is intended. Design will supply the exact seed list and tie-breaks for the Chapter 7 beat as a separate note.
 - Overlays: set `kept` only on a sequence of consolidating-provider terms already in state; `exploitation` only on a recorded threat/harm cause; `adult-work` only on an accepted adult-work term. Never from this movement's choices alone.
 - No intimacy in this movement. Any optional Julian/Sebastian beat is gated separately (a `*_READY` constant) and is not part of the branch.
+
+## Build resolutions (2026-09-23, after EVE Code's conflict report)
+
+- **C1 (lane id):** the lane id is **`outside`** (display name "outside intelligence"). Enum: `institutional | outside | executive | own-power`. The route map's "outside-intel" is the same lane.
+- **C2 (challenge gate):** gate `resolve-challenge` strictly on `c6.oracle-seen`. No non-ORACLE variant.
+- **C3 (protect):** gate `resolve-protect` on `c6.maya-exposed` (set in movement 3); keep it unavailable until movement 3 is wired. Maya's reply uses the clean line when `c5.maya-clean-line` is set; otherwise the **monitored-line variant**: `q(Maya): "(guarded, on the Axiom line) Whatever you did, it landed. I won't ask on this line. Thank you."`
+- **C4 (trade split):** split `resolve-trade` into **trade-expose** (gate `c6.oracle-seen`) and **trade-give** (gate `c6.rook-proof === 'supported'`). trade-give's recipient stays deliberately **unnamed** this pass — consequence "an unnamed actor now holds it"; the outside route development names them later.
+- **C5 (action collision):** store `c6.resolve-action` = the chosen action id (+ trade sub-choice) so the self-funded `break` and `hold` stay distinguishable though both set `exit-action = declined`. Approved.
+- **C6 (enforce on self-funded):** lane **own-power** (the enforced term is her own paid arrangement). Approved.
+- **C7 (protect lane, interim):** until the seed weighting arrives, take the lane from the arrangement — julian/public → executive, sloane → institutional, self-funded → own-power. Approved as interim.
+- **C8 (route storage):** store `c6.route-lane` and `c6.route-overlay` (comma-separated) via a pure `deriveRoute6(state)`; overlays empty this pass; no schema change. Approved — no top-level `route` field.
+- **C9 (consequence fields):** fill from state where supported (provider, term, request, response, recovery, benefit, actor-knowledge); the rest `"n/a"`. Approved; no per-action table needed now.
+- **C10 (break cost):** narrative-only this pass, no `money5` change. A real cash deduction (e.g. the Harbour self-pay price for breaking `julian-workroom`) is a later polish enhancement — design wants the cost real eventually, but not blocking this checkpoint.
+- **C11:** approved as described.

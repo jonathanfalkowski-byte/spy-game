@@ -151,3 +151,13 @@ player sees `verify-predict` and `verify-refuse` only. The contradiction branch 
 `verified-date`); a clean record takes the consistent branch. Celeste corroboration runs
 only after a `supported` result — a `broken`/`untested` player skips it and goes straight
 to `counterpower`.
+
+## Build resolutions (2026-09-23, after EVE Code's conflict report)
+
+- **P1 (compare contradiction unreachable):** build `verify-compare` as always-consistent → `supported`. No current state produces a false/rejected `verified-date`, so keep the contradiction branch documented-dead until such a state exists. Approved.
+- **P2a (predict pass/fail):** passes by default; **fails only if Evelynn earlier misled the sender** (`c3 misdirect-rook` or the equivalent record) — the sender won't spend the truth on someone who lied to it. Thematically right. Approved.
+- **P2b (never heard Celeste):** gate `verify-predict` on the `mission.celeste-greeting` record (she must have heard the breakfast line to withhold it). If she has **no** Glass House item, **no** `c3.verified-date`, and **no** `celeste-greeting`, only `verify-refuse` is offered → `untested` → own-hand. Approved (the skeptic/own-hand ending is a valid strong outcome).
+- **P3 (celeste-press data model):** `celeste-press` adds a `npcs.celeste` **belief** ("Evelynn pressed about the Singapore breakfast like a lawyer") plus a `note6` marking it as Celeste's limit, not a fact; `celeste-let-be` records the one confirmed fact as a `note6` fact. Approved.
+- **P4 (Rook's demonstrated knowledge):** on a prediction pass, append to `npcs.rook.known`: "the Marikina breakfast, Celeste Laurent's table, the 02:40 handoff"; Evelynn's question is sent with send-style sourcing. Approved.
+- **P5 (one flow):** every route has sender contact from Chapter 3, so use one flow for all; no empty-Rook branch. Approved.
+- **P6 (structure):** the whole proof runs inside the `proof` phase, step-unlocked like the salon; `decline`/`broken`/`untested` go straight to `counterpower`; the photograph adds the Sloane-visible entry. Approved.
