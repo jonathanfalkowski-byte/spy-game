@@ -298,3 +298,63 @@ in a later polish note; store `c6.exit-prep` now.
 Build the Counter now; leave `friction-sloane`/`friction-julian`/`friction-public` as
 marked placeholders. I'll script those three short beats in a follow-up. A player who skips
 the Counter (`counter-skip`) goes straight to `exit`.
+
+## Friction beats — full text (2026-09-23)
+
+Replaces the three placeholders in movement 3. Flow: after the Counter resolves (or after
+`counter-skip`), the `friction` phase offers whichever of these three beats is unlocked by a
+delivered fact, each playable once and returning to the friction step, plus **friction-done**
+· "Leave it there for tonight" · *Enough people for one night.* → `exit`. Each beat reacts
+only to what actually reached the actor; none assigns a route. Each sets a small
+`c6.friction-*` record.
+
+### friction-sloane · What Sloane can see · *(gated: `c5.message-sloane` OR a Sloane-visible record on `npcs.sloane.known`)*
+
+> q(Sloane): I have your note about the Harbour workroom, and a line saying you met Ms Reyes off-hours. *(if a phone capture exists:)* And a Meridian page flagged on your phone. I am not asking you to explain any of it. I am telling you I can see the parts you let me see, and I would like you to remember that before you decide I can see all of it.
+>
+> t: She is right about the risk and wrong about the reason, and she cannot tell the difference from where she sits. That gap is the only privacy you have.
+
+- **friction-sloane-correct** · Bound each thing precisely · *Say exactly what each was — no more, no less.*
+  > q(You): A workspace I pay for. A friend I've known ten years. A page a stranger sent me. Each is exactly what it is, and none of it is what you're worried it might be.
+  > p: You put the true, narrow version on the record before she can build a wider one on top of it. It does not remove her concern. It removes her excuse for guessing.
+  > Sets `c6.friction-sloane = corrected`.
+- **friction-sloane-let** · Let her assumption sit · *Say nothing. Let her wonder what it means.*
+  > p: You thank her for her concern and explain nothing. Let her hold a shape she can't fill in. A woman who thinks she might not see everything is more careful than one you've reassured.
+  > Sets `c6.friction-sloane = unanswered`.
+
+### friction-julian · The same door · *(gated: `julian5(s)`)*
+
+> q(Julian): You've been a little further away since the audit. I'm not asking why — that's yours. I'd just like to know it's the same door: that if you want the room, or the conversation, it's there, and that I haven't misread where we stand.
+>
+> t: He is not pushing. He is checking. There is a difference, and the fact that he knows there's a difference is most of what you've ever liked about him.
+
+- **friction-julian-hold** · Keep it exactly professional · *Clear, warm, no more than that.*
+  > q(You): The same door. Professional, and real, and I mean both words. I'd tell you if that changed.
+  > Sets `c6.friction-julian = professional`.
+- **friction-julian-warm** · Let the personal stand · *Acknowledge there's more than work here.*
+  > q(You): You haven't misread it. I've been further away because a lot has been further away. Not you.
+  > Sets `c6.friction-julian = warmed`.
+- **friction-julian-cool** · Step back deliberately · *Put more space in, on purpose.*
+  > q(You): The professional door stays open. The rest — I need it quieter for a while. That's not about you either, but it's real.
+  > Sets `c6.friction-julian = cooled`.
+
+### friction-public · The attention answers back · *(gated: `c5.published`)*
+
+> p: A message from someone who saw the Aster piece — a real offer, small and paid, your face in a bigger room. The image you released, doing what a released image does: finding you the next thing, whether or not you asked it to.
+>
+> t: This is the part they don't tell you about being seen. It doesn't stop when you're done being seen. It becomes a door other people feel entitled to open.
+
+- **friction-public-restrict** · Hold it to what you released · *Decline the expansion; keep the first piece's exact scope.*
+  > p: You decline, and you restate the scope you actually agreed to, so the first piece stays the first piece and grows nothing you didn't plant. The attention is a tool. You decline to be one.
+  > Sets `c6.friction-public = restricted`.
+- **friction-public-correct** · Fix what they got wrong · *A claim about you needs correcting.* *(alt if a misstatement exists)*
+  > p: They have you slightly wrong — a title, an implication, a caption doing more than you licensed. You correct it, precisely, in writing, before the wrong version becomes the remembered one.
+  > Sets `c6.friction-public = corrected`.
+- **friction-public-use** · Aim it at something you want · *Turn the attention toward your own end.*
+  > p: You say yes, on your terms, because a bigger room is a bigger room and you have things you would like heard in it. Visibility you steer is not the same as visibility that steers you.
+  > Sets `c6.friction-public = used`.
+
+### Note for EVE Code
+- The `friction` phase is a small hub: Counter first (or skip), then the unlocked beats in any order, then `friction-done` → `exit`. Each beat is one-shot.
+- `friction-sloane`'s capture clause fires only when `c6.photo-custody === 'phone'` would exist — but note the photo is captured in movement 5 (`proof`), *after* friction. So in the movement-3 timeline reference only the workspace message and the Maya meeting; drop the "Meridian page flagged" clause here (it can't have happened yet). Keep the two-option structure. *(Correction to the block above: the capture line is out of sequence — omit it in `friction`.)*
+- These set `c6.friction-*` records for flavour and the route weighting's Sloane/executive/public reads; none forces a lane.
