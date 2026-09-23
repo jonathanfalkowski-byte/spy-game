@@ -65,7 +65,7 @@ export const StateSchema = z
       'dayend',
       'clinic',
       'mission',
-      'chapter3', 'chapter4', 'chapter5',
+      'chapter3', 'chapter4', 'chapter5', 'chapter6',
     ]),
     day: DayStateSchema,
     clinic: ClinicSchema,
@@ -93,6 +93,8 @@ export const StateSchema = z
         celeste: npc,
         // Revision 19 onward; older saves have no Sebastian record.
         sebastian: npc.optional(),
+        // Created only at chapter6.begin (never earlier: Chapter 3-5 sends must not record into it).
+        rook: npc.optional(),
       })
       .strict(),
     relationships: z
@@ -128,9 +130,11 @@ export const StateSchema = z
   });
 type ParsedState = z.infer<typeof StateSchema>;
 export type NpcRecord = z.infer<typeof npc>;
-/** Sebastian (revision 19 onward) is optional at runtime and deliberately absent from the
- * typed NPC keys, so existing keyed NPC code (including frozen engines) is unchanged.
- * Reach his record only through sebastianNpc(). */
-export type GameState = Omit<ParsedState, 'npcs'> & { npcs: Omit<ParsedState['npcs'], 'sebastian'> };
-export const sebastianNpc = (s: GameState): NpcRecord | undefined =>
-  (s.npcs as ParsedState['npcs']).sebastian;
+/** Sebastian (revision 19) and Rook (Chapter 6) are optional at runtime and deliberately absent
+ * from the typed NPC keys, so existing keyed NPC code (including frozen engines) is unchanged.
+ * Reach them only through optionalNpc(). */
+export type OptionalNpcId = 'sebastian' | 'rook';
+export type GameState = Omit<ParsedState, 'npcs'> & { npcs: Omit<ParsedState['npcs'], OptionalNpcId> };
+export const optionalNpc = (s: GameState, id: OptionalNpcId): NpcRecord | undefined =>
+  (s.npcs as ParsedState['npcs'])[id];
+export const sebastianNpc = (s: GameState) => optionalNpc(s, 'sebastian');

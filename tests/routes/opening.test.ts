@@ -1,4 +1,5 @@
 import {chapter5Scenes} from '../../src/content/chapter5';
+import {chapter6Scenes} from '../../src/content/chapter6';
 import {chapter4Scenes} from '../../src/content/chapter4';
 import { nextSceneDefinitions } from '../../src/content/chapter3-next';
 import { missionChoices } from '../../src/content/mission';
@@ -42,7 +43,7 @@ it('validates legacy nodes reach their existing endpoints; revisions 14 through 
       }
     }
   }
-  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length-chapter5Scenes.length);
+  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length-chapter5Scenes.length-chapter6Scenes.length);
 });
 for (const promotion of ['professional', 'angry', 'joke', 'quiet'])
   for (const benton of ['obey', 'push', 'promotion'])

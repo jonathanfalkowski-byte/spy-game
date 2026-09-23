@@ -10,6 +10,7 @@ export const NpcIdSchema = z.enum([
   'marcus',
   'celeste',
   'sebastian',
+  'rook',
 ]);
 // Stable person IDs are deliberately distinct from legacy identity IDs/display names.
 export const CharacterIdSchema = z.enum(['player-character', 'julian-mercer', ...NpcIdSchema.options]);

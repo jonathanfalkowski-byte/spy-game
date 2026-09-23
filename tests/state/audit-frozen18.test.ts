@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import manifest from '../../src/persistence/legacy-v18/SOURCE.json';
 
-// Reverse the documented adaptations: import rebasing and the one type-only cast.
+// Reverse the documented adaptations: import rebasing and the two type-only casts.
 const unadapt = (text: string) =>
   text
     .replaceAll("'../../", "'../persistence/")
@@ -13,6 +13,7 @@ const unadapt = (text: string) =>
       'applyFrozenChapter5(state as Parameters<typeof applyFrozenChapter5>[0],parsed.data.id) as GameState;',
       'applyFrozenChapter5(state,parsed.data.id);',
     )
+    .replace('decodeSave(encodeSave(state)) as GameState;', 'decodeSave(encodeSave(state));')
     .replaceAll('\r\n', '\n');
 
 it('proves the frozen revision-18 engine came from its source commit, with documented adaptations only', () => {

@@ -13,7 +13,7 @@ import {
 
 /** Read-only, authenticated prefix replay. Never derive an earlier view from a later snapshot. */
 export function deriveConsequences(state: GameState, throughRevision = state.revision) {
-  const authenticated = decodeSave(encodeSave(state));
+  const authenticated = decodeSave(encodeSave(state)) as GameState;
   if (
     !Number.isInteger(throughRevision) ||
     throughRevision < 0 ||

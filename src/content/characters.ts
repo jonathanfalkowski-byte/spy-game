@@ -111,6 +111,15 @@ const introductions = [
       'A hired artist with no tie to Helix, Axiom or the fund. He leaves on Thursday for a four-city tour. He knows only what Evelynn chooses to tell him.',
     emotion: 'Warm, blunt and unhurried. His desire is stated plainly, never performed; no is a whole sentence to him.',
   },
+  {
+    id: 'rook',
+    name: 'Unknown sender',
+    role: 'An anonymous source who reaches you with selective, unrequested information.',
+    arrival: 'First made contact after the Blackglass file surfaced, on channels you could not trace back.',
+    appearance: 'Unknown. You have never seen them, and no message carries a face or a name.',
+    history: 'Claims to know operational details that predate your assignment. Every claim so far is unverified.',
+    emotion: 'You cannot tell whether the sender is help, a trap, or both — and that is the point.',
+  },
 ];
 
 // Exact ages only: approximate ages remain in the preserved descriptive prose.

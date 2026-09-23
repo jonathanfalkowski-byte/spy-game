@@ -34,7 +34,8 @@ const policy = (s = initialState()) => ({
 it('has one player character and separate identities with canonical display spelling', () => {
   validateContent();
   expect(playerBinding).toEqual({ playerId: 'local-player', characterId: 'player-character' });
-  expect(characters).toHaveLength(10);
+  expect(characters).toHaveLength(11);
+  expect(characters.find((c) => c.id === 'rook')?.displayName).toBe('Unknown sender');
   expect(characters.find((c) => c.id === 'sebastian')?.canon.age).toMatchObject({ years: 38, status: 'established' });
   expect(characters.find((c) => c.id === playerBinding.characterId)?.displayName).toBe(
     'Evelynn Vale',

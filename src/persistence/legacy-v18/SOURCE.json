@@ -52,5 +52,5 @@
     "src/state/reducer.ts": "b699b18a317448582ee0cc530b47bd6d6d592d9cf2dc4d7df6cb29e5cf9f18ed",
     "src/state/schema.ts": "9cdb35c1aa338c7a2201e22ed443df2cf87d7622eedc416e88e49fe74d32e094"
   },
-  "note": "Snapshot of the revisions 13-18 engine and content before revision 19. Only relative import paths adapted (../persistence/ -> ../../, ../../docs/ -> ../../../../docs/), plus one type-only cast in state/reducer.ts where the frozen revision-16 chapter 5 call receives the live state type."
+  "note": "Snapshot of the revisions 13-18 engine and content before revision 19. Only relative import paths adapted (../persistence/ -> ../../, ../../docs/ -> ../../../../docs/), plus two type-only casts where frozen code meets live types: state/reducer.ts (the revision-16 chapter 5 call) and state/consequences.ts (the live decodeSave result)."
 }
