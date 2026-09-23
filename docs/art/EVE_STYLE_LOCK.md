@@ -130,14 +130,25 @@ upload is too large for these PNGs.
 
 Always add `mouth closed, restrained expression` unless the beat calls for speech or a stated emotion; Seedream defaults to smiling.
 
-## Content ceiling for generated images
+## Content scope for generated images (updated: owner, 2026-09-23)
 
-Images stop at suggestive or implied: clothed or partly dressed, closeness, a
-touch, a bedroom or hotel threshold, aftermath. Explicit content lives only in the
-prose produced by the local writer pipeline
-([docs/story/intimate/README.md](../story/intimate/README.md)). No image depicts the
-clinic procedures sexually, and no image sexualizes a scene where Evelynn is under
-coercion.
+**Explicit CGs are now in scope** for EVE's chosen adult scenes. EVE is an 18+ VN with
+adult characters, and intimate scenes may have explicit images, not only suggestive ones.
+
+**The visual style does not change.** Explicit frames are generated in the *same noir
+house style* defined in this document — clean ink linework, flat cel shading, hard
+graphic shadows, the noir palette. EVE does not adopt Undertow's illustrated look. Every
+explicit frame carries the locked style string and anchors on an approved noir frame, the
+same as any other CG.
+
+**Who produces what (approach confirmed by the owner):**
+- Claude sessions (design + EVE Art) produce the **non-explicit and suggestive** frames, the noir masters, and the base-image anchors — and design writes the explicit *prose* (local writer) and the scene continuity.
+- The **owner** generates the explicit *images themselves* and their generation prompts, via the [owner-explicit-frames workflow](OWNER_EXPLICIT_FRAMES.md) (ZenCreator, anchored on the approved noir frames). Claude does not generate explicit images or write explicit-image prompts; it supplies the anchors, wardrobe, camera and continuity so the owner's frames match the game.
+
+**Hard limits that remain:** no image depicts the clinic procedures sexually, and no
+image sexualizes a scene where Evelynn is under coercion. Explicit CGs are only for scenes
+Evelynn chooses, consistent with the consent gate in
+[docs/story/intimate/README.md](../story/intimate/README.md).
 
 ## Pre-acceptance QA gate (full-size, every candidate)
 

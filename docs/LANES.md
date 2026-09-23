@@ -14,4 +14,4 @@ Rules:
 - Handoffs go in `docs/handoffs/<date>-<topic>.md`; the receiving session is messaged with a one-line summary pointing at the file.
 - Only one session edits a given file. If a job needs a file in another lane, hand it over.
 - No commits or pushes unless the owner asks in that session.
-- Art follows [EVE_STYLE_LOCK.md](art/EVE_STYLE_LOCK.md); images stop at suggestive/implied. Explicit content is prose only, via [docs/story/intimate/README.md](story/intimate/README.md).
+- Art follows [EVE_STYLE_LOCK.md](art/EVE_STYLE_LOCK.md). Explicit CGs are in scope (owner, 2026-09-23), generated in the same noir house style. Division: Claude sessions make the non-explicit/suggestive frames, noir masters and base-image anchors, plus the explicit prose (local writer); the **owner** generates the explicit images and their prompts via [OWNER_EXPLICIT_FRAMES.md](art/OWNER_EXPLICIT_FRAMES.md). Claude does not generate explicit images or write explicit-image prompts. Explicit content only for scenes Evelynn chooses; never the clinic or coercion, per [docs/story/intimate/README.md](story/intimate/README.md).

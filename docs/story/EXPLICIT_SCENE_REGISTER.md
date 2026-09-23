@@ -3,10 +3,13 @@
 Every point in EVE where an explicit sexual body would go, so they can be found and
 authored later. Kept current as lanes are added.
 
-**Decision (owner, 2026-09-23):** ship the tasteful/implied bodies now; defer the
-explicit sexual bodies. The owner authors the explicit prose (via the local writer)
-and the explicit images (in ZenCreator) later. Claude writes up to suggestive/implied
-and does mechanical repair only — see [intimate/README.md](intimate/README.md) and
+**Decisions (owner):** explicit sexual bodies and **explicit CGs are both in scope**
+(2026-09-23); explicit CGs are generated in EVE's noir style. Division: design writes and
+runs the explicit *prose* pipeline (local writer) and supplies image anchors/continuity;
+the **owner** generates the explicit *images* and their prompts via the noir
+owner-explicit-frames workflow. Claude does not generate explicit images or write
+explicit-image prompts. Tasteful/implied bodies ship in the meantime for any point still
+deferred. See [intimate/README.md](intimate/README.md) and
 [../art/OWNER_EXPLICIT_FRAMES.md](../art/OWNER_EXPLICIT_FRAMES.md).
 
 ## Status legend
