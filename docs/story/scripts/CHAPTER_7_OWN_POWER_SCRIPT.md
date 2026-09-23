@@ -1,0 +1,135 @@
+# Chapter 7 (own-power) — "Standing Alone" script
+
+Source of wording and flags for EVE Code. The first own-power development chapter. Design
+authority: [OWN_POWER_ROUTE.md](../routes/OWN_POWER_ROUTE.md),
+[CHAPTER_7_ROUTE_CONFIRM.md](../CHAPTER_7_ROUTE_CONFIRM.md) (the confirm beat that precedes
+this), [CAMPAIGN_ROUTE_MAP.md](../CAMPAIGN_ROUTE_MAP.md).
+
+Format as before. This chapter plays only when `route.lane = own-power`. Driving question
+(settled): **who authorized reusing the Evelyn identity for Candidate 7A** — the seam
+between ORACLE's prediction and Sloane's decision. Phases: `confirm` (shared) → `standing`
+→ `pursue` (hub) → `close`.
+
+Implementation note: this is a **new gated content revision** (like Chapter 6, additive,
+behind a `VITE_EVE_CHAPTER7`-style gate). Reachable only from Chapter 6 `complete` with
+`route.lane = own-power`.
+
+---
+
+## Phase `confirm` — the route beat (already scripted)
+
+Plays the confirm-or-redirect beat from `CHAPTER_7_ROUTE_CONFIRM.md`, which sets
+`route.lane` and `route.entry`. When the chosen lane is **own-power**, continue to
+`standing`. (Other lanes route to their own chapters — not built yet.)
+
+## Phase `standing` — Standing Alone
+
+### Entry frame — by `route.entry`
+
+- **built:**
+  > p: You wake in a life with your name on all of it and no one else's. The desk you pay for, the phone that answers only to you, the small stubborn independence you spent real money to keep. It is quieter than the lives you were offered. This morning you find out what quiet is worth.
+- **partial:**
+  > p: You turned toward this a week ago and you are still learning the footing. Some of what you built still holds; some of it you are building now, in the open, with your own hands. It is slower this way. You knew that when you chose it.
+- **unbuilt:**
+  > p: A week ago you walked out of the arrangement that made everything easy, and into this — a room you pay for that is barely furnished, a budget you can count, a quiet that is mostly just alone. You chose it against everything that pointed the other way. Now you have to make it into something before it makes you regret it.
+
+### The question surfaces
+
+> p: You keep circling the same seam. ORACLE predicted you would take the identity willingly and that Sloane could not hold you — and Sloane proceeded anyway. But Sloane did not build the Evelyn identity. She was handed it, the way you were. Someone, above her or before her, decided a real operative's whole life could be pulled off a shelf and fitted to Adrian Vale.
+>
+> t: Who signed that. Not who ran it — who *authorized* reusing her. That name is the start of the real shape of this, and you have no clearance to ask for it. Which means you do it the only way left to you. Yourself.
+
+### The money reality (own.cash, seeded from c5.cash)
+
+> p: You count what you have. *(built/partial:)* Enough to work with, if you are careful and the work is quick. *(unbuilt:)* Barely enough, if nothing goes wrong. Every road from here costs something — money, time, or being seen — and you are the one who pays.
+
+→ **standing-begin** · Start pulling the thread · *No clearance, no cover. Your tools only.* → `pursue`.
+
+## Phase `pursue` — the hub (own-power tools)
+
+A hub: each unlocked approach is playable once and returns here; each yields **one piece** of
+the answer and exacts its own cost. Take **two** pieces to reach the finding (a `pursue-stop`
+option lets her stop with one, or none, and carry a thinner case to Chapter 8). Options are
+gated by what she actually has — a player missing an audience or a Rook line simply doesn't
+see that door.
+
+**pursue-records** · Dig the public record yourself · *Slow, legal, entirely yours. Costs time and a small fee.* *(always available — the free-agent core)*
+
+> p: You do it the patient way: corporate registries, property filings, the procurement trail a cover identity leaves when someone has to pay for it. Hours of it, and a records fee you feel.
+>
+> p: The apartment you live in, and the accounts that dress the Evelyn identity, trace to a single holding company — **Meridian Holdings**. The same word that was on the courier page. Its only named officer is an initial, and a registered agent that exists to have no face.
+>
+> t: Meridian. Whoever reused her, reused her *name for the operation too*. That is not tidiness. That is someone who was there the first time.
+>
+> Sets `own.piece.records = meridian`; deducts a small `own.cash`.
+
+**pursue-maya** · Ask Maya what a sign-off like that looks like · *Public-file scope only. She tells you where to look, not the answer.* *(gated: `c6.maya ∈ {restored, paused-by-maya}` and not strained; respects "my work files stay at work")*
+
+> q(Maya): I can't pull it and I wouldn't. But I can tell you this much for free: a reuse authorization — taking a live legend off one operative and fitting it to another — never clears at Compliance. That's a directorate signature or higher. Someone with the authority to spend a person.
+>
+> p: She has not named anyone. She has drawn you a floor: this was signed at the level of a directorate — Executive Intelligence, or above it. Sloane's level, or over Sloane's head.
+>
+> Sets `own.piece.maya = directorate`; costs nothing but cannot be re-asked (her limit).
+
+**pursue-rook** · Trade the sender for a name · *Fast, and you can't fully source it. A piece for a piece.* *(gated: `npcs.rook` engaged — proof opened, any outcome)*
+
+> q(Unknown sender): You want the signature. I have it. It costs — not money, information. Tell me one thing you have not told anyone, and I will tell you who spent her.
+>
+> The trade (player picks what to give, each a real cost):
+> - **rook-trade-fact** · Give a fact you hold · *(spends a held evidence detail into Rook's hands)*
+> - **rook-trade-debt** · Owe them one instead · *(sets `own.alliance.rook = owed` — a marker Chapter 8 can call)*
+> - **rook-refuse-trade** · Refuse; take nothing · → back to hub, no piece from Rook.
+>
+> *(on a trade):* q(Unknown sender): It was not Sloane's authority to give. She executed it. The signature is on the Project Eve board — and one name there you have already met, and did not expect.
+>
+> t: Or that is exactly what someone would say to point you away from Sloane and toward a door of their choosing. You cannot source it. You write it down with a mark next to it: unconfirmed, and convenient.
+>
+> Sets `own.piece.rook = board` (flagged unverified).
+
+**pursue-audience** · Ask the question in public · *Your visibility surfaces a source — and tells Sloane you're looking.* *(gated: `c5.published` / `own.audience`)*
+
+> p: You use the one megaphone you own. Not an accusation — a careful, deniable question, the kind that only means something to someone who already knows: a line about identities that outlive the people who wore them, placed where your readers are.
+>
+> p: Someone answers. A message from an account that deletes itself an hour later, from somebody who was adjacent to Project Eve and is frightened: *"You're asking the right question about the wrong person. She didn't authorize it. Stop looking where they want you to."*
+>
+> p: And the cost, immediately: your question was public. Somewhere in Sloane's directorate, a note is made that the independent one is asking who authorized the reuse.
+>
+> Sets `own.piece.audience = adjacent`; sets `own.exposed = true` (a Sloane-visible entry that Chapter 8 reads).
+
+**pursue-stop** · Stop here; work with what you have · *You don't have to spend more to move.* → `close` (with however many pieces she has).
+
+## Phase `close` — the first finding
+
+The finding scales with the pieces held. Two or more that agree produce the real shape; one
+produces a thinner lead; none produces only a resolve to keep looking.
+
+- **Two or more pieces:**
+  > p: You lay the pieces beside each other. Meridian — the operation's own name, reused. A signature that had to come from directorate level or above. And, from more than one direction, the same wrongness: *Sloane did not author this. She was handed it, the way you were.*
+  > t: You went looking for who signed off on reusing her, and you found the first true edge of the shape: the person you have spent this whole affair fearing is not the top of it. Sloane executed a decision made over her head, by whoever controls Meridian and sits on the Project Eve board. That is who you are actually looking for. And you found the edge of it with no clearance, no cover, and no one's permission but your own.
+- **One piece:**
+  > p: One thread, not yet a shape — a name that is only an initial, or a floor without a face, or a warning you cannot source. It points somewhere above Sloane. It is not enough to act on. It is enough to know you are pulling the right thread.
+- **No pieces (pursue-stop taken first):**
+  > p: You did not spend what it would have cost, and you carry the question forward unanswered. That is a choice, not a failure. The thread is still there. So is the money you kept.
+
+Cost register (shared close):
+
+> p: *(if own.exposed:)* You are more visible than you were this morning; Sloane's directorate knows the independent one is asking. *(if own.cash spent:)* You are lighter in the pocket than you were, and there is no one to bill. *(always:)* And you are still the only person holding what you found. → Chapter 7 `complete`.
+
+> t: Standing alone is slower, and it costs, and it is beginning to be seen. It is also, so far, working — and it is entirely yours. → sets up Chapter 8, "The Cost Bites."
+
+---
+
+## Flags this chapter sets
+
+`own.piece.{records,maya,rook,audience}`, `own.alliance.rook` (owed, if traded on debt),
+`own.exposed` (bool — audience used; Chapter 8 reads it as Sloane's notice), `own.cash`
+deductions, and a `c7.finding ∈ {shape, lead, none}` derived at `close` for Chapter 8's
+entry. All sourced and re-derivable.
+
+## Notes for EVE Code
+
+- New gated content revision (additive), reachable only from Chapter 6 `complete` with `route.lane = own-power`; the confirm beat (`CHAPTER_7_ROUTE_CONFIRM.md`) is its first phase and writes `route.lane`/`route.entry`.
+- The `pursue` hub mirrors the Chapter 5 `room` / Chapter 6 `friction` pattern: gated one-shot options returning to the hub, a stop option, and a piece budget of two before `close` auto-advances.
+- Gates: `pursue-records` always; `pursue-maya` on a non-strained Maya; `pursue-rook` on any engaged `npcs.rook`; `pursue-audience` on `c5.published`. A player with only records still reaches a one-piece lead — the autonomy guarantee (the thread is pullable with the free-agent core alone).
+- `own.exposed` and `own.alliance.rook = owed` are the two hooks Chapter 8 ("The Cost Bites") reads; store them cleanly.
+- No intimacy in this chapter.

@@ -120,7 +120,7 @@ revision, gated like Chapter 6 until scripted.
 
 ## 9. Open decisions for the owner
 
-1. **The Ch7 driving question.** I've proposed "who authorized reusing the Evelyn identity for Candidate 7A" — the seam between ORACLE's prediction and Sloane's decision. Confirm, or pick a different first independent objective.
+1. **The Ch7 driving question — SETTLED (owner):** "who authorized reusing the Evelyn identity for Candidate 7A" — the seam between ORACLE's prediction and Sloane's decision. Scripted in [CHAPTER_7_OWN_POWER_SCRIPT.md](../scripts/CHAPTER_7_OWN_POWER_SCRIPT.md).
 2. **The endgame's actual plot.** The reconverged ORACLE/Project Eve confrontation and Sloane's motive are still open (Chapter 6 deliberately left the motive unresolved). Own-power's Ch9 assembles toward it, but the endgame itself needs its own design pass before Ch9 can fully land. Do you want that endgame design next, or the Ch7 own-power scenes first?
 3. **The cash economy's weight.** How real should the money constraint be — a light narrative pressure (a few costed choices), or a slightly firmer budget the player manages across the arc? Recommend light: felt, never a grind.
 4. **Chapter count.** Three development chapters (7–9) before reconvergence, or compress to two? Recommend three for the ~6–8h budget; two if the campaign should run leaner.
