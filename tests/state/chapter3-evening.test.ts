@@ -19,12 +19,23 @@ it('freezes the complete content12 graph against its reviewed commit', () => {
     readFileSync('src/persistence/legacy-v12/content-12-hashes.json', 'utf8'),
   );
   expect(Object.keys(manifest.files)).toHaveLength(38);
+  const git = execFileSync('git', ['cat-file', '--batch'], {
+    input:
+      Object.keys(manifest.files)
+        .map((file) => manifest.sourceCommit + ':src/' + file)
+        .join('\n') + '\n',
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  let pos = 0;
   for (const [file, hash] of Object.entries(manifest.files)) {
-    const bytes = readFileSync('src/persistence/legacy-v12/' + file);
+    const bytes = readFileSync('src/persistence/legacy-v12/' + file),
+      end = git.indexOf(10, pos),
+      header = git.subarray(pos, end).toString().split(' '),
+      size = Number(header[2]);
+    expect(header[1], file).toBe('blob');
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(hash);
-    expect(
-      bytes.equals(execFileSync('git', ['show', manifest.sourceCommit + ':src/' + file])),
-    ).toBe(true);
+    expect(bytes.equals(git.subarray(end + 1, end + 1 + size)), file).toBe(true);
+    pos = end + size + 2;
   }
 });
 it.each([false, true])(

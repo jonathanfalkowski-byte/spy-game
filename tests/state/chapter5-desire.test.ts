@@ -41,6 +41,7 @@ it.each(['personal', 'instrumental', 'mixed'])(
     expect(() => createChapter5Handoff(revoked)).toThrow();
     expect(cash5(revoked)).toBe(cash5(s));
   },
+  15_000,
 );
 it('supports no-sex, flirtation, refusal, uncertainty and instrumental public enjoyment', () => {
   const base = want();

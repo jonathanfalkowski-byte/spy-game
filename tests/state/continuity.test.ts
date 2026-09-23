@@ -118,10 +118,20 @@ describe('content 12 continuity', () => {
 describe('frozen content 11 boundary',()=>{
   it('freezes every dependency byte against the reviewed commit',()=>{
     const manifest=JSON.parse(readFileSync('src/persistence/content-11-hashes.json','utf8'));
+    const git=execFileSync('git',['cat-file','--batch'],{
+      input:Object.keys(manifest.files).map(file=>manifest.sourceCommit+':src/'+file).join('\n')+'\n',
+      maxBuffer:32*1024*1024,
+    });
+    let pos=0;
     for(const [file,hash] of Object.entries(manifest.files)) {
-      const frozen=readFileSync('src/persistence/legacy-v11/'+file);
+      const frozen=readFileSync('src/persistence/legacy-v11/'+file),
+        end=git.indexOf(10,pos),
+        header=git.subarray(pos,end).toString().split(' '),
+        size=Number(header[2]);
+      expect(header[1],file).toBe('blob');
       expect(createHash('sha256').update(frozen).digest('hex')).toBe(hash);
-      expect(frozen.equals(execFileSync('git',['show',manifest.sourceCommit+':src/'+file]))).toBe(true);
+      expect(frozen.equals(git.subarray(end+1,end+1+size)),file).toBe(true);
+      pos=end+size+2;
     }
   });
   it.each([false,true])('preserves legacy snapshot and continuation (home %s)', home=>{
