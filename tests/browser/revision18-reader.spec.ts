@@ -38,7 +38,7 @@ const historical17 = walk5(
 const assets = [
   'adrian-first-bathroom-mirror-apartment-v1-production',
   'adrian-first-bathroom-mirror-apartment-v1-production',
-  'opening-apartment-master-v2-production',
+  'opening-apartment-master-v3-production',
   'axiom-exterior-approach-adrian-v2-production',
   'axiom-security-gate-adrian-v2-production',
   'axiom-office-approach-adrian-v3-transparent-production',

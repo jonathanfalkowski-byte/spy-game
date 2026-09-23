@@ -67,7 +67,7 @@ describe('opening visual occupancy contract', () => {
       artStatus: 'RUNTIME_APPROVED',
       artVisible: true,
     });
-    expect(resolveSceneArt(departure).art?.asset.id).toBe('opening-apartment-master-v2-production');
+    expect(resolveSceneArt(departure).art?.asset.id).toBe('opening-apartment-master-v3-production');
   });
 
   it('cuts for participant/location changes and holds only within the authored staging', () => {

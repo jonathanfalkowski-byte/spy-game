@@ -7,6 +7,9 @@ import continuity from '../../art/production/continuity/records.json';
 import chapter5 from '../../art/production/chapter5/records.json';
 import opening from '../../art/production/opening/records.json';
 import { resolveSceneArt, validateSceneShot } from '../../src/ui/scene-art';
+
+/** Exact shot art only: an empty-room environment fallback never counts as the refused asset. */
+const exactArt = (result: ReturnType<typeof resolveSceneArt>) => (result.art?.kind === 'environment' ? undefined : result.art);
 import { initialState, act } from '../../src/state/reducer';
 import { encodeSave, decodeSave } from '../../src/persistence/saves';
 import { day, evening } from '../day-helpers';
@@ -187,7 +190,7 @@ it('returns to the approved opening master after an inspection is no longer the 
   );
   const departure = choice(inspected, 'morning.yes');
   expect(resolveSceneArt(departure).shot?.shotId).toBe('opening.apartment.shot01');
-  expect(resolveSceneArt(departure).art?.asset.id).toBe('opening-apartment-master-v2-production');
+  expect(resolveSceneArt(departure).art?.asset.id).toBe('opening-apartment-master-v3-production');
   expect(resolveSceneArt(departure).issues).toEqual([]);
 });
 
@@ -198,8 +201,8 @@ it('Lantern holds for dialogue only on the meeting route, then cuts for authored
   expect(first.art?.asset.id).toBe('eve-scene-maya-evening-continuity-v2');
   const disclosed = day(meet, 'disclose.medical');
   expect(resolveSceneArt(disclosed).art?.asset.id).toBe(first.art?.asset.id);
-  expect(resolveSceneArt(day(disclosed, 'closure.evelyn')).art).toBeUndefined();
-  expect(resolveSceneArt(day(home, 'evening.call')).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(day(disclosed, 'closure.evelyn')))).toBeUndefined();
+  expect(exactArt(resolveSceneArt(day(home, 'evening.call')))).toBeUndefined();
 });
 
 it('wardrobe establishes the rack before selection; dressing cuts instead of holding the old room', () => {
@@ -214,11 +217,11 @@ it('home images require exact approved wardrobe, moment and no later inspection'
     'apartment-post-glasshouse-executive-v1-production',
   );
   expect(
-    resolveSceneArt(act(home, { type: 'CHAPTER3_CHOOSE', id: 'chapter3.mirror' })).art,
+    exactArt(resolveSceneArt(act(home, { type: 'CHAPTER3_CHOOSE', id: 'chapter3.mirror' }))),
   ).toBeUndefined();
   for (const outfit of ['socialite', 'shadow']) {
     const other = act(runMission(missionStart(outfit)), { type: 'CONTINUE_CHAPTER3' });
-    expect(resolveSceneArt(other).art).toBeUndefined();
+    expect(exactArt(resolveSceneArt(other))).toBeUndefined();
   }
 });
 
@@ -242,7 +245,7 @@ it('binds only the approved environment holds for the mission car and Glass Hous
   expect(resolveSceneArt(reception).issues).toEqual([]);
 
   const wrong = { ...reception, phase: 'entry' as const };
-  expect(resolveSceneArt(wrong).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(wrong))).toBeUndefined();
 });
 
 it('binds the Glass House assessment and method cuts only to their authored nodes', () => {
@@ -360,10 +363,10 @@ it('ordered Harbour cuts never anticipate Julian; cursor, malformed index and re
     'c5-harbour-julian-departed-composite-v1-production',
     'c5-h2-coffee-return-composite-v1-production',
   ]);
-  expect(resolveSceneArt(coffee, 99).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(coffee, 99))).toBeUndefined();
   expect(encodeSave(coffee)).toBe(saved);
-  expect(resolveSceneArt(decodeSave(saved)).art).toBeUndefined();
-  expect(resolveSceneArt(walk5(coffee, ['leave-room']), 1).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(decodeSave(saved)))).toBeUndefined();
+  expect(exactArt(resolveSceneArt(walk5(coffee, ['leave-room']), 1))).toBeUndefined();
 });
 
 it('promoted H1, H2 and Aster arrival bind only to their exact reached action and survive reload', () => {
@@ -390,9 +393,9 @@ it('promoted H1, H2 and Aster arrival bind only to their exact reached action an
     'invitation-attend',
     'look-minimal',
   ]);
-  expect(resolveSceneArt(minimal).art).toBeUndefined();
-  expect(resolveSceneArt(walk5(harbourArrival, ['attention-enjoy'])).art).toBeUndefined();
-  expect(resolveSceneArt(walk5(asterArrival, ['publish'])).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(minimal))).toBeUndefined();
+  expect(exactArt(resolveSceneArt(walk5(harbourArrival, ['attention-enjoy'])))).toBeUndefined();
+  expect(exactArt(resolveSceneArt(walk5(asterArrival, ['publish'])))).toBeUndefined();
 });
 
 it('binds Chapter 5 echo apartment art to each exact purchase state and fails closed elsewhere', () => {
@@ -417,7 +420,7 @@ it('binds Chapter 5 echo apartment art to each exact purchase state and fails cl
     expect(resolveSceneArt(decodeSave(encodeSave(echo))).art?.asset.id).toBe(assetId);
   }
   const unselected = spend;
-  expect(resolveSceneArt(unselected).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(unselected))).toBeUndefined();
   expect(resolveSceneArt(unselected).shot).toBeUndefined();
 });
 
@@ -435,7 +438,7 @@ it('exact phone placement is selected; wardrobe, location, props, unearned rewar
     'c5.intimacy': 'yes',
   }))
     expect(
-      resolveSceneArt({ ...final, choices: { ...final.choices, [key]: value } }).art,
+      exactArt(resolveSceneArt({ ...final, choices: { ...final.choices, [key]: value } })),
     ).toBeUndefined();
   const wrong = {
     ...final,

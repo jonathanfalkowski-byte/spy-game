@@ -176,12 +176,12 @@
     "sha256": "12bd77dd6f1df0fea4d75ad1a02840c764305c1f742f02a444d75887b39fadf6"
   },
   {
-    "id": "opening-apartment-master-v2-production",
-    "src": "art/opening/opening-apartment-master-v2-production.png",
+    "id": "opening-apartment-master-v3-production",
+    "src": "art/opening/opening-apartment-master-v3-production.png",
     "location": "apartment",
     "width": 1920,
     "height": 1080,
-    "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99"
+    "sha256": "926e8a25fc600b7066c3b3277a6abddb1959883acd033b84fb322b4cc89b66d5"
   },
   {
     "id": "opening-apartment-housing-notice-v1-production",

@@ -1,0 +1,37 @@
+{
+  "assetId": "opening-apartment-master-v3-production",
+  "scope": "Replaces opening-apartment-master-v2-production wherever it is bound (apartment.bond / reply / departure environment).",
+  "decision": "PASS",
+  "approvalStatus": "approved",
+  "reviewer": "Project owner",
+  "date": "2026-09-23",
+  "approvalSource": "Owner approved v2-d in the EVE Design session on 2026-09-23 (relayed). The EVE Art session holds the owner's standing approval to promote owner-approved frames.",
+  "files": {
+    "production": "art/production/opening/opening-apartment-master-v3-production.png",
+    "staging": "art/staging/full-game/opening-apartment/apartment-master-noir-v2-d-candidate.png",
+    "public": null
+  },
+  "supersedes": "art/production/opening/opening-apartment-master-v2-production.png",
+  "sha256": "926e8a25fc600b7066c3b3277a6abddb1959883acd033b84fb322b4cc89b66d5",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "provider": {
+    "service": "ZenCreator",
+    "tool": "image_editor",
+    "model": "SEEDREAM_5",
+    "taskId": "783798cc-c63e-413b-993d-2e5ac1e75051",
+    "callId": "9f8707a9-afea-4cdf-b0f9-a68c523d52a1",
+    "assetId": "ae9cf62b-dddf-485c-b13b-6b763e1baa32",
+    "inputAssetIds": [
+      "d47063fd-4950-465e-b10a-d0645489fa58",
+      "fa4d7dcf-a3fc-4525-b698-2ca5aada238c"
+    ]
+  },
+  "followUps": [
+    "EVE Code: rebind v2 -> v3 and re-run the deterministic housing-notice and medical-package composites on the v3 master.",
+    "Bathroom-mirror scene unchanged (already noir)."
+  ],
+  "runtimeBound": false
+}

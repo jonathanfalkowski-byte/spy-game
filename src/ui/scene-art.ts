@@ -4,6 +4,7 @@ import { homeSceneArt } from './home-scene-art';
 import { apartmentEndingArt5, chapter5ReadingBeats } from './chapter5-beats';
 import { openingReadingBeats } from './opening-beats';
 import { openingCaseworkShots } from './opening-casework-art';
+import { environmentShot } from './environment-art';
 
 export type ArtIssue =
   | 'SHOT_WITHOUT_APPROVED_ASSET'
@@ -16,7 +17,7 @@ export type SceneShot = {
   shotId: string;
   assetId?: string;
   alt: string;
-  kind?: 'home' | 'chapter5';
+  kind?: 'home' | 'chapter5' | 'environment';
 };
 export type SceneArt = SceneShot & { asset: (typeof production)[number] };
 const assets = new Map(production.map((a) => [a.id, a]));
@@ -117,7 +118,7 @@ export const homeBindings = {
 export const shotBindings: Record<string, { assetId: string; location: string }> = {
   ...openingCaseworkShots,
   'opening.apartment.shot01': {
-    assetId: 'opening-apartment-master-v2-production',
+    assetId: 'opening-apartment-master-v3-production',
     location: 'apartment',
   },
   'opening.apartment.shot01-mirror': {
@@ -995,7 +996,14 @@ export function resolveSceneArt(state: GameState, readingPosition = 0) {
       )
     : [];
   const asset = shot?.assetId ? assets.get(shot.assetId) : undefined;
-  const art: SceneArt | undefined =
+  let art: SceneArt | undefined =
     shot && asset && issues.length === 0 ? { ...shot, asset } : undefined;
+  // Outside scripted reading sequences, a scene with no exact art shows its empty-room master.
+  // The primary shot and its issues are still reported for the inspector and authoring checks.
+  if (!art && !reading) {
+    const environment = environmentShot(state);
+    const master = environment ? assets.get(environment.assetId) : undefined;
+    if (environment && master) art = { ...environment, kind: 'environment', asset: master };
+  }
   return { shot, art, issues, reading };
 }

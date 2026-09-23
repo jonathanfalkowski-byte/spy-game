@@ -4,7 +4,7 @@ import { openingVisualFixtures } from '../opening-visual-fixtures';
 
 const expectedAssets = [
   'adrian-first-bathroom-mirror-apartment-v1-production', 'adrian-first-bathroom-mirror-apartment-v1-production',
-  'opening-apartment-master-v2-production', 'axiom-exterior-approach-adrian-v2-production',
+  'opening-apartment-master-v3-production', 'axiom-exterior-approach-adrian-v2-production',
   'axiom-security-gate-adrian-v2-production', 'axiom-office-approach-adrian-v3-transparent-production',
   'axiom-opening-office-shot01-daniel-v3-transparent-production', 'axiom-opening-office-shot01-daniel-v3-transparent-production', 'axiom-opening-office-shot02-benton-v3-transparent-production', 'axiom-opening-office-shot03-file-v3-transparent-production', 'axiom-casework-brief-v2-production',
   'axiom-casework-documents-v2-production', 'axiom-casework-documents-v2-production',

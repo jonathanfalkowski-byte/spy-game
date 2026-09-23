@@ -24,11 +24,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Zero-credit deterministic local derivative of the staging V1. The only changed pixels are the repaired invented-clock region; the rest of V1 remains intact."
+      "notes": "Zero-credit deterministic local derivative of the staging V1. The only changed pixels are the repaired invented-clock region; the rest of V1 remains intact. Superseded 2026-09-23 by opening-apartment-master-v3-production (noir refresh); retained for provenance, not runtime."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/opening-apartment-master-v2-production.png",
     "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99",
     "review": {
@@ -45,6 +45,53 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Explicit instruction in the opening-art review gate authorizes promotion and exact binding when the sole clock blocker is removed without a new blocker."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "opening-apartment-master-v3-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "apartment",
+      "sceneId": "apartment.bond",
+      "environment": "Adrian's compact apartment on a rainy promotion morning: two-column window toward Axiom Tower, chair, counter, closet, and readable central living space.",
+      "cameraFraming": "16:9 eye-level master wide with clear object zones and no character.",
+      "lighting": "Noir house style: dark overcast rainy morning, room lights off; cool rain-window light with crisp geometric floor shapes against a hard-edged warm amber lamp pool; charcoal/midnight walls, hard cel shadows.",
+      "timeOfDay": "06:42 rainy morning",
+      "intendedUse": "Exact opening environment authority for opening.apartment.shot01 only, before any inspection-specific visual takes over.",
+      "editSources": [
+        "opening-apartment-master-v2-production"
+      ],
+      "continuityRequirements": [
+        "Pre-transformation Adrian state only; no character, reflection, future wardrobe, medical material, Glass House, Chapter 5 purchase, phone, packet, or card.",
+        "Preserve the approved apartment architecture, camera, room scale, square-tile floor, window, sofa, chair, wardrobe, mirror, door, counter, rainy exterior, and restrained interior warmth.",
+        "This asset is bounded authority for the opening promotion-morning lighting, camera, rainy exterior, and exact first-screen environment. It is not authority for Adrian or Evelynn identity, later apartment states, or inspection close-ups."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 783798cc-c63e-413b-993d-2e5ac1e75051, provider asset ae9cf62b-dddf-485c-b13b-6b763e1baa32; image 1 = v2 master (d47063fd-4950-465e-b10a-d0645489fa58) to hold geometry, image 2 = C5 harbour composite for rendering. Geometry and all props unchanged from v2; no clock. Approval: art/production/opening/opening-apartment-master-v3-approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/opening-apartment-master-v3-production.png",
+    "sha256": "926e8a25fc600b7066c3b3277a6abddb1959883acd033b84fb322b4cc89b66d5",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Noir cel rendering: ink lines, hard shadows, charcoal/midnight palette; bright flat blue removed.",
+        "Room geometry, camera and every prop match v2 (window wall, closet/mirror, sofa, chair, table, kitchenette with lamp, hooks, cabinet, door).",
+        "Warm lamp vs cool rain-window split reads; no characters, clock or future-state props."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved noir candidate v2-d in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
     }
   },
   {
