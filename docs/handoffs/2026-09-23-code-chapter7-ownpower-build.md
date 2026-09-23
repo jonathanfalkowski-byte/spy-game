@@ -38,3 +38,34 @@ Report before building:
 Report Phase 0, then I'll confirm and you build. No commits until a checkpoint. Chapter 8
 ("The Cost Bites") script is coming from me in parallel — it reads `own.exposed`,
 `own.alliance.rook`, `c7.finding` and `route.entry`.
+
+## Phase 0 decisions (2026-09-23)
+
+- **2a: option A** — upgrade `deriveRoute6` to the weighted tally now (returns `{lane, totals, overlay}`); Chapter 6 is gated so no shipped saves change. Capture the Ch6 golden ledgers after. Accept the listed Ch6 lane-test moves.
+- **2c seed mapping:** all confirmed. "Julian intimacy" counts only with `c5.want-target=julian` OR `c5.mutual-interest`/`c4.mutual-interest`. "Sloane-visible record" = `c6.photo-custody='phone'` OR `c6.counter-arranged='monitored'`. resolve-trade covers both sub-choices. Ties: primary lane, then own-power > institutional > executive > outside.
+- **2d overlays:** `kept` = `c5.service='julian'` AND `c6.exit-prep='deepened'` AND `c6.expectation-response ∈ {narrowed, negotiated, redirected}` (those three are "accepted"; refused/clarified are not). exploitation/adult-work empty. At most one overlay.
+- **2e confirm-beat wording:**
+  - (i) Lane descriptors (diegetic, no lane names), for the confirm/pivot/break options:
+    - own-power: "the quiet you built yourself, that no one holds but you"
+    - institutional: "the machine you already know from the inside"
+    - executive: "the rooms that open when the right person walks you in"
+    - outside: "the ones who trade in what the institutions bury"
+  - (ii) route-break confirmation: **confirm-break** · "Turn against everything you built" · *You'll start this road nearly from nothing.* / **step-back** · "Stay the road you're on" · *Keep what you built.* Prose = the `route-break` block already in `CHAPTER_7_ROUTE_CONFIRM.md`.
+  - (iii) Chapter 7 entry choice at chapter6.complete: **chapter7-begin** · "Go on" · *A week later. Decide how you mean to continue.* Shared Chapter 7 title/eyebrow: **"The Road You Choose"**. Own-power subtitle where a chapter subtitle shows: "Standing Alone".
+  - (iv) Scene titles · places:
+    - confirm: "The Road You Choose" · `ONE WEEK LATER`
+    - standing: "Standing Alone" · `MORNING · ON YOUR OWN`
+    - pursue: "Pulling the Thread" · `· THE PATIENT WAY`
+    - close: "The First Edge" · `· WHAT YOU FOUND`
+    - complete: "Where It Points" · `· THAT NIGHT`
+- **§4 gaps:**
+  - Records fee **$40**, money5-style sourcing into `own.cash`; **never blocked** — clamp at 0 and note "unpaid" if `own.cash < 40` (preserves the autonomy guarantee for an `unbuilt`/$0 player).
+  - `pursue-rook` gate = `c6.proof-opened` (any verify outcome; `proof-decline` doesn't count). Confirmed.
+  - Rook trade hints as you proposed (fact/debt/refuse). `trade-fact`: Rook receives a sourced record "Evelynn gave the sender one held evidence detail" — generic (not the Meridian leaf, which came *from* Rook); if a specific is wanted, use a Glass House item detail or `c3.verified-date`. `rook-refuse-trade` uses up the one-shot, no piece. Confirmed.
+  - `pursue-audience` gate = `c5.published` (no separate own.audience flag). Confirmed.
+  - `pursue-maya` gate = **`c6.maya = restored` only** — exclude `paused-by-maya` (good catch; asking her contradicts her request for distance).
+  - Piece budget 2 → close; `pursue-stop` early; `c7.finding` shape/lead/none. Confirmed.
+  - The money-reality line follows **actual `own.cash`** (low vs some runway), not `route.entry` — accuracy over flavour.
+- **5 tests:** accept the moves; nothing in rev13-19 changes.
+
+Capture the Ch6 golden ledgers (after the option-A change) and build. Report at the checkpoint.
