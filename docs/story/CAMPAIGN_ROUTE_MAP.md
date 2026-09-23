@@ -112,10 +112,10 @@ what it cost.
 - **Chapter 6's job for this map:** expose the route seeds as clean, sourced, re-derivable state and record the counterpower action — so the Chapter 7 divergence can read them. The Chapter 6 build already stores the needed signals; this map adds only the requirement that they stay legible.
 - **Do not** manufacture routes by reskinning one scene, treat appearance as agency, gate required proof behind intimacy, or promise equal scene counts per lane.
 
-## Open decisions for the owner
+## Decisions — settled (owner, 2026-09-23)
 
-1. **Four lanes, or split "own-power" into public and independent as two?** Four keeps it buildable; splitting adds fidelity at real content cost.
-2. **Where exactly the Chapter 7 confirm-or-redirect divergence beat sits**, and how strongly the Chapter 6 action weighs versus the older seeds.
-3. **How many overlays can stack** on one run (recommend at most one at a time, cause-driven).
-4. **Which lane is built first** after Chapter 6 (recommend own-power/independent — it depends least on the others and proves the investigation stays solvable alone).
-5. Whether the reconverged endgame is one operation for all lanes (recommended) or a small number of endgame variants.
+1. **Four lanes** (institutional / outside / executive / own-power). Own-power is **not** split into public + independent; the distinction blends in play and would double content for a thin difference. Revisit only if playtesting the first lane shows they need separate arcs.
+2. **The confirm-or-redirect beat opens Chapter 7.** The Chapter 6 action is the strongest single signal, but a strong accumulated history can outweigh one out-of-character action; the player confirms or redirects in play either way (per [CHAPTER_7_ROUTE_CONFIRM.md](CHAPTER_7_ROUTE_CONFIRM.md)).
+3. **At most one overlay at a time**, cause-driven.
+4. **Own-power is built first** — it depends least on the others and proves the investigation stays solvable with no faction's help; it is the template for the rest.
+5. **One reconverged endgame operation** for all lanes, reacting to the route with different evidence, allies and exits — not separate endgame variants.
