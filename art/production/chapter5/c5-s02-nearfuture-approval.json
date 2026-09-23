@@ -1,0 +1,76 @@
+{
+  "approvals": [
+    {
+      "assetId": "c5-s02-evelynn-nearfuture-composite-v2-production",
+      "sceneId": "chapter5.spend",
+      "scope": "SHOT-SPECIFIC ONLY",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Owner approval relayed by EVE Design on 2026-09-23, then confirmed by the owner in the EVE Art session (\"run without my approval needed\"). The touched-up version was chosen because job 5 passed QA with no drift.",
+      "files": {
+        "production": "art/production/chapter5/C5-S02-EVELYNN-NEARFUTURE-COMPOSITE-V2.png",
+        "staging": "art/staging/full-game/chapter5/c5-s02-evelynn-nearfuture-v2-a-candidate.png",
+        "public": null
+      },
+      "sha256": "10729ef83785b211548c17fa19a3147739825cc23ddbdbaf02caa7299a06a0f8",
+      "dimensions": { "width": 1920, "height": 1080 },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "5a7149a7-8342-4499-8cf8-9389fe3ee1ee",
+        "callId": "66720f5a-ed06-47e4-bce6-a794b078cbe2",
+        "assetId": "5d7a00d3-71e3-45e2-9cbc-6d31327151e0",
+        "parentAssetId": "7ce60791-1678-4069-9969-be7492c3f95c",
+        "parentTaskId": "2e327e03-ddd5-46c1-ae25-16502f568e43"
+      },
+      "requiredState": {
+        "scene": "chapter5.spend (C5-S02, 11:30–13:00)",
+        "wardrobe": "Shadow line: fitted charcoal knee-length dress, black heels, black shoulder bag, no jewellery",
+        "purchase": "none yet (before any c05.purchase choice)"
+      },
+      "retainedNotes": [
+        "Job 5 touch-up nudged her gaze toward the display; no transparent signage was added.",
+        "Prose still says 'black low heels' until the revision 19 wardrobe sweep lands."
+      ],
+      "excludedAuthority": [
+        "canonical Evelynn identity",
+        "post-purchase states",
+        "other wardrobe lines"
+      ],
+      "runtimeBound": false,
+      "runtimeNote": "Binding handoff: docs/handoffs/2026-09-23-code-bind-c5-s02.md. EVE Code handles the public/ copy, records.json/catalog entry and the binding."
+    },
+    {
+      "assetId": "c5-s02-street-nearfuture-master-v1-production",
+      "sceneId": "chapter5.spend",
+      "scope": "ENVIRONMENT ANCHOR",
+      "decision": "PASS",
+      "approvalStatus": "approved",
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "approvalSource": "Same owner approval as above; the near-future street master is marked as the approved C5-S02 environment anchor.",
+      "files": {
+        "production": "art/production/chapter5/C5-S02-STREET-NEARFUTURE-MASTER-V1.png",
+        "staging": "art/staging/full-game/chapter5/c5-s02-street-master-nearfuture-v1-b-candidate.png"
+      },
+      "sha256": "90f76e10f6d0f27486c9915290fe835649b9177337a2fe9af8ae9ec1939e2bcc",
+      "dimensions": { "width": 1920, "height": 1080 },
+      "provider": {
+        "service": "ZenCreator",
+        "tool": "image_editor",
+        "model": "SEEDREAM_5",
+        "taskId": "17dbb72c-91a2-4792-b867-defd882487ed",
+        "callId": "e2bac686-f765-4501-ba58-c22ffca694e3",
+        "assetId": "6ec07aa4-8806-47d4-8112-75ce2d47eba8"
+      },
+      "role": "Environment anchor for every C5-S02 frame (image 1 in the anchor method). Not a runtime binding on its own.",
+      "runtimeBound": false
+    }
+  ],
+  "originalsUntouched": [
+    "art/production/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png"
+  ]
+}

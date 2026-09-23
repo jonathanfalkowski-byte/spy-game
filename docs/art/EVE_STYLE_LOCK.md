@@ -33,6 +33,35 @@ Daylight in the house style means: the same ink lines and hard cel shadows, with
 brighter palette (cream, stone, pale sky blue, warm sun patches) and crisp cast
 shadows instead of noir darkness.
 
+## World look: near-future luxury (owner, 2026-09-23)
+
+The world is a few years ahead of now, read from the Axiom office frames and the
+Helix gala: dark stone and glass, brushed brass, integrated linear light strips,
+frameless glass partitions, reflective floors, clean monolithic geometry, and discreet
+screens and panels built into surfaces. Exteriors follow the same logic: glass
+shopfronts with light-strip framing, transparent display signage, smart street
+furniture, and slim modern towers behind older facades. Keep it grounded and
+expensive. Not cyberpunk and not neon (per the art bible). Historic architecture can
+appear, but it is retrofitted, not a period piece.
+
+The office and gala frames also carry a richer rendering than flat daylight: deeper
+blacks, warm light blooms and painted cel gradients. Use
+`axiom-opening-office-shot01-maya-v2-production.png` and
+`art/reference/evelynn/evelynn-helix-gala-v1.png` as the richness reference alongside
+`sloane-brief`.
+
+## Evelynn's presentation (owner, 2026-09-23)
+
+EVE is an adult game, and Evelynn is always styled to be sexy. **Hair is done**: the
+canon updo with face-framing strands, or a deliberate styled alternative. **Heels,
+always.** Silhouettes are fitted, and makeup is finished. The chosen wardrobe line
+(Executive, Socialite, Shadow) decides how it reads: sharp tailoring, glamour, or
+sleek dark practicality. It never decides whether she looks desirable. The only
+exceptions are beats where the prose makes her unstyled state the point (clinic
+recovery, the mirror reveal), and they return to styled immediately afterwards. When
+the prose says "low heels", prompt a sleek mid heel, and flag any prose that
+contradicts this rule to design.
+
 ## Locked style string (paste verbatim into every prompt)
 
 ```
@@ -82,6 +111,10 @@ never re-uploaded.
 | glass-house reception | `76f8ba07-5afd-49cb-9652-568485d2c119` |
 | shopping street | `17823367-7746-412b-9929-c0c5bef781bd` |
 | Evelynn canon three-quarter (identity, `art/production/chapter5/apartment-components/evelynn-canon-three-quarter-v1.png`) | `46090cef-b081-49ab-aa26-cc2c52f94284` |
+| Evelynn identity, no jewellery (use for every no-jewellery state; staging candidate `art/staging/full-game/chapter5/evelynn-identity-nojewellery-v1-b-candidate.png`, alternate `-a-`) | `0555c297-b834-4e6f-8148-9f6295c194e6` (alternate `81295f5f-6c74-4c3f-967c-47deadc32033`) |
+| C5-S02 shopping street, noir house-style master (staging candidate `art/staging/full-game/chapter5/c5-s02-street-master-noir-v1-a-candidate.png`; anchor for C5-S02 frames) | `7c56dc53-192a-465c-8066-c4b7cf1493e0` |
+| Axiom office, Maya v2 (near-future interior and richness reference, `art/production/opening/axiom-opening-office-shot01-maya-v2-production.png`) | `b0d169e9-993e-4ef2-9f36-0bc78e46b18a` |
+| Helix gala, Evelynn (glamour and richness reference, `art/reference/evelynn/evelynn-helix-gala-v1.png`) | `cbc5c03e-46df-40e3-a11d-33511eec897e` |
 
 All uploaded 2026-09-23 at original size through the one-time upload page (Claude in
 Chrome `file_upload`, no resize). That is the working route for local files; base64

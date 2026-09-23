@@ -18,7 +18,7 @@ These are presentation corrections and editorial choices. They do not create new
 
 | Issue | Current evidence | Decision needed |
 |---|---|---|
-| Maya's assignment knowledge | The reducer assigns `helix_assignment` knowledge after she sees the report header. The scene establishes visible company names, which may not establish the complete assignment. | Define precisely what this knowledge key means, then scope a separately versioned change if necessary. Do not repair it by inventing dialogue in this pass. |
+| Maya's assignment knowledge | The reducer assigns `helix_assignment` knowledge after she sees the report header. The scene establishes visible company names, which may not establish the complete assignment. | **Decided by the owner, 2026-09-23: client names only.** `helix_assignment` for Maya means she saw the Helix and Novagen names on a Strategic Intelligence report and knows Strategic Intelligence has the file (her own line asks why Benton put it there). It does not mean the assignment's content, any finding, or any link to Evelynn. Implement as a label and semantics change in revision 19; no new dialogue. |
 | Benton's reading knowledge | Report submission assigns `read_*` document knowledge although the immediate event establishes delivery/attachment. | Distinguish receipt from demonstrated reading in future state design. Preserve current IDs and historical outcomes here. |
 
 Earlier reports about the Rook-date callback, uncorrected medical excuse and Aster concept revisit were rechecked against revision 17 and are not being reported as newly unresolved defects. Canonical Evelynn display spelling is already handled; raw historic text and stable IDs are preserved.
