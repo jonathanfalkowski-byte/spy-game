@@ -1,0 +1,20 @@
+{
+  "id": "axiom-office-m1-zero-credit-package",
+  "date": "2026-09-20",
+  "role": "staging-planning-package",
+  "approvalStatus": "pending",
+  "method": "Local deterministic Python CSV/JSON and Pillow symbolic diagrams; no reference pixels edited",
+  "creditsThisPass": 0,
+  "providerCalls": 0,
+  "productionPromoted": false,
+  "runtimeBound": false,
+  "outputHashes": {
+    "chronology.csv": "d5dccf56e5854c34d5a44307129c9404650753304cefd2ebdbffeb91f3aaf555",
+    "shot-family.csv": "9cb124342b95a697e69721614d64e21195af1b38280f7bb5141762168e445cbf",
+    "package.json": "f6a566b9c26c67ee8fe325227c5dd9a1249a65f775abb72c410e48ac7e8baec2",
+    "office-geometry.png": "cedb4c4086cae0651bc34e7e282df5bfddd2eeeec7a573ba134ab288693c3a3e",
+    "camera-anchors.png": "048e6b6e4af06d31c17cd4d2255849d6f8fa1317db02eb1c0a4a49b6a673580a",
+    "build-blockouts.py": "3ea1c7dfd0af2d266a5915d895354d660586ecae342f4d6456573000786314bb"
+  },
+  "scope": "Reviewable specification only; no environment or character authority approval"
+}

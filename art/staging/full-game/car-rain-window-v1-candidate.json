@@ -1,0 +1,21 @@
+{
+  "source": "art/staging/cast-scenes/eve-bg-car-v1.png",
+  "sourceSha256": "8c7ea067b2dadf76973e13ed5088e265e22414ff540a9ed5bbe639a2e02cf4fd",
+  "output": "art/staging/full-game/car-rain-window-v1-candidate.png",
+  "outputSha256": "b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3",
+  "method": "Fixed existing-pixel window/roof crop; Lanczos enlargement only.",
+  "crop": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "outputDimensions": [
+    1920,
+    1080
+  ],
+  "paidGenerations": 0,
+  "credits": 0,
+  "review": "pending",
+  "runtimeBound": false
+}

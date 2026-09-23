@@ -760,5 +760,3379 @@
       "date": "2026-09-22",
       "source": "Delegated design review under the owner-approved opening completion plan for the corrected Adrian-alone sip composition at opening.office.shot04-alone."
     }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot01-daniel-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.daniel",
+      "environment": "Strategic Intelligence office with the locked M5 desk, smoked-glass circulation and warm controlled practicals.",
+      "cameraFraming": "16:9 shared HOLD frame with Daniel standing beside Adrian’s desk, full figure visible and the desk/terminal/circulation geometry readable.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot01-daniel during the commute.arrival Daniel-waiting beat and office.daniel dialogue HOLD. Daniel is visible; Adrian remains off-frame until the authored Approach your desk action.",
+      "continuityRequirements": [
+        "Daniel is the only visible active participant; Adrian is intentionally off-frame before Approach your desk.",
+        "Daniel has empty relaxed hands and no slate, coffee, badge, file or future case prop.",
+        "Do not serve at office.benton, office.departure, Maya beats or ending.complete."
+      ],
+      "editSources": [
+        "office-daniel-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged as a shot-specific replacement; not canonical Daniel identity or M5 authority."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot01-daniel-v2-production.png",
+    "sha256": "b78858302d92f44af14d38fddfe385f14640c6a4aeafd1f27848006a962785fa",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot02-benton-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.benton",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal and smoked-glass circulation geometry.",
+      "cameraFraming": "16:9 desk conversation frame with Benton fully head-visible and one closed black slate held at the desk edge.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot02-benton during Benton arrival and assignment dialogue HOLD. Daniel is gone; Adrian remains off-screen.",
+      "continuityRequirements": [
+        "Benton is the active visible participant; Daniel is absent and Adrian remains off-screen.",
+        "The single closed slate contains no readable result or future case state.",
+        "Do not serve at office.departure, Maya beats or ending.complete."
+      ],
+      "editSources": [
+        "office-benton-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged as a shot-specific replacement; no full-body or footwear authority is implied."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot02-benton-v2-production.png",
+    "sha256": "ca0731e12ebb2190b251dd924a3d40796aaae1ad2636ba3bf2ff2999f7b86911",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot03-file-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.departure",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal, slate and circulation geometry.",
+      "cameraFraming": "16:9 empty-desk action frame; no active participant is visible, with one awake slate on the desk and the office geometry unchanged.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot03-file at office.departure after Benton leaves and the Helix file wakes on the desk slate. Do not use for helix.brief or later casework states.",
+      "continuityRequirements": [
+        "Benton and Daniel are absent after the authored departure.",
+        "One slate is awake but its contents remain unreadable; no submission, authorization or future result is shown.",
+        "Do not serve at helix.brief, documents, review, submitted or Maya beats."
+      ],
+      "editSources": [
+        "office-departure-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact file/action CUT only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot03-file-v2-production.png",
+    "sha256": "0b92c8f200e6ccad052e6c197c5be9ff6a3d139255576a8c8fa6aeb533909a25",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot01-maya-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "maya.promotion",
+      "environment": "Strategic Intelligence office with the locked M5 desk, guest zone and controlled morning practicals.",
+      "cameraFraming": "16:9 medium desk-side conversation frame with Maya left of the desk, her cup in hand and Adrian’s separate cup visible on the desk.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.maya.shot01-coffee during maya.promotion, maya.invitation and maya.case HOLD. Maya retains her cup and Adrian’s cup remains on the desk.",
+      "continuityRequirements": [
+        "Maya is the active visible participant; Daniel and Benton are absent and Adrian remains outside the frame.",
+        "Exactly two cups are visible: Maya’s held cup and Adrian’s retained desk cup.",
+        "No future case prop or departure movement is shown."
+      ],
+      "editSources": [
+        "maya-coffee-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the authored Maya conversation HOLD family only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot01-maya-v2-production.png",
+    "sha256": "4ad8849088bb9ba5a6067b736b8b3fc705941fd1baa7e158cf27cbc586e66858",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot02-maya-departure-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "maya.goodbye",
+      "environment": "Strategic Intelligence office with the locked M5 desk, guest zone and compliance circulation.",
+      "cameraFraming": "16:9 rear three-quarter departure frame with Maya moving toward the compliance corridor, her cup in hand and Adrian’s cup retained on the desk.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.maya.shot02-departure at maya.goodbye when Maya leaves toward the compliance wing. Do not use for Maya conversation HOLD.",
+      "continuityRequirements": [
+        "Maya is visibly departing; the authored movement is the reason for the CUT.",
+        "Maya’s cup remains in her hand and Adrian’s separate cup remains on the desk.",
+        "No new participant or future case state appears."
+      ],
+      "editSources": [
+        "maya-departure-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1670,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the authored Maya departure CUT only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot02-maya-departure-v2-production.png",
+    "sha256": "54e37a9b324e9286ac8f9742b342683ba5f3fa5210fb737754f8e9cb9d9b0045",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot04-alone-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "ending.complete",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal, slate and controlled morning practicals.",
+      "cameraFraming": "16:9 desk-level aftermath frame with Adrian seated at his desk, cup at his lips, terminal and retained slate visible.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot04-alone at ending.complete after Maya’s departure. Adrian is alone and sips the retained cup.",
+      "continuityRequirements": [
+        "Adrian is the only visible participant; Maya, Daniel and Benton are absent.",
+        "One retained cup is in Adrian’s hand; no duplicate desk cup or later report result appears.",
+        "Do not serve before Maya’s authored departure or as a general Adrian identity reference."
+      ],
+      "editSources": [
+        "adrian-alone-sip-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact Adrian-alone aftermath CUT only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot04-alone-v2-production.png",
+    "sha256": "ee7606fbe3e736ff76205f1c93ec3625eea82a751b7c66c2c48b70fbd80be0c3",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored shot/state.",
+        "The reviewed participant set, wardrobe, prop custody and movement/HOLD behavior match the shot scope.",
+        "The locked Strategic Intelligence office geometry and camera family remain readable."
+      ],
+      "limitations": [
+        "Approval is exact-shot only; it is not canonical identity, wardrobe or environment authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed opening shot."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-reception-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-reception",
+      "sceneId": "clinic.reception",
+      "environment": "Glass-and-wood clinic reception with the inner door, marble counter and controlled morning light.",
+      "cameraFraming": "16:9 reception desk frame with the receptionist, counter and inner clinic corridor visible.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.reception and the same-place clinic.receptionReply HOLD; no examination-suite or later treatment state.",
+      "continuityRequirements": [
+        "Receptionist is the only active visible staff participant; no Voss, Sloane or treatment state appears.",
+        "The frame may hold through the player’s reception reply before entering the examination suite."
+      ],
+      "editSources": [
+        "clinic-reception-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic reception candidate; exact reception HOLD only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-reception-v1-production.png",
+    "sha256": "dd37369064847c1e4186fb7d7d0412b77291f4e7c815682d9862d74578994e82",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacy",
+      "environment": "Locked examination suite with chair, diagnostic window and clinical work surfaces.",
+      "cameraFraming": "16:9 examination-suite frame with Adrian, Voss and standing Sloane around the examination chair.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacy before the privacy choice, while Sloane remains present and Voss has not begun the baseline examination.",
+      "continuityRequirements": [
+        "Sloane is visibly present before the player chooses privacy.",
+        "No examination result, authorization or profile state is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic privacy setup candidate; exact pre-choice state."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-v1-production.png",
+    "sha256": "31219b3aa898f75887b2dc749442208e111308ca45051e4eac3c4e5a50e5cfd1",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-stay-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacyReply",
+      "environment": "Same examination suite and chair geometry as the privacy setup.",
+      "cameraFraming": "16:9 examination-suite conversation frame with Voss standing, Adrian at the chair and Sloane seated at the right.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacyReply when privacy is stay or silent and Sloane remains in the examination room.",
+      "continuityRequirements": [
+        "Sloane remains visibly present and seated after the player keeps the existing arrangement.",
+        "No examination result or treatment authorization is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-stay-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic privacy HOLD/CUT candidate for Sloane-present branches."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-stay-v1-production.png",
+    "sha256": "a0a4081107824e731ffd34ddf25220c28b23cc6a7296e74a227cd7bc83030d2d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-private-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacyReply",
+      "environment": "Same examination suite and chair geometry as the privacy setup.",
+      "cameraFraming": "16:9 examination-suite conversation frame with Adrian and Voss only; the chair and closed door retain the room geography.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacyReply when privacy is ask or demand and Sloane has stepped outside.",
+      "continuityRequirements": [
+        "Sloane is absent after the authored privacy request.",
+        "No examination result or treatment authorization is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-private-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic privacy private-branch candidate."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-private-v1-production.png",
+    "sha256": "65986edb422c0599afa646fc48bb29fef13c685a4170314418d1555985a388ea",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-exam-stay-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.exam",
+      "environment": "Same examination suite with the diagnostic ring and monitor.",
+      "cameraFraming": "16:9 baseline examination frame with Adrian in the chair, Voss at the monitor and Sloane seated in the background.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.exam when Sloane remains present; baseline measurement is underway and the optional inspection has not yet been chosen.",
+      "continuityRequirements": [
+        "Sloane is visibly present for the baseline measurement.",
+        "No selected examination finding, authorization or procedure result is shown."
+      ],
+      "editSources": [
+        "clinic-exam-stay-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic exam candidate for Sloane-present branches."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-exam-stay-v1-production.png",
+    "sha256": "e4fd99e9cbfa782007f3295186cea0eed85be54079f95b2d368df427e0338e33",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-exam-private-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.exam",
+      "environment": "Same examination suite with the diagnostic ring and monitor.",
+      "cameraFraming": "16:9 baseline examination frame with Adrian in the chair and Voss at the monitor; the room remains empty of Sloane.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.exam when Sloane is absent; baseline measurement is underway and the optional inspection has not yet been chosen.",
+      "continuityRequirements": [
+        "Sloane is absent after the authored privacy request.",
+        "No selected examination finding, authorization or procedure result is shown."
+      ],
+      "editSources": [
+        "clinic-exam-private-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic exam candidate for private branches."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-exam-private-v1-production.png",
+    "sha256": "b31b9ed82502a037029273f6b0293eb92c3de70652436c7c3fe58039b753a144",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-exam-result-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.examResult",
+      "environment": "Same examination suite and diagnostic ring, with no additional participant.",
+      "cameraFraming": "16:9 closer examination-result frame with Adrian in the chair and Voss reading the monitor.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.examResult when Sloane is absent; the selected examination result is available before returning to consultation.",
+      "continuityRequirements": [
+        "Sloane is absent; a Sloane-present result variant is not covered by this asset.",
+        "The image does not encode which optional source was inspected; authored UI owns the finding."
+      ],
+      "editSources": [
+        "clinic-exam-result-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic exam-result candidate; private branch only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-exam-result-v1-production.png",
+    "sha256": "d8b081d5ffa3bf5e93ee15890c4684ba309bf5d81bd021589054f001a553542d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-protocol-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-consultation-area",
+      "sceneId": "clinic.protocol",
+      "environment": "Clinic consultation wall display and marble table with controlled morning light.",
+      "cameraFraming": "16:9 consultation-area frame with Adrian seated, Voss presenting the medical tolerances and Sloane standing with the slate.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.protocol after the examination result returns to consultation; Sloane is present again for the protocol discussion.",
+      "continuityRequirements": [
+        "The display contains abstract non-readable medical icons only; authored prose owns the protocol details.",
+        "Sloane is present for the protocol discussion; no profile selection or authorization is shown."
+      ],
+      "editSources": [
+        "clinic-protocol-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit clinic protocol candidate; exact consultation state."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-protocol-v1-production.png",
+    "sha256": "3e4077f5c80fe355c62ebd66a296efa800271426e083a17e59b8a3d42d16d2b8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-simulation-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-consultation",
+      "sceneId": "clinic.simulation",
+      "environment": "Locked Sublevel 17 clinic suite with consistent consultation, examination and preparation geography.",
+      "cameraFraming": "16:9 consultation frame with Adrian seated before the predictive display, Voss and Sloane present, and the paired Adrian/Evelyn render visible.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.simulation and the same-place clinic.display HOLD after an attention response; profile is already confirmed, no authorization or physical adaptation has begun.",
+      "continuityRequirements": [
+        "The display contains paired predictive Adrian/Evelyn renderings; this is a model, not an applied transformation.",
+        "Voss and Sloane remain present; no authorization, procedure preparation, or later stage is shown."
+      ],
+      "editSources": [
+        "clinic-simulation-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed predictive-rendering candidate; reusable hold across the authored attention response."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-simulation-v1-production.png",
+    "sha256": "7679f91d7c1daa7c6ed820415dc025b9a348782e02c8288e2bc1444c947b14b0",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization/procedure boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-authorization-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-consultation",
+      "sceneId": "clinic.authorization",
+      "environment": "Locked Sublevel 17 clinic suite with consistent consultation, examination and preparation geography.",
+      "cameraFraming": "16:9 consultation table frame with Adrian reaching toward the untouched authorization control, Voss seated opposite and Sloane standing behind.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.authorization before auth.yes or stop.request; Stage One remains inactive and the authorization control is not activated.",
+      "continuityRequirements": [
+        "Adrian is fully clothed and the authorization control is visibly untouched.",
+        "The selected profile may be shown on the display; no procedure, locker, gown, or physical adaptation is shown."
+      ],
+      "editSources": [
+        "clinic-authorization-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed pre-authorization candidate; exact decision-state shot."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-authorization-v1-production.png",
+    "sha256": "d1071f1fb3723396091331c74a88f0fe41c32719a1d1b73a3f4da59cdd3063b7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization/procedure boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-preparation-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation",
+      "sceneId": "clinic.preparation",
+      "environment": "Locked Sublevel 17 clinic suite with consistent consultation, examination and preparation geography.",
+      "cameraFraming": "16:9 preparation-suite frame with Adrian reclined in the clinic chair while Voss adjusts the wrist support; locker and claim tag remain visible.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.preparation after Stage One authorization and before the c.preparation transition to the waking voice checkpoint.",
+      "continuityRequirements": [
+        "Stage One authorization is already recorded; Adrian is in the plain clinic garment and preparation has not yet advanced to voice.",
+        "The phone, badge, keys and jacket are secured in the numbered locker; no transformation result is shown."
+      ],
+      "editSources": [
+        "clinic-preparation-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed post-consent preparation candidate; no procedure result or later wardrobe."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-preparation-v1-production.png",
+    "sha256": "a9b1f4a77dfb2ed7b43c50a3368a15e0f74769460545f08f20499468ecb9d003",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence, room geography and preauthorization/procedure boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-voice-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.voice",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Voss monitors Adrian’s first voice checkpoint in the private examination suite.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.voice and clinic.voiceReply when Sloane is absent; early voice adaptation is underway and no later face or recovery state is shown.",
+      "continuityRequirements": [
+        "Sloane is absent on the ask/demand privacy branch.",
+        "Voice and early tissue adaptation are present; no face result or later wardrobe is shown."
+      ],
+      "editSources": [
+        "clinic-voice-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-voice-v1-production.png",
+    "sha256": "e45fbb8a3423e1594c10370a96a1c749a80bb00bbfa68879534d4cd8af0d2d9e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-voice-pause-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.voicePause",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Voss pauses the voice sequence while Sloane remains beside the examination chair.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.voicePause when Sloane remains present and the voice sequence is paused.",
+      "continuityRequirements": [
+        "The pause control is active and no later face or recovery state is shown.",
+        "Sloane remains visibly present; do not reuse for private-branch pauses."
+      ],
+      "editSources": [
+        "clinic-voice-pause-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-voice-pause-v1-production.png",
+    "sha256": "d22be9b0dc499b2e7cd0b4a1cc22b3f421bb216a9fb36f151803b6199a83d9a9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-face-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.face",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "The articulated mirror shows Adrian’s changing face while Voss and Sloane remain in the room.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.face and clinic.faceReply when Sloane remains present; the mirror is open at the face checkpoint.",
+      "continuityRequirements": [
+        "No final identity choice is implied; face responses remain authored in prose.",
+        "Sloane is visible, so this is not a private-branch fallback."
+      ],
+      "editSources": [
+        "clinic-face-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-face-v1-production.png",
+    "sha256": "f6bb4289e07e5783b59ec21af53ed13f5893224c451f48b578c4756393266e94",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-face-pause-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.facePause",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Voss has turned the articulated mirror away while the face checkpoint is paused.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.facePause when Sloane remains present and the face sequence is paused.",
+      "continuityRequirements": [
+        "The mirror is opaque and turned away; no new face result is shown.",
+        "Do not reuse for a private-branch pause without Sloane."
+      ],
+      "editSources": [
+        "clinic-face-pause-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-face-pause-v1-production.png",
+    "sha256": "d2c0dc1785bb73ab4eba526612c70f542e9f3b5ceca76813e6ecb52859317663",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-steps-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.steps",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian takes a supervised first step as Voss waits beside the chair and Sloane moves toward the door.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.steps when Stage One is complete and Sloane remains present for the authored departure movement.",
+      "continuityRequirements": [
+        "Adrian is clothed in the clinic garment and has not reached the mirror or recovery phone."
+      ],
+      "editSources": [
+        "clinic-steps-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-steps-v1-production.png",
+    "sha256": "c88585095695d3f6d9c693ecf458e344e6e414ce9e094ba92da950760433eaa9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-mirror-unlooked-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.mirror",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian approaches the recovery-suite mirror without yet choosing to look.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.mirror before the look/skip choice; the reflection remains an uncovered doorway and the patient’s face is not shown.",
+      "continuityRequirements": [
+        "No reflection is revealed and no mirror choice is implied.",
+        "Voss is present; Sloane is intentionally out of frame at this beat."
+      ],
+      "editSources": [
+        "clinic-recovery-mirror-unlooked-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-mirror-unlooked-v1-production.png",
+    "sha256": "cd160f9f7ce65002665da34969eafa0dc0d1306b49547b2701deabb915f520dd",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-name-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.name",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reaches for the water while Voss and Sloane wait in the recovery suite.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.name after the mirror choice resolves and before the recovery rest transition.",
+      "continuityRequirements": [
+        "Sloane is visible at the door and the patient remains clothed; no phone or later wardrobe is shown."
+      ],
+      "editSources": [
+        "clinic-name-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-name-v1-production.png",
+    "sha256": "f36642e088476233a306fc94ab90e00fbf4744fff7010e700b114d1df6bb9522",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rest-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.rest",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "A recovery nurse brings Adrian lunch while the completed Stage One checks continue.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.rest after the name exchange; Sloane has left and the phone has not yet been returned.",
+      "continuityRequirements": [
+        "The nurse and meal are present; no recovery phone message or later presentation state is shown."
+      ],
+      "editSources": [
+        "clinic-rest-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rest-v1-production.png",
+    "sha256": "555a25853377c143b16230640201e86adf789f77470053b9446f53f6152f5362",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-contact-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.recoveryContact",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian holds the returned monitored phone in the recovery suite.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.recoveryContact before the brief/identity/quiet contact choice.",
+      "continuityRequirements": [
+        "The phone is returned beside the keys and jacket; no sent message or reply is shown."
+      ],
+      "editSources": [
+        "clinic-recovery-contact-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-contact-v1-production.png",
+    "sha256": "df686f965607e4cc3967dcd72ec638da5e78e62e63365442fdaf1ed03aec9c9d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-wardrobe-choice-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "wardrobe",
+      "sceneId": "clinic.wardrobe",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews three unselected outfits with Voss and Sloane in the preparation suite.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.wardrobe before an outfit choice; all three presentations remain unselected.",
+      "continuityRequirements": [
+        "No selected outfit or makeup is shown; later makeup shots branch on outfitDraft."
+      ],
+      "editSources": [
+        "clinic-wardrobe-choice-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-wardrobe-choice-v1-production.png",
+    "sha256": "497ce5951b8ca7ef9487f34f587ad9ac272fe9d98c9d20c72325303a122149f5",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-makeup-executive-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.makeup",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews the executive presentation at the preparation-suite vanity before choosing makeup.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.makeup when outfitDraft is executive and makeupDraft is still unset.",
+      "continuityRequirements": [
+        "The executive outfit is worn; makeup examples remain unselected."
+      ],
+      "editSources": [
+        "clinic-makeup-executive-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-makeup-executive-v1-production.png",
+    "sha256": "3566cba30c9b934ec69845431bf99668ddc090a93671d6fa3971379288b361c7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-makeup-socialite-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.makeup",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews the socialite presentation at the preparation-suite vanity before choosing makeup.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.makeup when outfitDraft is socialite and makeupDraft is still unset.",
+      "continuityRequirements": [
+        "The socialite outfit is worn; makeup examples remain unselected."
+      ],
+      "editSources": [
+        "clinic-makeup-socialite-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-makeup-socialite-v1-production.png",
+    "sha256": "a1abfbb1d26734e431ec0328266622f09681c27953dd9d60d2220dbf65b03c7a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-makeup-shadow-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.makeup",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews the shadow presentation at the preparation-suite vanity before choosing makeup.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.makeup when outfitDraft is shadow and makeupDraft is still unset.",
+      "continuityRequirements": [
+        "The shadow outfit is worn; makeup examples remain unselected."
+      ],
+      "editSources": [
+        "clinic-makeup-shadow-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-makeup-shadow-v1-production.png",
+    "sha256": "a4fb292bdfc0b7722400897ad049da49d1a17b0028542f455ce1a96e58c3ad4e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-reply-quiet-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.recoveryReply",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "The monitored phone rests face down beside the keys after Adrian chooses not to send a recovery message.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.recoveryReply when contact is quiet; no message is sent.",
+      "continuityRequirements": [
+        "The phone remains face down and no outgoing or incoming bubbles are shown."
+      ],
+      "editSources": [
+        "clinic-recovery-reply-quiet-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-reply-quiet-v1-production.png",
+    "sha256": "2613ee271d14ac9b783bf8f5ec7e2e1fa987344de9a4dc4331dcf05e016c0c7d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-reply-sent-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.recoveryReply",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews generic unreadable message bubbles after sending a recovery update.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.recoveryReply when contact is brief or identity; message text remains in authored prose.",
+      "continuityRequirements": [
+        "No message text is rendered into the art and the quiet branch must use the face-down phone variant."
+      ],
+      "editSources": [
+        "clinic-recovery-reply-sent-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-reply-sent-v1-production.png",
+    "sha256": "59bcda2b56696f4d8ee46b50bcd7b2c345a5b8691afa02490dca16f7b1703397",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact authored clinic state.",
+        "Participant presence/absence and branch/state boundaries match the shot scope."
+      ],
+      "limitations": [
+        "Approval is exact-shot and branch-state only; it is not canonical identity, wardrobe or clinic-location authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-presentation-review-executive-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.presentationReview",
+      "environment": "Locked clinic dressing area and preparation-suite wardrobe wall.",
+      "cameraFraming": "16:9 rear presentation-review frame with the selected outfit fully visible and face intentionally out of frame.",
+      "lighting": "Controlled warm dressing-area light; no future event relighting.",
+      "intendedUse": "ONLY clinic-presentationReview.shot01-executive when outfitDraft is executive and makeupDraft is set; exact presentation-review state before rehearsal.",
+      "continuityRequirements": [
+        "The outfit is committed for review and the selected rack is empty.",
+        "The rear camera intentionally avoids identity or makeup claims; later rehearsal remains separate."
+      ],
+      "editSources": [
+        "clinic-presentation-review-executive-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-presentation-review-executive-v1-production.png",
+    "sha256": "28a75043e0f4e5e03a42e9d85b011a4fa6930d3218583460544061f23f0fe01b",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and presentation-review state.",
+        "Rear framing avoids unearned makeup or identity claims while preserving wardrobe continuity."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical wardrobe or identity master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-presentation-review-socialite-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.presentationReview",
+      "environment": "Locked clinic dressing area and preparation-suite wardrobe wall.",
+      "cameraFraming": "16:9 rear presentation-review frame with the selected outfit fully visible and face intentionally out of frame.",
+      "lighting": "Controlled warm dressing-area light; no future event relighting.",
+      "intendedUse": "ONLY clinic-presentationReview.shot01-socialite when outfitDraft is socialite and makeupDraft is set; exact presentation-review state before rehearsal.",
+      "continuityRequirements": [
+        "The outfit is committed for review and the selected rack is empty.",
+        "The rear camera intentionally avoids identity or makeup claims; later rehearsal remains separate."
+      ],
+      "editSources": [
+        "clinic-presentation-review-socialite-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-presentation-review-socialite-v1-production.png",
+    "sha256": "8973d56e28ff8a98232a1eee29445b290f3402add5b9a14c962e096dc53bdf56",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and presentation-review state.",
+        "Rear framing avoids unearned makeup or identity claims while preserving wardrobe continuity."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical wardrobe or identity master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-presentation-review-shadow-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.presentationReview",
+      "environment": "Locked clinic dressing area and preparation-suite wardrobe wall.",
+      "cameraFraming": "16:9 rear presentation-review frame with the selected outfit fully visible and face intentionally out of frame.",
+      "lighting": "Controlled warm dressing-area light; no future event relighting.",
+      "intendedUse": "ONLY clinic-presentationReview.shot01-shadow when outfitDraft is shadow and makeupDraft is set; exact presentation-review state before rehearsal.",
+      "continuityRequirements": [
+        "The outfit is committed for review and the selected rack is empty.",
+        "The rear camera intentionally avoids identity or makeup claims; later rehearsal remains separate."
+      ],
+      "editSources": [
+        "clinic-presentation-review-shadow-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-presentation-review-shadow-v1-production.png",
+    "sha256": "fb3b0af56299ddd167fec5a65b8fdf34bf5b1db0d050f777fbadcc5cfd4beda9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and presentation-review state.",
+        "Rear framing avoids unearned makeup or identity claims while preserving wardrobe continuity."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical wardrobe or identity master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rehearsal-executive-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.rehearsal",
+      "environment": "Locked clinic preparation suite with coaching area and wardrobe wall.",
+      "cameraFraming": "16:9 rear coaching frame with the selected outfit visible and no unearned party guests.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.rehearsal.shot01-executive when outfit is committed as executive; rehearsal coaching remains before the final briefing and departure.",
+      "continuityRequirements": [
+        "Sloane is coaching in the preparation suite; no party guest, event entrance or future mission result is shown.",
+        "The selected rack is empty and the selected outfit remains unchanged."
+      ],
+      "editSources": [
+        "clinic-rehearsal-executive-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rehearsal-executive-v1-production.png",
+    "sha256": "b5aa746b2145941233d640aef347eb8d10294b6c323f9c1d453b675c54479c21",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and rehearsal state.",
+        "No future party guests or unearned event action is present."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical identity or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rehearsal-socialite-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.rehearsal",
+      "environment": "Locked clinic preparation suite with coaching area and wardrobe wall.",
+      "cameraFraming": "16:9 rear coaching frame with the selected outfit visible and no unearned party guests.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.rehearsal.shot01-socialite when outfit is committed as socialite; rehearsal coaching remains before the final briefing and departure.",
+      "continuityRequirements": [
+        "Sloane is coaching in the preparation suite; no party guest, event entrance or future mission result is shown.",
+        "The selected rack is empty and the selected outfit remains unchanged."
+      ],
+      "editSources": [
+        "clinic-rehearsal-socialite-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rehearsal-socialite-v1-production.png",
+    "sha256": "e23fe779f15192d22094708c3daf9419162876b3f21221c1bb0195be173f176c",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and rehearsal state.",
+        "No future party guests or unearned event action is present."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical identity or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rehearsal-shadow-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.rehearsal",
+      "environment": "Locked clinic preparation suite with coaching area and wardrobe wall.",
+      "cameraFraming": "16:9 rear coaching frame with the selected outfit visible and no unearned party guests.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.rehearsal.shot01-shadow when outfit is committed as shadow; rehearsal coaching remains before the final briefing and departure.",
+      "continuityRequirements": [
+        "Sloane is coaching in the preparation suite; no party guest, event entrance or future mission result is shown.",
+        "The selected rack is empty and the selected outfit remains unchanged."
+      ],
+      "editSources": [
+        "clinic-rehearsal-shadow-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rehearsal-shadow-v1-production.png",
+    "sha256": "4dae64368a7af84dca9413e362dce5a9a04f1876d13d9459c15009968def86c7",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for exact outfit and rehearsal state.",
+        "No future party guests or unearned event action is present."
+      ],
+      "limitations": [
+        "Approval is exact outfit/state only; it is not a canonical identity or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-briefing-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.briefing",
+      "environment": "Locked final-preparation table in the clinic preparation suite.",
+      "cameraFraming": "16:9 close table composition with the monitored phone, restricted badge, invitation credentials and earpiece visible; no future event location.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.briefing.shot01 after the final equipment check; no departure, Harbour or mission result is shown.",
+      "continuityRequirements": [
+        "The monitored phone, restricted badge, invitation credentials and earpiece are all present in their pre-departure custody.",
+        "No unearned host, event guest, Harbour location or later mission result is visible."
+      ],
+      "editSources": [
+        "clinic-briefing-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed exact final-preparation briefing table candidate; branch-neutral and prop-focused."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-briefing-v1-production.png",
+    "sha256": "a5a39648b851e47ebefaff00a7283febb2c38926fe3b5f6b3ed2235fdbc0f66e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Full-resolution visual inspection passed for the exact final-preparation prop state.",
+        "No future event location, guest or mission result is present."
+      ],
+      "limitations": [
+        "Approval is exact clinic.briefing state only; it is not a universal prop or location master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-exterior-approach-adrian-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-approach",
+      "sceneId": "commute.arrival",
+      "environment": "Rainy Axiom exterior approach with wet plaza, glass headquarters entrance, and indistinct commuters.",
+      "cameraFraming": "16:9 exterior approach frame with Adrian entering from screen left toward the entrance.",
+      "lighting": "Cool rainy dusk with restrained warm lobby glow.",
+      "intendedUse": "ONLY opening.axiom.shot01-approach; exact approach CUT/HOLD before security.",
+      "continuityRequirements": [
+        "Adrian is an ordinary adult office worker in charcoal coat and thin rectangular glasses.",
+        "No security interior, Daniel, Benton, Maya, coffee, file, readable signage, clock or plot text.",
+        "Shot-scoped composition authority only; not a canonical Adrian identity master."
+      ],
+      "editSources": [
+        "axiom-exterior-approach-adrian-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-authorized exact opening V2 candidate; prior V1 provenance remains preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-exterior-approach-adrian-v2-production.png",
+    "sha256": "5da340cde57685198d42edd410e70d1d10bce48a8ee1c0475cf3454200bc4041",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Exterior approach direction, rain, entrance scale and screen-left-to-right movement are clear.",
+        "No future participants or plot props are present.",
+        "Thin glasses and restrained office wardrobe remain consistent with the V2 axis guide."
+      ],
+      "limitations": [
+        "Approval is exact shot/state only; not a canonical Adrian identity or office master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "source": "Owner-authorized opening V2 completion pass; preserve prior V1 provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-security-gate-adrian-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-security-lobby",
+      "sceneId": "commute.arrival",
+      "environment": "Axiom controlled security lobby with screening lanes, inner glass gates and elevator corridor.",
+      "cameraFraming": "16:9 central security-gate frame with Adrian at the badge reader and the elevator route beyond.",
+      "lighting": "Cool controlled lobby light with restrained warm practicals.",
+      "intendedUse": "ONLY opening.axiom.shot02-security; exact security CUT/HOLD before office arrival.",
+      "continuityRequirements": [
+        "Adrian badges through the inner gate after coat and phone screening.",
+        "No Daniel, Benton, Maya, coffee, file, readable employee data, clock or office dialogue.",
+        "Gate/elevator relationship stays distinct from the office-arrival threshold."
+      ],
+      "editSources": [
+        "axiom-security-gate-adrian-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-authorized exact opening V2 candidate; prior V1 provenance remains preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-security-gate-adrian-v2-production.png",
+    "sha256": "3f4af05a9047de74a4cb671652edb510e165e2fe85e0e6749fc49087ece55c6f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Badge gate, screening context and forward elevator route are legible.",
+        "Adrian remains screen-left and moves toward the established office axis.",
+        "No future-state participant or prop is introduced."
+      ],
+      "limitations": [
+        "Approval is exact shot/state only; not a canonical Adrian identity or office master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "source": "Owner-authorized opening V2 completion pass; preserve prior V1 provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-office-approach-adrian-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-office-arrival",
+      "sceneId": "commute.arrival",
+      "environment": "Strategic Intelligence floor viewed from the elevator threshold with M5 desk, visitor chairs and smoked-glass director office.",
+      "cameraFraming": "16:9 rear three-quarter elevator-threshold frame; desk front faces camera, visitor chairs remain left and monitor/glass office remain right.",
+      "lighting": "Controlled warm practicals over cool graphite office surfaces.",
+      "intendedUse": "ONLY opening.axiom.shot03-office-arrival; office-arrival CUT/HOLD before Daniel enters the active frame.",
+      "continuityRequirements": [
+        "Adrian has retrieved his coat/phone and is approaching the fixed desk axis.",
+        "Daniel, Benton, Maya, coffee, Helix file, readable names, clocks and future dialogue are absent.",
+        "M5 remains component-only geometry authority; this is an exact arrival shot, not a replacement M5 master."
+      ],
+      "editSources": [
+        "axiom-office-approach-adrian-v2-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-authorized exact opening V2 candidate; prior V1 provenance remains preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-office-approach-adrian-v2-production.png",
+    "sha256": "6bef4828e82c1e259a0f6f3146412109ce1e10e9295822a37c7c5b8349f071a4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Desk front, visitor chairs, monitor/right-side glass office and circulation axis match the V2 screen-axis guide.",
+        "Adrian is rear three-quarter and no active participant appears before Daniel.",
+        "Elevator threshold and office depth connect arrival to the later desk shot."
+      ],
+      "limitations": [
+        "Approval is exact shot/state only; not a canonical Adrian identity or office master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized V2 visual continuity review",
+      "date": "2026-09-22",
+      "source": "Owner-authorized opening V2 completion pass; preserve prior V1 provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-directory-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-casework",
+      "sceneId": "file.directory",
+      "environment": "Axiom casework workstation with the Blackglass directory open on Adrian’s monitor.",
+      "cameraFraming": "16:9 desk-level view with Adrian at the terminal and the directory surface readable only through authored prose.",
+      "lighting": "Controlled warm Axiom office light with restrained amber accents.",
+      "intendedUse": "ONLY opening.blackglass.shot02-directory at file.directory after the directory is opened; no biometric authorization or security state.",
+      "continuityRequirements": [
+        "Adrian is alone at the casework desk.",
+        "Directory identifiers are represented by authored text, not invented readable labels.",
+        "No palm authorization, security officers, escort, Sloane or future identity reveal appears."
+      ],
+      "editSources": [
+        "blackglass-directory-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-directory-v1-production.png",
+    "sha256": "24d9a39d369e3e806c7d5cad5c4ad3d6bc71211caeb3c681e226bde8727f9f63",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Adrian’s desk posture and monitor focus match the directory-reading beat.",
+        "The composition preserves the existing Blackglass workstation geography.",
+        "No later authorization or security action is visually anticipated."
+      ],
+      "limitations": [
+        "Shot-specific approval only; not a character, environment or universal casework master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-authorized-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-casework",
+      "sceneId": "file.authorized",
+      "environment": "Axiom casework workstation during biometric authorization of Candidate 7A.",
+      "cameraFraming": "16:9 desk-level view with Adrian’s hand on the palm reader and the terminal locked in an amber security state.",
+      "lighting": "Security amber over the controlled casework workstation.",
+      "intendedUse": "ONLY opening.blackglass.shot03-authorized at file.authorized after file.authorize; no officers or escort before the security CUT.",
+      "continuityRequirements": [
+        "Adrian’s biometric hand action is the authored change from directory to authorization.",
+        "The terminal is locked; the candidate image has not resolved.",
+        "No security officers, phone surrender or executive-level material appears."
+      ],
+      "editSources": [
+        "blackglass-authorized-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-authorized-v1-production.png",
+    "sha256": "4531ae7eb7fdb49e01c331f47f231fec94694ba85f639cb08ad18213c7618084",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Palm-reader action and locked amber terminal visibly establish authorization.",
+        "The candidate image remains unresolved, matching the authored prose.",
+        "No security intervention is shown before its authored node."
+      ],
+      "limitations": [
+        "Shot-specific approval only; not a character, environment or universal casework master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-security-intervention-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-internal-security",
+      "sceneId": "security.intervention",
+      "environment": "Axiom Strategic Intelligence floor at the secured casework desk.",
+      "cameraFraming": "16:9 desk-axis frame with Adrian turned toward the two officers behind his chair.",
+      "lighting": "Security amber replacing normal office light after the terminal lock.",
+      "intendedUse": "ONLY opening.blackglass.shot04-security-intervention at security.intervention after Adrian turns to the officers; no elevator escort yet.",
+      "continuityRequirements": [
+        "Two officers are active participants; Adrian remains at the desk.",
+        "Badge and terminal intervention are visible; phone surrender remains a later authored action.",
+        "Maya is not shown and no executive-level location is introduced."
+      ],
+      "editSources": [
+        "blackglass-security-intervention-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-security-intervention-v1-production.png",
+    "sha256": "bc03df3dbf811309929adeb2e7430d457af409864104249cc61d483f3a94b7c4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Two officers visibly enter the desk composition at the authored participant CUT.",
+        "Adrian remains at his workstation before the phone is surrendered.",
+        "Security styling and amber lighting fit the established Axiom interior grammar."
+      ],
+      "limitations": [
+        "Shot-specific approval only; not a character, environment or universal casework master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-security-escort-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-secure-elevator",
+      "sceneId": "security.escort",
+      "environment": "Axiom secure elevator en route to Executive Intelligence Level 71.",
+      "cameraFraming": "16:9 elevator interior with Adrian carrying his coat and the two officers controlling the transfer.",
+      "lighting": "Controlled amber elevator light with reflective metal surfaces.",
+      "intendedUse": "ONLY opening.blackglass.shot05-security-escort at security.escort after phone surrender; no Sloane office or later executive state.",
+      "continuityRequirements": [
+        "The desk intervention has ended and the officers escort Adrian through the secure elevator.",
+        "Adrian’s coat is in his arm; the phone is no longer staged as a private object.",
+        "No Sloane, aide, Glass House or clinic material appears."
+      ],
+      "editSources": [
+        "blackglass-security-escort-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-security-escort-v1-production.png",
+    "sha256": "77d32bcc789224c3c31a78fc17d281434a6ddae11a120a314889e18b34e13e9a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Elevator geography and officer escort clearly establish the authored movement CUT.",
+        "Adrian’s coat and mature identity remain consistent with the preceding casework shots.",
+        "The image stops before the executive office, preserving the next location transition."
+      ],
+      "limitations": [
+        "Shot-specific approval only; not a character, environment or universal casework master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-intro-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.intro",
+      "environment": "sloane/Sloane stands at the window with a glass while Adrian remains at the office threshold.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot01-intro; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-intro-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-intro-v1-production.png",
+    "sha256": "04e196780890b0d794b0e6d1a7830c39b41c13706e071767c6c188057d5e1951",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-allegation-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.allegation",
+      "environment": "Sloane presents the access audit across the executive desk before the operation briefing.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot02-allegation; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-allegation-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-allegation-v1-production.png",
+    "sha256": "cbe85620c195d690ec496f1739342a27e2ee8e522271bacbe3b0a0d57833277a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-brief-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.brief",
+      "environment": "Sloane and Adrian sit across the executive desk while the Glass House operation is proposed.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot03-brief; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-brief-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-brief-v1-production.png",
+    "sha256": "abbb003a301d440115c40936ce3c3d02bb69cdb3c33f8a944e61236ae2f18711",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-identity-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.identity",
+      "environment": "Sloane turns the identity-package display toward Adrian; Evelyn’s image is shown only on the tablet.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot04-identity; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-identity-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-identity-v1-production.png",
+    "sha256": "91bbf732e585887679f58bb16e4465ad8aaf6931a28855f300823f138c2f822b",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-offer-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.offer",
+      "environment": "Sloane holds the identity-package tablet while Adrian considers the coercive operation offer.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot05-offer; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-offer-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-offer-v1-production.png",
+    "sha256": "657c4a81ffc1cceede1367fbc7135e273fe1dbad90e2d6fdea0bb68da63eb357",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "refusal-lobby-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-lobby",
+      "sceneId": "refusal.lobby",
+      "environment": "Adrian stands outside the controlled Axiom gates after refusal with his returned phone.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.refusal.shot01-lobby; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "refusal-lobby-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/refusal-lobby-v1-production.png",
+    "sha256": "4241bcca317443090395f8b17caf42ce74d0d9195907b4c55fc481e0fb4e0670",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "refusal-reconsider-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "refusal.reconsider",
+      "environment": "Adrian has returned to Sloane’s office with the phone in hand; the operation remains undecided.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.refusal.shot02-reconsider; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "refusal-reconsider-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/refusal-reconsider-v1-production.png",
+    "sha256": "1003f80f4e006e840a2e0bbcb041d07706e617ed23aefd13514d5cc42b04c4e5",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored prop state match the named scene.",
+        "Composition remains reusable only for this exact state."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a canonical character or environment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-profile-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-consultation",
+      "sceneId": "clinic.profile",
+      "environment": "The clinic profile display presents four restrained variations while Voss and Sloane observe Adrian’s choice.",
+      "cameraFraming": "16:9 exact-state clinic composition.",
+      "lighting": "Warm controlled clinic practicals matching the staged source.",
+      "intendedUse": "ONLY clinic.profile.shot01; no generic clinic or later departure fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later branch wardrobe or vehicle states."
+      ],
+      "editSources": [
+        "clinic-profile-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-profile-v1-production.png",
+    "sha256": "36ede21a8996f1c77351ff44c35b859b9c4a15d4bdf12fcab0216feb1acd0ccc",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored state match the named clinic beat.",
+        "The composition remains branch-safe within the named node."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal identity, wardrobe or departure authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged clinic residual candidate reviewed against current clinic state and shot contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-mirror-look-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.mirror",
+      "environment": "Adrian faces the floor-length recovery mirror after choosing to look; the chosen mirror response remains in authored state.",
+      "cameraFraming": "16:9 exact-state clinic composition.",
+      "lighting": "Warm controlled clinic practicals matching the staged source.",
+      "intendedUse": "ONLY clinic.mirror.shot01-look; no generic clinic or later departure fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later branch wardrobe or vehicle states."
+      ],
+      "editSources": [
+        "clinic-recovery-mirror-look-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-mirror-look-v1-production.png",
+    "sha256": "37a16fd4d4cf2333f602584892ec42d77420eb8dc0542850401182caf61e53b4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored state match the named clinic beat.",
+        "The composition remains branch-safe within the named node."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal identity, wardrobe or departure authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged clinic residual candidate reviewed against current clinic state and shot contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-farewell-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.farewell",
+      "environment": "The clinic handover closes with Adrian, Voss and Sloane in the preparation suite before departure.",
+      "cameraFraming": "16:9 exact-state clinic composition.",
+      "lighting": "Warm controlled clinic practicals matching the staged source.",
+      "intendedUse": "ONLY clinic.farewell.shot01; no generic clinic or later departure fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later branch wardrobe or vehicle states."
+      ],
+      "editSources": [
+        "clinic-farewell-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-farewell-v1-production.png",
+    "sha256": "4d02dd134c015e61e10db48b0022fbeaaccb8d70354b4f8ab3101364282ab069",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant set and authored state match the named clinic beat.",
+        "The composition remains branch-safe within the named node."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal identity, wardrobe or departure authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged clinic residual candidate reviewed against current clinic state and shot contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "glass-house-reception-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "glass-lobby",
+      "sceneId": "mission.reception",
+      "environment": "The reception desk validates the invitation before the east elevators; the POV phone and staff positions preserve the authored pre-validation state.",
+      "cameraFraming": "16:9 exact-state Glass House composition.",
+      "lighting": "Rain-dark evening with warm interior practicals and city reflections.",
+      "intendedUse": "ONLY mission.reception; no generic Glass House or later mission fallback.",
+      "continuityRequirements": [
+        "Approval is exact mission node only.",
+        "Do not anticipate a chosen assessment, transfer method, or branch-specific wardrobe."
+      ],
+      "editSources": [
+        "glass-house-reception-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/glass-house-reception-v1-production.png",
+    "sha256": "0c2fc67d32f9649dd5e6845126e989bce694790d1009565005f90420f25722c4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant/action staging matches the named mission node.",
+        "No future branch choice or unearned evidence is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal Glass House, identity, wardrobe or branch authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged mission residual candidate reviewed against the current mission scene and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "glass-house-assessment-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "glass-gallery",
+      "sceneId": "mission.assessment",
+      "environment": "At the edge of the gathering, Marcus turns toward the gallery while the player prepares an assessment; no source name or later action is revealed.",
+      "cameraFraming": "16:9 exact-state Glass House composition.",
+      "lighting": "Rain-dark evening with warm interior practicals and city reflections.",
+      "intendedUse": "ONLY mission.assessment; no generic Glass House or later mission fallback.",
+      "continuityRequirements": [
+        "Approval is exact mission node only.",
+        "Do not anticipate a chosen assessment, transfer method, or branch-specific wardrobe."
+      ],
+      "editSources": [
+        "glass-house-assessment-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/glass-house-assessment-v1-production.png",
+    "sha256": "2b8690f5ea326f6053b4dcd95e5e9692c5874c5a5ed5d4542508d24a69233043",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant/action staging matches the named mission node.",
+        "No future branch choice or unearned evidence is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal Glass House, identity, wardrobe or branch authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged mission residual candidate reviewed against the current mission scene and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "glass-house-method-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "glass-gallery",
+      "sceneId": "mission.method",
+      "environment": "Before the transfer choice, the monitored phone and live earpiece frame the available methods while Marcus crosses toward the gallery; no selected method is shown.",
+      "cameraFraming": "16:9 exact-state Glass House composition.",
+      "lighting": "Rain-dark evening with warm interior practicals and city reflections.",
+      "intendedUse": "ONLY mission.method; no generic Glass House or later mission fallback.",
+      "continuityRequirements": [
+        "Approval is exact mission node only.",
+        "Do not anticipate a chosen assessment, transfer method, or branch-specific wardrobe."
+      ],
+      "editSources": [
+        "glass-house-method-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/glass-house-method-v1-production.png",
+    "sha256": "4ed9eebd944956a3801fd4bf2bcbae1cfcfe7bbdb33f2f6d6ab911f63f003b87",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Participant/action staging matches the named mission node.",
+        "No future branch choice or unearned evidence is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no universal Glass House, identity, wardrobe or branch authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged mission residual candidate reviewed against the current mission scene and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter3-surveillance-phone-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "apartment",
+      "sceneId": "chapter3.surveillance",
+      "environment": "The approved post-Glass-House apartment at night, with rain-lit window, jacket and lamp retained.",
+      "cameraFraming": "16:9 exact-state apartment phone placement.",
+      "lighting": "Warm lamp against cool rain-lit window.",
+      "intendedUse": "ONLY chapter3.surveillance after chapter3.phone; no generic Chapter 3 or future phone state.",
+      "continuityRequirements": [
+        "Phone is set down as authored.",
+        "Notification remains abstract and unreadable; no branch reply is anticipated."
+      ],
+      "editSources": [
+        "chapter3-surveillance-phone-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter3-surveillance-phone-v1-production.png",
+    "sha256": "d2b88a9aeec95bd80760903ed0bb468d03301a654ca68cf819a91336527af7f4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "The monitored phone is visibly placed on the authored apartment table.",
+        "No reply text, branch choice or future evidence is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; not a Chapter 3 home or phone prop master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 3 surveillance candidate reviewed against chapter3.phone action and scene contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-river-entry-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "chapter4-river-path",
+      "sceneId": "chapter4.entry",
+      "environment": "At the foot of the building steps, the river path and blank-glow phone establish the selected Chapter 4 departure before the call or walk action.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Rain-dark riverside evening with warm street lamps.",
+      "intendedUse": "ONLY chapter4.entry.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-river-entry-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-river-entry-v1-production.png",
+    "sha256": "ae789e8f9fea04e8f7ecd190ea5612aa8511709d02bd00953da90053870fa0ce",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Location and prop staging match the authored Chapter 4 node.",
+        "No later branch state is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no generic Chapter 4, character or evidence authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-river-consequences-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "chapter4-river-bench",
+      "sceneId": "chapter4.consequences",
+      "environment": "The player reaches the river bench after the selected call or walk; generic remaining-thread rows do not reveal a contact or result.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Rain-dark riverside evening with warm street lamps.",
+      "intendedUse": "ONLY chapter4.consequences.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-river-consequences-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-river-consequences-v1-production.png",
+    "sha256": "ddb8d1e8d54ccf7f8cb9fcb562abbb13d6d2c98e6bcf0ae6a51b91461d9145a8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Location and prop staging match the authored Chapter 4 node.",
+        "No later branch state is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no generic Chapter 4, character or evidence authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-public-records-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "municipal-records-reading-room",
+      "sceneId": "chapter4.resource",
+      "environment": "The next-morning public records room is ready before any reader-pass or paid-access choice; the folder and registration form remain unfilled.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Clear next-morning public reading-room daylight.",
+      "intendedUse": "ONLY chapter4.resource.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-public-records-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-public-records-v1-production.png",
+    "sha256": "58b85725cccb9dc7ee4480c647adf3d5bc880e6bdbb2d42973979edfc0150926",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Location and prop staging match the authored Chapter 4 node.",
+        "No later branch state is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no generic Chapter 4, character or evidence authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-assignment-index-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "municipal-records-reading-room",
+      "sceneId": "chapter4.assignment",
+      "environment": "The public PA-17 bundle is open before the private audit or inquiry choices; redactions preserve the authored evidence boundary.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Clear next-morning public reading-room daylight.",
+      "intendedUse": "ONLY chapter4.assignment.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-assignment-index-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-assignment-index-v1-production.png",
+    "sha256": "aef15e39d3c1433162e0ef8ebf63a924b0914c1916bf9b040c386343ff38168f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Location and prop staging match the authored Chapter 4 node.",
+        "No later branch state is shown."
+      ],
+      "limitations": [
+        "Shot-specific approval; no generic Chapter 4, character or evidence authority."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "adrian-first-bathroom-mirror-apartment-v1-production",
+      "assetType": "scene-cg",
+      "locationId": "apartment",
+      "sceneId": "apartment.bond",
+      "environment": "Bathroom M2 doorway opening onto the approved rainy apartment and tower window.",
+      "cameraFraming": "16:9 first-reveal mirror composition; Adrian reflected at left, apartment axis at right.",
+      "lighting": "Warm bathroom practical against cool rainy apartment light.",
+      "intendedUse": "ONLY opening.apartment.shot01-mirror for apartment.bond and apartment.reply; no departure or later apartment fallback.",
+      "continuityRequirements": [
+        "First recognizable Adrian visual in the opening.",
+        "Phone remains on the bathroom counter; no later wardrobe or commute state is shown.",
+        "Existing apartment master remains authoritative for apartment.departure."
+      ],
+      "editSources": [
+        "adrian-first-bathroom-mirror-apartment-v1-candidate"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-reviewed M2 first-reveal candidate; staged source preserved."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/adrian-first-bathroom-mirror-apartment-v1-production.png",
+    "sha256": "cd5db33c4af4eae33e176dd26f1dc17ed778976f8e6fc8ae1a0e4977ce4c3821",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Adrian is recognizable in the M2 mirror at the first playable apartment beat.",
+        "The apartment/tower/phone composition matches the authored bond prose.",
+        "No future clothing, commute, or choice state is shown."
+      ],
+      "limitations": [
+        "Shot-specific first-reveal authority; not a canonical Adrian identity or apartment master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Bathroom M2 candidate reviewed against apartment.bond/reply and first-reveal contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-office-approach-adrian-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-office-arrival",
+      "sceneId": "commute.arrival",
+      "environment": "Strategic Intelligence floor viewed from the elevator threshold with M5 desk, visitor chairs and smoked-glass director office.",
+      "cameraFraming": "16:9 rear three-quarter elevator-threshold frame; desk front faces camera, visitor chairs remain left and monitor/glass office remain right.",
+      "lighting": "Controlled warm practicals over cool graphite office surfaces.",
+      "intendedUse": "ONLY opening.axiom.shot03-office-arrival; office-arrival CUT/HOLD before Daniel enters the active frame. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Adrian has retrieved his coat/phone and is approaching the fixed desk axis.",
+        "Daniel, Benton, Maya, coffee, Helix file, readable names, clocks and future dialogue are absent.",
+        "M5 remains component-only geometry authority; this is an exact arrival shot, not a replacement M5 master."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Owner-authorized exact opening V2 candidate; prior V1 provenance remains preserved. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-office-approach-adrian-v3-transparent-production.png",
+    "sha256": "d895dc4c3632ed27daf638ba8e4d25b132122ac82b335f83455b3b081818c9a4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot01-daniel-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.daniel",
+      "environment": "Strategic Intelligence office with the locked M5 desk, smoked-glass circulation and warm controlled practicals.",
+      "cameraFraming": "16:9 shared HOLD frame with Daniel standing beside Adrian’s desk, full figure visible and the desk/terminal/circulation geometry readable.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot01-daniel during the commute.arrival Daniel-waiting beat and office.daniel dialogue HOLD. Daniel is visible; Adrian remains off-frame until the authored Approach your desk action. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Daniel is the only visible active participant; Adrian is intentionally off-frame before Approach your desk.",
+        "Daniel has empty relaxed hands and no slate, coffee, badge, file or future case prop.",
+        "Do not serve at office.benton, office.departure, Maya beats or ending.complete."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged as a shot-specific replacement; not canonical Daniel identity or M5 authority. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot01-daniel-v3-transparent-production.png",
+    "sha256": "e7817994b78247d23f7b3ccc03419ae91782e2bb284a52b7b4daf6e34351a793",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot02-benton-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.benton",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal and smoked-glass circulation geometry.",
+      "cameraFraming": "16:9 desk conversation frame with Benton fully head-visible and one closed black slate held at the desk edge.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot02-benton during Benton arrival and assignment dialogue HOLD. Daniel is gone; Adrian remains off-screen. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Benton is the active visible participant; Daniel is absent and Adrian remains off-screen.",
+        "The single closed slate contains no readable result or future case state.",
+        "Do not serve at office.departure, Maya beats or ending.complete."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged as a shot-specific replacement; no full-body or footwear authority is implied. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot02-benton-v3-transparent-production.png",
+    "sha256": "c09de63326176bd6a05b8d9a366a58356e47294a4d8586b62da4f42941f5cbd0",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot01-maya-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "maya.promotion",
+      "environment": "Strategic Intelligence office with the locked M5 desk, guest zone and controlled morning practicals.",
+      "cameraFraming": "16:9 medium desk-side conversation frame with Maya left of the desk, her cup in hand and Adrian’s separate cup visible on the desk.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.maya.shot01-coffee during maya.promotion, maya.invitation and maya.case HOLD. Maya retains her cup and Adrian’s cup remains on the desk. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Maya is the active visible participant; Daniel and Benton are absent and Adrian remains outside the frame.",
+        "Exactly two cups are visible: Maya’s held cup and Adrian’s retained desk cup.",
+        "No future case prop or departure movement is shown."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the authored Maya conversation HOLD family only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot01-maya-v3-transparent-production.png",
+    "sha256": "97f4330515962cf7846a60a697e92f105b8e327b46760433b3be6805f7ab3978",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot03-file-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "office.departure",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal, slate and circulation geometry.",
+      "cameraFraming": "16:9 empty-desk action frame; no active participant is visible, with one awake slate on the desk and the office geometry unchanged.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot03-file at office.departure after Benton leaves and the Helix file wakes on the desk slate. Do not use for helix.brief or later casework states. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Benton and Daniel are absent after the authored departure.",
+        "One slate is awake but its contents remain unreadable; no submission, authorization or future result is shown.",
+        "Do not serve at helix.brief, documents, review, submitted or Maya beats."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact file/action CUT only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot03-file-v3-transparent-production.png",
+    "sha256": "4bace11dba1065846e5390d9b7f666994ae9c8d10694f5c581b6c0758b972405",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot02-maya-departure-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "maya.goodbye",
+      "environment": "Strategic Intelligence office with the locked M5 desk, guest zone and compliance circulation.",
+      "cameraFraming": "16:9 rear three-quarter departure frame with Maya moving toward the compliance corridor, her cup in hand and Adrian’s cup retained on the desk.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.maya.shot02-departure at maya.goodbye when Maya leaves toward the compliance wing. Do not use for Maya conversation HOLD. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Maya is visibly departing; the authored movement is the reason for the CUT.",
+        "Maya’s cup remains in her hand and Adrian’s separate cup remains on the desk.",
+        "No new participant or future case state appears."
+      ],
+      "dimensions": {
+        "width": 1670,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the authored Maya departure CUT only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot02-maya-departure-v3-transparent-production.png",
+    "sha256": "aaaae093550ae691144e1b33322a5defee36089d913e1c8ee9fef0741aa6a60d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot04-alone-v3-transparent-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "ending.complete",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal, slate and controlled morning practicals.",
+      "cameraFraming": "16:9 desk-level aftermath frame with Adrian seated at his desk, cup at his lips, terminal and retained slate visible.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot04-alone at ending.complete after Maya’s departure. Adrian is alone and sips the retained cup. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Adrian is the only visible participant; Maya, Daniel and Benton are absent.",
+        "One retained cup is in Adrian’s hand; no duplicate desk cup or later report result appears.",
+        "Do not serve before Maya’s authored departure or as a general Adrian identity reference."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact Adrian-alone aftermath CUT only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot04-alone-v3-transparent-production.png",
+    "sha256": "bdeb72526240866cb39fb6219eef49d3164e671833d96b5afc10bc5a54a48f7a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Codex full-resolution visual review; owner-authorized transparent-display correction",
+      "date": "2026-09-22",
+      "reasons": [
+        "Monitor surface reads as a clear/smoked-glass interface from the authored behind-the-monitor camera.",
+        "Desk axis, characters, wardrobe, props and exact participant state remain unchanged from the V2 contract.",
+        "No readable text, future-state prop or new participant was introduced."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized opening monitor correction",
+      "date": "2026-09-22",
+      "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
   }
 ]

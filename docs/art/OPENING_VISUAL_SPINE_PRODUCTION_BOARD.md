@@ -1,6 +1,6 @@
 # Opening visual spine production board
 
-Status: zero-credit production preparation only. This board creates no runtime binding, manifest entry, production promotion, commit, or push.
+Status: runtime update 2026-09-22. The exact Bathroom M2 first-reveal asset is now promoted and bound. The seven Strategic Intelligence office rows use the reviewed V3 transparent-display corrections; their V2 records remain as provenance. Other rows retain their historical staging statuses until separately reviewed.
 
 The playback rule is **cut when the authored spatial or action state changes; hold the current image through unchanged dialogue and choices.** A screen is visually occupied when its current cut state has an approved runtime composite. A component, staging image, or a missing asset does not count as runtime coverage.
 
@@ -12,8 +12,10 @@ analysis, review, and submitted; Maya promotion, invitation, case, and goodbye;
 and the ending. The canonical code contract contains **15 required CUTs**:
 the two exact apartment inspection inserts plus the 13 corridor/action cuts.
 The approved apartment master is a separate HOLD anchor, not an additional CUT.
-Mirror and jacket inspections HOLD that apartment master because no dedicated
-inspection art is approved.
+The Bathroom M2 first reveal is now its own exact shot for apartment.bond/reply;
+the optional mirror inspection HOLDS that same shot. Jacket remains a truthful
+hold on the current phase shot, and apartment.departure retains the existing
+apartment master.
 
 The previous 14-row table mixed that HOLD anchor with the 13 corridor cuts and
 omitted the two required inspection CUTs. The table below separates the anchor
@@ -21,7 +23,8 @@ from the exact 15-entry code list.
 
 | Order | Mode | Cut shot | Reader-state occupancy supplied by this unique asset | Canonical asset status | Current production note | Cumulative primary states occupied when approved |
 | --- | --- | --- | --- | --- | --- | --- |
-| H0 | HOLD | `opening.apartment.shot01` | 3: `apartment.bond`, `apartment.reply`, `apartment.departure`; mirror/jacket fallback | `RUNTIME_APPROVED` | Existing approved apartment master | 3 / 20 |
+| H0 | HOLD | `opening.apartment.shot01` | 1: `apartment.departure`; later-phase apartment hold | `RUNTIME_APPROVED` | Existing approved apartment master | 1 / 20 |
+| H0R | CUT/HOLD | `opening.apartment.shot01-mirror` | 2: `apartment.bond`, `apartment.reply`; optional Bathroom mirror inspection holds this shot | `RUNTIME_APPROVED` | Promoted first-reveal M2 shot; exact apartment phases only | 3 / 20 |
 | 1 | CUT | `opening.apartment.inspect-lease` | 1 transient inspection state | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
 | 2 | CUT | `opening.apartment.inspect-medical` | 1 transient inspection state | `RUNTIME_APPROVED` | Approved exact inspection insert | — |
 | 3 | CUT | `opening.axiom.shot01-approach` | 1: `commute.arrival` beat 1 | `MISSING` | Zero-credit staging prepared; no runtime asset | 4 / 20 |

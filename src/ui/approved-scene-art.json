@@ -32,6 +32,38 @@
     "sha256": "cef805860650cbc6c0ca4165c779cc4c6e227e8f25ec37d997aafa4771629668"
   },
   {
+    "id": "car-rain-window-v1-production",
+    "src": "art/continuity/car-rain-window-v1-production.png",
+    "location": "car",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3"
+  },
+  {
+    "id": "eve-bg-glass-entrance-v1-production",
+    "src": "art/continuity/eve-bg-glass-entrance-v1-production.png",
+    "location": "glass-entrance",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "1432871fd4c0ca687d6aecbbaea33bcfed46c8e3632530f6e3ee64a558b688e9"
+  },
+  {
+    "id": "eve-bg-glass-lobby-v1-production",
+    "src": "art/continuity/eve-bg-glass-lobby-v1-production.png",
+    "location": "glass-lobby",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "6c926b2d4c89dd84e45daf6d503442c297f20c43d9058e62ffcc7ee9623d0b30"
+  },
+  {
+    "id": "blackglass-file-arrival-v1-production",
+    "src": "art/continuity/blackglass-file-arrival-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f158f4ab5610eb24bdb6bd4709c145db3055affa334f15bcbc1c1e3477cc06b6"
+  },
+  {
     "id": "c5-s12-shot05-phone-composite-v2-production",
     "src": "art/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
     "location": "apartment",
@@ -102,6 +134,46 @@
     "width": 1920,
     "height": 1080,
     "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f"
+  },
+  {
+    "id": "chapter5-echo-no-purchase-v1-production",
+    "src": "art/chapter5/chapter5-echo-no-purchase-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b88883c4dbcdf64dc4da7151d064c87e4abe57dbac4f0f9fad7555feeab56f86"
+  },
+  {
+    "id": "chapter5-echo-boxed-phone-v1-production",
+    "src": "art/chapter5/chapter5-echo-boxed-phone-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4d58469b819d2c89cbf7acabfcf586fca4a0dedad4f6cd0a5d430f61a3d3098e"
+  },
+  {
+    "id": "chapter5-echo-blouse-v1-production",
+    "src": "art/chapter5/chapter5-echo-blouse-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b58f9887c27f5dcc121a765ecf0b1004c86deccb0fcf001c4dc117faad43a9e9"
+  },
+  {
+    "id": "chapter5-echo-clasp-v1-production",
+    "src": "art/chapter5/chapter5-echo-clasp-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2c8650a39d4d81e63449def2bf9a19acd48813d7afb1bb46a00f0fee43607c9e"
+  },
+  {
+    "id": "chapter5-echo-lunch-v1-production",
+    "src": "art/chapter5/chapter5-echo-lunch-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "12bd77dd6f1df0fea4d75ad1a02840c764305c1f742f02a444d75887b39fadf6"
   },
   {
     "id": "opening-apartment-master-v2-production",
@@ -222,5 +294,581 @@
     "width": 1920,
     "height": 1080,
     "sha256": "ce5b367250db5e0a0c32f1686999924168c23e208b9cb0f00f9c16dab5366de3"
+  },
+  {
+    "id": "axiom-opening-office-shot01-daniel-v2-production",
+    "src": "art/opening/axiom-opening-office-shot01-daniel-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b78858302d92f44af14d38fddfe385f14640c6a4aeafd1f27848006a962785fa"
+  },
+  {
+    "id": "axiom-opening-office-shot02-benton-v2-production",
+    "src": "art/opening/axiom-opening-office-shot02-benton-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ca0731e12ebb2190b251dd924a3d40796aaae1ad2636ba3bf2ff2999f7b86911"
+  },
+  {
+    "id": "axiom-opening-office-shot03-file-v2-production",
+    "src": "art/opening/axiom-opening-office-shot03-file-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "0b92c8f200e6ccad052e6c197c5be9ff6a3d139255576a8c8fa6aeb533909a25"
+  },
+  {
+    "id": "axiom-opening-office-shot01-maya-v2-production",
+    "src": "art/opening/axiom-opening-office-shot01-maya-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4ad8849088bb9ba5a6067b736b8b3fc705941fd1baa7e158cf27cbc586e66858"
+  },
+  {
+    "id": "axiom-opening-office-shot02-maya-departure-v2-production",
+    "src": "art/opening/axiom-opening-office-shot02-maya-departure-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1670,
+    "height": 941,
+    "sha256": "54e37a9b324e9286ac8f9742b342683ba5f3fa5210fb737754f8e9cb9d9b0045"
+  },
+  {
+    "id": "axiom-opening-office-shot04-alone-v2-production",
+    "src": "art/opening/axiom-opening-office-shot04-alone-v2-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ee7606fbe3e736ff76205f1c93ec3625eea82a751b7c66c2c48b70fbd80be0c3"
+  },
+  {
+    "id": "clinic-reception-v1-production",
+    "src": "art/opening/clinic-reception-v1-production.png",
+    "location": "clinic-reception",
+    "width": 1672,
+    "height": 941,
+    "sha256": "dd37369064847c1e4186fb7d7d0412b77291f4e7c815682d9862d74578994e82"
+  },
+  {
+    "id": "clinic-privacy-v1-production",
+    "src": "art/opening/clinic-privacy-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "31219b3aa898f75887b2dc749442208e111308ca45051e4eac3c4e5a50e5cfd1"
+  },
+  {
+    "id": "clinic-privacy-stay-v1-production",
+    "src": "art/opening/clinic-privacy-stay-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a0a4081107824e731ffd34ddf25220c28b23cc6a7296e74a227cd7bc83030d2d"
+  },
+  {
+    "id": "clinic-privacy-private-v1-production",
+    "src": "art/opening/clinic-privacy-private-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "65986edb422c0599afa646fc48bb29fef13c685a4170314418d1555985a388ea"
+  },
+  {
+    "id": "clinic-exam-stay-v1-production",
+    "src": "art/opening/clinic-exam-stay-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e4fd99e9cbfa782007f3295186cea0eed85be54079f95b2d368df427e0338e33"
+  },
+  {
+    "id": "clinic-exam-private-v1-production",
+    "src": "art/opening/clinic-exam-private-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b31b9ed82502a037029273f6b0293eb92c3de70652436c7c3fe58039b753a144"
+  },
+  {
+    "id": "clinic-exam-result-v1-production",
+    "src": "art/opening/clinic-exam-result-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d8b081d5ffa3bf5e93ee15890c4684ba309bf5d81bd021589054f001a553542d"
+  },
+  {
+    "id": "clinic-protocol-v1-production",
+    "src": "art/opening/clinic-protocol-v1-production.png",
+    "location": "clinic-consultation-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3e4077f5c80fe355c62ebd66a296efa800271426e083a17e59b8a3d42d16d2b8"
+  },
+  {
+    "id": "clinic-simulation-v1-production",
+    "src": "art/opening/clinic-simulation-v1-production.png",
+    "location": "clinic-consultation",
+    "width": 1672,
+    "height": 941,
+    "sha256": "7679f91d7c1daa7c6ed820415dc025b9a348782e02c8288e2bc1444c947b14b0"
+  },
+  {
+    "id": "clinic-authorization-v1-production",
+    "src": "art/opening/clinic-authorization-v1-production.png",
+    "location": "clinic-consultation",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d1071f1fb3723396091331c74a88f0fe41c32719a1d1b73a3f4da59cdd3063b7"
+  },
+  {
+    "id": "clinic-preparation-v1-production",
+    "src": "art/opening/clinic-preparation-v1-production.png",
+    "location": "clinic-preparation",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a9b1f4a77dfb2ed7b43c50a3368a15e0f74769460545f08f20499468ecb9d003"
+  },
+  {
+    "id": "clinic-voice-v1-production",
+    "src": "art/opening/clinic-voice-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e45fbb8a3423e1594c10370a96a1c749a80bb00bbfa68879534d4cd8af0d2d9e"
+  },
+  {
+    "id": "clinic-voice-pause-v1-production",
+    "src": "art/opening/clinic-voice-pause-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d22be9b0dc499b2e7cd0b4a1cc22b3f421bb216a9fb36f151803b6199a83d9a9"
+  },
+  {
+    "id": "clinic-face-v1-production",
+    "src": "art/opening/clinic-face-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f6bb4289e07e5783b59ec21af53ed13f5893224c451f48b578c4756393266e94"
+  },
+  {
+    "id": "clinic-face-pause-v1-production",
+    "src": "art/opening/clinic-face-pause-v1-production.png",
+    "location": "clinic-examination-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d2c0dc1785bb73ab4eba526612c70f542e9f3b5ceca76813e6ecb52859317663"
+  },
+  {
+    "id": "clinic-steps-v1-production",
+    "src": "art/opening/clinic-steps-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c88585095695d3f6d9c693ecf458e344e6e414ce9e094ba92da950760433eaa9"
+  },
+  {
+    "id": "clinic-recovery-mirror-unlooked-v1-production",
+    "src": "art/opening/clinic-recovery-mirror-unlooked-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "cd160f9f7ce65002665da34969eafa0dc0d1306b49547b2701deabb915f520dd"
+  },
+  {
+    "id": "clinic-name-v1-production",
+    "src": "art/opening/clinic-name-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "f36642e088476233a306fc94ab90e00fbf4744fff7010e700b114d1df6bb9522"
+  },
+  {
+    "id": "clinic-rest-v1-production",
+    "src": "art/opening/clinic-rest-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "555a25853377c143b16230640201e86adf789f77470053b9446f53f6152f5362"
+  },
+  {
+    "id": "clinic-recovery-contact-v1-production",
+    "src": "art/opening/clinic-recovery-contact-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "df686f965607e4cc3967dcd72ec638da5e78e62e63365442fdaf1ed03aec9c9d"
+  },
+  {
+    "id": "clinic-wardrobe-choice-v1-production",
+    "src": "art/opening/clinic-wardrobe-choice-v1-production.png",
+    "location": "wardrobe",
+    "width": 1672,
+    "height": 941,
+    "sha256": "497ce5951b8ca7ef9487f34f587ad9ac272fe9d98c9d20c72325303a122149f5"
+  },
+  {
+    "id": "clinic-makeup-executive-v1-production",
+    "src": "art/opening/clinic-makeup-executive-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3566cba30c9b934ec69845431bf99668ddc090a93671d6fa3971379288b361c7"
+  },
+  {
+    "id": "clinic-makeup-socialite-v1-production",
+    "src": "art/opening/clinic-makeup-socialite-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a1abfbb1d26734e431ec0328266622f09681c27953dd9d60d2220dbf65b03c7a"
+  },
+  {
+    "id": "clinic-makeup-shadow-v1-production",
+    "src": "art/opening/clinic-makeup-shadow-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a4fb292bdfc0b7722400897ad049da49d1a17b0028542f455ce1a96e58c3ad4e"
+  },
+  {
+    "id": "clinic-recovery-reply-quiet-v1-production",
+    "src": "art/opening/clinic-recovery-reply-quiet-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2613ee271d14ac9b783bf8f5ec7e2e1fa987344de9a4dc4331dcf05e016c0c7d"
+  },
+  {
+    "id": "clinic-recovery-reply-sent-v1-production",
+    "src": "art/opening/clinic-recovery-reply-sent-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "59bcda2b56696f4d8ee46b50bcd7b2c345a5b8691afa02490dca16f7b1703397"
+  },
+  {
+    "id": "clinic-presentation-review-executive-v1-production",
+    "src": "art/opening/clinic-presentation-review-executive-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "28a75043e0f4e5e03a42e9d85b011a4fa6930d3218583460544061f23f0fe01b"
+  },
+  {
+    "id": "clinic-presentation-review-socialite-v1-production",
+    "src": "art/opening/clinic-presentation-review-socialite-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8973d56e28ff8a98232a1eee29445b290f3402add5b9a14c962e096dc53bdf56"
+  },
+  {
+    "id": "clinic-presentation-review-shadow-v1-production",
+    "src": "art/opening/clinic-presentation-review-shadow-v1-production.png",
+    "location": "clinic-dressing-area",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fb3b0af56299ddd167fec5a65b8fdf34bf5b1db0d050f777fbadcc5cfd4beda9"
+  },
+  {
+    "id": "clinic-rehearsal-executive-v1-production",
+    "src": "art/opening/clinic-rehearsal-executive-v1-production.png",
+    "location": "clinic-preparation-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "b5aa746b2145941233d640aef347eb8d10294b6c323f9c1d453b675c54479c21"
+  },
+  {
+    "id": "clinic-rehearsal-socialite-v1-production",
+    "src": "art/opening/clinic-rehearsal-socialite-v1-production.png",
+    "location": "clinic-preparation-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e23fe779f15192d22094708c3daf9419162876b3f21221c1bb0195be173f176c"
+  },
+  {
+    "id": "clinic-rehearsal-shadow-v1-production",
+    "src": "art/opening/clinic-rehearsal-shadow-v1-production.png",
+    "location": "clinic-preparation-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4dae64368a7af84dca9413e362dce5a9a04f1876d13d9459c15009968def86c7"
+  },
+  {
+    "id": "clinic-briefing-v1-production",
+    "src": "art/opening/clinic-briefing-v1-production.png",
+    "location": "clinic-preparation-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "a5a39648b851e47ebefaff00a7283febb2c38926fe3b5f6b3ed2235fdbc0f66e"
+  },
+  {
+    "id": "axiom-exterior-approach-adrian-v2-production",
+    "src": "art/opening/axiom-exterior-approach-adrian-v2-production.png",
+    "location": "axiom-approach",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5da340cde57685198d42edd410e70d1d10bce48a8ee1c0475cf3454200bc4041"
+  },
+  {
+    "id": "axiom-security-gate-adrian-v2-production",
+    "src": "art/opening/axiom-security-gate-adrian-v2-production.png",
+    "location": "axiom-security-lobby",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3f4af05a9047de74a4cb671652edb510e165e2fe85e0e6749fc49087ece55c6f"
+  },
+  {
+    "id": "axiom-office-approach-adrian-v2-production",
+    "src": "art/opening/axiom-office-approach-adrian-v2-production.png",
+    "location": "axiom-office-arrival",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6bef4828e82c1e259a0f6f3146412109ce1e10e9295822a37c7c5b8349f071a4"
+  },
+  {
+    "id": "blackglass-directory-v1-production",
+    "src": "art/opening/blackglass-directory-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1672,
+    "height": 941,
+    "sha256": "24d9a39d369e3e806c7d5cad5c4ad3d6bc71211caeb3c681e226bde8727f9f63"
+  },
+  {
+    "id": "blackglass-authorized-v1-production",
+    "src": "art/opening/blackglass-authorized-v1-production.png",
+    "location": "axiom-casework",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4531ae7eb7fdb49e01c331f47f231fec94694ba85f639cb08ad18213c7618084"
+  },
+  {
+    "id": "blackglass-security-intervention-v1-production",
+    "src": "art/opening/blackglass-security-intervention-v1-production.png",
+    "location": "axiom-internal-security",
+    "width": 1672,
+    "height": 941,
+    "sha256": "bc03df3dbf811309929adeb2e7430d457af409864104249cc61d483f3a94b7c4"
+  },
+  {
+    "id": "blackglass-security-escort-v1-production",
+    "src": "art/opening/blackglass-security-escort-v1-production.png",
+    "location": "axiom-secure-elevator",
+    "width": 1672,
+    "height": 941,
+    "sha256": "77d32bcc789224c3c31a78fc17d281434a6ddae11a120a314889e18b34e13e9a"
+  },
+  {
+    "id": "sloane-intro-v1-production",
+    "src": "art/opening/sloane-intro-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "04e196780890b0d794b0e6d1a7830c39b41c13706e071767c6c188057d5e1951"
+  },
+  {
+    "id": "sloane-allegation-v1-production",
+    "src": "art/opening/sloane-allegation-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "cbe85620c195d690ec496f1739342a27e2ee8e522271bacbe3b0a0d57833277a"
+  },
+  {
+    "id": "sloane-brief-v1-production",
+    "src": "art/opening/sloane-brief-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "abbb003a301d440115c40936ce3c3d02bb69cdb3c33f8a944e61236ae2f18711"
+  },
+  {
+    "id": "sloane-identity-v1-production",
+    "src": "art/opening/sloane-identity-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "91bbf732e585887679f58bb16e4465ad8aaf6931a28855f300823f138c2f822b"
+  },
+  {
+    "id": "sloane-offer-v1-production",
+    "src": "art/opening/sloane-offer-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "657c4a81ffc1cceede1367fbc7135e273fe1dbad90e2d6fdea0bb68da63eb357"
+  },
+  {
+    "id": "refusal-lobby-v1-production",
+    "src": "art/opening/refusal-lobby-v1-production.png",
+    "location": "axiom-lobby",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4241bcca317443090395f8b17caf42ce74d0d9195907b4c55fc481e0fb4e0670"
+  },
+  {
+    "id": "refusal-reconsider-v1-production",
+    "src": "art/opening/refusal-reconsider-v1-production.png",
+    "location": "axiom-executive-floor",
+    "width": 1672,
+    "height": 941,
+    "sha256": "1003f80f4e006e840a2e0bbcb041d07706e617ed23aefd13514d5cc42b04c4e5"
+  },
+  {
+    "id": "clinic-profile-v1-production",
+    "src": "art/opening/clinic-profile-v1-production.png",
+    "location": "clinic-consultation",
+    "width": 1672,
+    "height": 941,
+    "sha256": "36ede21a8996f1c77351ff44c35b859b9c4a15d4bdf12fcab0216feb1acd0ccc"
+  },
+  {
+    "id": "clinic-recovery-mirror-look-v1-production",
+    "src": "art/opening/clinic-recovery-mirror-look-v1-production.png",
+    "location": "clinic-recovery-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "37a16fd4d4cf2333f602584892ec42d77420eb8dc0542850401182caf61e53b4"
+  },
+  {
+    "id": "clinic-farewell-v1-production",
+    "src": "art/opening/clinic-farewell-v1-production.png",
+    "location": "clinic-preparation-suite",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4d02dd134c015e61e10db48b0022fbeaaccb8d70354b4f8ab3101364282ab069"
+  },
+  {
+    "id": "glass-house-reception-v1-production",
+    "src": "art/opening/glass-house-reception-v1-production.png",
+    "location": "glass-lobby",
+    "width": 1672,
+    "height": 941,
+    "sha256": "0c2fc67d32f9649dd5e6845126e989bce694790d1009565005f90420f25722c4"
+  },
+  {
+    "id": "glass-house-assessment-v1-production",
+    "src": "art/opening/glass-house-assessment-v1-production.png",
+    "location": "glass-gallery",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2b8690f5ea326f6053b4dcd95e5e9692c5874c5a5ed5d4542508d24a69233043"
+  },
+  {
+    "id": "glass-house-method-v1-production",
+    "src": "art/opening/glass-house-method-v1-production.png",
+    "location": "glass-gallery",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4ed9eebd944956a3801fd4bf2bcbae1cfcfe7bbdb33f2f6d6ab911f63f003b87"
+  },
+  {
+    "id": "chapter3-surveillance-phone-v1-production",
+    "src": "art/opening/chapter3-surveillance-phone-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d2b88a9aeec95bd80760903ed0bb468d03301a654ca68cf819a91336527af7f4"
+  },
+  {
+    "id": "chapter4-river-entry-v1-production",
+    "src": "art/opening/chapter4-river-entry-v1-production.png",
+    "location": "chapter4-river-path",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ae789e8f9fea04e8f7ecd190ea5612aa8511709d02bd00953da90053870fa0ce"
+  },
+  {
+    "id": "chapter4-river-consequences-v1-production",
+    "src": "art/opening/chapter4-river-consequences-v1-production.png",
+    "location": "chapter4-river-bench",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ddb8d1e8d54ccf7f8cb9fcb562abbb13d6d2c98e6bcf0ae6a51b91461d9145a8"
+  },
+  {
+    "id": "chapter4-public-records-v1-production",
+    "src": "art/opening/chapter4-public-records-v1-production.png",
+    "location": "municipal-records-reading-room",
+    "width": 1672,
+    "height": 941,
+    "sha256": "58b85725cccb9dc7ee4480c647adf3d5bc880e6bdbb2d42973979edfc0150926"
+  },
+  {
+    "id": "chapter4-assignment-index-v1-production",
+    "src": "art/opening/chapter4-assignment-index-v1-production.png",
+    "location": "municipal-records-reading-room",
+    "width": 1672,
+    "height": 941,
+    "sha256": "aef15e39d3c1433162e0ef8ebf63a924b0914c1916bf9b040c386343ff38168f"
+  },
+  {
+    "id": "adrian-first-bathroom-mirror-apartment-v1-production",
+    "src": "art/opening/adrian-first-bathroom-mirror-apartment-v1-production.png",
+    "location": "apartment",
+    "width": 1672,
+    "height": 941,
+    "sha256": "cd5db33c4af4eae33e176dd26f1dc17ed778976f8e6fc8ae1a0e4977ce4c3821"
+  },
+  {
+    "id": "axiom-office-approach-adrian-v3-transparent-production",
+    "src": "art/opening/axiom-office-approach-adrian-v3-transparent-production.png",
+    "location": "axiom-office-arrival",
+    "width": 1672,
+    "height": 941,
+    "sha256": "d895dc4c3632ed27daf638ba8e4d25b132122ac82b335f83455b3b081818c9a4"
+  },
+  {
+    "id": "axiom-opening-office-shot01-daniel-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot01-daniel-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e7817994b78247d23f7b3ccc03419ae91782e2bb284a52b7b4daf6e34351a793"
+  },
+  {
+    "id": "axiom-opening-office-shot02-benton-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot02-benton-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c09de63326176bd6a05b8d9a366a58356e47294a4d8586b62da4f42941f5cbd0"
+  },
+  {
+    "id": "axiom-opening-office-shot01-maya-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot01-maya-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "97f4330515962cf7846a60a697e92f105b8e327b46760433b3be6805f7ab3978"
+  },
+  {
+    "id": "axiom-opening-office-shot03-file-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot03-file-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "4bace11dba1065846e5390d9b7f666994ae9c8d10694f5c581b6c0758b972405"
+  },
+  {
+    "id": "axiom-opening-office-shot02-maya-departure-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot02-maya-departure-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1670,
+    "height": 941,
+    "sha256": "aaaae093550ae691144e1b33322a5defee36089d913e1c8ee9fef0741aa6a60d"
+  },
+  {
+    "id": "axiom-opening-office-shot04-alone-v3-transparent-production",
+    "src": "art/opening/axiom-opening-office-shot04-alone-v3-transparent-production.png",
+    "location": "axiom-strategic-intelligence",
+    "width": 1672,
+    "height": 941,
+    "sha256": "bdeb72526240866cb39fb6219eef49d3164e671833d96b5afc10bc5a54a48f7a"
   }
 ]

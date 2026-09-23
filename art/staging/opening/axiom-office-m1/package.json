@@ -1,0 +1,153 @@
+{
+  "id": "axiom-opening-office-master-v1",
+  "role": "staging-specification",
+  "approvalStatus": "pending",
+  "ownerApprovedEnvironment": false,
+  "runtimeBound": false,
+  "productionPromoted": false,
+  "contract": "docs/art/AXIOM_OFFICE_PRODUCTION_PACKAGE.md",
+  "diagramsAre": "Symbolic layout/camera proposals, not canonical geometry or perspective-calibrated plates",
+  "dimensions": {
+    "proposedWorking": [
+      3840,
+      2160
+    ],
+    "delivery": [
+      1920,
+      1080
+    ],
+    "providerCapability": "not quoted/verified"
+  },
+  "cameraAnchors": [
+    {
+      "id": "A",
+      "kind": "fixed desk wide",
+      "proposal": "southwest looking northeast, eye-level, approx 45-55mm; preserve headroom and paths"
+    },
+    {
+      "id": "B",
+      "kind": "crop of A, same optical center",
+      "proposal": "slate and terminal surface; bounds deferred to final plate approval; no independent camera"
+    }
+  ],
+  "geometry": {
+    "authored": [
+      "desk",
+      "divider",
+      "terminal",
+      "director smoked-glass door",
+      "Daniel two desks over",
+      "compliance route"
+    ],
+    "proposed": [
+      "north-south desk, terminal east facing west",
+      "fixed west/south chair; no sitting event",
+      "north guest zone and aisle",
+      "northeast director door",
+      "east compliance route",
+      "clear southwest camera/operator corridor"
+    ],
+    "calibrationStatus": "PENDING approved plate; no canonical metrics or invented transform values"
+  },
+  "layers": [
+    {
+      "id": "Adrian-A-neutral",
+      "purpose": "standing through Daniel/Benton; restrained ordinary pose",
+      "authority": "V2 face + documented body/wardrobe, shot pose pending"
+    },
+    {
+      "id": "Adrian-A-sip",
+      "purpose": "single retained cup at milestone",
+      "authority": "same sources; hand/cup contact review"
+    },
+    {
+      "id": "Daniel-A-divider",
+      "purpose": "desk news and response hold",
+      "authority": "prose; staging portrait pending owner selection"
+    },
+    {
+      "id": "Benton-A-slate",
+      "purpose": "held slate at desk",
+      "authority": "prose; staging portrait pending owner selection"
+    },
+    {
+      "id": "Maya-A-coffee",
+      "purpose": "one held cup after placing Adrian cup",
+      "authority": "prose; staging portrait pending owner selection"
+    },
+    {
+      "id": "Maya-A-departing",
+      "purpose": "leaves with own cup toward compliance",
+      "authority": "same scoped identity; new compatible action pose"
+    }
+  ],
+  "propLayers": [
+    "slate held contact mask",
+    "slate tabletop",
+    "slate screen awake",
+    "terminal neutral screen",
+    "terminal sent-state mask",
+    "Adrian cup standard/closer/held",
+    "Maya cup with contact masks"
+  ],
+  "compositeOrder": [
+    "approved empty plate",
+    "rear path character",
+    "main character layers with correct contact shadows",
+    "slate/cups registered to hands or desk",
+    "desk/divider foreground occlusion masks",
+    "controlled screen masks/text from reached state",
+    "reviewed whole-frame grading"
+  ],
+  "requiredTransformRecord": [
+    "source SHA256",
+    "camera anchor",
+    "pixel position",
+    "uniform scale",
+    "crop",
+    "alpha/occlusion mask hash",
+    "z-order",
+    "light-treatment hash",
+    "exact permitted shot/state"
+  ],
+  "costPlanning": {
+    "environment": 1,
+    "characterSources": 6,
+    "props": 0,
+    "fullScenes": 0,
+    "minimumOutputs": 7,
+    "conditionalAdditional": [
+      "optional seated Adrian",
+      "optional separate B plate if crop fails",
+      "optional prop sheet"
+    ],
+    "upperWithNamedContingencies": 10,
+    "credits": "unquoted",
+    "authorizedOutputs": 0
+  },
+  "coverage": {
+    "currentlyReachableOpeningFamilies": 3,
+    "noInspectionOpening": 1,
+    "currentlyReachableOffice": 0,
+    "mappedOfficeIds": 11,
+    "officeDistinctStatesAfterFutureApprovalAndIntegration": 9,
+    "conditionalDeflectPropState": 1,
+    "normalOpeningAfterCompletion": 10,
+    "withOptionalApartmentInspections": "10-12",
+    "withDeflectVariant": "11-13",
+    "intermediateCutsExcluded": true
+  },
+  "sourceHashes": {
+    "src/content/scenes.ts": "68f3901268f3e2bba5865a619483aa17d36a4e58348f428708108f62f68beadf",
+    "src/content/dialogue.ts": "52ef24c2a3e4eb592a4ee590e918660cedcc9e056a815bf1e33ec8a1e6408cab",
+    "src/ui/Casework.tsx": "0de44b58f1ae3b4aa256ce46b2b7b506ecd94f317347a35efcaa54bad77b6b0c",
+    "src/ui/scene-art.ts": "c1c2bd79f93c40be9ecc8946fd18f9cf7616e80f413cc0ac0397e6406d8ebaa4",
+    "src/ui/chapter5-beats.ts": "5facb54e9b67ce7c0d684ec4fea2691663cad2dbdb13e112ace52e1388d7643d",
+    "docs/art/ADRIAN_REFERENCE_AUTHORITY.md": "e82aa145a5f59431b88014a0e7072e6eec3af9aef2c88083a68abc6ba6367134",
+    "docs/art/EVE_ART_BIBLE.md": "7d16fefd05e8418f78aa45268b1cc885f2a4d7c98b5b4f3a1bcde55dc801e597",
+    "docs/art/GLOBAL_CINEMATIC_ART_RULES.md": "85c49bdf3de212b66cad551a5bd30e3cbbfb547cedf36eb71dc9086d047ec0fa",
+    "art/reference/adrian/approved-references.json": "ce471180acb5e05b87212d9759943533dcfba5d104f9e42d00d05ff4b9051d58",
+    "art/staging/cast-scenes/records.json": "a6fb320067906140aa7930729a60c7755d56a1a7eb152e3920945a86bf8f7cd6",
+    "src/ui/approved-scene-art.json": "c4ee941270e0e83991f517c175d0a4d51bc8dc3541840b120fa6329ecb0029ff"
+  }
+}

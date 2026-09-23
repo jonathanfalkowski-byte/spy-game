@@ -73,7 +73,7 @@ it('promotes the exact owner-approved apartment PNG without making a character r
   expect(asset.sha256).toBe(approval.sha256);
 });
 
-it('keeps production coverage bounded to the completed professional two-phone state', () => {
+it('keeps the completed phone shot and purchase-specific echo shots in production coverage', () => {
   expect(coverage.productionShots.map((shot) => shot.shotId)).toEqual([
     'c05.s12.shot05-phone',
     'c05.s06.shot12-entrance',
@@ -82,6 +82,11 @@ it('keeps production coverage bounded to the completed professional two-phone st
     'c05.s06.shot01-preview',
     'c05.s06.shot13-return',
     'c05.s01.shot01',
+    'c05.s03.shot01-no-purchase',
+    'c05.s03.shot01-phone',
+    'c05.s03.shot01-blouse',
+    'c05.s03.shot01-clasp',
+    'c05.s03.shot01-lunch',
   ]);
   const shot = coverage.productionShots[0];
   expect(shot.shotId).toBe('c05.s12.shot05-phone');

@@ -1,5 +1,9 @@
 # Current art authority — audit implementation
 
+**Current coverage, EVE ART M1:** 21 owner-approved records; 16 eligible manifest assets; 13 manifest assets with explicit bindings; 12 reachable distinct assets. Opening has three reachable approved assets (one required base plus two optional inserts); office has zero. Older dated totals/hold claims below are historical, not current runtime coverage. [Current disposition registry](ART_M1_VISUAL_STATUS.json) · [Reconciliation](ART_M1_RECONCILIATION.md) · [Axiom package](AXIOM_OFFICE_PRODUCTION_PACKAGE.md).
+
+> **Current M1 status, 2026-09-20:** existing M2 staging composition is **OWNER APPROVED**, including framing/camera/reflection blocking only, from prior human review explicitly confirmed by the owner. Final bathroom environment: **NOT APPROVED**. Final Adrian layer: **NOT PRODUCED / NOT APPROVED**. Final runtime shot: **NOT APPROVED / NOT BOUND**. Planning/staging authority only; no promotion. [Controlling status and provenance](OPENING_MIRROR_STAGING_SPEC.md). Earlier dated pending-composition language is historical and superseded; final-environment gates remain.
+
 **Current release:** CONTENT REVISION 17 is frozen at `198feada20cc15aa47d6e64f37149079efe187a4`, save schema5. Approval scopes below are unchanged. Use the [true art backlog](CHAPTER_5_TRUE_ART_BACKLOG.md) for current production-planning metrics and holds; this authority index grants no new approval.
 
 Date: 2026-09-17. Baseline: `7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6`.
@@ -74,3 +78,12 @@ H1 `c05.s06.shot01-preview`: **PASS with LOW/POLISH**, candidate `c5-h1-arrival-
 The project owner approved and promoted `c5-h1-arrival-composite-v3-production` for exact `c05.s06.shot01-preview` and `c5-h2-coffee-return-composite-v1-production` for exact `c05.s06.shot13-return`. Both retain their LOW/POLISH notes and are bounded to the reviewed evening/professional states. They are not canonical Evelynn, body, wardrobe, host, or universal Harbour references. Production authority is [harbour approvals](../../../art/production/chapter5/harbour-approvals.json).
 
 **Harbour is DONE** for Chapter 5: H1/H2/H3/H4 only. No daylight/courtyard, supplementary Harbour angle or runtime binding follows from this closure. Planning coverage is now **6/95 (6.32%)** and pilot spend is **22 credits**.
+
+
+## Opening mirror staging update — 2026-09-19
+
+[Mirror contract](OPENING_MIRROR_STAGING_SPEC.md): specification COMPLETE; production **BLOCKED on bathroom M2 framing/plate approval**, not on Adrian full-body authority. V2 face plus documented body/wardrobe are sufficient. The approved opening master shows dressing mirror M1, not the authored bathroom mirror M2. Method B is recommended after A viability review; no image was generated or promoted. Zero credits this pass; cumulative Adrian spend remains 30.
+
+## Opening mirror runtime update — 2026-09-22
+
+The first-reveal candidate `adrian-first-bathroom-mirror-apartment-v1-production` is now owner-approved and runtime-bound only to `opening.apartment.shot01-mirror` for `apartment.bond` and `apartment.reply`. It is also the truthful HOLD for an optional Bathroom mirror inspection in those phases. The existing apartment master remains authoritative for `apartment.departure`; this shot-specific approval does not establish a canonical Adrian identity or apartment master. The earlier staging note above is historical planning context.

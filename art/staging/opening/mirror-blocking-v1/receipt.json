@@ -1,0 +1,54 @@
+{
+  "id": "opening-mirror-blocking-v1",
+  "shotId": "opening.apartment.inspect-mirror",
+  "role": "staging-diagram",
+  "approvalStatus": "approved",
+  "scope": "OWNER APPROVED existing M2 staging composition, framing concept, camera relationship and mirror/reflection blocking concept ONLY. Planning/staging authority; not approved final bathroom geography/plate, Adrian layer, composite, runtime asset, binding or promotion.",
+  "method": "Local deterministic Pillow drawing and separate scaled reference thumbnails",
+  "image": "art\\staging\\opening\\mirror-blocking-v1\\opening-mirror-blocking-v1.png",
+  "sha256": "444d51d0b9a700c6d0698d7fc50331f07e77788f088dbe484379c9da36d8b78b",
+  "dimensions": [
+    1600,
+    1120
+  ],
+  "sourceHashes": {
+    "art\\reference\\adrian\\adrian-canon-identity-v2.png": "0809f5f17547fb2fe44aa9eaa5f014b292cbfa9d1656b10e827fd77a39612c58",
+    "art\\production\\opening\\opening-apartment-master-v2-production.png": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99"
+  },
+  "creditsThisPass": 0,
+  "cumulativeAdrianCredits": 30,
+  "runtimeBound": false,
+  "productionPromoted": false,
+  "contract": "docs/art/OPENING_MIRROR_STAGING_SPEC.md",
+  "ownerApproval": {
+    "recordedOn": "2026-09-20",
+    "reviewer": "Project owner (Jonathan)",
+    "source": "Prior human review of the displayed existing M2 staging composition; explicitly confirmed in CHAT: EVE VISUAL during EVE ART M1.",
+    "priorReviewDate": null,
+    "recordingInstruction": "Record my prior approval as OWNER APPROVAL of the EXISTING M2 MIRROR STAGING COMPOSITION ONLY.",
+    "supersedes": "pending status of the staging composition only",
+    "approvedProperties": [
+      "existing M2 staging composition",
+      "framing concept",
+      "camera relationship",
+      "mirror/reflection blocking concept"
+    ],
+    "excludedProperties": [
+      "final bathroom environment / plate",
+      "final Adrian character layer",
+      "final mirror production composite",
+      "runtime production asset",
+      "runtime binding",
+      "production promotion"
+    ],
+    "originalReceiptSha256": "285d55eb9afea00ca6af557502061b73c770d66b40ce73110a88b0fcd6d9b596",
+    "originalApprovalStatus": "pending",
+    "originalScope": "Schematic aperture/framing and ray-path review only; not final art, character authority or approved bathroom geography"
+  },
+  "productionStages": {
+    "stagingComposition": "OWNER APPROVED",
+    "finalBathroomEnvironment": "NOT APPROVED",
+    "finalAdrianLayer": "NOT PRODUCED / NOT APPROVED",
+    "finalRuntimeShot": "NOT APPROVED / NOT BOUND"
+  }
+}

@@ -29,15 +29,18 @@ it('keeps every runtime shot in the active registry and an existing explicit app
   }
   const boundIds = Object.keys(shotBindings).filter((id) => id.startsWith('c05.')).sort();
   expect(production.productionShots.map((s) => s.shotId).sort()).toEqual(boundIds);
-  expect(boundIds).toHaveLength(7);
+  expect(boundIds).toHaveLength(12);
+  expect(shotBindings['c05.s03.shot01']).toBeUndefined();
+  expect(production.productionShots.filter((shot) => shot.variantOf === 'c05.s03.shot01')).toHaveLength(5);
   expect(coverage.summary.runtimeBoundShots).toBe(boundIds.length);
-  expect(coverage.summary.productionShotIdsWithAtLeastOneApprovedVariant).toBe(7);
+  const approvedFamilies = new Set(production.productionShots.map((shot) => shot.variantOf ?? shot.shotId));
+  expect(coverage.summary.productionShotIdsWithAtLeastOneApprovedVariant).toBe(approvedFamilies.size);
   expect(coverage.summary.productionIndexCoveragePercent).toBe(
-    (production.productionShots.length / coverage.summary.rasterOrArtifactBeatIds) * 100,
+    (approvedFamilies.size / coverage.summary.rasterOrArtifactBeatIds) * 100,
   );
   // Authored binding is not proof of reachability; home is still guard-blocked.
   expect(coverage.currentRuntimeStatus.unreachableShotIds).toEqual(['c05.s01.shot01']);
-  expect(coverage.currentRuntimeStatus.reachableDistinctAssets).toBe(6);
+  expect(coverage.currentRuntimeStatus.reachableDistinctAssets).toBe(11);
   expect(registry.get('c05.s06.shot14-wait')?.status).toBe('REUSE');
   expect(registry.get('c05.s07.shot03-arrival')?.status).toBe('PRODUCTION');
 });

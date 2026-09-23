@@ -37,7 +37,7 @@ export const OPENING_VISUAL_SCREEN_SPECS: readonly OpeningVisualScreenSpec[] = [
     screenId: 'opening.apartment.bond',
     node: 'apartment.bond',
     visualMode: 'CUT',
-    resolvedShotId: 'opening.apartment.shot01',
+    resolvedShotId: 'opening.apartment.shot01-mirror',
     activeCharacters: ['Adrian'],
     reason: 'The opening begins in Adrian’s apartment.',
   },
@@ -45,8 +45,8 @@ export const OPENING_VISUAL_SCREEN_SPECS: readonly OpeningVisualScreenSpec[] = [
     screenId: 'opening.apartment.reply',
     node: 'apartment.reply',
     visualMode: 'HOLD',
-    resolvedShotId: 'opening.apartment.shot01',
-    holdSource: 'opening.apartment.shot01',
+    resolvedShotId: 'opening.apartment.shot01-mirror',
+    holdSource: 'opening.apartment.shot01-mirror',
     activeCharacters: ['Adrian'],
     reason: 'Maya’s message continues without a location, participant or room-state change.',
   },
@@ -294,7 +294,11 @@ export function resolveOpeningVisualOccupancy(
     ) {
       const shotId = `opening.apartment.inspect-${action.id}`;
       const hasDedicatedInsert = !!shotBindings[shotId];
-      const resolvedShotId = hasDedicatedInsert ? shotId : 'opening.apartment.shot01';
+      const resolvedShotId = hasDedicatedInsert
+        ? shotId
+        : ['apartment.bond', 'apartment.reply'].includes(node)
+          ? 'opening.apartment.shot01-mirror'
+          : 'opening.apartment.shot01';
       const artStatus = statusForShot(shotId);
       const resolvedStatus = statusForShot(resolvedShotId);
       return {
@@ -305,7 +309,11 @@ export function resolveOpeningVisualOccupancy(
         visualMode: hasDedicatedInsert ? 'CUT' : 'HOLD',
         resolvedVisualMode: hasDedicatedInsert ? 'CUT' : 'HOLD',
         resolvedShotId,
-        holdSource: hasDedicatedInsert ? undefined : 'opening.apartment.shot01',
+        holdSource: hasDedicatedInsert
+          ? undefined
+          : ['apartment.bond', 'apartment.reply'].includes(node)
+            ? 'opening.apartment.shot01-mirror'
+            : 'opening.apartment.shot01',
         activeCharacters: ['Adrian'],
         artStatus: hasDedicatedInsert ? artStatus : resolvedStatus,
         requiredAssetStatus: hasDedicatedInsert ? artStatus : resolvedStatus,

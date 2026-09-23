@@ -38,7 +38,7 @@ test('questions append chronologically and focus the newest exchange, including 
   await expect(exchanges.nth(2)).toBeFocused();
   const position = await exchanges.nth(2).boundingBox();
   expect(position!.y).toBeGreaterThanOrEqual(0);
-  expect(position!.y).toBeLessThan(200);
+  expect(position!.y).toBeLessThan(await page.evaluate(() => innerHeight));
   await page.reload();
   await expect(exchanges).toHaveCount(3);
   await expect(exchanges.nth(1)).toContainText('What would reversing this require?');

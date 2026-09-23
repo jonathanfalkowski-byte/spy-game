@@ -50,25 +50,25 @@ export function openingReadingBeats(s: GameState): OpeningReadingSequence | unde
   const beats: ReadingBeat[] = [
     {
       shotId: 'opening.axiom.shot01-approach',
-      file: 'art/opening/axiom-approach-v2-production.png',
+      file: 'art/opening/axiom-exterior-approach-adrian-v2-production.png',
       blocks: [entry.blocks[0]],
       alt: 'Adrian approaches Axiom Tower through the rain and employee entrance.',
     },
     {
       shotId: 'opening.axiom.shot02-security',
-      file: 'art/opening/axiom-security-lobby-v2-production.png',
+      file: 'art/opening/axiom-security-gate-adrian-v2-production.png',
       blocks: [entry.blocks[1], entry.blocks[2], entry.blocks[3], ...securityExit],
       alt: 'Axiom lobby security channels the morning queue through screening lanes and locked gates.',
     },
     {
       shotId: 'opening.axiom.shot03-office-arrival',
-      file: 'art/opening/axiom-office-arrival-v1-production.png',
+      file: 'art/opening/axiom-office-approach-adrian-v3-transparent-production.png',
       blocks: [officeArrival],
       alt: 'After screening, Adrian collects his coat and phone, clears the inner gate and reaches Strategic Intelligence.',
     },
     {
       shotId: 'opening.office.shot01-daniel',
-      file: 'art/opening/axiom-opening-office-shot01-daniel-v1-production.png',
+      file: 'art/opening/axiom-opening-office-shot01-daniel-v3-transparent-production.png',
       blocks: [daniel],
       alt: 'Daniel is waiting beside Adrian’s desk in Strategic Intelligence.',
     },

@@ -6,8 +6,8 @@ export const openingCaseworkShots: Record<string, {
   alt: string;
 }> = {
   'opening.office.shot03-file': {
-    assetId: 'axiom-casework-file-v1-production',
-    location: 'axiom-casework', nodes: ['office.departure'],
+    assetId: 'axiom-opening-office-shot03-file-v3-transparent-production',
+    location: 'axiom-strategic-intelligence', nodes: ['office.departure'],
     alt: 'A black slate rests on the desk evidence surface beside the terminal after Benton leaves; its screen is unreadable.',
   },
   'opening.helix.shot01-brief': {

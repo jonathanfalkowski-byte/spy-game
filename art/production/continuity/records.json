@@ -274,5 +274,168 @@
       "date": "2026-09-16",
       "source": "Owner instruction 2026-09-16: approve exact 4-credit batch, review against Art Bible, and promote only images that pass. Codex visually inspected full-resolution results; no canonical-reference promotion."
     }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "car-rain-window-v1-production",
+      "assetType": "background",
+      "sceneId": "mission.car",
+      "locationId": "car",
+      "environment": "Rainy twilight car window POV with coherent vehicle frame and city lights.",
+      "lighting": "Cool rainy twilight with warm city reflections.",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.car rainy twilight window POV HOLD; crop excludes empty rear bench and shows no characters or action.",
+      "editSources": [
+        "eve-bg-car-v1",
+        "car-rain-window-v1-candidate"
+      ],
+      "notes": "Zero-credit deterministic 960x540 crop enlarged to 1920x1080; source SHA-256 8c7ea067b2dadf76973e13ed5088e265e22414ff540a9ed5bbe639a2e02cf4fd; candidate SHA-256 b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/car-rain-window-v1-production.png",
+    "sha256": "b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Zero-credit fixed crop/enlargement of existing car environment; no characters, no rear-bench mismatch, and exact mission.car hold scope."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-bg-glass-entrance-v1-production",
+      "assetType": "background",
+      "sceneId": "mission.arrival",
+      "locationId": "glass-entrance",
+      "environment": "Luxury glass canopy, rain, polished stone and revolving-door entrance; empty.",
+      "lighting": "Dusk blue rain and champagne-gold entrance light.",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.arrival environment establishing view; people remain off-frame and no attendance/branch outcome is implied.",
+      "editSources": [
+        "eve-bg-glass-entrance-v1"
+      ],
+      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-glass-entrance-v1-production.png",
+    "sha256": "1432871fd4c0ca687d6aecbbaea33bcfed46c8e3632530f6e3ee64a558b688e9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Owner-approved exact production copy of the staged PASS environment; environment establishing view only."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-bg-glass-lobby-v1-production",
+      "assetType": "background",
+      "sceneId": "mission.reception",
+      "locationId": "glass-lobby",
+      "environment": "Low stone invitation desk, coat-check alcove and dark elevator doors; empty.",
+      "lighting": "Warm restrained gold light.",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.reception environment insert before/around access handling; staff and protagonist remain off-frame and no completed scan is claimed.",
+      "editSources": [
+        "eve-bg-glass-lobby-v1"
+      ],
+      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-glass-lobby-v1-production.png",
+    "sha256": "6c926b2d4c89dd84e45daf6d503442c297f20c43d9058e62ffcc7ee9623d0b30",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Owner-approved exact production copy of the staged PASS environment; environment insert only."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved full-game coverage plan",
+      "date": "2026-09-22",
+      "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-file-arrival-v1-production",
+      "assetType": "scene-cg",
+      "sceneId": "file.arrival",
+      "locationId": "axiom-casework",
+      "environment": "Adrian at his Strategic Intelligence desk after Maya leaves; the monitor shows only a closed, unreadable file icon and one retained coffee cup.",
+      "cameraFraming": "Eye-level 16:9 desk-wide composition with Adrian and the workspace visible; no opened contents.",
+      "cameraAngle": "Human-eye-level observational desk frame",
+      "lighting": "Restrained dark corporate office with warm practicals and readable charcoal surfaces.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "intendedUse": "ONLY file.arrival / opening.blackglass.shot01-arrival. No use for file.directory, file.authorized, security intervention, or later Blackglass states.",
+      "editSources": [
+        "file-arrival-v1-candidate"
+      ],
+      "notes": "Reviewed regular non-explicit Blackglass arrival candidate. Closed file icon only; no readable contents, no future authorization, one retained cup, no Maya or other participant. Candidate source: art/staging/full-game/blackglass/file-arrival-v1-candidate.png."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/blackglass-file-arrival-v1-production.png",
+    "sha256": "f158f4ab5610eb24bdb6bd4709c145db3055affa334f15bcbc1c1e3477cc06b6",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "reasons": [
+        "Grounded desk composition and human-eye-level framing are readable.",
+        "Adrian is present at the authored workspace; the monitor shows only a closed unreadable file icon.",
+        "One retained coffee cup is visible; Maya, opened contents, authorization, and future action are absent."
+      ]
+    },
+    "approval": {
+      "reviewer": "Delegated design review under owner-approved regular-art style plan",
+      "date": "2026-09-22",
+      "source": "Explicit owner approval for regular non-explicit art and exact file.arrival binding only."
+    }
   }
 ]

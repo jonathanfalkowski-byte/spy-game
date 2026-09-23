@@ -3,17 +3,17 @@
   "contentRevision": 16,
   "saveSchema": 5,
   "pilotCreditsBeforeWave": 13,
-  "countDefinition": "At least one approved exact variant per raster/artifact ID, not all-branch completion. M1 current inspection: seven authored bindings; six reachable distinct assets; home entry is guard-blocked. Prior snapshot retained.",
+  "countDefinition": "Authored family coverage counts c05.s03.shot01 once; its five mutually exclusive approved purchase variants are listed separately. Twelve exact bindings cover eight authored raster/artifact families, not all branch states. Home entry remains guard-blocked.",
   "summary": {
-    "registeredActiveOrReservedIds": 103,
+    "registeredActiveOrReservedIds": 108,
     "rasterOrArtifactBeatIds": 100,
-    "productionShotIdsWithAtLeastOneApprovedVariant": 7,
-    "productionIndexCoveragePercent": 7.000000000000001,
+    "productionShotIdsWithAtLeastOneApprovedVariant": 8,
+    "productionIndexCoveragePercent": 8,
     "allBranchCompletionPercent": null,
-    "runtimeBoundShots": 7,
+    "runtimeBoundShots": 12,
     "statusCounts": {
-      "PRODUCTION": 7,
-      "MISSING": 91,
+      "PRODUCTION": 13,
+      "MISSING": 90,
       "BLOCKED": 1,
       "REUSE": 1,
       "NOT REQUIRED": 3
@@ -298,13 +298,63 @@
       "branch": "Actual return/home node",
       "composition": "E with reader bulletin, public arts/editorial listing; private packet not attached",
       "sourceRequirement": "M: afternoon apartment hold; U: bulletin",
-      "status": "MISSING",
-      "asset": "\u2014",
+      "status": "PRODUCTION",
+      "asset": "Five exact c5.purchase variants; no generic fallback",
       "authoritySource": "Final shot plan + locked apartment; branch wardrobe/props",
-      "missing": "YES",
+      "missing": "NO",
       "priority": "HIGH",
       "generationType": "COMPOSITE",
       "runtimeBound": false
+    },
+    {
+      "shotId": "c05.s03.shot01-no-purchase",
+      "variantOf": "c05.s03.shot01",
+      "scene": "chapter5.echo",
+      "branch": "c5.purchase=save or nothing; echo reached",
+      "status": "PRODUCTION",
+      "asset": "chapter5-echo-no-purchase-v1-production",
+      "missing": "NO",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-phone",
+      "variantOf": "c05.s03.shot01",
+      "scene": "chapter5.echo",
+      "branch": "c5.purchase=phone; echo reached",
+      "status": "PRODUCTION",
+      "asset": "chapter5-echo-boxed-phone-v1-production",
+      "missing": "NO",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-blouse",
+      "variantOf": "c05.s03.shot01",
+      "scene": "chapter5.echo",
+      "branch": "c5.purchase=wardrobe; echo reached",
+      "status": "PRODUCTION",
+      "asset": "chapter5-echo-blouse-v1-production",
+      "missing": "NO",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-clasp",
+      "variantOf": "c05.s03.shot01",
+      "scene": "chapter5.echo",
+      "branch": "c5.purchase=accessory; echo reached",
+      "status": "PRODUCTION",
+      "asset": "chapter5-echo-clasp-v1-production",
+      "missing": "NO",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-lunch",
+      "variantOf": "c05.s03.shot01",
+      "scene": "chapter5.echo",
+      "branch": "c5.purchase=dinner; echo reached",
+      "status": "PRODUCTION",
+      "asset": "chapter5-echo-lunch-v1-production",
+      "missing": "NO",
+      "runtimeBound": true
     },
     {
       "shotId": "c05.s03.shot02-link",
@@ -1773,13 +1823,13 @@
     ]
   },
   "currentRuntimeStatus": {
-    "date": "2026-09-20",
-    "reachableDistinctAssets": 6,
+    "date": "2026-09-22",
+    "reachableDistinctAssets": 11,
     "unreachableShotIds": [
       "c05.s01.shot01"
     ],
     "source": "src/ui/scene-art.ts; src/ui/chapter5-beats.ts; src/content/chapter5.ts",
     "reconciliation": "docs/art/ART_M1_RECONCILIATION.md",
-    "runtimeChanged": false
+    "runtimeChanged": true
   }
 }

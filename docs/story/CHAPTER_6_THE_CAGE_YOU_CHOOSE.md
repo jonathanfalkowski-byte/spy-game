@@ -66,3 +66,15 @@ The climax shows an actual exit cost attached to one previously useful arrangeme
 ## Implementation gates
 
 Before runtime work: approve the proof artifact/corroborator; identify each new state field and migration; specify every actor’s knowledge; define an exact consequence and recovery route; add AdultSceneSpec only if earned; write a visual beat map; and verify revision-15/16/17 replay remains byte/authentication stable.
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT FROZEN RUNTIME
+
+Chapter 6 can carry route-sensitive heat lanes while keeping the Rook proof chain and counterpower as the core investigation:
+
+- **Executive / Julian lane:** negotiate care, access, benefit, desire, terms, and an exit without treating proximity as consent or a favor as debt.
+- **Public / celebrity lane:** negotiate body, image, visibility, rights, and public interpretation without treating appearance as agency.
+- **Reputable adult-media professional lane:** a future offer must state real work terms, rights, representation, participants, boundaries, payment, distribution, and exit. Chosen adult work is not a corruption route.
+- **Spy lane:** seduction can be an optional tactic or social possibility, but sex is never required for the core case, proof, or mission result.
+- **Dependency / exploitation lane:** record the threat, meaningful alternatives, compliance or refusal, harm, evidence, aftermath, and recovery. It remains non-graphic and can never become a willing `AdultSceneSpec` by re-description.
+
+Any later implementation must preserve the [Master GDD](../design/EVE_MASTER_GDD.md) autonomy model, apply fresh authorization to a handoff, and create an independent non-intimate counterplay option.

@@ -53,7 +53,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian'],
     props: ['Phone', 'usual coat'],
     reasonForCut: 'Location and time move from the apartment to the Axiom approach.',
-    requiredAssetStatus: 'MISSING',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-exterior-approach-adrian-v2-production',
+    statusNote: 'Owner-authorized V2 exterior approach composition; exact shot scope only.'
   },
   {
     shotId: 'opening.axiom.shot02-security',
@@ -63,8 +65,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Security guards'],
     props: ['Screening lanes', 'Cameras', 'Locked gates'],
     reasonForCut: 'The security queue and its architectural anchors become the active space.',
-    requiredAssetStatus: 'STAGING',
-    statusNote: 'A lobby environment study exists, but no exact runtime-approved Adrian composition is bound.',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-security-gate-adrian-v2-production',
+    statusNote: 'Owner-authorized V2 security-gate composition; exact shot scope only.',
   },
   {
     shotId: 'opening.axiom.shot03-office-arrival',
@@ -75,7 +78,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     props: ['Phone', 'Usual coat', 'Employee badge', 'Security tray'],
     reasonForCut: 'The authored action crosses the inner gate and changes the scene from security to the office corridor.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-office-arrival-v1-production',
+    referenceAssetId: 'axiom-office-approach-adrian-v3-transparent-production',
     statusNote: 'Office Arrival V1 is a dedicated owner-approved runtime asset. M5 remains a separate component-only environment authority.',
   },
   {
@@ -86,7 +89,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Daniel'],
     reasonForCut: 'Daniel becomes an active participant at the desk.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-opening-office-shot01-daniel-v1-production',
+    referenceAssetId: 'axiom-opening-office-shot01-daniel-v3-transparent-production',
     statusNote: 'Owner-approved Daniel-focused shared-HOLD composite; Adrian remains off-frame until Approach your desk.',
   },
   {
@@ -98,7 +101,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     props: ['Black data slate'],
     reasonForCut: 'The active participant changes from Daniel to Benton and the assignment prop enters.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-opening-office-shot02-benton-v1-production',
+    referenceAssetId: 'axiom-opening-office-shot02-benton-v3-transparent-production',
     statusNote: 'Owner-approved bounded medium desk-side composition; Adrian remains off-screen and no full-figure/feet authority is claimed.',
   },
   {
@@ -109,7 +112,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Benton'],
     props: ['Helix acquisition file', 'Black data slate'],
     reasonForCut: 'The authored file/action staging changes the desk focus after Benton departs.',
-    requiredAssetStatus: 'MISSING',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot03-file-v3-transparent-production',
+    statusNote: 'Reviewed empty-desk action frame; one awake slate remains unreadable and the file/action CUT is exact-shot bound.',
   },
   {
     shotId: 'opening.helix.shot01-brief',
@@ -160,7 +165,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     props: ['Two paper cups', 'Terminal'],
     reasonForCut: 'Maya becomes a new active participant and the coffee exchange changes the desk state.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-opening-office-shot01-maya-v1-production',
+    referenceAssetId: 'axiom-opening-office-shot01-maya-v3-transparent-production',
     statusNote: 'Delegated design-approved bounded medium conversation frame; Maya faces off-screen Adrian and cup custody remains exact for the three HOLD beats.',
   },
   {
@@ -171,7 +176,9 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     characters: ['Adrian', 'Maya'],
     props: ['Maya’s coffee', 'Adrian’s retained coffee'],
     reasonForCut: 'Maya physically departs and the participant movement changes the composition.',
-    requiredAssetStatus: 'MISSING',
+    requiredAssetStatus: 'RUNTIME_APPROVED',
+    referenceAssetId: 'axiom-opening-office-shot02-maya-departure-v3-transparent-production',
+    statusNote: 'Reviewed Maya departure CUT; cup custody and compliance-corridor movement are exact-shot bound.',
   },
   {
     shotId: 'opening.office.shot04-alone',
@@ -182,7 +189,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     props: ['Adrian’s retained coffee', 'Submitted Helix report'],
     reasonForCut: 'The active participant set changes to Adrian alone.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-opening-office-shot04-alone-v1-production',
+    referenceAssetId: 'axiom-opening-office-shot04-alone-v3-transparent-production',
     statusNote: 'Delegated design-approved bounded Adrian-alone sip frame; exact ending shot only, with no sitting or full-body authority.',
   },
 ] as const;

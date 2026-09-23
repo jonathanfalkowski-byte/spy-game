@@ -35,25 +35,26 @@ const historical17 = walk5(
   steps,
 );
 const assets = [
+  'adrian-first-bathroom-mirror-apartment-v1-production',
+  'adrian-first-bathroom-mirror-apartment-v1-production',
   'opening-apartment-master-v2-production',
-  'opening-apartment-master-v2-production',
-  'opening-apartment-master-v2-production',
-  'axiom-approach-v2-production',
-  'axiom-security-lobby-v2-production',
-  'axiom-office-arrival-v1-production',
-  null,
-  null,
-  null,
-  'axiom-casework-file-v1-production',
+  'axiom-exterior-approach-adrian-v2-production',
+  'axiom-security-gate-adrian-v2-production',
+  'axiom-office-approach-adrian-v3-transparent-production',
+  'axiom-opening-office-shot01-daniel-v3-transparent-production',
+  'axiom-opening-office-shot01-daniel-v3-transparent-production',
+  'axiom-opening-office-shot02-benton-v3-transparent-production',
+  'axiom-opening-office-shot03-file-v3-transparent-production',
   'axiom-casework-brief-v1-production',
   'axiom-casework-documents-v1-production',
   'axiom-casework-documents-v1-production',
   'axiom-casework-review-v1-production',
   'axiom-casework-submitted-v1-production',
-  null,
-  null,
-  null,
-  null,
+  'axiom-opening-office-shot01-maya-v3-transparent-production',
+  'axiom-opening-office-shot01-maya-v3-transparent-production',
+  'axiom-opening-office-shot01-maya-v3-transparent-production',
+  'axiom-opening-office-shot02-maya-departure-v3-transparent-production',
+  'axiom-opening-office-shot04-alone-v3-transparent-production',
   null,
 ];
 async function load(page: any, state: any) {
@@ -116,7 +117,7 @@ for (const width of [1440, 390]) {
           fullPage: true,
         });
     }
-    expect(visible).toBe(14);
+    expect(visible).toBe(20);
     expect(errors).toEqual([]);
     await context.close();
   });

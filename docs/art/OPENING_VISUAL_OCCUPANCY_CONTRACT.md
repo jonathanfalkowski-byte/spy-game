@@ -25,32 +25,32 @@ The canonical opening corridor contains 20 reader states when the four ordered
 OPENING VISUAL OCCUPANCY
 total playable screens: 20
 total reachable screens/states: 20
-screens with runtime-visible art: 19
-currently art-visible: 19
-screens currently blank: 1
-currently blank: 1
+screens with runtime-visible art: 20
+currently art-visible: 20
+screens currently blank: 0
+currently blank: 0
 unique required cuts: 15
 HOLD-covered screens: 6
-status: INCOMPLETE
+status: COMPLETE
 ```
 
-The current blank state is Maya’s goodbye beat.
+The opening visual occupancy gate is complete for the current 20-state fixture.
 Apartment inspection states are additional transient states;
 lease and medical use their approved CUT inserts, while mirror and jacket use a
 HOLD of the approved apartment master. After an inspection is complete and the player
 chooses to leave, the inspection insert is released and the apartment master is
 held truthfully for `apartment.departure`.
 
-The current blank list is emitted by
-`formatOpeningVisualOccupancyReport()` and names the exact required shot for
-each state. The remaining blank state is Maya goodbye.
+The blank list emitted by `formatOpeningVisualOccupancyReport()` is empty for
+the current fixture; later full-game pages remain governed by their own exact
+state coverage contracts.
 
 ## Cut/hold map
 
 | Reader state | Mode | Shot | Hold source |
 | --- | --- | --- | --- |
-| `apartment.bond` | CUT | `opening.apartment.shot01` | — |
-| `apartment.reply` | HOLD | `opening.apartment.shot01` | `opening.apartment.shot01` |
+| `apartment.bond` | CUT | `opening.apartment.shot01-mirror` | — |
+| `apartment.reply` | HOLD | `opening.apartment.shot01-mirror` | `opening.apartment.shot01-mirror` |
 | `apartment.departure` | HOLD | `opening.apartment.shot01` | `opening.apartment.shot01` |
 | `commute.arrival` beat 1 | CUT | `opening.axiom.shot01-approach` | — |
 | `commute.arrival` beat 2 | CUT, then HOLD through all security prose | `opening.axiom.shot02-security` | — |

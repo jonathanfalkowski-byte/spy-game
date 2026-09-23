@@ -1,7 +1,7 @@
 {
-  "date": "2026-09-17",
+  "date": "2026-09-19",
   "baseline": "7c91a242a1fc9bc4365dfbb7dccd20853bbccfd6",
-  "policy": "Current bounded authority index; historical receipts retained. Aster V2 explicitly owner-promoted for exact arrival only.",
+  "policy": "Current bounded authority index; historical receipts retained. Adrian uses property-scoped identity/body/wardrobe authority; the three-quarter candidate remains staging-only. Aster V2 explicitly owner-promoted for exact arrival only.",
   "assets": [
     {
       "assetId": "evelynn-canon-profile-v1",
@@ -56,6 +56,28 @@
       "review": "PASS",
       "scope": "Provisional cast design for scene continuity; human review required",
       "authorityRecord": "art/staging/cast-scenes/records.json",
+      "supersedingRecord": null
+    },
+    {
+      "assetId": "adrian-canon-identity-v2",
+      "file": "art/reference/adrian/adrian-canon-identity-v2.png",
+      "sha256": "0809f5f17547fb2fe44aa9eaa5f014b292cbfa9d1656b10e827fd77a39612c58",
+      "role": "canonical-reference",
+      "status": "approved",
+      "review": "PASS",
+      "scope": "Adrian face, facial structure, approximate age/read, core hair, clean-shaven identity, and analyst/bookish read only; no body, shoe, pose, or runtime authority.",
+      "authorityRecord": "art/reference/adrian/approved-references.json",
+      "supersedingRecord": "adrian-canon-identity-v1"
+    },
+    {
+      "assetId": "adrian-opening-three-quarter-reference-v1",
+      "file": "art/staging/adrian/adrian-opening-three-quarter-reference-v1.png",
+      "sha256": "5275f71d77223a78534970b0ab7df8569e1d89d306da463f67ff55950f2b7e80",
+      "role": "staging",
+      "status": "pending",
+      "review": "REVISE",
+      "scope": "One three-quarter Adrian body/wardrobe candidate; cropped framing and broad posture prevent bounded authority promotion.",
+      "authorityRecord": "art/staging/adrian/records.json",
       "supersedingRecord": null
     },
     {
@@ -398,7 +420,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-scene-morning-v1",
@@ -586,7 +608,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-maya-v1",
@@ -598,7 +620,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-voss-v1",
@@ -610,7 +632,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-sender-v1",
@@ -622,7 +644,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-helix-contact-v1",
@@ -634,7 +656,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-verify-v1",
@@ -646,7 +668,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-seen-v1",
@@ -658,7 +680,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-marcus-record-v1",
@@ -670,7 +692,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-records-entry-v1",
@@ -682,7 +704,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-records-interpret-v1",
@@ -694,7 +716,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-records-power-v1",
@@ -706,7 +728,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-disclosures-v1",
@@ -718,7 +740,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-commit-v1",
@@ -730,7 +752,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-c3-ending-v1",
@@ -742,7 +764,7 @@
       "scope": "Future Chapter 3 treatment concept only, not runtime art",
       "authorityRecord": "art/staging/cast-scenes/records.json",
       "supersedingRecord": "docs/art/CURRENT_AUTHORITY_INDEX.md",
-      "currentRuntimeEligibility": "NONE \u2014 remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
+      "currentRuntimeEligibility": "NONE — remote/location/wardrobe or unsupported-treatment mismatch; requires exact authored shot review."
     },
     {
       "assetId": "eve-scene-wardrobe-v1",
@@ -1263,7 +1285,7 @@
       "file": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\C5-PILOT-02-professional-master-fresh-v4.png",
       "sha256": "ac3085ed191df45489358d6ae5b3193e4311e1c9ede4ddd5d8c13fc9b16f1765",
       "role": "wardrobe-reference",
-      "status": "PASS \u2014 WARDROBE REFERENCE ONLY",
+      "status": "PASS — WARDROBE REFERENCE ONLY",
       "scope": "Professional garment design and low-heel guide only. Face/body/jewelry excluded; dangling earring NONCANONICAL.",
       "authorityRecord": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\REFERENCE_AUTHORITY.md",
       "supersedingRecord": null
@@ -1273,7 +1295,7 @@
       "file": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\C5-PILOT-03-harbour-evelynn-julian-master-v1.png",
       "sha256": "bb9790dabc6d19f223cdac5cc4a0546fa4095a46fec456089088423f8677d23f",
       "role": "character-composition-reference",
-      "status": "PASS \u2014 CHARACTER / COMPOSITION REFERENCE ONLY",
+      "status": "PASS — CHARACTER / COMPOSITION REFERENCE ONLY",
       "scope": "People, spacing, coffee, pose only; all environment geometry excluded. Final production shot superseded by Harbour V2.",
       "authorityRecord": "C:\\Users\\Admin\\Documents\\Codex\\2026-09-14\\files-pasted-by-the-user-we\\outputs\\eve-chapter-5-art-production\\staging\\batch-01\\REFERENCE_AUTHORITY.md",
       "supersedingRecord": "art/production/chapter5/harbour-approvals.json"
@@ -1376,12 +1398,12 @@
     "review": "docs/art/HARBOUR_CURRENT_SEQUENCE_CANON_AND_HOST_REVIEW.md",
     "currentPilotCredits": 22,
     "arrivalCandidate": "c5-h1-arrival-composite-v3-production",
-    "arrivalStatus": "PRODUCTION \u2014 PASS with LOW/POLISH, exact c05.s06.shot01-preview",
+    "arrivalStatus": "PRODUCTION — PASS with LOW/POLISH, exact c05.s06.shot01-preview",
     "coffeeReturnCandidate": "c5-h2-coffee-return-composite-v1-production",
-    "coffeeReturnStatus": "PRODUCTION \u2014 PASS with LOW/POLISH, exact c05.s06.shot13-return",
+    "coffeeReturnStatus": "PRODUCTION — PASS with LOW/POLISH, exact c05.s06.shot13-return",
     "approvedUniqueCompositionCount": 6,
     "coveragePercent": 6.32,
-    "chapter5Harbour": "DONE \u2014 H1/H2/H3/H4 only; no new Harbour Chapter 5 angles"
+    "chapter5Harbour": "DONE — H1/H2/H3/H4 only; no new Harbour Chapter 5 angles"
   },
   "readerV2HarbourUpdate": {
     "date": "2026-09-18",
@@ -1409,5 +1431,48 @@
     "coveragePercent": 6.32,
     "cumulativePilotCredits": 22,
     "report": "docs/art/HARBOUR_READER_V2_REVIEW.md"
+  },
+  "openingMirrorStaging": {
+    "date": "2026-09-19",
+    "shotId": "opening.apartment.inspect-mirror",
+    "stagingAssetId": "apartment-opening-insert-mirror-v1",
+    "specificationStatus": "COMPLETE",
+    "productionStatus": "BLOCKED",
+    "blocker": "Final bathroom M2 environment/plate unapproved; final Adrian layer not produced/approved. Existing composition/framing/camera/reflection blocking concept is owner-approved only for planning/staging; no full-body reference prerequisite.",
+    "environment": "opening-apartment-master-v2-production",
+    "environmentAlias": "OPENING-APARTMENT-MASTER-V2",
+    "face": "adrian-canon-identity-v2",
+    "bodyAndWardrobe": "docs/art/ADRIAN_REFERENCE_AUTHORITY.md",
+    "pose": "shot-specific",
+    "productionMethod": "B after bathroom approval; A assessed not credible; C not selected",
+    "contract": "docs/art/OPENING_MIRROR_STAGING_SPEC.md",
+    "stagingRecord": "art/staging/opening/records.json",
+    "runtimeBound": false,
+    "productionPromoted": false,
+    "creditsThisPass": 0,
+    "cumulativeAdrianCredits": 30,
+    "stagingCompositionStatus": "OWNER APPROVED",
+    "ownerApprovalRecordedOn": "2026-09-20",
+    "compositionApprovalReceipt": "art/staging/opening/mirror-blocking-v1/receipt.json",
+    "finalBathroomEnvironmentStatus": "NOT APPROVED",
+    "finalAdrianLayerStatus": "NOT PRODUCED / NOT APPROVED",
+    "finalRuntimeShotStatus": "NOT APPROVED / NOT BOUND"
+  },
+  "openingMirrorRuntime": {
+    "date": "2026-09-22",
+    "shotId": "opening.apartment.shot01-mirror",
+    "assetId": "adrian-first-bathroom-mirror-apartment-v1-production",
+    "runtimeEligibility": "runtime-approved",
+    "nodes": ["apartment.bond", "apartment.reply"],
+    "optionalInspection": "INSPECT_APARTMENT mirror holds the same shot in these phases",
+    "departure": "apartment.departure retains opening.apartment.shot01",
+    "scope": "Shot-specific first-reveal authority; not a canonical Adrian identity or apartment master"
+  },
+  "artM1CurrentStatus": {
+    "date": "2026-09-20",
+    "registry": "docs/art/ART_M1_VISUAL_STATUS.json",
+    "report": "docs/art/ART_M1_RECONCILIATION.md",
+    "officePackage": "docs/art/AXIOM_OFFICE_PRODUCTION_PACKAGE.md",
+    "note": "Current status reconciliation supersedes older summary counts, not historical approval/review receipts. No runtime or production changes."
   }
 }

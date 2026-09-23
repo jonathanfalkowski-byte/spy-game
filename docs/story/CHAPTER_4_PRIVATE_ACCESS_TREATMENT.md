@@ -40,3 +40,11 @@ Actual reachable fixtures for six departure types, both 18:45 variants, no-call 
 ## Art
 
 Text is fully playable without new art. Reuse Julian’s approved visual base and current Art Bible. New needs: river-path call/walk, records desk, bounded professional workroom, reception investigation, copy collection and optional non-graphic private conversation. All remain specifications/staging until reviewed; no paid generation or automatic asset promotion is part of this task.
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT FROZEN RUNTIME
+
+This amendment preserves the Julian progression above while adding an **After-Hours Evelynn** design lane for future implementation. It can move through home, Maya, a bar or social setting, and earned social visibility. A separately approved adult supporting person may express interest only after character, adulthood, and knowledge gates are established; no existing functional role is silently converted into that person.
+
+The player can ignore attention, attend, flirt, use social confidence, use social strategy, exchange contact, leave, or maintain a boundary. A mutual adult handoff is possible only when independently earned through current willingness and scoped authorization. Social leverage can become useful later without sex, romance, or an adult handoff. This is a future route-design option, not a new Chapter 4 scene, outcome, character, or runtime state.
+
+See the [Master GDD](../design/EVE_MASTER_GDD.md), [route architecture](FULL_GAME_ROUTE_ARCHITECTURE.md), and [pacing map](ADULT_THRILLER_PACING_MAP.md).

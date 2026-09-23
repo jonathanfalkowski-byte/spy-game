@@ -12,7 +12,7 @@ it('reaches all 20 screens and proves actual resolver occupancy and immutable sa
   const fixtures = openingVisualFixtures();
   expect(fixtures).toHaveLength(20);
   const expectedVisible = [true, true, true, true, true, true, true, true, true,
-    true, true, true, true, true, true, true, true, true, false, true];
+    true, true, true, true, true, true, true, true, true, true, true];
   const images: (string | undefined)[] = [];
   fixtures.forEach(({ state, position }, index) => {
     const raw = encodeSave(state);

@@ -148,17 +148,17 @@ test('dialogue hold reuses one image; history and reading-size controls keep the
   expect(await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY)).toBe(saved);
 });
 
-test('opening apartment master holds through unchanged dialogue and survives reload', async ({ page }) => {
+test('opening Bathroom M2 first reveal holds through unchanged dialogue and survives reload', async ({ page }) => {
   const raw = encodeSave(initialState());
   await page.addInitScript(({ key, raw }) => localStorage.setItem(key, raw), { key: SAVE_KEY, raw });
   await page.goto('/');
   const stage = page.locator('.scene-art-stage');
-  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01-mirror');
+  await expect(stage).toHaveAttribute('data-asset-id', 'adrian-first-bathroom-mirror-apartment-v1-production');
   const source = await page.locator('.scene-art-image').getAttribute('src');
   await page.locator('[data-choice="bond.friend"]').click();
-  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01-mirror');
+  await expect(stage).toHaveAttribute('data-asset-id', 'adrian-first-bathroom-mirror-apartment-v1-production');
   expect(await page.locator('.scene-art-image').getAttribute('src')).toBe(source);
   await page.screenshot({
     animations: 'disabled',
@@ -166,11 +166,11 @@ test('opening apartment master holds through unchanged dialogue and survives rel
     fullPage: true,
   });
   await page.reload();
-  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01-mirror');
+  await expect(stage).toHaveAttribute('data-asset-id', 'adrian-first-bathroom-mirror-apartment-v1-production');
 });
 
-test('unillustrated apartment inspections keep the room master visible', async ({ page }) => {
+test('unillustrated apartment inspections keep the first-reveal mirror shot visible', async ({ page }) => {
   test.skip(before);
   const reply = act(initialState(), { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
   await page.addInitScript(({ key, raw }) => localStorage.setItem(key, raw), {
@@ -179,20 +179,20 @@ test('unillustrated apartment inspections keep the room master visible', async (
   });
   await page.goto('/');
   const stage = page.locator('.scene-art-stage');
-  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01-mirror');
+  await expect(stage).toHaveAttribute('data-asset-id', 'adrian-first-bathroom-mirror-apartment-v1-production');
 
   await page.getByRole('button', { name: /Bathroom mirror/i }).click();
 
-  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-master-v2-production');
+  await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.shot01-mirror');
+  await expect(stage).toHaveAttribute('data-asset-id', 'adrian-first-bathroom-mirror-apartment-v1-production');
   await expect(stage.locator('img')).toHaveAttribute(
     'src',
-    /art\/opening\/opening-apartment-master-v2-production\.png$/,
+    /art\/opening\/adrian-first-bathroom-mirror-apartment-v1-production\.png$/,
   );
   await expect
     .poll(() => stage.locator('img').evaluate((im: HTMLImageElement) => im.naturalWidth))
-    .toBe(1920);
+    .toBe(1672);
 });
 
 test('opening evidence inspections cut only on their exact action and survive reload', async ({ page }) => {

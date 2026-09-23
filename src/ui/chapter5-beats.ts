@@ -164,10 +164,53 @@ export function asterArrivalBeats5(s: GameState): ReadingBeat[] | undefined {
   ];
 }
 
+/** Exact Chapter 5 echo table states; each purchase owns a mutually exclusive composition. */
+export function echoApartmentBeat5(s: GameState): ReadingBeat[] | undefined {
+  if (s.scene !== 'chapter5' || s.phase !== 'echo') return;
+  const purchase = s.choices['c5.purchase'];
+  const shotByPurchase: Record<string, { shotId: string; file: string; alt: string }> = {
+    save: {
+      shotId: 'c05.s03.shot01-no-purchase',
+      file: 'chapter5-echo-no-purchase-v1-production.png',
+      alt: 'The Axiom phone and closed folder rest on Evelynn’s apartment table; no new purchase is present.',
+    },
+    nothing: {
+      shotId: 'c05.s03.shot01-no-purchase',
+      file: 'chapter5-echo-no-purchase-v1-production.png',
+      alt: 'The Axiom phone and closed folder rest on Evelynn’s apartment table; no new purchase is present.',
+    },
+    phone: {
+      shotId: 'c05.s03.shot01-phone',
+      file: 'chapter5-echo-boxed-phone-v1-production.png',
+      alt: 'A boxed personal phone and receipt rest beside the Axiom phone on Evelynn’s apartment table.',
+    },
+    wardrobe: {
+      shotId: 'c05.s03.shot01-blouse',
+      file: 'chapter5-echo-blouse-v1-production.png',
+      alt: 'A blouse on its paper-covered hanger rests beside the receipt and Axiom phone on Evelynn’s apartment table.',
+    },
+    accessory: {
+      shotId: 'c05.s03.shot01-clasp',
+      file: 'chapter5-echo-clasp-v1-production.png',
+      alt: 'A silver hair clasp in its open box rests beside the receipt and Axiom phone on Evelynn’s apartment table.',
+    },
+    dinner: {
+      shotId: 'c05.s03.shot01-lunch',
+      file: 'chapter5-echo-lunch-v1-production.png',
+      alt: 'A lunch receipt rests beside the Axiom phone on Evelynn’s apartment table.',
+    },
+  };
+  const selected = purchase ? shotByPurchase[purchase] : undefined;
+  if (!selected) return;
+  const entry = s.history.at(-1);
+  if (!entry || entry.node !== 'chapter5.echo') return;
+  return [{ shotId: selected.shotId, blocks: entry.blocks, file: selected.file, alt: selected.alt }];
+}
+
 export function chapter5ReadingBeats(
   s: GameState,
 ): { beats: ReadingBeat[]; entry: GameState['history'][number] } | undefined {
-  const direct = homeReaderPacketBeats5(s) ?? harbourArrivalBeats5(s) ?? asterArrivalBeats5(s);
+  const direct = homeReaderPacketBeats5(s) ?? harbourArrivalBeats5(s) ?? asterArrivalBeats5(s) ?? echoApartmentBeat5(s);
   if (direct) {
     for (let i = s.history.length - 1; i >= 0; i--) {
       if (direct.some((beat) => s.history[i].blocks === beat.blocks))

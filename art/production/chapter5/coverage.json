@@ -168,6 +168,56 @@
         "later apartment state"
       ],
       "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-no-purchase",
+      "assetId": "chapter5-echo-no-purchase-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.echo",
+      "trigger": "echo reached after save or nothing purchase choice",
+      "requiredState": { "c5.purchase": "save|nothing" },
+      "variantOf": "c05.s03.shot01",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-phone",
+      "assetId": "chapter5-echo-boxed-phone-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.echo",
+      "trigger": "echo reached after phone purchase",
+      "requiredState": { "c5.purchase": "phone" },
+      "variantOf": "c05.s03.shot01",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-blouse",
+      "assetId": "chapter5-echo-blouse-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.echo",
+      "trigger": "echo reached after wardrobe purchase",
+      "requiredState": { "c5.purchase": "wardrobe" },
+      "variantOf": "c05.s03.shot01",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-clasp",
+      "assetId": "chapter5-echo-clasp-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.echo",
+      "trigger": "echo reached after accessory purchase",
+      "requiredState": { "c5.purchase": "accessory" },
+      "variantOf": "c05.s03.shot01",
+      "runtimeBound": true
+    },
+    {
+      "shotId": "c05.s03.shot01-lunch",
+      "assetId": "chapter5-echo-lunch-v1-production",
+      "status": "production-approved-shot-specific",
+      "sourceScene": "chapter5.echo",
+      "trigger": "echo reached after dinner purchase",
+      "requiredState": { "c5.purchase": "dinner" },
+      "variantOf": "c05.s03.shot01",
+      "runtimeBound": true
     }
   ],
   "referenceOnly": [
@@ -190,7 +240,8 @@
   ],
   "runtimeContentRevisions": [
     16,
-    17
+    17,
+    18
   ],
   "runtimeBinding": "src/ui/chapter5-beats.ts",
   "latestApproval": {
@@ -235,13 +286,13 @@
     "c05.s01.shot01": true
   },
   "currentRuntimeStatus": {
-    "date": "2026-09-20",
-    "authoredBindings": 7,
-    "reachableDistinctAssets": 6,
+    "date": "2026-09-22",
+    "authoredBindings": 12,
+    "reachableDistinctAssets": 11,
     "unreachableShotIds": [
       "c05.s01.shot01"
     ],
-    "runtimeChangedThisPass": false,
-    "note": "Inspection corrects metadata only. Earlier dated readerV2HarbourUpdate/latestApproval are retained historical snapshots. Production approval receipts untouched."
+    "runtimeChangedThisPass": true,
+    "note": "Five exact purchase-state echo variants added; earlier dated readerV2HarbourUpdate/latestApproval remain historical snapshots. Production approval receipts untouched."
   }
 }

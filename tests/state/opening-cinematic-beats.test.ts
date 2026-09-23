@@ -38,13 +38,13 @@ describe('opening cinematic reading beats', () => {
     const saved = encodeSave(commute);
     const cuts = [0, 1, 2, 3].map((position) => resolveSceneArt(commute, position));
     expect(cuts.map((visual) => visual.shot?.shotId)).toEqual(reading?.beats.map((beat) => beat.shotId));
-    expect(cuts[0].art?.asset.id).toBe('axiom-approach-v2-production');
+    expect(cuts[0].art?.asset.id).toBe('axiom-exterior-approach-adrian-v2-production');
     expect(cuts[0].issues).toEqual([]);
-    expect(cuts[1].art?.asset.id).toBe('axiom-security-lobby-v2-production');
+    expect(cuts[1].art?.asset.id).toBe('axiom-security-gate-adrian-v2-production');
     expect(cuts[1].issues).toEqual([]);
-    expect(cuts[2].art?.asset.id).toBe('axiom-office-arrival-v1-production');
+    expect(cuts[2].art?.asset.id).toBe('axiom-office-approach-adrian-v3-transparent-production');
     expect(cuts[2].issues).toEqual([]);
-    expect(cuts[3].art?.asset.id).toBe('axiom-opening-office-shot01-daniel-v1-production');
+    expect(cuts[3].art?.asset.id).toBe('axiom-opening-office-shot01-daniel-v3-transparent-production');
     expect(cuts[3].issues).toEqual([]);
     expect(resolveSceneArt(commute, 4).shot).toBeUndefined();
     expect(encodeSave(commute)).toBe(saved);

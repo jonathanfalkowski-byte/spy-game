@@ -23,7 +23,7 @@ test('opening commute advances ordered cuts, reveals Daniel, and holds into offi
   await expect(beat).toHaveAttribute('data-reading-shot', 'opening.axiom.shot01-approach');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-approach-v2-production\.png$/,
+    /art\/opening\/axiom-exterior-approach-adrian-v2-production\.png$/,
   );
   await expect(page.getByText('Daniel is waiting beside your desk.', { exact: true })).toHaveCount(0);
   const sceneContinue = page.getByRole('button', { name: /Approach your desk/ });
@@ -33,7 +33,7 @@ test('opening commute advances ordered cuts, reveals Daniel, and holds into offi
   await expect(beat).toHaveAttribute('data-reading-shot', 'opening.axiom.shot02-security');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-security-lobby-v2-production\.png$/,
+    /art\/opening\/axiom-security-gate-adrian-v2-production\.png$/,
   );
   await expect(page.getByText('Daniel is waiting beside your desk.', { exact: true })).toHaveCount(0);
   await expect(sceneContinue).toHaveCount(0);
@@ -42,7 +42,7 @@ test('opening commute advances ordered cuts, reveals Daniel, and holds into offi
   await expect(beat).toHaveAttribute('data-reading-shot', 'opening.axiom.shot03-office-arrival');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-office-arrival-v1-production\.png$/,
+    /art\/opening\/axiom-office-approach-adrian-v3-transparent-production\.png$/,
   );
   await expect(sceneContinue).toHaveCount(0);
 
@@ -50,7 +50,7 @@ test('opening commute advances ordered cuts, reveals Daniel, and holds into offi
   await expect(beat).toHaveAttribute('data-reading-shot', 'opening.office.shot01-daniel');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-opening-office-shot01-daniel-v1-production\.png$/,
+    /art\/opening\/axiom-opening-office-shot01-daniel-v3-transparent-production\.png$/,
   );
   await expect(page.getByText('Daniel is waiting beside your desk.', { exact: true })).toBeVisible();
   await expect(sceneContinue).toBeEnabled();
@@ -64,19 +64,19 @@ test('opening commute advances ordered cuts, reveals Daniel, and holds into offi
   );
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-opening-office-shot01-daniel-v1-production\.png$/,
+    /art\/opening\/axiom-opening-office-shot01-daniel-v3-transparent-production\.png$/,
   );
   await page.locator('[data-choice="promotion.professional"]').click();
   await expect(page.locator('h1')).toHaveText('The work remains');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-opening-office-shot02-benton-v1-production\.png$/,
+    /art\/opening\/axiom-opening-office-shot02-benton-v3-transparent-production\.png$/,
   );
   await page.locator('[data-choice="benton.obey"]').click();
   await expect(page.locator('h1')).toHaveText('What Benton leaves behind');
   await expect(page.locator('.scene-art-stage img.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/axiom-casework-file-v1-production\.png$/,
+    /art\/opening\/axiom-opening-office-shot03-file-v3-transparent-production\.png$/,
   );
   expect(await page.evaluate((key) => localStorage.getItem(key), SAVE_KEY)).not.toBe(raw);
 });
@@ -89,7 +89,7 @@ test('Maya coffee frame holds through invitation and case, then cuts on departur
   });
   await page.goto('/');
   const image = page.locator('.scene-art-stage img.scene-art-image');
-  const mayaSrc = /art\/opening\/axiom-opening-office-shot01-maya-v1-production\.png$/;
+  const mayaSrc = /art\/opening\/axiom-opening-office-shot01-maya-v3-transparent-production\.png$/;
   await expect(image).toHaveAttribute('src', mayaSrc);
 
   await page.locator('[data-choice="mayaPromotion.hurt"]').click();
@@ -98,5 +98,8 @@ test('Maya coffee frame holds through invitation and case, then cuts on departur
   await expect(image).toHaveAttribute('src', mayaSrc);
   await page.locator('[data-choice="disclosure.private"]').click();
   await expect(page.getByRole('heading', { name: 'Before she goes' })).toBeVisible();
-  await expect(page.locator('.scene-art-stage')).toHaveCount(0);
+  await expect(image).toHaveAttribute(
+    'src',
+    /art\/opening\/axiom-opening-office-shot02-maya-departure-v3-transparent-production\.png$/,
+  );
 });

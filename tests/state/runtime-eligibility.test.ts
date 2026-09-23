@@ -65,9 +65,9 @@ it('keeps M5 as a passing production component outside the runtime manifest', ()
   expect(manifest.map((asset) => asset.id)).not.toContain(parsed.spec.assetId);
 });
 
-it('admits only explicitly runtime-approved records to the twenty-eight-asset manifest', () => {
+it('admits only explicitly runtime-approved records to the current runtime manifest', () => {
   const eligible = records.filter(isRuntimeApprovedProductionRecord);
-  expect(eligible).toHaveLength(28);
+  expect(eligible).toHaveLength(109);
   expect(eligible.map((record) => record.spec.assetId)).toEqual(manifest.map((asset) => asset.id));
   const revise = apartment.find(
     (record) => record.spec.assetId === 'apartment-pre-glasshouse-executive-v1-production',

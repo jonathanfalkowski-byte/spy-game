@@ -10,33 +10,37 @@ import {
 import { advance, choice, toAnalysis, toMaya } from '../helpers';
 
 describe('opening cinematic coverage contract', () => {
-  it('reports incomplete runtime coverage without treating missing art as safe coverage', () => {
+  it('reports the current exact opening runtime coverage without treating missing art as safe coverage', () => {
     const report = openingCinematicCoverageReport();
     console.info(`\n${formatOpeningCinematicCoverageReport(report)}\n`);
     expect(report.requiredShots).toBe(15);
-    expect(report.runtimeApproved).toBe(14);
+    expect(report.runtimeApproved).toBe(15);
     expect(report.componentOnly).toBe(0);
     expect(report.staging).toBe(0);
-    expect(report.missing).toBe(1);
-    expect(report.complete).toBe(false);
-    expect(report.missingShotIds).toEqual([
-      'opening.maya.shot02-departure',
-    ]);
-    expect(report.incompleteShotIds).not.toContain('opening.axiom.shot03-office-arrival');
+    expect(report.missing).toBe(0);
+    expect(report.complete).toBe(true);
+    expect(report.missingShotIds).toEqual([]);
+    expect(report.incompleteShotIds).toEqual([]);
     const officeArrival = report.cuts.find(
       (cut) => cut.shotId === 'opening.axiom.shot03-office-arrival',
     );
     expect(officeArrival?.effectiveStatus).toBe('RUNTIME_APPROVED');
-    expect(officeArrival?.boundAssetId).toBe('axiom-office-arrival-v1-production');
+    expect(officeArrival?.boundAssetId).toBe('axiom-office-approach-adrian-v3-transparent-production');
     const benton = report.cuts.find((cut) => cut.shotId === 'opening.office.shot02-benton');
     expect(benton?.effectiveStatus).toBe('RUNTIME_APPROVED');
-    expect(benton?.boundAssetId).toBe('axiom-opening-office-shot02-benton-v1-production');
+    expect(benton?.boundAssetId).toBe('axiom-opening-office-shot02-benton-v3-transparent-production');
+    const file = report.cuts.find((cut) => cut.shotId === 'opening.office.shot03-file');
+    expect(file?.effectiveStatus).toBe('RUNTIME_APPROVED');
+    expect(file?.boundAssetId).toBe('axiom-opening-office-shot03-file-v3-transparent-production');
     const maya = report.cuts.find((cut) => cut.shotId === 'opening.maya.shot01-coffee');
     expect(maya?.effectiveStatus).toBe('RUNTIME_APPROVED');
-    expect(maya?.boundAssetId).toBe('axiom-opening-office-shot01-maya-v1-production');
+    expect(maya?.boundAssetId).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     const alone = report.cuts.find((cut) => cut.shotId === 'opening.office.shot04-alone');
     expect(alone?.effectiveStatus).toBe('RUNTIME_APPROVED');
-    expect(alone?.boundAssetId).toBe('axiom-opening-office-shot04-alone-v1-production');
+    expect(alone?.boundAssetId).toBe('axiom-opening-office-shot04-alone-v3-transparent-production');
+    const mayaDeparture = report.cuts.find((cut) => cut.shotId === 'opening.maya.shot02-departure');
+    expect(mayaDeparture?.effectiveStatus).toBe('RUNTIME_APPROVED');
+    expect(mayaDeparture?.boundAssetId).toBe('axiom-opening-office-shot02-maya-departure-v3-transparent-production');
   });
 
   it('keeps fail-closed scene-art safety separate from the completeness gate', () => {
@@ -44,7 +48,7 @@ describe('opening cinematic coverage contract', () => {
     const commute = advance(choice(reply, 'morning.yes'));
     const visual = resolveSceneArt(commute, 3);
     expect(visual.shot?.shotId).toBe('opening.office.shot01-daniel');
-    expect(visual.art?.asset.id).toBe('axiom-opening-office-shot01-daniel-v1-production');
+    expect(visual.art?.asset.id).toBe('axiom-opening-office-shot01-daniel-v3-transparent-production');
     expect(visual.issues).toEqual([]);
   });
 
@@ -52,7 +56,7 @@ describe('opening cinematic coverage contract', () => {
     const commute = advance(choice(choice(initialState(), 'bond.friend'), 'morning.yes'));
     const approach = {
       shotId: 'opening.axiom.shot01-approach',
-      assetId: 'axiom-approach-v2-production',
+      assetId: 'axiom-exterior-approach-adrian-v2-production',
       alt: '',
     };
     const daniel = advance(commute);
@@ -85,22 +89,22 @@ describe('opening cinematic coverage contract', () => {
     expect(resolveSceneArt(commute, 3).shot?.shotId).toBe('opening.office.shot01-daniel');
     expect(resolveSceneArt(daniel).shot?.shotId).toBe('opening.office.shot01-daniel');
     expect(resolveSceneArt(benton).shot?.shotId).toBe('opening.office.shot02-benton');
-    expect(resolveSceneArt(benton).art?.asset.id).toBe('axiom-opening-office-shot02-benton-v1-production');
+    expect(resolveSceneArt(benton).art?.asset.id).toBe('axiom-opening-office-shot02-benton-v3-transparent-production');
     expect(resolveSceneArt(benton).issues).toEqual([]);
     expect(resolveSceneArt(file).shot?.shotId).toBe('opening.office.shot03-file');
     expect(resolveSceneArt(brief).shot?.shotId).toBe('opening.helix.shot01-brief');
     expect(resolveSceneArt(documents).shot?.shotId).toBe('opening.helix.shot02-documents');
     expect(resolveSceneArt(analysis).shot?.shotId).toBe('opening.helix.shot02-documents');
     expect(resolveSceneArt(mayaPromotion).shot?.shotId).toBe('opening.maya.shot01-coffee');
-    expect(resolveSceneArt(mayaPromotion).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+    expect(resolveSceneArt(mayaPromotion).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     expect(resolveSceneArt(mayaPromotion).issues).toEqual([]);
     expect(resolveSceneArt(mayaInvitation).shot?.shotId).toBe('opening.maya.shot01-coffee');
-    expect(resolveSceneArt(mayaInvitation).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+    expect(resolveSceneArt(mayaInvitation).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     expect(resolveSceneArt(mayaCase).shot?.shotId).toBe('opening.maya.shot01-coffee');
-    expect(resolveSceneArt(mayaCase).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v1-production');
+    expect(resolveSceneArt(mayaCase).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     expect(resolveSceneArt(mayaGoodbye).shot?.shotId).toBe('opening.maya.shot02-departure');
     expect(resolveSceneArt(ending).shot?.shotId).toBe('opening.office.shot04-alone');
-    expect(resolveSceneArt(ending).art?.asset.id).toBe('axiom-opening-office-shot04-alone-v1-production');
+    expect(resolveSceneArt(ending).art?.asset.id).toBe('axiom-opening-office-shot04-alone-v3-transparent-production');
     expect(resolveSceneArt(ending).issues).toEqual([]);
 
     expect(OPENING_CINEMATIC_HOLDS).toEqual(
@@ -127,7 +131,7 @@ describe('opening cinematic coverage contract', () => {
     }
   });
 
-  it('fails the release gate when enabled until every cut is runtime-approved', () => {
+  it('passes the release gate when enabled after every cut is runtime-approved', () => {
     if (process.env.EVE_OPENING_CINEMATIC_GATE !== '1') return;
     expect(openingCinematicCoverageReport().complete).toBe(true);
   });

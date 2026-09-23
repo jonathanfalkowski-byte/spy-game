@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-09-22",
+  "branch": "story/chapter-3-design",
+  "head": "e2b6b8671390d6967de9f12d1dd3038395c7b534",
+  "scope": "Current authored runtime pages through Chapter 5; source-level inventory plus resolver trace, not exhaustive branch traversal.",
+  "sourceSceneCount": 175,
+  "screenshotFinding": {
+    "title": "Something impossible",
+    "sceneId": "file.arrival",
+    "place": "Midday · Security exception",
+    "resolver": {
+      "openingReadingBeats": false,
+      "chapter5ReadingBeats": false,
+      "homeSceneArt": false,
+      "apartmentEndingArt5": false,
+      "openingShot": "opening.blackglass.shot01-arrival",
+      "shotId": "opening.blackglass.shot01-arrival",
+      "assetId": "blackglass-file-arrival-v1-production",
+      "artPane": "mounted",
+      "diagnostic": null
+    },
+    "rootCause": "The reviewed Blackglass sequence is registered with exact bindings for file.arrival, file.directory, file.authorized, security.intervention and security.escort; each later state remains node-scoped and fails closed outside its authored beat."
+  },
+  "sceneFamilyCounts": {
+    "file": 3,
+    "security": 2,
+    "sloane": 5,
+    "refusal": 2,
+    "release": 2,
+    "evening": 5,
+    "warning": 3,
+    "dayend": 3,
+    "clinic": 41,
+    "mission": 30,
+    "chapter3": 32,
+    "chapter4": 15,
+    "chapter5": 15,
+    "apartment": 3,
+    "commute": 1,
+    "office": 3,
+    "helix": 5,
+    "maya": 4,
+    "ending": 1
+  },
+  "coverageClasses": {
+    "runtimeApproved": [
+      "apartment.* (master/inserts)",
+      "commute.arrival (four reader cuts)",
+      "opening office exact states (Daniel, Benton, file action, Maya conversation/departure, Adrian-alone)",
+      "clinic.wardrobe",
+      "clinic.reception / clinic.receptionReply",
+      "clinic.privacy / clinic.privacyReply (branch-specific Sloane presence)",
+      "clinic.exam / clinic.examResult (private result branch only)",
+      "clinic.protocol",
+      "clinic.simulation / clinic.display",
+      "clinic.authorization",
+      "clinic.preparation",
+      "clinic.voice / clinic.voiceReply (private branch), clinic.voicePause (stay pause)",
+      "clinic.face / clinic.faceReply (stay branch), clinic.facePause (stay pause)",
+      "clinic.steps / clinic.mirror / clinic.mirror.shot01-look / clinic.name / clinic.rest / clinic.recoveryContact",
+      "clinic.recoveryReply (quiet/sent branches)",
+      "clinic.makeup / clinic.presentationReview (executive/socialite/shadow branches)",
+      "clinic.rehearsal (committed outfit branches)",
+      "clinic.briefing (final-preparation prop state)",
+      "clinic.profile / clinic.farewell (exact reviewed clinic states)",
+      "evening.disclosure / evening.closure (Lantern hold)",
+      "chapter5.home (c05.s01 exact branch)",
+      "chapter5.echo (c05.s03 exact purchase-state apartment variants)",
+      "chapter5.offer (c05.s07 exact Aster arrival branch)",
+      "chapter5.room (exact Harbour arrival/coffee sequence branches)",
+      "chapter5.complete (c05.s12.shot05-phone exact branch)",
+      "chapter3.home (executive post-Glass-House branch only)",
+      "mission.reception / mission.assessment / mission.method (exact Glass House states)",
+      "chapter3.surveillance (exact monitored-phone placement state)",
+      "chapter4.entry / chapter4.consequences / chapter4.resource / chapter4.assignment (exact first-day and public-records states)",
+      "file.arrival / file.directory / file.authorized / security.intervention / security.escort (exact Blackglass sequence states)",
+      "sloane.intro / sloane.allegation / sloane.brief / sloane.identity / sloane.offer (exact executive-floor states)",
+      "refusal.lobby / refusal.reconsider (exact refusal states)"
+    ],
+    "runtimeApprovedQualityRejected": [
+      "office.daniel",
+      "office.benton",
+      "office.departure",
+      "helix.brief",
+      "helix.documents",
+      "helix.analysis",
+      "helix.review",
+      "helix.submitted",
+      "maya.promotion / maya.invitation / maya.case",
+      "ending.complete"
+    ],
+    "missing": [
+      "release.*",
+      "evening.plan / evening.goodbye / evening.home",
+      "warning.*",
+      "dayend.*",
+      "clinic.departure and branch-specific clinic states without approved variants",
+      "mission.* except conditional home states and the exact reception / assessment / method cuts",
+      "chapter3.* except conditional home and surveillance states",
+      "chapter4.* beyond entry, consequences, resource and assignment",
+      "most chapter5 branch families"
+    ]
+  },
+  "runtimeApprovedAssetsExcludedForQuality": [
+    "axiom-opening-office-shot01-daniel-v1-production",
+    "axiom-opening-office-shot02-benton-v1-production",
+    "axiom-casework-file-v1-production",
+    "axiom-casework-brief-v1-production",
+    "axiom-casework-documents-v1-production",
+    "axiom-casework-review-v1-production",
+    "axiom-casework-submitted-v1-production",
+    "axiom-opening-office-shot01-maya-v1-production",
+    "axiom-opening-office-shot04-alone-v1-production"
+  ],
+  "approvedComponentsNotSafeAsGenericBindings": [
+    {
+      "assetId": "eve-bg-sloane-office-continuity-v2",
+      "intendedScene": "sloane.intro",
+      "reason": "Environment-only; Sloane is already active in the first prose."
+    },
+    {
+      "assetId": "c5-s02-shopping-street-master-v1-production",
+      "intendedScene": "chapter5.spend",
+      "reason": "Environment authority only; authored shot requires Evelynn and branch-safe purchase staging."
+    },
+    {
+      "assetId": "c5-people-night-apartment-master-v1-production",
+      "intendedScene": "chapter5.people",
+      "reason": "Night-lighting authority only; tea/thread states and branch props are absent."
+    }
+  ],
+  "safeZeroCostBindings": [
+    {
+      "shotId": "mission.car",
+      "assetId": "car-rain-window-v1-production",
+      "scope": "Exact mission.car rainy-window HOLD; crop excludes the empty rear bench."
+    },
+    {
+      "shotId": "mission.arrival",
+      "assetId": "eve-bg-glass-entrance-v1-production",
+      "scope": "Exact mission.arrival empty Glass House entrance establishing view."
+    },
+    {
+      "shotId": "mission.reception",
+      "assetId": "glass-house-reception-v1-production",
+      "scope": "Exact mission.reception POV validation state; no later elevator or gallery claim."
+    },
+    {
+      "shotId": "opening.blackglass.shot01-arrival",
+      "assetId": "blackglass-file-arrival-v1-production",
+      "scope": "Exact file.arrival desk state; the protected Blackglass contents remain unreadable until the separate directory/authorization cuts."
+    }
+  ],
+  "missingReusablePackages": [
+    {
+      "packageId": "refusal-release-evening",
+      "nodes": [
+        "release.departure",
+        "release.home",
+        "evening.plan",
+        "evening.goodbye",
+        "evening.home"
+      ],
+      "reason": "Branch-specific departure/home/communication shots are missing."
+    },
+    {
+      "packageId": "warning-and-dayend",
+      "nodes": [
+        "warning.first",
+        "warning.second",
+        "warning.third",
+        "dayend.cautious",
+        "dayend.walkaway",
+        "dayend.accepted"
+      ],
+      "reason": "Warning and ending compositions are missing."
+    },
+    {
+      "packageId": "clinic-procedure",
+      "nodes": [
+        "clinic.departure"
+      ],
+      "reason": "Only the exact reviewed clinic branches are covered; the later departure state and branch-specific clinic variants remain without runtime-approved art."
+    },
+    {
+      "packageId": "glass-house-mission",
+      "nodes": [
+        "mission.* except mission.reception, mission.assessment and mission.method"
+      ],
+      "reason": "Most mission floor art and pre-Glass-House home outfit assets are missing; reception, assessment and method are exact-state islands only."
+    },
+    {
+      "packageId": "chapter3-continuation",
+      "nodes": [
+        "chapter3.* except conditional home and surveillance"
+      ],
+      "reason": "Most post-Glass-House branch art is missing; the conditional home and monitored-phone surveillance states are exact-state islands only."
+    },
+    {
+      "packageId": "chapter4",
+      "nodes": [
+        "chapter4.* beyond entry, consequences, resource and assignment"
+      ],
+      "reason": "Only the first river and public-records cuts are approved; later case, power, intimacy and handoff branches remain missing."
+    },
+    {
+      "packageId": "chapter5-branch-families",
+      "nodes": [
+        "chapter5.spend",
+        "chapter5.echo",
+        "chapter5.invitation",
+        "chapter5.presentation",
+        "chapter5.infrastructure",
+        "chapter5.terms",
+        "chapter5.people",
+        "chapter5.want",
+        "chapter5.handoff",
+        "chapter5.return",
+        "chapter5.complete"
+      ],
+      "reason": "Branch-specific purchase, message, desire, handoff, return and ending compositions remain missing."
+    }
+  ],
+  "branchNotes": [
+    {
+      "family": "chapter5.spend",
+      "states": [
+        "voucher",
+        "phone",
+        "blouse",
+        "clasp",
+        "lunch",
+        "save/nothing"
+      ],
+      "status": "missing unique compositions; shopping-street image is component-only"
+    },
+    {
+      "family": "chapter5.people",
+      "states": [
+        "tea",
+        "Maya/Sloane/sender/Voss threads",
+        "silence"
+      ],
+      "status": "missing; night apartment image is lighting component only"
+    },
+    {
+      "family": "chapter5.return",
+      "states": [
+        "phone",
+        "wardrobe",
+        "accessory",
+        "voucher",
+        "service/publication"
+      ],
+      "status": "missing branch-safe apartment compositions except the exact phone placement shot"
+    },
+    {
+      "family": "chapter5.want/handoff",
+      "states": [
+        "decline",
+        "uncertain",
+        "conversation-only",
+        "physical-without-sex",
+        "sexual intimacy",
+        "withdraw"
+      ],
+      "status": "missing; no generic intimacy fallback allowed"
+    }
+  ],
+  "counts": {
+    "authoredScenePages": 175,
+    "openingFixturePages": 20,
+    "openingRuntimeVisible": 20,
+    "openingIntentionalBlank": 0,
+    "openingRuntimeApprovedCuts": 15,
+    "openingRequiredCuts": 15,
+    "approvedManifestRecords": 109,
+    "qualityRejectedLoadedOpeningAssets": 9
+  },
+  "recommendation": "Keep exact opening bindings shot-specific and do not use them as generic identity or environment fallbacks. Produce and review the remaining missing family masters, then bind only exact reached states with branch-aware tests. Full-game art coverage outside the opening remains incomplete."
+}

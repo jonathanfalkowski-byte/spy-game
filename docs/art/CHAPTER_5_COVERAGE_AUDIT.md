@@ -1,5 +1,7 @@
 # Chapter 5 coverage audit —2026-09-17
 
+**Current status (2026-09-22):** Eight of 100 authored raster/artifact beat families have approved production art. Twelve exact Chapter 5 variants are runtime-bound across those families, including five purchase-specific echo images; 11 distinct assets are reachable because the home arrival binding remains guarded. The table below is the historical 2026-09-17 snapshot; use the companion JSON and production coverage record for current exact bindings.
+
 **Historical raw-index snapshot.** The current production-planning metric, dialogue-hold ledger, deduplicated requirements and next wave are in [CHAPTER_5_TRUE_ART_BACKLOG.md](CHAPTER_5_TRUE_ART_BACKLOG.md). Revision17 is committed/pushed at `198feada20cc15aa47d6e64f37149079efe187a4`; the uncommitted status below describes the earlier review. The JSON now includes the explicitly approved Aster V2 promotion: four approved exact variants, three runtime-bound. Do not use its raw 3/100 as the primary art-production metric.
 
 Audited pushed baseline7c91a242; this implementation is an uncommitted revision17 diff. 3/100 raster/artifact beat IDs have at least one approved variant (3.0%). This is **not full-branch completion**; runtime-bound exact variants **3** (presentation for authenticated revision16/17, branch guarded). 3 reserved/fade IDs need no raster. Retired IDs and dialogue holds are excluded.
@@ -154,3 +156,7 @@ H1 `c05.s06.shot01-preview`: **PASS with LOW/POLISH**, candidate `c5-h1-arrival-
 H1 `c05.s06.shot01-preview` and H2 `c05.s06.shot13-return` are now production-approved, exact-state assets. They increase the composition-family index to **6/95 (6.32%)** while runtime-bound Chapter 5 shots remain **3** because this promotion adds no selector. Harbour is closed at its four families; its historical declined 15:00 courtyard/salon route is preserved but excluded from the new evening production family.
 
 The core planning measure is now [movement-anchor status](CHAPTER_5_MOVEMENT_ANCHOR_STATUS.md), not the 95-family percentage. The latter remains a P1/P2 richness ledger.
+
+## Exact-state echo update — 2026-09-22
+
+Five mutually exclusive apartment table compositions are now runtime-approved for `chapter5.echo`: `c05.s03.shot01-no-purchase` (`save`/`nothing`), `c05.s03.shot01-phone`, `c05.s03.shot01-blouse`, `c05.s03.shot01-clasp`, and `c05.s03.shot01-lunch`. Each is bound only when the matching `c5.purchase` value and latest `chapter5.echo` action are present; no generic Chapter 5 fallback is permitted. The staged shopping decision candidate remains **REVISE / deferred** because its rear-facing pose weakens identity validation and its heels read above the reusable professional target.

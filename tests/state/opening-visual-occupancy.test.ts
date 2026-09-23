@@ -20,16 +20,14 @@ describe('opening visual occupancy contract', () => {
     );
     expect(report.totalPlayableScreens).toBe(20);
     expect(report.totalReachableScreens).toBe(20);
-    expect(report.screensWithRuntimeVisibleArt).toBe(19);
-    expect(report.artVisible).toBe(19);
-    expect(report.screensCurrentlyBlank).toBe(1);
-    expect(report.blank).toBe(1);
+    expect(report.screensWithRuntimeVisibleArt).toBe(20);
+    expect(report.artVisible).toBe(20);
+    expect(report.screensCurrentlyBlank).toBe(0);
+    expect(report.blank).toBe(0);
     expect(report.uniqueRequiredCuts).toBe(15);
     expect(report.holdCoveredScreens).toBe(6);
-    expect(report.complete).toBe(false);
-    expect(report.blankScreens.map((screen) => screen.screenId)).toEqual([
-      'opening.maya.goodbye',
-    ]);
+    expect(report.complete).toBe(true);
+    expect(report.blankScreens).toEqual([]);
   });
 
   it('keeps apartment inspection inserts truthful and returns to the approved base on departure', () => {
@@ -52,12 +50,12 @@ describe('opening visual occupancy contract', () => {
     expect(resolveOpeningVisualOccupancy(unillustrated)).toMatchObject({
       visualMode: 'HOLD',
       resolvedVisualMode: 'HOLD',
-      resolvedShotId: 'opening.apartment.shot01',
-      holdSource: 'opening.apartment.shot01',
+      resolvedShotId: 'opening.apartment.shot01-mirror',
+      holdSource: 'opening.apartment.shot01-mirror',
       artStatus: 'RUNTIME_APPROVED',
       artVisible: true,
     });
-    expect(resolveSceneArt(unillustrated).shot?.shotId).toBe('opening.apartment.shot01');
+    expect(resolveSceneArt(unillustrated).shot?.shotId).toBe('opening.apartment.shot01-mirror');
 
     const departure = choice(inspected, 'morning.yes');
     const hold = resolveOpeningVisualOccupancy(departure);
@@ -129,12 +127,12 @@ describe('opening visual occupancy contract', () => {
     expect(occupancy?.visualMode).toBe('CUT');
     expect(occupancy?.resolvedShotId).toBe('opening.axiom.shot01-approach');
     expect(occupancy?.artVisible).toBe(true);
-    expect(resolveSceneArt(commute, 0).art?.asset.id).toBe('axiom-approach-v2-production');
+    expect(resolveSceneArt(commute, 0).art?.asset.id).toBe('axiom-exterior-approach-adrian-v2-production');
     expect(resolveSceneArt(commute, 0).issues).toEqual([]);
-    expect(resolveSceneArt(commute, 2).art?.asset.id).toBe('axiom-office-arrival-v1-production');
+    expect(resolveSceneArt(commute, 2).art?.asset.id).toBe('axiom-office-approach-adrian-v3-transparent-production');
     expect(resolveSceneArt(commute, 2).issues).toEqual([]);
     expect(resolveSceneArt(commute, 3).art?.asset.id).toBe(
-      'axiom-opening-office-shot01-daniel-v1-production',
+      'axiom-opening-office-shot01-daniel-v3-transparent-production',
     );
     expect(resolveSceneArt(commute, 3).issues).toEqual([]);
   });

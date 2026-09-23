@@ -151,3 +151,7 @@ The proposed male executive may progress through respect, access, private meetin
 ## Boundary for the current project
 
 Do not implement these trajectories, add meters or assign existing NPCs to predetermined intimate roles. Chapter 3 and future situation design is now separately authorized in the story-design worktree; the playable vertical slice remains frozen for outside testing. Implementation and future route selection still require separate approval and should account for that evidence.
+
+## Full-game North Star cross-reference
+
+This document now sits beneath the [Master GDD](EVE_MASTER_GDD.md) and its [route architecture](../story/FULL_GAME_ROUTE_ARCHITECTURE.md). It remains a trajectory catalogue, not a routing system. Future route work must retain body-autonomy provenance, distinguish appearance from desire, preserve investigation access across trajectories, and treat exploitation/recovery as an overlay with specific causes rather than a result of adult work, luxury, public visibility, or femininity.

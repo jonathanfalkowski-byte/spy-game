@@ -1,0 +1,590 @@
+{
+  "date": "2026-09-20",
+  "baseline": "3d774d7f73a323f08886d4c34932284ff14029c3",
+  "purpose": "Dated current reconciliation; not a runtime manifest and not approval/promotion machinery",
+  "runtimeChanged": false,
+  "summary": {
+    "ownerApprovedProductionRecords": 21,
+    "eligibleManifestAssets": 16,
+    "explicitBindingIds": 18,
+    "manifestAssetsWithBindings": 13,
+    "reachableAssets": 12,
+    "unboundManifestAssets": 3
+  },
+  "assets": [
+    {
+      "assetId": "apartment-pre-glasshouse-executive-v1-production",
+      "classification": "PRODUCTION_ACCEPTED_WITH_KNOWN_POLISH_ISSUE",
+      "reason": "Explicit owner receipt accepts all six displayed home images despite retained review notes; REVISE remains unchanged and current PASS-only manifest filter excludes this file. Acceptance is not active runtime eligibility. Some notes concern garment continuity, not just cosmetic polish.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "REVISE",
+      "reviewReasons": [
+        "Correct tailored suit and recognizable Evelynn; accepted room retained.",
+        "Right shoe is clipped by the lower frame and the figure is larger than the post-return suit version; standardize framing before production."
+      ],
+      "inManifest": false,
+      "bindingShotIds": [
+        "home.pre-glasshouse.shot01-executive"
+      ],
+      "playerReachable": false,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-pre-glasshouse-executive-v1.png",
+      "sha256": "39e7ae564395d6a3f8c1b9826017920cee4e1ab3edf12f194c004cfc4a340374",
+      "hashMatches": true
+    },
+    {
+      "assetId": "apartment-pre-glasshouse-socialite-v1-production",
+      "classification": "PRODUCTION_ACCEPTED_WITH_KNOWN_POLISH_ISSUE",
+      "reason": "Explicit owner receipt accepts all six displayed home images despite retained review notes; REVISE remains unchanged and current PASS-only manifest filter excludes this file. Acceptance is not active runtime eligibility. Some notes concern garment continuity, not just cosmetic polish.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "REVISE",
+      "reviewReasons": [
+        "Correct long black gown, recognizable face and accepted room.",
+        "Figure appears taller than the other outfit variants, with head above the window; align scale. Closed pumps differ from post-return sandals."
+      ],
+      "inManifest": false,
+      "bindingShotIds": [
+        "home.pre-glasshouse.shot01-socialite"
+      ],
+      "playerReachable": false,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-pre-glasshouse-socialite-v1.png",
+      "sha256": "b0c9d596651d9a541da04857f5b1715ea6faacdcb08a217c85cb953fb41a6de7",
+      "hashMatches": true
+    },
+    {
+      "assetId": "apartment-pre-glasshouse-shadow-v1-production",
+      "classification": "PRODUCTION_ACCEPTED_WITH_KNOWN_POLISH_ISSUE",
+      "reason": "Explicit owner receipt accepts all six displayed home images despite retained review notes; REVISE remains unchanged and current PASS-only manifest filter excludes this file. Acceptance is not active runtime eligibility. Some notes concern garment continuity, not just cosmetic polish.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "REVISE",
+      "reviewReasons": [
+        "Correct short charcoal dress category, recognizable Evelynn, grounded feet and retained apartment.",
+        "The narrow fitted skirt and prominent buckle differ from the post-return flared skirt and narrow belt; unify the exact garment before production."
+      ],
+      "inManifest": false,
+      "bindingShotIds": [
+        "home.pre-glasshouse.shot01-shadow"
+      ],
+      "playerReachable": false,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-pre-glasshouse-shadow-v1.png",
+      "sha256": "41363cab8916be7615b3d8f4717998b1176a83c1886119e7fc9962623fe1199d",
+      "hashMatches": true
+    },
+    {
+      "assetId": "apartment-post-glasshouse-executive-v1-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Tailored suit, recognizable face and full figure; no duplicate outfit or reaching artifact.",
+        "Accepted apartment remains recognizable with darker late-evening exterior. Ready for owner review; no promotion."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "home.post-glasshouse.shot01-executive"
+      ],
+      "playerReachable": true,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-post-glasshouse-executive-v1.png",
+      "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a",
+      "hashMatches": true
+    },
+    {
+      "assetId": "apartment-post-glasshouse-socialite-v1-production",
+      "classification": "PRODUCTION_ACCEPTED_WITH_KNOWN_POLISH_ISSUE",
+      "reason": "Explicit owner receipt accepts all six displayed home images despite retained review notes; REVISE remains unchanged and current PASS-only manifest filter excludes this file. Acceptance is not active runtime eligibility. Some notes concern garment continuity, not just cosmetic polish.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "REVISE",
+      "reviewReasons": [
+        "Correct long black gown and recognizable Evelynn; late-evening apartment retained.",
+        "Open-toe shoes differ from the pre-departure pumps and figure scale differs across the set; align before production."
+      ],
+      "inManifest": false,
+      "bindingShotIds": [
+        "home.post-glasshouse.shot01-socialite"
+      ],
+      "playerReachable": false,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-post-glasshouse-socialite-v1.png",
+      "sha256": "d90f7841cca746b204b9e0a79f25b43b686777ef9af45130a1bc4b33a58f3ebc",
+      "hashMatches": true
+    },
+    {
+      "assetId": "apartment-post-glasshouse-shadow-v1-production",
+      "classification": "PRODUCTION_ACCEPTED_WITH_KNOWN_POLISH_ISSUE",
+      "reason": "Explicit owner receipt accepts all six displayed home images despite retained review notes; REVISE remains unchanged and current PASS-only manifest filter excludes this file. Acceptance is not active runtime eligibility. Some notes concern garment continuity, not just cosmetic polish.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-16",
+        "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+      },
+      "reviewDecision": "REVISE",
+      "reviewReasons": [
+        "Correct short plain dress category, recognizable Evelynn and accepted room; all limbs and feet visible.",
+        "Flared skirt and narrow belt differ from pre-departure fitted skirt and buckle. Match the same dress before production."
+      ],
+      "inManifest": false,
+      "bindingShotIds": [
+        "home.post-glasshouse.shot01-shadow"
+      ],
+      "playerReachable": false,
+      "source": "art/production/apartment/records.json",
+      "file": "art/production/apartment/apartment-post-glasshouse-shadow-v1.png",
+      "sha256": "7119a70f0c5df18e29a05b4ab040edd415a26d8cf10efef5ace4cf862bcc0154",
+      "hashMatches": true
+    },
+    {
+      "assetId": "eve-bg-wardrobe-continuity-v2",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner via explicitly delegated passing-image review",
+        "date": "2026-09-16",
+        "source": "Owner instruction 2026-09-16: approve exact 4-credit batch, review against Art Bible, and promote only images that pass. Codex visually inspected full-resolution results; no canonical-reference promotion."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Three distinct garment options: one suit, one long gown and one plain charcoal cocktail dress; tactical harness removed.",
+        "Room remains empty; mirror, vanity, tiles and warm semi-cel illustration preserve the original visual language."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "clinic.wardrobe.shot01"
+      ],
+      "playerReachable": true,
+      "source": "art/production/continuity/records.json",
+      "file": "art/production/continuity/eve-bg-wardrobe-continuity-v2.png",
+      "sha256": "c93d718ef20cdf4d01c334a907d7eff12020616b5ed71af5582a325a97be303a",
+      "hashMatches": true
+    },
+    {
+      "assetId": "eve-scene-maya-evening-continuity-v2",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner via explicitly delegated passing-image review",
+        "date": "2026-09-16",
+        "source": "Owner instruction 2026-09-16: approve exact 4-credit batch, review against Art Bible, and promote only images that pass. Codex visually inspected full-resolution results; no canonical-reference promotion."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Maya wears the required plain black sweater; face, hair, seated pose and Adrian dark shirt remain consistent.",
+        "Rainy Lantern booth, restrained amber palette and adult graphic-novel rendering preserved."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "evening.lantern.shot01"
+      ],
+      "playerReachable": true,
+      "source": "art/production/continuity/records.json",
+      "file": "art/production/continuity/eve-scene-maya-evening-continuity-v2.png",
+      "sha256": "f990e9ddf9d57793cb0ca2f46cdf9eb2ef8f12fb16639c053a7d4cc644ef39c0",
+      "hashMatches": true
+    },
+    {
+      "assetId": "eve-bg-sloane-office-continuity-v2",
+      "classification": "INTENTIONALLY_UNBOUND",
+      "reason": "M1 disposition: retain approved bounded environment asset without binding; no complete exact guarded character/prop/state composition is authorized here. This states the current safe disposition, not an invented historical reason for omission.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner via explicitly delegated passing-image review",
+        "date": "2026-09-16",
+        "source": "Owner instruction 2026-09-16: approve exact 4-credit batch, review against Art Bible, and promote only images that pass. Codex visually inspected full-resolution results; no canonical-reference promotion."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Daytime cloudy skyline resolves the midday mismatch.",
+        "Desk, chairs, window divisions, pale stone and dark wood retained; graphic directional shadows are permitted by Art Bible lighting guidance."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [],
+      "playerReachable": false,
+      "source": "art/production/continuity/records.json",
+      "file": "art/production/continuity/eve-bg-sloane-office-continuity-v2.png",
+      "sha256": "cef805860650cbc6c0ca4165c779cc4c6e227e8f25ec37d997aafa4771629668",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-s12-shot05-phone-composite-v2-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-17",
+        "source": "Human review decision: APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for exact shot c05.s12.shot05-phone. Shot-specific only: composition, night lighting, Evelynn placement/scale, two phones, wardrobe-hidden jacket and professional appearance at game scale. Excludes canonical identity/body/wardrobe reference and other ending branches."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Explicit owner shot-specific production promotion.",
+        "Alpha cleanup accepted; environment/night/placement approved; no canonical character-reference authority.",
+        "Heels LOW/POLISH, no identifiable dangling earring at game size, shoulders accepted as contour lighting."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s12.shot05-phone"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
+      "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-harbour-evelynn-julian-composite-v2-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-17",
+        "source": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Exact authored shot and branch; unchanged master environment.",
+        "LOW/POLISH edge notes retained."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s06.shot12-entrance"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
+      "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-harbour-julian-departed-composite-v1-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-17",
+        "source": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Exact authored shot and branch; unchanged master environment.",
+        "LOW/POLISH edge notes retained."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s06.shot15-departed"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
+      "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-s07-aster-arrival-composite-v2-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-17",
+        "source": "Explicit APPROVE Aster arrival candidate for production for EXACT authored shot/state only. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+        "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change.",
+        "Approved environment pixel-stable."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s07.shot03-arrival"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
+      "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-h1-arrival-composite-v3-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Human decision: APPROVE Harbour H1 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Exact c05.s06.shot01-preview after arrival/name check/programme handover, event=attend 18:30, c05.professional only; no coffee or Julian.",
+        "1920x1080, desktop896x504, Reader stage620x349 and mobile350x197 reviewed. Clean host silhouette, compatible semi-cel rendering, adult supporting role only.",
+        "Locked Harbour background SHA unchanged; 1934876 uncovered pixels compared, zero changed. Numeric calibration and Evelynn layer/position unchanged. RGB preserved in host alpha extraction.",
+        "LOW/POLISH: subtle Evelynn hair fringe and existing business-pump difference are unobtrusive at gameplay size. No visible new jewelry. No new identity/reference authority.",
+        "Frame is E plus host after handover. Editor remains at the left table end outside frame; no invented departure or new biography. Bag remains E custody, not visibly staged or handed away; existing owner-permitted omission retained.",
+        "PASS is technical/art review, not owner production approval. No runtime binding. Frozen 15:00 salon branch excluded."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s06.shot01-preview"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
+      "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Human decision: APPROVE Harbour H2 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "H2 exact coffee-return action is legible at full, desktop and mobile sizes.",
+        "Harbour master is preserved outside composited layers; no new environment output.",
+        "No visible new dangling earring or unearned prop; ordinary pump treatment is low polish only.",
+        "Human production approval remains required."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s06.shot13-return"
+      ],
+      "playerReachable": true,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
+      "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-s01-daytime-apartment-anchor-v5-production",
+      "classification": "UNREACHABLE_BY_CURRENT_STATE",
+      "reason": "begin sets c5.axiom-location=carried, rejected by homeReaderPacketBeats5. Independent generic c05 validation requires professional presentation/wardrobe and chapter5.room rather than home/daytime. No predicate changed.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Owner decision: APPROVE Home V5 for exact c05.s01.shot01 state only."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Owner approved exact object-led Home V5.",
+        "No floating character, footwear, or invented gesture."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "c05.s01.shot01"
+      ],
+      "playerReachable": false,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png",
+      "sha256": "56c603bcc5193e734413c1fab899b9ed71ff678c177aa8d35a3f987b5b14270e",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-s02-shopping-street-master-v1-production",
+      "classification": "INTENTIONALLY_UNBOUND",
+      "reason": "M1 disposition: retain approved bounded environment asset without binding; no complete exact guarded character/prop/state composition is authorized here. This states the current safe disposition, not an invented historical reason for omission.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Explicit owner bounded environment authority approval."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [],
+      "playerReachable": false,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png",
+      "sha256": "5514240b41e3c1e4b3574d3c78b00719f7497634bc582fe0f89e5aaaf32c8a96",
+      "hashMatches": true
+    },
+    {
+      "assetId": "c5-people-night-apartment-master-v1-production",
+      "classification": "INTENTIONALLY_UNBOUND",
+      "reason": "M1 disposition: retain approved bounded environment asset without binding; no complete exact guarded character/prop/state composition is authorized here. This states the current safe disposition, not an invented historical reason for omission.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Explicit owner bounded environment authority approval."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [],
+      "playerReachable": false,
+      "source": "art/production/chapter5/records.json",
+      "file": "art/production/chapter5/C5-PEOPLE-NIGHT-APARTMENT-MASTER-V1.png",
+      "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
+      "hashMatches": true
+    },
+    {
+      "assetId": "opening-apartment-master-v2-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Explicit instruction in the opening-art review gate authorizes promotion and exact binding when the sole clock blocker is removed without a new blocker."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "The invented clock is removed with a deterministic local wall repair confined to the declared circular region.",
+        "Apartment geometry, furniture, camera, floor, windows, rainy exterior, lighting, and empty first-screen composition remain intact.",
+        "At full resolution and reader scale, the image reads as a deliberate, prestige illustrated rainy-morning hold without future-state props or transformation spoilers."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "opening.apartment.shot01"
+      ],
+      "playerReachable": true,
+      "source": "art/production/opening/records.json",
+      "file": "art/production/opening/opening-apartment-master-v2-production.png",
+      "sha256": "74a7c8bb5508fb9a603e3742cd0ccb9cb036cc1aa2456caf7df0f5b0af866e99",
+      "hashMatches": true
+    },
+    {
+      "assetId": "opening-apartment-housing-notice-v1-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Owner design decision: APPROVE for production, subject to exact runtime-state verification, apartment-opening-insert-housing-notice-v1; bind ONLY to opening.apartment.inspect-lease. Do not approve jacket V1 or the mirror."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "The notice communicates the exact authored pressure: Axiom support converts to market rate after thirty days, without inventing eviction, an account number, or an immediate deadline.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: this is an editorial document-in-context composite rather than a fully perspective-grounded counter prop; bounded production approval retains this LOW/POLISH note.",
+        "Explicit owner approval applies only to the exact inspection shot and does not establish character, outcome, or broader apartment authority."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "opening.apartment.inspect-lease"
+      ],
+      "playerReachable": true,
+      "source": "art/production/opening/records.json",
+      "file": "art/production/opening/opening-apartment-housing-notice-v1-production.png",
+      "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7",
+      "hashMatches": true
+    },
+    {
+      "assetId": "opening-apartment-medical-package-v1-production",
+      "classification": "PRODUCTION_ACTIVE",
+      "reason": "Approved PASS asset in manifest with explicit binding and currently reachable exact state; approval is bounded to its existing shot/branch.",
+      "approvalStatus": "approved",
+      "originalApproval": {
+        "reviewer": "Project owner",
+        "date": "2026-09-18",
+        "source": "Owner design decision: APPROVE for production, subject to exact runtime-state verification, apartment-opening-insert-medical-package-v1; bind ONLY to opening.apartment.inspect-medical. Do not approve jacket V1 or the mirror."
+      },
+      "reviewDecision": "PASS",
+      "reviewReasons": [
+        "The package identifies annual endocrine screening and the unexpected extended panel without inventing a clinical result, diagnosis, later clinic material, or Evelynn-era object.",
+        "Rainy opening-apartment context and the pre-transformation state remain intact.",
+        "LOW/POLISH: the package is an editorial object-in-context composite rather than a fully perspective-grounded physical package; bounded production approval retains this LOW/POLISH note.",
+        "Explicit owner approval applies only to the exact inspection shot and does not establish character, outcome, or broader apartment authority."
+      ],
+      "inManifest": true,
+      "bindingShotIds": [
+        "opening.apartment.inspect-medical"
+      ],
+      "playerReachable": true,
+      "source": "art/production/opening/records.json",
+      "file": "art/production/opening/opening-apartment-medical-package-v1-production.png",
+      "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f",
+      "hashMatches": true
+    }
+  ],
+  "registryAndAuthorityIssues": [
+    {
+      "id": "chapter5-coverage-registry",
+      "classification": "REGISTRY_ERROR",
+      "reason": "CHAPTER_5_COVERAGE_AUDIT marks c05.s01.shot01 MISSING; source coverage has seven approved shot IDs, runtime source has seven bindings (six reachable), older summaries say six/three and test expects four/three/4%. Requires registry/test accounting migration; no approval missing for home V5. Historical counts retained and superseded by this dated current registry.",
+      "source": "tests/state/audit-art-registry.test.ts",
+      "resolutionStatus": "CORRECTED_IN_M1_METADATA_OR_TEST_ACCOUNTING",
+      "resolution": "Current registry counts/binding metadata corrected with prior snapshot retained."
+    },
+    {
+      "id": "adrian-opening-full-body-v1",
+      "classification": "REGISTRY_ERROR",
+      "reason": "Authentic standalone image_editor receipt uses shared promptVersion eve-cast-scenes-v1, but asset is not one of the 65 cast-scenes plan entries. Test incorrectly treats the version label as pack membership. Original custom prompt/settings/source references must be separately validated; no fabricated plan entry or receipt relabel.",
+      "source": "art/staging/adrian/records.json",
+      "resolutionStatus": "CORRECTED_IN_M1_METADATA_OR_TEST_ACCOUNTING",
+      "resolution": "Test now reconstructs all 65 actual pack requests; pins the two original standalone generation receipts and verifies their file hashes. No receipt or historical plan rewritten; unknown additional outsiders fail."
+    },
+    {
+      "id": "adrian-opening-full-body-v2-outpaint",
+      "classification": "REGISTRY_ERROR",
+      "reason": "Same pack-membership assumption; standalone image_editor outpaint with ordered edit source then identity reference. Pack builder rejects Adrian ID and cannot reconstruct this custom request. Preserve source receipt and image hash.",
+      "source": "art/staging/adrian/records.json",
+      "resolutionStatus": "CORRECTED_IN_M1_METADATA_OR_TEST_ACCOUNTING",
+      "resolution": "Test now reconstructs all 65 actual pack requests; pins the two original standalone generation receipts and verifies their file hashes. No receipt or historical plan rewritten; unknown additional outsiders fail."
+    },
+    {
+      "id": "adrian-canon-identity-v1",
+      "classification": "SUPERSEDED",
+      "reason": "Approved historical lineage only; V2 controls current Adrian face. No status mutation or backward dependency repair.",
+      "source": "docs/art/ADRIAN_REFERENCE_AUTHORITY.md"
+    },
+    {
+      "id": "opening-mirror-blocking-v1",
+      "classification": "REFERENCE_ONLY",
+      "reason": "Owner-approved existing composition/framing/camera/reflection blocking only; final plate/layer/composite/runtime unapproved. Original bytes/provenance retained.",
+      "source": "art/staging/opening/mirror-blocking-v1/receipt.json"
+    },
+    {
+      "id": "apartment-opening-insert-mirror-v1",
+      "classification": "REVISE_BEFORE_RUNTIME",
+      "reason": "Final shot not produced or approved; final bathroom plate remains unapproved. Distinct from approved diagram.",
+      "source": "art/staging/opening/records.json"
+    }
+  ]
+}

@@ -1,0 +1,806 @@
+[
+  {
+    "spec": {
+      "assetId": "adrian-alone-sip-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/adrian-alone-sip-v2-candidate.png",
+    "sha256": "ee7606fbe3e736ff76205f1c93ec3625eea82a751b7c66c2c48b70fbd80be0c3"
+  },
+  {
+    "spec": {
+      "assetId": "adrian-first-bathroom-mirror-apartment-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/adrian-first-bathroom-mirror-apartment-v1-candidate.png",
+    "sha256": "cd5db33c4af4eae33e176dd26f1dc17ed778976f8e6fc8ae1a0e4977ce4c3821"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-exterior-approach-adrian-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/axiom-exterior-approach-adrian-v2-candidate.png",
+    "sha256": "5da340cde57685198d42edd410e70d1d10bce48a8ee1c0475cf3454200bc4041"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-office-approach-adrian-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/axiom-office-approach-adrian-v2-candidate.png",
+    "sha256": "6bef4828e82c1e259a0f6f3146412109ce1e10e9295822a37c7c5b8349f071a4"
+  },
+  {
+    "spec": {
+      "assetId": "axiom-security-gate-adrian-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/axiom-security-gate-adrian-v2-candidate.png",
+    "sha256": "3f4af05a9047de74a4cb671652edb510e165e2fe85e0e6749fc49087ece55c6f"
+  },
+  {
+    "spec": {
+      "assetId": "blackglass-authorized-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/casework/blackglass-authorized-v1-candidate.png",
+    "sha256": "4531ae7eb7fdb49e01c331f47f231fec94694ba85f639cb08ad18213c7618084"
+  },
+  {
+    "spec": {
+      "assetId": "blackglass-directory-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/casework/blackglass-directory-v1-candidate.png",
+    "sha256": "24d9a39d369e3e806c7d5cad5c4ad3d6bc71211caeb3c681e226bde8727f9f63"
+  },
+  {
+    "spec": {
+      "assetId": "blackglass-security-escort-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/casework/blackglass-security-escort-v1-candidate.png",
+    "sha256": "77d32bcc789224c3c31a78fc17d281434a6ddae11a120a314889e18b34e13e9a"
+  },
+  {
+    "spec": {
+      "assetId": "blackglass-security-intervention-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/casework/blackglass-security-intervention-v1-candidate.png",
+    "sha256": "bc03df3dbf811309929adeb2e7430d457af409864104249cc61d483f3a94b7c4"
+  },
+  {
+    "spec": {
+      "assetId": "car-rain-window-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/car-rain-window-v1-candidate.png",
+    "sha256": "b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3"
+  },
+  {
+    "spec": {
+      "assetId": "chapter3-surveillance-phone-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/chapter3/chapter3-surveillance-phone-v1-candidate.png",
+    "sha256": "d2b88a9aeec95bd80760903ed0bb468d03301a654ca68cf819a91336527af7f4"
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-assignment-index-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/chapter4/chapter4-assignment-index-v1-candidate.png",
+    "sha256": "aef15e39d3c1433162e0ef8ebf63a924b0914c1916bf9b040c386343ff38168f"
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-public-records-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/chapter4/chapter4-public-records-v1-candidate.png",
+    "sha256": "58b85725cccb9dc7ee4480c647adf3d5bc880e6bdbb2d42973979edfc0150926"
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-river-consequences-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/chapter4/chapter4-river-consequences-v1-candidate.png",
+    "sha256": "ddb8d1e8d54ccf7f8cb9fcb562abbb13d6d2c98e6bcf0ae6a51b91461d9145a8"
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-river-entry-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/chapter4/chapter4-river-entry-v1-candidate.png",
+    "sha256": "ae789e8f9fea04e8f7ecd190ea5612aa8511709d02bd00953da90053870fa0ce"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-authorization-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-authorization-v1-candidate.png",
+    "sha256": "d1071f1fb3723396091331c74a88f0fe41c32719a1d1b73a3f4da59cdd3063b7"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-briefing-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-briefing-v1-candidate.png",
+    "sha256": "a5a39648b851e47ebefaff00a7283febb2c38926fe3b5f6b3ed2235fdbc0f66e"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-exam-private-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-exam-private-v1-candidate.png",
+    "sha256": "b31b9ed82502a037029273f6b0293eb92c3de70652436c7c3fe58039b753a144"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-exam-result-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-exam-result-v1-candidate.png",
+    "sha256": "d8b081d5ffa3bf5e93ee15890c4684ba309bf5d81bd021589054f001a553542d"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-exam-stay-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-exam-stay-v1-candidate.png",
+    "sha256": "e4fd99e9cbfa782007f3295186cea0eed85be54079f95b2d368df427e0338e33"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-face-pause-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-face-pause-v1-candidate.png",
+    "sha256": "d2c0dc1785bb73ab4eba526612c70f542e9f3b5ceca76813e6ecb52859317663"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-face-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-face-v1-candidate.png",
+    "sha256": "f6bb4289e07e5783b59ec21af53ed13f5893224c451f48b578c4756393266e94"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-farewell-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-farewell-v1-candidate.png",
+    "sha256": "4d02dd134c015e61e10db48b0022fbeaaccb8d70354b4f8ab3101364282ab069"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-makeup-executive-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-makeup-executive-v1-candidate.png",
+    "sha256": "3566cba30c9b934ec69845431bf99668ddc090a93671d6fa3971379288b361c7"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-makeup-shadow-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-makeup-shadow-v1-candidate.png",
+    "sha256": "a4fb292bdfc0b7722400897ad049da49d1a17b0028542f455ce1a96e58c3ad4e"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-makeup-socialite-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-makeup-socialite-v1-candidate.png",
+    "sha256": "a1abfbb1d26734e431ec0328266622f09681c27953dd9d60d2220dbf65b03c7a"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-name-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-name-v1-candidate.png",
+    "sha256": "f36642e088476233a306fc94ab90e00fbf4744fff7010e700b114d1df6bb9522"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-preparation-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-preparation-v1-candidate.png",
+    "sha256": "a9b1f4a77dfb2ed7b43c50a3368a15e0f74769460545f08f20499468ecb9d003"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-presentation-review-executive-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-presentation-review-executive-v1-candidate.png",
+    "sha256": "28a75043e0f4e5e03a42e9d85b011a4fa6930d3218583460544061f23f0fe01b"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-presentation-review-shadow-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-presentation-review-shadow-v1-candidate.png",
+    "sha256": "fb3b0af56299ddd167fec5a65b8fdf34bf5b1db0d050f777fbadcc5cfd4beda9"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-presentation-review-socialite-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-presentation-review-socialite-v1-candidate.png",
+    "sha256": "8973d56e28ff8a98232a1eee29445b290f3402add5b9a14c962e096dc53bdf56"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-privacy-private-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-privacy-private-v1-candidate.png",
+    "sha256": "65986edb422c0599afa646fc48bb29fef13c685a4170314418d1555985a388ea"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-privacy-stay-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-privacy-stay-v1-candidate.png",
+    "sha256": "a0a4081107824e731ffd34ddf25220c28b23cc6a7296e74a227cd7bc83030d2d"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-privacy-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-privacy-v1-candidate.png",
+    "sha256": "31219b3aa898f75887b2dc749442208e111308ca45051e4eac3c4e5a50e5cfd1"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-profile-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-profile-v1-candidate.png",
+    "sha256": "36ede21a8996f1c77351ff44c35b859b9c4a15d4bdf12fcab0216feb1acd0ccc"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-protocol-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-protocol-v1-candidate.png",
+    "sha256": "3e4077f5c80fe355c62ebd66a296efa800271426e083a17e59b8a3d42d16d2b8"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-reception-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-reception-v1-candidate.png",
+    "sha256": "dd37369064847c1e4186fb7d7d0412b77291f4e7c815682d9862d74578994e82"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-recovery-contact-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-recovery-contact-v1-candidate.png",
+    "sha256": "df686f965607e4cc3967dcd72ec638da5e78e62e63365442fdaf1ed03aec9c9d"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-recovery-mirror-look-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-recovery-mirror-look-v1-candidate.png",
+    "sha256": "37a16fd4d4cf2333f602584892ec42d77420eb8dc0542850401182caf61e53b4"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-recovery-mirror-unlooked-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-recovery-mirror-unlooked-v1-candidate.png",
+    "sha256": "cd160f9f7ce65002665da34969eafa0dc0d1306b49547b2701deabb915f520dd"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-recovery-reply-quiet-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-recovery-reply-quiet-v1-candidate.png",
+    "sha256": "2613ee271d14ac9b783bf8f5ec7e2e1fa987344de9a4dc4331dcf05e016c0c7d"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-recovery-reply-sent-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-recovery-reply-sent-v1-candidate.png",
+    "sha256": "59bcda2b56696f4d8ee46b50bcd7b2c345a5b8691afa02490dca16f7b1703397"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-rehearsal-executive-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-rehearsal-executive-v1-candidate.png",
+    "sha256": "b5aa746b2145941233d640aef347eb8d10294b6c323f9c1d453b675c54479c21"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-rehearsal-shadow-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-rehearsal-shadow-v1-candidate.png",
+    "sha256": "4dae64368a7af84dca9413e362dce5a9a04f1876d13d9459c15009968def86c7"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-rehearsal-socialite-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-rehearsal-socialite-v1-candidate.png",
+    "sha256": "e23fe779f15192d22094708c3daf9419162876b3f21221c1bb0195be173f176c"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-rest-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-rest-v1-candidate.png",
+    "sha256": "555a25853377c143b16230640201e86adf789f77470053b9446f53f6152f5362"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-simulation-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-simulation-v1-candidate.png",
+    "sha256": "7679f91d7c1daa7c6ed820415dc025b9a348782e02c8288e2bc1444c947b14b0"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-steps-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-steps-v1-candidate.png",
+    "sha256": "c88585095695d3f6d9c693ecf458e344e6e414ce9e094ba92da950760433eaa9"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-voice-pause-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-voice-pause-v1-candidate.png",
+    "sha256": "d22be9b0dc499b2e7cd0b4a1cc22b3f421bb216a9fb36f151803b6199a83d9a9"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-voice-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-voice-v1-candidate.png",
+    "sha256": "e45fbb8a3423e1594c10370a96a1c749a80bb00bbfa68879534d4cd8af0d2d9e"
+  },
+  {
+    "spec": {
+      "assetId": "clinic-wardrobe-choice-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/clinic/clinic-wardrobe-choice-v1-candidate.png",
+    "sha256": "497ce5951b8ca7ef9487f34f587ad9ac272fe9d98c9d20c72325303a122149f5"
+  },
+  {
+    "spec": {
+      "assetId": "file-arrival-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/blackglass/file-arrival-v1-candidate.png",
+    "sha256": "f158f4ab5610eb24bdb6bd4709c145db3055affa334f15bcbc1c1e3477cc06b6"
+  },
+  {
+    "spec": {
+      "assetId": "glass-house-assessment-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/mission/glass-house-assessment-v1-candidate.png",
+    "sha256": "2b8690f5ea326f6053b4dcd95e5e9692c5874c5a5ed5d4542508d24a69233043"
+  },
+  {
+    "spec": {
+      "assetId": "glass-house-method-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/mission/glass-house-method-v1-candidate.png",
+    "sha256": "4ed9eebd944956a3801fd4bf2bcbae1cfcfe7bbdb33f2f6d6ab911f63f003b87"
+  },
+  {
+    "spec": {
+      "assetId": "glass-house-reception-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/mission/glass-house-reception-v1-candidate.png",
+    "sha256": "0c2fc67d32f9649dd5e6845126e989bce694790d1009565005f90420f25722c4"
+  },
+  {
+    "spec": {
+      "assetId": "maya-coffee-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/maya-coffee-v2-candidate.png",
+    "sha256": "4ad8849088bb9ba5a6067b736b8b3fc705941fd1baa7e158cf27cbc586e66858"
+  },
+  {
+    "spec": {
+      "assetId": "maya-departure-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/maya-departure-v2-candidate.png",
+    "sha256": "54e37a9b324e9286ac8f9742b342683ba5f3fa5210fb737754f8e9cb9d9b0045"
+  },
+  {
+    "spec": {
+      "assetId": "office-benton-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/office-benton-v2-candidate.png",
+    "sha256": "ca0731e12ebb2190b251dd924a3d40796aaae1ad2636ba3bf2ff2999f7b86911"
+  },
+  {
+    "spec": {
+      "assetId": "office-daniel-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/office-daniel-v2-candidate.png",
+    "sha256": "b78858302d92f44af14d38fddfe385f14640c6a4aeafd1f27848006a962785fa"
+  },
+  {
+    "spec": {
+      "assetId": "office-departure-v2-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/opening/style-v2/office-departure-v2-candidate.png",
+    "sha256": "0b92c8f200e6ccad052e6c197c5be9ff6a3d139255576a8c8fa6aeb533909a25"
+  },
+  {
+    "spec": {
+      "assetId": "refusal-lobby-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/refusal-lobby-v1-candidate.png",
+    "sha256": "4241bcca317443090395f8b17caf42ce74d0d9195907b4c55fc481e0fb4e0670"
+  },
+  {
+    "spec": {
+      "assetId": "refusal-reconsider-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/refusal-reconsider-v1-candidate.png",
+    "sha256": "1003f80f4e006e840a2e0bbcb041d07706e617ed23aefd13514d5cc42b04c4e5"
+  },
+  {
+    "spec": {
+      "assetId": "sloane-allegation-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/sloane-allegation-v1-candidate.png",
+    "sha256": "cbe85620c195d690ec496f1739342a27e2ee8e522271bacbe3b0a0d57833277a"
+  },
+  {
+    "spec": {
+      "assetId": "sloane-brief-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/sloane-brief-v1-candidate.png",
+    "sha256": "abbb003a301d440115c40936ce3c3d02bb69cdb3c33f8a944e61236ae2f18711"
+  },
+  {
+    "spec": {
+      "assetId": "sloane-identity-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/sloane-identity-v1-candidate.png",
+    "sha256": "91bbf732e585887679f58bb16e4465ad8aaf6931a28855f300823f138c2f822b"
+  },
+  {
+    "spec": {
+      "assetId": "sloane-intro-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/sloane-intro-v1-candidate.png",
+    "sha256": "04e196780890b0d794b0e6d1a7830c39b41c13706e071767c6c188057d5e1951"
+  },
+  {
+    "spec": {
+      "assetId": "sloane-offer-v1-candidate",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "notes": "Existing source-file provenance only. No canonical approval, production role, or runtime eligibility is granted."
+    },
+    "role": "staging",
+    "approvalStatus": "pending",
+    "file": "art/staging/full-game/sloane/sloane-offer-v1-candidate.png",
+    "sha256": "657c4a81ffc1cceede1367fbc7135e273fe1dbad90e2d6fdea0bb68da63eb357"
+  }
+]

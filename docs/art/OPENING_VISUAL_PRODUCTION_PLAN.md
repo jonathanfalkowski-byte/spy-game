@@ -1,16 +1,18 @@
 # Opening Visual Production Plan
 
+> **Runtime update — 2026-09-22:** The first recognizable Adrian visual is now the promoted Bathroom M2 candidate `adrian-first-bathroom-mirror-apartment-v1-production`, bound only to `opening.apartment.shot01-mirror` for `apartment.bond` and `apartment.reply`. The optional mirror inspection holds that shot; `apartment.departure` uses the existing apartment master. Earlier mirror-blocked statements below are historical planning notes.
+
 **Current coverage, EVE ART M1:** 21 owner-approved records; 16 eligible manifest assets; 13 manifest assets with explicit bindings; 12 reachable distinct assets. Opening has three reachable approved assets (one required base plus two optional inserts); office has zero. Older dated totals/hold claims below are historical, not current runtime coverage. [Current disposition registry](ART_M1_VISUAL_STATUS.json) · [Reconciliation](ART_M1_RECONCILIATION.md) · [Axiom package](AXIOM_OFFICE_PRODUCTION_PACKAGE.md).
 
 > **Current M1 status, 2026-09-20:** existing M2 staging composition is **OWNER APPROVED**, including framing/camera/reflection blocking only, from prior human review explicitly confirmed by the owner. Final bathroom environment: **NOT APPROVED**. Final Adrian layer: **NOT PRODUCED / NOT APPROVED**. Final runtime shot: **NOT APPROVED / NOT BOUND**. Planning/staging authority only; no promotion. [Controlling status and provenance](OPENING_MIRROR_STAGING_SPEC.md). Earlier dated pending-composition language is historical and superseded; final-environment gates remain.
 
 **Visual review follow-up, 2026-09-19:** [Mirror composition study](../../art/staging/opening/mirror-blocking-v1/opening-mirror-blocking-v1.png) is available as a zero-credit schematic only. Its separate face/master thumbnails retain their existing authority; its proposed bathroom diagram grants none. See the [contract](OPENING_MIRROR_STAGING_SPEC.md). No paid generation or promotion.
 
-**Status:** `opening.apartment.shot01`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` are approved, promoted, and exact-bound. Jacket remains staging/blocker work. Mirror staging specification is complete; production is BLOCKED on bathroom M2 framing/plate approval (not full-body Adrian authority); all later opening families remain planning/staging-spec only.
+**Status:** `opening.apartment.shot01`, `opening.apartment.shot01-mirror`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` are approved, promoted, and exact-bound. The mirror shot is limited to `apartment.bond`/`apartment.reply` and their optional mirror inspection hold; `apartment.departure` retains the room master. Jacket remains staging/blocker work; all later opening families remain planning/staging-spec only.
 
 ## Current truth
 
-`opening.apartment.shot01`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` map to exact approved production art. Jacket, mirror, office, Helix, Maya, and aftermath beats correctly retain the textual fallback with `SHOT_WITHOUT_APPROVED_ASSET` until an exact approved asset exists. The Chapter 3 Evelynn apartment images and the later Lantern image remain incompatible with the opening states. Adrian's missing full-body reference is no longer a prerequisite: mirror and office planning use the canonical V2 face plus property-scoped body/wardrobe canon and shot-specific layers.
+`opening.apartment.shot01`, `opening.apartment.shot01-mirror`, `opening.apartment.inspect-lease`, and `opening.apartment.inspect-medical` map to exact approved production art. Jacket, office, Helix, Maya, and aftermath beats correctly retain the textual fallback with `SHOT_WITHOUT_APPROVED_ASSET` until an exact approved asset exists. The Chapter 3 Evelynn apartment images and the later Lantern image remain incompatible with the opening states. Adrian's missing full-body reference is no longer a prerequisite: the promoted mirror shot uses the approved M2 candidate only at its exact first-reveal states.
 
 ## Composition-family audit
 

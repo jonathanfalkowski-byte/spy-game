@@ -35,3 +35,15 @@ Use the same apartment; approved art inspection is recorded separately. Chapter 
 
 
 Final pre-freeze continuity refinements are recorded in [the final pass](CHAPTER_5_FINAL_PROSE_LOGIC_ART_PASS.md) and [continuous-route table](CHAPTER_5_CONTINUITY_TABLE.md). They preserve these twelve movements and add no major scene.
+
+## FULL-GAME DESIGN AMENDMENT — NOT CURRENT FROZEN RUNTIME
+
+**B5:** The four wardrobe looks remain self-authorship and presentation only. No look establishes availability, desire, consent, profession, or a future route.
+
+**B6:** Harbour may support non-Julian social attention as a future design lane: a professional introduction, public recognition, friendly attention, social confidence, strategic networking, or leaving. It must not manufacture proximity, coffee, romance, or intimacy. Any attention becomes a future fact only through a separately authored, source-safe interaction.
+
+**B7:** Aster may seed future career or representation introductions. That seed concerns editorial/public professional possibility; it does not lock Evelynn into an adult-industry route or infer public availability from a portrait, image license, or fee.
+
+**D11:** Preserve the existing non-Julian adult-life possibility as an independent rooftop, afterparty, or social-contact variant. It may include non-intimate private time, flirtation, contact exchange, or an independently earned mutual handoff. It must not be replaced by Julian as the default route and cannot be needed for Chapter 5’s core investigation.
+
+See the [Master GDD](../design/EVE_MASTER_GDD.md) and [Adult-Thriller Pacing Map](ADULT_THRILLER_PACING_MAP.md).

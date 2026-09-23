@@ -471,5 +471,290 @@
       "date": "2026-09-18",
       "source": "Explicit owner bounded environment authority approval."
     }
+  },
+  {
+    "spec": {
+      "assetId": "chapter5-echo-no-purchase-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.echo",
+      "wardrobeId": "branch-authored-current",
+      "presentationVariant": "echo-no-purchase",
+      "pose": "Apartment table state; no physical editor present.",
+      "cameraFraming": "Locked daytime apartment table wide; 1672x941.",
+      "lighting": "Daylight apartment continuity; same camera/geography across the five mutually exclusive states.",
+      "timeOfDay": "14:00",
+      "intendedUse": "ONLY c05.s03.shot01-no-purchase while chapter5.echo is active and c5.purchase is save/nothing; no generic Chapter 5 fallback.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "continuityRequirements": [
+        "Exact branch-scoped purchase state; never combine with another purchase or receipt.",
+        "Axiom phone remains the existing communication device; no duplicate activated personal phone.",
+        "Apartment geography, camera and lighting remain the shared echo base.",
+        "Receipt text is incidental and non-authoritative; story/UI owns actual amount and custody.",
+        "No publication, editor presence, or future invitation state is shown."
+      ],
+      "notes": "Owner-authorized staged Chapter 5 echo candidate reviewed full-resolution and game-scale; promoted as an exact state only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/chapter5-echo-no-purchase-v1-production.png",
+    "sha256": "b88883c4dbcdf64dc4da7151d064c87e4abe57dbac4f0f9fad7555feeab56f86",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Shared apartment camera/geography remain stable across the mutually exclusive echo states.",
+        "The selected purchase/custody object is visible without inventing another reward.",
+        "Receipt and phone-screen details are not used as readable authority at game scale."
+      ],
+      "limitations": [
+        "Shot-specific Chapter 5 echo authority; not a universal apartment or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 5 echo candidate reviewed against c05.s03.shot01 branch contract."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter5-echo-boxed-phone-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.echo",
+      "wardrobeId": "branch-authored-current",
+      "presentationVariant": "echo-boxed-phone",
+      "pose": "Apartment table state; no physical editor present.",
+      "cameraFraming": "Locked daytime apartment table wide; 1672x941.",
+      "lighting": "Daylight apartment continuity; same camera/geography across the five mutually exclusive states.",
+      "timeOfDay": "14:00",
+      "intendedUse": "ONLY c05.s03.shot01-phone while chapter5.echo is active and c5.purchase is phone; no generic Chapter 5 fallback.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "continuityRequirements": [
+        "Exact branch-scoped purchase state; never combine with another purchase or receipt.",
+        "Axiom phone remains the existing communication device; no duplicate activated personal phone.",
+        "Apartment geography, camera and lighting remain the shared echo base.",
+        "Receipt text is incidental and non-authoritative; story/UI owns actual amount and custody.",
+        "No publication, editor presence, or future invitation state is shown."
+      ],
+      "notes": "Owner-authorized staged Chapter 5 echo candidate reviewed full-resolution and game-scale; promoted as an exact state only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/chapter5-echo-boxed-phone-v1-production.png",
+    "sha256": "4d58469b819d2c89cbf7acabfcf586fca4a0dedad4f6cd0a5d430f61a3d3098e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Shared apartment camera/geography remain stable across the mutually exclusive echo states.",
+        "The selected purchase/custody object is visible without inventing another reward.",
+        "Receipt and phone-screen details are not used as readable authority at game scale."
+      ],
+      "limitations": [
+        "Shot-specific Chapter 5 echo authority; not a universal apartment or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 5 echo candidate reviewed against c05.s03.shot01 branch contract."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter5-echo-blouse-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.echo",
+      "wardrobeId": "branch-authored-current",
+      "presentationVariant": "echo-blouse",
+      "pose": "Apartment table state; no physical editor present.",
+      "cameraFraming": "Locked daytime apartment table wide; 1672x941.",
+      "lighting": "Daylight apartment continuity; same camera/geography across the five mutually exclusive states.",
+      "timeOfDay": "14:00",
+      "intendedUse": "ONLY c05.s03.shot01-blouse while chapter5.echo is active and c5.purchase is wardrobe; no generic Chapter 5 fallback.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "continuityRequirements": [
+        "Exact branch-scoped purchase state; never combine with another purchase or receipt.",
+        "Axiom phone remains the existing communication device; no duplicate activated personal phone.",
+        "Apartment geography, camera and lighting remain the shared echo base.",
+        "Receipt text is incidental and non-authoritative; story/UI owns actual amount and custody.",
+        "No publication, editor presence, or future invitation state is shown."
+      ],
+      "notes": "Owner-authorized staged Chapter 5 echo candidate reviewed full-resolution and game-scale; promoted as an exact state only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/chapter5-echo-blouse-v1-production.png",
+    "sha256": "b58f9887c27f5dcc121a765ecf0b1004c86deccb0fcf001c4dc117faad43a9e9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Shared apartment camera/geography remain stable across the mutually exclusive echo states.",
+        "The selected purchase/custody object is visible without inventing another reward.",
+        "Receipt and phone-screen details are not used as readable authority at game scale."
+      ],
+      "limitations": [
+        "Shot-specific Chapter 5 echo authority; not a universal apartment or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 5 echo candidate reviewed against c05.s03.shot01 branch contract."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter5-echo-clasp-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.echo",
+      "wardrobeId": "branch-authored-current",
+      "presentationVariant": "echo-clasp",
+      "pose": "Apartment table state; no physical editor present.",
+      "cameraFraming": "Locked daytime apartment table wide; 1672x941.",
+      "lighting": "Daylight apartment continuity; same camera/geography across the five mutually exclusive states.",
+      "timeOfDay": "14:00",
+      "intendedUse": "ONLY c05.s03.shot01-clasp while chapter5.echo is active and c5.purchase is accessory; no generic Chapter 5 fallback.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "continuityRequirements": [
+        "Exact branch-scoped purchase state; never combine with another purchase or receipt.",
+        "Axiom phone remains the existing communication device; no duplicate activated personal phone.",
+        "Apartment geography, camera and lighting remain the shared echo base.",
+        "Receipt text is incidental and non-authoritative; story/UI owns actual amount and custody.",
+        "No publication, editor presence, or future invitation state is shown."
+      ],
+      "notes": "Owner-authorized staged Chapter 5 echo candidate reviewed full-resolution and game-scale; promoted as an exact state only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/chapter5-echo-clasp-v1-production.png",
+    "sha256": "2c8650a39d4d81e63449def2bf9a19acd48813d7afb1bb46a00f0fee43607c9e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Shared apartment camera/geography remain stable across the mutually exclusive echo states.",
+        "The selected purchase/custody object is visible without inventing another reward.",
+        "Receipt and phone-screen details are not used as readable authority at game scale."
+      ],
+      "limitations": [
+        "Shot-specific Chapter 5 echo authority; not a universal apartment or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 5 echo candidate reviewed against c05.s03.shot01 branch contract."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter5-echo-lunch-v1-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.echo",
+      "wardrobeId": "branch-authored-current",
+      "presentationVariant": "echo-lunch",
+      "pose": "Apartment table state; no physical editor present.",
+      "cameraFraming": "Locked daytime apartment table wide; 1672x941.",
+      "lighting": "Daylight apartment continuity; same camera/geography across the five mutually exclusive states.",
+      "timeOfDay": "14:00",
+      "intendedUse": "ONLY c05.s03.shot01-lunch while chapter5.echo is active and c5.purchase is dinner; no generic Chapter 5 fallback.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "continuityRequirements": [
+        "Exact branch-scoped purchase state; never combine with another purchase or receipt.",
+        "Axiom phone remains the existing communication device; no duplicate activated personal phone.",
+        "Apartment geography, camera and lighting remain the shared echo base.",
+        "Receipt text is incidental and non-authoritative; story/UI owns actual amount and custody.",
+        "No publication, editor presence, or future invitation state is shown."
+      ],
+      "notes": "Owner-authorized staged Chapter 5 echo candidate reviewed full-resolution and game-scale; promoted as an exact state only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/chapter5-echo-lunch-v1-production.png",
+    "sha256": "12bd77dd6f1df0fea4d75ad1a02840c764305c1f742f02a444d75887b39fadf6",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "reasons": [
+        "Shared apartment camera/geography remain stable across the mutually exclusive echo states.",
+        "The selected purchase/custody object is visible without inventing another reward.",
+        "Receipt and phone-screen details are not used as readable authority at game scale."
+      ],
+      "limitations": [
+        "Shot-specific Chapter 5 echo authority; not a universal apartment or wardrobe master."
+      ]
+    },
+    "approval": {
+      "reviewer": "Owner-authorized exact-state visual review",
+      "date": "2026-09-22",
+      "source": "Staged Chapter 5 echo candidate reviewed against c05.s03.shot01 branch contract."
+    }
   }
 ]

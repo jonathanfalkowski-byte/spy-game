@@ -71,6 +71,8 @@ for (const motion of ['reduce', 'no-preference'] as const)
       .getByRole('button', { name: 'The evidence does not support one conclusion.' })
       .click();
     await expect(page.getByRole('dialog')).toContainText('Draft · not yet submitted');
+    await expect(page.locator('.report')).toContainText('Reviewed records included:');
+    await expect(page.locator('.report')).toContainText(/recorded connection.*included with submission/);
     expect(await page.evaluate(() => !!document.activeElement?.closest('dialog'))).toBe(true);
     await page.keyboard.press('Escape');
     await page.reload();

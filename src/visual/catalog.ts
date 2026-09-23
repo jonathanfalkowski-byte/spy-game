@@ -14,6 +14,7 @@ import approvedHomeArt from '../../art/production/apartment/records.json';
 import approvedChapter5Art from '../../art/production/chapter5/records.json';
 import openingSpecs from '../../art/staging/opening/records.json';
 import openingSourceRecords from '../../art/staging/opening/source-records.json';
+import productionSourceRecords from '../../art/staging/production-source-records.json';
 import approvedOpeningArt from '../../art/production/opening/records.json';
 
 export const visualCatalog = VisualAssetRecordSchema.array().parse([
@@ -72,6 +73,7 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
     ...apartmentSpecs,
   ...openingSpecs,
   ...openingSourceRecords,
+  ...productionSourceRecords,
   ].map((record) => {
     // Opening M2–M5 receipts retain review provenance alongside the strict asset spec.
     const {

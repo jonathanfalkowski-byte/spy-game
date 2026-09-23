@@ -73,3 +73,7 @@ Reject: gratuitous public degradation after refusal; secret photography to nulli
 ## Review boundary
 
 No fixed runtime or new long-term route is promised. The surveillance and public-reception direction is approved; Marcus's record must preserve discussion versus formal agreement and support his plausibly defensible wording. No interaction means no invented willingness and potentially no bargaining material. Outside testing of the completed slice continues independently. No gameplay code, schema/version change, new provider or explicit writing follows from this document.
+
+## Full-game North Star cross-reference
+
+Use the [Master GDD](../design/EVE_MASTER_GDD.md) for the full-game agency law and [route architecture](FULL_GAME_ROUTE_ARCHITECTURE.md) for reconvergence. Dark power must record how meaningful alternatives narrow, who holds the relevant power, and what refusal, compliance, harm, evidence, and recovery mean in the specific case. It must never infer desire, consent, body authorship, or relationship status from visible presentation.

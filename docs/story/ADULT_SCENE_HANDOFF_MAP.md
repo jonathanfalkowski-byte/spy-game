@@ -101,3 +101,7 @@ Use the existing sequence only after a real chapter is approved: authenticated e
 Check semantic equivalence as well as structural validation: a valid hash does not establish that prose preserves consent, avoids spoilers or delivers a required fact. Each presentation needs its own editorial approval; changes to canon, policy or text require renewed review. No writer may add state mutations or unsupported choices/effects.
 
 **Current result:** zero Chapter 3 handoffs; later executive intimacy deferred; voluntary career and exploitation/recovery mapped separately; no new adult eligibility, attraction, relationship fact or canonical outcome approved. Do not code, commission explicit material, modify the frozen slice or implement future trajectories from this roadmap.
+
+## Full-game North Star cross-reference
+
+The [Master GDD](../design/EVE_MASTER_GDD.md) governs route and body-autonomy principles; this map remains an approval-gated handoff planning document. An `AdultSceneSpec` is available only for a current, mutually authorized adult encounter with its own eligibility, knowledge, scope, willingness, withdrawal, and aftermath. A threatening, no-alternative, pressured, coercive, or harmful event belongs to the separate non-graphic exploitation/recovery design track and is never repaired by calling it a handoff.
