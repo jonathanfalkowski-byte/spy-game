@@ -3,7 +3,7 @@
  * One primary end action per playthrough; route.lane is derived, re-derivable and sourced. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
-import { get5 } from './chapter5-model';
+import { get4, get5 } from './chapter5-model';
 import { type C6Choice, type ExitArrangement6, endPosition6, get6, note6, offer6, set6 } from './chapter6-model';
 
 export const routeLanes6 = ['institutional', 'outside', 'executive', 'own-power'] as const;
@@ -72,19 +72,56 @@ export function counterpowerBlocks6(s: GameState): Block[] {
 export const enforceableTerm6 = (s: GameState) =>
   ['accept', 'narrow', 'backup'].includes(get5(s, 'terms') ?? '') && !!get5(s, 'obligation-provider');
 
-/** Primary signal only (interim until design's seed weighting): the action, then the arrangement. */
-export function deriveRoute6(s: GameState): { lane: RouteLane6; overlay: string[] } | undefined {
+export type RouteTotals6 = Record<RouteLane6, number>;
+const priority6: readonly RouteLane6[] = ['own-power', 'institutional', 'executive', 'outside'];
+
+/** The Chapter 6 end action's lane (weight 3); resolve-protect is lane-neutral. */
+function primaryLane6(s: GameState): RouteLane6 | undefined {
   const action = get6(s, 'resolve-action');
-  if (!action) return undefined;
-  const lane: RouteLane6 =
-    action === 'resolve-challenge'
-      ? 'institutional'
-      : action === 'resolve-trade-expose' || action === 'resolve-trade-give'
-        ? 'outside'
-        : action === 'resolve-break' || action === 'resolve-hold'
-          ? 'own-power'
-          : armLane(arrangement(s)); // enforce, and protect (interim)
-  return { lane, overlay: [] };
+  if (action === 'resolve-challenge') return 'institutional';
+  if (action === 'resolve-trade-expose' || action === 'resolve-trade-give') return 'outside';
+  if (action === 'resolve-break' || action === 'resolve-hold') return 'own-power';
+  if (action === 'resolve-enforce') return armLane(arrangement(s));
+  return undefined;
+}
+
+/** Suggested route (docs/story/CHAPTER_7_ROUTE_CONFIRM.md §1): a transparent, re-derivable tally over sourced
+ * state. Nothing is stored as a score; Chapter 7's confirm beat is where the lane is actually chosen. */
+export function deriveRoute6(s: GameState): { lane: RouteLane6; totals: RouteTotals6; overlay: string[] } | undefined {
+  if (!get6(s, 'resolve-action')) return undefined;
+  const totals: RouteTotals6 = { institutional: 0, outside: 0, executive: 0, 'own-power': 0 };
+  const primary = primaryLane6(s);
+  if (primary) totals[primary] += 3;
+  const service = get5(s, 'service');
+  const c3 = (k: string) => s.choices['c3.' + k];
+  // Executive seeds.
+  if (service === 'julian') totals.executive += 2;
+  if (get4(s, 'julian-kept') && get4(s, 'audit-paid')) totals.executive += 1;
+  if ((get5(s, 'intimacy') && get5(s, 'want-target') === 'julian') || get5(s, 'mutual-interest') || get4(s, 'mutual-interest'))
+    totals.executive += 1;
+  // Own-power seeds.
+  if (get5(s, 'published')) totals['own-power'] += 2;
+  if (service === 'self' || service === 'municipal') totals['own-power'] += 2;
+  if (['self-funded', 'refused'].includes(get5(s, 'terms') ?? '')) totals['own-power'] += 1;
+  if (s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn' || c3('verified-date')) totals['own-power'] += 1;
+  // Institutional seeds.
+  if (get5(s, 'message-sloane')) totals.institutional += 2;
+  if (service === 'axiom') totals.institutional += 1;
+  if (get6(s, 'photo-custody') === 'phone' || get6(s, 'counter-arranged') === 'monitored') totals.institutional += 1;
+  // Outside seeds.
+  if (get6(s, 'rook-proof') === 'supported') totals.outside += 2;
+  if (get6(s, 'oracle-seen') === 'yes') totals.outside += 1;
+  if (['prediction', 'comparison'].includes(get6(s, 'verify-method') ?? '')) totals.outside += 1;
+  if (c3('rook-window') || c3('compared-date')) totals.outside += 1;
+  const top = Math.max(...Object.values(totals));
+  const tied = priority6.filter((lane) => totals[lane] === top);
+  const lane = primary && tied.includes(primary) ? primary : tied[0];
+  // Overlays come only from causes already in state, never from the tally; at most one.
+  const kept =
+    service === 'julian' &&
+    get6(s, 'exit-prep') === 'deepened' &&
+    ['narrowed', 'negotiated', 'redirected'].includes(get6(s, 'expectation-response') ?? '');
+  return { lane, totals, overlay: kept ? ['kept'] : [] };
 }
 
 const provider: Record<ExitArrangement6, string> = {
@@ -110,33 +147,43 @@ function resolve6(
   x: GameState,
   action: string,
   exitAction: string,
-  consequence: { benefit: string; response: string; actorKnowledge: string; obligation?: string; altCost?: string; recovery?: boolean },
+  consequence: { benefit: string; response: string; actorKnowledge: string; knows: string; obligation?: string; altCost?: string; recovery?: boolean },
 ) {
   const a = arrangement(x);
   set6(x, 'resolve-action', action);
   set6(x, 'exit-action', exitAction);
-  const fields: Record<string, string> = {
+  // Saved choice values are capped at 80 characters: store short, stable codes here and keep the
+  // full sourced sentences in the consequence note (history text).
+  const codes: Record<string, string> = {
     benefit: consequence.benefit,
-    provider: get5(x, 'obligation-provider') ?? provider[a],
+    provider: (get5(x, 'obligation-provider') ?? provider[a]).slice(0, 80),
     term: get5(x, 'obligation-term') ? `${get5(x, 'obligation-term')} days` : 'n/a',
     obligation: consequence.obligation ?? 'n/a',
-    'alt-cost': consequence.altCost ?? 'n/a',
-    'actor-knowledge': consequence.actorKnowledge,
-    request: request[a],
-    response: consequence.response,
-    recovery: consequence.recovery ? recovery[a] : 'n/a',
+    'alt-cost': consequence.altCost ? 'money-and-time' : 'n/a',
+    'actor-knowledge': consequence.knows,
+    request: a,
+    response: action,
+    recovery: consequence.recovery ? a : 'n/a',
   };
-  for (const [k, v] of Object.entries(fields)) set6(x, 'cons.' + k, v);
+  for (const [k, v] of Object.entries(codes)) set6(x, 'cons.' + k, v);
   const route = deriveRoute6(x)!;
   set6(x, 'route-lane', route.lane);
   set6(x, 'route-overlay', route.overlay.join(','));
   note6(
     x,
     'consequence',
-    `${consequence.response} Benefit: ${fields.benefit}. Provider: ${fields.provider}. Who knows: ${fields['actor-knowledge']}.`,
+    [
+      consequence.response,
+      `Benefit: ${codes.benefit}.`,
+      `Provider: ${codes.provider}.`,
+      `Request: ${request[a]}`,
+      `Who knows: ${consequence.actorKnowledge}`,
+      ...(consequence.recovery ? [`Recovery: ${recovery[a]}`] : []),
+      ...(consequence.altCost ? [`Alternative cost: ${consequence.altCost}.`] : []),
+    ].join(' '),
     `Evelynn’s chosen end action on the ${a} arrangement`,
   );
-  note6(x, 'route', `Route signal: ${route.lane}.`, `Derived from ${action} and the ${a} arrangement (primary signal only)`);
+  note6(x, 'route', `Route signal: ${route.lane}.`, `Suggested by the weighted route tally (${action} on the ${a} arrangement plus Chapter 3–6 seeds); Chapter 7 confirms or redirects it`);
 }
 
 export function resolveChoices6(s: GameState): C6Choice[] {
@@ -150,7 +197,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
   if (enforceableTerm6(s) || a === 'julian-workroom' || a === 'public-artifact')
     c.push(
       offer6('resolve-enforce', 'Hold them to the exact words', 'Make the arrangement obey its own terms, no more.', 'complete', (x) => {
-        resolve6(x, 'resolve-enforce', 'negotiated', { benefit: 'retained', response: 'Held the arrangement to its written terms.', actorKnowledge: 'The provider knows she will hold them to the exact wording.', obligation: 'no new obligation' });
+        resolve6(x, 'resolve-enforce', 'negotiated', { benefit: 'retained', response: 'Held the arrangement to its written terms.', actorKnowledge: 'The provider knows she will hold them to the exact wording.', knows: 'provider-knows-terms', obligation: 'no new obligation' });
         return [
           p('You do not refuse and you do not comply. You quote the agreement back at them — the scope you actually accepted, the line they wrote themselves — and you hold it there. The favour stays a favour. The ask has to become a real, named offer or disappear.'),
           ...(held ? [p('They can hear that you would spend what you know if they pushed. They do not push.')] : []),
@@ -160,7 +207,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
   if (oracle)
     c.push(
       offer6('resolve-challenge', 'Turn it back on Sloane', 'Use what you know to change the terms from strength.', 'complete', (x) => {
-        resolve6(x, 'resolve-challenge', 'exposed', { benefit: 'retained', response: 'Challenged Sloane with the ORACLE assessment.', actorKnowledge: 'Sloane knows Evelynn has the ORACLE assessment. Her motive is still unresolved.' });
+        resolve6(x, 'resolve-challenge', 'exposed', { benefit: 'retained', response: 'Challenged Sloane with the ORACLE assessment.', actorKnowledge: 'Sloane knows Evelynn has the ORACLE assessment. Her motive is still unresolved.', knows: 'sloane-knows-oracle' });
         return [
           q('You', 'You keep saying protect. Your own assessment said you couldn’t hold me and you went ahead. So this was never protection. Tell me what it was, or stop pretending you’re doing me a kindness.'),
           p('A pause that is itself an answer.'),
@@ -175,6 +222,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
         benefit: 'released',
         response: 'Left the arrangement and took the recovery route.',
         actorKnowledge: 'The provider knows she walked.',
+        knows: 'provider-knows-walked',
         altCost: 'money and time (narrative only this pass)',
         recovery: true,
       });
@@ -190,7 +238,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
   if (get6(s, 'maya-exposed'))
     c.push(
       offer6('resolve-protect', 'Spend it on someone else', 'Use your leverage to shield a person, not your position.', 'complete', (x) => {
-        resolve6(x, 'resolve-protect', 'protected', { benefit: 'spent on Maya', response: 'Spent her leverage to shield Maya.', actorKnowledge: 'Maya knows Evelynn intervened for her.' });
+        resolve6(x, 'resolve-protect', 'protected', { benefit: 'spent on Maya', response: 'Spent her leverage to shield Maya.', actorKnowledge: 'Maya knows Evelynn intervened for her.', knows: 'maya-knows-intervention' });
         return [
           p('You have one move and you do not spend it on yourself. Maya is under a review she did not earn, frightened of a lookup she was never supposed to see. Whatever you hold — the page, the file, the term, the audience — you point it at that, and you make her problem cost someone more than it costs her.'),
           get5(x, 'maya-clean-line')
@@ -201,7 +249,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
     );
   const trade = (id: 'expose' | 'give', hint: string, variant: string, knowledge: string) =>
     offer6('resolve-trade-' + id, 'Put the proof in play', hint, 'complete', (x) => {
-      resolve6(x, 'resolve-trade-' + id, 'exposed', { benefit: 'retained', response: id === 'expose' ? 'Exposed the ORACLE fact.' : 'Traded the sender’s proof away.', actorKnowledge: knowledge });
+      resolve6(x, 'resolve-trade-' + id, 'exposed', { benefit: 'retained', response: id === 'expose' ? 'Exposed the ORACLE fact.' : 'Traded the sender’s proof away.', actorKnowledge: knowledge, knows: id === 'expose' ? 'oracle-circulating' : 'unnamed-actor-holds-proof' });
       return [
         p('Proof is only power while you hold it; you decide to spend it. ' + variant + ' Either way, it is out of your hands now, and moving.'),
         t('You still do not know who the sender is, or what they wanted you to do with this. You did it anyway, with your eyes open. That is not the same as being used.'),
@@ -227,7 +275,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
     );
   c.push(
     offer6('resolve-hold', 'Keep it, unspent', 'Take the knowing position; use nothing tonight.', 'complete', (x) => {
-      resolve6(x, 'resolve-hold', 'declined', { benefit: 'retained', response: 'Kept everything unspent.', actorKnowledge: 'No one; a knowing reserve carried forward.' });
+      resolve6(x, 'resolve-hold', 'declined', { benefit: 'retained', response: 'Kept everything unspent.', actorKnowledge: 'No one; a knowing reserve carried forward.', knows: 'none' });
       return [
         p('You do nothing with it, and that is the point. You let them believe the answer is still yes, and you keep the truth folded up where only you can feel its weight. Not fear — patience. A card unplayed is still a card, and now you are the only one at the table who knows it is in your hand.'),
       ];

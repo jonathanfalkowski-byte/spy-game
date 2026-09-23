@@ -32,6 +32,7 @@ it('never replaces exact art and never runs inside a scripted reading sequence',
   let seed = 11;
   const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
   vi.stubEnv('VITE_EVE_CHAPTER6', '1');
+  vi.stubEnv('VITE_EVE_CHAPTER7', '1');
   const blank = new Set<string>();
   for (let run = 0; run < 40; run++) {
     let s: GameState = newGameState();

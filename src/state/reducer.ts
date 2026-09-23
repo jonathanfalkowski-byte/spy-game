@@ -1,6 +1,7 @@
 import { initialState as initialV18, reducer as reducerV18, replay as replayV18, replayPrefix as replayPrefixV18, availableIntents as intentsV18 } from '../persistence/legacy-v18/state/reducer';
 import { chapter5Choices, applyChapter5Choice } from '../content/chapter5';
 import { chapter6Choices, applyChapter6Choice } from '../content/chapter6';
+import { chapter7Choices, applyChapter7Choice } from '../content/chapter7';
 import { chapter4Choices, applyChapter4Choice } from '../content/chapter4';
 import { nextChoices, applyNextChoice } from '../content/chapter3-next';
 import { eveningChoices, eveningScenes } from '../content/chapter3-evening';
@@ -180,6 +181,8 @@ export function reducer(state: GameState, input: unknown): GameState {
       return applyChapter5Choice(state, action.id);
     case 'CHAPTER6_CHOOSE':
       return applyChapter6Choice(state, action.id);
+    case 'CHAPTER7_CHOOSE':
+      return applyChapter7Choice(state, action.id);
     case 'MISSION_CHOOSE':
       if (!applyMissionChoice(state, s, action.id)) return state;
       break;
@@ -481,6 +484,7 @@ function storyIntents(s: GameState): Intent[] {
   intents.push(...chapter4Choices(s).map((c) => ({ type: 'CHAPTER4_CHOOSE' as const, id: c.id })));
   intents.push(...chapter5Choices(s).map((c) => ({ type: 'CHAPTER5_CHOOSE' as const, id: c.id })));
   intents.push(...chapter6Choices(s).map((c) => ({ type: 'CHAPTER6_CHOOSE' as const, id: c.id })));
+  intents.push(...chapter7Choices(s).map((c) => ({ type: 'CHAPTER7_CHOOSE' as const, id: c.id })));
   if (s.scene === 'mission' && s.phase === 'complete' && s.day.outcome === 'accepted' && s.mission.outcome === 'complete' && s.clinic.outcome === 'departed') intents.push({ type: 'CONTINUE_CHAPTER3' });
   if (nodeOf(s) === 'chapter3.complete') intents.push({type:'CONTINUE_CHAPTER3_SCENE2'});
   if (canContinue(s)) intents.push({ type: 'CONTINUE' });

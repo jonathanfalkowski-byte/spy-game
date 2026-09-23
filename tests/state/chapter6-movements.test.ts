@@ -95,12 +95,14 @@ it('gates the end actions exactly, with break and hold always available', () => 
 
 it('records exit-action, the sourced consequence and the route lane for every action', () => {
   const oracle = () => c6(walk(opened(atProof({ verified: true })), ['verify-compare', 'celeste-let-be', 'oracle-take']), 'counterpower-decide');
+  // Weighted suggestion (CHAPTER_7_ROUTE_CONFIRM §1): this ORACLE route's proof seeds total outside 5
+  // (supported 2, ORACLE 1, comparison 1, sender contact 1), outweighing the +3 primary signal of challenge/break/hold.
   const cases: [GameState, string, string, string][] = [
-    [oracle(), 'resolve-challenge', 'exposed', 'institutional'],
+    [oracle(), 'resolve-challenge', 'exposed', 'outside'],
     [oracle(), 'resolve-trade-expose', 'exposed', 'outside'],
     [oracle(), 'resolve-trade-give', 'exposed', 'outside'],
-    [oracle(), 'resolve-break', 'declined', 'own-power'],
-    [oracle(), 'resolve-hold', 'declined', 'own-power'],
+    [oracle(), 'resolve-break', 'declined', 'outside'],
+    [oracle(), 'resolve-hold', 'declined', 'outside'],
     [c6(walk(opened(atProof({ flags: { 'c5.service': 'julian' } })), ['verify-refuse']), 'counterpower-decide'), 'resolve-enforce', 'negotiated', 'executive'],
     [c6(walk(opened(atProof({ flags: { 'c5.service': 'julian' } })), ['verify-refuse']), 'counterpower-decide'), 'resolve-break', 'paid', 'own-power'],
     [c6(c6(atProof({ exposed: true, flags: { 'c5.message-sloane': 'yes' } }), 'proof-decline'), 'counterpower-decide'), 'resolve-protect', 'protected', 'institutional'],
@@ -113,6 +115,8 @@ it('records exit-action, the sourced consequence and the route lane for every ac
     for (const field of ['benefit', 'provider', 'term', 'obligation', 'alt-cost', 'actor-knowledge', 'request', 'response', 'recovery'])
       expect(get6(done, 'cons.' + field), `${action} ${field}`).toBeTruthy();
     expect(done.choices['c6.rec.consequence']).toBeDefined();
+    // Every ending must save: choice values are capped at 80 characters (full sentences live in the note).
+    expect(() => encodeSave(done)).not.toThrow();
     expect(text(done)).toContain('But it is yours to write now, and they know it.');
     expect(chapter6Choices(done)).toEqual([]);
   }

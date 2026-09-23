@@ -15,6 +15,7 @@ import { missionPresentation } from './mission-presentation';
 import { clinicScenes, clinicBlocks } from './clinic';
 import { chapter5Blocks,chapter5Scenes } from './chapter5';
 import { chapter6Blocks, chapter6Scenes } from './chapter6';
+import { chapter7Blocks, chapter7Scenes } from './chapter7';
 import { chapter4Blocks, chapter4Scenes } from './chapter4';
 import { chapter3Blocks, chapter3Scenes } from './chapter3';
 import { isCurrentAuthoringRevision } from './revision';
@@ -51,6 +52,7 @@ export const scenes = SceneSchema.array().parse([
   ...chapter4Scenes,
   ...chapter5Scenes,
   ...chapter6Scenes,
+  ...chapter7Scenes,
   {
     id: 'apartment.bond',
     title: 'Promotion day',
@@ -304,6 +306,7 @@ export function sceneBlocks(state: GameState): Block[] {
   if (dayScenes.some((s) => s.id === node)) return dayBlocks(state);
   if (state.scene === 'chapter5') return chapter5Blocks(state);
   if (state.scene === 'chapter6') return chapter6Blocks(state);
+  if (state.scene === 'chapter7') return chapter7Blocks(state);
   if (state.scene === 'chapter4') return chapter4Blocks(state);
   if (state.scene === 'chapter3') return chapter3Blocks(state);
   if (state.scene === 'mission')

@@ -36,7 +36,7 @@ export function SceneArtStage({
       />
       <img
         key={art.shotId}
-        className={`scene-art-image${art.kind ? ` ${art.kind === 'home' ? 'home' : 'chapter5'}-scene-art` : ''}`}
+        className={`scene-art-image${art.kind ? ` ${art.kind}-scene-art` : ''}`}
         src={`${import.meta.env.BASE_URL}${art.asset.src}`}
         alt={art.alt}
         width={art.asset.width}

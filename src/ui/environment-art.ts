@@ -104,6 +104,12 @@ const byNode: Record<string, Key> = {
   'chapter6.counterpower': 'apartmentNight',
   'chapter6.resolve': 'apartmentNight',
   'chapter6.complete': 'apartmentNight',
+  // Chapter 7.
+  'chapter7.confirm': 'apartmentDay',
+  'chapter7.standing': 'apartmentDay',
+  'chapter7.pursue': 'publicRecords',
+  'chapter7.close': 'apartmentNight',
+  'chapter7.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {
