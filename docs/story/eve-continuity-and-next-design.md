@@ -34,10 +34,10 @@ Earlier reports about the Rook-date callback, uncorrected medical excuse and Ast
 
 ## Next design package — proposals only
 
-1. **A non-Julian social lane.** Choose an existing or separately approved adult supporting character; establish their independent interests, what attracts them to Evelynn, and what makes time together worthwhile. Include invitation, uncertainty, refusal, a satisfying non-intimate outcome and an aftermath that remembers the player's chosen feelings. Do not attach access or punishment automatically to intimacy.
-2. **Chapter 6 proof.** Specify the exact artifact, provenance, possession and authentication method. Define what it proves, what remains inference, and the scope of a corroborating witness's firsthand knowledge. Preserve existing knowledge boundaries.
-3. **Chapter 6 exit costs.** Name a concrete benefit or arrangement the player may lose, its timing and reversibility, and what remains theirs. Avoid abstract dependency scores standing in for actual consequences.
-4. **Recovery and counterplay.** Give each costly exit at least one plausible recovery route consistent with established resources, allies and evidence. Define the time, exposure and relationship tradeoffs before writing scenes.
+1. **A non-Julian social lane.** ✅ **Designed and shipped in revision 19** (Sebastian Okoro): [NON_JULIAN_SOCIAL_LANE.md](NON_JULIAN_SOCIAL_LANE.md). Invitation, uncertainty, refusal, a non-intimate outcome and a remembering aftermath, with no access or punishment tied to intimacy.
+2. **Chapter 6 proof.** ✅ **Designed, pending owner sign-off:** [CHAPTER_6_PROOF_AND_COUNTERPOWER.md](CHAPTER_6_PROOF_AND_COUNTERPOWER.md) §2–4. The Meridian ledger leaf (Singapore-era courier-log page held by Rook), its provenance/custody/authentication, what it proves vs infers, and the corroborator's (Celeste/Marcus) firsthand scope.
+3. **Chapter 6 exit costs.** ✅ **Designed, pending sign-off:** same doc §6. A per-entry-state arrangement (Julian workroom, public artifact, Sloane institutional, self-funded, Maya line), each with timing, what is lost and what remains. No dependency score.
+4. **Recovery and counterplay.** ✅ **Designed, pending sign-off:** same doc §6–7. A recovery route for every costly exit, plus the ORACLE-based counterpower and the end-position choices.
 5. **Opening pose recovery.** Rework the pose-control method locally so both feet are visibly grounded and facing is correct before proposing another paid attempt. The remaining budget does not authorize retrying the failed bounded correction automatically.
 
 No social route, Chapter 6 scene, proof artifact, witness identity or new recurring obligation is implemented or silently made canon by this backlog.
