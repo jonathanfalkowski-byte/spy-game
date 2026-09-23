@@ -13,7 +13,7 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
   const [draft, setDraft] = useState({ base: currentConcept, value: currentConcept });
   const concept = draft.base === currentConcept ? draft.value : currentConcept;
   const proposal =
-    (state.contentRevision === 17 || state.contentRevision === 18) && state.scene === 'chapter5' && state.phase === 'offer';
+    (state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19) && state.scene === 'chapter5' && state.phase === 'offer';
   const choices = chapter5Choices(state).filter(
     (c) =>
       !proposal ||

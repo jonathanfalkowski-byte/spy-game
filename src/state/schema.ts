@@ -47,7 +47,7 @@ export const ReportSchema = z
   .strict();
 export const StateSchema = z
   .object({
-    contentRevision: z.union([z.literal(12), z.literal(13), z.literal(14), z.literal(15), z.literal(16), z.literal(17), z.literal(18)]).optional(),
+    contentRevision: z.union([z.literal(12), z.literal(13), z.literal(14), z.literal(15), z.literal(16), z.literal(17), z.literal(18), z.literal(19)]).optional(),
     scene: z.enum([
       'apartment',
       'commute',
@@ -91,6 +91,8 @@ export const StateSchema = z
         marcus: npc,
         voss: npc,
         celeste: npc,
+        // Revision 19 onward; older saves have no Sebastian record.
+        sebastian: npc.optional(),
       })
       .strict(),
     relationships: z
@@ -124,4 +126,11 @@ export const StateSchema = z
     if (s.selected.some((id) => !s.documents.includes(id)))
       ctx.addIssue({ code: 'custom', message: 'Unread evidence selected' });
   });
-export type GameState = z.infer<typeof StateSchema>;
+type ParsedState = z.infer<typeof StateSchema>;
+export type NpcRecord = z.infer<typeof npc>;
+/** Sebastian (revision 19 onward) is optional at runtime and deliberately absent from the
+ * typed NPC keys, so existing keyed NPC code (including frozen engines) is unchanged.
+ * Reach his record only through sebastianNpc(). */
+export type GameState = Omit<ParsedState, 'npcs'> & { npcs: Omit<ParsedState['npcs'], 'sebastian'> };
+export const sebastianNpc = (s: GameState): NpcRecord | undefined =>
+  (s.npcs as ParsedState['npcs']).sebastian;

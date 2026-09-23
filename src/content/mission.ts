@@ -459,7 +459,7 @@ for (const [id, label] of [
 for (const [id, label, hint] of [
   ['watch', 'Wear Adrian’s old watch', 'A personal detail, not an operational requirement.'],
   ['earrings', 'Add the black-stone earrings', 'A voluntary detail; no one reads it as a verdict.'],
-  ['none', 'Add nothing', 'Leave the optional detail off or undecided.'],
+  ['none', 'Add nothing', 'Keep the finished look as it is.'],
 ])
   add('homePresentation', 'home.detail.' + id, 'homePresentation', label, hint);
 add('homePresentation', 'home.presentationDone', 'homeContact', 'Finish getting ready', 'Confirm the presentation; the optional detail may remain undecided.');
@@ -764,7 +764,7 @@ export function missionBlocks(s: GameState): Block[] {
           ? 'The suit catches slightly beneath your shoulders when you lean back. You pull it free and smooth the lapel, a small movement rehearsed this afternoon.'
           : s.clinic.outfit === 'socialite'
             ? 'The dress lies across the seat in a way you have to arrange deliberately. Streetlights move along the fabric, then across the face in the window.'
-            : 'The understated clothes were chosen to draw little attention. In the window, even that intention has an unfamiliar face. You adjust the hem before the car turns.',
+            : 'The sleek dark lines were chosen to draw little attention. In the window, even that intention has an unfamiliar face. You adjust the hem before the car turns.',
       ),
     );
   if (phase === 'reception')
@@ -883,7 +883,7 @@ export function approach(s: GameState, id: Lead): string {
         ? 'A social opening lets you ask a server one ordinary question. The attention that makes the approach easy also gives the answer an audience.'
         : 'Conversation offers a way across the room. The attention that makes an introduction easy also makes your movements easier to remember.';
   return id === 'service' || id === 'restricted'
-    ? 'The understated outfit will not announce the approach. It does not make you staff or give permission to cross a restricted threshold.'
+    ? 'The sleek dark outfit will not announce the approach. It does not make you staff or give permission to cross a restricted threshold.'
     : id === 'security'
       ? 'You can ask about the public admission record, but the attendant can end the exchange and log that you asked.'
       : 'You can wait at the edge without drawing the whole room. You will have to speak up to start an exchange; being unobtrusive is not an introduction.';

@@ -16,6 +16,7 @@ import {
   julian5,
   read5,
 } from './chapter5-model';
+import { mayaNumberChoice5 } from './chapter5-sebastian';
 export const benefitScenes5: Record<string, C5Scene> = {
   infrastructure: {
     title: 'A little easier',
@@ -398,6 +399,8 @@ export function benefitChoices5(s: GameState): C5Choice[] {
               return reply(x);
             }),
           );
+    const number = mayaNumberChoice5(s);
+    if (number) c.push(number);
     c.push(
       offer5(
         'people-finish',

@@ -1,6 +1,8 @@
 import type { GameState } from '../state/schema';
 import { paragraph as p, type Block, type NodeId } from './schema';
 import { get4, old, oldRecord } from './chapter4-model';
+import { characters } from './characters';
+import { adultEligibility } from './character-schema';
 export { get4, old, oldRecord };
 export type C5Scene = { title: string; place: string; blocks: Block[] };
 export type C5Choice = {
@@ -100,4 +102,25 @@ export const ownsPublication5 = (s: GameState) => !!get5(s, 'published');
 export const finish5 = (s: GameState, key: string, value: string, text: string) => {
   set5(s, key, value);
   return [p(text)];
+};
+/** Current intimate authorization with a named partner. Julian's conditions are unchanged;
+ * Sebastian (revision 19) needs only his own fresh consent step. */
+export const intimatePartner5 = (s: GameState) =>
+  get5(s, 'want-target') === 'julian'
+    ? 'julian-mercer'
+    : get5(s, 'want-target') === 'sebastian' && s.contentRevision === 19
+      ? 'sebastian'
+      : undefined;
+export const intimate5 = (s: GameState) => {
+  const partner = intimatePartner5(s);
+  return (
+    !!partner &&
+    (partner !== 'julian-mercer' || mutual5(s)) &&
+    get5(s, 'authorization') === 'granted' &&
+    get5(s, 'willingness') === 'willing' &&
+    ['player-character', partner].every((id) => {
+      const c = characters.find((c) => c.id === id);
+      return !!c && adultEligibility(c) === 'adult';
+    })
+  );
 };

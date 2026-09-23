@@ -559,14 +559,14 @@
       "file": "src/content/chapter5-public.ts",
       "context": "glamorous look branch",
       "old": "You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black low heels. You like the way the look holds together.",
-      "new": "You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black low heels. The jacket sharpens the softer line of the gown. You like the balance.",
+      "new": "You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black heels. The jacket sharpens the softer line of the gown. You like the balance.",
       "reason": "Editorial tightening within existing facts, blocking and choices."
     },
     {
       "file": "src/content/chapter5-public.ts",
       "context": "sensual look branch",
       "old": "You change into the black floor-length evening gown, keeping the black low heels. You leave the tailored jacket in the wardrobe; the open back is part of the look you want.",
-      "new": "You change into the black floor-length evening gown, keeping the black low heels. Cool air touches your open back. You leave the tailored jacket in the wardrobe. You chose this much of yourself to show.",
+      "new": "You change into the black floor-length evening gown, keeping the black heels. Cool air touches your open back. You leave the tailored jacket in the wardrobe. You chose this much of yourself to show.",
       "reason": "Editorial tightening within existing facts, blocking and choices."
     },
     {

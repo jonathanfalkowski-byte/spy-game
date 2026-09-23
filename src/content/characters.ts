@@ -100,6 +100,17 @@ const introductions = [
       'Met Adrian in his first year at Axiom; a decade of bad coffee and sealed investigations.',
     emotion: 'Relief and trust; the player defines the private emotional boundary.',
   },
+  {
+    id: 'sebastian',
+    name: 'Sebastian Okoro',
+    role: 'Cellist booked for the Harbour rooftop music hour',
+    arrival: 'Sound-checking alone in a Harbour side room, or on stage at the rooftop music hour.',
+    appearance:
+      'Thirty-eight, tall, dark brown skin, close-cropped hair, a short neat beard, reading glasses on a cord, silver rings; black open-collar shirt with the sleeves pushed up, a long camel overcoat off stage.',
+    history:
+      'A hired artist with no tie to Helix, Axiom or the fund. He leaves on Thursday for a four-city tour. He knows only what Evelynn chooses to tell him.',
+    emotion: 'Warm, blunt and unhurried. His desire is stated plainly, never performed; no is a whole sentence to him.',
+  },
 ];
 
 // Exact ages only: approximate ages remain in the preserved descriptive prose.
@@ -109,6 +120,7 @@ const establishedAges: Partial<Record<string, number>> = {
   daniel: 32,
   benton: 58,
   maya: 33,
+  sebastian: 38,
 };
 // Preserved identity-package prose is not a second person in the character catalog.
 export const presentedIdentityIntroduction = IntroductionSchema.parse(

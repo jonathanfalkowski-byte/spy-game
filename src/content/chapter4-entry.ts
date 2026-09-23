@@ -42,7 +42,7 @@ export const entryScenes4: Record<string, C4Scene> = {
     place: '09:15 · Next day · Public records reading room',
     blocks: [
       p(
-        'You return home, eat and sleep. Next morning, you dress and take your folder to the public records room. A card beside the desk lists its opening hours.',
+        'You return home, eat and sleep. Next morning, you dress, pin up your hair and take your folder to the public records room. A card beside the desk lists its opening hours.',
       ),
       p(
         'The registration form has a name field and a signature line. No employer’s countersignature. The pass is free; it covers a reading desk and ordinary public-file copies. Certified copies have separate terms.',

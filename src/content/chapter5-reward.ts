@@ -21,7 +21,7 @@ export const rewardScenes5: Record<string, C5Scene> = {
     place: '10:30 · Collection day · Adrian’s apartment',
     blocks: [
       p(
-        'You take the permitted packet home from the records desk. The chair is still angled toward the window. Before unpacking, you change into the plain charcoal knee-length dress and black low heels from the delivered wardrobe. You leave off jewellery and hang the clothes you came home in. Adrian’s old jacket remains on its hanger inside the wardrobe. Then you clear enough space on the table to open your bag.',
+        'You take the permitted packet home from the records desk. The chair is still angled toward the window. Before unpacking, you change into the fitted charcoal knee-length dress and black heels from the delivered wardrobe. You pin your hair up, leave off jewellery and hang the clothes you came home in. Adrian’s old jacket remains on its hanger inside the wardrobe. Then you clear enough space on the table to open your bag.',
       ),
       p(
         'The reader card goes beside the packet. You can leave them there for a moment. Nobody is waiting for a report this morning.',

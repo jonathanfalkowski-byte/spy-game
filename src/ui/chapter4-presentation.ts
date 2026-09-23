@@ -1,6 +1,7 @@
 import type { GameState } from '../state/schema';
 import { get4 } from '../content/chapter4-model';
 import { helix4 } from '../content/chapter4-case';
+import { sebastianReturnPlace5 } from '../content/chapter5-sebastian';
 /** Journal records remain in the authenticated history; this is display only. */
 export function conversationHistory(s: GameState) {
   const records = new Set(
@@ -22,6 +23,8 @@ export function currentPlace(s: GameState, fallback: string) {
       return '08:48 · Apartment · Follow-up messages';
   }
   if (s.scene === 'chapter5') {
+    const salonReturn = sebastianReturnPlace5(s);
+    if (salonReturn) return salonReturn;
     if (s.phase === 'presentation')
       return s.choices['c5.event'] === 'attend'
         ? '17:00 · Following day · Apartment'

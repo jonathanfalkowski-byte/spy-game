@@ -402,7 +402,7 @@ export const clinicScenes = SceneSchema.array().parse([
       'You can go through the briefing. If you start feeling unsteady or your voice hurts, tell her. Do not wait until you are in the car.',
     ),
     p(
-      'She walks with you to a preparation suite. Three outfits wait beneath soft display lights: a dark suit, an evening dress, and an understated cocktail outfit. Beside them is a dressing area with a door you can close.',
+      'She walks with you to a preparation suite. Three outfits wait beneath soft display lights: a dark suit, an evening dress, and a sleek dark cocktail dress. Beside them is a dressing area with a door you can close.',
     ),
     q(
       'Sloane',
@@ -417,7 +417,7 @@ export const clinicScenes = SceneSchema.array().parse([
       'You close the dressing-room door. For a while there is only the small work of getting dressed: finding a fastening by touch, smoothing a fold, checking that you can reach the pocket. You sit, then stand again. With no one watching, you try the movement a second time.',
     ),
     p(
-      'Four examples wait beside the mirror. Sloane has marked the restrained corporate look. The others offer less colour, a stronger evening look, or a tray you can arrange yourself. The brushes are lined up by size. You pick one up, feel its weight, and put it down somewhere slightly different.',
+      'Four examples wait beside the mirror. Sloane has marked the restrained corporate look. The others offer a softer natural finish, a stronger evening look, or a tray you can arrange yourself. The brushes are lined up by size. You pick one up, feel its weight, and put it down somewhere slightly different.',
     ),
     t(
       'Yesterday I wore whatever was clean. I spent longer choosing the words in a message to Maya than I did getting dressed.',

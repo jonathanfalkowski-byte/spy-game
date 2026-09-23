@@ -5,6 +5,7 @@ import { desireScenes5, desireBlocks5, desireChoices5 } from './chapter5-desire'
 import { benefitScenes5, benefitBlocks5, benefitChoices5 } from './chapter5-benefit';
 import { publicScenes5, publicBlocks5, publicChoices5 } from './chapter5-public';
 import { rewardScenes5, rewardBlocks5, rewardChoices5 } from './chapter5-reward';
+import { sebastianScenes5, sebastianBlocks5, sebastianChoices5, soundCheckPending5 } from './chapter5-sebastian';
 import { set5, voucher5, offer5, type C5Choice } from './chapter5-model';
 import { isCurrentAuthoringRevision } from './revision';
 export const chapter5Definitions = {
@@ -12,6 +13,7 @@ export const chapter5Definitions = {
   ...publicScenes5,
   ...benefitScenes5,
   ...desireScenes5,
+  ...sebastianScenes5,
 };
 export const chapter5Scenes = Object.entries(chapter5Definitions).map(([phase, scene]) => ({
   id: `chapter5.${phase}` as NodeId,
@@ -25,6 +27,7 @@ export const chapter5Blocks = (s: GameState) => {
     ...publicBlocks5(s),
     ...benefitBlocks5(s),
     ...desireBlocks5(s),
+    ...sebastianBlocks5(s),
   ];
   // Arrival must precede observations at the destination, including on conversation replay.
   return ['room', 'return'].includes(s.phase) ? [...dynamic, ...fixed] : [...fixed, ...dynamic];
@@ -48,7 +51,9 @@ export function chapter5Choices(s: GameState): C5Choice[] {
       ),
     ];
   if (!isCurrentAuthoringRevision(s.contentRevision) || s.scene !== 'chapter5') return [];
-  return [...rewardChoices5(s), ...publicChoices5(s), ...benefitChoices5(s), ...desireChoices5(s)];
+  // Revision 19: an open question from Sebastian in the Harbour room takes the whole turn.
+  if (soundCheckPending5(s)) return sebastianChoices5(s);
+  return [...rewardChoices5(s), ...publicChoices5(s), ...benefitChoices5(s), ...desireChoices5(s), ...sebastianChoices5(s)];
 }
 export function applyChapter5Choice(state: GameState, id: string): GameState {
   const choice = chapter5Choices(state).find((c) => c.id === id);

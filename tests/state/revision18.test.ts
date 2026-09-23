@@ -7,7 +7,7 @@ import provenance from '../../docs/story/REVISION_17_FROZEN_PROVENANCE.json';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { renderRevision18Text } from '../../src/content/revision18-editorial';
 import { renderCurrentPresentationText } from '../../src/ui/reading-presentation';
-import { act, availableChoices, newGameState, initialState, replay } from '../../src/state/reducer';
+import { act, availableChoices, initialState, replay } from '../../src/state/reducer';
 import { scene2, chooseEvening } from '../chapter3-evening-helpers';
 import { end4 } from '../chapter5-helpers';
 import { journalEntries } from '../../src/ui/journal-entries';
@@ -24,9 +24,9 @@ it('records the frozen revision-17 provenance and complete revision-18 editorial
     expect(record.sha256).toMatch(/^[0-9a-f]{64}$/);
 });
 
-it('starts new games on revision 18 while preserving the historical fixture default', () => {
+it('starts revision-18 games on the frozen engine while preserving the historical fixture default', () => {
   expect(initialState().contentRevision).toBe(13);
-  const state = newGameState();
+  const state = initialState(18);
   expect(state.contentRevision).toBe(18);
   const first = availableChoices(state)[0];
   expect(first).toBeDefined();
@@ -37,8 +37,8 @@ it('starts new games on revision 18 while preserving the historical fixture defa
 });
 
 it('round-trips a revision-18 opening event ledger without changing its state', () => {
-  const first = availableChoices(newGameState())[0];
-  const state = act(newGameState(), { type: 'CHOOSE_DIALOGUE', id: first.id });
+  const first = availableChoices(initialState(18))[0];
+  const state = act(initialState(18), { type: 'CHOOSE_DIALOGUE', id: first.id });
   const raw = encodeSave(state);
   expect(JSON.parse(raw).contentVersion).toBe(18);
   expect(decodeSave(raw)).toEqual(state);
@@ -95,7 +95,7 @@ it('applies dialogue response replacements at the authored destination nodes', (
   for (const entry of dialogueEntries)
     expect(renderCurrentPresentationText(entry.old, nodeByContext[entry.context], 18)).toContain(entry.new);
 
-  let state = newGameState();
+  let state = initialState(18);
   state = act(state, { type: 'CHOOSE_DIALOGUE', id: 'bond.friend' });
   state = act(state, { type: 'CHOOSE_DIALOGUE', id: 'morning.yes' });
   state = act(state, { type: 'CONTINUE' });

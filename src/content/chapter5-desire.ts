@@ -1,7 +1,5 @@
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, type Block } from './schema';
-import { characters } from './characters';
-import { adultEligibility } from './character-schema';
 import {
   type C5Scene,
   type C5Choice,
@@ -14,7 +12,9 @@ import {
   mutual5,
   cash5,
   voucher5,
+  intimate5,
 } from './chapter5-model';
+import { rev19, salonChoice5, sebastianReturn5 } from './chapter5-sebastian';
 export const desireScenes5: Record<string, C5Scene> = {
   want: {
     title: 'Wanting something',
@@ -48,15 +48,7 @@ export const desireScenes5: Record<string, C5Scene> = {
     blocks: [p('You leave it that way for the night.')],
   },
 };
-export const intimate5 = (s: GameState) =>
-  mutual5(s) &&
-  get5(s, 'want-target') === 'julian' &&
-  get5(s, 'authorization') === 'granted' &&
-  get5(s, 'willingness') === 'willing' &&
-  ['player-character', 'julian-mercer'].every((id) => {
-    const c = characters.find((c) => c.id === id);
-    return !!c && adultEligibility(c) === 'adult';
-  });
+export { intimate5 };
 export function desireBlocks5(s: GameState): Block[] {
   if (s.phase === 'return')
     return [
@@ -65,9 +57,10 @@ export function desireBlocks5(s: GameState): Block[] {
           ? 'You make your own way back to the apartment. By half past ten, you set your bag and Axiom phone on the table, still in the outfit you chose this morning.'
           : 'By half past ten, you are still at home in the same outfit. You rinse the cup, put it back and set the Axiom phone on the table.',
       ),
-      ...(get5(s, 'went-out') && get5(s, 'want-target') === 'salon'
+      ...(get5(s, 'went-out') && ['salon', 'sebastian'].includes(get5(s, 'want-target') ?? '')
         ? [p('You put the guest card back beside the programme.')]
         : []),
+      ...sebastianReturn5(s),
       ...(voucher5(s) ? [p('The earned Helix voucher remains unredeemed in the folder.')] : []),
       ...(get5(s, 'service') === 'julian'
         ? [p('The Helix room confirmation is filed beside your own reader card.')]
@@ -77,7 +70,9 @@ export function desireBlocks5(s: GameState): Block[] {
       ...(get5(s, 'purchase') === 'phone'
         ? [
             p(
-              'The personal phone is still boxed on the table beside the Axiom handset; the monitoring notice is unchanged.',
+              get5(s, 'maya-clean-line')
+                ? 'The new phone lies beside the Axiom handset, its box open and folded flat. Maya’s two words are still on the screen.'
+                : 'The personal phone is still boxed on the table beside the Axiom handset; the monitoring notice is unchanged.',
             ),
           ]
         : []),
@@ -120,7 +115,8 @@ export function desireChoices5(s: GameState): C5Choice[] {
   const c: C5Choice[] = [];
   if (s.phase === 'want') {
     if (!get5(s, 'want-target')) {
-      c.push(
+      if (rev19(s)) c.push(salonChoice5());
+      else c.push(
         offer5(
           'want-salon',
           'Consider the rooftop music hour',
@@ -508,11 +504,19 @@ export function desireChoices5(s: GameState): C5Choice[] {
       ],
     ];
     if (get5(s, 'purchase') === 'phone')
-      finals.unshift([
-        'phone',
-        'Place the personal phone beside the Axiom handset',
-        'You take the new phone out of its box and place it beside the Axiom handset on the table.',
-      ]);
+      finals.unshift(
+        get5(s, 'maya-clean-line')
+          ? [
+              'phone',
+              'Set the new phone beside the old one',
+              'You set the new phone beside the Axiom handset. It already holds one number the old one will never see.',
+            ]
+          : [
+              'phone',
+              'Place the personal phone beside the Axiom handset',
+              'You take the new phone out of its box and place it beside the Axiom handset on the table.',
+            ],
+      );
     if (get5(s, 'purchase') === 'wardrobe')
       finals.unshift([
         'clothes',

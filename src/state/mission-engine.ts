@@ -98,7 +98,7 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
     const responseText = {
       executive: 'The tailored jacket sits cleanly across the shoulders. It gives the room an answer before anyone asks a question.',
       socialite: 'The evening fabric catches the apartment light differently from the clinic mirror. It will make an entrance easier to notice and harder to forget.',
-      shadow: 'The simple lines leave fewer details to remember. They also make it less natural to begin a conversation without purpose.',
+      shadow: 'The clean dark lines leave fewer details to remember. They also make it less natural to begin a conversation without purpose.',
     }[outfit];
     response.push(t(responseText));
     add(m.completed, 'home.presentation.' + outfit);

@@ -12,13 +12,14 @@ import {
   julian5,
   money5,
 } from './chapter5-model';
+import { rev19, soundCheckAttention5 } from './chapter5-sebastian';
 export const publicScenes5: Record<string, C5Scene> = {
   presentation: {
     title: 'Dress for yourself',
     place: 'The following day · Apartment',
     blocks: [
       p(
-        'You set the Axiom phone on the dresser with the invitation open. For once there is no equipment list beneath it. You are wearing the plain charcoal dress and black low heels again. The delivered wardrobe holds your tailored suit and evening gown; any new purchase stays on the table. You will leave jewellery off today.',
+        'You set the Axiom phone on the dresser with the invitation open. For once there is no equipment list beneath it. You are wearing the fitted charcoal dress and black heels again. The delivered wardrobe holds your tailored suit and evening gown; any new purchase stays on the table. Your hair is pinned up, your makeup finished, and you leave jewellery off today.',
       ),
       p(
         'You can make an entrance, keep things spare, or enjoy putting the look together without deciding what the evening should become.',
@@ -35,7 +36,7 @@ export const publicScenes5: Record<string, C5Scene> = {
     place: 'Next morning · 10:00 · Aster correspondence',
     blocks: [
       p(
-        'At home the next morning, you dress in yesterday’s selected outfit again, with the same shoes and no added jewellery, then open the brief you requested—or the same public call you saved. Aster wants one conversation and a considered portrait for its next digital issue. It is paid work, with a proof you can refuse to release.',
+        'At home the next morning, you dress in yesterday’s selected outfit again, with the same heels, your hair pinned up, makeup finished, no added jewellery, then open the brief you requested—or the same public call you saved. Aster wants one conversation and a considered portrait for its next digital issue. It is paid work, with a proof you can refuse to release.',
       ),
       q(
         'Aster brief',
@@ -112,22 +113,22 @@ export function publicChoices5(s: GameState): C5Choice[] {
       [
         'professional',
         'Elegant and professional',
-        'You change into the charcoal tailored jacket, ivory blouse and matching trousers, keeping the black low heels. The other outfits stay in the wardrobe.',
+        'You change into the charcoal tailored jacket, ivory blouse and matching trousers, keeping the black heels. The other outfits stay in the wardrobe.',
       ],
       [
         'glamorous',
         'Glamorous; enjoy being visible',
-        'You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black low heels. You like the way the look holds together.',
+        'You change into the black floor-length evening gown and wear the charcoal tailored jacket open over it, keeping the black heels. The jacket sharpens the softer line of the gown. You like the balance.',
       ],
       [
         'provocative',
         'Deliberately sensual, on your terms',
-        'You change into the black floor-length evening gown, keeping the black low heels. You leave the tailored jacket in the wardrobe; the open back is part of the look you want.',
+        'You change into the black floor-length evening gown, keeping the black heels. Cool air touches your open back. You leave the tailored jacket in the wardrobe. You chose this much of yourself to show.',
       ],
       [
         'minimal',
         'Minimal; leave the attention unplanned',
-        'You keep the plain charcoal knee-length dress and black low heels. Nothing else needs adding.',
+        'You keep the fitted charcoal knee-length dress and black heels. Nothing else needs adding.',
       ],
     ])
       c.push(
@@ -313,6 +314,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
             },
           ],
         );
+      if (rev19(s)) opts.push([...soundCheckAttention5]);
       for (const [id, label, hint, fn] of opts)
         if (!get5(s, 'attention-' + id))
           c.push(

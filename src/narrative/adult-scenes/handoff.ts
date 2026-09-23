@@ -8,7 +8,7 @@ import { deriveConsequences } from '../../state/consequences';
 import { decodeSave, encodeSave } from '../../persistence/saves';
 import { replayPrefix, nodeOf } from '../../state/reducer';
 import { playerView, identityDisplayName } from '../../state/player';
-import type { GameState } from '../../state/schema';
+import { sebastianNpc, type GameState } from '../../state/schema';
 import { projectNarratorContext } from '../context';
 import {
   AdultSceneSpecSchema,
@@ -142,8 +142,9 @@ export function createHandoffWorkspace(
         break;
       case 'observation': {
         const o = ref.observation;
+        const npc = o.characterId === 'sebastian' ? sebastianNpc(snapshot) : snapshot.npcs[o.characterId];
         if (
-          !snapshot.npcs[o.characterId][o.layer].some(
+          !npc?.[o.layer].some(
             (r) => r.key === o.key && r.source === o.source && r.event === o.event,
           )
         )

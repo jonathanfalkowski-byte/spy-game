@@ -3,7 +3,7 @@ import type { GameState } from '../state/schema';
 const outfits = {
   executive: 'a tailored charcoal suit',
   socialite: 'a black evening gown',
-  shadow: 'a plain charcoal dress',
+  shadow: 'a fitted charcoal dress',
 } as const;
 
 // Only owner-authorized home illustrations. Generation/catalog tooling stays offline.

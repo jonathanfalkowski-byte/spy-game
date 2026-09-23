@@ -1,3 +1,4 @@
+import { sebastianScenes5 } from '../../src/content/chapter5-sebastian';
 import { scene2, chooseEvening } from '../chapter3-evening-helpers';
 import { assignment, choose4 } from '../chapter4-helpers';
 import { it, expect } from 'vitest';
@@ -129,7 +130,9 @@ it('bounds the maximal new-content path within schema 5 and reaches every author
   expect(decodeSave(encodeSave(s))).toEqual(s);
   expect(encodeSave(s).length).toBeLessThan(2000000);
   const reached = new Set(s.history.map((h) => h.node));
-  for (const scene of chapter5Scenes) expect(reached.has(scene.id), scene.id).toBe(true);
+  // This path runs on the frozen revision-18 engine; revision-19 salon scenes are covered in revision19-sebastian.test.ts.
+  for (const scene of chapter5Scenes.filter((scene) => !Object.hasOwn(sebastianScenes5, scene.id.slice('chapter5.'.length))))
+    expect(reached.has(scene.id), scene.id).toBe(true);
   expect(read5(s, 'placement')?.text).toContain('new phone');
   expect(s.history.slice(0, old.history.length)).toEqual(old.history);
 });

@@ -187,7 +187,7 @@ export function nextChoices(s: GameState): NextChoice[] {
             return [
               p(
                 mode === 'attend'
-                  ? 'You dress, collect your belongings, travel to the clinic and check in. The desk records attendance, not the questions you intend to ask.'
+                  ? 'You dress, pin up your hair, collect your belongings, travel to the clinic and check in. The desk records attendance, not the questions you intend to ask.'
                   : mode === 'remote'
                     ? 'At 08:30 you answer Voss’s clinical line from the apartment.'
                     : 'The scheduling desk acknowledges deferral. No examination or intervention takes place. Voss’s records-review invitation remains available by message.',

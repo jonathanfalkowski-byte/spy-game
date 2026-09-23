@@ -1,3 +1,4 @@
+import { hasRevision18Presentation } from '../content/revision';
 import { records5 } from '../content/chapter5-model';
 import { records4 } from '../content/chapter4-model';
 import type { GameState } from '../state/schema';
@@ -271,7 +272,7 @@ export function journalEntries(s: GameState): JournalEntry[] {
     });
   return entries.map((e) => {
     const rendered = (value: string) =>
-      e.presentationNode && s.contentRevision === 18
+      e.presentationNode && hasRevision18Presentation(s.contentRevision)
         ? renderCurrentPresentationText(value, e.presentationNode, s.contentRevision)
         : displayName(value);
     const { presentationNode: _presentationNode, ...publicEntry } = e;

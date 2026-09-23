@@ -436,7 +436,7 @@
     "line": 16,
     "id": "presentation",
     "title": "Dress for yourself",
-    "body": "[\n      p(\n        'You set the Axiom phone on the dresser with the invitation open. For once there is no equipment list beneath it. You are wearing the plain charcoal dress and black low heels again. The delivered wardrobe holds your tailored suit and evening gown; any new purchase stays on the table. You will leave jewellery off today.',\n      ),\n      p(\n        'You can make an entrance, keep things spare, or enjoy putting the look together without deciding what the evening should become.',\n      ),\n    ]",
+    "body": "[\n      p(\n        'You set the Axiom phone on the dresser with the invitation open. For once there is no equipment list beneath it. You are wearing the fitted charcoal dress and black heels again. The delivered wardrobe holds your tailored suit and evening gown; any new purchase stays on the table. Your hair is pinned up, your makeup finished, and you leave jewellery off today.',\n      ),\n      p(\n        'You can make an entrance, keep things spare, or enjoy putting the look together without deciding what the evening should become.',\n      ),\n    ]",
     "sequence": "Public self-presentation"
   },
   {
@@ -452,7 +452,7 @@
     "line": 33,
     "id": "offer",
     "title": "The public offer",
-    "body": "[\n      p(\n        'At home the next morning, you dress in yesterday’s selected outfit again, with the same shoes and no added jewellery, then open the brief you requested—or the same public call you saved. Aster wants one conversation and a considered portrait for its next digital issue. It is paid work, with a proof you can refuse to release.',\n      ),\n      q(\n        'Aster brief',\n        'A professional profile pays four hundred. A fashion-led piece pays six; a deliberately sensual, fully clothed portrait pays eight. We can also pay one hundred for a private research sitting with no publication. Choose what you would actually enjoy making.',\n      ),\n      p(\n        'The standard license covers one issue for thirty days. It excludes advertising, syndication, reuse and your private history. The editor has left the name and image boxes for you.',\n      ),\n    ]",
+    "body": "[\n      p(\n        'At home the next morning, you dress in yesterday’s selected outfit again, with the same heels, your hair pinned up, makeup finished, no added jewellery, then open the brief you requested—or the same public call you saved. Aster wants one conversation and a considered portrait for its next digital issue. It is paid work, with a proof you can refuse to release.',\n      ),\n      q(\n        'Aster brief',\n        'A professional profile pays four hundred. A fashion-led piece pays six; a deliberately sensual, fully clothed portrait pays eight. We can also pay one hundred for a private research sitting with no publication. Choose what you would actually enjoy making.',\n      ),\n      p(\n        'The standard license covers one issue for thirty days. It excludes advertising, syndication, reuse and your private history. The editor has left the name and image boxes for you.',\n      ),\n    ]",
     "sequence": "Public self-presentation"
   },
   {
@@ -468,7 +468,7 @@
     "line": 19,
     "id": "home",
     "title": "What you brought home",
-    "body": "[\n      p(\n        'You take the permitted packet home from the records desk. The chair is still angled toward the window. Before unpacking, you change into the plain charcoal knee-length dress and black low heels from the delivered wardrobe. You leave off jewellery and hang the clothes you came home in. Adrian’s old jacket remains on its hanger inside the wardrobe. Then you clear enough space on the table to open your bag.',\n      ),\n      p(\n        'The reader card goes beside the packet. You can leave them there for a moment. Nobody is waiting for a report this morning.',\n      ),\n    ]",
+    "body": "[\n      p(\n        'You take the permitted packet home from the records desk. The chair is still angled toward the window. Before unpacking, you change into the fitted charcoal knee-length dress and black heels from the delivered wardrobe. You pin your hair up, leave off jewellery and hang the clothes you came home in. Adrian’s old jacket remains on its hanger inside the wardrobe. Then you clear enough space on the table to open your bag.',\n      ),\n      p(\n        'The reader card goes beside the packet. You can leave them there for a moment. Nobody is waiting for a report this morning.',\n      ),\n    ]",
     "sequence": "Chapter 5 reward"
   },
   {
@@ -748,7 +748,7 @@
     "line": 396,
     "id": "wardrobe",
     "title": "What you wear into the room",
-    "body": "[\n    p(\n      'The hours after lunch include more rest and an orientation check. Voss asks you to describe the appointment, your present condition, and what comes next. She corrects Sloane when “ready” threatens to stand in for a medical assessment.',\n    ),\n    q(\n      'Voss',\n      'You can go through the briefing. If you start feeling unsteady or your voice hurts, tell her. Do not wait until you are in the car.',\n    ),\n    p(\n      'She walks with you to a preparation suite. Three outfits wait beneath soft display lights: a dark suit, an evening dress, and an understated cocktail outfit. Beside them is a dressing area with a door you can close.',\n    ),\n    q(\n      'Sloane',\n      'You need to reach people who can choose not to speak to you. How you arrive will help them decide what they think you want.',\n    ),\n    p(\n      'Executive presentation invites professional engagement and professional questions. Socialite presentation invites attention and closer scrutiny. Shadow presentation makes movement less conspicuous, but gives strangers less reason to include you. None guarantees access.',\n    ),\n  ]",
+    "body": "[\n    p(\n      'The hours after lunch include more rest and an orientation check. Voss asks you to describe the appointment, your present condition, and what comes next. She corrects Sloane when “ready” threatens to stand in for a medical assessment.',\n    ),\n    q(\n      'Voss',\n      'You can go through the briefing. If you start feeling unsteady or your voice hurts, tell her. Do not wait until you are in the car.',\n    ),\n    p(\n      'She walks with you to a preparation suite. Three outfits wait beneath soft display lights: a dark suit, an evening dress, and a sleek dark cocktail dress. Beside them is a dressing area with a door you can close.',\n    ),\n    q(\n      'Sloane',\n      'You need to reach people who can choose not to speak to you. How you arrive will help them decide what they think you want.',\n    ),\n    p(\n      'Executive presentation invites professional engagement and professional questions. Socialite presentation invites attention and closer scrutiny. Shadow presentation makes movement less conspicuous, but gives strangers less reason to include you. None guarantees access.',\n    ),\n  ]",
     "sequence": "Preparation and departure"
   },
   {
@@ -756,7 +756,7 @@
     "line": 415,
     "id": "makeup",
     "title": "The details within reach",
-    "body": "[\n    p(\n      'You close the dressing-room door. For a while there is only the small work of getting dressed: finding a fastening by touch, smoothing a fold, checking that you can reach the pocket. You sit, then stand again. With no one watching, you try the movement a second time.',\n    ),\n    p(\n      'Four examples wait beside the mirror. Sloane has marked the restrained corporate look. The others offer less colour, a stronger evening look, or a tray you can arrange yourself. The brushes are lined up by size. You pick one up, feel its weight, and put it down somewhere slightly different.',\n    ),\n    t(\n      'Yesterday I wore whatever was clean. I spent longer choosing the words in a message to Maya than I did getting dressed.',\n    ),\n  ]",
+    "body": "[\n    p(\n      'You close the dressing-room door. For a while there is only the small work of getting dressed: finding a fastening by touch, smoothing a fold, checking that you can reach the pocket. You sit, then stand again. With no one watching, you try the movement a second time.',\n    ),\n    p(\n      'Four examples wait beside the mirror. Sloane has marked the restrained corporate look. The others offer a softer natural finish, a stronger evening look, or a tray you can arrange yourself. The brushes are lined up by size. You pick one up, feel its weight, and put it down somewhere slightly different.',\n    ),\n    t(\n      'Yesterday I wore whatever was clean. I spent longer choosing the words in a message to Maya than I did getting dressed.',\n    ),\n  ]",
     "sequence": "Preparation and departure"
   },
   {

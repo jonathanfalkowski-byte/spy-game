@@ -18,7 +18,7 @@ export function Chapter3work({ state, send }: { state: GameState; send: (a: Inte
   return choices.length ? (
     <section className="decision" aria-label="Chapter 3 action">
       <span className="eyebrow">Your next action</span>
-      {(state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18) && state.phase === 'calendar' && (
+      {(state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19) && state.phase === 'calendar' && (
         <ul aria-label="Current appointments">
           {calendarInvites(state).map((r) => (
             <li key={r}>
