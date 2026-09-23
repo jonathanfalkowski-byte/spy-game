@@ -229,17 +229,28 @@ function counterChoices(s: GameState): C6Choice[] {
 
 // ── Movement 3: the other people (one-shot beats around the Counter) ──
 
-const sloaneSees = (s: GameState) => !!get5(s, 'message-sloane') || get6(s, 'counter-arranged') === 'monitored';
+/** She reacts only to what reached her: the workspace message or the monitored meeting arrangement. */
+const sloaneSees = (s: GameState) => !!workspaceNote(s) || meetingSeen(s);
+
+/** What the workspace message actually named (only when c5.message-sloane was sent). */
+const workspaceSeen: Record<string, [string, string]> = {
+  julian: ['you took the Helix workroom Julian keeps open', 'A workroom Helix lets me use, on the terms we wrote down.'],
+  self: ['you’re paying for your own Harbour room', 'A workspace I pay for myself.'],
+  municipal: ['you’re using the public reading desk', 'A public desk anyone can use.'],
+  axiom: ['you kept the workspace in the flat', 'The desk in the flat, same as it’s always been.'],
+};
+const workspaceNote = (s: GameState) => (get5(s, 'message-sloane') ? workspaceSeen[get5(s, 'service') ?? ''] : undefined);
+const meetingSeen = (s: GameState) => get6(s, 'counter-arranged') === 'monitored';
 
 function sloaneOpening(s: GameState): Block[] {
   // The Meridian capture happens later (proof), so friction references only what has reached her by now.
-  const workspace = !!get5(s, 'message-sloane'),
-    meeting = get6(s, 'counter-arranged') === 'monitored';
+  const workspace = workspaceNote(s)?.[0],
+    meeting = meetingSeen(s);
   const seen =
     workspace && meeting
-      ? 'I have your note about the Harbour workroom, and a line saying you met Ms Reyes off-hours.'
+      ? `I have your note that ${workspace}, and a line saying you met Ms Reyes off-hours.`
       : workspace
-        ? 'I have your note about the Harbour workroom.'
+        ? `I have your note that ${workspace}.`
         : 'I have a line saying you met Ms Reyes off-hours.';
   return [
     q('Sloane', seen + ' I am not asking you to explain any of it. I am telling you I can see the parts you let me see, and I would like you to remember that before you decide I can see all of it.'),
@@ -247,11 +258,17 @@ function sloaneOpening(s: GameState): Block[] {
   ];
 }
 
+/** Evelynn bounds only the things Sloane actually named. */
+const sloaneCorrection = (s: GameState): Block[] => [
+  q('You', [workspaceNote(s)?.[1], meetingSeen(s) ? 'A friend I’ve known ten years.' : undefined, 'Each is exactly what it is, and none of it is what you’re worried it might be.'].filter(Boolean).join(' ')),
+  p('You put the true, narrow version on the record before she can build a wider one on top of it. It does not remove her concern. It removes her excuse for guessing.'),
+];
+
 type Beat = {
   id: 'sloane' | 'julian' | 'public';
   label: string;
   open: (s: GameState) => Block[];
-  options: [string, string, string, string, Block[]][];
+  options: [string, string, string, string, Block[] | ((s: GameState) => Block[])][];
 };
 const beats: Beat[] = [
   {
@@ -259,10 +276,7 @@ const beats: Beat[] = [
     label: 'What Sloane can see',
     open: sloaneOpening,
     options: [
-      ['correct', 'Bound each thing precisely', 'Say exactly what each was — no more, no less.', 'corrected', [
-        q('You', 'A workspace I pay for. A friend I’ve known ten years. Each is exactly what it is, and none of it is what you’re worried it might be.'),
-        p('You put the true, narrow version on the record before she can build a wider one on top of it. It does not remove her concern. It removes her excuse for guessing.'),
-      ]],
+      ['correct', 'Bound each thing precisely', 'Say exactly what each was — no more, no less.', 'corrected', sloaneCorrection],
       ['let', 'Let her assumption sit', 'Say nothing. Let her wonder what it means.', 'unanswered', [
         p('You thank her for her concern and explain nothing. Let her hold a shape she can’t fill in. A woman who thinks she might not see everything is more careful than one you’ve reassured.'),
       ]],
@@ -317,7 +331,7 @@ function frictionHub(s: GameState): C6Choice[] {
             source: 'Evelynn’s direct reply to Sloane',
             event: x.revision,
           });
-        return blocks;
+        return typeof blocks === 'function' ? blocks(x) : blocks;
       }),
     );
   }
