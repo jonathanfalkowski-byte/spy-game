@@ -11,6 +11,15 @@ prose as per-movement scripts (like `REV19_SEBASTIAN_MAYA_SCRIPT.md`); you build
 scaffolding, guards, state machine, wiring and tests, with prose placeholders until each
 script lands.
 
+## Phase 0 decisions (settled 2026-09-23, after EVE Code's approach report)
+
+1. **Revision model: A — additive in revision 19** (not revision 20). Chapter 6 is reachable only through a new `CHAPTER6_CHOOSE` action type that no existing revision-19 ledger contains, and it changes no Chapter 1–5 handler, text or initial state, so every existing revision-19 save replays identically — and revision-19 players *continue* into Chapter 6. Guard it with the **golden-ledger test** (store ~8 representative rev19 ledgers as fixtures + their state/encodeSave hashes) before any Chapter 6 code. Switch to revision 20 + freeze-v19 only if Chapter 6 ever needs to change something a rev19 ledger already produces, or once Chapter 6 has shipped and needs editing.
+2. **Rook: add `rook` as an NPC id**, built like Sebastian — no established age (never an intimate partner), optional, **not created before Chapter 6**, created and backfilled from existing delivery records at `chapter6.begin`. Catalog strings are in the design message.
+3. **Exit-arrangement:** four values, not five. `julian-workroom` (`c5.service==='julian'`) → else `public-artifact` (`c5.published`) → else `sloane-institutional` (`c5.message-sloane || c5.service==='axiom'`) → else `self-funded` (default; `service ∈ {self,municipal} || c5.terms==='self-funded'` and the refused-everything case). **Drop `maya-line` as an exit-arrangement** — it is always superseded and is never a provider debt; the Maya Counter is handled in movement 3 (friction) using `c5.maya-clean-line` for clean-vs-monitored entry, per the Maya lane doc.
+4. **`own-hand` leverage sources (deterministic):** a Glass House item (`mission.capture.owner==='Evelyn' || mission.token==='evelyn'`), `c3.verified-date`, `c5.published`, or an enforceable accepted term (`c5.terms ∈ {accept,narrow,backup}` with `c5.obligation-provider`). `end-position === 'none'` when the player holds neither proof nor any of these — a valid quiet ending, not a failure. A correctable false statement is *not* part of the derivation; it remains available as an end action where the record exists (keys named in the movement-6 script).
+5. **One primary end action per playthrough** (sets `c6.exit-action` + one consequence record).
+6. The monitored-phone photograph adds a Sloane-visible entry to `npcs.sloane.known`, with `mission.capture`-style limits wording.
+
 ## Revision and freeze model
 
 Chapter 6 is new content, so it follows the revision-19 pattern:
