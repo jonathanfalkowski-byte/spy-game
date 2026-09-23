@@ -9,8 +9,10 @@ canon. Authorities: [CHAPTER_6_THE_CAGE_YOU_CHOOSE.md](CHAPTER_6_THE_CAGE_YOU_CH
 (structure), [CHAPTER_6_ENTRY_STATE_MATRIX.md](CHAPTER_6_ENTRY_STATE_MATRIX.md) (carry-forward),
 [Master GDD](../design/EVE_MASTER_GDD.md) (autonomy model).
 
-Everything below carries a **[recommended]** option (my story judgement, 2026-09-23);
-each still needs the owner's final sign-off before prose or code.
+**The five core decisions are settled (owner, 2026-09-23), per the recommendations
+below.** They are now Chapter 6 canon for design; implementation still follows the gates
+in the treatment (new state fields, migration, replay stability) before prose or code.
+Only the small sub-items listed at the end of §10 remain open.
 
 ---
 
@@ -47,9 +49,10 @@ that operative. Only a chain of independent links can.
 
 ## 2. The proof artifact — exact
 
-**Artifact: the Meridian ledger leaf** **[recommended].** A single dated page (or its
-authenticated scan) from the Singapore operation's own courier log, held by Rook.
-"Meridian" is a placeholder name for the Singapore op **[owner decision: final name]**.
+**Artifact: the Meridian ledger leaf** *(decided).* A single dated page (or its
+authenticated scan) from the courier log of **Operation Meridian** — the Singapore
+operation the prior Evelyn ran, held by Rook. "Meridian" is now the operation's name, not
+a placeholder.
 
 **Why a document, and why this one.** Its dramatic power is not the cross-check — it is
 that the page is **in another person's handwriting.** The moment Evelynn sees someone's
@@ -78,13 +81,13 @@ The player's retained current-op evidence is reused in §6, not here.
 
 ## 3. The corroborator — firsthand scope
 
-**Celeste Laurent [recommended]** over Marcus. Marcus is transactional (acquisitions);
+**Celeste Laurent** is the corroborator (decided), over Marcus. Marcus is transactional (acquisitions);
 Celeste *touched Evelynn's arm* and said "You disappeared before breakfast" — she knew
 the prior Evelyn **personally, perhaps intimately,** and now relates warmly to
 Adrian-in-her-place without knowing. That undertow — being cared for as someone you are
 not, by someone who knew the original — is the chapter's theme in one interaction. She is
 also outside Sloane's institution (an independent sovereign-fund actor), so her
-corroboration is structurally cleaner. Marcus stays the fallback. **[owner decision: confirm.]**
+corroboration is structurally cleaner. Marcus stays the fallback.
 
 - **Celeste Laurent** knew the prior Evelyn socially in Singapore. Her firsthand knowledge is limited to **what a close social acquaintance would observe**: a habit, an appearance detail, a shared occasion, a claimed disappearance. She can confirm the leaf's handoff *fits the person she knew* — e.g., that Evelyn was indeed away on that date. She **cannot** supply private medical history, the ORACLE plan, Axiom's internal decisions, or a full identity dossier. She does not know Adrian exists, and she must never be pushed past her real knowledge into a convenient reveal.
 - **Marcus Chen** (fallback) knew the prior Evelyn through Helix acquisitions work. His firsthand scope is **professional**: that Evelyn handled a specific transaction, was trusted with a specific access, or was present at a specific meeting. Same hard limits.
@@ -98,7 +101,7 @@ discipline applies to knowledge, not just presence).
 
 ## 4. Player verification — the link Evelynn controls
 
-**Offer both methods, gated by how the player played [recommended]** — the proof scene
+**Both methods are offered, gated by how the player played** (decided) — the proof scene
 should reflect the earlier game, not be a fixed cutscene:
 
 1. **Comparison with retained evidence** *(available if the player kept the evidence).* If the player holds a Glass House item or a Chapter 3 verified-date record (`c3.verified-date`, `chapter3-next.ts:378`), Evelynn compares the leaf's date against her own authenticated trail. A contradiction breaks the claim; consistency across independent captures supports it. This is the investigator's route, earned by earlier care.
@@ -153,7 +156,7 @@ comparison, not a trap — which is correct.
 
 ## 7. Counterpower — the end position
 
-There are **two distinct strong end positions [recommended]**, and a player reaches one
+There are **two distinct strong end positions** (decided), and a player reaches one
 or the other by how they played. Neither is bigger; they are different kinds of power.
 
 - **The ORACLE truth** *(you trusted and verified Rook: `rook-proof = supported`, `oracle-seen = true`).* You know the operation's own system predicted you would adopt the identity voluntarily and that Sloane's control would be low, and that she proceeded anyway. Your leverage is over Sloane's *premise* — you can renegotiate or refuse from the fact that the thing the operation was sold on was known to be false.
@@ -173,7 +176,7 @@ The chapter ends with **increased knowledge and agency**, not a verdict of captu
 unresolved items (Sloane's motive, the full ORACLE/PROJECT EVE plan, Rook's ultimate aim)
 carry to Chapter 7.
 
-**Intimacy: optional, and about the power shift, never the proof [recommended].** The
+**Intimacy: optional, and about the power shift, never the proof** (decided). The
 required spine stays sex-free — proof never depends on intimacy (a stated rule), and the
 tension is investigative. But allow *optional*, fresh-consent beats that **express** the
 changed position rather than advance it: a Julian scene that now plays differently because
@@ -198,18 +201,17 @@ negotiated|public|exposed|protected|declined|deepened), plus a sourced consequen
 recovery). No dependency score. Any implementation must preserve revision-15/16/18/19
 replay and add its own content revision.
 
-## 10. Decisions — recommended answers for sign-off
+## 10. Decisions — settled (owner, 2026-09-23)
 
-Each has a recommendation folded into the sections above; the owner confirms or overrides.
-
-| # | Decision | Recommendation |
+| # | Decision | Settled answer |
 |---|---|---|
-| 1 | Artifact | The **Meridian ledger leaf**, a Singapore courier-log page **in the prior Evelyn's handwriting**; the human trace is the beat. Only the final op name is open. |
+| 1 | Artifact | The **Operation Meridian ledger leaf**, a Singapore courier-log page **in the prior Evelyn's handwriting**; the human trace is the beat. |
 | 2 | Corroborator | **Celeste** (personal, outside Sloane's institution); Marcus is the fallback. |
-| 3 | Verification | **Offer both**, gated by retained evidence — comparison for the player who kept evidence, the prediction gambit otherwise; refusal always available. |
+| 3 | Verification | **Both methods offered**, gated by retained evidence — comparison for the player who kept evidence, the prediction gambit otherwise; refusal always available. |
 | 4 | ORACLE requirement | **Not required for a strong ending.** Two distinct strong end positions — the ORACLE truth, and "your own hand" — so the skeptic is never punished. |
 | 5 | Intimacy | **Optional, never required, tied to the power shift** (a changed-dynamic Julian scene, the bounded Sebastian goodbye); the spine stays sex-free. |
 
-Still genuinely open beyond these: the final op name; whether Chapter 7 should be scoped
-now or after Chapter 6 prose; and the unrelated Benton receipt-versus-reading question,
-which this design does not touch.
+Small sub-items still open (not blocking): whether Chapter 7 is scoped now or after
+Chapter 6 prose, and the unrelated Benton receipt-versus-reading question, which this
+design does not touch. The implementation gates in the treatment (new state fields,
+migration, revision replay) still apply before any prose or code.

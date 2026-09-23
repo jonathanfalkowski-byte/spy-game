@@ -35,9 +35,9 @@ Earlier reports about the Rook-date callback, uncorrected medical excuse and Ast
 ## Next design package — proposals only
 
 1. **A non-Julian social lane.** ✅ **Designed and shipped in revision 19** (Sebastian Okoro): [NON_JULIAN_SOCIAL_LANE.md](NON_JULIAN_SOCIAL_LANE.md). Invitation, uncertainty, refusal, a non-intimate outcome and a remembering aftermath, with no access or punishment tied to intimacy.
-2. **Chapter 6 proof.** ✅ **Designed, pending owner sign-off:** [CHAPTER_6_PROOF_AND_COUNTERPOWER.md](CHAPTER_6_PROOF_AND_COUNTERPOWER.md) §2–4. The Meridian ledger leaf (Singapore-era courier-log page held by Rook), its provenance/custody/authentication, what it proves vs infers, and the corroborator's (Celeste/Marcus) firsthand scope.
-3. **Chapter 6 exit costs.** ✅ **Designed, pending sign-off:** same doc §6. A per-entry-state arrangement (Julian workroom, public artifact, Sloane institutional, self-funded, Maya line), each with timing, what is lost and what remains. No dependency score.
-4. **Recovery and counterplay.** ✅ **Designed, pending sign-off:** same doc §6–7. A recovery route for every costly exit, plus the ORACLE-based counterpower and the end-position choices.
+2. **Chapter 6 proof.** ✅ **Settled (owner, 2026-09-23):** [CHAPTER_6_PROOF_AND_COUNTERPOWER.md](CHAPTER_6_PROOF_AND_COUNTERPOWER.md) §2–4. The Operation Meridian ledger leaf (Singapore courier-log page in the prior Evelyn's hand, held by Rook), its provenance/custody/authentication, what it proves vs infers, and Celeste's firsthand scope (Marcus fallback).
+3. **Chapter 6 exit costs.** ✅ **Settled:** same doc §6. A per-entry-state arrangement (Julian workroom, public artifact, Sloane institutional, self-funded, Maya line), each with timing, what is lost and what remains. No dependency score.
+4. **Recovery and counterplay.** ✅ **Settled:** same doc §6–7. A recovery route for every costly exit, plus two distinct strong end positions (ORACLE truth / your own hand) so skepticism is not punished.
 5. **Opening pose recovery.** Rework the pose-control method locally so both feet are visibly grounded and facing is correct before proposing another paid attempt. The remaining budget does not authorize retrying the failed bounded correction automatically.
 
 No social route, Chapter 6 scene, proof artifact, witness identity or new recurring obligation is implemented or silently made canon by this backlog.
