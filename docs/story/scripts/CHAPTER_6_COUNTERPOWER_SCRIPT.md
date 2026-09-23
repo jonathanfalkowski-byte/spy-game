@@ -116,7 +116,7 @@ Closing beat — by derived `route.lane`:
 - **outside-intel:**
   > p: The proof is loose in the world and the sender is still a voice without a face. You have chosen to act on a truth you cannot fully source. It is a risk. It is also the first move you made that no institution authored.
 - **executive:**
-  > p: The arrangement holds, on your terms, in writing. You have decided that access is worth keeping if you are the one holding the wording. The room is still there in the morning. So is the person who offered it, and now he knows exactly where the line is.
+  > p: The arrangement holds, on your terms, in writing. You have decided access is worth keeping when you are the one holding the wording. It is still there in the morning — the room, the page, the door that opens — and whoever offered it now knows exactly where your line is. *(arrangement-agnostic: works for julian-workroom and public-artifact.)*
 - **own-power:**
   > p: Nothing is holding the other end of you. No room, no issue, no favour, no file you had to borrow. It is quieter than the other lives on offer, and slower, and entirely yours. You will find out what that is worth.
 

@@ -220,3 +220,81 @@ refusal stand asks more gently).
 - `c6.maya-exposed` can be set by **either** the monitored-line arrangement **or** reaching `counter-her-life`; both make Maya a protectable vulnerability for `resolve-protect`.
 - Movement 4's `exit-prep` is preparatory, not the exit itself; the decisive leave/pay/enforce is movement 6. Keep them distinct — movement 4 never resolves the arrangement.
 - Gating: each friction beat and each gated player option appears only when its delivered-fact/state condition holds; a player with none simply moves on. No route is assigned in movements 1–4.
+
+## Wording fill and build decisions (2026-09-23, after EVE Code's 1–4 conflict report)
+
+### Place strings (movements 1–4 run on one day, "a week after"; proof onward the next night)
+- benefit: `A WEEK LATER · 08:30`
+- expectation: `MIDDAY · THE FIRST ASK`
+- friction: `EVENING · PEOPLE WHO KNEW YOU` — when the Counter runs, use `22:00 · THE COUNTER NEAR COMPLIANCE`
+- exit: `LATE · THE COST OF LEAVING`
+- proof: `THE NEXT NIGHT · THE UNKNOWN SENDER`
+- counterpower: `· WHAT YOU HOLD`
+- resolve: `· THE DECISION`
+- complete: `· WHERE IT TURNS`
+
+### Labels
+- self-funded expectation single option — **expect-selfnote** · "Note it and move on" · *No one is asking you for anything.*
+- Counter "no ask" — **counter-ask-none** · "Ask her for nothing" · *Keep it to the two of you.*
+
+### W1 — Counter prose
+
+**counter-what-happened:**
+> q(Maya): Can I ask what they actually did? You don't have to. I just keep imagining it, and I'd rather know than imagine.
+> p: You tell her what is yours to give — the body that is yours now, the voice, the weeks of learning to stand — and not the clinical detail that is still Axiom's. She listens the way she used to read a case file, without flinching, and at the end she nods once, like something has finally been filed correctly.
+
+**counter-what-chose** (add before Maya's existing line):
+> p: You tell her about one thing you wanted and went and got — a dress, an evening, a person — because it was yours to choose. Her face does something complicated, and lands on relief.
+
+**counter-her-life** (add after Maya's existing line):
+> p: You do not fix it and you do not promise to. You let her be frightened out loud to the one person who will not repeat it. It is the most you have been a friend to anyone since the mirror.
+
+**counter-adrian-loved** (add after Maya's existing line):
+> p: It is not a rejection and does not feel like one. It feels like being handed back a true thing about yourself, undamaged.
+
+**counter-ask-bounded:**
+> q(You): There's a public filing I can't read cleanly. Not your work — the public part. Would you look?
+> q(Maya): The public part, yes. Send it. And thank you for asking me the version I can say yes to.
+> p: She gives you a bounded, careful read — exactly what a compliance investigator gives a friend and not a gram more. It helps, and it costs her nothing.
+
+**counter-restored:**
+> p: You settle it plainly: how you'll reach each other, what neither of you will ask the other to carry. Not the friendship you had — that one belonged to Adrian. A newer one, smaller and more careful and real, that belongs to whoever you are now.
+> q(Maya): Same counter, then. When you can. I'll be the one pretending to read the menu.
+
+**counter-careful:**
+> q(Maya): Don't contact me until the review's done. Not because of you — because I can't afford one more thing on my file I'd have to explain. Give me that, and when it's over I'll find you.
+> p: It is her choice, and a good one, and you honor it without making her manage your disappointment. You leave first, so she doesn't have to watch you go.
+
+Evelynn's side on the topic beats is her narration line above plus Maya's line — build as-is;
+no separate Evelynn dialogue needed.
+
+### W3 — Movement 4 "cost, made real" as second-person prose
+- **julian-workroom:** p: You add it up honestly. The room and the open channel are worth real money and real access to replace — a self-paid Harbour week, or the public desk and its queue, and Julian noticing the day you stop needing him. Leaving is not a cliff. It is a bill, and you can read the number.
+- **public-artifact:** p: You add it up. The audience is an asset that also watches; the follow-on is an ask you can refuse. Leaving means the first piece keeps circulating on exactly the terms you set, and nothing more grows from it — a smaller footprint, wholly yours.
+- **sloane-institutional:** p: You add it up, and the number is not money. The housing, the legibility, the cooperative version of events — none of it is in your name, and leaving the easy version means carrying an exposure you don't currently carry. It is the most expensive door in the building, and you are standing in front of it.
+- **self-funded:** p: You add it up and there is nothing to add. You paid as you went — in money, in effort, in the quiet of doing it alone — and no bill is waiting. Your cost of leaving is only the leaving. It is the strangest luxury you own.
+
+### Gate / flow decisions (EVE Code's proposals, confirmed)
+- **F1 Counter flow:** approved as proposed (arrange → arrival → tell/partial/none OR 1–2 topics with an "enough" step → single ask stage {bounded, restricted, none} → restored/careful, unless restricted → strained). The "no ask" label is above.
+- **F2 benefit-leverage gate:** approved — `c5.obligation-provider || c5.offer === 'accepted' || (c4 julian-kept && c3.helix-window === 'offered')`.
+- **F3 self-funded options:** approved — movement 1: benefit-who + benefit-accept; movement 2: expect-selfnote; movement 4: exit-price + exit-hold only.
+- **F4 exit-expose gate:** approved — `c5.published || counter-ask-bounded taken || c5.service === 'municipal'`.
+- **F6 friction-julian gate:** use `julian5(s)`.
+- **F7 details:** all confirmed as you listed.
+- **Three small calls (A):** all approved — stage directions as their own paragraphs; the "Decide what to do with it" / "Choose one action. It sets your course." step label; the shared "Put the proof in play" trade label with the two split hints. The executive-lane closing is fixed in the counterpower script to be arrangement-agnostic (no "he").
+
+### F5 — knock-on variants
+Store the flags now (their only effect this pass is being recorded + feeding the route
+weighting), and add variant lines in a follow-up. One set is ready now — the **gentler
+movement-6 demand** when `c6.expectation-response === 'refused'` (a provider who let a
+refusal stand asks more gently):
+- julian: q(Julian): I mentioned it once. You said no. That's an answer, and I'm not going to make it expensive. The room's still yours.
+- public: q(Aster editor): You passed. The door stays open; I won't push it. First piece holds on its terms.
+- sloane: q(Sloane): As you like. I won't lean on it tonight. *(from her, either patience or a longer game — you cannot tell which, and that is the point.)*
+The `exit-prep` variants (off-ramp/deepened changing `resolve-break`/`resolve-enforce`) come
+in a later polish note; store `c6.exit-prep` now.
+
+### W2 / friction beats (Sloane / Julian / public)
+Build the Counter now; leave `friction-sloane`/`friction-julian`/`friction-public` as
+marked placeholders. I'll script those three short beats in a follow-up. A player who skips
+the Counter (`counter-skip`) goes straight to `exit`.
