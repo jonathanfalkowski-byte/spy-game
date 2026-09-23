@@ -138,6 +138,7 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
   s = c7(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter7.complete');
   expect(chapter7Choices(s)).toEqual([]);
+  expect(text(s)).toContain('You know more than you did this morning, and you found it alone.');
   expect(replay(s.ledger, 19)).toEqual(s);
   expect(decodeSave(encodeSave(s))).toEqual(s);
   for (const node of ['chapter7.confirm', 'chapter7.standing', 'chapter7.pursue', 'chapter7.close', 'chapter7.complete'])

@@ -28,6 +28,8 @@ const entryFrame: Record<string, string> = {
 };
 
 export function ownBlocks7(s: GameState): Block[] {
+  if (s.phase === 'complete')
+    return [p('The night does not answer you, and you do not need it to. You know more than you did this morning, and you found it alone. That will have to be enough to sleep on. It is.')];
   if (s.phase === 'standing')
     return [
       p(entryFrame[getKey(s, 'route.entry') ?? 'built']),
