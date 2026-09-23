@@ -1,5 +1,5 @@
 import type { Block } from '../content/schema';
-import { displayName, readingBlocks } from './reading-presentation';
+import { displayName, readingBlocks, thoughtLabel } from './reading-presentation';
 export function Narrative({ blocks, node, contentRevision }: { blocks: Block[]; node?: string; contentRevision?: number }) {
   return (
     <div className="narrative">
@@ -11,7 +11,7 @@ export function Narrative({ blocks, node, contentRevision }: { blocks: Block[]; 
           </blockquote>
         ) : b.kind === 'thought' ? (
           <aside className="thought" key={i}>
-            <span className="eyebrow">Adrian · private thought</span>
+            <span className="eyebrow">{thoughtLabel(node)}</span>
             <p>{displayName(b.text)}</p>
           </aside>
         ) : (

@@ -113,10 +113,10 @@ it('offers exit preparation by arrangement and gates putting the term on record'
 it('opens only the friction beats a delivered fact unlocks, each once, then moves on', () => {
   const quiet = c6(toFriction(), 'counter-skip');
   expect(ids(quiet)).toEqual(['friction-done']);
-  const busy = c6(toFriction({ flags: { 'c5.message-sloane': 'yes', 'c5.published': 'yes' } }), 'counter-skip');
+  const busy = c6(toFriction({ flags: { 'c5.message-sloane': 'yes', 'c5.service': 'self', 'c5.published': 'yes' } }), 'counter-skip');
   expect(ids(busy)).toEqual(['friction-sloane', 'friction-public', 'friction-done']);
   const sloane = c6(busy, 'friction-sloane');
-  expect(text(sloane)).toContain('I have your note about the Harbour workroom. I am not asking you to explain');
+  expect(text(sloane)).toContain('I have your note that you’re paying for your own Harbour room. I am not asking you to explain');
   expect(text(sloane)).not.toContain('Meridian');
   expect(ids(sloane)).toEqual(['friction-sloane-correct', 'friction-sloane-let']);
   const corrected = c6(sloane, 'friction-sloane-correct');
@@ -129,4 +129,28 @@ it('opens only the friction beats a delivered fact unlocks, each once, then move
   expect(c6(used, 'friction-done').phase).toBe('exit');
   const met = walk(toFriction(), ['counter-monitored', 'counter-none', 'counter-ask-none', 'counter-restored', 'friction-sloane']);
   expect(text(met)).toContain('I have a line saying you met Ms Reyes off-hours.');
+});
+
+it('matches Sloane’s workspace line and Evelynn’s correction to what the message named', () => {
+  const beat = (flags: Record<string, string>, counter = ['counter-skip']) => walk(toFriction({ flags }), [...counter, 'friction-sloane']);
+  const cases: [string, string, string][] = [
+    ['julian', 'you took the Helix workroom Julian keeps open', 'A workroom Helix lets me use, on the terms we wrote down.'],
+    ['self', 'you’re paying for your own Harbour room', 'A workspace I pay for myself.'],
+    ['municipal', 'you’re using the public reading desk', 'A public desk anyone can use.'],
+    ['axiom', 'you kept the workspace in the flat', 'The desk in the flat, same as it’s always been.'],
+  ];
+  for (const [service, seen, reply] of cases) {
+    const opened = beat({ 'c5.message-sloane': 'yes', 'c5.service': service });
+    expect(text(opened)).toContain(`I have your note that ${seen}. I am not asking`);
+    const said = c6(opened, 'friction-sloane-correct');
+    expect(text(said)).toContain(`${reply} Each is exactly what it is`);
+    expect(text(said)).not.toContain('A friend I’ve known ten years.');
+  }
+  const both = beat({ 'c5.message-sloane': 'yes', 'c5.service': 'julian' }, ['counter-monitored', 'counter-none', 'counter-ask-none', 'counter-restored']);
+  expect(text(both)).toContain('I have your note that you took the Helix workroom Julian keeps open, and a line saying you met Ms Reyes off-hours.');
+  expect(text(c6(both, 'friction-sloane-correct'))).toContain('A workroom Helix lets me use, on the terms we wrote down. A friend I’ve known ten years. Each is');
+  const meetingOnly = c6(beat({}, ['counter-monitored', 'counter-none', 'counter-ask-none', 'counter-restored']), 'friction-sloane-correct');
+  const reply = meetingOnly.history.flatMap((h) => h.blocks).filter((b) => b.speaker === 'You').at(-1)?.text;
+  expect(reply).toBe('A friend I’ve known ten years. Each is exactly what it is, and none of it is what you’re worried it might be.');
+  expect(ids(c6(toFriction({ flags: { 'c5.message-sloane': 'yes' } }), 'counter-skip'))).toEqual(['friction-done']);
 });

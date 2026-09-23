@@ -296,3 +296,19 @@ export function personalRecap(s: GameState): string[] {
     );
   return lines;
 }
+
+/** Clinic nodes from the first look at the new face onward (the stop path is reachable only before it). */
+const livingAsEvelynClinic = new Set([
+  'mirror', 'name', 'rest', 'recoveryContact', 'recoveryReply', 'wardrobe', 'makeup',
+  'presentationReview', 'rehearsal', 'briefing', 'farewell', 'departure', 'complete',
+]);
+
+/** Owner decision: thoughts are attributed to Adrian until the mirror beat, then carry no name, so the
+ * game never asserts whether the inner voice is "still Adrian" or "now Evelynn". Display only. */
+export function thoughtLabel(node?: string): string {
+  const [scene, phase] = (node ?? '').split('.');
+  const living =
+    ['mission', 'chapter3', 'chapter4', 'chapter5', 'chapter6'].includes(scene) ||
+    (scene === 'clinic' && livingAsEvelynClinic.has(phase));
+  return living ? 'Private thought' : 'Adrian · private thought';
+}
