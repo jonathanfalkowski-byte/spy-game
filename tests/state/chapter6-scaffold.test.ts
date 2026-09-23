@@ -12,6 +12,7 @@ import { send5 } from '../../src/content/chapter5-model';
 
 const route = (name: string) => golden.routes.find((r) => r.name === name)!;
 const complete19 = (name: string) => replay(route(name).ledger as GameEvent[], 19);
+const walk = (s: GameState, path: string[]) => path.reduce(c6, s);
 const c6 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + id });
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
@@ -43,12 +44,13 @@ it('offers Chapter 6 only at revision-19 Chapter 5 complete, never to frozen rev
   expect(decodeSave(encodeSave(r18))).toEqual(r18);
 });
 
-it('walks the empty Chapter 6 to complete, and the save authenticates at revision 19', () => {
+it('walks Chapter 6 to complete through the shortest path, and the save authenticates at revision 19', () => {
   let s = c6(complete19('maximal-julian'), 'begin');
   expect(s.scene).toBe('chapter6');
   expect(s.phase).toBe('benefit');
   expect(s.contentRevision).toBe(19);
-  for (const phase of ['benefit', 'expectation', 'friction', 'exit', 'proof', 'counterpower', 'resolve']) s = c6(s, phase + '-continue');
+  s = walk(s, ['benefit-accept', 'expect-clarify', 'counter-skip', 'friction-done', 'exit-hold']);
+  for (const id of ['proof-decline', 'counterpower-decide', 'resolve-hold']) s = c6(s, id);
   expect(`${s.scene}.${s.phase}`).toBe('chapter6.complete');
   expect(chapter6Choices(s)).toEqual([]);
   expect(replay(s.ledger, 19)).toEqual(s);

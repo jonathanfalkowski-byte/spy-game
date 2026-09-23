@@ -22,6 +22,8 @@ export function currentPlace(s: GameState, fallback: string) {
     if (s.phase === 'vossPlan' && s.choices['c3.careMode'] !== 'attend')
       return '08:48 · Apartment · Follow-up messages';
   }
+  if (s.scene === 'chapter6' && s.phase === 'friction' && s.choices['c6.counter-arranged'])
+    return '22:00 · THE COUNTER NEAR COMPLIANCE';
   if (s.scene === 'chapter5') {
     const salonReturn = sebastianReturnPlace5(s);
     if (salonReturn) return salonReturn;

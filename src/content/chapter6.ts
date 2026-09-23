@@ -1,9 +1,9 @@
 /** Chapter 6 · The Cage You Choose. Phase 1 scaffolding: the entry transition, entry-state
  * derivation and an ordered path of movements that reaches `complete`. Scene prose and choices
- * arrive per movement from design scripts (docs/story/scripts/CHAPTER_6_*.md); until then each
- * movement is a marked placeholder, and the whole chapter sits behind chapter6Playable(). */
+ * come from design scripts (docs/story/scripts/CHAPTER_6_*.md). The whole chapter sits behind
+ * chapter6Playable() until it is ready to ship. */
 import type { GameState } from '../state/schema';
-import { paragraph as p, type Block, type NodeId } from './schema';
+import { type Block, type NodeId } from './schema';
 import {
   type C6Scene,
   type C6Choice,
@@ -14,29 +14,27 @@ import {
   offer6,
   set6,
 } from './chapter6-model';
-
-const pending = (movement: string): Block[] => [p(`[Chapter 6 · ${movement} — script pending]`)];
+import { proofChoices6, proofEntry6 } from './chapter6-proof';
+import { frontBlocks6, frontChoices6 } from './chapter6-front';
+import { counterpowerBlocks6, enterCounterpower6, resolveChoices6 } from './chapter6-counterpower';
 
 export const chapter6Definitions: Record<string, C6Scene> = {
-  benefit: { title: 'Benefit connected', place: 'Chapter 6', blocks: pending('movement 1, benefit connected') },
-  expectation: { title: 'Expectation named', place: 'Chapter 6', blocks: pending('movement 2, expectation named') },
-  friction: { title: 'Friction among people', place: 'Chapter 6', blocks: pending('movement 3, friction among people') },
-  exit: { title: 'The cost of exit', place: 'Chapter 6', blocks: pending('movement 4, cost of exit') },
-  proof: { title: 'Proof, not confession', place: 'Chapter 6', blocks: pending('movement 5, proof') },
-  counterpower: { title: 'Counterpower', place: 'Chapter 6', blocks: pending('movement 6, counterpower') },
-  resolve: { title: 'What you do with it', place: 'Chapter 6', blocks: pending('movement 6, resolution') },
-  complete: { title: 'Where you stand', place: 'Chapter 6', blocks: pending('chapter end') },
+  benefit: { title: 'Benefit connected', place: 'A WEEK LATER · 08:30', blocks: [] },
+  expectation: { title: 'Expectation named', place: 'MIDDAY · THE FIRST ASK', blocks: [] },
+  friction: { title: 'Friction among people', place: 'EVENING · PEOPLE WHO KNEW YOU', blocks: [] },
+  exit: { title: 'The cost of exit', place: 'LATE · THE COST OF LEAVING', blocks: [] },
+  proof: { title: 'Proof, not confession', place: 'THE NEXT NIGHT · THE UNKNOWN SENDER', blocks: proofEntry6 },
+  counterpower: { title: 'Counterpower', place: '· WHAT YOU HOLD', blocks: [] },
+  resolve: { title: 'What you do with it', place: '· THE DECISION', blocks: [] },
+  complete: { title: 'Where you stand', place: '· WHERE IT TURNS', blocks: [] },
 };
 export const chapter6Scenes = Object.entries(chapter6Definitions).map(([phase, scene]) => ({
   id: `chapter6.${phase}` as NodeId,
   ...scene,
 }));
 
-/** Movement order for the scaffold; each placeholder step is replaced by its scripted choices. */
-const order = ['benefit', 'expectation', 'friction', 'exit', 'proof', 'counterpower', 'resolve', 'complete'] as const;
-
 export const chapter6Blocks = (s: GameState): Block[] =>
-  s.scene === 'chapter6' ? (chapter6Definitions[s.phase]?.blocks ?? []) : [];
+  s.scene === 'chapter6' ? [...(chapter6Definitions[s.phase]?.blocks ?? []), ...frontBlocks6(s), ...counterpowerBlocks6(s)] : [];
 
 export function chapter6Choices(s: GameState): C6Choice[] {
   if (!chapter6Playable(s)) return [];
@@ -51,9 +49,9 @@ export function chapter6Choices(s: GameState): C6Choice[] {
       }),
     ];
   if (s.scene !== 'chapter6') return [];
-  const at = order.indexOf(s.phase as (typeof order)[number]);
-  if (at < 0 || s.phase === 'complete') return [];
-  return [offer6(`${s.phase}-continue`, 'Continue', 'Placeholder until this movement’s script is wired.', order[at + 1])];
+  if (s.phase === 'proof') return proofChoices6(s);
+  if (s.phase === 'counterpower' || s.phase === 'resolve') return resolveChoices6(s);
+  return frontChoices6(s);
 }
 
 export function applyChapter6Choice(state: GameState, id: string): GameState {
@@ -70,6 +68,7 @@ export function applyChapter6Choice(state: GameState, id: string): GameState {
   s.scene = 'chapter6';
   s.phase = choice.next;
   s.feedback = '';
+  if (s.phase === 'counterpower' && state.phase !== 'counterpower') enterCounterpower6(s);
   if (state.scene !== s.scene || state.phase !== s.phase)
     s.history.push({ node: `chapter6.${s.phase}` as NodeId, blocks: chapter6Blocks(s) });
   s.ledger.push({ sequence: s.revision, action: { type: 'CHAPTER6_CHOOSE', id, expectedRevision: state.revision } });
