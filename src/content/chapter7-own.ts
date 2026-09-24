@@ -4,7 +4,12 @@
  * scene with its own choice (held in c7.pursue-open) and still resolves to the same piece Chapter 8 reads. Hooks
  * Chapter 8 reads: own.exposed, own.alliance.rook, c7.finding and route.entry.
  * The optional evening (Julian or Sebastian) is chosen, consent-gated, heat 3 and fades at the act
- * (docs/story/CONTENT_DIRECTION.md). Firewall: nothing in the investigation reads a c7.evening-* flag. */
+ * (docs/story/CONTENT_DIRECTION.md). Firewall: nothing in the investigation reads a c7.evening-* flag.
+ * Deepening pass 2 (2026-09-24): the standing morning plays as scenes (the watcher and Odile Frayne's offer
+ * when her face is public; the forwarded letter from "C." for everyone, which Chapter 9's orchid echoes);
+ * each door has a second beat (the dark aisle, the photographer, the woman in the raincoat; Theo's drink as
+ * a third way out of the interview); the day between the doors; and what she does with her notes, which
+ * Chapter 8's break-in answers (c7.notes). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -35,8 +40,11 @@ export function place7(s: GameState): string | undefined {
   if (s.phase === 'pursue' && open)
     return {
       records: '23:10 · Municipal registry · Night desk',
+      'records-dark': '23:45 · Municipal registry · The stacks',
       maya: '21:00 · The Lantern',
+      'maya-photo': '23:40 · Outside the Lantern',
       rook: '02:00 · The old ferry terminal',
+      'rook-woman': '02:20 · The embankment',
       audience: 'Evening · A studio on the river',
       'audience-exit': 'Late · A studio on the river',
     }[open];
@@ -81,6 +89,105 @@ function famousMorning(s: GameState): Block[] {
     t('Press, or Sloane’s people, or someone worse. The trouble with being looked at is that you stop being able to tell who is looking.'),
   ];
 }
+/** Evelynn’s standing-morning scenes run in order: the watcher and Odile (only if her face is public), then the letter. */
+const letterArrives: Block[] = [
+  p('When you get home the concierge stops you at the desk with a padded envelope and an apology. It came for you a long time ago, he says. It has been in the post room; he was told to hold it until you were back. He does not say who told him.'),
+  p('The envelope has been forwarded three times. The stamps are Singaporean, the postmark fourteen months old, the address written in green ink in a confident, looping hand: Ms E. Vale. Inside is a single white orchid, pressed flat and gone the colour of old paper, and a card.'),
+  q('The card', 'For E., who always comes back. Breakfast when you do. — C.'),
+  t('Fourteen months. Before Adrian ever opened the wrong file, someone was waiting for her to come home to breakfast. And someone decided the letter should reach me now.'),
+];
+const odileMeets: Block[] = [
+  p('At eleven one of the forty messages turns into a voice: Odile Frayne, who represents three faces you have seen on the sides of buildings and would like to represent a fourth. She will be in the bar of the Carlisle at noon. “Bring nothing, sign nothing,” she says, as if she has said it to frightened people before.'),
+  p('The Carlisle bar is dark wood, low lamps and the kind of quiet that costs money. Odile is sixty, silver hair cropped close, in a black suit that has never been in a hurry. She slides a card across the table: a perfume house, a one-day shoot, a campaign that would put your face six metres high on the side of the station.'),
+  q('Odile Frayne', 'Fifteen hundred for a day, paid thirty days after the posters go up. More later, if they like you, and they will. They want the woman nobody can place. I want to know if you understand what that costs.'),
+  t('Money, which I am short of. My face, which is already the problem. And a hundred thousand strangers a day looking up at a woman who was somebody else first.'),
+];
+
+function standingChoices(s: GameState): C7Choice[] {
+  const famous = !!get5(s, 'published');
+  if (famous && !get7(s, 'watcher')) {
+    const watch = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+      offer7('watcher-' + id, label, hint, 'standing', (x) => {
+        set7(x, 'watcher', id);
+        after?.(x);
+        return [...body, ...odileMeets];
+      });
+    return [
+      watch('follow', 'Follow him', 'He has ten minutes’ start. You know these streets.', [
+        p('He has ten minutes on you, and a man who reads a newspaper for an hour is not in a hurry. You find him two streets over, walking without looking at anything, which is its own tell. You keep a bus between you, then a queue, then the reflection in a jeweller’s window, the way Sloane’s people taught you without meaning to.'),
+        p('He stops at a black saloon parked where nobody is allowed to park. The driver winds the window down and takes something from him: a small envelope, or a phone. On the dashboard, face up, is a parking permit with a green H on it. The car pulls out. He walks away in the other direction, lighter.'),
+        t('Helix. Marcus watched me leave his party, and now he has someone on my street. Or someone wants me to think it is Marcus. A permit is a thing you can put on any dashboard.'),
+      ], (x) => note7(x, 'watcher', 'A man watching Evelynn’s street handed something to a car displaying a Helix parking permit.', 'Evelynn followed him herself')),
+      watch('paper', 'Take his newspaper', 'He left it on purpose. Read it.', [
+        p('You pick up the paper as if it were yours. Folded inside the page with you on it is a smaller page torn from a hotel notepad, the hotel’s name cut away. Two words in pencil, in a hand that presses hard: WELCOME BACK.'),
+        p('Under them, fainter, as if the writer had thought better of it: a phone number with the last two digits missing.'),
+        t('Not a threat. Worse: a greeting. Somebody here knew her and wants me to know they think I am her. Or wants me to know they know I am not.'),
+      ]),
+      watch('ignore', 'Let him watch', 'Go about your day. Being watched is the job now.', [
+        p('You drink the coffee on the bakery step with your face turned to the sun and let him have his look. If being seen is the price of the life, you might as well be seen enjoying it.'),
+        p('He is back at six, with a different paper, on the same bench. You wave. He does not wave back, but he does leave.'),
+      ]),
+    ];
+  }
+  if (famous && !get7(s, 'campaign'))
+    return [
+      offer7('campaign-take', 'Take the campaign', 'Your face six metres high. The money comes in thirty days.', 'standing', (x) => {
+        set7(x, 'campaign', 'taken');
+        setKey(x, 'own.campaign', 'taken');
+        note7(x, 'campaign', 'Evelynn agreed a one-day perfume campaign through Odile Frayne: $1,500 thirty days after the posters go up. Her face will be on the station.', 'Evelynn’s handshake with Odile Frayne');
+        return [
+          p('You sign nothing, as instructed, and shake her hand, which in this bar is the same thing. The shoot is next week. The money comes thirty days after the posters go up, which is thirty days you do not have. She knows it, and she lets you watch her decide not to mention it.'),
+          q('Odile Frayne', 'Get some sleep. Eat something. They are paying for the face, so the face is now my business.'),
+          t('Six metres high. Whoever is looking for her will not have to look very hard.'),
+          ...letterArrives,
+        ];
+      }),
+      offer7('campaign-terms', 'Offer your hands and your voice, not your face', 'Less money. Less of you on the station wall.', 'standing', (x) => {
+        set7(x, 'campaign', 'terms');
+        setKey(x, 'own.campaign', 'terms');
+        note7(x, 'campaign', 'Evelynn offered the perfume house her hands and voice, not her face: $400 on delivery next month.', 'Evelynn’s terms to Odile Frayne');
+        return [
+          p('“Hands,” you say. “A voice-over. The back of my head, if they must.” Odile looks at you for a long moment, then laughs, one short bark that turns heads at the bar.'),
+          q('Odile Frayne', 'Four hundred, and they will hate it, and they will say yes, because saying no to you is becoming unfashionable. You are going to be very difficult to represent. I think I am going to enjoy it.'),
+          t('Some of me for sale. Not the part anyone could recognise across a station.'),
+          ...letterArrives,
+        ];
+      }),
+      offer7('campaign-refuse', 'Say no', 'Keep your face your own, and stay short of money.', 'standing', (x) => {
+        set7(x, 'campaign', 'refused');
+        return [
+          p('You push the card back across the table. Odile does not argue. She tucks it into her breast pocket as though she were filing it, not losing it.'),
+          q('Odile Frayne', 'Everyone says no the first time. The ones who mean it are the interesting ones. Call me when somebody else decides what your face is for.'),
+          t('That was either the smartest thing I have done this week or the most expensive.'),
+          ...letterArrives,
+        ];
+      }),
+    ];
+  if (!get7(s, 'card'))
+    return [
+      offer7('card-keep', 'Keep it', 'It’s hers. It is also the only thing anyone ever sent her that you can hold.', 'standing', (x) => {
+        set7(x, 'card', 'kept');
+        return [p('You slide the orchid back into the envelope and put the envelope in the drawer with your passport and the phone that is only yours. It feels like theft, and like the opposite of theft.')];
+      }),
+      offer7('card-study', 'Read the postmarks like evidence', 'Adrian’s way. The envelope has a history.', 'standing', (x) => {
+        set7(x, 'card', 'studied');
+        note7(x, 'card', 'A card to “E.” from “C.”, posted in Singapore fourteen months ago, was held in the building’s post room and released for delivery last Tuesday.', 'The envelope’s own postmarks and labels');
+        return [
+          p('You lay it out under the lamp the way Adrian used to lay out a filing. Singapore, fourteen months ago. A redirect label to a serviced address in the Straits district. A second, eleven months ago, to this building. And a third, printed last Tuesday, that is not a redirect at all: a release instruction, telling the post room the item may now be delivered.'),
+          t('It was not lost. It was held. Someone decided when she would get her post, and decided it should be now, while the face is back on the street.'),
+        ];
+      }),
+      offer7('card-burn', 'Burn it in the sink', 'It was never yours to keep.', 'standing', (x) => {
+        set7(x, 'card', 'burned');
+        return [
+          p('You hold the corner of the card to the gas ring, drop it in the sink and watch the green ink go brown and then go. The orchid does not burn so much as vanish. The smell stays in the kitchen for an hour.'),
+          t('Whoever C. is, they are waiting for someone who is not coming. I will not be the thing that walks in and sits down in her chair.'),
+        ];
+      }),
+    ];
+  return [offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue')];
+}
+
 const quietMorning = [
   p('Nobody on the street knows your face. The Aster pictures never ran, and some mornings that feels like a door you didn’t walk through. Other mornings it feels like the only reason you can still buy coffee without anyone watching you drink it.'),
 ];
@@ -114,6 +221,7 @@ export function ownBlocks7(s: GameState): Block[] {
       p(
         `You count what you have. ${cash7(s) >= LOW_CASH ? 'Enough to work with, if you are careful and the work is quick.' : 'Barely enough, if nothing goes wrong.'} Every road from here costs something — money, time, or being seen — and you are the one who pays.`,
       ),
+      ...(get5(s, 'published') ? [] : letterArrives),
     ];
   if (s.phase === 'pursue')
     return [
@@ -161,41 +269,62 @@ const afterPiece = (s: GameState) => (pieces7(s) + 1 >= 2 ? 'close' : 'pursue');
 
 // ── The records office ──
 
-const recordsFinding = [
+const recordsDark = [
   p('The file is thinner than it should be. Stapled inside the cover is the sign-out card, and two days ago somebody else pulled this exact bundle. The requester’s name has been scored through so hard the pen went through the card.'),
-  p('At a quarter to twelve the lights in the far aisle click off on their timer, one bank and then the next, walking toward you. In the dark at the end of the row something shifts: a chair, a coat, a person. You don’t wait to find out which. You photograph the pages, put the file back exactly as it was, and walk out past the night desk without running.'),
+  p('At a quarter to twelve the lights in the far aisle click off on their timer, one bank and then the next, walking toward you. In the dark at the end of the row something shifts: a chair, a coat, a person.'),
+];
+const recordsFinding = [
+  p('You walk out past the night desk without running.'),
   p('On the train home you read what you took. The apartment you live in, and the accounts that dress the Evelyn identity, trace to a single holding company — Meridian Holdings. Its only named officer is an initial, and a registered agent that exists to have no face.'),
   t('Meridian. Whoever reused her kept the operation’s name for the company that owns the rest of it. That is not tidiness. That is someone who was there the first time. And someone else was in that file two days before me.'),
 ];
-function recordsChoices(s: GameState): C7Choice[] {
+function recordsDarkChoices(s: GameState): C7Choice[] {
   const next = afterPiece(s);
-  const finish = (x: GameState) => {
-    delete x.choices['c7.pursue-open'];
-    setKey(x, 'own.piece.records', 'meridian');
-    note7(x, 'piece-records', 'The apartment and the accounts dressing the Evelyn identity trace to Meridian Holdings, whose only named officer is an initial. Someone else pulled the same file two days earlier.', 'Public corporate, property and procurement filings');
-  };
+  const dark = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('dark-' + id, label, hint, next, (x) => {
+      delete x.choices['c7.pursue-open'];
+      set7(x, 'records-dark', id);
+      after?.(x);
+      setKey(x, 'own.piece.records', 'meridian');
+      note7(x, 'piece-records', 'The apartment and the accounts dressing the Evelyn identity trace to Meridian Holdings, whose only named officer is an initial. Someone else pulled the same file two days earlier.', 'Public corporate, property and procurement filings');
+      return [...body, ...recordsFinding];
+    });
   return [
-    offer7('records-charm', 'Let him know it’s really you', 'Sign something for his daughter and ask nicely. He’ll remember you.', next, (x) => {
+    dark('call', 'Say something into the dark', 'Make them answer, or make them move.', [
+      p('“The stacks close at midnight,” you say to the dark, in the clerk’s tired voice. Nothing. Then a chair scrapes, a door you had not seen opens and closes at the far end, and the air moves across the pages under your hand. Whoever it was did not want to be spoken to. You photograph what you came for and put the file back exactly as it was.'),
+    ]),
+    dark('card', 'Photograph the sign-out card first', 'The scored-out name. Somebody else wanted this file.', [
+      p('You turn the card to the lamp before you do anything else. The pen went through, but a hard hand leaves a groove: under the scoring you can just make out a looped capital that might be a C, and an L, and then nothing. You photograph it three times at three angles, then the pages. When you look up, the dark at the end of the row is only dark.'),
+    ], (x) => note7(x, 'records-card', 'The earlier sign-out name, scored through, keeps the impression of a looped capital C and an L.', 'Evelynn’s photographs of the registry sign-out card')),
+    dark('wait', 'Stand still and wait', 'Let them move first.', [
+      p('You do not move. Neither does the dark. For a long minute there is only the radiator and your own pulse. Then soft shoes on the tiles, going away from you, unhurried: a person who wanted you to know they could have stayed. You photograph the pages and put the file back exactly as it was.'),
+    ]),
+  ];
+}
+function recordsChoices(s: GameState): C7Choice[] {
+  const toDark = (x: GameState) => set7(x, 'pursue-open', 'records-dark');
+  return [
+    offer7('records-charm', 'Let him know it’s really you', 'Sign something for his daughter and ask nicely. He’ll remember you.', 'pursue', (x) => {
       set7(x, 'fee', 'waived');
       set7(x, 'records-mode', 'charm');
-      finish(x);
+      toDark(x);
       note7(x, 'records-clerk', 'The registry night clerk recognised Evelynn, waived the fee and let her into the stacks. He will remember her.', 'Evelynn’s own choice to use her face');
       return [
         p('You take the pen from his crossword and write his daughter’s name, and then yours, the one you wear, with the kind of flourish Evelyn might have used. You lean on the counter while you do it and let him watch you do it. He lets you into the stacks himself, the keys not quite steady in his hand, and never mentions the fee.'),
-        ...recordsFinding,
+        ...recordsDark,
       ];
     }),
-    offer7('records-pay', 'Pay the fee and do it by the book', `$${RECORDS_FEE}. Slower, and nobody has a story to tell about it.`, next, (x) => {
+    offer7('records-pay', 'Pay the fee and do it by the book', `$${RECORDS_FEE}. Slower, and nobody has a story to tell about it.`, 'pursue', (x) => {
       // The fee never blocks the free-agent core: short of $40, it is recorded unpaid and cash clamps at 0.
       const cash = cash7(x);
       set7(x, 'fee', cash >= RECORDS_FEE ? 'paid' : 'unpaid');
       set7(x, 'records-mode', 'book');
       setKey(x, 'own.cash', String(Math.max(0, cash - RECORDS_FEE)));
       note7(x, 'records-fee', cash >= RECORDS_FEE ? `Spent $${RECORDS_FEE} on records fees. Own cash: $${cash - RECORDS_FEE}.` : `A $${RECORDS_FEE} records fee is unpaid; own cash was $${cash}.`, 'Public registry and filing fees');
-      finish(x);
+      toDark(x);
       return [
         p('You pay the forty dollars and fill in the retrieval slip in a plain hand. He fetches what the rules let him fetch and leaves you alone in the reading room with a lamp and the knocking radiator, which is exactly how you wanted it.'),
-        ...recordsFinding,
+        ...recordsDark,
       ];
     }),
   ];
@@ -203,13 +332,38 @@ function recordsChoices(s: GameState): C7Choice[] {
 
 // ── Drinks with Maya ──
 
-function mayaChoices(s: GameState): C7Choice[] {
+function mayaPhotoChoices(s: GameState): C7Choice[] {
   const next = afterPiece(s);
+  const photo = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('photo-' + id, label, hint, next, (x) => {
+      delete x.choices['c7.pursue-open'];
+      set7(x, 'maya-photo', id);
+      after?.(x);
+      setKey(x, 'own.piece.maya', 'directorate');
+      note7(x, 'piece-maya', 'A reuse authorization is signed at directorate level or above, never at Compliance. No one is named.', 'Maya, public-file scope only');
+      return body;
+    });
+  return [
+    photo('chase', 'Go after the photographer', 'Find out who booked him.', [
+      p('You are across the road before he has capped the lens. He is young, wet and apologetic in the way of a man who is paid by the picture. He shows you the job on his phone because you ask the way a woman on a bus shelter asks: a booking from an agency, a name you don’t know, and a brief of four words.'),
+      q('Photographer', '“Evelynn Vale plus companion.” That’s all they ever send. I don’t know who’s paying. I never do.'),
+      t('Plus companion. Somebody wanted Maya in the frame, not just me.'),
+    ], (x) => note7(x, 'maya-photo', 'A photographer booked through an agency was briefed to shoot “Evelynn Vale plus companion” outside the Lantern.', 'The photographer’s own job booking')),
+    photo('walk', 'Walk Maya home', 'Stay between her and the street.', [
+      p('You walk her home the long way, under the arcades, her arm through yours. At her door she tells you, for no reason she can name, that Adrian’s desk was cleared last week: one box to storage with a label she didn’t recognise. She kept his mug, the one with the chip in the rim. She doesn’t know why she is telling you. You do.'),
+      q('Maya', 'Go home. Text me when you’re in. Don’t make me come looking for you.'),
+      t('She is worried for me. She should be worried for herself, and that is my fault.'),
+    ]),
+    photo('let', 'Let it go', 'Chasing a picture turns it into a story.', [
+      p('You put Maya in a taxi and stand at the kerb in the rain until its lights are gone. Across the road the photographer is already walking away. You let him. A picture of two women having a drink is only a story if someone runs after it.'),
+      t('Or if someone paid for it. I will find out which soon enough.'),
+    ]),
+  ];
+}
+function mayaChoices(s: GameState): C7Choice[] {
   const finish = (x: GameState): Block[] => {
-    delete x.choices['c7.pursue-open'];
-    setKey(x, 'own.piece.maya', 'directorate');
+    set7(x, 'pursue-open', 'maya-photo');
     set7(x, 'maya-photographed');
-    note7(x, 'piece-maya', 'A reuse authorization is signed at directorate level or above, never at Compliance. No one is named.', 'Maya, public-file scope only');
     return [
       q('Maya', 'I can’t pull it and I wouldn’t. But I can tell you this much for free: a reuse authorization — taking a live legend off one operative and fitting it to another — never clears at Compliance. That’s a directorate signature or higher. Someone with the authority to spend a person.'),
       p('She has not named anyone. She has drawn you a floor: this was signed at the level of a directorate — Executive Intelligence, or above it. Sloane’s level, or over Sloane’s head.'),
@@ -218,7 +372,7 @@ function mayaChoices(s: GameState): C7Choice[] {
     ];
   };
   return [
-    offer7('maya-truth', 'Tell her more than you should', 'She deserves it. It makes her closer to you, and more dangerous to know you.', next, (x) => {
+    offer7('maya-truth', 'Tell her more than you should', 'She deserves it. It makes her closer to you, and more dangerous to know you.', 'pursue', (x) => {
       setKey(x, 'own.maya-knows', 'more');
       return [
         p(
@@ -232,7 +386,7 @@ function mayaChoices(s: GameState): C7Choice[] {
         ...finish(x),
       ];
     }),
-    offer7('maya-shield', 'Keep her out of it', 'Ask the procedural question and nothing else. She’ll know you’re hiding something.', next, (x) => {
+    offer7('maya-shield', 'Keep her out of it', 'Ask the procedural question and nothing else. She’ll know you’re hiding something.', 'pursue', (x) => {
       setKey(x, 'own.maya-knows', 'little');
       return [
         p('“Research,” you say. “For a piece.” She knows it isn’t, and she lets you have it anyway, which is worse.'),
@@ -245,20 +399,40 @@ function mayaChoices(s: GameState): C7Choice[] {
 
 // ── The dead drop ──
 
-function rookTrade(s: GameState): C7Choice[] {
-  const trade = (id: string, label: string, hint: string, apply: (x: GameState) => void) =>
-    offer7(id, label, hint, afterPiece(s), (x) => {
+function rookWomanChoices(s: GameState): C7Choice[] {
+  const next = afterPiece(s);
+  const leave = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('woman-' + id, label, hint, next, (x) => {
       delete x.choices['c7.pursue-open'];
-      apply(x);
+      set7(x, 'rook-woman', id);
       setKey(x, 'own.piece.rook', 'board');
       setKey(x, 'own.piece.rook-verified', 'no');
-      set7(x, 'rook-watcher');
       note7(x, 'piece-rook', 'The sender says the reuse was signed on the Project Eve board, not by Sloane. Unconfirmed, and convenient.', 'The sender, traded for; unverified');
+      return body;
+    });
+  return [
+    leave('follow', 'Follow the woman in the raincoat', 'She isn’t the sender’s. Then whose is she?', [
+      p('She drops her cigarette as you move and walks out through the dead ticket hall without hurrying. You follow her to the embankment. Under the second lamp she stops, turns and lets you catch up: a woman of fifty in a good coat and bad shoes, who looks at your face the way people look at a photograph of someone they buried.'),
+      q('Woman in the raincoat', 'You even stand like her. They did good work on you.'),
+      p('Then a car pulls in to the kerb and she is in it before you can ask her name, or what yours used to be.'),
+      t('Not the sender’s. Not Sloane’s. Someone who knew Evelyn, and grieved her.'),
+    ]),
+    leave('river', 'Leave by the river side, as told', 'Take the advice. Watch the glass.', [
+      p('You leave by the river side. When you look back from the embankment, the side door is shut, and someone is standing behind the glass.'),
+      t('I did what I was told. I will have to decide how often I can afford to.'),
+    ]),
+  ];
+}
+function rookTrade(s: GameState): C7Choice[] {
+  const trade = (id: string, label: string, hint: string, apply: (x: GameState) => void) =>
+    offer7(id, label, hint, 'pursue', (x) => {
+      set7(x, 'pursue-open', 'rook-woman');
+      apply(x);
+      set7(x, 'rook-watcher');
       return [
         q(SENDER, 'It was not Sloane’s authority to give. She executed it. The signature is on the Project Eve board — and one name there you have already met, and did not expect.'),
         t('Or that is exactly what someone would say to point me away from Sloane and toward a door of their choosing. I cannot source it. I write it down with a mark next to it: unconfirmed, and convenient.'),
         q(SENDER, 'And Evelynn. The woman under the timetable isn’t mine. Leave by the river side.'),
-        p('You leave by the river side. When you look back from the embankment, the side door is shut, and someone is standing behind the glass.'),
       ];
     });
   return [
@@ -330,6 +504,14 @@ function audienceExitChoices(s: GameState): C7Choice[] {
   return [
     leave('exit-crowd', 'Go out the front, into the fans', 'Your face is the problem. Use it as the answer.', 'crowd', [
       p('There are twenty of them behind the rope, phones up, and they scream your name, the name you are wearing, as you step out into the rain. You sign three programmes, take a photograph with a girl who is shaking, and let the crowd fold around you all the way to the corner, where no taxi can refuse a woman with twenty witnesses. Behind you, the dark car pulls out and does not follow. Fame is a cage. Tonight, for ten minutes, it was a bodyguard.'),
+    ]),
+    leave('exit-theo', 'Let Theo buy you a drink first', 'He wants the story. He may already have part of yours.', 'theo', [
+      p('Theo takes you to the members’ bar on the roof, where the lights are low and nobody looks at anyone on purpose. He orders without asking what you want and gets it right, which you do not tell him. For twenty minutes he is charming about nothing, and then, with his glass halfway to his mouth, he stops being charming.'),
+      q('Theo Marr', 'Somebody rang upstairs before we were off the air. Not a viewer. An office. They wanted the raw tape of your segment, all of it, before the edit. Said they sat on a board, as if that explained anything.'),
+      p('He watches you hear it. He is very good at watching people hear things.'),
+      q('Theo Marr', 'I said no, for tonight. I’m curious what I said no to. When you want to tell me, I’m a very good listener. When you don’t, I’m a very good guesser.'),
+      p('He puts you in his own car home, and does not get in with you, and the not getting in is so clearly a move that you almost admire it.'),
+      t('A board. Somebody on a board wanted to see my face ask that question, frame by frame, before anyone else did.'),
     ]),
     leave('exit-river', 'Walk the river path in the rain', 'Alone and quiet. You’ll know if they follow.', 'river', [
       p('You take the long way along the embankment, heels in your hand once the stones get slick. At the second bridge you see him in a shop window’s reflection: grey suit, no umbrella, thirty yards back. At the third you cut through a hotel lobby and out through its kitchens, and come up on the far side of the road in time to watch him stand at the river rail, looking the wrong way. You have never been so frightened. You have never felt so awake.'),
@@ -442,8 +624,37 @@ function eveningChoices(s: GameState): C7Choice[] {
   ];
 }
 
+/** Before the night: what Evelynn does with what she found. Chapter 8's break-in reads it (c7.notes). */
+function notesChoices(s: GameState): C7Choice[] {
+  const keep = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('notes-' + id, label, hint, 'close', (x) => {
+      set7(x, 'notes', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    keep('hide', 'Hide the notes where Adrian hid things', 'In the lining of the old jacket. Nobody searches a dead man’s coat.', [
+      p('You write it all out once, small, on two sheets of hotel notepaper, and fold them into the lining of Adrian’s old jacket, where he used to keep the spare key and the letter he never sent. It is the one thing in the wardrobe nobody has a reason to touch.'),
+      t('A dead man’s coat. Nobody searches the dead.'),
+    ]),
+    keep('burn', 'Learn it by heart and burn the paper', 'Nothing to find. Nothing to prove, either.', [
+      p('You read the notes three times, then once more with your eyes closed, then hold them over the sink with the lighter until there is nothing left but the smell. Adrian had a memory for filings that people used to find unsettling. It turns out it came with the rest of you.'),
+      t('If they want it now, they will have to take it out of me.'),
+    ]),
+    ...(get6(s, 'maya') === 'restored'
+      ? [
+          keep('maya', 'Send Maya a sealed copy', 'Insurance. It also makes her someone worth watching.', [
+            p('You photograph the notes and send them to Maya’s personal address with one line: “If I stop answering, open this. Not before.” She replies inside a minute with a single full stop. She has understood, and she has not argued, which frightens you more than an argument would.'),
+            t('Insurance. And a second person who can be hurt for knowing.'),
+          ], (x) => note7(x, 'notes-maya', 'Evelynn sent Maya a sealed copy of her findings, to open only if Evelynn stops answering.', 'Evelynn’s own message to Maya')),
+        ]
+      : []),
+  ];
+}
+
 function closeChoices(s: GameState): C7Choice[] {
   if (get7(s, 'evening-open')) return eveningChoices(s);
+  if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
   const partners = eveningPartners7(s);
   const c: C7Choice[] = [];
   if (partners.includes('julian'))
@@ -474,24 +685,58 @@ function closeChoices(s: GameState): C7Choice[] {
       partners.length ? 'Stay in tonight' : 'Carry it into tomorrow',
       partners.length ? 'Go to bed alone with what you found. Chapter 7 ends here.' : 'Chapter 7 ends here.',
       'complete',
+      (x) => [
+        p('You eat standing up at the counter, the way Adrian always did, then sit at the window with the lights off and watch the street. Nobody is on the bench. You watch it anyway, for an hour, until watching is a habit and not a fear.'),
+        ...(get7(x, 'card') === 'kept' || get7(x, 'card') === 'studied'
+          ? [p('Before bed you take the envelope out of the drawer and do not open it. Somewhere, C. is still waiting for breakfast.')]
+          : []),
+      ],
     ),
   );
   return c;
 }
 
+/** The day between the first door and the second (appended when a piece lands and the hub reopens). */
+function between7(x: GameState): Block[] {
+  return [
+    p('You sleep four hours and wake before the alarm with the finding still in your mouth like a taste. You dress properly anyway: the fitted black, the heels, your hair up, the face finished. Whatever you walk into next will look at you before it listens to you.'),
+    p(
+      get5(x, 'published')
+        ? 'Two more messages from Odile’s office, one from a television producer, and one from a number you do not have: a single photograph of your own front door, taken from across the street, this morning.'
+        : 'One message, from a number you do not have: a single photograph of your own front door, taken from across the street, this morning.',
+    ),
+    t('Someone wants me to know they are keeping up. Fine. So am I.'),
+  ];
+}
+/** A door's closing beat: when it lands the first piece and the hub reopens, the day between follows. */
+const withBetween = (choices: C7Choice[]): C7Choice[] =>
+  choices.map((c) =>
+    c.next === 'pursue'
+      ? {
+          ...c,
+          apply: (x) => {
+            const body = c.apply?.(x) ?? [];
+            return x.choices['c7.pursue-open'] ? body : [...body, ...between7(x)];
+          },
+        }
+      : c,
+  );
+
 // ── The hub ──
 
 export function ownChoices7(s: GameState): C7Choice[] {
-  if (s.phase === 'standing')
-    return [offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue')];
+  if (s.phase === 'standing') return standingChoices(s);
   if (s.phase === 'close') return closeChoices(s);
   if (s.phase !== 'pursue') return [];
   const open = get7(s, 'pursue-open');
   if (open === 'rook') return rookTrade(s);
+  if (open === 'rook-woman') return withBetween(rookWomanChoices(s));
   if (open === 'records') return recordsChoices(s);
+  if (open === 'records-dark') return withBetween(recordsDarkChoices(s));
   if (open === 'maya') return mayaChoices(s);
+  if (open === 'maya-photo') return withBetween(mayaPhotoChoices(s));
   if (open === 'audience') return audienceChoices(s);
-  if (open === 'audience-exit') return audienceExitChoices(s);
+  if (open === 'audience-exit') return withBetween(audienceExitChoices(s));
   const done = (k: string) => !!get7(s, 'done-' + k);
   const c: C7Choice[] = [];
   if (!done('records'))
@@ -519,7 +764,20 @@ export function ownChoices7(s: GameState): C7Choice[] {
               ? 'I saw you on the side of a bus. On the side of a bus, Evelynn. I nearly walked into a bin.'
               : 'I read you in Aster. In Aster, Evelynn. I read it twice on the train and nearly missed my stop.',
           ),
-          p('She pushes a glass across the table. “You look good. You look like somebody I’d be scared of.” For a while it is only this: her stories about Compliance, yours about photographers, the old easy rhythm, both of you laughing too loudly. It is the best hour you have had in weeks. Then you ask your question, and she goes quiet and looks at you properly.'),
+          p('She pushes a glass across the table. “You look good. You look like somebody I’d be scared of.”'),
+          q('Maya', 'Compliance has a new director. He calls everyone “team”. Daniel has started wearing a tie, which I think is a cry for help.'),
+          p('You tell her about the stylist with pins in her mouth, the photographer who asked you to “do the face you do”, the woman on the train who wanted an autograph for her mother and then admitted it was for herself. Maya laughs in the right places and in two of the wrong ones, which is how you know she is really listening.'),
+          q('Maya', 'Are you sleeping?'),
+          q('You', 'Some.'),
+          q('Maya', 'That’s a no. You used to say “some” when the answer was no.'),
+          t(
+            mayaKnowsWho7(x)
+              ? 'Used to. She has decided to talk to me the way she talked to him, and I have decided to let her.'
+              : unspokenAtCounter7(x)
+                ? 'Used to. Neither of us says anything about that.'
+                : 'Used to. She says it as if she has known me for years. She has. She just doesn’t know that she knows.',
+          ),
+          p('It is the best hour you have had in weeks. Then you ask your question, and she goes quiet and looks at you properly.'),
           q('Maya', 'Why do you want to know who signs a reuse authorisation?'),
         ];
       }),

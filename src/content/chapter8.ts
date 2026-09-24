@@ -76,6 +76,20 @@ export function place8(s: GameState): string | undefined {
 
 // ── Blocks ──
 
+/** Chapter 7's choice about her notes, answered by the break-in (c7.notes). */
+function notesAfterBreakIn8(s: GameState): Block[] {
+  const notes = get7(s, 'notes');
+  if (notes === 'hide')
+    return [
+      p('You go to the wardrobe with your heart hammering and put your hand inside the lining of Adrian’s old jacket. The notes are still there, folded twice, exactly as you left them. Whoever squared your papers did not think to search a dead man’s coat.'),
+    ];
+  if (notes === 'burn')
+    return [t('There was nothing on paper to find. They squared the bills and the Aster proofs and went away with nothing, and they will know that means it is all in my head.')];
+  if (notes === 'maya')
+    return [t('They found nothing here worth taking. Maya has the only copy. If they came for the notes, they will think of her next, and it was me who put her on the list.')];
+  return [];
+}
+
 function costBlocks(s: GameState): Block[] {
   const low = cash(s) < LOW_CASH;
   // Meridian is named here only if she found it herself in Chapter 7; advance names it for everyone.
@@ -85,6 +99,7 @@ function costBlocks(s: GameState): Block[] {
   const partner = get7(s, 'evening-outcome')?.startsWith('intimate') ? get7(s, 'evening') : undefined;
   return [
     p('You come home late and stop in the doorway. Nothing is missing. The papers are on the table where you left them, squared to the edge now, the way you never square anything. The window you always leave an inch open is shut. The room smells, very faintly, of a cigarette nobody in this building smokes.'),
+    ...notesAfterBreakIn8(s),
     t('Someone wanted me to know they could. That is worse than someone wanting me not to know.'),
     p(frame),
     ...(partner === 'julian'

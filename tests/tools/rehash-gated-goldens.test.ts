@@ -5,23 +5,26 @@ import { it, vi } from 'vitest';
 import type { GameEvent } from '../../src/state/actions';
 import { replay } from '../../src/state/reducer';
 import { encodeSave } from '../../src/persistence/saves';
+import { migrateGated } from '../gated-migration';
 
 /**
  * Skipped by default. EVE_REHASH_GATED=1 npx vitest run tests/tools/rehash-gated-goldens.test.ts
- * Chapters 6–9 are gated and unreleased, so an in-place text fix there may change their revision-19
- * save bytes. This keeps every ledger exactly as captured and refreshes only saveSha256. It refuses
- * to touch the Chapter 1–5 fixture, whose bytes must never change.
+ * Chapters 6–9 are gated and unreleased, so an in-place change there may change their revision-19
+ * saves. This replays every ledger, inserting the neutral picks in tests/gated-migration.ts where a
+ * new beat now stands in the way (a no-op when nothing was added), then refreshes events and
+ * saveSha256. It refuses to touch the Chapter 1–5 fixture, whose bytes must never change.
  */
 const files = ['6', '7', '8', '9'].map((n) => `tests/fixtures/rev19-chapter${n}-golden.json`);
 
-it.skipIf(!process.env.EVE_REHASH_GATED)('refreshes the Chapter 6–9 revision-19 save hashes', () => {
+it.skipIf(!process.env.EVE_REHASH_GATED)('migrates and refreshes the Chapter 6–9 revision-19 goldens', () => {
   for (const n of [6, 7, 8, 9]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
   for (const file of files) {
     const raw = readFileSync(resolve(file), 'utf8');
     const data = JSON.parse(raw) as { routes: { name: string; events: number; saveSha256: string; ledger: GameEvent[] }[] };
     for (const route of data.routes) {
+      route.ledger = migrateGated(route.ledger, 19);
       const state = replay(route.ledger, 19);
-      if (state.ledger.length !== route.events) throw new Error(`${file} ${route.name}: ledger no longer replays in full`);
+      route.events = state.ledger.length;
       route.saveSha256 = createHash('sha256').update(encodeSave(state)).digest('hex');
     }
     const indented = raw.startsWith('{\n');

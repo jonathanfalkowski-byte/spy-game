@@ -191,6 +191,12 @@ export function chapter9Blocks(s: GameState): Block[] {
       t('I have the name, and a case the size of my road. I went looking for a face on that board and found one I had already met, which means she has already met mine. Celeste has seen my face too. She saw it first, across a room at the Glass House, and she smiled.'),
       p('Near midnight there is a knock. When you open the door there is nobody in the corridor: only a single white orchid in a black pot on the mat, and a card tucked into the moss in a confident, looping hand.'),
       p('“Breakfast? — C.”'),
+      // Chapter 7's forwarded letter: the same hand, fourteen months on.
+      ...(['kept', 'studied'].includes(s.choices['c7.card'] ?? '')
+        ? [t('The same looping hand as the card from Singapore. For E., who always comes back. She waited fourteen months for Evelyn to come home to breakfast. Now she has decided I will do.')]
+        : s.choices['c7.card'] === 'burned'
+          ? [t('I burned the last one. It turns out she writes more than once.')]
+          : []),
     ];
   return [];
 }

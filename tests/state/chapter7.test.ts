@@ -9,6 +9,9 @@ import { eveningPartners7 } from '../../src/content/chapter7-own';
 import { currentPlace } from '../../src/ui/chapter4-presentation';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { resolveSceneArt } from '../../src/ui/scene-art';
+import { GATED_DEFAULTS } from '../gated-migration';
+import { readingBlocks } from '../../src/ui/reading-presentation';
+import { ownBlocks7 } from '../../src/content/chapter7-own';
 
 beforeEach(() => {
   vi.stubEnv('VITE_EVE_CHAPTER6', '1');
@@ -27,6 +30,12 @@ const walk = (s: GameState, path: string[]) => path.reduce(c7, s);
 const complete6 = (name: string) => replay(golden6.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 /** The own-power road on a real save (its suggestion is own-power, so confirm keeps it). */
 const standing = () => walk(complete6('public-decline-hold'), ['begin', 'route-confirm']);
+/** Through the standing morning (watcher, Odile, the letter) on the neutral picks, to the hub's door. */
+const ready = (s: GameState) => {
+  while (!ids(s).includes('standing-begin')) s = c7(s, ids(s).find((id) => GATED_DEFAULTS.includes('chapter7.' + id))!);
+  return s;
+};
+const begin = () => c7(ready(standing()), 'standing-begin');
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
   for (const [k, v] of Object.entries(flags)) if (v === undefined) delete x.choices[k];
@@ -92,11 +101,12 @@ it('stands alone with money that follows actual cash', () => {
   expect([s.phase, s.choices['route.entry']]).toEqual(['standing', 'built']);
   expect(text(s)).toContain('You wake in a life with your name on');
   expect(text(s)).toContain(Number(s.choices['own.cash']) >= 100 ? 'Enough to work with' : 'Barely enough, if nothing goes wrong.');
-  expect(ids(s)).toEqual(['standing-begin']);
+  expect(ids(ready(s))).toEqual(['standing-begin']);
+  expect(text(ready(s))).toContain('For E., who always comes back. Breakfast when you do. — C.');
 });
 
 it('offers each pursuit only when she has the means', () => {
-  const hub = c7(standing(), 'standing-begin');
+  const hub = begin();
   const offered = (flags: Record<string, string | undefined>) => ids(withFlags(hub, flags));
   const none = { 'c6.maya': undefined, 'c6.proof-opened': undefined, 'c5.published': undefined };
   expect(offered(none)).toEqual(['pursue-records', 'pursue-stop']);
@@ -107,24 +117,24 @@ it('offers each pursuit only when she has the means', () => {
 });
 
 it('keeps the thread pullable alone: records only reaches a lead, even at $0 with the fee unpaid', () => {
-  const broke = withFlags(c7(standing(), 'standing-begin'), { 'own.cash': '0' });
-  const lead = walk(broke, ['pursue-records', 'records-pay', 'pursue-stop']);
+  const broke = withFlags(begin(), { 'own.cash': '0' });
+  const lead = walk(broke, ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop']);
   expect([lead.phase, lead.choices['c7.finding'], lead.choices['c7.fee'], lead.choices['own.cash']]).toEqual(['close', 'lead', 'unpaid', '0']);
   expect(text(lead)).toContain('Meridian Holdings');
-  const paid = walk(withFlags(c7(standing(), 'standing-begin'), { 'own.cash': '500' }), ['pursue-records', 'records-pay']);
+  const paid = walk(withFlags(begin(), { 'own.cash': '500' }), ['pursue-records', 'records-pay']);
   expect([paid.choices['c7.fee'], paid.choices['own.cash']]).toEqual(['paid', '460']);
-  const nothing = c7(c7(standing(), 'standing-begin'), 'pursue-stop');
+  const nothing = c7(begin(), 'pursue-stop');
   expect([nothing.choices['c7.finding'], text(nothing).includes('So is the money you kept.')]).toEqual(['none', true]);
 });
 
 it('closes on the second piece with the shape, and sets the Chapter 8 hooks', () => {
-  const hub = withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'own.cash': '500' });
+  const hub = withFlags(begin(), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'own.cash': '500' });
   const sloaneBefore = hub.npcs.sloane.known.length;
-  const exposed = walk(hub, ['pursue-audience', 'plant-subtle', 'exit-crowd', 'pursue-records', 'records-pay']);
+  const exposed = walk(hub, ['pursue-audience', 'plant-subtle', 'exit-crowd', 'pursue-records', 'records-pay', 'dark-wait']);
   expect([exposed.phase, exposed.choices['c7.finding'], exposed.choices['own.exposed']]).toEqual(['close', 'shape', 'yes']);
   expect(exposed.npcs.sloane.known).toHaveLength(sloaneBefore + 1);
   expect(text(exposed)).toContain('Sloane’s directorate knows the independent one is asking.');
-  const owed = walk(hub, ['pursue-rook', 'rook-trade-debt']);
+  const owed = walk(hub, ['pursue-rook', 'rook-trade-debt', 'woman-river']);
   expect([owed.phase, owed.choices['own.alliance.rook'], owed.choices['own.piece.rook'], owed.choices['own.piece.rook-verified']]).toEqual(['pursue', 'owed', 'board', 'no']);
   const traded = walk(hub, ['pursue-rook', 'rook-trade-fact']);
   expect(optionalNpc(traded, 'rook')?.known.at(-1)?.key).toBe('Evelynn gave the sender one held evidence detail.');
@@ -134,9 +144,10 @@ it('closes on the second piece with the shape, and sets the Chapter 8 hooks', ()
 });
 
 it('plays a real own-power chapter to complete, and the save authenticates', () => {
-  let s = walk(standing(), ['standing-begin', 'pursue-records', 'records-pay']);
+  let s = walk(begin(), ['pursue-records', 'records-pay', 'dark-wait']);
   s = c7(s, ids(s).includes('pursue-rook') ? 'pursue-rook' : 'pursue-stop');
-  if (s.phase === 'pursue') s = c7(s, 'rook-trade-debt');
+  if (s.phase === 'pursue') s = walk(s, ['rook-trade-debt', 'woman-river']);
+  if (ids(s).includes('notes-hide')) s = c7(s, 'notes-hide');
   s = c7(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter7.complete');
   expect(chapter7Choices(s)).toEqual([]);
@@ -150,7 +161,7 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
 // ── Heat-and-danger pass: each hub door is a scene with its own choice, resolving to the same piece ──
 
 const richHub = () =>
-  withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'c6.maya': 'restored', 'own.cash': '500' });
+  withFlags(begin(), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'c6.maya': 'restored', 'own.cash': '500' });
 
 it('opens each hub door as a scene with its own choice and place, and resolves to the same piece', () => {
   const hub = richHub();
@@ -159,17 +170,37 @@ it('opens each hub door as a scene with its own choice and place, and resolves t
   expect([records.phase, ids(records)]).toEqual(['pursue', ['records-charm', 'records-pay']]);
   expect(currentPlace(records, 'x')).toBe('23:10 · Municipal registry · Night desk');
   const charmed = c7(records, 'records-charm');
-  expect([charmed.choices['c7.fee'], charmed.choices['own.cash'], charmed.choices['own.piece.records']]).toEqual(['waived', '500', 'meridian']);
+  expect([charmed.choices['c7.fee'], charmed.choices['own.cash'], charmed.choices['own.piece.records']]).toEqual(['waived', '500', undefined]);
   expect(text(charmed)).toContain('scored through so hard the pen went through the card');
-  expect(currentPlace(charmed, 'x')).toBe('x');
+  // The dark aisle is its own beat; the piece lands when she leaves the stacks.
+  expect(ids(charmed)).toEqual(['dark-call', 'dark-card', 'dark-wait']);
+  expect(currentPlace(charmed, 'x')).toBe('23:45 · Municipal registry · The stacks');
+  for (const pick of ['dark-call', 'dark-card', 'dark-wait']) {
+    const out = c7(charmed, pick);
+    expect([out.choices['own.piece.records'], out.choices['c7.records-dark']]).toEqual(['meridian', pick.slice(5)]);
+    expect(text(out)).toContain('Meridian Holdings');
+    expect(currentPlace(out, 'x')).toBe('x');
+  }
+  expect(text(c7(charmed, 'dark-card'))).toContain('a looped capital that might be a C');
   for (const [pick, knows] of [['maya-truth', 'more'], ['maya-shield', 'little']] as const) {
     const maya = c7(c7(hub, 'pursue-maya'), pick);
-    expect([maya.choices['own.maya-knows'], maya.choices['own.piece.maya'], maya.choices['c7.maya-photographed']]).toEqual([knows, 'directorate', 'yes']);
+    expect([maya.choices['own.maya-knows'], maya.choices['own.piece.maya'], maya.choices['c7.maya-photographed']]).toEqual([knows, undefined, 'yes']);
     expect(text(maya)).toContain('Whatever comes for me now knows her face.');
+    expect(ids(maya)).toEqual(['photo-chase', 'photo-walk', 'photo-let']);
+    expect(currentPlace(maya, 'x')).toBe('23:40 · Outside the Lantern');
+    for (const photo of ['photo-chase', 'photo-walk', 'photo-let'])
+      expect(c7(maya, photo).choices['own.piece.maya']).toBe('directorate');
   }
+  expect(text(c7(c7(c7(hub, 'pursue-maya'), 'maya-shield'), 'photo-chase'))).toContain('Evelynn Vale plus companion');
   const rook = c7(hub, 'pursue-rook');
   expect(currentPlace(rook, 'x')).toBe('02:00 · The old ferry terminal');
-  expect(text(c7(rook, 'rook-trade-debt'))).toContain('The woman under the timetable isn’t mine.');
+  const traded = c7(rook, 'rook-trade-debt');
+  expect(text(traded)).toContain('The woman under the timetable isn’t mine.');
+  expect([ids(traded), traded.choices['own.piece.rook']]).toEqual([['woman-follow', 'woman-river'], undefined]);
+  expect(currentPlace(traded, 'x')).toBe('02:20 · The embankment');
+  const followed = c7(traded, 'woman-follow');
+  expect([followed.choices['own.piece.rook'], followed.choices['c7.rook-woman']]).toEqual(['board', 'follow']);
+  expect(text(followed)).toContain('They did good work on you.');
 });
 
 it('plays the interview: three ways to plant the question, two ways home, the same warning', () => {
@@ -185,7 +216,7 @@ it('plays the interview: three ways to plant the question, two ways home, the sa
   for (const [pick, mode, exposed, theo] of modes) {
     const planted = c7(studio, pick);
     expect([planted.choices['c7.audience-mode'], planted.choices['own.exposed'], planted.choices['c7.theo']]).toEqual([mode, exposed, theo]);
-    expect(ids(planted)).toEqual(['exit-crowd', 'exit-river']);
+    expect(ids(planted)).toEqual(['exit-crowd', 'exit-theo', 'exit-river']);
     expect(text(planted)).toContain('You stand like someone taught you to stand quite recently.');
   }
   for (const exit of ['exit-crowd', 'exit-river']) {
@@ -197,7 +228,7 @@ it('plays the interview: three ways to plant the question, two ways home, the sa
 
 it('offers a chosen evening only with a partner she already chose, consent-gated, and it fades', () => {
   const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
-  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'pursue-stop']);
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide']);
   const alone = withFlags(atClose, romance);
   expect(eveningPartners7(alone)).toEqual([]);
   expect(chapter7Choices(alone).map((c) => c.label)).toEqual(['Carry it into tomorrow']);
@@ -229,7 +260,7 @@ it('offers a chosen evening only with a partner she already chose, consent-gated
 });
 
 it('writes the celebrity scenes from what Chapter 5 actually published and what Maya already knows', () => {
-  const hub = (flags: Record<string, string | undefined>) => withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.maya': 'restored', ...flags });
+  const hub = (flags: Record<string, string | undefined>) => withFlags(begin(), { 'c5.published': 'yes', 'c6.maya': 'restored', ...flags });
   const words = c7(hub({ 'c5.image-use': 'none' }), 'pursue-audience');
   expect(text(words)).toContain('since the Aster piece');
   expect(text(words)).not.toContain('famous back');
@@ -238,4 +269,86 @@ it('writes the celebrity scenes from what Chapter 5 actually published and what 
   const told = c7(c7(hub({ 'c6.maya-knows': 'in-person' }), 'pursue-maya'), 'maya-truth');
   expect(text(told)).toContain('she has known since the counter');
   expect(text(told)).not.toContain('never Adrian');
+});
+
+// ── Deepening pass 2: the standing morning ──
+
+const choose = (s: GameState, id: string) => c7(s, id);
+
+it('runs the famous morning as scenes: the watcher, Odile’s offer, then the letter', () => {
+  const famous = withFlags(standing(), { 'c5.published': 'yes', 'own.cash': '200' });
+  expect(ids(famous)).toEqual(['watcher-follow', 'watcher-paper', 'watcher-ignore']);
+  const followed = choose(famous, 'watcher-follow');
+  expect(text(followed)).toContain('a parking permit with a green H on it');
+  expect(text(followed)).toContain('Odile Frayne');
+  expect(ids(followed)).toEqual(['campaign-take', 'campaign-terms', 'campaign-refuse']);
+  expect(text(choose(famous, 'watcher-paper'))).toContain('WELCOME BACK');
+  const taken = choose(followed, 'campaign-take');
+  // The campaign pays in thirty days: cash is unchanged now, and the chapter's money pressure holds.
+  expect([taken.choices['own.campaign'], taken.choices['own.cash']]).toEqual(['taken', '200']);
+  expect(text(taken)).toContain('For E., who always comes back.');
+  expect(ids(taken)).toEqual(['card-keep', 'card-study', 'card-burn']);
+  expect(choose(followed, 'campaign-terms').choices['own.campaign']).toBe('terms');
+  expect(choose(followed, 'campaign-refuse').choices['own.campaign']).toBeUndefined();
+  const studied = choose(taken, 'card-study');
+  expect(text(studied)).toContain('a release instruction');
+  expect(ids(studied)).toEqual(['standing-begin']);
+});
+
+it('gives the quiet morning the letter straight away, and no watcher or offer', () => {
+  const quiet = withFlags(standing(), { 'c5.published': undefined });
+  expect(ids(quiet)).toEqual(['card-keep', 'card-study', 'card-burn']);
+  const morning = ownBlocks7(quiet).map((b) => b.text).join(' ');
+  expect(morning).toContain('For E., who always comes back.');
+  expect(morning).not.toContain('Odile');
+  expect(ownBlocks7(withFlags(quiet, { 'c5.published': 'yes' })).map((b) => b.text).join(' ')).not.toContain('For E., who always comes back.');
+  for (const [pick, kept] of [['card-keep', 'kept'], ['card-study', 'studied'], ['card-burn', 'burned']] as const)
+    expect(choose(quiet, pick).choices['c7.card']).toBe(kept);
+});
+
+it('lets staying in remember the letter', () => {
+  const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
+  const atClose = withFlags(walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-burn']), romance);
+  const kept = c7(withFlags(atClose, { 'c7.card': 'kept' }), 'close-end');
+  expect(text(kept)).toContain('Somewhere, C. is still waiting for breakfast.');
+  const burned = c7(withFlags(atClose, { 'c7.card': 'burned' }), 'close-end');
+  expect(text(burned)).toContain('until watching is a habit and not a fear');
+  expect(text(burned)).not.toContain('still waiting for breakfast');
+});
+
+it('asks what she does with what she found before the night, and offers Maya only if Maya is back', () => {
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop']);
+  expect(atClose.choices['c7.finding']).toBe('lead');
+  expect(ids(atClose)).toEqual(['notes-hide', 'notes-burn', 'notes-maya']);
+  expect(ids(withFlags(atClose, { 'c6.maya': undefined }))).toEqual(['notes-hide', 'notes-burn']);
+  const sent = c7(atClose, 'notes-maya');
+  expect([sent.phase, sent.choices['c7.notes']]).toEqual(['close', 'maya']);
+  expect(text(sent)).toContain('If I stop answering, open this.');
+  expect(ids(sent)).not.toContain('notes-hide');
+  const nothing = c7(begin(), 'pursue-stop');
+  expect(ids(nothing)).not.toContain('notes-hide');
+});
+
+it('lets Theo buy the drink, and tells her a board wanted the tape', () => {
+  const home = c7(c7(c7(richHub(), 'pursue-audience'), 'plant-theo'), 'exit-theo');
+  expect([home.choices['c7.exit'], home.choices['own.piece.audience']]).toEqual(['theo', 'adjacent']);
+  expect(text(home)).toContain('Said they sat on a board');
+});
+
+it('follows the first door with the day between, and only the first', () => {
+  const one = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait']);
+  expect(one.phase).toBe('pursue');
+  expect(text(one)).toContain('a single photograph of your own front door');
+  const two = walk(one, ['pursue-rook', 'rook-trade-debt', 'woman-river']);
+  expect(two.phase).toBe('close');
+  expect(text(two).split('a single photograph of your own front door').length - 1).toBe(1);
+});
+
+it('keeps Chapter 7 records in the journal, out of the reading view, except money moving', () => {
+  const s = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait']);
+  const shown = s.history.flatMap((h) => readingBlocks(h.blocks, h.node, s.contentRevision)).map((b) => b.text).join('\n');
+  expect(text(s)).toContain('trace to Meridian Holdings, whose only named officer is an initial');
+  expect(shown).not.toContain('whose only named officer is an initial');
+  expect(shown).toContain('Spent $40 on records fees.');
+  expect(shown).toContain('Meridian Holdings');
 });

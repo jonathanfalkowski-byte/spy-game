@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 199,
+      "events": 204,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "91db4dc70f801b648447314686d11aa0577f262fbd81a537e6ff95eec2d3c9f8",
+      "saveSha256": "d25ff49e3ba5732c64db98bd8e50cc141cd74edb9cde3e279cd098b0eaa1008b",
       "ledger": [
         {
           "sequence": 1,
@@ -1508,7 +1508,7 @@
           "sequence": 189,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.standing-begin",
+            "id": "chapter7.watcher-ignore",
             "expectedRevision": 188
           }
         },
@@ -1516,7 +1516,7 @@
           "sequence": 190,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-records",
+            "id": "chapter7.campaign-refuse",
             "expectedRevision": 189
           }
         },
@@ -1524,7 +1524,7 @@
           "sequence": 191,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.records-pay",
+            "id": "chapter7.card-keep",
             "expectedRevision": 190
           }
         },
@@ -1532,7 +1532,7 @@
           "sequence": 192,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-stop",
+            "id": "chapter7.standing-begin",
             "expectedRevision": 191
           }
         },
@@ -1540,47 +1540,47 @@
           "sequence": 193,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.pursue-records",
             "expectedRevision": 192
           }
         },
         {
           "sequence": 194,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.records-pay",
             "expectedRevision": 193
           }
         },
         {
           "sequence": 195,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.dark-wait",
             "expectedRevision": 194
           }
         },
         {
           "sequence": 196,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.pursue-stop",
             "expectedRevision": 195
           }
         },
         {
           "sequence": 197,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.notes-hide",
             "expectedRevision": 196
           }
         },
         {
           "sequence": 198,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 197
           }
         },
@@ -1588,19 +1588,59 @@
           "sequence": 199,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.begin",
             "expectedRevision": 198
+          }
+        },
+        {
+          "sequence": 200,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.cost-continue",
+            "expectedRevision": 199
+          }
+        },
+        {
+          "sequence": 201,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.leverage-audience",
+            "expectedRevision": 200
+          }
+        },
+        {
+          "sequence": 202,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.gala-carpet",
+            "expectedRevision": 201
+          }
+        },
+        {
+          "sequence": 203,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.advance-continue",
+            "expectedRevision": 202
+          }
+        },
+        {
+          "sequence": 204,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 203
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 217,
+      "events": 221,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "2944ea33803ac0f27a3e11734ae4104c8b5841d608de0b513bc70f33a893f957",
+      "saveSha256": "232f7a2ef6abffc5e52e0a5467a6400cf6f2481fe417d33d5abde62c5711beb4",
       "ledger": [
         {
           "sequence": 1,
@@ -3236,7 +3276,7 @@
           "sequence": 206,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.standing-begin",
+            "id": "chapter7.card-keep",
             "expectedRevision": 205
           }
         },
@@ -3244,7 +3284,7 @@
           "sequence": 207,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-rook",
+            "id": "chapter7.standing-begin",
             "expectedRevision": 206
           }
         },
@@ -3252,7 +3292,7 @@
           "sequence": 208,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.rook-trade-debt",
+            "id": "chapter7.pursue-rook",
             "expectedRevision": 207
           }
         },
@@ -3260,7 +3300,7 @@
           "sequence": 209,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-records",
+            "id": "chapter7.rook-trade-debt",
             "expectedRevision": 208
           }
         },
@@ -3268,7 +3308,7 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.records-pay",
+            "id": "chapter7.woman-river",
             "expectedRevision": 209
           }
         },
@@ -3276,39 +3316,39 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.pursue-records",
             "expectedRevision": 210
           }
         },
         {
           "sequence": 212,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.records-pay",
             "expectedRevision": 211
           }
         },
         {
           "sequence": 213,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.dark-wait",
             "expectedRevision": 212
           }
         },
         {
           "sequence": 214,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-rook",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.notes-hide",
             "expectedRevision": 213
           }
         },
         {
           "sequence": 215,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.debt-true",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 214
           }
         },
@@ -3316,7 +3356,7 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.begin",
             "expectedRevision": 215
           }
         },
@@ -3324,19 +3364,51 @@
           "sequence": 217,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 216
+          }
+        },
+        {
+          "sequence": 218,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.leverage-rook",
+            "expectedRevision": 217
+          }
+        },
+        {
+          "sequence": 219,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.debt-true",
+            "expectedRevision": 218
+          }
+        },
+        {
+          "sequence": 220,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.advance-continue",
+            "expectedRevision": 219
+          }
+        },
+        {
+          "sequence": 221,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 220
           }
         }
       ]
     },
     {
       "name": "own-maya-nothing",
-      "events": 206,
+      "events": 209,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "396258518482ee97fbc2f6dcebbf5ae25aded078660988dd653834174e0e2de9",
+      "saveSha256": "f7ae189ceef1bc278279b3130fe95686854cf775e5566b47603decdb573235c5",
       "ledger": [
         {
           "sequence": 1,
@@ -4908,7 +4980,7 @@
           "sequence": 198,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.standing-begin",
+            "id": "chapter7.watcher-ignore",
             "expectedRevision": 197
           }
         },
@@ -4916,7 +4988,7 @@
           "sequence": 199,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-stop",
+            "id": "chapter7.campaign-refuse",
             "expectedRevision": 198
           }
         },
@@ -4924,31 +4996,31 @@
           "sequence": 200,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.card-keep",
             "expectedRevision": 199
           }
         },
         {
           "sequence": 201,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.standing-begin",
             "expectedRevision": 200
           }
         },
         {
           "sequence": 202,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.pursue-stop",
             "expectedRevision": 201
           }
         },
         {
           "sequence": 203,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 202
           }
         },
@@ -4956,7 +5028,7 @@
           "sequence": 204,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "id": "chapter8.begin",
             "expectedRevision": 203
           }
         },
@@ -4964,7 +5036,7 @@
           "sequence": 205,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 204
           }
         },
@@ -4972,8 +5044,32 @@
           "sequence": 206,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 205
+          }
+        },
+        {
+          "sequence": 207,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.gala-carpet",
+            "expectedRevision": 206
+          }
+        },
+        {
+          "sequence": 208,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.advance-continue",
+            "expectedRevision": 207
+          }
+        },
+        {
+          "sequence": 209,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 208
           }
         }
       ]

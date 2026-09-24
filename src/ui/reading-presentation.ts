@@ -257,7 +257,17 @@ function choiceLabelAsNotice(blocks: Block[], node?: string): Block[] {
   return [{ kind: 'notice', text: 'Your choice: ' + label }, ...rest];
 }
 
+/** A sourced record (note7/note8/note9: a summary notice and its "Source:" line) belongs to the journal.
+ * In Chapters 7–9 it would otherwise sit above the scene it summarises and spoil it. Money moving stays. */
+const journalRecord = (blocks: Block[], node?: string) =>
+  /^chapter[789]\./.test(node ?? '') &&
+  blocks.length === 2 &&
+  blocks.every((b) => b.kind === 'notice') &&
+  blocks[1].text.startsWith('Source: ') &&
+  !/^(Spent|Received) \$|fee is unpaid/.test(blocks[0].text);
+
 export function readingBlocks(blocks: Block[], node?: string, contentRevision?: number): Block[] {
+  if (journalRecord(blocks, node)) return [];
   const authoredBlocks =
     hasRevision18Presentation(contentRevision)
       ? blocks.map((block) => ({ ...block, text: renderRevision18Text(block.text, node) }))
