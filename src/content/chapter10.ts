@@ -617,72 +617,150 @@ const labels: Record<Target10, Record<Answer, [string, string]>> = {
   },
 };
 
-/** A job is played in two halves around one moment inside it (pass 2): the order sets c10.job, the moment ends it. */
+/** A job is a set piece played in two halves around one moment (docs/story/scripts/CHAPTER_10_SHE_KNOWS_SCRIPT.md):
+ * the order sets c10.job, the moment ends it. Refusals share one night, opened by what she walked away from. */
 type Beat = [id: string, label: string, hint: string, body: (x: GameState) => Block[]];
-type Job = { open: (s: GameState) => Block[]; beats: (s: GameState) => Beat[]; close: (s: GameState) => Block[] };
+type Job = {
+  open: (s: GameState) => Block[];
+  beats: (s: GameState) => Beat[];
+  /** A second moment, where the set piece has one: its lead-in, then its choices (held in c10.job-after). */
+  bridge?: (s: GameState) => Block[];
+  after?: (s: GameState) => Beat[];
+  close: (s: GameState) => Block[];
+};
 
-/** Refusing is the same moment whatever she refused: the black phone, at three in the morning. */
+const refuseNight = (): Block[] => [
+  p('You do not sleep. You lie on your back in the dark with the wall across the room from you, the cards pale in the streetlight, and you do the arithmetic Adrian was always good at: what she holds, what she wants, what she said she would do. Nine days. A renewal. Maya at the counter with her coat still on, the chipped mug, eleven years.'),
+  t('I have refused things before. I refused the promotion speech I had written for myself when it went to Priya. I refused to cry in Sloane’s office. I have never refused anything that cost somebody else.'),
+  p('You make yourself imagine it the way Adrian imagined risks, in order and all the way through: a letter on Compliance letterhead, a review room with no window, three questions, two of them about you. A badge taken at a gate by a guard who used to say good morning. Maya in her coat on the pavement outside Axiom at ten in the morning with nowhere to be.'),
+  t('If I am going to choose this, I am going to know exactly what I chose. I owe her that much. It is a very small much.'),
+  p('Once, around two, you get up and stand in front of the wall in the dark, and put your finger on Maya’s card, the one outside the thread, and leave it there for a long time, as if it could feel it.'),
+  p('At three in the morning the black phone starts to ring.'),
+];
 const refuseBeats = (): Beat[] => [
   ['job-answer', 'Answer it', 'Hear her say it.', () => [
-    p('You take it out of the drawer and answer it, and say nothing.'),
-    p('Her voice, for the first time on this phone, is soft with sleep, or with something that sounds like it.'),
+    p('You pick it up and answer it, and say nothing.'),
+    p('Her voice, for the first time on this phone, is soft with sleep, or with something that sounds like it. There is music somewhere behind her, very low, and the clink of a glass being set down on stone.'),
     q('C.', 'I did so hope you would say yes. Never mind. Tell Maya I’m sorry. I rather liked her photograph.'),
-    p('The line goes dead. You sit on the edge of the bed with the phone in your hand until it is light.'),
+    p('The line goes dead. You sit on the edge of the bed with the phone in your hand until it is light, and the whole time the only thing you can think is that she has seen a photograph of Maya, and you have not seen the photograph, and you do not know where it was taken.'),
   ]],
   ['job-ignore', 'Let it ring', 'Don’t give her your voice.', () => [
-    p('It rings nine times. You count. Then it stops, and lights once more with a message.'),
+    p('It rings nine times. You count. You lie very still, as if it could hear you breathing, and on the ninth ring it stops, and the room is louder for it.'),
+    p('Then it lights once more with a message.'),
     q('C.', 'Nine days, darling. Eight, now.'),
   ]],
 ];
-const refuseClose = (): Block[] => [t('It is not me she will do it to.')];
+const refuseClose = (): Block[] => [
+  p('At six the light comes up grey behind the curtains. You get up and shower and dress properly, hair up and pinned, the face finished, because whatever arrives today you are going to meet it looking like someone who chose this.'),
+  p('The black phone is quiet. The bakery shutters go up. Across the road the bench is empty, and you look at it for a long time before you understand that its being empty is also a message: nobody needs to watch you any more this morning. Whatever was going to happen has already been set in motion somewhere else.'),
+  t('It is not me she will do it to. It was never going to be me.'),
+];
 
 const jobs: Record<Target10, Record<Answer, Job>> = {
   tape: {
     comply: {
       open: (s) => [
-        p(
-          intimate7(s, 'theo')
-            ? 'Theo gave you a key to the loading-bay door the morning after, laughing, “so you never have to charm the night man.” You use it at midnight.'
-            : 'The night producer remembers you from the show and lets you in for “a thing I left in the green room”, and does not think about it again.',
-        ),
-        p('The archive is two floors down, under the studio: shelves of drives and old tape in grey boxes, one work lamp, the hum of the air handling. Your segment is where anyone would file it, under the date, labelled in Theo’s untidy capitals: VALE — RAW — DO NOT RELEASE.'),
-        p('The copy takes eleven minutes. You watch the progress bar and not the monitor, where your own face is asking, twenty-five times a second, who signs for a stolen life.'),
-        p('At minute nine there are footsteps on the iron stair. Theo’s footsteps; you know them now. He has come back for the reading glasses he always forgets.'),
+        ...(intimate7(s, 'theo')
+          ? [
+              p('Theo gave you a key to the loading-bay door the morning after, laughing, pressing it into your palm with his hand over yours: “So you never have to charm the night man.” You have not used it. You use it now, at ten to midnight, in the rain, with your collar up.'),
+              p('The lock turns as if it has been waiting for you. Inside, the loading bay smells of wet cable and cold coffee, and the stage beyond it is dark: the two low chairs still set out under the dead lights, the glass of water nobody drank still on the table.'),
+            ]
+          : [
+              p('The studio on the river looks different at midnight: the big letters on the roof switched off, the car park empty, one light in the security booth. The night producer is a boy with a lanyard and a sandwich who remembers you from the show and would very much like you to remember him.'),
+              q('Night producer', 'Ms Vale! Did you — is everything —'),
+              q('You', 'I left something in the green room. A scarf. I won’t be a minute.'),
+              p('He lets you in himself, holding the door, apologising for the rain as if it were his fault, and does not think about it again. You are counting on that. You are counting, you realise, on being the kind of woman nobody thinks about twice after she has smiled at them.'),
+            ]),
+        p('The archive is two floors down, under the studio, reached by an iron stair that rings under your heels however carefully you take it. At the bottom: a long, low room of steel shelving, drives in labelled trays and older tapes in grey boxes going back decades, one work lamp on a trolley, and the air handling breathing somewhere overhead like something asleep.'),
+        p('Your segment is where anyone would file it: under the date, in a tray on the third shelf, labelled in Theo’s untidy capitals. VALE — RAW — DO NOT RELEASE. He has underlined DO NOT twice.'),
+        t('He underlined it for me. He was keeping it safe for me. That is what I am about to steal.'),
+        p('The copy station is an old machine with a cracked plastic cover and a progress bar that moves as if it resents you. You plug in the drive that came with the black phone and start it, and it tells you eleven minutes.'),
+        p('You do not watch the monitor. The monitor is showing the raw feed, silent, and on it your own face is leaning toward Theo’s, asking, twenty-five times a second, who signs for a stolen life. You watch the progress bar instead. You watch your hands. They are very steady. You have started to hate how steady they are.'),
+        p('At minute nine there are footsteps on the iron stair. You know them at once, which is its own small shock: you know the rhythm of his walk now, the slight drag of the left heel. Theo. He has come back for the reading glasses he always forgets.'),
       ],
       beats: () => [
         ['job-lie', 'Tell him you left something in the green room', 'He might believe you. He might decide to.', (x) => {
           set10(x, 'theo-suspects', 'maybe');
           return [
-            q('You', 'I left my scarf in the green room. The night man let me in.'),
-            p('Theo looks at you, and at the lamp, and at the screen behind you where the progress bar is still crawling, and you watch him decide not to see it.'),
+            q('You', intimate7(x, 'theo') ? 'I left my scarf in the green room. I used your key; I didn’t want to wake anyone.' : 'I left my scarf in the green room. The night man let me in. I got lost looking for it.'),
+            p('Theo stops at the foot of the stair. He looks at you, and at the lamp, and at the screen behind you where the progress bar is still crawling, and you watch him decide not to see it. It takes him exactly as long as it takes to decide anything that matters.'),
             q('Theo Marr', 'Your scarf. Of course.'),
-            p('He kisses your cheek, finds his glasses on the shelf where he always leaves them, and goes back up the stairs, and you stand very still until the door at the top closes.'),
+            p('He finds his glasses on the shelf where he always leaves them, and puts them in his breast pocket, and kisses your cheek on his way past, and at the foot of the stair he stops with his hand on the rail.'),
+            q('Theo Marr', 'Evelynn. Whatever it is, you could just ask me.'),
+            p('Then he goes up, and you stand very still until the door at the top closes.'),
             t('He didn’t look. I am almost sure he didn’t look. I am going to have to live with almost.'),
           ];
         }],
         ['job-hide', 'Kill the lamp and stand in the dark', 'Let him find nothing.', (x) => {
           set10(x, 'theo-suspects', 'yes');
           return [
-            p('You kill the lamp. The screen still glows, so you stand in front of it. The footsteps stop at the bottom of the stair.'),
+            p('You kill the lamp. The screen still glows, so you stand in front of it, your back to your own face. The footsteps stop at the bottom of the stair.'),
             q('Theo Marr', '…Hello?'),
-            p('A long moment: long enough to hear him breathing, and the air handling, and the tiny tick of the drive.'),
+            p('A long moment: long enough to hear him breathing, and the air handling, and the tiny, patient tick of the drive. Long enough for you to wonder what you will say if he turns on the light.'),
             q('Theo Marr', 'Goodnight, then.'),
             p('He says it to the dark, gently, and goes back up without his glasses.'),
             t('He knew. Or he knew someone was here and chose not to know who. Either way, he said goodnight to me.'),
           ];
         }],
       ],
+      bridge: (s) => [
+        p('The bar reaches the end. The machine clicks, as if satisfied. You unplug the drive and put the tray back exactly where it was, the label facing out, and on your way up the iron stair you take the steps at their outside edges, where they ring least.'),
+        ...(intimate7(s, 'theo')
+          ? [
+              p('At the top the loading-bay door has swung shut behind him, and for one bad second you think he has locked it. He hasn’t. He never locks anything. It is the kind of thing you would have loved about him, a week ago.'),
+              p('Across the car park the security booth is lit. The guard inside has looked up from his screen, and is looking at you.'),
+            ]
+          : [
+              p('On the way out the night producer is still at his desk with the sandwich. He asks whether you found your scarf, and you hold up the empty hand you have been keeping a little behind you, and say no, and he says he’ll keep an eye out, and means it.'),
+              q('Night producer', 'Could I — sorry — could I get a picture? For my sister. She’s got your poster on her wall.'),
+            ]),
+      ],
+      after: (s) =>
+        intimate7(s, 'theo')
+          ? [
+              ['seen-wave', 'Wave to him', 'Be a woman with every right to be here.', (x) => {
+                set10(x, 'seen', 'guard');
+                return [
+                  p('You lift a hand, the way you would to a doorman you knew. After a moment he lifts his back, and goes back to his screen.'),
+                  t('He will remember a woman waving. He will not remember a woman hiding. That is the whole of the trick.'),
+                ];
+              }],
+              ['seen-hood', 'Turn up your collar and keep walking', 'Give him a coat and a pair of heels, nothing more.', (x) => {
+                set10(x, 'seen', 'none');
+                return [
+                  p('You turn your collar up and keep your face to the rain and walk, not fast, to the gate. Behind you the booth light does not change.'),
+                  t('If he writes anything down, it will be a coat and a pair of heels. Half the city owns both.'),
+                ];
+              }],
+            ]
+          : [
+              ['seen-photo', 'Smile for his sister', 'Kind, and on the record.', (x) => {
+                set10(x, 'seen', 'photo');
+                return [
+                  p('You smile for his sister. The flash goes off in the empty lobby, and he thanks you three times, and on the photograph, time-stamped 00:31, you are standing in Theo Marr’s studio with nothing in your hands.'),
+                  t('An alibi and a piece of evidence in the same frame. I will have to decide later which one it is.'),
+                ];
+              }],
+              ['seen-no', 'Tell him another time', 'Kindly. Leave no picture behind.', (x) => {
+                set10(x, 'seen', 'none');
+                return [p('You tell him another time, kindly, and he goes pink and says of course, and you leave him with his sandwich and his disappointment and no picture of you at all.')];
+              }],
+            ],
       close: (s) => [
         t(intimate7(s, 'theo') ? 'He slept beside me. He did not turn the pad over. And I am stealing his tape with his key.' : 'He said no to her office. He would have said yes to me. That is exactly why she sent me.'),
-        p('At one in the morning you hand a sealed envelope to the night doorman at the Lindqvist, who takes it without a word, as if he has been expecting it all his life.'),
+        p('At one in the morning you hand a sealed envelope to the night doorman at the Lindqvist. He takes it without a word, as if he has been expecting it all his life, and wishes you goodnight by name.'),
+        p('You walk home. It is a long way and you walk all of it, in the heels, in the rain, because a taxi would get you home too quickly and you would have to be inside with what you have done.'),
+        t('I was good at it. I am going to have to stop being surprised by that.'),
       ],
     },
     refuse: {
-      open: () => [
-        p('You go as far as the loading bay. You stand in the rain with your hand on the door and think about Theo at his desk, turning a legal pad face down so that you would not have to see it.'),
+      open: (s) => [
+        p('You go as far as the loading bay. The studio is dark except for the security booth, and the rain is coming sideways off the river, and you stand at the door with your hand flat against it.'),
+        p(intimate7(s, 'theo') ? 'The key he gave you is in your pocket. You can feel the teeth of it through the lining.' : 'Through the glass you can see the night producer eating his sandwich, waiting for the kind of woman nobody thinks about twice.'),
+        p('You think about Theo at his desk, turning a legal pad face down so that you would not have to see it. You think about DO NOT, underlined twice, in a hand you would know anywhere now.'),
         p('Then you take your hand off the door and walk home the long way, along the river, and put the black phone in a drawer.'),
         t('I will not be her courier. Whatever she does to me for it, I will not be that.'),
-        p('At three in the morning the drawer starts to ring.'),
+        ...refuseNight(),
       ],
       beats: refuseBeats,
       close: refuseClose,
@@ -691,9 +769,10 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
       open: () => [
         p('You call Theo at midnight and he answers on the first ring, as if he had been waiting for a call he could not name.'),
         q('You', 'Somebody wants the raw tape of my interview. The same somebody who rang your office. If I don’t get it for them, a friend of mine loses her job.'),
-        p('A long silence on the line. When he speaks again, the television voice is gone.'),
+        p('The silence on the line is long enough that you can hear his flat around him: rain on a skylight, a radio very low, a chair creaking as he sits up. When he speaks again, the television voice is gone.'),
         q('Theo Marr', 'Then let’s give them a tape.'),
-        p('He meets you at the archive in a jumper and reading glasses. Before he touches the tape, he turns his chair to face you.'),
+        p('He meets you at the loading bay twenty minutes later in a jumper and reading glasses with an old wax jacket over both, lets you in with his own key, and does not turn a single light on until you are both downstairs.'),
+        p('In the archive he pulls two chairs up to the copy station, sits in one, and turns it to face you, and for a moment he is not Theo Marr at all: just a tired man of forty in the middle of the night, deciding how much trouble he is about to get into.'),
         q('Theo Marr', 'One condition. Tell me who it is.'),
       ],
       beats: () => [
@@ -701,20 +780,45 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
           setKey(x, 'act3.theo-knows', 'celeste');
           return [
             q('You', 'Celeste Laurent.'),
-            p('He takes his glasses off and cleans them and puts them back on, the way a man does when he needs a second that nobody will notice.'),
-            q('Theo Marr', 'The old friend from the photograph. Of course it is.'),
+            p('He takes his glasses off and cleans them on the hem of his jumper and puts them back on, the way a man does when he needs a second that nobody will notice.'),
+            q('Theo Marr', 'The old friend from the photograph. Of course it is. I had her on my list of people to ask about you. I had her quite near the top.'),
             t('Now he knows. Now he is a risk to her, and she is a risk to him, and I did that.'),
           ];
         }],
         ['job-withhold', 'Not yet', 'Keep him safe from the name, for now.', () => [
           q('You', 'Not yet. Not because I don’t trust you. Because I do.'),
+          p('He looks at you over his glasses for a long moment, the look he gives guests who have said the true thing by accident.'),
           q('Theo Marr', 'Then I’ll cut blind. I’m very good blind.'),
         ]],
       ],
+      bridge: () => [
+        p('Then he works. You have never watched an editor work before. He does not touch the machine at first. He plays the raw feed with the sound up and listens to your question three times with his eyes closed, marking in and out points in pencil on a pad, like a man tuning an instrument by ear.'),
+        q('Theo Marr', 'There. That’s where you stop being a guest and start being a story. Four seconds of breath either side. I’ll lose the lot.'),
+        p('For two hours you watch him take your segment apart and put it back together without the one thing that matters. The question goes. So do the breath you took before you asked it and the silence after. What is left is a long, charming conversation about dresses, and a seam in the timecode that only a professional would ever see.'),
+        q('Theo Marr', 'Anyone who knows what they’re looking at will know it’s been cut. Which is rather the point, isn’t it? You want her to know you said no, without ever having to say it.'),
+        p('At four he sends it himself, from his own address, with a note that says only: “As requested. — T.M.” Then he takes off his glasses and rubs his eyes and laughs quietly at nothing.'),
+        q('Theo Marr', 'I haven’t had this much fun since a minister tried to sue me. Go home. Sleep. I’ll be here when she notices.'),
+        p('At the loading bay he stops you with a hand on your arm, the first time he has touched you all night.'),
+        q('Theo Marr', 'When you’re ready to tell me the rest, I want it on the record. Not for the show. For me.'),
+      ],
+      after: () => [
+        ['bay-kiss', 'Kiss him', 'You want to. That is reason enough tonight.', (x) => {
+          set10(x, 'theo-bay', 'kiss');
+          return [
+            p('You kiss him in the doorway of the loading bay with the rain coming in sideways, briefly, the way you would sign something you meant. He tastes of cold coffee. When you step back he is smiling like a man who has just been handed a story he will never be allowed to tell.'),
+            q('Theo Marr', 'Go home, Evelynn.'),
+          ];
+        }],
+        ['bay-thank', 'Thank him, and go', 'Keep it where it is, for now.', (x) => {
+          set10(x, 'theo-bay', 'thank');
+          return [
+            q('You', 'Thank you, Theo.'),
+            q('Theo Marr', 'Don’t thank me yet. Thank me when she’s sorry.'),
+            p('You walk out into the rain. When you look back from the gate he is still standing in the lit doorway, watching you go, the way you watch a door you are not sure will open again.'),
+          ];
+        }],
+      ],
       close: () => [
-        p('For two hours you watch a man who edits for a living take your segment apart and put it back together without the one thing that matters. The question goes. So do four seconds either side of it. What is left is a long, charming conversation about dresses, with a seam in the timecode that only a professional would ever see.'),
-        q('Theo Marr', 'Anyone who knows what they are looking at will know it has been cut. Which is rather the point, isn’t it? You want her to know you said no, without ever saying it.'),
-        p('He sends it himself, from his own address, with a note that says only: “As requested. — T.M.”'),
         t('Theo is in this now. I put him in it. He is delighted, and that frightens me more than anything she has said.'),
       ],
     },
@@ -722,43 +826,71 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
   workroom: {
     comply: {
       open: () => [
-        p('Julian meets you in the Helix lobby at ten at night because you asked him to, and does not ask why. He takes you up to the contracts room himself and stands close while you look at the wall, the way he did the first time.'),
-        p('At twenty past, his phone goes: a call from Asia he has to take. He squeezes your shoulder and steps out into the corridor, and leaves you alone with the wall.'),
-        p('The third contract from the left. You photograph the page with Meridian’s name on it in two frames, steadily, and are putting the phone away when you hear him: back early, the call cut short, his hand already on the door.'),
+        p('You ask Julian to take you up to the contracts room again, and he does not ask why. That is the thing about Julian. He decides what he will ask, and then he does not ask anything else.'),
+        p('He meets you in the Helix lobby at ten, after the floor has emptied: the marble dark, the reception desk abandoned, one guard in a glass booth doing a crossword. Julian signs you in himself, his signature a single line you could not forge if you tried.'),
+        p('In the lift he stands close. He smells of the day, of wool and someone else’s cigar and, underneath, of himself. He does not touch you. He never touches you first. You have noticed that, and you have liked it, and tonight you wish he would, so that you could hate him a little.'),
+        p('The contracts room is as you remember it: the long table, the framed agreements along one wall like a gallery of trophies, the city pressing its lights against the glass. The third contract from the left.'),
+        q('Julian Mercer', 'I keep meaning to take them down. My predecessor liked to look at what he’d bought. I find I prefer to look at what I haven’t.'),
+        p('At twenty past, his phone goes: a call from Asia he has to take. He squeezes your shoulder, once, and steps out into the corridor, and leaves you alone with the wall.'),
+        p('You do not hurry. Hurrying is what gets noticed. You lift the frame an inch from its hook so that the glass will not catch the light, photograph the page with Meridian’s name on it in two frames, steadily, the way you would photograph a menu, and set the frame back exactly as it hung.'),
+        p('You are putting the phone away when you hear him: back early, the call cut short, his hand already on the door.'),
       ],
       beats: () => [
         ['job-lie', 'Tell him you were admiring the view', 'He wants to believe you. Let him.', () => [
           q('Julian Mercer', 'Sorry. Where were we?'),
-          q('You', 'Nowhere. I was looking at the city. I’m tired. Take me home?'),
+          p('You are at the window when he comes in, with your back to the wall of contracts and the whole lit city in front of you, and you do not turn round at once.'),
+          q('You', 'Nowhere. I was looking at the city. It looks different from up here. Smaller. I’m tired, Julian. Take me home?'),
           p('He does. In the lift he holds your hand, and you let him, and you do not look at your reflection in the brass.'),
         ]],
         ['job-cover', 'Kiss him before he can ask', 'Make sure the only thing he looks at is you.', () => [
           p('You cross the room before he is through the door and kiss him, hard, so that the only thing in the room he is looking at is you.'),
-          p('He laughs against your mouth, surprised and pleased, and you hate how easy it was, and you kiss him again.'),
+          p('He laughs against your mouth, surprised and pleased, one hand coming up to your jaw, and you hate how easy it was, and you kiss him again so that you do not have to think about how easy it was.'),
           q('Julian Mercer', 'Well. Where were we?'),
+          q('You', 'Leaving. Take me home.'),
         ]],
       ],
+      bridge: () => [
+        p('He drives you himself, the long way, along the river, and talks about nothing: a restaurant he wants to take you to, a painting he nearly bought, a man in Singapore who once tried to sell him a racehorse. At the last light before your street he stops talking, and the wipers go back and forth, and he says it to the windscreen.'),
+        q('Julian Mercer', 'Whatever you were looking for up there, I hope you found it.'),
+      ],
+      after: () => [
+        ['car-true', 'Tell him something true', 'Not all of it. Something.', (x) => {
+          set10(x, 'julian-car', 'truth');
+          return [
+            q('You', 'I was looking for the person who signed away my life, Julian. I think I found her. Please don’t ask me who.'),
+            p('He does not ask. He drives the rest of the way with one hand on the wheel and the other resting, very lightly, on the seat between you, palm up. You do not take it. You look at it all the way home.'),
+          ];
+        }],
+        ['car-silent', 'Say nothing', 'Let him have the silence.', (x) => {
+          set10(x, 'julian-car', 'silent');
+          return [p('You say nothing. The wipers go back and forth. After a while he starts talking about the racehorse again, and you are so grateful you could cry.')];
+        }],
+      ],
       close: () => [
+        p('At your door he does not ask to come up, and he does not kiss you, and he waits in the car until your light goes on.'),
         t('He trusts me alone in a room with his contracts. That is what she was buying.'),
         p('At one in the morning the photographs leave your phone for the black one, and the black one says: “Thank you, darling.”'),
+        p('You delete them from your own phone afterwards. It does not help. You know exactly where they are, and so does she.'),
       ],
     },
     refuse: {
       open: () => [
-        p('You think about asking Julian to take you up to that room again, and about the way he put himself between you and the door when the guard came.'),
-        p('You do not ask. You put the black phone in a drawer.'),
+        p('You get as far as Julian’s number. You have it open on your screen with your thumb over it and the message already written: Can I see you tonight? At Helix. I’d like to see that room again.'),
+        p('You think about the way he put himself between you and the door when the guard came, without a word, without asking why. You delete the message, one letter at a time.'),
+        p('You put the black phone in a drawer.'),
         t('I will not walk her into his rooms. Whatever it costs.'),
-        p('At three in the morning the drawer starts to ring.'),
+        ...refuseNight(),
       ],
       beats: refuseBeats,
       close: refuseClose,
     },
     counter: {
       open: () => [
-        p('You tell Julian the truth, or enough of it: that someone who sits on a board above his counterparty wants the page you read on his wall, and that a friend of yours will lose her job if she does not get it.'),
-        p('He listens without interrupting, the way he did at the audit.'),
+        p('You don’t ask to see the room. You ask to see him: his apartment, the forty-first floor, ten o’clock. He opens the door in his shirtsleeves, knows from your face that it isn’t that kind of evening, and lets you in anyway.'),
+        p('You tell him the truth, or enough of it, standing at his window with the city under you: that someone who sits on a board above his counterparty wants the page you read on his wall, and that a friend of yours will lose her job if she does not get it. That you are not asking him for anything. That you are telling him because you will not do it behind his back.'),
+        p('He listens without interrupting, the way he did at the audit, his hands in his pockets.'),
         q('Julian Mercer', 'Then she can have a page.'),
-        p('He does not draft it yet. He pours two drinks, gives you one, and asks the question you knew he would.'),
+        p('He does not draft it yet. He pours two drinks, gives you one, sits on the arm of the sofa so that his eyes are level with yours, and asks the question you knew he would.'),
         q('Julian Mercer', 'Who is she to you?'),
       ],
       beats: () => [
@@ -766,7 +898,7 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
           setKey(x, 'act3.julian-knows', 'celeste');
           return [
             q('You', 'Celeste Laurent. She sat on the board that signed away the life I’m wearing.'),
-            p('Julian sets his glass down very carefully.'),
+            p('Julian sets his glass down very carefully on the arm of the sofa, and looks at it there for a moment, as if it had been someone else’s.'),
             q('Julian Mercer', 'Then I have had dinner with her four times and never once seen her.'),
             t('He believes me. Worse: he believes me, and he is angry, and an angry man with Julian’s access is a weapon I did not mean to pick up.'),
           ];
@@ -776,9 +908,29 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
           q('Julian Mercer', 'For now. I like that you said that.'),
         ]],
       ],
+      bridge: () => [
+        p('Then he works, at the desk by the window, in his reading glasses, with a fountain pen, because, he says, anything typed can be traced to a keyboard and nothing handwritten can be traced to anything but a hand. He drafts a schedule for the third contract from the left: a counterparty that does not exist, a figure wrong by a single digit, a clause that would never survive a lawyer and would take a clever woman at least a week to notice.'),
+        q('Julian Mercer', 'She’ll check it. People like that always check. Let her spend a week on it.'),
+        p('The next night he takes you up to the contracts room himself, staples the new schedule behind the first sheet, rehangs the frame, and stands back to let you photograph it.'),
+        p('Then the torch: a security round, early, exactly the way it came the first time, a white circle sliding along the frosted glass toward the door.'),
+      ],
+      after: () => [
+        ['round-stay', 'Stay where you are, beside him', 'Two people with every right to be here.', (x) => {
+          set10(x, 'julian-round', 'stay');
+          return [
+            p('You stay exactly where you are, beside him, in front of the wall, and when the guard opens the door Julian says good evening to him by name and asks after his daughter, and the guard apologises and goes, and never once looks at the frame.'),
+            t('Two people with every right to be here. That is the best cover there is.'),
+            p('You take the photograph after he has gone, slowly, in good light.'),
+          ];
+        }],
+        ['round-photo', 'Finish the photograph first', 'Two frames. Flash off. Steady.', (x) => {
+          set10(x, 'julian-round', 'photo');
+          return [p('You take the photograph as the torch reaches the door, two frames, the flash off, your hand steady, and have the phone in your pocket when the handle turns. Julian is already between you and the door, the way he was the first time, saying good evening to the guard by name.')];
+        }],
+      ],
       close: () => [
-        p('The next night the third contract from the left has a new schedule stapled behind its first sheet: a counterparty that does not exist, a figure wrong by one digit, a clause that would never survive a lawyer. He watches you photograph it with a face you cannot read.'),
         q('Julian Mercer', 'Now you owe me, and she owes us both a surprise. I find I don’t mind any of those things.'),
+        p('In the lift going down he takes your hand, for the first time without asking, and you let him.'),
         t('He knows she owns me now. That was the price, and he paid it for me without being asked.'),
       ],
     },
@@ -786,20 +938,25 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
   notes: {
     comply: {
       open: (s) => [
-        p('You write it all out again at the kitchen table, everything you found, in your own hand, because that is what she asked for: Meridian, the board, the week Evelyn vanished, the names. It takes until two. Your hand aches. It feels like signing a confession to somebody else’s crime.'),
+        p('You write it all out again at the kitchen table, because that is what she asked for: everything, on paper, in your own hand. Meridian, the board, the ledger leaf, the week Evelyn vanished, the names, the dates. Everything you found the hard way, with no one’s permission.'),
+        p('You write the registry first: the night desk, the file thinner than it should have been, the name scored through on the sign-out card. Then the doors you went through after it, one by one, in the order you opened them. Then Meridian, the shell with no face, and the client list with Helix halfway down it. You write the sentence about the board three times before it says only what you can prove.'),
+        p('It takes until two. The lamp, the pen, the rain. Your hand aches, and then your wrist, and then something higher up that is not a muscle at all. You catch yourself writing in Adrian’s capitals, and stop, and write the rest in hers.'),
+        p('Somewhere after one you read back what you have, and it is good. It is careful and sourced and dated, the kind of work Adrian did for eleven years for people who never read past the first page. Celeste will read every page. You are almost flattered. Then you are not, and you put the pen down, and stand at the dark window until you can pick it up again.'),
+        t('It feels like signing a confession to somebody else’s crime. It feels like doing her homework for her.'),
         ...(c(s, 'c7.notes') === 'maya'
           ? [
-              p('In the morning you call Maya and tell her you need the envelope back; it was a mistake to put her in it. She brings it to the counter at lunch, sealed, and holds on to it a second longer than she needs to before she slides it across.'),
+              p('In the morning you call Maya and tell her you need the envelope back; it was a mistake to put her in it. She doesn’t argue. That is almost worse.'),
+              p('She brings it to the counter at lunch, sealed, in the same brown envelope you sent it in, her own initials across the flap where she signed it closed. She holds on to it a second longer than she needs to before she slides it across.'),
               q('Maya', 'Are you in trouble?'),
             ]
-          : [p('At the Lindqvist door you stop in the rain with the envelope in your hand.')]),
+          : [p('At the Lindqvist door you stop under the awning with the envelope in your hand. The doorman watches the street and not you, which is either a courtesy or a job.')]),
       ],
       beats: (s) =>
         c(s, 'c7.notes') === 'maya'
           ? [
               ['job-lie', 'Say no', 'Keep her out of it. She will believe you.', () => [
                 q('You', 'No. I just want you out of it.'),
-                p('She believes you. That is the worst part. She believes you, and she is relieved.'),
+                p('She believes you. That is the worst part. She believes you, and she is relieved, and she pushes a bowl of noodles across to you as if the problem were that you had not eaten.'),
                 t('I lied to Maya to get my own evidence back, so that I could hand it to the woman who is threatening her. There is no version of that sentence I can live with.'),
               ]],
               ['job-half', 'Say yes, and nothing else', 'The truth, and a wall around it.', () => [
@@ -810,45 +967,69 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
             ]
           : [
               ['job-clean', 'Hand over the only copy', 'If she asks, you can say so and mean it.', () => [
-                p('You hand it over. It is the only copy. If she ever asks, you will be able to say so and mean it.'),
+                p('You hand it over. It is the only copy. If she ever asks, you will be able to say so and mean it, and she will know you mean it, and that will be worth something later. You hope.'),
               ]],
               ['job-copy', 'Photograph every page first', 'She gets your work. She doesn’t get the only copy.', (x) => {
                 set10(x, 'kept-copy', 'yes');
                 return [
-                  p('You step back under the awning and photograph every page against the wall of the club, forty-one pages, while the doorman watches and says nothing.'),
+                  p('You step back under the awning and photograph every page against the wall of the club, forty-one pages, while the doorman watches the street and says nothing, and a taxi idles at the kerb with its meter running for somebody else.'),
                   t('She wanted my work. She is getting it. She is not getting the only copy.'),
                 ];
               }],
             ],
-      close: () => [p('You leave the notes with the doorman at the Lindqvist. The black phone says, at once: “Beautiful handwriting. She had terrible handwriting.”')],
+      close: () => [
+        p('You leave the notes with the doorman at the Lindqvist. He takes the envelope in both hands, the way you would take something fragile, or something that belongs to someone important.'),
+        p('The black phone says, at once: “Beautiful handwriting. She had terrible handwriting.”'),
+        t('She is going to read every word. She is going to know exactly how much I know, and exactly what I don’t. I have just handed her the map of my own blind spots.'),
+        p('On the way home you pass the stationer where you bought the index cards, and go in, and buy a new notebook, a cheap one, and on the first page, standing at the counter, you write the one thing you left out. Then you put it inside your coat, in the lining.'),
+      ],
     },
     refuse: {
       open: () => [
-        p('You take the notes out of wherever you keep them and look at them for a long time. Then you put them back.'),
+        p('You take the notes out of wherever you keep them and lay them on the kitchen table under the lamp, the way you would lay out a case, and look at them for a long time: Meridian, the board, the week Evelyn vanished, the names. Everything you found the hard way, with no one’s permission.'),
+        p('Then you put them back.'),
         t('She wants my work. She can’t have it. Whatever she does instead, she does to me.'),
         t('Except she won’t. She said Maya’s name for a reason.'),
-        p('At three in the morning the black phone starts to ring on the wall, where you pinned it under her card.'),
+        p('You pin the black phone to the wall under her card, like evidence. It hangs there, dark, a small black rectangle in the middle of the red thread, and it is the first thing on the wall that belongs to her.'),
+        ...refuseNight(),
       ],
       beats: refuseBeats,
-      close: () => [],
+      close: refuseClose,
     },
     counter: {
       open: () => [
-        p('You write the notes again from memory, which is easy, because it is all in your head, the way Adrian’s filings always were. You write them almost exactly as they are.'),
-        p('Almost. You sit with the pen over the page and decide which lie to plant: one wrong detail, the kind a tired woman makes at two in the morning, that will show you exactly who Celeste passes your notes to if it ever turns up.'),
+        p('You write the notes again from memory, which is easy, because it is all in your head, the way Adrian’s filings always were. Forty pages. The lamp, the rain, the pen.'),
+        p('You write them almost exactly as they are: enough truth that she will believe it, because she will check, and everything she checks will be right. The registry, the night desk, the scored-out name. The doors you went through, in order. Meridian, the client list, Helix halfway down it.'),
+        p('Lying on paper, it turns out, is mostly a matter of rhythm. A real mistake has a shape: it comes when the hand is tired and the mind is somewhere else, halfway down a page, in a sentence that is otherwise dull. A planted mistake wants to sit somewhere important. You make yourself put it somewhere dull.'),
+        p('Almost. At page thirty you stop with the pen over the paper and decide which lie to plant: one wrong detail, the kind a tired woman makes at two in the morning, that will show you exactly who Celeste passes your notes to, if it ever turns up in someone else’s mouth.'),
       ],
       beats: () => [
         ['job-date', 'Move a registry date by a week', 'Quiet. Only someone checking filings will trip on it.', (x) => {
           set10(x, 'poison', 'date');
-          return [p('A filing date, moved by exactly seven days. If it ever appears in someone else’s mouth, it came from these pages.')];
+          return [p('A filing date, moved by exactly seven days. It is the kind of mistake that looks like fatigue and reads like certainty. If it ever appears in someone else’s mouth, it came from these pages.')];
         }],
         ['job-letter', 'Change one letter in a company name', 'Loud, if anyone searches for it.', (x) => {
           set10(x, 'poison', 'letter');
-          return [p('Meridian’s registered agent, spelled with one letter wrong. Anyone who searches for it will find nothing, and you will know who searched.')];
+          return [p('Meridian’s registered agent, spelled with one letter wrong. Anyone who searches for it will find nothing, and somebody, somewhere, will have to explain to someone why they searched.')];
+        }],
+      ],
+      bridge: () => [
+        p('At nine you take the envelope to the Lindqvist, freshly dressed and styled, as if you were dropping off a birthday present. The doorman takes it in both hands.'),
+        q('Doorman', 'Shall I say who it’s from, madam?'),
+      ],
+      after: () => [
+        ['doorman-e', 'Tell him: from E.', 'Let her decide which E.', (x) => {
+          set10(x, 'doorman', 'e');
+          return [q('You', 'From E.'), p('He inclines his head, as if E. were a name he had heard before, in this doorway, in this rain.')];
+        }],
+        ['doorman-none', 'Tell him she’ll know', 'She always does.', (x) => {
+          set10(x, 'doorman', 'none');
+          return [q('You', 'She’ll know.'), q('Doorman', 'Yes, madam. She generally does.')];
         }],
       ],
       close: (s) => [
         ...(c(s, 'c7.notes') === 'maya' ? [p('Maya’s copy stays exactly where it is. You do not ask for it back. If Celeste asks, you will tell her Maya burned it, and she will not be able to prove otherwise.')] : []),
+        p('You walk home in the rain, and for the first time in days you enjoy it. You stop at the bakery and buy a coffee, black, and drink it on the bench across the road where the man with the newspaper usually sits, and watch your own front door for a while, the way they watch it.'),
         t('She wanted my handwriting. She can have it. It lies beautifully.'),
       ],
     },
@@ -860,9 +1041,18 @@ function orderChoices(s: GameState): C10Choice[] {
   const open = get10(s, 'job') as Answer | undefined;
   if (open) {
     const job = jobs[target][open];
+    // The second moment, where the set piece has one; the answer was already settled by the first.
+    if (get10(s, 'job-after'))
+      return (job.after?.(s) ?? []).map(([id, label, hint, body]) =>
+        offer10(id, label, hint, 'answer', (x) => {
+          delete x.choices['c10.job'];
+          delete x.choices['c10.job-after'];
+          return [...body(x), ...job.close(x)];
+        }),
+      );
     return job.beats(s).map(([id, label, hint, body]) =>
-      offer10(id, label, hint, 'answer', (x) => {
-        delete x.choices['c10.job'];
+      offer10(id, label, hint, job.after ? 'order' : 'answer', (x) => {
+        if (!job.after) delete x.choices['c10.job'];
         set10(x, 'answer', open === 'comply' ? 'complied' : open === 'refuse' ? 'refused' : 'countered');
         if (open === 'comply') {
           setKey(x, 'act3.maya-clearance', 'renewed');
@@ -882,6 +1072,10 @@ function orderChoices(s: GameState): C10Choice[] {
           `Celeste’s first order (${target}): Evelynn ${open === 'comply' ? 'complied' : open === 'refuse' ? 'refused' : 'found a third way'}. The named threat was Maya’s clearance renewal.`,
           'The black phone with one contact',
         );
+        if (job.after) {
+          set10(x, 'job-after', 'yes');
+          return [...body(x), ...(job.bridge?.(x) ?? [])];
+        }
         return [...body(x), ...job.close(x)];
       }),
     );

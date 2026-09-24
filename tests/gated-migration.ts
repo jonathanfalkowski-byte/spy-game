@@ -41,6 +41,13 @@ export const GATED_DEFAULTS = [
   'chapter10.close-end',
   // The breakfast set piece: let her order.
   'chapter10.menu-let',
+  // The job set pieces' second moments: slip out unseen, thank Theo, say nothing in the car, stay beside Julian, "she'll know".
+  'chapter10.seen-hood',
+  'chapter10.seen-no',
+  'chapter10.bay-thank',
+  'chapter10.car-silent',
+  'chapter10.round-stay',
+  'chapter10.doorman-none',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

@@ -37,10 +37,11 @@ const plain = {
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete9('records-name-thin'), { ...plain, ...flags });
 /** Through breakfast, the calls and the wall to the order. */
 const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build']);
-/** An answer to the order, through its one moment (the first beat offered). */
+/** An answer to the order, played through its moments (the first choice offered at each). */
 const answer = (order: GameState, id: string) => {
-  const opened = c10(order, id);
-  return c10(opened, ids(opened)[0]);
+  let s = c10(order, id);
+  while (s.phase === 'order') s = c10(s, ids(s)[0]);
+  return s;
 };
 
 it('opens only after an own-power Chapter 9, and stays closed in production', () => {
@@ -196,7 +197,7 @@ it('lets her tell Maya as much as Maya can carry after a refusal', () => {
 
 it('offers a chosen evening only with a partner she did not betray, consent-gated, and it fades', () => {
   const theo = { 'c7.exit': 'theo' };
-  const countered = walk(toOrder(start(theo)), ['order-counter', 'job-name', 'reply-silence', 'invite-accept', 'green-black']);
+  const countered = walk(toOrder(start(theo)), ['order-counter', 'job-name', 'bay-kiss', 'reply-silence', 'invite-accept', 'green-black']);
   expect(eveningPartners10(countered)).toEqual(['theo']);
   expect(ids(countered)).toEqual(['evening-theo', 'close-end']);
   const invited = c10(countered, 'evening-theo');
@@ -211,7 +212,7 @@ it('offers a chosen evening only with a partner she did not betray, consent-gate
   for (const key of ['act3.maya-clearance', 'act3.celeste-surprised', 'c10.answer'])
     expect(stayed.choices[key], key).toBe(countered.choices[key]);
   // Betrayed this chapter: no evening with him.
-  const complied = walk(toOrder(start(theo)), ['order-comply', 'job-hide', 'wall-move']);
+  const complied = walk(toOrder(start(theo)), ['order-comply', 'job-hide', 'seen-no', 'wall-move']);
   expect(eveningPartners10(complied)).toEqual([]);
   expect(walk(complied, ['invite-accept', 'green-black']).phase).toBe('complete');
 });
@@ -234,8 +235,15 @@ it('plays each job in two halves around one moment', () => {
   expect(text(tape)).toContain('He has come back for the reading glasses he always forgets.');
   expect(ids(tape)).toEqual(['job-lie', 'job-hide']);
   const hid = c10(tape, 'job-hide');
-  expect([hid.phase, hid.choices['c10.theo-suspects'], hid.choices['c10.answer']]).toEqual(['answer', 'yes', 'complied']);
+  // The set piece's second moment: leaving the studio.
+  expect([hid.phase, hid.choices['c10.theo-suspects'], hid.choices['c10.answer']]).toEqual(['order', 'yes', 'complied']);
   expect(text(hid)).toContain('Goodnight, then.');
+  expect(text(hid)).toContain('could I get a picture? For my sister.');
+  expect(ids(hid)).toEqual(['seen-photo', 'seen-no']);
+  const snapped = c10(hid, 'seen-photo');
+  expect([snapped.phase, snapped.choices['c10.seen']]).toEqual(['answer', 'photo']);
+  expect(text(snapped)).toContain('time-stamped 00:31');
+  expect(text(snapped)).toContain('I was good at it.');
 
   const named = walk(toOrder(start({ 'c7.exit': 'theo' })), ['order-counter', 'job-name']);
   expect(named.choices['act3.theo-knows']).toBe('celeste');
@@ -298,4 +306,33 @@ it('keeps Celeste as canon describes her: close-cropped hair, never pinned up', 
     expect(text(s)).toContain('her hair cropped close to her head');
     expect(text(s)).not.toMatch(/Celeste[^.]*hair up/);
   }
+});
+
+// ── The job set pieces: a second moment where the scene has one ──
+
+it('gives the job set pieces their second moments, each recorded', () => {
+  const key = { 'c7.exit': 'theo', 'c7.evening': 'theo', 'c7.evening-outcome': 'intimate-sex' };
+  const guard = walk(toOrder(start(key)), ['order-comply', 'job-lie']);
+  expect(text(guard)).toContain('you could just ask me');
+  expect(ids(guard)).toEqual(['seen-wave', 'seen-hood']);
+  expect(c10(guard, 'seen-wave').choices['c10.seen']).toBe('guard');
+
+  const bay = walk(toOrder(start({ 'c7.exit': 'theo' })), ['order-counter', 'job-withhold']);
+  expect(text(bay)).toContain('That’s where you stop being a guest and start being a story.');
+  expect(ids(bay)).toEqual(['bay-kiss', 'bay-thank']);
+  expect(text(c10(bay, 'bay-thank'))).toContain('Thank me when she’s sorry.');
+
+  const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.mutual-interest': 'yes' };
+  const car = walk(toOrder(start(julian)), ['order-comply', 'job-lie']);
+  expect(text(car)).toContain('Whatever you were looking for up there, I hope you found it.');
+  expect(c10(car, 'car-true').choices['c10.julian-car']).toBe('truth');
+  const round = walk(toOrder(start(julian)), ['order-counter', 'job-name']);
+  expect(text(round)).toContain('nothing handwritten can be traced to anything but a hand');
+  expect(ids(round)).toEqual(['round-stay', 'round-photo']);
+  expect(text(c10(round, 'round-stay'))).toContain('asks after his daughter');
+
+  const notes = walk(toOrder(start({ 'case.strength': 'strong' })), ['order-counter', 'job-date']);
+  expect(text(notes)).toContain('Shall I say who it’s from, madam?');
+  const e = c10(notes, 'doorman-e');
+  expect([e.phase, e.choices['c10.doorman'], e.choices['c10.poison']]).toEqual(['answer', 'e', 'date']);
 });

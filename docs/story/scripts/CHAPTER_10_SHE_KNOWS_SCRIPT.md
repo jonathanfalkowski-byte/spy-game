@@ -133,6 +133,25 @@ Without the counterplay requirement, a thought names the missing asset ("If Theo
 - Counterplay, tape/workroom: "Who is she to you?" — **job-name** (`act3.theo-knows` /
   `act3.julian-knows = celeste`) / **job-withhold**. Notes: **job-date** / **job-letter**.
 
+**Second moments** (`c10.job-after`, the job set pieces): after the first moment settles the
+answer, five jobs hold one more before `answer`:
+- Tape comply, leaving: with his key, the guard in the booth — **seen-wave** / **seen-hood**;
+  otherwise the night producer's "picture for my sister" — **seen-photo** (time-stamped 00:31: an
+  alibi and evidence in one frame) / **seen-no**. `c10.seen = guard | photo | none`.
+- Tape counter, the loading bay at four — **bay-kiss** / **bay-thank** ("Thank me when she's
+  sorry."). `c10.theo-bay`.
+- Workroom comply, the car ("Whatever you were looking for up there, I hope you found it.") —
+  **car-true** / **car-silent**. `c10.julian-car`.
+- Workroom counter, the guard's torch again — **round-stay** / **round-photo**. `c10.julian-round`.
+- Notes counter, the doorman ("Shall I say who it's from, madam?") — **doorman-e** /
+  **doorman-none** ("She generally does."). `c10.doorman`.
+
+Refusals share one night: what she walked away from, the arithmetic in the dark, Maya's card, the
+phone at three, and the morning (dressed properly; the empty bench).
+
+Set piece lengths (2026-09-24): ~390–820 words per job on one path; a full Chapter 10 path
+~3.5–4.0k words.
+
 The answers:
 - **order-comply** · complied. `act3.maya-clearance = renewed`; `c10.betrayed = theo | julian | maya
   | none`. Tape: the archive, with his key if she slept with him. Workroom: the page while Julian
