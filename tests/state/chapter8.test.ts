@@ -36,7 +36,7 @@ const clean = {
   'c4.audit-paid': undefined, 'own.exposed': undefined,
 };
 const leverage = (flags: Record<string, string | undefined> = {}) =>
-  walk(withFlags(complete7('own-records-stop'), { ...clean, ...flags }), ['begin', 'cost-continue']);
+  walk(withFlags(complete7('own-records-stop'), { ...clean, ...flags }), ['begin', 'breakin-report', 'money-owing', 'cost-continue']);
 
 it('opens only after an own-power Chapter 7 ending, and stays closed in production', () => {
   expect(ids(complete7('own-records-stop'))).toEqual(['begin']);
@@ -109,9 +109,9 @@ it('keeps the hard way open at any budget: the dig costs $120 or is recorded unp
 });
 
 it('plays a real own-power Chapter 8 to complete, and the save authenticates', () => {
-  let s = walk(complete7('pivot-own-rook-debt'), ['begin', 'cost-continue']);
+  let s = walk(complete7('pivot-own-rook-debt'), ['begin', 'breakin-report', 'money-owing', 'cost-continue']);
   expect(ids(s)).toContain('leverage-rook');
-  s = walk(s, ['leverage-rook', 'debt-true', 'advance-continue']);
+  s = walk(s, ['leverage-rook', 'debt-true', 'list-read']);
   expect(text(s)).toContain('The next room is the one with the name in it');
   expect(text(s)).not.toContain('Except I did not stand entirely alone this time');
   s = c8(s, 'close-end');
@@ -127,7 +127,7 @@ it('plays a real own-power Chapter 8 to complete, and the save authenticates', (
 it('lets her borrow Julian’s door once, remembered as a crossover without changing her road', () => {
   const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.method': undefined, 'c4.personal-withdrawn': undefined };
   expect(ids(leverage(julian))).toContain('leverage-executive');
-  const s = walk(leverage(julian), ['leverage-executive', 'room-read', 'advance-continue']);
+  const s = walk(leverage(julian), ['leverage-executive', 'room-read', 'list-read']);
   expect([s.choices['own.crossover'], s.choices['c8.entered'], s.choices['route.lane']]).toEqual(['executive', 'executive', 'own-power']);
   expect(text(s)).toContain('someone opened a door for you');
   expect(text(s)).toContain('Except I did not stand entirely alone this time, and I know it.');
@@ -167,4 +167,51 @@ it('shows the intrusion to everyone and a line from a partner she already chose'
   expect(text(sebNight)).toContain('the second of Sebastian’s four cities');
   const declined = c8(withFlags(complete7('own-records-stop'), { 'c7.evening': 'julian', 'c7.evening-outcome': 'declined' }), 'begin');
   expect(text(declined)).not.toContain('Still thinking about the window.');
+});
+
+// ── Deepening pass 2: the cost, played ──
+
+it('plays the break-in and the week’s money before the wall, each with a real cost', () => {
+  const home = c8(withFlags(complete7('own-records-stop'), { 'own.cash': '200', 'own.campaign': undefined }), 'begin');
+  expect(ids(home)).toEqual(['breakin-locks', 'breakin-trap', 'breakin-report']);
+  const locked = c8(home, 'breakin-locks');
+  expect([locked.choices['c8.breakin'], locked.choices['own.cash']]).toEqual(['locks', '140']);
+  expect(text(locked)).toContain('Somebody opened it with a key.');
+  expect(text(locked)).toContain('Meridian Holdings, behind the building');
+  expect(text(locked)).toContain('The week comes to $90');
+  expect(ids(locked)).toEqual(['money-pay', 'money-sell', 'money-owing']);
+  expect(c8(locked, 'money-pay').choices['own.cash']).toBe('50');
+  const sold = c8(locked, 'money-sell');
+  expect([sold.choices['c8.money'], sold.choices['own.cash']]).toEqual(['sell', '450']);
+  expect(text(sold)).toContain('She had beautiful taste');
+  expect(c8(locked, 'money-owing').choices['own.cash']).toBe('140');
+  expect(ids(c8(locked, 'money-owing'))).toEqual(['cost-continue']);
+  const reported = c8(home, 'breakin-report');
+  expect(text(reported)).toContain('Meridian’s agent, the company that exists to have no face');
+  const advance = c8(withFlags(home, { 'own.campaign': 'taken' }), 'breakin-trap');
+  expect(ids(advance)).toContain('money-advance');
+  const fed = c8(advance, 'money-advance');
+  expect([fed.choices['own.cash'], fed.choices['own.odile']]).toEqual(['410', 'owed']);
+});
+
+it('makes the client list a choice: reading every line finds her returned to inventory', () => {
+  const atList = walk(leverage(), ['leverage-refuse-cross', 'dig-leave']);
+  expect(ids(atList)).toEqual(['list-read', 'list-copy']);
+  const read = c8(atList, 'list-read');
+  expect(read.phase).toBe('close');
+  expect(text(read)).toContain('VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED');
+  const copied = c8(atList, 'list-copy');
+  expect(text(copied)).not.toContain('RETURNED TO INVENTORY');
+  expect(copied.choices['c8.list']).toBe('copied');
+});
+
+it('answers the break-in on the night after: the trap shows who came back', () => {
+  const trapped = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-trap', 'money-owing', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-read']);
+  expect(text(trapped)).toContain('one print: narrow, a good shoe, a woman’s size, pointing in');
+  expect(text(trapped)).toContain('The invoices are still in the drawer.');
+});
+
+it('remembers the sold gown on the night after', () => {
+  const sold = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-report', 'money-sell', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-copy']);
+  expect(text(sold)).toContain('There is a gap in the wardrobe where the gown hung.');
 });

@@ -3,7 +3,10 @@
  * chapter8Playable(). Wording and flags: docs/story/scripts/CHAPTER_8_OWN_POWER_SCRIPT.md with its Phase 0 decisions,
  * deepened by the heat-and-danger pass (docs/story/BEAT_MAP.md). Each road over the wall sets the same flags it always
  * did, then opens a scene (held in c8.leverage-open) with one choice of its own. own.crossover changes access, never
- * route.lane. No intimacy in this chapter beyond a line from a partner she already chose. */
+ * route.lane. No intimacy in this chapter beyond a line from a partner she already chose.
+ * Deepening pass 2 (2026-09-24): the cost is played (the break-in: lock / trap / report; the week's money: pay /
+ * sell the gown / Odile's advance / let it run), the client list is a choice (reading it finds VALE, E. returned to
+ * inventory), and the night after answers both. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -44,6 +47,11 @@ function note8(s: GameState, key: string, text: string, source: string) {
 }
 
 export const DIG_COST = 120;
+/** The week's ordinary costs (deepening pass 2): the phone, the fees, the coffee drunk standing up. */
+export const WEEK_COST = 90;
+export const LOCK_COST = 60;
+export const GOWN_PRICE = 400;
+export const ODILE_ADVANCE = 300;
 const LOW_CASH = 100;
 const cash = (s: GameState) => Number(getKey(s, 'own.cash') ?? 0);
 const SENDER = 'Unknown sender';
@@ -148,9 +156,35 @@ function advanceBlocks(s: GameState): Block[] {
   ];
 }
 
+/** The night after: the break-in, answered by what she did about it; the money, by what she did about that. */
+function nightAfter8(s: GameState): Block[] {
+  const breakin = get8(s, 'breakin');
+  const money = get8(s, 'money');
+  return [
+    ...(breakin === 'trap'
+      ? [
+          p('Before bed you check the trap. The hair across the wardrobe door is gone. In the talc inside the threshold there is one print: narrow, a good shoe, a woman’s size, pointing in.'),
+          t('They came back. They wanted something they did not find the first time, and they walk like someone who has never once been told no.'),
+        ]
+      : breakin === 'locks'
+        ? [p('The new key is warm from your pocket. The old one is still in somebody else’s.')]
+        : breakin === 'report'
+          ? [p('The letter from the managing agents is still on the table. You read it again before bed, the way you would reread a threat, and it reads the same both times.')]
+          : []),
+    ...(money === 'owing'
+      ? [p('The invoices are still in the drawer. So is the week, getting shorter.')]
+      : money === 'advance'
+        ? [p('Odile’s office has sent the fitting time twice. You have not answered either. You will.')]
+        : money === 'sell'
+          ? [p('There is a gap in the wardrobe where the gown hung. You keep looking at it.')]
+          : []),
+  ];
+}
+
 function closeBlocks(s: GameState): Block[] {
   const crossed = (getKey(s, 'own.crossover') ?? 'none') !== 'none';
   return [
+    ...nightAfter8(s),
     p('You have the shape now: a private maker of people, a board above Sloane, one name on it you are almost sure you have met. What you do not have is the name, or the why, or a single institution you can trust to hold any of this but yourself.'),
     t(
       `Standing alone got me here — to a truth an institution would have buried, held by no one but me.${crossed ? ' Except I did not stand entirely alone this time, and I know it.' : ''} The next room is the one with the name in it, and I will decide then whose door I walk through to reach it.`,
@@ -366,14 +400,146 @@ function sceneChoices(open: string): C8Choice[] {
   }
 }
 
+// ── The cost, made concrete ──
+
+function weekIntro(x: GameState): Block[] {
+  return [
+    p('Then the ordinary costs arrive, the way they do, all at once.'),
+    p(
+      `The week comes to $${WEEK_COST}: the phone that answers only to you, the fees you keep paying at registry counters, the coffee you drink standing up. You have $${cash(x)}. ${
+        cash(x) >= 500
+          ? 'It sounds like a lot until you divide it by a number of months nobody will tell you.'
+          : cash(x) >= WEEK_COST
+            ? 'Enough for this week. Not for many more, and nothing coming in that you can touch before the end of the month.'
+            : 'Not enough, and nothing coming in that you can touch before the end of the month.'
+      }`,
+    ),
+    t('Adrian had a salary and a pension and a manager who signed his expenses. I have what I earn and what I can sell, and every day the life I chose sends me an invoice.'),
+  ];
+}
+
+function breakInChoices(s: GameState): C8Choice[] {
+  const records = !!getKey(s, 'own.piece.records');
+  const deal = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
+    offer8('breakin-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'breakin', id);
+      return [...body(x), ...weekIntro(x)];
+    });
+  return [
+    deal('locks', 'Change the lock yourself, tonight', `$${LOCK_COST} you can’t really spare.`, (x) => {
+      const before = cash(x);
+      setKey(x, 'own.cash', String(Math.max(0, before - LOCK_COST)));
+      note8(x, 'lock', before >= LOCK_COST ? `Spent $${LOCK_COST} on a new lock. Own cash: $${before - LOCK_COST}.` : `The $${LOCK_COST} lock is unpaid; own cash was $${before}.`, 'A night locksmith, paid by Evelynn');
+      return [
+        p('The locksmith who answers at eleven at night is a tired woman with a van and no curiosity, which is what you are paying for. She takes the old cylinder out, turns it under her torch and shows you its face: clean, no scratches, no marks.'),
+        q('Locksmith', 'Nobody picked this. Somebody opened it with a key. Yours, or one just like it.'),
+        p(
+          records
+            ? 'You think of the filings: Meridian Holdings, behind the building and everything in it. Of course they have a key. They have all the keys.'
+            : 'You think of everyone who could have a key to a flat that was furnished for you before you ever arrived, and stop, because the list is too long.',
+        ),
+        t('Sixty dollars to make them use a different door. It is still worth it.'),
+      ];
+    }),
+    deal('trap', 'Set a trap and say nothing', 'Talc on the floor, a hair across the wardrobe. You’ll know if they come back.', () => [
+      p('You do it the way a novel would tell you to, and feel foolish doing it: a hair laid across the wardrobe door, a breath of talc on the boards inside the threshold, the old Axiom phone propped on the bookshelf recording the room to nobody.'),
+      t('If they come back, I want them to find the flat exactly as they left it. And I want to know they came.'),
+    ]),
+    deal('report', 'Report it to the building', 'Make it official, and see who answers.', () => [
+      p('The night concierge writes it down with great care and no expression. In the morning there is a letter under your door on heavy cream paper from the managing agents: they have reviewed the entry logs, there has been no unauthorised access to your apartment, and they trust this reassures you.'),
+      p(
+        records
+          ? 'The letterhead’s registered address is the one you photographed at the registry: Meridian’s agent, the company that exists to have no face.'
+          : 'The letter is signed by nobody. Only a company name you have never heard of, and a registered address in a building of brass plates.',
+      ),
+      t('Reassured. They wanted me to know they had checked, and that the checking was theirs to do.'),
+    ]),
+  ];
+}
+
+function moneyChoices(s: GameState): C8Choice[] {
+  const settle = (id: string, label: string, hint: string, apply: (x: GameState) => Block[]) =>
+    offer8('money-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'money', id);
+      return apply(x);
+    });
+  const pay = (x: GameState, income: number, source: string) => {
+    const before = cash(x) + income;
+    setKey(x, 'own.cash', String(Math.max(0, before - WEEK_COST)));
+    note8(
+      x,
+      'week',
+      `${income ? `Received $${income} (${source}); spent` : 'Spent'} $${WEEK_COST} on the week. Own cash: $${Math.max(0, before - WEEK_COST)}.`,
+      'Evelynn’s own accounts',
+    );
+  };
+  const campaign = getKey(s, 'own.campaign');
+  return [
+    settle('pay', 'Pay it', `$${WEEK_COST}. Clean, and thinner.`, (x) => {
+      pay(x, 0, '');
+      return [p('You pay it all on Friday morning at the bank machine with your coat collar up, and watch the number get smaller. It is a very ordinary kind of fear. You find you prefer it to the other kind.')];
+    }),
+    settle('sell', 'Sell the evening gown', `Someone will pay $${GOWN_PRICE} for it. It was hers first.`, (x) => {
+      pay(x, GOWN_PRICE, 'the evening gown');
+      return [
+        p('The dress agency on the hill takes one look at the gown and stops pretending to be casual. Four hundred, cash. The woman behind the counter holds it up against the window light and says, “She had beautiful taste,” and does not say who she means.'),
+        t('I am selling her off a piece at a time to pay for looking for her. There is probably a word for that. I would rather not know it.'),
+      ];
+    }),
+    ...(campaign === 'taken' || campaign === 'terms'
+      ? [
+          settle('advance', 'Ask Odile for an advance', 'She’ll say yes. She will also remember that you asked.', (x) => {
+            pay(x, ODILE_ADVANCE, 'an advance against the campaign');
+            setKey(x, 'own.odile', 'owed');
+            return [
+              q('Odile Frayne', 'Of course, darling. Three hundred, against the campaign. I like my faces fed.'),
+              p('The money is in your account before you have finished your coffee. So is a calendar invitation to a fitting you did not agree to, which you accept, because you have just been paid.'),
+              t('That is how it starts. A small kindness, and then a diary that is not quite mine.'),
+            ];
+          }),
+        ]
+      : []),
+    settle('owing', 'Let it run a week', 'Nothing now. It will still be there.', () => [
+      p('You put the invoices in a drawer and close it, and the closing sounds exactly like a decision.'),
+      t('A week. In a week I will either have the name, or I will be looking for work.'),
+    ]),
+  ];
+}
+
+/** Over the wall: what she does with Meridian's client list. */
+function listChoices(): C8Choice[] {
+  return [
+    offer8('list-read', 'Read every line', 'Slowly. It is all you will get.', 'close', (x) => {
+      set8(x, 'list', 'read');
+      note8(x, 'inventory', 'Meridian’s client list carries an entry set apart from the rest: VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED.', 'The list itself, read line by line');
+      return [
+        p('You read it the way Adrian read an acquisition: every line, every footnote, every code. Most of it is a catalogue of things that should not be for sale. Near the bottom, set apart by a single blank line, is an entry that stops your breath.'),
+        q('The client list', 'VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED'),
+        t('Returned to inventory. Not killed. Not retired. Shelved, like a coat nobody was wearing, and then taken down and fitted to me.'),
+      ];
+    }),
+    offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'close', (x) => {
+      set8(x, 'list', 'copied');
+      return [
+        p('You do not read it. You photograph it, send the photograph to an address that forwards on, and write the three lines that matter most on the inside of your wrist in eyeliner, because paper can be taken and a phone can be wiped, and skin, for a few hours, is harder to search.'),
+        t('Whatever this says, I have it three times. They would have to find all three.'),
+      ];
+    }),
+  ];
+}
+
 export function chapter8Choices(s: GameState): C8Choice[] {
   if (!chapter8Playable(s)) return [];
   if (s.scene === 'chapter7' && s.phase === 'complete' && getKey(s, 'route.lane') === 'own-power')
     return [offer8('begin', 'Go on', 'Days later. The wall is still there.', 'cost')];
   if (s.scene !== 'chapter8') return [];
-  if (s.phase === 'cost') return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
+  if (s.phase === 'cost') {
+    if (!get8(s, 'breakin')) return breakInChoices(s);
+    if (!get8(s, 'money')) return moneyChoices(s);
+    return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
+  }
   if (s.phase === 'leverage') return leverageChoices(s);
-  if (s.phase === 'advance') return [offer8('advance-continue', 'Take stock of what you have', 'The shape, and what it cost.', 'close')];
+  if (s.phase === 'advance') return listChoices();
   if (s.phase === 'close') return [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')];
   return [];
 }
