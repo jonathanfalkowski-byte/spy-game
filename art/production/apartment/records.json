@@ -365,7 +365,7 @@
         "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
         "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
       ],
-      "notes": "Owner explicitly authorized in-game use: put them in the scenes. Prior review notes retained; production approval does not make this a canonical reference.",
+      "notes": "Owner explicitly authorized in-game use: put them in the scenes. Prior review notes retained; production approval does not make this a canonical reference. Superseded 2026-09-24 by apartment-post-glasshouse-executive-noir-v2-production.",
       "editSources": [
         "apartment-evening-v1",
         "apartment-post-glasshouse-executive-v1"
@@ -373,7 +373,7 @@
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/apartment/apartment-post-glasshouse-executive-v1.png",
     "sha256": "65ac7d0c0a5f7abc3b0fa794e69eacfe8aa37ea481b6df9e830368c4eaa8145a",
     "generation": {
@@ -433,6 +433,70 @@
       "reviewer": "Project owner",
       "date": "2026-09-16",
       "source": "Explicit instruction in this task: put them in the scenes. Authorizes all six displayed home outfit images despite retained review notes."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "apartment-post-glasshouse-executive-noir-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter3.home",
+      "wardrobeId": "executive",
+      "presentationVariant": "executive",
+      "expression": "Restrained observant neutrality; no implied identity acceptance.",
+      "pose": "Standing naturally in the living-area walking space, hands relaxed; same pose and placement across all three outfit variants.",
+      "cameraFraming": "A1 entry/living wide; full figure at believable scale beside furniture, feet grounded on the same floor plane.",
+      "cameraAngle": "Natural eye-height perspective, identical to reviewed empty apartment anchor.",
+      "lighting": "Late-evening city glow and warm practical lamp; preserve materials and geometry.",
+      "timeOfDay": "late evening",
+      "environment": "Same reviewed apartment window, skyline, padded chair, sofa, wardrobe, mirror, door and counter.",
+      "intendedUse": "post-glasshouse home scene depicting the selected executive outfit.",
+      "canonicalReferences": [
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Tailored dark jacket and matching trousers; understated blouse and shoes.",
+        "Do not reuse a socialite image for executive or shadow. Match the final selected outfit after home preparation; clinic-confirmed selection applies on first arrival.",
+        "Keep the selected outfit through the post-Glass House return until an explicit authored change.",
+        "No duplicate garments, distant reaching pose, oversized figure, invented evidence, gifts or surveillance hardware.",
+        "Keep exactly the same camera, character scale, room geometry and posture across the three outfits for this moment.",
+        "Only depict actual branch-specific possessions. No mandatory phone, token or clean audio copy.",
+        "Owner accepted apartment-evening-v1 in conversation: the background looks good, generate the proper images. Preserve it without further floor corrections."
+      ],
+      "notes": "Dark noir relight of apartment-post-glasshouse-executive-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 722e75b6-7394-418f-ad08-63318d63d29b, lighting anchor de3c7bbd (apartment master v3); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 66.6%.",
+      "editSources": [
+        "apartment-post-glasshouse-executive-v1-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/apartment/apartment-post-glasshouse-executive-noir-v2-production.png",
+    "sha256": "19f23b9ee8de434c04c68d8ce3f1eb9fadca5c8f2609e37be3309e46a83a65f8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 66.6% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {

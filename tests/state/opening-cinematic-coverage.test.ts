@@ -37,7 +37,7 @@ describe('opening cinematic coverage contract', () => {
     expect(maya?.boundAssetId).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     const alone = report.cuts.find((cut) => cut.shotId === 'opening.office.shot04-alone');
     expect(alone?.effectiveStatus).toBe('RUNTIME_APPROVED');
-    expect(alone?.boundAssetId).toBe('axiom-opening-office-shot04-alone-v3-transparent-production');
+    expect(alone?.boundAssetId).toBe('axiom-opening-office-shot04-alone-v3-transparent-lift-production');
     const mayaDeparture = report.cuts.find((cut) => cut.shotId === 'opening.maya.shot02-departure');
     expect(mayaDeparture?.effectiveStatus).toBe('RUNTIME_APPROVED');
     expect(mayaDeparture?.boundAssetId).toBe('axiom-opening-office-shot02-maya-departure-v3-transparent-production');
@@ -104,7 +104,7 @@ describe('opening cinematic coverage contract', () => {
     expect(resolveSceneArt(mayaCase).art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
     expect(resolveSceneArt(mayaGoodbye).shot?.shotId).toBe('opening.maya.shot02-departure');
     expect(resolveSceneArt(ending).shot?.shotId).toBe('opening.office.shot04-alone');
-    expect(resolveSceneArt(ending).art?.asset.id).toBe('axiom-opening-office-shot04-alone-v3-transparent-production');
+    expect(resolveSceneArt(ending).art?.asset.id).toBe('axiom-opening-office-shot04-alone-v3-transparent-lift-production');
     expect(resolveSceneArt(ending).issues).toEqual([]);
 
     expect(OPENING_CINEMATIC_HOLDS).toEqual(

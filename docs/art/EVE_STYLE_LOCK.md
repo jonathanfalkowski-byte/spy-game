@@ -42,13 +42,19 @@ gap-scene batch: "it is a dark noir sort of type… that feels like too much lig
   room. Never a bright, airy, evenly lit interior.
 - **One warm practical against cold window/ambient** (the warm/cool noir split) in every
   interior. Deep blacks in the corners and under furniture.
-- **Luminance QA gate (hard):** on a greyscale downsample, **mean ≤ 85** (0–255) and
-  **≥ 40% of pixels near-black (< 50)**. Reference: the approved v3 apartment master is
-  mean ~68 / ~47% near-black; the service garage ~48 / ~64%. Anything above the gate is
-  rejected before it reaches a comparison sheet.
-- **Anchor on the dark references** (night apartment master v3, harbour composite, service
-  garage). Do not use `sloane-brief`, the daytime apartment v2 or clinic reception as
-  *lighting* anchors. They may still be image 2 for *ink* only.
+- **Luminance band (owner, 2026-09-24):** on a 320×180 greyscale downsample,
+  **target mean 45–70** (0–255), **hard limits 40–85**, and **≥ 40% of pixels
+  near-black (< 50)**. Too dark is a failure too: the owner found frames at mean ~20–30
+  "hard to see what is going on", and the text box darkens every scene further.
+  Noir comes from contrast (deep blacks against a warm practical and a cold window),
+  not from overall darkness. Reference: the approved v3 apartment master is ~68 / ~47%;
+  the service garage ~48 / ~64%. Check before anything reaches a comparison sheet.
+- **Fixing a frame that is only too dark:** use a lossless midtone gamma lift (pure
+  blacks and whites stay put; faces and composition are untouched) toward mean ~55,
+  keeping ≥ 45% near-black. No regeneration needed.
+- **Anchor on the dark references** (night apartment master v3, service garage, or the
+  already-approved noir v2 of the same location). Do not use `sloane-brief`, the daytime
+  apartment v2, clinic reception or the harbour composite (mean ~141) as *lighting* anchors. They may still be image 2 for *ink* only.
 
 ## World look: near-future luxury (owner, 2026-09-23)
 
@@ -107,8 +113,9 @@ Pick the nearest match by lighting, not by location. **Lighting anchors must pas
 luminance gate above.** The daylight rows below (sloane-brief, daytime apartment, clinic
 reception, street day) are **ink/material references only**, not lighting anchors. For
 lighting use the night apartment master v3
-(`art/production/opening/opening-apartment-master-v3-production.png`), the harbour
-composite, or `art/production/gap-scenes/service-garage-noir-v1-production.png`.
+(`art/production/opening/opening-apartment-master-v3-production.png`) or
+`art/production/gap-scenes/service-garage-noir-v1-production.png`, or the approved noir v2
+of the same location. The harbour composite is bright (mean ~141): ink reference only.
 
 | Lighting family | Reference |
 |---|---|

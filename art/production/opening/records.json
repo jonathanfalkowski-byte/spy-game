@@ -563,11 +563,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task 3b7af4ba-9232-4243-827c-5c34614f3828, provider asset 9decb00f-d8e3-4a32-b219-75b9daa4e2ec; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-brief-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 3b7af4ba-9232-4243-827c-5c34614f3828, provider asset 9decb00f-d8e3-4a32-b219-75b9daa4e2ec; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-brief-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json. Superseded 2026-09-24 by axiom-casework-brief-v2-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-brief-v2-production.png",
     "sha256": "853409b862b769171570a27b98b5fdfa728b92ec3f6b0d2022b6a84c8399ccce",
     "review": {
@@ -584,6 +584,50 @@
       "reviewer": "Project owner",
       "date": "2026-09-23",
       "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-brief-v2-lift-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.brief",
+      "environment": "Close three-quarter shot of the glass slate showing the Helix brief on the black leather pad, warm brass-lamp rim, cool screen glow, night office behind.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot01-brief at helix.brief. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.79) of axiom-casework-brief-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 57.4%.",
+      "editSources": [
+        "axiom-casework-brief-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-brief-v2-lift-production.png",
+    "sha256": "312b97644935c2f156538dde15344c93150facd9f05d84ca21bea7c320635a73",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 57.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -827,11 +871,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task 290fc24f-fb52-433c-a111-ac49566265ff, provider asset 9b44a20c-fa4e-4076-b5b9-88788009b925; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-submitted-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 290fc24f-fb52-433c-a111-ac49566265ff, provider asset 9b44a20c-fa4e-4076-b5b9-88788009b925; conditioned on axiom-opening-office-shot01-maya-v2-production and sloane-brief-v1-production. Supersedes axiom-casework-submitted-v1-production. Approval: art/production/opening/axiom-casework-noir-v2-approval.json. Superseded 2026-09-24 by axiom-casework-submitted-v2-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-casework-submitted-v2-production.png",
     "sha256": "f83dda7eb98e7f2911d3a44c3be9d8449eefd49a27bd6f26d90c45616d747c00",
     "review": {
@@ -848,6 +892,50 @@
       "reviewer": "Project owner",
       "date": "2026-09-23",
       "source": "Owner approved the noir A picks ship-as-is in the EVE Design session on 2026-09-23 (relayed to EVE Art)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-casework-submitted-v2-lift-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-casework",
+      "sceneId": "helix.submitted",
+      "environment": "Terminal showing an abstract confirmation panel, slate and keyboard on the walnut desk, dark office.",
+      "cameraFraming": "Noir house-style 1920x1080 object shot on Adrian's Axiom desk (walnut, black leather pad, brass lamp, glass slate, terminal); consistent desk across the casework set.",
+      "intendedUse": "Only opening.helix.shot04-submitted at helix.submitted. Exact reached-node binding, no broader office fallback.",
+      "continuityRequirements": [
+        "No readable evidence, verdict, recipient, attachment or future prop is depicted. Authored game UI owns case state.",
+        "No Daniel, Benton, Maya, Adrian, coffee or character pose is visible. Slate appears after Benton leaves.",
+        "Keep M5 itself component-only; no staging source is promoted or served."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.81) of axiom-casework-submitted-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 66.4%.",
+      "editSources": [
+        "axiom-casework-submitted-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-casework-submitted-v2-lift-production.png",
+    "sha256": "ba6b43fefe8b27c8d10ebedaea3386889928dc23e41306ffe6dba3bbe25f4520",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 66.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -1374,11 +1462,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic reception candidate; exact reception HOLD only."
+      "notes": "Reviewed regular non-explicit clinic reception candidate; exact reception HOLD only. Superseded 2026-09-24 by clinic-reception-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-reception-v1-production.png",
     "sha256": "dd37369064847c1e4186fb7d7d0412b77291f4e7c815682d9862d74578994e82",
     "review": {
@@ -1397,6 +1485,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-reception-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-reception",
+      "sceneId": "clinic.reception",
+      "environment": "Glass-and-wood clinic reception with the inner door, marble counter and controlled morning light.",
+      "cameraFraming": "16:9 reception desk frame with the receptionist, counter and inner clinic corridor visible.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.reception and the same-place clinic.receptionReply HOLD; no examination-suite or later treatment state.",
+      "continuityRequirements": [
+        "Receptionist is the only active visible staff participant; no Voss, Sloane or treatment state appears.",
+        "The frame may hold through the player’s reception reply before entering the examination suite."
+      ],
+      "editSources": [
+        "clinic-reception-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-reception-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 7bc5670c-15fe-4972-a8a2-711e49cb10a9, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 60.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-reception-noir-v2-production.png",
+    "sha256": "e73a30e0f7fa8f1de0e833b3e178280aa3f136c932a6ee1f3f4dc69978f0de51",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 60.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1421,11 +1553,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic privacy setup candidate; exact pre-choice state."
+      "notes": "Reviewed regular non-explicit clinic privacy setup candidate; exact pre-choice state. Superseded 2026-09-24 by clinic-privacy-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-privacy-v1-production.png",
     "sha256": "31219b3aa898f75887b2dc749442208e111308ca45051e4eac3c4e5a50e5cfd1",
     "review": {
@@ -1444,6 +1576,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacy",
+      "environment": "Locked examination suite with chair, diagnostic window and clinical work surfaces.",
+      "cameraFraming": "16:9 examination-suite frame with Adrian, Voss and standing Sloane around the examination chair.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacy before the privacy choice, while Sloane remains present and Voss has not begun the baseline examination.",
+      "continuityRequirements": [
+        "Sloane is visibly present before the player chooses privacy.",
+        "No examination result, authorization or profile state is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-privacy-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset ff0b2238-8b90-4fea-baa1-34e8601a5259, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 60.7%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-noir-v2-production.png",
+    "sha256": "703f3acd363e7109076c26f961a48cb5240f06c89cf75e0f23aa1c4770a8b22a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 60.7% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1468,11 +1644,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic privacy HOLD/CUT candidate for Sloane-present branches."
+      "notes": "Reviewed regular non-explicit clinic privacy HOLD/CUT candidate for Sloane-present branches. Superseded 2026-09-24 by clinic-privacy-stay-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-privacy-stay-v1-production.png",
     "sha256": "a0a4081107824e731ffd34ddf25220c28b23cc6a7296e74a227cd7bc83030d2d",
     "review": {
@@ -1491,6 +1667,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-stay-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacyReply",
+      "environment": "Same examination suite and chair geometry as the privacy setup.",
+      "cameraFraming": "16:9 examination-suite conversation frame with Voss standing, Adrian at the chair and Sloane seated at the right.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacyReply when privacy is stay or silent and Sloane remains in the examination room.",
+      "continuityRequirements": [
+        "Sloane remains visibly present and seated after the player keeps the existing arrangement.",
+        "No examination result or treatment authorization is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-stay-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-privacy-stay-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 9e992bcb-a8fd-4502-b664-adfa8f335636, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 60.0%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-stay-noir-v2-production.png",
+    "sha256": "4a6a7fe5bfd7267f4294f45235149f9c5ae0ea942c7f2ead4bd9b36e57121bb3",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 60.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1515,11 +1735,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic privacy private-branch candidate."
+      "notes": "Reviewed regular non-explicit clinic privacy private-branch candidate. Superseded 2026-09-24 by clinic-privacy-private-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-privacy-private-v1-production.png",
     "sha256": "65986edb422c0599afa646fc48bb29fef13c685a4170314418d1555985a388ea",
     "review": {
@@ -1538,6 +1758,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-privacy-private-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.privacyReply",
+      "environment": "Same examination suite and chair geometry as the privacy setup.",
+      "cameraFraming": "16:9 examination-suite conversation frame with Adrian and Voss only; the chair and closed door retain the room geography.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.privacyReply when privacy is ask or demand and Sloane has stepped outside.",
+      "continuityRequirements": [
+        "Sloane is absent after the authored privacy request.",
+        "No examination result or treatment authorization is shown."
+      ],
+      "editSources": [
+        "clinic-privacy-private-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-privacy-private-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 8ab6afee-c6d1-40c7-8a9a-1156f6c810b9, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 63.8%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-privacy-private-noir-v2-production.png",
+    "sha256": "009ce1bf7394d9c4c5595eae8986dbdcf7eadd2d40388ce06e89f3daa9144317",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 63.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1609,11 +1873,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic exam candidate for private branches."
+      "notes": "Reviewed regular non-explicit clinic exam candidate for private branches. Superseded 2026-09-24 by clinic-exam-private-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-exam-private-v1-production.png",
     "sha256": "b31b9ed82502a037029273f6b0293eb92c3de70652436c7c3fe58039b753a144",
     "review": {
@@ -1632,6 +1896,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-exam-private-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.exam",
+      "environment": "Same examination suite with the diagnostic ring and monitor.",
+      "cameraFraming": "16:9 baseline examination frame with Adrian in the chair and Voss at the monitor; the room remains empty of Sloane.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.exam when Sloane is absent; baseline measurement is underway and the optional inspection has not yet been chosen.",
+      "continuityRequirements": [
+        "Sloane is absent after the authored privacy request.",
+        "No selected examination finding, authorization or procedure result is shown."
+      ],
+      "editSources": [
+        "clinic-exam-private-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-exam-private-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset c58ed921-2edd-4e1c-b9c4-69386d8422d7, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 60.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-exam-private-noir-v2-production.png",
+    "sha256": "3719d3e98f0fbb2d6b3fba56747b99455b9dfdd76a7fa6991f7edba47b8ddc5a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 60.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1703,11 +2011,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit clinic protocol candidate; exact consultation state."
+      "notes": "Reviewed regular non-explicit clinic protocol candidate; exact consultation state. Superseded 2026-09-24 by clinic-protocol-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-protocol-v1-production.png",
     "sha256": "3e4077f5c80fe355c62ebd66a296efa800271426e083a17e59b8a3d42d16d2b8",
     "review": {
@@ -1726,6 +2034,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-protocol-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-consultation-area",
+      "sceneId": "clinic.protocol",
+      "environment": "Clinic consultation wall display and marble table with controlled morning light.",
+      "cameraFraming": "16:9 consultation-area frame with Adrian seated, Voss presenting the medical tolerances and Sloane standing with the slate.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.protocol after the examination result returns to consultation; Sloane is present again for the protocol discussion.",
+      "continuityRequirements": [
+        "The display contains abstract non-readable medical icons only; authored prose owns the protocol details.",
+        "Sloane is present for the protocol discussion; no profile selection or authorization is shown."
+      ],
+      "editSources": [
+        "clinic-protocol-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-protocol-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 1aa5ddd6-1c8e-4c39-aefd-6a6dbf8d16a2, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 58.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-protocol-noir-v2-production.png",
+    "sha256": "be77cc7ab6c1789b5378e5a80961fd835e0b6f716148f10729be2edc1d97f257",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 58.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1844,11 +2196,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed post-consent preparation candidate; no procedure result or later wardrobe."
+      "notes": "Reviewed post-consent preparation candidate; no procedure result or later wardrobe. Superseded 2026-09-24 by clinic-preparation-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-preparation-v1-production.png",
     "sha256": "a9b1f4a77dfb2ed7b43c50a3368a15e0f74769460545f08f20499468ecb9d003",
     "review": {
@@ -1867,6 +2219,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-preparation-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation",
+      "sceneId": "clinic.preparation",
+      "environment": "Locked Sublevel 17 clinic suite with consistent consultation, examination and preparation geography.",
+      "cameraFraming": "16:9 preparation-suite frame with Adrian reclined in the clinic chair while Voss adjusts the wrist support; locker and claim tag remain visible.",
+      "lighting": "Controlled morning clinic light; no dramatic relighting.",
+      "intendedUse": "ONLY clinic.preparation after Stage One authorization and before the c.preparation transition to the waking voice checkpoint.",
+      "continuityRequirements": [
+        "Stage One authorization is already recorded; Adrian is in the plain clinic garment and preparation has not yet advanced to voice.",
+        "The phone, badge, keys and jacket are secured in the numbered locker; no transformation result is shown."
+      ],
+      "editSources": [
+        "clinic-preparation-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-preparation-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 9d310a4e-0984-4516-94d1-93ff3b7dd0b4, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 58.0%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-preparation-noir-v2-production.png",
+    "sha256": "4514c1ebd250593a3c1762e66e80ca58903014173525b0dc591e9b863723ae8e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 58.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1891,11 +2287,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID. Superseded 2026-09-24 by clinic-voice-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-voice-v1-production.png",
     "sha256": "e45fbb8a3423e1594c10370a96a1c749a80bb00bbfa68879534d4cd8af0d2d9e",
     "review": {
@@ -1914,6 +2310,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-voice-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.voice",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Voss monitors Adrian’s first voice checkpoint in the private examination suite.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.voice and clinic.voiceReply when Sloane is absent; early voice adaptation is underway and no later face or recovery state is shown.",
+      "continuityRequirements": [
+        "Sloane is absent on the ask/demand privacy branch.",
+        "Voice and early tissue adaptation are present; no face result or later wardrobe is shown."
+      ],
+      "editSources": [
+        "clinic-voice-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-voice-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 6e4899dd-2caf-47f9-a852-87220f6299c9, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 53.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-voice-noir-v2-production.png",
+    "sha256": "4b0443fd137ad798386d40931c9b09ea89a8c0e88ab9c9fbda55e70367aede24",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 53.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -1938,11 +2378,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID. Superseded 2026-09-24 by clinic-voice-pause-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-voice-pause-v1-production.png",
     "sha256": "d22be9b0dc499b2e7cd0b4a1cc22b3f421bb216a9fb36f151803b6199a83d9a9",
     "review": {
@@ -1961,6 +2401,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-voice-pause-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-examination-suite",
+      "sceneId": "clinic.voicePause",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Voss pauses the voice sequence while Sloane remains beside the examination chair.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.voicePause when Sloane remains present and the voice sequence is paused.",
+      "continuityRequirements": [
+        "The pause control is active and no later face or recovery state is shown.",
+        "Sloane remains visibly present; do not reuse for private-branch pauses."
+      ],
+      "editSources": [
+        "clinic-voice-pause-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-voice-pause-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 73a91e2f-9808-4cc9-9517-e26506c33b18, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 46.1%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-voice-pause-noir-v2-production.png",
+    "sha256": "45362365e8a8ce8f098939a69831b5fc34591fd428c5224b585ff311e94dfcdf",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 46.1% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -2355,11 +2839,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID. Superseded 2026-09-24 by clinic-makeup-executive-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-makeup-executive-v1-production.png",
     "sha256": "3566cba30c9b934ec69845431bf99668ddc090a93671d6fa3971379288b361c7",
     "review": {
@@ -2383,6 +2867,49 @@
   {
     "spec": {
       "styleBibleVersion": "1.0",
+      "assetId": "clinic-makeup-executive-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.makeup",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews the executive presentation at the preparation-suite vanity before choosing makeup.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.makeup when outfitDraft is executive and makeupDraft is still unset.",
+      "continuityRequirements": [
+        "The executive outfit is worn; makeup examples remain unselected."
+      ],
+      "editSources": [
+        "clinic-makeup-executive-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.84) of clinic-makeup-executive-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 59.8%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-makeup-executive-v1-lift-production.png",
+    "sha256": "20ec9f5808b0d43c0f7563f32c79fe9bdeaadf7fab83b7cad1094a012a99c604",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 59.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
       "assetId": "clinic-makeup-socialite-v1-production",
       "assetType": "scene-cg",
       "locationId": "clinic-dressing-area",
@@ -2401,11 +2928,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID."
+      "notes": "Reviewed exact clinic shot candidate; branch/state approval is bounded to the declared shot ID. Superseded 2026-09-24 by clinic-makeup-socialite-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-makeup-socialite-v1-production.png",
     "sha256": "a1abfbb1d26734e431ec0328266622f09681c27953dd9d60d2220dbf65b03c7a",
     "review": {
@@ -2424,6 +2951,49 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-makeup-socialite-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.makeup",
+      "environment": "Locked Sublevel 17 clinic recovery/preparation geography with consistent camera family.",
+      "cameraFraming": "Adrian reviews the socialite presentation at the preparation-suite vanity before choosing makeup.",
+      "lighting": "Controlled clinic light with no future-state relighting.",
+      "intendedUse": "ONLY clinic.makeup when outfitDraft is socialite and makeupDraft is still unset.",
+      "continuityRequirements": [
+        "The socialite outfit is worn; makeup examples remain unselected."
+      ],
+      "editSources": [
+        "clinic-makeup-socialite-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.83) of clinic-makeup-socialite-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 59.4%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-makeup-socialite-v1-lift-production.png",
+    "sha256": "1d3c4d4aebe71b0759b78395bff83e3b2ccbd6a05b8684139b0e64ea220ecdad",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 59.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -2586,11 +3156,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded."
+      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded. Superseded 2026-09-24 by clinic-presentation-review-executive-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-presentation-review-executive-v1-production.png",
     "sha256": "28a75043e0f4e5e03a42e9d85b011a4fa6930d3218583460544061f23f0fe01b",
     "review": {
@@ -2609,6 +3179,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-presentation-review-executive-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.presentationReview",
+      "environment": "Locked clinic dressing area and preparation-suite wardrobe wall.",
+      "cameraFraming": "16:9 rear presentation-review frame with the selected outfit fully visible and face intentionally out of frame.",
+      "lighting": "Controlled warm dressing-area light; no future event relighting.",
+      "intendedUse": "ONLY clinic-presentationReview.shot01-executive when outfitDraft is executive and makeupDraft is set; exact presentation-review state before rehearsal.",
+      "continuityRequirements": [
+        "The outfit is committed for review and the selected rack is empty.",
+        "The rear camera intentionally avoids identity or makeup claims; later rehearsal remains separate."
+      ],
+      "editSources": [
+        "clinic-presentation-review-executive-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.79) of clinic-presentation-review-executive-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 61.5%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-presentation-review-executive-v1-lift-production.png",
+    "sha256": "c50624791695d93888ae99ec8968ba5714eaa05e4c497ad9f2cbe55977bb17d9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 61.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -2680,11 +3294,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded."
+      "notes": "Reviewed exact outfit-specific presentation-review candidate; makeup-neutral and branch-bounded. Superseded 2026-09-24 by clinic-presentation-review-shadow-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-presentation-review-shadow-v1-production.png",
     "sha256": "fb3b0af56299ddd167fec5a65b8fdf34bf5b1db0d050f777fbadcc5cfd4beda9",
     "review": {
@@ -2703,6 +3317,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-presentation-review-shadow-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-dressing-area",
+      "sceneId": "clinic.presentationReview",
+      "environment": "Locked clinic dressing area and preparation-suite wardrobe wall.",
+      "cameraFraming": "16:9 rear presentation-review frame with the selected outfit fully visible and face intentionally out of frame.",
+      "lighting": "Controlled warm dressing-area light; no future event relighting.",
+      "intendedUse": "ONLY clinic-presentationReview.shot01-shadow when outfitDraft is shadow and makeupDraft is set; exact presentation-review state before rehearsal.",
+      "continuityRequirements": [
+        "The outfit is committed for review and the selected rack is empty.",
+        "The rear camera intentionally avoids identity or makeup claims; later rehearsal remains separate."
+      ],
+      "editSources": [
+        "clinic-presentation-review-shadow-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.83) of clinic-presentation-review-shadow-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 59.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-presentation-review-shadow-v1-lift-production.png",
+    "sha256": "6a9e8fb02175d0e582da33dc203ad94e76dbc52c0a5d2d9731b486331b6a8951",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 59.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -2727,11 +3385,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral."
+      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral. Superseded 2026-09-24 by clinic-rehearsal-executive-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-rehearsal-executive-v1-production.png",
     "sha256": "b5aa746b2145941233d640aef347eb8d10294b6c323f9c1d453b675c54479c21",
     "review": {
@@ -2750,6 +3408,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rehearsal-executive-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.rehearsal",
+      "environment": "Locked clinic preparation suite with coaching area and wardrobe wall.",
+      "cameraFraming": "16:9 rear coaching frame with the selected outfit visible and no unearned party guests.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.rehearsal.shot01-executive when outfit is committed as executive; rehearsal coaching remains before the final briefing and departure.",
+      "continuityRequirements": [
+        "Sloane is coaching in the preparation suite; no party guest, event entrance or future mission result is shown.",
+        "The selected rack is empty and the selected outfit remains unchanged."
+      ],
+      "editSources": [
+        "clinic-rehearsal-executive-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.79) of clinic-rehearsal-executive-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 61.1%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rehearsal-executive-v1-lift-production.png",
+    "sha256": "daa1ff9f3ae51c071a29b142b416417107199b7af1aba0e4601636739376c63d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 61.1% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -2774,11 +3476,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral."
+      "notes": "Reviewed exact outfit-specific rehearsal candidate; makeup-neutral. Superseded 2026-09-24 by clinic-rehearsal-socialite-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-rehearsal-socialite-v1-production.png",
     "sha256": "e23fe779f15192d22094708c3daf9419162876b3f21221c1bb0195be173f176c",
     "review": {
@@ -2797,6 +3499,50 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Owner-approved regular/non-explicit EVE art integration for exact reviewed clinic state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-rehearsal-socialite-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-preparation-suite",
+      "sceneId": "clinic.rehearsal",
+      "environment": "Locked clinic preparation suite with coaching area and wardrobe wall.",
+      "cameraFraming": "16:9 rear coaching frame with the selected outfit visible and no unearned party guests.",
+      "lighting": "Controlled warm preparation-suite light.",
+      "intendedUse": "ONLY clinic.rehearsal.shot01-socialite when outfit is committed as socialite; rehearsal coaching remains before the final briefing and departure.",
+      "continuityRequirements": [
+        "Sloane is coaching in the preparation suite; no party guest, event entrance or future mission result is shown.",
+        "The selected rack is empty and the selected outfit remains unchanged."
+      ],
+      "editSources": [
+        "clinic-rehearsal-socialite-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.82) of clinic-rehearsal-socialite-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 59.7%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-rehearsal-socialite-v1-lift-production.png",
+    "sha256": "8857efc0b905361b51980641c71571700b4dea6ac4486b967c0fcc8ff0e3e0da",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 59.7% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3063,11 +3809,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source. Superseded 2026-09-24 by blackglass-directory-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/blackglass-directory-v1-production.png",
     "sha256": "24d9a39d369e3e806c7d5cad5c4ad3d6bc71211caeb3c681e226bde8727f9f63",
     "review": {
@@ -3087,6 +3833,51 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-directory-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-casework",
+      "sceneId": "file.directory",
+      "environment": "Axiom casework workstation with the Blackglass directory open on Adrian’s monitor.",
+      "cameraFraming": "16:9 desk-level view with Adrian at the terminal and the directory surface readable only through authored prose.",
+      "lighting": "Controlled warm Axiom office light with restrained amber accents.",
+      "intendedUse": "ONLY opening.blackglass.shot02-directory at file.directory after the directory is opened; no biometric authorization or security state.",
+      "continuityRequirements": [
+        "Adrian is alone at the casework desk.",
+        "Directory identifiers are represented by authored text, not invented readable labels.",
+        "No palm authorization, security officers, escort, Sloane or future identity reveal appears."
+      ],
+      "editSources": [
+        "blackglass-directory-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.84) of blackglass-directory-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 61.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-directory-v1-lift-production.png",
+    "sha256": "26cb61c6ef3f4337202352bef731c16a9e26495467ffc3c559c072566de09571",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 61.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3112,11 +3903,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source. Superseded 2026-09-24 by blackglass-authorized-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/blackglass-authorized-v1-production.png",
     "sha256": "4531ae7eb7fdb49e01c331f47f231fec94694ba85f639cb08ad18213c7618084",
     "review": {
@@ -3136,6 +3927,51 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-authorized-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-casework",
+      "sceneId": "file.authorized",
+      "environment": "Axiom casework workstation during biometric authorization of Candidate 7A.",
+      "cameraFraming": "16:9 desk-level view with Adrian’s hand on the palm reader and the terminal locked in an amber security state.",
+      "lighting": "Security amber over the controlled casework workstation.",
+      "intendedUse": "ONLY opening.blackglass.shot03-authorized at file.authorized after file.authorize; no officers or escort before the security CUT.",
+      "continuityRequirements": [
+        "Adrian’s biometric hand action is the authored change from directory to authorization.",
+        "The terminal is locked; the candidate image has not resolved.",
+        "No security officers, phone surrender or executive-level material appears."
+      ],
+      "editSources": [
+        "blackglass-authorized-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.77) of blackglass-authorized-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 62.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-authorized-v1-lift-production.png",
+    "sha256": "49520c66f14b873bfef2deab7581213b67f052b9a7c32c93ad21fbb44fe1e0d6",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 62.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3161,11 +3997,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source. Superseded 2026-09-24 by blackglass-security-intervention-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/blackglass-security-intervention-v1-production.png",
     "sha256": "bc03df3dbf811309929adeb2e7430d457af409864104249cc61d483f3a94b7c4",
     "review": {
@@ -3185,6 +4021,51 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-security-intervention-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-internal-security",
+      "sceneId": "security.intervention",
+      "environment": "Axiom Strategic Intelligence floor at the secured casework desk.",
+      "cameraFraming": "16:9 desk-axis frame with Adrian turned toward the two officers behind his chair.",
+      "lighting": "Security amber replacing normal office light after the terminal lock.",
+      "intendedUse": "ONLY opening.blackglass.shot04-security-intervention at security.intervention after Adrian turns to the officers; no elevator escort yet.",
+      "continuityRequirements": [
+        "Two officers are active participants; Adrian remains at the desk.",
+        "Badge and terminal intervention are visible; phone surrender remains a later authored action.",
+        "Maya is not shown and no executive-level location is introduced."
+      ],
+      "editSources": [
+        "blackglass-security-intervention-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.77) of blackglass-security-intervention-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 60.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-security-intervention-v1-lift-production.png",
+    "sha256": "38252ff5100d0b84d4d827a28530654a38ecbbf01ff1dc6a2e2911e16a03e852",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 60.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3210,11 +4091,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source."
+      "notes": "Owner-reviewed exact-state candidate; approval is shot-scoped and preserves the staged source. Superseded 2026-09-24 by blackglass-security-escort-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/blackglass-security-escort-v1-production.png",
     "sha256": "77d32bcc789224c3c31a78fc17d281434a6ddae11a120a314889e18b34e13e9a",
     "review": {
@@ -3234,6 +4115,51 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Blackglass exact-state candidate reviewed against current casework prose and branch state."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-security-escort-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-secure-elevator",
+      "sceneId": "security.escort",
+      "environment": "Axiom secure elevator en route to Executive Intelligence Level 71.",
+      "cameraFraming": "16:9 elevator interior with Adrian carrying his coat and the two officers controlling the transfer.",
+      "lighting": "Controlled amber elevator light with reflective metal surfaces.",
+      "intendedUse": "ONLY opening.blackglass.shot05-security-escort at security.escort after phone surrender; no Sloane office or later executive state.",
+      "continuityRequirements": [
+        "The desk intervention has ended and the officers escort Adrian through the secure elevator.",
+        "Adrian’s coat is in his arm; the phone is no longer staged as a private object.",
+        "No Sloane, aide, Glass House or clinic material appears."
+      ],
+      "editSources": [
+        "blackglass-security-escort-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.76) of blackglass-security-escort-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 57.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/blackglass-security-escort-v1-lift-production.png",
+    "sha256": "8d3f8d8bbc6a984f993c656db5d1e07905fa61374f361bb1124eb89cb61a3575",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 57.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3305,11 +4231,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by sloane-allegation-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/sloane-allegation-v1-production.png",
     "sha256": "cbe85620c195d690ec496f1739342a27e2ee8e522271bacbe3b0a0d57833277a",
     "review": {
@@ -3328,6 +4254,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-allegation-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.allegation",
+      "environment": "Sloane presents the access audit across the executive desk before the operation briefing.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot02-allegation; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-allegation-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of sloane-allegation-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset c25922be-2d43-4d12-8979-12e4dd968fa9, lighting anchor 446c3e2a (relit Sloane office); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 63.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-allegation-noir-v2-production.png",
+    "sha256": "03ea52cecc823ff4c7f27221d9481dc91eec0e148066e00bd4d2968bc2f265f8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 63.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -3352,11 +4322,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by sloane-brief-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/sloane-brief-v1-production.png",
     "sha256": "abbb003a301d440115c40936ce3c3d02bb69cdb3c33f8a944e61236ae2f18711",
     "review": {
@@ -3375,6 +4345,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Sloane/refusal candidate reviewed against current prose and state contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "sloane-brief-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-executive-floor",
+      "sceneId": "sloane.brief",
+      "environment": "Sloane and Adrian sit across the executive desk while the Glass House operation is proposed.",
+      "cameraFraming": "16:9 exact-state executive-floor or lobby composition.",
+      "lighting": "Controlled Axiom daylight, matching the staged source.",
+      "intendedUse": "ONLY opening.sloane.shot03-brief; no generic Sloane, refusal or executive-floor fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later participants, props or decisions."
+      ],
+      "editSources": [
+        "sloane-brief-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of sloane-brief-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset e828b7fb-ad47-49c8-9596-4c31685df22a, lighting anchor 446c3e2a (relit Sloane office); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 59.9%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/sloane-brief-noir-v2-production.png",
+    "sha256": "e3c01e82d5ffe5c11f1a1abde6d98313f585b5dc106ff9ff1eb20f11e7393d18",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 59.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -3634,11 +4648,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by clinic-recovery-mirror-look-noir-v2-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/clinic-recovery-mirror-look-v1-production.png",
     "sha256": "37a16fd4d4cf2333f602584892ec42d77420eb8dc0542850401182caf61e53b4",
     "review": {
@@ -3657,6 +4671,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged clinic residual candidate reviewed against current clinic state and shot contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "clinic-recovery-mirror-look-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "clinic-recovery-suite",
+      "sceneId": "clinic.mirror",
+      "environment": "Adrian faces the floor-length recovery mirror after choosing to look; the chosen mirror response remains in authored state.",
+      "cameraFraming": "16:9 exact-state clinic composition.",
+      "lighting": "Warm controlled clinic practicals matching the staged source.",
+      "intendedUse": "ONLY clinic.mirror.shot01-look; no generic clinic or later departure fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not anticipate later branch wardrobe or vehicle states."
+      ],
+      "editSources": [
+        "clinic-recovery-mirror-look-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of clinic-recovery-mirror-look-v1-production: ZenCreator image_editor SEEDREAM_5 task a79036ff-69ea-40da-8455-41bba2f05e11, provider asset 19e75fa9-fbb8-4ad3-b377-46a9ff975bca, lighting anchor 66126cde (clinic consultation v2); then a lossless midtone gamma lift to the 45-70 band. Faces, people and composition unchanged. Luminance mean 55.0, near-black 51.8%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/clinic-recovery-mirror-look-noir-v2-production.png",
+    "sha256": "aaa52c139fb278659dbf5344ae9b94f622a66bb787a50bc8ee4a6f36b4026e04",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Faces, hair, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 51.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass B dark relights lightened a touch (2026-09-24)."
     }
   },
   {
@@ -3869,11 +4927,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by chapter3-surveillance-phone-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/chapter3-surveillance-phone-v1-production.png",
     "sha256": "d2b88a9aeec95bd80760903ed0bb468d03301a654ca68cf819a91336527af7f4",
     "review": {
@@ -3892,6 +4950,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Chapter 3 surveillance candidate reviewed against chapter3.phone action and scene contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter3-surveillance-phone-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "apartment",
+      "sceneId": "chapter3.surveillance",
+      "environment": "The approved post-Glass-House apartment at night, with rain-lit window, jacket and lamp retained.",
+      "cameraFraming": "16:9 exact-state apartment phone placement.",
+      "lighting": "Warm lamp against cool rain-lit window.",
+      "intendedUse": "ONLY chapter3.surveillance after chapter3.phone; no generic Chapter 3 or future phone state.",
+      "continuityRequirements": [
+        "Phone is set down as authored.",
+        "Notification remains abstract and unreadable; no branch reply is anticipated."
+      ],
+      "editSources": [
+        "chapter3-surveillance-phone-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.68) of chapter3-surveillance-phone-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 49.8%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter3-surveillance-phone-v1-lift-production.png",
+    "sha256": "1645ab75a0716524adbb7ef6286e11fe06ed2cb4541ee0026c6c6b4376b49dec",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 49.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3916,11 +5018,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by chapter4-river-entry-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/chapter4-river-entry-v1-production.png",
     "sha256": "ae789e8f9fea04e8f7ecd190ea5612aa8511709d02bd00953da90053870fa0ce",
     "review": {
@@ -3939,6 +5041,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-river-entry-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "chapter4-river-path",
+      "sceneId": "chapter4.entry",
+      "environment": "At the foot of the building steps, the river path and blank-glow phone establish the selected Chapter 4 departure before the call or walk action.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Rain-dark riverside evening with warm street lamps.",
+      "intendedUse": "ONLY chapter4.entry.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-river-entry-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.74) of chapter4-river-entry-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 48.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-river-entry-v1-lift-production.png",
+    "sha256": "d775a4a3f55393c39ed8fad4dfab15efced9b372664940c64c15759786260e66",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 48.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -3963,11 +5109,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by chapter4-river-consequences-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/chapter4-river-consequences-v1-production.png",
     "sha256": "ddb8d1e8d54ccf7f8cb9fcb562abbb13d6d2c98e6bcf0ae6a51b91461d9145a8",
     "review": {
@@ -3986,6 +5132,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-river-consequences-v1-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "chapter4-river-bench",
+      "sceneId": "chapter4.consequences",
+      "environment": "The player reaches the river bench after the selected call or walk; generic remaining-thread rows do not reveal a contact or result.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Rain-dark riverside evening with warm street lamps.",
+      "intendedUse": "ONLY chapter4.consequences.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-river-consequences-v1-production"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.73) of chapter4-river-consequences-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 49.0%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-river-consequences-v1-lift-production.png",
+    "sha256": "3855145de890553fbe46d2a7b09106e3b661e0410995d99610142b7d639bf43e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 49.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -4497,11 +5687,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact Adrian-alone aftermath CUT only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance."
+      "notes": "Reviewed regular non-explicit style-v2 candidate. Promoted unchanged for the exact Adrian-alone aftermath CUT only. V3 transparent smoked-glass monitor correction: abstract reverse-side interface remains non-readable; V2 record retained as provenance. Superseded 2026-09-24 by axiom-opening-office-shot04-alone-v3-transparent-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/axiom-opening-office-shot04-alone-v3-transparent-production.png",
     "sha256": "bdeb72526240866cb39fb6219eef49d3164e671833d96b5afc10bc5a54a48f7a",
     "review": {
@@ -4518,6 +5708,51 @@
       "reviewer": "Owner-authorized opening monitor correction",
       "date": "2026-09-22",
       "source": "Seven staged V3 transparent-display corrections reviewed against the existing exact opening shot contracts; V2 retained for provenance."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "axiom-opening-office-shot04-alone-v3-transparent-lift-production",
+      "assetType": "scene-cg",
+      "locationId": "axiom-strategic-intelligence",
+      "sceneId": "ending.complete",
+      "environment": "Strategic Intelligence office with the locked M5 desk, terminal, slate and controlled morning practicals.",
+      "cameraFraming": "16:9 desk-level aftermath frame with Adrian seated at his desk, cup at his lips, terminal and retained slate visible.",
+      "lighting": "Controlled morning office warmth with restrained cool fill; no time-of-day change.",
+      "intendedUse": "ONLY opening.office.shot04-alone at ending.complete after Maya’s departure. Adrian is alone and sips the retained cup. V3 transparent-display correction supersedes the V2 monitor surface while retaining the same exact shot/state contract.",
+      "continuityRequirements": [
+        "Adrian is the only visible participant; Maya, Daniel and Benton are absent.",
+        "One retained cup is in Adrian’s hand; no duplicate desk cup or later report result appears.",
+        "Do not serve before Maya’s authored departure or as a general Adrian identity reference."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Lossless midtone gamma lift (gamma 0.85) of axiom-opening-office-shot04-alone-v3-transparent-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 61.6%.",
+      "editSources": [
+        "axiom-opening-office-shot04-alone-v3-transparent-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/axiom-opening-office-shot04-alone-v3-transparent-lift-production.png",
+    "sha256": "ccaa50d5bdb2a534bd91c5ed4bf5a36e246303dd0d18d6b81202c2b7d7035aaa",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 61.6% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   }
 ]

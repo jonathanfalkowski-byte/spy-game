@@ -8,33 +8,33 @@ const exactArt = (result: ReturnType<typeof resolveSceneArt>) => (result.art?.ki
 it('binds reception and privacy variants to the reached clinic participants', () => {
   const reception = traverse(clinicStart(), {}, 'reception');
   expect(resolveSceneArt(reception).shot?.shotId).toBe('clinic.reception.shot01');
-  expect(resolveSceneArt(reception).art?.asset.id).toBe('clinic-reception-v1-production');
+  expect(resolveSceneArt(reception).art?.asset.id).toBe('clinic-reception-noir-v2-production');
   expect(resolveSceneArt(reception).issues).toEqual([]);
 
   const reply = clinic(reception, 'reception.correct');
   expect(resolveSceneArt(reply).shot?.shotId).toBe('clinic.reception.shot01');
-  expect(resolveSceneArt(reply).art?.asset.id).toBe('clinic-reception-v1-production');
+  expect(resolveSceneArt(reply).art?.asset.id).toBe('clinic-reception-noir-v2-production');
 
   const privacy = traverse(reply, {}, 'privacy');
   expect(resolveSceneArt(privacy).shot?.shotId).toBe('clinic.privacy.shot01');
-  expect(resolveSceneArt(privacy).art?.asset.id).toBe('clinic-privacy-v1-production');
+  expect(resolveSceneArt(privacy).art?.asset.id).toBe('clinic-privacy-noir-v2-production');
 
   const stayReply = clinic(privacy, 'privacy.stay');
   expect(stayReply.clinic.sloanePresent).toBe(true);
   expect(resolveSceneArt(stayReply).shot?.shotId).toBe('clinic.privacyReply.shot01-stay');
-  expect(resolveSceneArt(stayReply).art?.asset.id).toBe('clinic-privacy-stay-v1-production');
+  expect(resolveSceneArt(stayReply).art?.asset.id).toBe('clinic-privacy-stay-noir-v2-production');
 
   const privateReply = clinic(privacy, 'privacy.ask');
   expect(privateReply.clinic.sloanePresent).toBe(false);
   expect(resolveSceneArt(privateReply).shot?.shotId).toBe('clinic.privacyReply.shot01-private');
-  expect(resolveSceneArt(privateReply).art?.asset.id).toBe('clinic-privacy-private-v1-production');
+  expect(resolveSceneArt(privateReply).art?.asset.id).toBe('clinic-privacy-private-noir-v2-production');
 });
 
 it('keeps examination result branch-safe and returns to the protocol hold', () => {
   const reply = traverse(clinicStart(), { privacy: 'privacy.ask' }, 'privacyReply');
   const exam = clinic(reply, 'c.privacyReply');
   expect(resolveSceneArt(exam).shot?.shotId).toBe('clinic.exam.shot01-private');
-  expect(resolveSceneArt(exam).art?.asset.id).toBe('clinic-exam-private-v1-production');
+  expect(resolveSceneArt(exam).art?.asset.id).toBe('clinic-exam-private-noir-v2-production');
 
   const result = clinic(exam, 'exam.skip');
   expect(result.clinic.sloanePresent).toBe(false);
@@ -44,7 +44,7 @@ it('keeps examination result branch-safe and returns to the protocol hold', () =
   const protocol = clinic(result, 'c.examResult');
   expect(protocol.clinic.sloanePresent).toBe(true);
   expect(resolveSceneArt(protocol).shot?.shotId).toBe('clinic.protocol.shot01');
-  expect(resolveSceneArt(protocol).art?.asset.id).toBe('clinic-protocol-v1-production');
+  expect(resolveSceneArt(protocol).art?.asset.id).toBe('clinic-protocol-noir-v2-production');
 
   const stay = traverse(clinicStart(), { privacy: 'privacy.stay' }, 'examResult');
   expect(stay.clinic.sloanePresent).toBe(true);
@@ -71,7 +71,7 @@ it('holds the simulation through display and cuts to authorization and preparati
   const preparation = clinic(authorization, 'auth.yes');
   expect(preparation.clinic.authorized).toBe(true);
   expect(resolveSceneArt(preparation).shot?.shotId).toBe('clinic.preparation.shot01');
-  expect(resolveSceneArt(preparation).art?.asset.id).toBe('clinic-preparation-v1-production');
+  expect(resolveSceneArt(preparation).art?.asset.id).toBe('clinic-preparation-noir-v2-production');
 });
 
 it('binds the profile display candidate only while profile controls are active', () => {
@@ -96,7 +96,7 @@ it('keeps voice and face assets branch-safe across pause and response holds', ()
   const stayVoice = traverse(clinicStart(), { privacy: 'privacy.stay' }, 'voice');
   expect(exactArt(resolveSceneArt(stayVoice))).toBeUndefined();
   const voicePause = clinic(stayVoice, 'voice.pause');
-  expect(resolveSceneArt(voicePause).art?.asset.id).toBe('clinic-voice-pause-v1-production');
+  expect(resolveSceneArt(voicePause).art?.asset.id).toBe('clinic-voice-pause-noir-v2-production');
 
   const face = clinic(voiceReply, 'c.voiceReply');
   expect(resolveSceneArt(face).art?.asset.id).toBe('clinic-face-v1-production');
@@ -122,10 +122,10 @@ it('covers recovery movement, contact custody and wardrobe branches without futu
   const looked = clinic(mirror, 'mirror.me');
   expect(looked.phase).toBe('name');
   expect(resolveSceneArt(looked).shot?.shotId).toBe('clinic.mirror.shot01-look');
-  expect(resolveSceneArt(looked).art?.asset.id).toBe('clinic-recovery-mirror-look-v1-production');
+  expect(resolveSceneArt(looked).art?.asset.id).toBe('clinic-recovery-mirror-look-noir-v2-production');
   expect(resolveSceneArt(looked).issues).toEqual([]);
   const name = clinic(mirror, 'mirror.me');
-  expect(resolveSceneArt(name).art?.asset.id).toBe('clinic-recovery-mirror-look-v1-production');
+  expect(resolveSceneArt(name).art?.asset.id).toBe('clinic-recovery-mirror-look-noir-v2-production');
   const rest = clinic(name, 'name.correct');
   expect(resolveSceneArt(rest).art?.asset.id).toBe('clinic-rest-v1-production');
   const contact = clinic(rest, 'c.rest');
@@ -136,9 +136,9 @@ it('covers recovery movement, contact custody and wardrobe branches without futu
   const wardrobe = clinic(quietReply, 'c.recoveryReply');
   expect(resolveSceneArt(wardrobe).art?.asset.id).toBe('clinic-wardrobe-choice-v1-production');
   const makeup = clinic(wardrobe, 'outfit.executive');
-  expect(resolveSceneArt(makeup).art?.asset.id).toBe('clinic-makeup-executive-v1-production');
+  expect(resolveSceneArt(makeup).art?.asset.id).toBe('clinic-makeup-executive-v1-lift-production');
   const review = clinic(makeup, 'makeup.corporate');
-  expect(resolveSceneArt(review).art?.asset.id).toBe('clinic-presentation-review-executive-v1-production');
+  expect(resolveSceneArt(review).art?.asset.id).toBe('clinic-presentation-review-executive-v1-lift-production');
 
   const sentContact = clinic(rest, 'c.rest');
   const sentReply = clinic(sentContact, 'contact.brief');
@@ -149,7 +149,7 @@ it('binds committed presentation rehearsal variants and the final briefing table
   const rehearsal = traverse(clinicStart(), {}, 'rehearsal');
   expect(rehearsal.clinic.outfit).toBe('executive');
   expect(resolveSceneArt(rehearsal).shot?.shotId).toBe('clinic.rehearsal.shot01-executive');
-  expect(resolveSceneArt(rehearsal).art?.asset.id).toBe('clinic-rehearsal-executive-v1-production');
+  expect(resolveSceneArt(rehearsal).art?.asset.id).toBe('clinic-rehearsal-executive-v1-lift-production');
   expect(resolveSceneArt(rehearsal).issues).toEqual([]);
 
   const briefing = clinic(rehearsal, 'rehearse.practice');

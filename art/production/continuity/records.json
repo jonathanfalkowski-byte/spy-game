@@ -115,11 +115,11 @@
       "editSources": [
         "eve-bg-wardrobe-continuity-v2"
       ],
-      "notes": "Dark noir relight of eve-bg-wardrobe-continuity-v2. ZenCreator image_editor SEEDREAM_5 task 30ef95d0-ba81-4763-a1d5-38e73880e235, provider asset a8bce80c-b906-4ed6-b5b3-8947edde7bce; image 1 = b37659b4-8195-47c2-976b-8fba0ebbae90 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 43.1, near-black 74.2%. Layout and props unchanged; lighting only."
+      "notes": "Dark noir relight of eve-bg-wardrobe-continuity-v2. ZenCreator image_editor SEEDREAM_5 task 30ef95d0-ba81-4763-a1d5-38e73880e235, provider asset a8bce80c-b906-4ed6-b5b3-8947edde7bce; image 1 = b37659b4-8195-47c2-976b-8fba0ebbae90 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 43.1, near-black 74.2%. Layout and props unchanged; lighting only. Superseded 2026-09-24 by eve-bg-wardrobe-continuity-noir-v2-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-wardrobe-continuity-noir-v2-production.png",
     "sha256": "038ebaa9a2995069b5d27afd9f254b9ecf31cd0ca2477fffa224bca7141a1bef",
     "review": {
@@ -135,6 +135,55 @@
       "reviewer": "Project owner",
       "date": "2026-09-24",
       "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "mood": "Sophisticated adult espionage, restrained psychological tension",
+      "continuityRequirements": [
+        "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+        "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+      ],
+      "assetId": "eve-bg-wardrobe-continuity-noir-v2-lift-production",
+      "assetType": "background",
+      "sceneId": "clinic.wardrobe",
+      "locationId": "wardrobe",
+      "environment": "Preparation room with full-length mirror, vanity and exactly one tailored suit, one long black gown and one plain charcoal cocktail dress; no tactical gear.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Reusable staged location background",
+      "editSources": [
+        "eve-bg-wardrobe-continuity-noir-v2-production"
+      ],
+      "notes": "Lossless midtone gamma lift (gamma 0.80) of eve-bg-wardrobe-continuity-noir-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 63.3%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-wardrobe-continuity-noir-v2-lift-production.png",
+    "sha256": "7ae579dd6b1e87aef2a3a965a3c292ac126e06da4766335e51475893977baed3",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 63.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -351,12 +400,12 @@
       "editSources": [
         "eve-bg-sloane-office-continuity-v2"
       ],
-      "notes": "Dark noir relight of eve-bg-sloane-office-continuity-v2. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 446c3e2a-b87d-4228-9adb-553d97b198fb; image 1 = 70f035de-c2fd-45b1-98a2-4f604e3ddf87 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 35.3, near-black 74.5%. Layout and props unchanged; lighting only.",
+      "notes": "Dark noir relight of eve-bg-sloane-office-continuity-v2. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 446c3e2a-b87d-4228-9adb-553d97b198fb; image 1 = 70f035de-c2fd-45b1-98a2-4f604e3ddf87 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 35.3, near-black 74.5%. Layout and props unchanged; lighting only. Superseded 2026-09-24 by eve-bg-sloane-office-continuity-noir-v2-lift-production.",
       "timeOfDay": "Overcast midday"
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-sloane-office-continuity-noir-v2-production.png",
     "sha256": "27287753d547f4a82e0f477cfd8350ed4eff7a27af63d78ae48cea1d2ef10ba1",
     "review": {
@@ -372,6 +421,56 @@
       "reviewer": "Project owner",
       "date": "2026-09-24",
       "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "mood": "Sophisticated adult espionage, restrained psychological tension",
+      "continuityRequirements": [
+        "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+        "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+      ],
+      "assetId": "eve-bg-sloane-office-continuity-noir-v2-lift-production",
+      "assetType": "background",
+      "sceneId": "sloane.intro",
+      "locationId": "sloane-office",
+      "environment": "High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Reusable staged location background",
+      "editSources": [
+        "eve-bg-sloane-office-continuity-noir-v2-production"
+      ],
+      "notes": "Lossless midtone gamma lift (gamma 0.72) of eve-bg-sloane-office-continuity-noir-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 58.5%.",
+      "timeOfDay": "Overcast midday"
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-sloane-office-continuity-noir-v2-lift-production.png",
+    "sha256": "9300501f031fc8497c9728e533f94b39040f70e69df7f34e9ee3b4e8192eb79f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 58.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -434,11 +533,11 @@
       "editSources": [
         "car-rain-window-v1-production"
       ],
-      "notes": "Dark noir relight of car-rain-window-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 95b604e0-fdde-480a-a13d-45c707f4b04b; image 1 = 2fcb6ed5-219e-40b9-9360-1dc37a3f014d (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.1, near-black 80.0%. Layout and props unchanged; lighting only."
+      "notes": "Dark noir relight of car-rain-window-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 95b604e0-fdde-480a-a13d-45c707f4b04b; image 1 = 2fcb6ed5-219e-40b9-9360-1dc37a3f014d (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.1, near-black 80.0%. Layout and props unchanged; lighting only. Superseded 2026-09-24 by car-rain-window-noir-v2-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/car-rain-window-noir-v2-production.png",
     "sha256": "9667383b29980f7464fefed837feb9d0a2dffd08a6a092f7281b68216edc59fc",
     "review": {
@@ -454,6 +553,47 @@
       "reviewer": "Project owner",
       "date": "2026-09-24",
       "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "car-rain-window-noir-v2-lift-production",
+      "assetType": "background",
+      "sceneId": "mission.car",
+      "locationId": "car",
+      "environment": "Rainy twilight car window POV with coherent vehicle frame and city lights.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.car rainy twilight window POV HOLD; crop excludes empty rear bench and shows no characters or action.",
+      "editSources": [
+        "car-rain-window-noir-v2-production"
+      ],
+      "notes": "Lossless midtone gamma lift (gamma 0.58) of car-rain-window-noir-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 54.9, near-black 51.2%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/car-rain-window-noir-v2-lift-production.png",
+    "sha256": "41308b1b2243d767c7c0121fde748ea16bdafc0c926c3b9afb6e035555a2d45c",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 54.9 within 40-85 (target 45-70), near-black 51.2% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -596,11 +736,11 @@
       "editSources": [
         "eve-bg-glass-lobby-v1-production"
       ],
-      "notes": "Dark noir relight of eve-bg-glass-lobby-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 52198d35-41a3-4240-96d0-0a16a9225307; image 1 = 11c75d0c-f250-4c9b-870c-0ccbbf2f5757 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.7, near-black 90.3%. Layout and props unchanged; lighting only."
+      "notes": "Dark noir relight of eve-bg-glass-lobby-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 52198d35-41a3-4240-96d0-0a16a9225307; image 1 = 11c75d0c-f250-4c9b-870c-0ccbbf2f5757 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.7, near-black 90.3%. Layout and props unchanged; lighting only. Superseded 2026-09-24 by eve-bg-glass-lobby-noir-v2-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-glass-lobby-noir-v2-production.png",
     "sha256": "f6a1928f34a1c914387862ecc026358e53d0706cad63be4b151c6fa45113ceee",
     "review": {
@@ -616,6 +756,47 @@
       "reviewer": "Project owner",
       "date": "2026-09-24",
       "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-bg-glass-lobby-noir-v2-lift-production",
+      "assetType": "background",
+      "sceneId": "mission.reception",
+      "locationId": "glass-lobby",
+      "environment": "Low stone invitation desk, coat-check alcove and dark elevator doors; empty.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.reception environment insert before/around access handling; staff and protagonist remain off-frame and no completed scan is claimed.",
+      "editSources": [
+        "eve-bg-glass-lobby-noir-v2-production"
+      ],
+      "notes": "Lossless midtone gamma lift (gamma 0.64) of eve-bg-glass-lobby-noir-v2-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 54.5, near-black 45.2%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-glass-lobby-noir-v2-lift-production.png",
+    "sha256": "0b4f06697cbe1e20a47d4c31caac6560bcfe9a133c29d8e962b12e2fb8fe787e",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 54.5 within 40-85 (target 45-70), near-black 45.2% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   },
   {
@@ -637,11 +818,11 @@
       "editSources": [
         "file-arrival-v1-candidate"
       ],
-      "notes": "Reviewed regular non-explicit Blackglass arrival candidate. Closed file icon only; no readable contents, no future authorization, one retained cup, no Maya or other participant. Candidate source: art/staging/full-game/blackglass/file-arrival-v1-candidate.png."
+      "notes": "Reviewed regular non-explicit Blackglass arrival candidate. Closed file icon only; no readable contents, no future authorization, one retained cup, no Maya or other participant. Candidate source: art/staging/full-game/blackglass/file-arrival-v1-candidate.png. Superseded 2026-09-24 by blackglass-file-arrival-v1-lift-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/blackglass-file-arrival-v1-production.png",
     "sha256": "f158f4ab5610eb24bdb6bd4709c145db3055affa334f15bcbc1c1e3477cc06b6",
     "review": {
@@ -658,6 +839,47 @@
       "reviewer": "Delegated design review under owner-approved regular-art style plan",
       "date": "2026-09-22",
       "source": "Explicit owner approval for regular non-explicit art and exact file.arrival binding only."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "blackglass-file-arrival-v1-lift-production",
+      "assetType": "scene-cg",
+      "sceneId": "file.arrival",
+      "locationId": "axiom-casework",
+      "environment": "Adrian at his Strategic Intelligence desk after Maya leaves; the monitor shows only a closed, unreadable file icon and one retained coffee cup.",
+      "cameraFraming": "Eye-level 16:9 desk-wide composition with Adrian and the workspace visible; no opened contents.",
+      "cameraAngle": "Human-eye-level observational desk frame",
+      "lighting": "Restrained dark corporate office with warm practicals and readable charcoal surfaces.",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "intendedUse": "ONLY file.arrival / opening.blackglass.shot01-arrival. No use for file.directory, file.authorized, security intervention, or later Blackglass states.",
+      "editSources": [
+        "blackglass-file-arrival-v1-production"
+      ],
+      "notes": "Lossless midtone gamma lift (gamma 0.82) of blackglass-file-arrival-v1-production to the 45-70 luminance band. Pixels otherwise unchanged; no regeneration. Luminance mean 55.0, near-black 57.5%."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/blackglass-file-arrival-v1-lift-production.png",
+    "sha256": "bb2445feadbc2a0cd4b5df858892d1d630fd324cff4289902bfc5ac5ad58c13f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Composition, people and props identical to the previous production file; brightness only.",
+        "Luminance band: mean 55.0 within 40-85 (target 45-70), near-black 57.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved lifting all in-game art below the band floor (2026-09-24)."
     }
   }
 ]

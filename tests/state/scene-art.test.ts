@@ -168,11 +168,11 @@ it('binds each approved opening inspection only to its immediately reached apart
   expect(openingShots[12].art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
   expect(openingShots[13].art?.asset.id).toBe('axiom-opening-office-shot01-maya-v3-transparent-production');
   for (const visual of openingShots.slice(11, 14)) expect(visual.issues).toEqual([]);
-  expect(openingShots[15].art?.asset.id).toBe('axiom-opening-office-shot04-alone-v3-transparent-production');
+  expect(openingShots[15].art?.asset.id).toBe('axiom-opening-office-shot04-alone-v3-transparent-lift-production');
   expect(openingShots[15].issues).toEqual([]);
   expect(openingShots.slice(7, 11).map((visual) => visual.art?.asset.id)).toEqual([
     'axiom-opening-office-shot03-file-v3-transparent-production',
-    'axiom-casework-brief-v2-production',
+    'axiom-casework-brief-v2-lift-production',
     'axiom-casework-documents-v2-production',
     'axiom-casework-documents-v2-production',
   ]);
@@ -209,13 +209,13 @@ it('Lantern holds for dialogue only on the meeting route, then cuts for authored
 it('wardrobe establishes the rack before selection; dressing cuts instead of holding the old room', () => {
   const rack = traverse(undefined, {}, 'wardrobe');
   expect(resolveSceneArt(rack).art?.asset.id).toBe('clinic-wardrobe-choice-v1-production');
-  expect(resolveSceneArt(clinic(rack, 'outfit.executive')).art?.asset.id).toBe('clinic-makeup-executive-v1-production');
+  expect(resolveSceneArt(clinic(rack, 'outfit.executive')).art?.asset.id).toBe('clinic-makeup-executive-v1-lift-production');
 });
 
 it('home images require exact approved wardrobe, moment and no later inspection', () => {
   const home = act(runMission(), { type: 'CONTINUE_CHAPTER3' });
   expect(resolveSceneArt(home).art?.asset.id).toBe(
-    'apartment-post-glasshouse-executive-v1-production',
+    'apartment-post-glasshouse-executive-noir-v2-production',
   );
   expect(
     exactArt(resolveSceneArt(act(home, { type: 'CHAPTER3_CHOOSE', id: 'chapter3.mirror' }))),
@@ -232,7 +232,7 @@ it('binds only the approved environment holds for the mission car and Glass Hous
   expect(car.scene).toBe('mission');
   expect(car.phase).toBe('car');
   expect(resolveSceneArt(car).shot?.shotId).toBe('mission.car');
-  expect(resolveSceneArt(car).art?.asset.id).toBe('car-rain-window-noir-v2-production');
+  expect(resolveSceneArt(car).art?.asset.id).toBe('car-rain-window-noir-v2-lift-production');
   expect(resolveSceneArt(car).issues).toEqual([]);
 
   const arrival = mission(car, 'car.arrive');
@@ -270,19 +270,19 @@ it('binds the Chapter 3 monitored-phone placement after the authored phone actio
   expect(surveillance.scene).toBe('chapter3');
   expect(surveillance.phase).toBe('surveillance');
   expect(resolveSceneArt(surveillance).shot?.shotId).toBe('chapter3.surveillance.shot01');
-  expect(resolveSceneArt(surveillance).art?.asset.id).toBe('chapter3-surveillance-phone-v1-production');
+  expect(resolveSceneArt(surveillance).art?.asset.id).toBe('chapter3-surveillance-phone-v1-lift-production');
   expect(resolveSceneArt(surveillance).issues).toEqual([]);
 });
 
 it('binds the first Chapter 4 river and public-records cuts to exact nodes', () => {
   const entry = choose4(departure(), 'begin');
   expect(resolveSceneArt(entry).shot?.shotId).toBe('chapter4.entry.shot01');
-  expect(resolveSceneArt(entry).art?.asset.id).toBe('chapter4-river-entry-v1-production');
+  expect(resolveSceneArt(entry).art?.asset.id).toBe('chapter4-river-entry-v1-lift-production');
   expect(resolveSceneArt(entry).issues).toEqual([]);
 
   const consequences = choose4(entry, 'payoff');
   expect(resolveSceneArt(consequences).shot?.shotId).toBe('chapter4.consequences.shot01');
-  expect(resolveSceneArt(consequences).art?.asset.id).toBe('chapter4-river-consequences-v1-production');
+  expect(resolveSceneArt(consequences).art?.asset.id).toBe('chapter4-river-consequences-v1-lift-production');
   expect(resolveSceneArt(consequences).issues).toEqual([]);
 
   let resourceSource = consequences;
@@ -310,32 +310,32 @@ it('binds the reviewed Blackglass sequence only to its exact reached nodes', () 
   expect(arrival.scene).toBe('file');
   expect(arrival.phase).toBe('arrival');
   expect(resolved.shot?.shotId).toBe('opening.blackglass.shot01-arrival');
-  expect(resolved.art?.asset.id).toBe('blackglass-file-arrival-v1-production');
+  expect(resolved.art?.asset.id).toBe('blackglass-file-arrival-v1-lift-production');
   expect(resolved.issues).toEqual([]);
 
   const directory = day(arrival, 'file.open');
   expect(directory.phase).toBe('directory');
   expect(resolveSceneArt(directory).shot?.shotId).toBe('opening.blackglass.shot02-directory');
-  expect(resolveSceneArt(directory).art?.asset.id).toBe('blackglass-directory-v1-production');
+  expect(resolveSceneArt(directory).art?.asset.id).toBe('blackglass-directory-v1-lift-production');
 
   const authorized = day(directory, 'file.authorize');
   expect(resolveSceneArt(authorized).shot?.shotId).toBe('opening.blackglass.shot03-authorized');
-  expect(resolveSceneArt(authorized).art?.asset.id).toBe('blackglass-authorized-v1-production');
+  expect(resolveSceneArt(authorized).art?.asset.id).toBe('blackglass-authorized-v1-lift-production');
 
   const intervention = day(authorized, 'security.turn');
   expect(resolveSceneArt(intervention).shot?.shotId).toBe('opening.blackglass.shot04-security-intervention');
-  expect(resolveSceneArt(intervention).art?.asset.id).toBe('blackglass-security-intervention-v1-production');
+  expect(resolveSceneArt(intervention).art?.asset.id).toBe('blackglass-security-intervention-v1-lift-production');
 
   const escort = day(intervention, 'security.comply');
   expect(resolveSceneArt(escort).shot?.shotId).toBe('opening.blackglass.shot05-security-escort');
-  expect(resolveSceneArt(escort).art?.asset.id).toBe('blackglass-security-escort-v1-production');
+  expect(resolveSceneArt(escort).art?.asset.id).toBe('blackglass-security-escort-v1-lift-production');
 
   const intro = day(escort, 'security.enter');
   expect(resolveSceneArt(intro).art?.asset.id).toBe('sloane-intro-v1-production');
   const allegation = day(intro, 'intro.arrest');
-  expect(resolveSceneArt(allegation).art?.asset.id).toBe('sloane-allegation-v1-production');
+  expect(resolveSceneArt(allegation).art?.asset.id).toBe('sloane-allegation-noir-v2-production');
   const brief = day(allegation, 'leverage.need');
-  expect(resolveSceneArt(brief).art?.asset.id).toBe('sloane-brief-v1-production');
+  expect(resolveSceneArt(brief).art?.asset.id).toBe('sloane-brief-noir-v2-production');
   const identity = day(brief, 'brief.mission');
   expect(resolveSceneArt(identity).art?.asset.id).toBe('sloane-identity-v1-production');
   const offer = day(identity, 'attention.evelyn');
@@ -345,8 +345,8 @@ it('binds the reviewed Blackglass sequence only to its exact reached nodes', () 
   const reconsider = day(lobby, 'refusal.return');
   expect(resolveSceneArt(reconsider).art?.asset.id).toBe('refusal-reconsider-v1-production');
 
-  expect(resolveSceneArt(directory, 0).art?.asset.id).toBe('blackglass-directory-v1-production');
-  expect(resolveSceneArt(escort).art?.asset.id).not.toBe('blackglass-directory-v1-production');
+  expect(resolveSceneArt(directory, 0).art?.asset.id).toBe('blackglass-directory-v1-lift-production');
+  expect(resolveSceneArt(escort).art?.asset.id).not.toBe('blackglass-directory-v1-lift-production');
 });
 
 it('ordered Harbour cuts never anticipate Julian; cursor, malformed index and reload cannot modify saved bytes', () => {

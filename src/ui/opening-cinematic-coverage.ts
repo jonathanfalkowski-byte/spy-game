@@ -189,7 +189,7 @@ export const OPENING_CINEMATIC_CUTS: readonly OpeningCinematicCut[] = [
     props: ['Adrian’s retained coffee', 'Submitted Helix report'],
     reasonForCut: 'The active participant set changes to Adrian alone.',
     requiredAssetStatus: 'RUNTIME_APPROVED',
-    referenceAssetId: 'axiom-opening-office-shot04-alone-v3-transparent-production',
+    referenceAssetId: 'axiom-opening-office-shot04-alone-v3-transparent-lift-production',
     statusNote: 'Delegated design-approved bounded Adrian-alone sip frame; exact ending shot only, with no sitting or full-body authority.',
   },
 ] as const;

@@ -110,7 +110,7 @@ export const homeBindings = {
     shadow: 'apartment-pre-glasshouse-shadow-v1-production',
   },
   'post-glasshouse': {
-    executive: 'apartment-post-glasshouse-executive-v1-production',
+    executive: 'apartment-post-glasshouse-executive-noir-v2-production',
     socialite: 'apartment-post-glasshouse-socialite-v1-production',
     shadow: 'apartment-post-glasshouse-shadow-v1-production',
   },
@@ -162,27 +162,27 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'axiom-strategic-intelligence',
   },
   'opening.office.shot04-alone': {
-    assetId: 'axiom-opening-office-shot04-alone-v3-transparent-production',
+    assetId: 'axiom-opening-office-shot04-alone-v3-transparent-lift-production',
     location: 'axiom-strategic-intelligence',
   },
   'opening.blackglass.shot01-arrival': {
-    assetId: 'blackglass-file-arrival-v1-production',
+    assetId: 'blackglass-file-arrival-v1-lift-production',
     location: 'axiom-casework',
   },
   'opening.blackglass.shot02-directory': {
-    assetId: 'blackglass-directory-v1-production',
+    assetId: 'blackglass-directory-v1-lift-production',
     location: 'axiom-casework',
   },
   'opening.blackglass.shot03-authorized': {
-    assetId: 'blackglass-authorized-v1-production',
+    assetId: 'blackglass-authorized-v1-lift-production',
     location: 'axiom-casework',
   },
   'opening.blackglass.shot04-security-intervention': {
-    assetId: 'blackglass-security-intervention-v1-production',
+    assetId: 'blackglass-security-intervention-v1-lift-production',
     location: 'axiom-internal-security',
   },
   'opening.blackglass.shot05-security-escort': {
-    assetId: 'blackglass-security-escort-v1-production',
+    assetId: 'blackglass-security-escort-v1-lift-production',
     location: 'axiom-secure-elevator',
   },
   'opening.sloane.shot01-intro': {
@@ -190,11 +190,11 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'axiom-executive-floor',
   },
   'opening.sloane.shot02-allegation': {
-    assetId: 'sloane-allegation-v1-production',
+    assetId: 'sloane-allegation-noir-v2-production',
     location: 'axiom-executive-floor',
   },
   'opening.sloane.shot03-brief': {
-    assetId: 'sloane-brief-v1-production',
+    assetId: 'sloane-brief-noir-v2-production',
     location: 'axiom-executive-floor',
   },
   'opening.sloane.shot04-identity': {
@@ -214,19 +214,19 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'axiom-executive-floor',
   },
   'clinic.reception.shot01': {
-    assetId: 'clinic-reception-v1-production',
+    assetId: 'clinic-reception-noir-v2-production',
     location: 'clinic-reception',
   },
   'clinic.privacy.shot01': {
-    assetId: 'clinic-privacy-v1-production',
+    assetId: 'clinic-privacy-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.privacyReply.shot01-stay': {
-    assetId: 'clinic-privacy-stay-v1-production',
+    assetId: 'clinic-privacy-stay-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.privacyReply.shot01-private': {
-    assetId: 'clinic-privacy-private-v1-production',
+    assetId: 'clinic-privacy-private-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.exam.shot01-stay': {
@@ -234,7 +234,7 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-examination-suite',
   },
   'clinic.exam.shot01-private': {
-    assetId: 'clinic-exam-private-v1-production',
+    assetId: 'clinic-exam-private-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.examResult.shot01-private': {
@@ -242,7 +242,7 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-examination-suite',
   },
   'clinic.protocol.shot01': {
-    assetId: 'clinic-protocol-v1-production',
+    assetId: 'clinic-protocol-noir-v2-production',
     location: 'clinic-consultation-area',
   },
   'clinic.simulation.shot01': {
@@ -254,15 +254,15 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-consultation',
   },
   'clinic.preparation.shot01': {
-    assetId: 'clinic-preparation-v1-production',
+    assetId: 'clinic-preparation-noir-v2-production',
     location: 'clinic-preparation',
   },
   'clinic.voice.shot01-private': {
-    assetId: 'clinic-voice-v1-production',
+    assetId: 'clinic-voice-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.voicePause.shot01-stay': {
-    assetId: 'clinic-voice-pause-v1-production',
+    assetId: 'clinic-voice-pause-noir-v2-production',
     location: 'clinic-examination-suite',
   },
   'clinic.face.shot01-stay': {
@@ -282,7 +282,7 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-recovery-suite',
   },
   'clinic.mirror.shot01-look': {
-    assetId: 'clinic-recovery-mirror-look-v1-production',
+    assetId: 'clinic-recovery-mirror-look-noir-v2-production',
     location: 'clinic-recovery-suite',
   },
   'clinic.name.shot01': {
@@ -298,11 +298,11 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-recovery-suite',
   },
   'clinic.makeup.shot01-executive': {
-    assetId: 'clinic-makeup-executive-v1-production',
+    assetId: 'clinic-makeup-executive-v1-lift-production',
     location: 'clinic-dressing-area',
   },
   'clinic.makeup.shot01-socialite': {
-    assetId: 'clinic-makeup-socialite-v1-production',
+    assetId: 'clinic-makeup-socialite-v1-lift-production',
     location: 'clinic-dressing-area',
   },
   'clinic.makeup.shot01-shadow': {
@@ -318,7 +318,7 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-recovery-suite',
   },
   'clinic.presentationReview.shot01-executive': {
-    assetId: 'clinic-presentation-review-executive-v1-production',
+    assetId: 'clinic-presentation-review-executive-v1-lift-production',
     location: 'clinic-dressing-area',
   },
   'clinic.presentationReview.shot01-socialite': {
@@ -326,15 +326,15 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-dressing-area',
   },
   'clinic.presentationReview.shot01-shadow': {
-    assetId: 'clinic-presentation-review-shadow-v1-production',
+    assetId: 'clinic-presentation-review-shadow-v1-lift-production',
     location: 'clinic-dressing-area',
   },
   'clinic.rehearsal.shot01-executive': {
-    assetId: 'clinic-rehearsal-executive-v1-production',
+    assetId: 'clinic-rehearsal-executive-v1-lift-production',
     location: 'clinic-preparation-suite',
   },
   'clinic.rehearsal.shot01-socialite': {
-    assetId: 'clinic-rehearsal-socialite-v1-production',
+    assetId: 'clinic-rehearsal-socialite-v1-lift-production',
     location: 'clinic-preparation-suite',
   },
   'clinic.rehearsal.shot01-shadow': {
@@ -354,7 +354,7 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-preparation-suite',
   },
   'mission.car': {
-    assetId: 'car-rain-window-noir-v2-production',
+    assetId: 'car-rain-window-noir-v2-lift-production',
     location: 'car',
   },
   'mission.arrival': {
@@ -374,15 +374,15 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'glass-gallery',
   },
   'chapter3.surveillance.shot01': {
-    assetId: 'chapter3-surveillance-phone-v1-production',
+    assetId: 'chapter3-surveillance-phone-v1-lift-production',
     location: 'apartment',
   },
   'chapter4.entry.shot01': {
-    assetId: 'chapter4-river-entry-v1-production',
+    assetId: 'chapter4-river-entry-v1-lift-production',
     location: 'chapter4-river-path',
   },
   'chapter4.consequences.shot01': {
-    assetId: 'chapter4-river-consequences-v1-production',
+    assetId: 'chapter4-river-consequences-v1-lift-production',
     location: 'chapter4-river-bench',
   },
   'chapter4.resource.shot01': {

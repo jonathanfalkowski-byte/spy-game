@@ -6,11 +6,13 @@ import { initialState, act } from '../../src/state/reducer';
 import { missionStart, runMission } from '../mission-helpers';
 import approved from '../../art/production/apartment/records.json';
 
-it('publishes only the exact six owner-authorized originals', () => {
-  expect(approved).toHaveLength(6);
+it('publishes only the six owner-authorized originals plus the owner-approved noir relight', () => {
+  expect(approved).toHaveLength(7);
+  expect(approved.map((r) => r.spec.assetId)).toContain('apartment-post-glasshouse-executive-noir-v2-production');
   for (const r of approved) {
     expect(r.role).toBe('production'); expect(r.approvalStatus).toBe('approved');
-    for (const file of [r.file, r.file.replace('art/production/', 'public/art/')])
+    const files = r.runtimeEligibility === 'runtime-approved' ? [r.file, r.file.replace('art/production/', 'public/art/')] : [r.file];
+    for (const file of files)
       expect(createHash('sha256').update(readFileSync(file)).digest('hex')).toBe(r.sha256);
   }
 });
