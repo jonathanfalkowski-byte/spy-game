@@ -178,6 +178,14 @@ const byNode: Record<string, Key> = {
   'chapter9.assemble': 'phone',
   'chapter9.resolve': 'apartmentNight',
   'chapter9.complete': 'apartmentNight',
+  // Chapter 10 (stand-ins until EVE Art's Chapter 10 frames: the Lindqvist, the wall, the archive).
+  'chapter10.breakfast': 'privateDinner',
+  'chapter10.claimed': 'phone',
+  'chapter10.wall': 'apartmentNight',
+  'chapter10.order': 'phone',
+  'chapter10.answer': 'apartmentDay',
+  'chapter10.invitation': 'apartmentNight',
+  'chapter10.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

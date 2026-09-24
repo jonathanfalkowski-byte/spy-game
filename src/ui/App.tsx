@@ -15,6 +15,10 @@ import { Chapter8work } from './Chapter8work';
 import { chapter8Scenes } from '../content/chapter8';
 import { Chapter9work } from './Chapter9work';
 import { chapter9Scenes } from '../content/chapter9';
+import { Chapter10work } from './Chapter10work';
+import { chapter10Scenes } from '../content/chapter10';
+import { LeverageBoard } from './LeverageBoard';
+import { leverageBoardOpen } from '../content/leverage';
 import { chapter5Scenes } from '../content/chapter5';
 import { conversationHistory, currentPlace } from './chapter4-presentation';
 import { Chapter4work } from './Chapter4work';
@@ -81,7 +85,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
   );
   const [saveError, setSaveError] = useState('');
   const [modal, setModal] = useState<
-    'journal' | 'history' | 'assessment' | 'restart' | 'restore' | 'navigation' | null
+    'journal' | 'history' | 'leverage' | 'assessment' | 'restart' | 'restore' | 'navigation' | null
   >(null);
   const [textSize, setTextSize] = useState(() => readSize(storage));
   const heading = useRef<HTMLHeadingElement>(null);
@@ -186,6 +190,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'chapter7',
         'chapter8',
         'chapter9',
+        'chapter10',
         'file',
         'security',
         'sloane',
@@ -220,6 +225,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'chapter7',
       'chapter8',
       'chapter9',
+      'chapter10',
       'file',
       'security',
       'sloane',
@@ -291,7 +297,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           ? 'Glass House / 03'
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
-            : state.scene === 'chapter9'
+            : state.scene === 'chapter10'
+              ? 'Chapter 10 / She Knows'
+              : state.scene === 'chapter9'
               ? 'Chapter 9 / Assembling the Case'
               : state.scene === 'chapter8'
               ? 'Chapter 8 / The Cost Bites'
@@ -316,6 +324,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           'Above the city.'
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
+        ) : state.scene === 'chapter10' ? (
+          'She Knows.'
         ) : state.scene === 'chapter9' ? (
           'Assembling the Case.'
         ) : state.scene === 'chapter8' ? (
@@ -350,7 +360,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             ).map((s, i) => ['mission' + i, s.label])
           : state.scene === 'clinic'
             ? clinicSections.map((s, i) => ['clinic' + i, s.label])
-            : state.scene === 'chapter9'
+            : state.scene === 'chapter10'
+              ? chapter10Scenes.map((s) => [s.id, s.title])
+              : state.scene === 'chapter9'
               ? chapter9Scenes.map((s) => [s.id, s.title])
               : state.scene === 'chapter8'
               ? chapter8Scenes.map((s) => [s.id, s.title])
@@ -402,7 +414,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             key={id}
             aria-current={
               state.scene === id ||
-              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9'].includes(state.scene) && id === node) ||
+              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10'].includes(state.scene) && id === node) ||
               (state.scene === 'mission' &&
                 id ===
                   'mission' +
@@ -427,6 +439,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           Evidence journal <span>{state.facts.length + state.claims.length}</span>
         </button>
         <button onClick={() => setModal('history')}>Conversation history</button>
+        {leverageBoardOpen(state) && <button onClick={() => setModal('leverage')}>Leverage board</button>}
         <h3 className="nav-section">Settings</h3>
         <label className="text-control">
           Reading size
@@ -462,7 +475,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -615,6 +628,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'chapter7',
                     'chapter8',
                     'chapter9',
+                    'chapter10',
                     'file',
                     'security',
                     'sloane',
@@ -731,6 +745,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   {!readingScene && <Chapter7work state={state} send={send} />}
                   {!readingScene && <Chapter8work state={state} send={send} />}
                   {!readingScene && <Chapter9work state={state} send={send} />}
+                  {!readingScene && <Chapter10work state={state} send={send} />}
                   <Clinicwork state={state} send={send} />
                   {!(assessment.status === 'required' && assessment.flow === 'mission') && (
                     <Missionwork state={state} send={send} />
@@ -911,7 +926,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : 'GLASS HOUSE'
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
-                        : state.scene === 'chapter9'
+                        : state.scene === 'chapter10'
+                          ? 'Chapter 10 / She Knows'
+                          : state.scene === 'chapter9'
                           ? 'Chapter 9 / Assembling the Case'
                           : state.scene === 'chapter8'
                           ? 'Chapter 8 / The Cost Bites'
@@ -980,6 +997,11 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       {modal === 'journal' && (
         <Modal title="Evidence journal" onClose={() => setModal(null)}>
           <Journal state={state} />
+        </Modal>
+      )}
+      {modal === 'leverage' && (
+        <Modal title="Leverage board" onClose={() => setModal(null)}>
+          <LeverageBoard state={state} />
         </Modal>
       )}
       {modal === 'history' && (

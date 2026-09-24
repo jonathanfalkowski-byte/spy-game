@@ -4,8 +4,10 @@
 **Budget: 1.25h / ~12.5k words on one path** ([BEAT_MAP.md](BEAT_MAP.md)).
 Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)
 §3 (coercion framework) and §11 (checklist), [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md)
-(canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md). Status: **design, for owner review.**
-A wording script (`scripts/CHAPTER_10_SHE_KNOWS_SCRIPT.md`) and the build follow approval.
+(canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md). Status: **approved (owner, 2026-09-24: all five
+decisions as recommended) and built, pass 1** — script: [scripts/CHAPTER_10_SHE_KNOWS_SCRIPT.md](scripts/CHAPTER_10_SHE_KNOWS_SCRIPT.md),
+code: `src/content/chapter10.ts`, `src/content/leverage.ts`, `src/ui/LeverageBoard.tsx`. Gated like Chapters 6–9
+(content revision ≥ 19, not 20 as first drafted). ~1.5–1.9k words per path so far; deepening passes follow.
 
 ---
 

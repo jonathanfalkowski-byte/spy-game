@@ -3,13 +3,14 @@ import golden6 from './fixtures/rev19-chapter6-golden.json';
 import golden7 from './fixtures/rev19-chapter7-golden.json';
 import golden8 from './fixtures/rev19-chapter8-golden.json';
 import golden9 from './fixtures/rev19-chapter9-golden.json';
+import golden10 from './fixtures/rev19-chapter10-golden.json';
 import type { GameEvent, Intent } from '../src/state/actions';
 import { act, initialState } from '../src/state/reducer';
 
-/** Every revision-19 golden route (Chapters 1–9), as [name, ledger]. Chapters 6–9 need their gates open. */
+/** Every revision-19 golden route (Chapters 1–10), as [name, ledger]. Chapters 6–10 need their gates open. */
 export const rev19Routes: (readonly [string, GameEvent[]])[] = [
   ...golden.routes.map((r) => ['ch1-5 ' + r.name, r.ledger as GameEvent[]] as const),
-  ...[golden6, golden7, golden8, golden9].flatMap((g, i) =>
+  ...[golden6, golden7, golden8, golden9, golden10].flatMap((g, i) =>
     g.routes.map((r) => [`ch${i + 6} ${r.name}`, r.ledger as GameEvent[]] as const),
   ),
 ];

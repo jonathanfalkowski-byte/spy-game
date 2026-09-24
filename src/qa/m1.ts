@@ -172,6 +172,7 @@ const sourceFor = (type: Intent['type']) => {
   if (type === 'CHAPTER7_CHOOSE') return 'chapter7';
   if (type === 'CHAPTER8_CHOOSE') return 'chapter8';
   if (type === 'CHAPTER9_CHOOSE') return 'chapter9';
+  if (type === 'CHAPTER10_CHOOSE') return 'chapter10';
   if (type === 'CONTINUE_AUDIT_REVISION') return 'revision-bridge';
   if (type === 'CONTINUE') return 'scene-continuation';
   if (type.startsWith('INSPECT')) return 'apartment-inspection';
