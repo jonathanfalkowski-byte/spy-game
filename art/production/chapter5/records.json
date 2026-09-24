@@ -37,11 +37,11 @@
         "Shoulder appearance accepted as contour lighting; matte cleanup accepted.",
         "All unearned gifts, publication, event photo and Julian objects excluded."
       ],
-      "notes": "Human explicitly APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for c05.s12.shot05-phone only, 2026-09-17. Composition, review, branch/authority exclusions and provenance in approval.json. No revision16 runtime changes."
+      "notes": "Human explicitly APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for c05.s12.shot05-phone only, 2026-09-17. Composition, review, branch/authority exclusions and provenance in approval.json. No revision16 runtime changes. Superseded 2026-09-24 by c5-s12-shot05-phone-composite-v2-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-S12-SHOT05-PHONE-COMPOSITE-V2.png",
     "sha256": "4c109dac2ee8537004f845e072c3fa35a1d01f4b6df9679f730eb4c7600a7054",
     "review": {
@@ -58,6 +58,69 @@
       "reviewer": "Project owner",
       "date": "2026-09-17",
       "source": "Human review decision: APPROVE and PROMOTE C5-S12-SHOT05-PHONE-COMPOSITE-V2 for exact shot c05.s12.shot05-phone. Shot-specific only: composition, night lighting, Evelynn placement/scale, two phones, wardrobe-hidden jacket and professional appearance at game scale. Excludes canonical identity/body/wardrobe reference and other ending branches."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s12-shot05-phone-composite-v2-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "apartment",
+      "sceneId": "chapter5.complete",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-phone-final",
+      "pose": "Crouched after placing purchased phone beside the Axiom handset; approved scale and pose.",
+      "cameraFraming": "Locked apartment wide; 1920x1080; original furniture and mirror.",
+      "lighting": "Owner-approved shot-specific deterministic night-lighting derivative; restrained warm practical.",
+      "timeOfDay": "22:30-22:35",
+      "intendedUse": "ONLY c05.s12.shot05-phone after place-phone; professional, phone purchased/unboxed, editorial declined, no publication/event photograph/new evening arrangement. Hold at complete. Runtime presentation is restricted to the authenticated completed-placement beat in src/ui/chapter5-beats.ts.",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only; never an identity/body/wardrobe master or universal apartment ending.",
+        "Exactly two phones: purchased personal phone table-unboxed beside existing Axiom table-home; no third phone or box.",
+        "Adrian jacket remains unseen inside wardrobe. Original mirror, room, furniture and camera preserved.",
+        "Applicable professional wardrobe appearance accepted at measured game scale; alternate wardrobes excluded.",
+        "Source heels slightly higher than spec: retained LOW/POLISH, not canonical low-heel redesign.",
+        "No identifiable dangling earring at game size; dangling earrings remain noncanonical.",
+        "Shoulder appearance accepted as contour lighting; matte cleanup accepted.",
+        "All unearned gifts, publication, event photo and Julian objects excluded."
+      ],
+      "notes": "Dark noir relight of c5-s12-shot05-phone-composite-v2-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset c4b58781-34f4-4b8c-9c17-ebc9738b72d3; image 1 = the previous production file, lighting reference de3c7bbd (apartment master v3, same apartment). People, faces and composition unchanged. Luminance mean 45.6, near-black 74.0%.",
+      "editSources": [
+        "c5-s12-shot05-phone-composite-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-s12-shot05-phone-composite-v2-noir-production.png",
+    "sha256": "7bedf2a47b4dcb05287609d514c4923818dc0b019ee6dee34e511d828766dec3",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 45.6 within target 45-70, near-black 74.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -98,11 +161,11 @@
         "No contact, future props, re-entry or unearned intimacy.",
         "Julian49 approved likeness/dark suit retained; LOW/POLISH edge notes."
       ],
-      "notes": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state."
+      "notes": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state. Superseded 2026-09-24 by c5-harbour-evelynn-julian-composite-v2-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-HARBOUR-EVELYNN-JULIAN-COMPOSITE-V2.png",
     "sha256": "2feac8b2944917f6bd99254eee0328dc36043a3d2c977beb9c7672bb139e55d7",
     "review": {
@@ -118,6 +181,69 @@
       "reviewer": "Project owner",
       "date": "2026-09-17",
       "source": "Owner explicitly APPROVE Harbour V2 and promote for exact Harbour two-character shot/state."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-harbour-evelynn-julian-composite-v2-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        },
+        {
+          "characterId": "julian-mercer"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-coffee-evening",
+      "pose": "Conversational distance outside entrance; Evelynn holds coffee; Julian stands facing her.",
+      "cameraFraming": "Locked Harbour1920x1080 inside-out view through entrance glazing.",
+      "lighting": "Exact approved Harbour evening master pixels.",
+      "timeOfDay": "18:30-19:15",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "intendedUse": "ONLY c05.s06.shot12-entrance reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added. Runtime presentation follows the authenticated coffee reading sequence; exact approved arrival/departure beat only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot/composition-specific; never canonical character, wardrobe or universal Harbour authority.",
+        "Harbour architecture/floor/glazing/camera/lighting unchanged.",
+        "Evelynn source, scale, position, professional outfit and one held coffee unchanged.",
+        "No contact, future props, re-entry or unearned intimacy.",
+        "Julian49 approved likeness/dark suit retained; LOW/POLISH edge notes."
+      ],
+      "notes": "Dark noir relight of c5-harbour-evelynn-julian-composite-v2-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset 0d9c1a0d-21f1-41a7-bf4d-c9d6dc14a1cd; image 1 = the previous production file, lighting reference 46724ca3 (harbour room noir v2 lift, same room). People, faces and composition unchanged. Luminance mean 46.6, near-black 66.5%.",
+      "editSources": [
+        "c5-harbour-evelynn-julian-composite-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-harbour-evelynn-julian-composite-v2-noir-production.png",
+    "sha256": "1ff93580181581db8d84dd1676034503980a323f290ec1f09fac84be9269e50f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 46.6 within target 45-70, near-black 66.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -155,11 +281,11 @@
         "No contact, future props, re-entry or unearned intimacy.",
         "Julian absent after goodbye/departure; no new visible movement pose."
       ],
-      "notes": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
+      "notes": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied. Superseded 2026-09-24 by c5-harbour-julian-departed-composite-v1-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-HARBOUR-JULIAN-DEPARTED-COMPOSITE-V1.png",
     "sha256": "ebebffbc101ce19555aed1cbc1a7ca7c708e7a60c22c5904bbeb75a7842d3c78",
     "review": {
@@ -175,6 +301,66 @@
       "reviewer": "Project owner",
       "date": "2026-09-17",
       "source": "Owner explicitly authorized promotion after Julian-leaves review PASS. Codex full-resolution/desktop/mobile review PASS on2026-09-17; conditional authorization satisfied."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-harbour-julian-departed-composite-v1-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-coffee-evening",
+      "pose": "Evelynn alone outside entrance after Julian has left; same position and coffee, before re-entry.",
+      "cameraFraming": "Locked Harbour1920x1080 inside-out view through entrance glazing.",
+      "lighting": "Exact approved Harbour evening master pixels.",
+      "timeOfDay": "18:30-19:15",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "intendedUse": "ONLY c05.s06.shot15-departed reached on attend/professional/Julian-access/attention-coffee branch. Offline production asset, no runtime selector added. Runtime presentation follows the authenticated coffee reading sequence; exact approved arrival/departure beat only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot/composition-specific; never canonical character, wardrobe or universal Harbour authority.",
+        "Harbour architecture/floor/glazing/camera/lighting unchanged.",
+        "Evelynn source, scale, position, professional outfit and one held coffee unchanged.",
+        "No contact, future props, re-entry or unearned intimacy.",
+        "Julian absent after goodbye/departure; no new visible movement pose."
+      ],
+      "notes": "Dark noir relight of c5-harbour-julian-departed-composite-v1-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset 91db138d-e34c-4088-8f96-113a03e294dc; image 1 = the previous production file, lighting reference 46724ca3 (harbour room noir v2 lift, same room). People, faces and composition unchanged. Luminance mean 54.3, near-black 60.8%.",
+      "editSources": [
+        "c5-harbour-julian-departed-composite-v1-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-harbour-julian-departed-composite-v1-noir-production.png",
+    "sha256": "1a6a82cf6677362c9291fee42857c2b53cc6d29b339a4519f6e2ce9e6a70f3ac",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 54.3 within target 45-70, near-black 60.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -212,11 +398,11 @@
         "No future proof, publication, payment, coffee, Julian or contact.",
         "Editor appearance is scene-specific, not new biography."
       ],
-      "notes": "Human APPROVE and PROMOTE; bounded approval and evidence in aster-approval.json. No runtime selector change."
+      "notes": "Human APPROVE and PROMOTE; bounded approval and evidence in aster-approval.json. No runtime selector change. Superseded 2026-09-24 by c5-s07-aster-arrival-composite-v2-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-S07-ASTER-ARRIVAL-COMPOSITE-V2.png",
     "sha256": "5ee113ce93738bb43bc2b1ddc73a1bf3f8cafd18596b3609b4c1f239a018fd78",
     "review": {
@@ -233,6 +419,66 @@
       "reviewer": "Project owner",
       "date": "2026-09-17",
       "source": "Explicit APPROVE Aster arrival candidate for production for EXACT authored shot/state only. LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s07-aster-arrival-composite-v2-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "aster-studio",
+      "sceneId": "chapter5.offer",
+      "wardrobeId": "c05.professional",
+      "presentationVariant": "professional-arrival-before-sitting",
+      "pose": "Evelynn listens standing; editor reads scope.",
+      "cameraFraming": "Locked Aster wide 1920x1080; original room and table.",
+      "lighting": "Unchanged approved Aster environment daylight.",
+      "timeOfDay": "11:30",
+      "intendedUse": "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+      "canonicalReferences": [
+        "evelynn-canon-front-v1",
+        "evelynn-canon-three-quarter-v1"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "ONLY accepted editorial work, professional concept, c05.professional wardrobe, actual 11:30 Aster arrival while editor reads scope; before sitting/proof/publication/payment. No coffee, Julian or intimacy.",
+        "LOW/POLISH: business-pump heel difference accepted by owner at normal gameplay size; no wardrobe-canon change.",
+        "Shot approval does not establish identity/body/wardrobe master authority.",
+        "No future proof, publication, payment, coffee, Julian or contact.",
+        "Editor appearance is scene-specific, not new biography."
+      ],
+      "notes": "Dark noir relight of c5-s07-aster-arrival-composite-v2-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset ff065f56-336d-438f-b60f-aaf70be3ce13; image 1 = the previous production file, lighting reference 6777006a (Aster proof table noir v2 lift, same studio). People, faces and composition unchanged. Luminance mean 62.5, near-black 48.4%.",
+      "editSources": [
+        "c5-s07-aster-arrival-composite-v2-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-s07-aster-arrival-composite-v2-noir-production.png",
+    "sha256": "b9f17add8a4a49a2a76aa73f7d36a54eb444a8e46985a17ec14c81b2c3ed60b8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 62.5 within target 45-70, near-black 48.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -264,12 +510,12 @@
         "Bag, programme and guest card remain Evelynn custody. Their visible placement is unspecified and intentionally omitted; the host never holds them.",
         "No runtime selector is added by this promotion."
       ],
-      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging.",
+      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging. Superseded 2026-09-24 by c5-h1-arrival-composite-v3-noir-production.",
       "presentationVariant": "professional-arrival-programme-table"
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-H1-ARRIVAL-COMPOSITE-V3.png",
     "sha256": "464173b8e20f7f7480f9b6e05903225a2b14da6507bf72e6c525e7597c793fee",
     "review": {
@@ -289,6 +535,61 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Human decision: APPROVE Harbour H1 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-h1-arrival-composite-v3-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "Evelynn faces left toward the supporting Harbour host after completed arrival, name check and programme handover; bag and guest-card custody remain off-frame.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; head-to-toe figures at original calibration.",
+      "lighting": "Approved evening master, unchanged.",
+      "intendedUse": "ONLY c05.s06.shot01-preview after the completed arrival/name-check/programme-handover on the attend, 18:30, c05.professional route; host is an unnamed supporting adult; no coffee, Julian or physical contact.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only. It is not a canonical Evelynn identity, body or wardrobe master, and it does not authorize another Harbour state.",
+        "Approved evening Harbour master architecture, flooring, glazing, camera and lighting are preserved.",
+        "LOW/POLISH: subtle Evelynn hair-edge fringe and business-pump difference are unobtrusive at gameplay size.",
+        "Bag, programme and guest card remain Evelynn custody. Their visible placement is unspecified and intentionally omitted; the host never holds them.",
+        "No runtime selector is added by this promotion."
+      ],
+      "notes": "Dark noir relight of c5-h1-arrival-composite-v3-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset 51372edd-4b0e-40af-86d5-331be86e02d2; image 1 = the previous production file, lighting reference 46724ca3 (harbour room noir v2 lift, same room). People, faces and composition unchanged. Luminance mean 60.6, near-black 42.5%.",
+      "presentationVariant": "professional-arrival-programme-table",
+      "editSources": [
+        "c5-h1-arrival-composite-v3-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-h1-arrival-composite-v3-noir-production.png",
+    "sha256": "f331830b43546e2abf458aef169ae37f2402c1d9654359c49b1206c13414619d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 60.6 within target 45-70, near-black 42.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -320,12 +621,12 @@
         "Bag and guest card remain Evelynn custody but are off-frame because the authored visible placement is unspecified.",
         "No runtime selector is added by this promotion."
       ],
-      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging.",
+      "notes": "Owner approved production promotion on 2026-09-18. Preserve exact branch state and retained LOW/POLISH notes; source receipts and verification remain in staging. Superseded 2026-09-24 by c5-h2-coffee-return-composite-v1-noir-production.",
       "presentationVariant": "professional-coffee-return-programme-table"
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-H2-COFFEE-RETURN-COMPOSITE-V1.png",
     "sha256": "2b12940496b9f8d1bb70735eb07db558a69e059535e2517e2557bdbc77666e56",
     "review": {
@@ -343,6 +644,61 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Human decision: APPROVE Harbour H2 for production for exact authored shot/state only; retain LOW/POLISH notes and bounded authority."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-h2-coffee-return-composite-v1-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [
+        {
+          "characterId": "player-character",
+          "identityId": "evelyn"
+        }
+      ],
+      "locationId": "harbour",
+      "sceneId": "chapter5.room",
+      "wardrobeId": "c05.professional",
+      "pose": "Evelynn returns to the Harbour programme table facing the supporting host, carrying one coffee after Julian has left.",
+      "cameraFraming": "Existing 1920x1080 Harbour master camera; H1 placement and floor-plane calibration retained.",
+      "lighting": "Approved evening Harbour master, unchanged.",
+      "intendedUse": "ONLY c05.s06.shot13-return after the completed Julian coffee conversation and return to the programme table on the attend, 18:30, c05.professional route; one Evelynn-held coffee; Julian absent; no physical contact.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific production approval only. It is not a canonical Evelynn identity, body or wardrobe master, and it does not authorize another Harbour state.",
+        "Approved evening Harbour master architecture, flooring, glazing, camera and lighting are preserved.",
+        "LOW/POLISH: ordinary scene-scale business-pump silhouette only; no new identity, body or wardrobe authority.",
+        "Bag and guest card remain Evelynn custody but are off-frame because the authored visible placement is unspecified.",
+        "No runtime selector is added by this promotion."
+      ],
+      "notes": "Dark noir relight of c5-h2-coffee-return-composite-v1-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset c0936696-dd6f-43a9-8029-1c39af5b71c1; image 1 = the previous production file, lighting reference 46724ca3 (harbour room noir v2 lift, same room). People, faces and composition unchanged. Luminance mean 57.2, near-black 48.0%.",
+      "presentationVariant": "professional-coffee-return-programme-table",
+      "editSources": [
+        "c5-h2-coffee-return-composite-v1-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-h2-coffee-return-composite-v1-noir-production.png",
+    "sha256": "20f26e0b3b9b863ea1c937b7b3339bd1e22c534850fe5dc5690f289bb2696c65",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 57.2 within target 45-70, near-black 48.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -368,11 +724,11 @@
         "No character/body/wardrobe authority.",
         "No purchase, phone, later prop, or Echo/home authority beyond this exact state."
       ],
-      "notes": "Owner-approved Home V5 object-led exact state."
+      "notes": "Owner-approved Home V5 object-led exact state. Superseded 2026-09-24 by c5-s01-daytime-apartment-anchor-v5-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-S01-DAYTIME-APARTMENT-ANCHOR-V5.png",
     "sha256": "56c603bcc5193e734413c1fab899b9ed71ff678c177aa8d35a3f987b5b14270e",
     "review": {
@@ -388,6 +744,54 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Owner decision: APPROVE Home V5 for exact c05.s01.shot01 state only."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s01-daytime-apartment-anchor-v5-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "apartment",
+      "sceneId": "chapter5.home",
+      "presentationVariant": "object-led-reader-packet",
+      "pose": "Object-led insert: reader card beside permitted packet on cleared table; bag on sofa; Evelynn intentionally outside frame.",
+      "cameraFraming": "Locked apartment object insert, 1920x1080.",
+      "lighting": "Locked daytime apartment lighting.",
+      "timeOfDay": "10:30",
+      "intendedUse": "ONLY c05.s01.shot01 after authentic chapter5.begin. Reader card beside permitted packet; bag on sofa; before purchase and phone state. Never generic apartment fallback.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Shot-specific approval only; existing apartment master remains architectural authority.",
+        "No character/body/wardrobe authority.",
+        "No purchase, phone, later prop, or Echo/home authority beyond this exact state."
+      ],
+      "notes": "Dark noir relight of c5-s01-daytime-apartment-anchor-v5-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset 9206dd2d-d5f7-44d2-95cc-621cf011e951; image 1 = the previous production file, lighting reference de3c7bbd (apartment master v3); then lossless gamma darken 1.26 into the band. People, faces and composition unchanged. Luminance mean 66.7, near-black 40.2%.",
+      "editSources": [
+        "c5-s01-daytime-apartment-anchor-v5-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-s01-daytime-apartment-anchor-v5-noir-production.png",
+    "sha256": "a3bc69f439d7dac8dc9a1ffd88f7b35e7d128359bdcef3a3a95fb379194716f8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 66.7 within target 45-70, near-black 40.2% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -410,11 +814,11 @@
         "Environment-only authority.",
         "No character, wardrobe, purchase, tea, phone or later-state authority."
       ],
-      "notes": "Explicit owner bounded approval; not runtime-selectable."
+      "notes": "Explicit owner bounded approval; not runtime-selectable. Superseded 2026-09-24 by c5-s02-shopping-street-master-v1-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-S02-SHOPPING-STREET-MASTER-V1.png",
     "sha256": "5514240b41e3c1e4b3574d3c78b00719f7497634bc582fe0f89e5aaaf32c8a96",
     "review": {
@@ -429,6 +833,51 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Explicit owner bounded environment authority approval."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-s02-shopping-street-master-v1-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "shopping-street",
+      "sceneId": "chapter5.spend",
+      "pose": "Environment-only authority; no character or prop state.",
+      "cameraFraming": "Approved fixed 1920x1080 master.",
+      "lighting": "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only.",
+      "intendedUse": "Bounded environment authority: retail architecture, storefront/window, daylight, pavement and camera only.",
+      "dimensions": {
+        "width": 2048,
+        "height": 1152
+      },
+      "continuityRequirements": [
+        "Environment-only authority.",
+        "No character, wardrobe, purchase, tea, phone or later-state authority."
+      ],
+      "notes": "Dark noir relight of c5-s02-shopping-street-master-v1-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset ff458310-11fd-4971-a712-013048023af9; image 1 = the previous production file, lighting reference 74dc8d20 (Glass House entrance noir v2); restyled from pen-and-wash to house ink; then lossless gamma darken 1.16 into the band. People, faces and composition unchanged. Luminance mean 68.0, near-black 49.5%.",
+      "editSources": [
+        "c5-s02-shopping-street-master-v1-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-s02-shopping-street-master-v1-noir-production.png",
+    "sha256": "2c5d3671541c4be2f6cb842dcb1897cac0cb3e630b23732cbc5f0045dc945a7f",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 68.0 within target 45-70, near-black 49.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {
@@ -451,11 +900,11 @@
         "Environment-only authority.",
         "No character, wardrobe, purchase, tea, phone or later-state authority."
       ],
-      "notes": "Explicit owner bounded approval; not runtime-selectable."
+      "notes": "Explicit owner bounded approval; not runtime-selectable. Superseded 2026-09-24 by c5-people-night-apartment-master-v1-noir-production."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/chapter5/C5-PEOPLE-NIGHT-APARTMENT-MASTER-V1.png",
     "sha256": "9be6cd50a7cc21633f22837b4bbb9b6ee3e2525299c467e4b1b8a53a28ba9b4f",
     "review": {
@@ -470,6 +919,51 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Explicit owner bounded environment authority approval."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "c5-people-night-apartment-master-v1-noir-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "subjects": [],
+      "locationId": "apartment",
+      "sceneId": "chapter5.people",
+      "pose": "Environment-only authority; no character or prop state.",
+      "cameraFraming": "Approved fixed 1920x1080 master.",
+      "lighting": "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only.",
+      "intendedUse": "Bounded night-lighting derivative: exterior darkness, ambient exposure, practical-light appearance and colour treatment only.",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "continuityRequirements": [
+        "Environment-only authority.",
+        "No character, wardrobe, purchase, tea, phone or later-state authority."
+      ],
+      "notes": "Dark noir relight of c5-people-night-apartment-master-v1-production: ZenCreator image_editor SEEDREAM_5 task 9be564f1-1f2c-429a-afb9-cf8ece6d3469, provider asset a6840afb-f8bb-4778-9237-1d0c232df006; image 1 = the previous production file, lighting reference de3c7bbd (apartment master v3, same apartment). People, faces and composition unchanged. Luminance mean 50.0, near-black 70.9%.",
+      "editSources": [
+        "c5-people-night-apartment-master-v1-production"
+      ]
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/chapter5/c5-people-night-apartment-master-v1-noir-production.png",
+    "sha256": "aa66063d515f748b66286df65d3dfbec494c5ca3e41164f23c00b8df12b17a78",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance band; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "People, faces, clothing and composition match the previous production file (checked at full resolution).",
+        "Luminance band: mean 50.0 within target 45-70, near-black 70.9% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Chapter 5 dark relight picks (2026-09-24)."
     }
   },
   {

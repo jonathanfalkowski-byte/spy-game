@@ -317,7 +317,7 @@ for (const reducedMotion of ['reduce', 'no-preference'] as const) {
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await page.getByRole('button', { name: 'Continue scene', exact: true }).click();
     await expect(stage).toHaveAttribute('data-reading-shot', 'c05.s06.shot13-return');
-    await expect(stage).toHaveAttribute('data-asset-id', 'c5-h2-coffee-return-composite-v1-production');
+    await expect(stage).toHaveAttribute('data-asset-id', 'c5-h2-coffee-return-composite-v1-noir-production');
     expect(await page.evaluate((k) => localStorage.getItem(k), SAVE_KEY)).toBe(raw);
     await page.reload();
     await expect(stage).toHaveCount(0);

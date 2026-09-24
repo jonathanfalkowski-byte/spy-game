@@ -360,9 +360,9 @@ it('ordered Harbour cuts never anticipate Julian; cursor, malformed index and re
   ]);
   expect(cuts.map((c) => c.art?.asset.id)).toEqual([
     undefined,
-    'c5-harbour-evelynn-julian-composite-v2-production',
-    'c5-harbour-julian-departed-composite-v1-production',
-    'c5-h2-coffee-return-composite-v1-production',
+    'c5-harbour-evelynn-julian-composite-v2-noir-production',
+    'c5-harbour-julian-departed-composite-v1-noir-production',
+    'c5-h2-coffee-return-composite-v1-noir-production',
   ]);
   expect(exactArt(resolveSceneArt(coffee, 99))).toBeUndefined();
   expect(encodeSave(coffee)).toBe(saved);
@@ -372,19 +372,19 @@ it('ordered Harbour cuts never anticipate Julian; cursor, malformed index and re
 
 it('promoted H1, H2 and Aster arrival bind only to their exact reached action and survive reload', () => {
   expect(resolveSceneArt(harbourArrival).art?.asset.id).toBe(
-    'c5-h1-arrival-composite-v3-production',
+    'c5-h1-arrival-composite-v3-noir-production',
   );
   expect(resolveSceneArt(coffee, 3).art?.asset.id).toBe(
-    'c5-h2-coffee-return-composite-v1-production',
+    'c5-h2-coffee-return-composite-v1-noir-production',
   );
   expect(resolveSceneArt(asterArrival).art?.asset.id).toBe(
-    'c5-s07-aster-arrival-composite-v2-production',
+    'c5-s07-aster-arrival-composite-v2-noir-production',
   );
   expect(resolveSceneArt(decodeSave(encodeSave(harbourArrival))).art?.asset.id).toBe(
-    'c5-h1-arrival-composite-v3-production',
+    'c5-h1-arrival-composite-v3-noir-production',
   );
   expect(resolveSceneArt(decodeSave(encodeSave(asterArrival))).art?.asset.id).toBe(
-    'c5-s07-aster-arrival-composite-v2-production',
+    'c5-s07-aster-arrival-composite-v2-noir-production',
   );
   const minimal = walk5(act(end4('professional'), { type: 'CONTINUE_AUDIT_REVISION' }), [
     'begin',
@@ -427,7 +427,7 @@ it('binds Chapter 5 echo apartment art to each exact purchase state and fails cl
 
 it('exact phone placement is selected; wardrobe, location, props, unearned rewards and forged timing fail closed', () => {
   const selected = resolveSceneArt(final);
-  expect(selected.art?.asset.id).toBe('c5-s12-shot05-phone-composite-v2-production');
+  expect(selected.art?.asset.id).toBe('c5-s12-shot05-phone-composite-v2-noir-production');
   const raw = encodeSave(final);
   for (const [key, value] of Object.entries({
     'c5.wardrobe': 'c05.glamorous',

@@ -414,33 +414,33 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'apartment',
   },
   'c05.s01.shot01': {
-    assetId: 'c5-s01-daytime-apartment-anchor-v5-production',
+    assetId: 'c5-s01-daytime-apartment-anchor-v5-noir-production',
     location: 'apartment',
   },
   'clinic.wardrobe.shot01': { assetId: 'clinic-wardrobe-choice-v1-production', location: 'wardrobe' },
   'evening.lantern.shot01': { assetId: 'eve-scene-maya-evening-continuity-v2', location: 'bar' },
   'c05.s06.shot01-preview': {
-    assetId: 'c5-h1-arrival-composite-v3-production',
+    assetId: 'c5-h1-arrival-composite-v3-noir-production',
     location: 'harbour',
   },
   'c05.s06.shot12-entrance': {
-    assetId: 'c5-harbour-evelynn-julian-composite-v2-production',
+    assetId: 'c5-harbour-evelynn-julian-composite-v2-noir-production',
     location: 'harbour',
   },
   'c05.s06.shot15-departed': {
-    assetId: 'c5-harbour-julian-departed-composite-v1-production',
+    assetId: 'c5-harbour-julian-departed-composite-v1-noir-production',
     location: 'harbour',
   },
   'c05.s06.shot13-return': {
-    assetId: 'c5-h2-coffee-return-composite-v1-production',
+    assetId: 'c5-h2-coffee-return-composite-v1-noir-production',
     location: 'harbour',
   },
   'c05.s07.shot03-arrival': {
-    assetId: 'c5-s07-aster-arrival-composite-v2-production',
+    assetId: 'c5-s07-aster-arrival-composite-v2-noir-production',
     location: 'aster-studio',
   },
   'c05.s12.shot05-phone': {
-    assetId: 'c5-s12-shot05-phone-composite-v2-production',
+    assetId: 'c5-s12-shot05-phone-composite-v2-noir-production',
     location: 'apartment',
   },
 };

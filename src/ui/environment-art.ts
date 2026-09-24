@@ -8,15 +8,15 @@ import { helix4 } from '../content/chapter4-case';
 type Master = { assetId: string; alt: string };
 const masters = {
   apartment: { assetId: 'opening-apartment-master-v3-production', alt: 'Adrian’s apartment: rain on the tall window, the lamp lit by the counter, no one in the room.' },
-  apartmentDay: { assetId: 'c5-s01-daytime-apartment-anchor-v5-production', alt: 'The apartment sofa and low table in daylight.' },
-  apartmentNight: { assetId: 'c5-people-night-apartment-master-v1-production', alt: 'The apartment at night, the window dark and the lamp lit, no one in the room.' },
+  apartmentDay: { assetId: 'c5-s01-daytime-apartment-anchor-v5-noir-production', alt: 'The apartment sofa and low table on an overcast afternoon, the lights off.' },
+  apartmentNight: { assetId: 'c5-people-night-apartment-master-v1-noir-production', alt: 'The apartment at night, the window dark and the lamp lit, no one in the room.' },
   phone: { assetId: 'chapter3-surveillance-phone-v1-lift-production', alt: 'The monitored phone lies lit on the apartment table; its screen is unreadable.' },
   wardrobe: { assetId: 'eve-bg-wardrobe-continuity-noir-v2-lift-production', alt: 'A dressing area: a suit, a gown and a dress on the rail beside a lit vanity mirror.' },
   car: { assetId: 'car-rain-window-noir-v2-lift-production', alt: 'Rain beads across the car window as the city passes in the blue light.' },
   securityLobby: { assetId: 'axiom-security-lobby-v2-production', alt: 'The Axiom security lobby: scanning lanes and glass gates under cold light.' },
   executiveOffice: { assetId: 'eve-bg-sloane-office-continuity-noir-v2-lift-production', alt: 'An empty executive office high above the city, the desk facing the windows.' },
   glassLobby: { assetId: 'eve-bg-glass-lobby-noir-v2-lift-production', alt: 'The Glass House elevator lobby at night: dark marble, one warm sconce and closed elevator doors.' },
-  shoppingStreet: { assetId: 'c5-s02-shopping-street-master-v1-production', alt: 'A quiet shopping street with a lit shop window.' },
+  shoppingStreet: { assetId: 'c5-s02-shopping-street-master-v1-noir-production', alt: 'A quiet shopping street with a lit shop window.' },
   publicRecords: { assetId: 'chapter4-public-records-noir-v2-production', alt: 'The public records reading room: long tables, a folder and a registration form.' },
   closedReport: { assetId: 'chapter4-interest-closed-report-v1-production', alt: 'The closed report lies on the table after the session.' },
   privateDinner: { assetId: 'chapter4-private-time-dinner-v1-lift-production', alt: 'An apartment table set for dinner, no one yet seated.' },

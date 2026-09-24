@@ -14,7 +14,7 @@
   "productionShots": [
     {
       "shotId": "c05.s12.shot05-phone",
-      "assetId": "c5-s12-shot05-phone-composite-v2-production",
+      "assetId": "c5-s12-shot05-phone-composite-v2-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.return",
       "holdScene": "chapter5.complete",
@@ -40,7 +40,7 @@
     },
     {
       "shotId": "c05.s06.shot12-entrance",
-      "assetId": "c5-harbour-evelynn-julian-composite-v2-production",
+      "assetId": "c5-harbour-evelynn-julian-composite-v2-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.room",
       "trigger": "Julian arrives",
@@ -64,7 +64,7 @@
     },
     {
       "shotId": "c05.s06.shot15-departed",
-      "assetId": "c5-harbour-julian-departed-composite-v1-production",
+      "assetId": "c5-harbour-julian-departed-composite-v1-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.room",
       "trigger": "Julian says goodbye and leaves; departure completed",
@@ -88,7 +88,7 @@
     },
     {
       "shotId": "c05.s07.shot03-arrival",
-      "assetId": "c5-s07-aster-arrival-composite-v2-production",
+      "assetId": "c5-s07-aster-arrival-composite-v2-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.offer",
       "trigger": "actual 11:30 studio arrival; editor reads scope before sitting",
@@ -117,7 +117,7 @@
     },
     {
       "shotId": "c05.s06.shot01-preview",
-      "assetId": "c5-h1-arrival-composite-v3-production",
+      "assetId": "c5-h1-arrival-composite-v3-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.room",
       "trigger": "ONLY c05.s06.shot01-preview after the completed arrival/name-check/programme-handover on the attend, 18:30, c05.professional route; host is an unnamed supporting adult; no coffee, Julian or physical contact.",
@@ -135,7 +135,7 @@
     },
     {
       "shotId": "c05.s06.shot13-return",
-      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "assetId": "c5-h2-coffee-return-composite-v1-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.room",
       "trigger": "ONLY c05.s06.shot13-return after the completed Julian coffee conversation and return to the programme table on the attend, 18:30, c05.professional route; one Evelynn-held coffee; Julian absent; no physical contact.",
@@ -154,7 +154,7 @@
     },
     {
       "shotId": "c05.s01.shot01",
-      "assetId": "c5-s01-daytime-apartment-anchor-v5-production",
+      "assetId": "c5-s01-daytime-apartment-anchor-v5-noir-production",
       "status": "production-approved-shot-specific",
       "sourceScene": "chapter5.home",
       "trigger": "chapter5.begin completed placement",
@@ -245,7 +245,7 @@
   ],
   "runtimeBinding": "src/ui/chapter5-beats.ts",
   "latestApproval": {
-    "assetId": "c5-h2-coffee-return-composite-v1-production",
+    "assetId": "c5-h2-coffee-return-composite-v1-noir-production",
     "shotId": "c05.s06.shot13-return",
     "review": "PASS with LOW/POLISH",
     "runtimeBindingChanged": false
@@ -256,14 +256,14 @@
     "historicalConflict": "Revision17 event=decline retains a historical 15:00 courtyard salon. Preserve historical semantics; these evening assets are not bound to that branch.",
     "H1": {
       "shotId": "c05.s06.shot01-preview",
-      "assetId": "c5-h1-arrival-composite-v3-production",
+      "assetId": "c5-h1-arrival-composite-v3-noir-production",
       "review": "PASS with LOW/POLISH",
       "approval": "approved",
       "runtimeBound": false
     },
     "H2": {
       "shotId": "c05.s06.shot13-return",
-      "assetId": "c5-h2-coffee-return-composite-v1-production",
+      "assetId": "c5-h2-coffee-return-composite-v1-noir-production",
       "review": "PASS with LOW/POLISH",
       "approval": "approved",
       "runtimeBound": false

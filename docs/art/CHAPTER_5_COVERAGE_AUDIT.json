@@ -29,7 +29,7 @@
       "composition": "E at cleared table, bag, issued pass and permitted packet. No restricted annex or new spending",
       "sourceRequirement": "M: daytime table composition within the established wide; no unseen room extension",
       "status": "PRODUCTION",
-      "asset": "c5-s01-daytime-apartment-anchor-v5-production",
+      "asset": "c5-s01-daytime-apartment-anchor-v5-noir-production",
       "authoritySource": "Final shot plan + locked apartment; branch wardrobe/props",
       "missing": "NO",
       "priority": "HIGH",
@@ -529,7 +529,7 @@
       "composition": "Inside entrance, programme table, E and host; Checked name, programme with tomorrow's guest card; editor at table end",
       "sourceRequirement": "M",
       "status": "PRODUCTION",
-      "asset": "c5-h1-arrival-composite-v3-production",
+      "asset": "c5-h1-arrival-composite-v3-noir-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5/harbour-approvals.json",
       "missing": "NO",
       "priority": "DONE (bounded)",
@@ -681,7 +681,7 @@
       "composition": "Outside entrance, E/J at conversational distance; Coffee; ten-minute dialogue hold, no touch",
       "sourceRequirement": "M",
       "status": "PRODUCTION",
-      "asset": "c5-harbour-evelynn-julian-composite-v2-production",
+      "asset": "c5-harbour-evelynn-julian-composite-v2-noir-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
       "missing": "NO",
       "priority": "DONE (bounded)",
@@ -713,7 +713,7 @@
       "composition": "Programme table, E/host again; Same wardrobe and carried possessions; source-position variant/crop may reuse reviewed arrival base",
       "sourceRequirement": "M",
       "status": "PRODUCTION",
-      "asset": "c5-h2-coffee-return-composite-v1-production",
+      "asset": "c5-h2-coffee-return-composite-v1-noir-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5/harbour-approvals.json",
       "missing": "NO",
       "priority": "DONE (bounded)",
@@ -744,7 +744,7 @@
       "composition": "Outside entrance, E alone; J absent; then shot13-return after E re-enters",
       "sourceRequirement": "M",
       "status": "PRODUCTION",
-      "asset": "c5-harbour-julian-departed-composite-v1-production",
+      "asset": "c5-harbour-julian-departed-composite-v1-noir-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
       "missing": "NO",
       "priority": "DONE (bounded)",
@@ -836,7 +836,7 @@
       "composition": "E/editor, new studio geography, prior selected wardrobe ID as source specifies",
       "sourceRequirement": "M: studio establishing composition",
       "status": "PRODUCTION",
-      "asset": "c5-s07-aster-arrival-composite-v2-production",
+      "asset": "c5-s07-aster-arrival-composite-v2-noir-production",
       "authoritySource": "art/production/chapter5/aster-approval.json",
       "missing": "NO",
       "priority": "HIGH",
@@ -1530,7 +1530,7 @@
       "composition": "New personal phone beside Axiom handset on table: exactly two, correct identities",
       "sourceRequirement": "APPROVED production: C5-S12-SHOT05-PHONE-COMPOSITE-V2 for professional / editorial-declined / no issue-photo-new-evening only; other states pending. See Chapter 5 coverage.",
       "status": "PRODUCTION",
-      "asset": "c5-s12-shot05-phone-composite-v2-production",
+      "asset": "c5-s12-shot05-phone-composite-v2-noir-production",
       "authoritySource": "Owner exact-shot approval; art/production/chapter5",
       "missing": "NO",
       "priority": "DONE (bounded)",
@@ -1720,8 +1720,8 @@
   "latestPromotion": {
     "date": "2026-09-18",
     "assets": [
-      "c5-h1-arrival-composite-v3-production",
-      "c5-h2-coffee-return-composite-v1-production"
+      "c5-h1-arrival-composite-v3-noir-production",
+      "c5-h2-coffee-return-composite-v1-noir-production"
     ],
     "scope": "exact production approvals; no runtime binding",
     "pilotCredits": 22
@@ -1731,13 +1731,13 @@
     "decision": "Owner approved and promoted Harbour H1/H2. Harbour Chapter 5 is done: H1 arrival/programme table, H2 return with coffee, H3 Julian conversation, H4 Julian departure.",
     "assets": [
       {
-        "assetId": "c5-h1-arrival-composite-v3-production",
+        "assetId": "c5-h1-arrival-composite-v3-noir-production",
         "shotId": "c05.s06.shot01-preview",
         "review": "PASS with LOW/POLISH",
         "runtimeBound": false
       },
       {
-        "assetId": "c5-h2-coffee-return-composite-v1-production",
+        "assetId": "c5-h2-coffee-return-composite-v1-noir-production",
         "shotId": "c05.s06.shot13-return",
         "review": "PASS with LOW/POLISH",
         "runtimeBound": false
@@ -1781,42 +1781,42 @@
       {
         "shotId": "c05.s06.shot01-preview",
         "status": "PRODUCTION",
-        "asset": "c5-h1-arrival-composite-v3-production",
+        "asset": "c5-h1-arrival-composite-v3-noir-production",
         "missing": "NO",
         "runtimeBound": false
       },
       {
         "shotId": "c05.s06.shot12-entrance",
         "status": "PRODUCTION",
-        "asset": "c5-harbour-evelynn-julian-composite-v2-production",
+        "asset": "c5-harbour-evelynn-julian-composite-v2-noir-production",
         "missing": "Other branches remain",
         "runtimeBound": true
       },
       {
         "shotId": "c05.s06.shot13-return",
         "status": "PRODUCTION",
-        "asset": "c5-h2-coffee-return-composite-v1-production",
+        "asset": "c5-h2-coffee-return-composite-v1-noir-production",
         "missing": "NO",
         "runtimeBound": false
       },
       {
         "shotId": "c05.s06.shot15-departed",
         "status": "PRODUCTION",
-        "asset": "c5-harbour-julian-departed-composite-v1-production",
+        "asset": "c5-harbour-julian-departed-composite-v1-noir-production",
         "missing": "Other branches remain",
         "runtimeBound": true
       },
       {
         "shotId": "c05.s07.shot03-arrival",
         "status": "PRODUCTION",
-        "asset": "c5-s07-aster-arrival-composite-v2-production",
+        "asset": "c5-s07-aster-arrival-composite-v2-noir-production",
         "missing": "Other wardrobe/concept variants only",
         "runtimeBound": false
       },
       {
         "shotId": "c05.s12.shot05-phone",
         "status": "PRODUCTION",
-        "asset": "c5-s12-shot05-phone-composite-v2-production",
+        "asset": "c5-s12-shot05-phone-composite-v2-noir-production",
         "missing": "Other branches remain",
         "runtimeBound": true
       }
