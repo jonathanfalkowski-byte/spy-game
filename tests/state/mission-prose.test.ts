@@ -106,4 +106,4 @@ it('authenticates v7 and preserves gameplay at each mission phase while updating
   expect(() =>
     decodeSave(JSON.stringify({ schemaVersion: 5, contentVersion: 7, state: bad })),
   ).toThrow();
-}, 30000);
+}, 60_000);

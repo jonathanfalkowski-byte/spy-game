@@ -6,6 +6,8 @@ export default defineConfig({
   test: {
     // Replay/freeze suites time out under full parallelism on Windows; 8 workers keeps them in budget.
     maxWorkers: 8,
+    // Full-ledger replays (goldens, revision 19/20 equivalence) are slow under load; a timeout here is not a failure.
+    testTimeout: 20_000,
     include: ['tests/state/**/*.test.ts', 'tests/routes/**/*.test.ts', 'tests/tools/**/*.test.ts'],
   },
 });

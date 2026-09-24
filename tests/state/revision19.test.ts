@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import type { GameState } from '../../src/state/schema';
-import { act, availableChoices, newGameState, replay } from '../../src/state/reducer';
+import { act, availableChoices, initialState, newGameState, replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { readingBlocks } from '../../src/ui/reading-presentation';
 import { dress5, walk5 } from '../chapter5-helpers';
@@ -9,15 +9,19 @@ const text = (s: GameState) => s.history.flatMap((entry) => entry.blocks.map((bl
 const route = (look: string) => walk5(dress5(), ['look-' + look]).ledger;
 const mayaHeader = (s: GameState) => s.npcs.maya.known.find((k) => k.key === 'helix_assignment');
 
-it('starts new games on revision 19 and round-trips their saves', () => {
+it('starts new games on revision 20 and round-trips their saves; revision 19 saves still round-trip', () => {
   const state = newGameState();
-  expect(state.contentRevision).toBe(19);
+  expect(state.contentRevision).toBe(20);
   const next = act(state, { type: 'CHOOSE_DIALOGUE', id: availableChoices(state)[0].id });
-  expect(next.contentRevision).toBe(19);
+  expect(next.contentRevision).toBe(20);
   const raw = encodeSave(next);
-  expect(JSON.parse(raw).contentVersion).toBe(19);
+  expect(JSON.parse(raw).contentVersion).toBe(20);
   expect(decodeSave(raw)).toEqual(next);
-  expect(replay(next.ledger, 19)).toEqual(next);
+  expect(replay(next.ledger, 20)).toEqual(next);
+  const old = act(initialState(19), { type: 'CHOOSE_DIALOGUE', id: availableChoices(state)[0].id });
+  const oldRaw = encodeSave(old);
+  expect(JSON.parse(oldRaw).contentVersion).toBe(19);
+  expect(decodeSave(oldRaw)).toEqual(old);
 });
 
 it('keeps a revision-18 save loadable with its original wardrobe wording', () => {

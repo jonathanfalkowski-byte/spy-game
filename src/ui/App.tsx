@@ -1,4 +1,5 @@
 import { assessmentStatus, assessmentLabels } from './assessment-status';
+import { isCurrentAuthoringRevision, hasRevision18Presentation } from '../content/revision';
 import { readNavigation, writeNavigation } from './reader-preferences';
 import { SceneArtStage } from './SceneArtStage';
 import { openingReadingTitle } from './opening-beats';
@@ -305,7 +306,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                 : state.scene === 'chapter3'
                   ? ['home', 'surveillance', 'complete'].includes(state.phase)
                     ? 'Chapter 3 / Scene 1'
-                    : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19
+                    : state.contentRevision === 14 || isCurrentAuthoringRevision(state.contentRevision)
                       ? 'Chapter 3 / Scene ' + chapter3Number(state)
                       : 'Chapter 3 / Scene 2'
                   : 'Opening / 01'}
@@ -328,7 +329,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         ) : state.scene === 'chapter4' ? (
           'Private Access.'
         ) : state.scene === 'chapter3' ? (
-          state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19 ? (
+          state.contentRevision === 14 || isCurrentAuthoringRevision(state.contentRevision) ? (
             'Second Skin.'
           ) : (
             'Home after Glass House.'
@@ -368,7 +369,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         ['chapter3.surveillance', 'The entry record'],
                         ['chapter3.complete', 'Scene 1 endpoint'],
                       ]
-                    : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19
+                    : state.contentRevision === 14 || isCurrentAuthoringRevision(state.contentRevision)
                       ? chapter3Progress(state)
                       : [
                           ['chapter3.mayaContact', 'What you can tell her'],
@@ -569,7 +570,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   )}
                   {state.feedback &&
                     !(
-                      (state.contentRevision === 18 || state.contentRevision === 19) &&
+                      hasRevision18Presentation(state.contentRevision) &&
                       state.feedback === 'Chapter 3 continuation recorded. The historical day remains unchanged.'
                     ) &&
                     ![
@@ -925,7 +926,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                             : state.scene === 'chapter3'
                               ? ['home', 'surveillance', 'complete'].includes(state.phase)
                                 ? 'CHAPTER 3 · SCENE 1'
-                                : state.contentRevision === 14 || state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19
+                                : state.contentRevision === 14 || isCurrentAuthoringRevision(state.contentRevision)
                                   ? 'CHAPTER 3 · SCENE ' + chapter3Number(state)
                                   : 'CHAPTER 3 · SCENE 2'
                               : 'ADRIAN’S DAY'}

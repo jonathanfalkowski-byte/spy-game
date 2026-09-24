@@ -24,12 +24,13 @@ import { initialClinic } from './clinic-schema';
 import { applyClinicChoice } from './clinic-engine';
 import { availableClinicChoices } from '../content/clinic';
 import { chapter3Choices } from '../content/chapter3';
+import { isEngineRevision } from '../content/revision';
 
 export const nodeOf = (state: GameState) => `${state.scene}.${state.phase}` as NodeId;
 export function initialState(contentRevision = 13): GameState {
-  if (contentRevision !== 19) return initialV18(contentRevision) as GameState;
+  if (!isEngineRevision(contentRevision)) return initialV18(contentRevision) as GameState;
   const s: GameState = {
-    contentRevision: 19,
+    contentRevision,
     day: initialDay(),
     clinic: initialClinic(),
     mission: initialMission(),
@@ -69,10 +70,10 @@ export function initialState(contentRevision = 13): GameState {
   return s;
 }
 
-/** New browser runs use revision 19 while the historical/test fixture meaning
- * of initialState() remains revision 13. */
+/** New browser runs use revision 20 while the historical/test fixture meaning
+ * of initialState() remains revision 13. Existing saves keep the revision they were started on. */
 export function newGameState(): GameState {
-  return initialState(19);
+  return initialState(20);
 }
 export const availableChoices = (s: GameState) =>
   dialogue.filter(
@@ -82,7 +83,7 @@ export const availableChoices = (s: GameState) =>
       (!c.requires || s.knowledge.includes(c.requires)),
   );
 export const availableChapter3Choices = (s: GameState) =>
-  [...chapter3Choices.filter((c) => c.node === nodeOf(s) && !s.day.completed.includes(c.id)), ...(s.contentRevision === 19 ? eveningChoices(s) : []), ...nextChoices(s)];
+  [...chapter3Choices.filter((c) => c.node === nodeOf(s) && !s.day.completed.includes(c.id)), ...(isEngineRevision(s.contentRevision) ? eveningChoices(s) : []), ...nextChoices(s)];
 const add = (list: string[], value: string) => {
   if (!list.includes(value)) list.push(value);
 };
@@ -166,7 +167,7 @@ export function reducer(state: GameState, input: unknown): GameState {
   // Revisions 13-18 (and the older epochs they delegate to) run on the frozen revision-18 engine.
   // Known limitation: the UI reads pre-choice labels/hints from live content, so older saves may show
   // revision-19 hint wording before choosing; saved history always comes from the frozen engine.
-  if (state.contentRevision !== 19) return reducerV18(state as Parameters<typeof reducerV18>[0], input) as GameState;
+  if (!isEngineRevision(state.contentRevision)) return reducerV18(state as Parameters<typeof reducerV18>[0], input) as GameState;
   const parsed = ActionSchema.safeParse(input);
   if (!parsed.success || parsed.data.expectedRevision !== state.revision) return state;
   const action = parsed.data;
@@ -464,19 +465,19 @@ export function act(state: GameState, intent: Intent) {
   return reducer(state, { ...intent, expectedRevision: state.revision });
 }
 export function replay(events: GameEvent[], contentRevision = 13): GameState {
-  if (contentRevision !== 19) return replayV18(events as Parameters<typeof replayV18>[0], contentRevision) as GameState;
-  let state = initialState(19);
+  if (!isEngineRevision(contentRevision)) return replayV18(events as Parameters<typeof replayV18>[0], contentRevision) as GameState;
+  let state = initialState(contentRevision);
   for (const event of events) {
     if (event.sequence !== state.revision + 1) throw new Error('Event sequence is not contiguous.');
     const next = reducer(state, event.action);
-    if (next === state) throw new Error(`Invalid revision-19 event at sequence ${event.sequence}.`);
+    if (next === state) throw new Error(`Invalid revision-${contentRevision} event at sequence ${event.sequence}.`);
     state = next;
   }
-  if (state.contentRevision !== 19) throw new Error('Missing revision-19 state.');
+  if (state.contentRevision !== contentRevision) throw new Error(`Missing revision-${contentRevision} state.`);
   return state;
 }
 export function availableIntents(s: GameState): Intent[] {
-  if (s.contentRevision !== 19) return intentsV18(s as Parameters<typeof intentsV18>[0]) as Intent[];
+  if (!isEngineRevision(s.contentRevision)) return intentsV18(s as Parameters<typeof intentsV18>[0]) as Intent[];
   return storyIntents(s);
 }
 function storyIntents(s: GameState): Intent[] {
@@ -531,6 +532,6 @@ function storyIntents(s: GameState): Intent[] {
 
 /** Prefix inspection selects the last authenticated epoch; full-save replay stays strict. */
 export function replayPrefix(events: GameEvent[], contentRevision = 13): GameState {
- if (contentRevision !== 19) return replayPrefixV18(events as Parameters<typeof replayPrefixV18>[0], contentRevision) as GameState;
- return replay(events,19);
+ if (!isEngineRevision(contentRevision)) return replayPrefixV18(events as Parameters<typeof replayPrefixV18>[0], contentRevision) as GameState;
+ return replay(events, contentRevision);
 }

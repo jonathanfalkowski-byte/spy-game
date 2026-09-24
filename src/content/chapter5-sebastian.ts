@@ -5,7 +5,8 @@ import { sebastianNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { type C5Scene, type C5Choice, get5, set5, offer5, note5, intimate5, intimatePartner5 } from './chapter5-model';
 
-export const rev19 = (s: GameState) => s.contentRevision === 19;
+/** Revision 19 or later (revision 20 keeps the Sebastian lane). */
+export const rev19 = (s: GameState) => (s.contentRevision ?? 0) >= 19;
 /** Owner decision (2026-09-24, docs/story/CONTENT_DIRECTION.md §8): EVE is Mature, so the sex scope
  * is offered with a heat-3 body that fades at the act, like Julian's. No explicit body. */
 export const SEBASTIAN_SEX_SCOPE_OFFERED = true;

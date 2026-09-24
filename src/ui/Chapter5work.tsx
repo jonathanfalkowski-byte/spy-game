@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isCurrentAuthoringRevision } from '../content/revision';
 import type { Intent } from '../state/actions';
 import type { GameState } from '../state/schema';
 import { chapter5Choices } from '../content/chapter5';
@@ -13,7 +14,7 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
   const [draft, setDraft] = useState({ base: currentConcept, value: currentConcept });
   const concept = draft.base === currentConcept ? draft.value : currentConcept;
   const proposal =
-    (state.contentRevision === 17 || state.contentRevision === 18 || state.contentRevision === 19) && state.scene === 'chapter5' && state.phase === 'offer';
+    (isCurrentAuthoringRevision(state.contentRevision)) && state.scene === 'chapter5' && state.phase === 'offer';
   const choices = chapter5Choices(state).filter(
     (c) =>
       !proposal ||

@@ -108,7 +108,7 @@ export const finish5 = (s: GameState, key: string, value: string, text: string) 
 export const intimatePartner5 = (s: GameState) =>
   get5(s, 'want-target') === 'julian'
     ? 'julian-mercer'
-    : get5(s, 'want-target') === 'sebastian' && s.contentRevision === 19
+    : get5(s, 'want-target') === 'sebastian' && (s.contentRevision ?? 0) >= 19
       ? 'sebastian'
       : undefined;
 export const intimate5 = (s: GameState) => {
