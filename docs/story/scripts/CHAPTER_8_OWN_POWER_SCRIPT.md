@@ -110,3 +110,45 @@ resolution for Chapter 9. All sourced/re-derivable.
 - Sloane's `leverage-institutional` is offered only when `own.exposed` (she made contact in `cost`). Julian's `leverage-executive` only on the Julian-available state.
 - The specific board name is deliberately withheld here (endgame material); `c8.meridian = product` is the turn.
 - No intimacy in this chapter.
+
+## Phase 0 decisions and wording fill (2026-09-23, after EVE Code's report)
+
+### 1. Meridian-may-be-unknown (the key catch — do NOT require records)
+The `cost` frame branches on `own.piece.records`:
+- **has Meridian** (`own.piece.records`): keep the existing frame ("at Meridian and whoever sits on its board… Meridian is a closed shell").
+- **!own.piece.records** variant:
+  > p: The thread from last week points up, past Sloane, to something you cannot name yet — a signature you never found, an authority above the woman you've been fearing. You know it is there. You do not know what it is called. That is the wall.
+`advance` names Meridian for **everyone** (its text reveals "Meridian Holdings is not Helix…"), so a !records player first hears the name there — no autonomy break. `c7.finding` needs no mechanical branch; optionally one flavour line at `cost` (shape: "you have its edges"; lead/none: "you have less than you'd like"), but it's not required.
+
+### 2. Transitions + titles (approved)
+- Transition choices as you proposed: cost "Look for a way over the wall" · *Every way costs something.*; advance "Take stock of what you have" · *The shape, and what it cost.*; close "Carry it into the next room" · *Chapter 8 ends here.*
+- Chapter eyebrow/wordmark: **"The Cost Bites"**.
+- Scene titles · places:
+  - cost: "The Cost Bites" · `DAYS LATER · ON YOUR OWN`
+  - leverage: "Over the Wall" · `· THE CHOICE`
+  - advance: "What It Was Hiding" · `· THE SHAPE`
+  - close: "Whose Door" · `· THAT NIGHT`
+  - complete: "The Next Room" · `· LATER`
+
+### 3. leverage-alliance
+(a) Prose:
+- **leverage-editor:**
+  > p: You put a real reporter on it — a contact with the patience for a corporate veil and the standing to file for what's sealed. It takes days you'd rather not spend, and comes back clean and sourced: the shell peeled one layer, a real counterparty underneath.
+  > q(Editor): It's a strange little company you've found. It doesn't sell anything you can buy. Give me a week and I'll tell you who it sells to.
+- **leverage-maya-bounded:**
+  > q(Maya): I can't touch it, but I can tell you what it isn't. No public products, an offshore board — that's not a government arm and not a normal corporate subsidiary. It's a private contractor. Someone builds things and sells them quietly. That's as far as I go.
+  > p: She's narrowed the category without breaching her line: private, contracted, deniable. Enough to know what you're looking at.
+(b) Marks: `own.alliance.rook = spent`, `own.alliance.editor = spent`, **`own.alliance.maya = used`** (a public-scope category read is within her line, not a strain).
+(c) Yes — the label names who pays: "Spend an ally · call the debt with the sender" / "· put a reporter on it" / "· ask Maya what she can say".
+
+### 4. leverage-refuse-cross (the dig)
+Always does the dig (approved). Cost **$120**, never blocked — clamp at 0, note unpaid (same rule as the Ch7 fee, autonomy guarantee). `c8.entered = 'dig'`; no extra prose (advance's shared text covers it).
+
+### 5. own.crossover weight
+Leave `deriveRoute6` unchanged for now; store `own.crossover` cleanly; add its weight with the reconvergence design. Approved.
+
+### 6. Gates — all approved as proposed
+`leverage-audience` = `c5.published` (set `own.exposed = 'yes-deep'`); `leverage-executive` = `julian5`; `leverage-institutional` = `own.exposed`; `leverage-refuse-cross` always; cost low-cash uses the $100 threshold; `c8.meridian = 'product'` on `advance`; `c8.entered ∈ {audience, rook, editor, maya, executive, institutional, dig}`.
+
+### 7. Art — approved
+Environment masters as you mapped: cost = day apartment; leverage = phone (Sloane message / rook call) or day apartment; advance/close/complete = night apartment. The executive road's Helix room is on EVE Art's gap list; advance keeps the apartment until that master is bound.
