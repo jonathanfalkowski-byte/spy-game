@@ -142,10 +142,13 @@ export function createHandoffWorkspace(
         break;
       case 'observation': {
         const o = ref.observation;
+        // Theo keeps no knowledge record in the save (Chapter 7 only), so nothing can be sourced to him.
         const npc =
-          o.characterId === 'sebastian' || o.characterId === 'rook'
-            ? optionalNpc(snapshot, o.characterId)
-            : snapshot.npcs[o.characterId];
+          o.characterId === 'theo'
+            ? undefined
+            : o.characterId === 'sebastian' || o.characterId === 'rook'
+              ? optionalNpc(snapshot, o.characterId)
+              : snapshot.npcs[o.characterId];
         if (
           !npc?.[o.layer].some(
             (r) => r.key === o.key && r.source === o.source && r.event === o.event,

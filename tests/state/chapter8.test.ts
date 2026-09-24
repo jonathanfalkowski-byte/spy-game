@@ -215,3 +215,9 @@ it('remembers the sold gown on the night after', () => {
   const sold = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-report', 'money-sell', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-copy']);
   expect(text(sold)).toContain('There is a gap in the wardrobe where the gown hung.');
 });
+
+it('lets Theo send the morning-after line only if she chose his night', () => {
+  const night = { 'c7.evening': 'theo', 'c7.evening-outcome': 'intimate-sex' };
+  expect(text(c8(withFlags(complete7('own-records-stop'), night), 'begin'))).toContain('The pad was blank, by the way.');
+  expect(text(c8(withFlags(complete7('own-records-stop'), { ...night, 'c7.evening-outcome': 'declined' }), 'begin'))).not.toContain('The pad was blank');
+});

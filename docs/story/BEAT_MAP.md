@@ -35,7 +35,7 @@ Where coercion sits: **light in Acts I–II** (Sloane's monitoring, Rook's price
 clinic's terms), **the engine in Act III** (Celeste's orders and the leverage board),
 **turned around in Act IV** (Evelynn holds the leverage).
 
-Where chosen intimacy sits (heat 3 max): Julian in Ch4 (built, fades), Sebastian in Ch5
+Where chosen intimacy sits (heat 3 max): Theo Marr in Ch7 on the Celebrity route (built 2026-09-24, owner decision; unlocked by letting him ask her question on air or taking his drink after; fades), Julian in Ch4 (built, fades), Sebastian in Ch5
 (to be rewritten as a heat-3 fade), one refuge scene in Act III, and an epilogue beat in
 Act IV. Partners are mostly men.
 
@@ -90,7 +90,7 @@ breaks it.** Coercion rules: [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3.
 | 10 | **She Knows** | NEW | 1.25h / 12.5k | Celeste makes the first move: warm, public and unmistakable. It opens on the breakfast her orchid card proposed (end of Ch9). The leverage board appears | First order (low cost): bring her something small from Julian's workroom. Comply / refuse / counterplay | An invitation to a Meridian client evening; Celeste's charm as threat; the first time Maya is mentioned by someone who shouldn't know her |
 | 11 | **The Asset** | NEW | 1.25h / 12.5k | Evelynn is run as an asset. A full **field op**: an undercover job at a Meridian client event (Glass House scale) | Second order (higher cost): plant evidence on someone who trusted her. Maya's clearance is the named threat | The op itself (the core spy gameplay of the act); what she learns while inside; the first counterplay seed (someone else Meridian burned) |
 | 12 | **Singapore** | NEW | 1.25h / 12.5k | The prior Evelyn's trail. Who she was, how she was burned, and who helped burn her | Pressure from a distance: Celeste knows she went | A trip (or a remote investigation) to the Singapore operation's traces; the prior Evelyn's handler or sister; the emotional core: meeting the life she's wearing. Seeds that Celeste burned her |
-| 13 | **The Honeypot** | NEW | 1.25h / 12.5k | The reserved sexual-coercion beat (one of at most two). Meridian demands a honeypot on a target | **Order: seduce and compromise a named man.** Comply is off screen: the order, the choice, getting ready, the door, the aftermath. Refuse: Maya is detained (non-sexual harm). Counterplay: expose the target first, or turn him | Exploitation/recovery overlay; the drive home; the shower; what she can't say to Maya; the recovery step. A chosen refuge scene with Julian or Sebastian can sit here (heat 3, **clearly chosen**, never as a reward) |
+| 13 | **The Honeypot** | NEW | 1.25h / 12.5k | The reserved sexual-coercion beat (one of at most two). Meridian demands a honeypot on a target | **Order: seduce and compromise a named man.** Comply is off screen: the order, the choice, getting ready, the door, the aftermath. Refuse: Maya is detained (non-sexual harm). Counterplay: expose the target first, or turn him | Exploitation/recovery overlay; the drive home; the shower; what she can't say to Maya; the recovery step. A chosen refuge scene with Julian, Sebastian or Theo can sit here (heat 3, **clearly chosen**, never as a reward) |
 | 14 | **Sloane's Turn** | NEW | 1.25h / 12.5k | Sloane's motive surfaces: she's on Meridian's leash too. The leverage board starts to turn | The last order; Evelynn now holds the ORACLE defect over Meridian | Sloane as ally, target, rival or the door not taken, by lane; Maya learns the truth (or enough of it) and chooses; the first time Celeste is afraid |
 | 15 | **Breaking the Leash** | NEW | 1.25h / 12.5k | The counterplay lands. Evelynn takes the leverage away: Maya protected, evidence secured, at a cost | The coercion ends here: by breaking it, not by obeying | The counter-operation; what it costs (an ally, money, visibility, a relationship); Celeste loses control and knows the next meeting is the last |
 
@@ -108,7 +108,7 @@ operation that reads who arrived. The endings are positions, not verdicts.
 |---|---|---|---|---|
 | 16 | **The Approach** | NEW | 1.25h / 12k | Plan the last operation from the case (Ch9) and what Act III left. Choose who comes, what to bring, what to risk. The operation reacts to exposure |
 | 17 | **The Room** | NEW | 1.25h / 12k | The confrontation with Celeste. Sloane's motive resolves. The ORACLE defect laid on the table. Meridian wounded, not toppled |
-| 18 | **The Position** | NEW | 1h / 11k | The endings: what Evelynn now knows, holds and can do, by lane and overlay. Maya, Julian or Sebastian resolved. An epilogue beat (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new |
+| 18 | **The Position** | NEW | 1h / 11k | The endings: what Evelynn now knows, holds and can do, by lane and overlay. Maya, Julian, Sebastian or Theo resolved. An epilogue beat (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new |
 
 ---
 

@@ -125,7 +125,10 @@ function morningAfter9(s: GameState): Block[] {
   const out: Block[] = [];
   if (s.choices['c8.gala'] === 'carpet' || s.choices['c8.press'] === 'run')
     out.push(p('The first thing through the door is a lawyer’s letter, hand-delivered, addressed to Evelynn Vale. It is two paragraphs long, courteous and very specific, on behalf of a client it does not name, about statements concerning a company it does not name either. You read it twice. It is the most frightened thing anyone has sent you.'));
-  if (s.choices['c7.theo'] === 'curious')
+  const theoNight = s.choices['c7.evening'] === 'theo' && s.choices['c7.evening-outcome']?.startsWith('intimate');
+  if (theoNight)
+    out.push(q('Theo Marr · voicemail', 'Evelynn. Theo. I promised myself I wouldn’t, and then I did a little digging anyway, because it’s what I am. You didn’t exist eighteen months ago. No school, no flat, no dentist. I don’t care. I’m telling you so you hear it from me first, and not from whoever else is digging. Call me.'));
+  else if (s.choices['c7.theo'] === 'curious')
     out.push(q('Theo Marr · voicemail', 'Evelynn. Theo. I did a little digging, as one does. You are a very beautiful woman who did not exist eighteen months ago. No school, no flat, no dentist. Call me before I decide what that is. I would so much rather hear it from you.'));
   if (s.choices['c8.dig-rival'] === 'seen')
     out.push(p('At the café on the corner, the man in the good coat from the registry is reading a newspaper at the window table. He does not look up when you pass. He does not need to.'));

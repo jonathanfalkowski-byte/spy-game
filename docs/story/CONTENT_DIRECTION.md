@@ -31,7 +31,7 @@ exactly this). A Mature game sells on every major store.
 
 | | On screen | Off screen |
 |---|---|---|
-| **Chosen intimacy** (Julian, Sebastian, any consensual partner) | Desire, tension, kissing, undressing, sensual framing, partial nudity (bare back, shoulders, legs, silhouettes), bodies in bed before and after | Explicit sex acts, genitals. The scene cuts at the point of sex and picks up after |
+| **Chosen intimacy** (Julian, Sebastian, Theo, any consensual partner) | Desire, tension, kissing, undressing, sensual framing, partial nudity (bare back, shoulders, legs, silhouettes), bodies in bed before and after | Explicit sex acts, genitals. The scene cuts at the point of sex and picks up after |
 | **Coerced sexual acts** | The order arriving; the leverage; her decision; getting ready; the walk to the door; the door closing | **Everything behind the door.** Never shown, never described as it happens, never framed as arousing |
 | **Aftermath of coercion** | The drive home, the shower, what she can't say to Maya, the ledger of what it cost, the recovery step | Graphic description of what happened |
 | **Violence** | Threat, injury, consequence, the occasional brutal moment | Lingering gore |
@@ -93,7 +93,7 @@ in a thriller sense. Maya is never threatened sexually.
 
 The erotic core of the game lives in **what Evelynn chooses**:
 
-- Julian and Sebastian (and any later consensual partner) stay **sensual and on screen**
+- Julian, Sebastian and Theo (and any later consensual partner) stay **sensual and on screen**
   up to heat 3: charged, adult, sometimes dangerous, always chosen.
 - The contrast between what she chooses and what is taken from her is the game's
   emotional spine. The chosen scenes should feel like hers. The coerced ones should feel

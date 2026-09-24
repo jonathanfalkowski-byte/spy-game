@@ -352,3 +352,38 @@ it('keeps Chapter 7 records in the journal, out of the reading view, except mone
   expect(shown).toContain('Spent $40 on records fees.');
   expect(shown).toContain('Meridian Holdings');
 });
+
+// ── Theo Marr: a Celebrity-route romance (owner decision 2026-09-24) ──
+
+it('offers Theo’s evening only once she has let him in, consent-gated, and it fades', () => {
+  const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
+  const atClose = withFlags(walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide']), romance);
+  expect(eveningPartners7(atClose)).toEqual([]);
+  for (const [flags, opening] of [
+    [{ 'c7.theo': 'curious' }, 'Let me ask one of my own.'],
+    [{ 'c7.exit': 'theo' }, 'I didn’t say I wouldn’t ask.'],
+  ] as const) {
+    const s = withFlags(atClose, flags);
+    expect(eveningPartners7(s)).toEqual(['theo']);
+    expect(ids(s)).toEqual(['evening-theo', 'close-end']);
+    const invited = c7(s, 'evening-theo');
+    expect(text(invited)).toContain(opening);
+    expect(text(invited)).toContain('a legal pad lies face down');
+    expect(currentPlace(invited, 'x')).toBe('Late · Theo’s flat above the studio');
+    expect(ids(invited)).toEqual(['evening-theo-no-sex', 'evening-theo-sex', 'evening-leave']);
+    expect(chapter7Choices(invited)[0].label).toBe('Stay, but not sex tonight');
+    const agreed = c7(invited, 'evening-theo-sex');
+    expect(text(agreed)).toContain('the moment you want to stop, we stop');
+    const stayed = c7(agreed, 'evening-stay');
+    expect([stayed.phase, stayed.choices['c7.evening-outcome']]).toEqual(['complete', 'intimate-sex']);
+    expect(text(stayed)).toContain('it stays above the studio. The scene fades.');
+    expect(text(stayed)).toContain('you do not want to know yet whether your name is on it');
+    const stopped = c7(agreed, 'evening-stop');
+    expect([stopped.phase, stopped.choices['c7.evening-outcome']]).toEqual(['complete', 'withdrawn']);
+    const soft = c7(c7(invited, 'evening-theo-no-sex'), 'evening-stay');
+    expect(text(soft)).not.toContain('The scene fades.');
+    // Firewall: the evening changes nothing the investigation reads.
+    for (const key of ['c7.finding', 'own.piece.records', 'own.exposed', 'own.cash', 'own.alliance.rook'])
+      expect(stayed.choices[key], key).toBe(s.choices[key]);
+  }
+});

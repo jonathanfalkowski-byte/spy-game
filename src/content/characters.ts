@@ -112,6 +112,18 @@ const introductions = [
     emotion: 'Warm, blunt and unhurried. His desire is stated plainly, never performed; no is a whole sentence to him.',
   },
   {
+    id: 'theo',
+    name: 'Theo Marr',
+    role: 'Host of a late-evening interview show filmed in a studio on the river',
+    arrival: 'Rises to meet you under the studio lights, and takes your hand in both of his a beat too long.',
+    appearance:
+      'Forty and pretending otherwise; handsome in the way television likes: lean, dark-blond hair going silver at the temples, a good jaw and a better suit. Off air, rolled sleeves and reading glasses he pretends not to need.',
+    history:
+      'Famous for making guests say one thing more than they meant to. No tie to Helix, Axiom or Meridian that anyone has found.',
+    emotion:
+      'Curious, charming and relentless. He guesses well and asks permission better. He wants the story, and increasingly the woman, and has not decided which he wants more.',
+  },
+  {
     id: 'rook',
     name: 'Unknown sender',
     role: 'An anonymous source who reaches you with selective, unrequested information.',
@@ -130,6 +142,7 @@ const establishedAges: Partial<Record<string, number>> = {
   benton: 58,
   maya: 33,
   sebastian: 38,
+  theo: 40,
 };
 // Preserved identity-package prose is not a second person in the character catalog.
 export const presentedIdentityIntroduction = IntroductionSchema.parse(

@@ -114,7 +114,9 @@ function costBlocks(s: GameState): Block[] {
       ? [p('Julian sends one line after midnight: “Still thinking about the window.” You read it three times and don’t answer, and not answering is its own answer.')]
       : partner === 'sebastian'
         ? [p('A postcard arrives from the second of Sebastian’s four cities. No message: only a staff of music in his hand, the middle section, the new version. You tuck it into the frame of the mirror.')]
-        : []),
+        : partner === 'theo'
+          ? [p('Theo sends one line the next evening: “The pad was blank, by the way. I know you didn’t turn it over. I’d have liked you less if you had.”')]
+          : []),
     t('This is the part they meant when they said independence was expensive. Not the money, or not only. Some rooms will not open for someone with no institution behind her, and I chose to be someone with no institution behind her.'),
     ...(getKey(s, 'own.exposed')
       ? [

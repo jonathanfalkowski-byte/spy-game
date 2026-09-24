@@ -34,9 +34,11 @@ const policy = (s = initialState()) => ({
 it('has one player character and separate identities with canonical display spelling', () => {
   validateContent();
   expect(playerBinding).toEqual({ playerId: 'local-player', characterId: 'player-character' });
-  expect(characters).toHaveLength(11);
+  expect(characters).toHaveLength(12);
   expect(characters.find((c) => c.id === 'rook')?.displayName).toBe('Unknown sender');
   expect(characters.find((c) => c.id === 'sebastian')?.canon.age).toMatchObject({ years: 38, status: 'established' });
+  // Every romance partner is an established adult in the catalog (Theo added 2026-09-24, owner decision).
+  expect(characters.find((c) => c.id === 'theo')?.canon.age).toMatchObject({ years: 40, status: 'established' });
   expect(characters.find((c) => c.id === playerBinding.characterId)?.displayName).toBe(
     'Evelynn Vale',
   );

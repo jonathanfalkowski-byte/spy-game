@@ -231,3 +231,11 @@ it('lets her owe Marcus: a leash, and the Predator route’s first door into Hel
   expect([owed.choices['own.marcus'], owed.choices['c9.marcus']]).toEqual(['owed', 'debt']);
   expect(c9(asked, 'marcus-deflect').choices['own.marcus']).toBeUndefined();
 });
+
+it('has Theo’s voicemail tell her first, if she spent the night', () => {
+  const night = walk(withFlags(complete8('own-records-stop'), { 'c7.evening': 'theo', 'c7.evening-outcome': 'intimate-no-sex' }), ['begin']);
+  expect(text(night)).toContain('I’m telling you so you hear it from me first');
+  expect(text(night)).not.toContain('Call me before I decide what that is.');
+  const curious = walk(withFlags(complete8('own-records-stop'), { 'c7.theo': 'curious' }), ['begin']);
+  expect(text(curious)).toContain('Call me before I decide what that is.');
+});

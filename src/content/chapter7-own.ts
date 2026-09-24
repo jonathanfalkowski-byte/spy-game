@@ -50,7 +50,7 @@ export function place7(s: GameState): string | undefined {
     }[open];
   const evening = get7(s, 'evening-open');
   if (s.phase === 'close' && evening)
-    return evening.startsWith('julian') ? 'Late · Julian’s apartment' : 'Late · Harbour, after the last set';
+    return evening.startsWith('julian') ? 'Late · Julian’s apartment' : evening.startsWith('theo') ? 'Late · Theo’s flat above the studio' : 'Late · Harbour, after the last set';
 }
 
 /** What Chapter 5 actually put into the world: a portrait (the provocative one is "the famous back"), words only, or nothing. */
@@ -195,6 +195,7 @@ const quietMorning = [
 const eveningLines: Record<string, Block[]> = {
   julian: [p('You get home as the city wakes, in last night’s dress, with his taste still on your mouth and the folded line of a contract you didn’t read still folded in your head.')],
   sebastian: [p('You get home after his train has gone, hair down, his coat still around your shoulders. He refused to take it back.')],
+  theo: [p('You get home at dawn in last night’s dress with his jacket over it, and the face-down legal pad still in your mind’s eye.')],
   withdrawn: [p('You stopped when you wanted to stop, and he let it be simple. It stays with you longer than you expected.')],
 };
 
@@ -524,13 +525,16 @@ function audienceExitChoices(s: GameState): C7Choice[] {
 const julianAvailable7 = (s: GameState) =>
   !!((get5(s, 'intimacy') && get5(s, 'want-target') === 'julian') || get5(s, 'mutual-interest') || get4(s, 'mutual-interest'));
 const sebastianAvailable7 = sebastianDoorOpen5;
+/** Theo is available once she has let him in: he asked her question for her, or bought her the drink after. */
+const theoAvailable7 = (s: GameState) => get7(s, 'theo') === 'curious' || get7(s, 'exit') === 'theo';
 export const eveningPartners7 = (s: GameState) => [
   ...(julianAvailable7(s) ? (['julian'] as const) : []),
   ...(sebastianAvailable7(s) ? (['sebastian'] as const) : []),
+  ...(theoAvailable7(s) ? (['theo'] as const) : []),
 ];
 
-type Partner = 'julian' | 'sebastian';
-const who: Record<Partner, string> = { julian: 'Julian Mercer', sebastian: 'Sebastian' };
+type Partner = 'julian' | 'sebastian' | 'theo';
+const who: Record<Partner, string> = { julian: 'Julian Mercer', sebastian: 'Sebastian', theo: 'Theo Marr' };
 const invitation: Record<Partner, Block[]> = {
   julian: [
     p('His apartment is on the forty-first floor of a building Helix doesn’t own, he tells you at the door, as if that matters, and perhaps it does. He has taken off his tie and forgotten his cufflinks, and he looks at you the way he did the first time, as if you were a problem he would very much like to have.'),
@@ -543,10 +547,17 @@ const invitation: Record<Partner, Block[]> = {
     p('On the way out, a man by the fire door watches the two of you a little too long. When you glance back he is on his phone. Sebastian doesn’t notice. You do, and you file it with the others.'),
     q('Sebastian', 'The hotel’s round the corner. Or I walk you home. Or we stand here until they throw us out. You choose.'),
   ],
+  theo: [
+    p('Theo’s flat is above the studio, up an iron stair from the loading bay: one long room with the river along one side and a hundred books nobody has ever arranged. He has taken off the television face along with the jacket. Without it he looks younger and less sure, which you suspect is also a face.'),
+    p('On the desk, under the lamp, a legal pad lies face down. He sees you see it, and does not turn it over.'),
+    t('He pulls threads for a living, and I am a thread. I know that. I came anyway.'),
+    q('Theo Marr', 'No cameras. No notes. I’m off the clock, and so are you. Tell me what you want tonight and I’ll take you at your word.'),
+  ],
 };
 const scopeReply: Record<Partner, { 'no-sex': string; sex: string }> = {
   julian: { 'no-sex': 'Then that’s the evening. You set the edge and I stay on my side of it.', sex: 'Yes. And you say stop, it stops. Same for me.' },
   sebastian: { 'no-sex': 'Good. I’d like that very much. You say stop and I stop.', sex: 'Yes. Same rule as always: either of us says stop, and it stops.' },
+  theo: { 'no-sex': 'Then that’s what we do. I’m very good at wanting things I don’t get. Ask anyone I’ve interviewed.', sex: 'Yes. And the moment you want to stop, we stop. I mean that more than anything I’ve ever said on air.' },
 };
 const stopBody: Record<Partner, Block[]> = {
   julian: [
@@ -558,6 +569,11 @@ const stopBody: Record<Partner, Block[]> = {
     p('You put your hand flat on his chest. He stops at once, breathing hard, grinning.'),
     q('Sebastian', 'Glass of water and a taxi, then. I’ll walk you down.'),
     p('He does, with his coat around your shoulders, and plays you the first bar of something new on the hotel steps, badly, on an imaginary cello.'),
+  ],
+  theo: [
+    p('You put a hand flat on his chest. He stops at once and rests his forehead against yours, laughing under his breath.'),
+    q('Theo Marr', 'Right. A car, the sofa, or a very long walk by the river. Your call.'),
+    p('You take the car. He does not ask when he will see you again, which is the first thing all night that surprises you.'),
   ],
 };
 const stayBody: Record<Partner, { 'no-sex': Block[]; sex: Block[]; after: Block[] }> = {
@@ -585,6 +601,19 @@ const stayBody: Record<Partner, { 'no-sex': Block[]; sex: Block[]; after: Block[
       p('Later he is drawing a slow line down your spine with one finger, humming, and his train leaves at eight. Neither of you mentions it. Somewhere a man with a phone knows where you are tonight, and for a few hours you let that be somebody else’s problem.'),
     ],
   },
+  theo: {
+    'no-sex': [
+      p('He kisses you by the window with the river going past below, slow and curious, as if every answer only leads him to a better question. He finds the zip of the dress and asks with his eyes before he uses it. Later you are lying across his unmade bed in your slip with his hand spread warm on your stomach, and when you tell him that is where tonight stops, he says “good” against your shoulder, and you both believe him.'),
+    ],
+    sex: [
+      p('He kisses you by the window with the river going past below, slow and curious, and then not slow at all. The dress goes. So does the careful television manner, all at once, and under it is someone hungrier and much less certain, which you like better. He asks once more, low, whether you are sure. You answer by pulling him down with you onto the bed.'),
+      p('What happens next is yours and his, and it stays above the studio. The scene fades.'),
+    ],
+    after: [
+      p('Later, while he sleeps, you get up for water and stand at the desk with the lamp off. The legal pad is still face down. You could turn it over. You find, to your surprise, that you do not want to know yet whether your name is on it.'),
+      t('Or I am afraid that it is. Tonight it comes to the same thing.'),
+    ],
+  },
 };
 
 function eveningChoices(s: GameState): C7Choice[] {
@@ -604,8 +633,8 @@ function eveningChoices(s: GameState): C7Choice[] {
         return [q(who[partner], scopeReply[partner][id])];
       });
     return [
-      scope('no-sex', partner === 'julian' ? 'Stay, but not sex tonight' : 'Go back with him, but not sex tonight', 'Kissing, touch, undressing, and stopping where you choose.'),
-      scope('sex', partner === 'julian' ? 'Stay the night with him' : 'Go back with him for the night', 'Your stated choice. Either of you can stop at any time. The scene fades.'),
+      scope('no-sex', partner === 'sebastian' ? 'Go back with him, but not sex tonight' : 'Stay, but not sex tonight', 'Kissing, touch, undressing, and stopping where you choose.'),
+      scope('sex', partner === 'sebastian' ? 'Go back with him for the night' : 'Stay the night with him', 'Your stated choice. Either of you can stop at any time. The scene fades.'),
       leave,
     ];
   }
@@ -676,6 +705,21 @@ function closeChoices(s: GameState): C7Choice[] {
         return [
           p('A message from a number you have saved under a single letter: “Back for one night. Harbour, the late set, the new version. It holds its nerve now. Come and tell me if I’m lying.”'),
           ...invitation.sebastian,
+        ];
+      }),
+    );
+  if (partners.includes('theo'))
+    c.push(
+      offer7('evening-theo', 'Go to Theo’s', '“No cameras. No notes. Come over.”', 'close', (x) => {
+        set7(x, 'evening', 'theo');
+        set7(x, 'evening-open', 'theo');
+        return [
+          p(
+            get7(x, 'exit') === 'theo'
+              ? 'A message from Theo, a little after eleven: “I said I wouldn’t get in the car. I didn’t say I wouldn’t ask. Come over. No cameras, no notes. I’ll behave exactly as badly as you want me to.”'
+              : 'A message from Theo, a little after eleven: “You made me ask your question for you tonight. Let me ask one of my own. Come over. No cameras, no notes.”',
+          ),
+          ...invitation.theo,
         ];
       }),
     );
