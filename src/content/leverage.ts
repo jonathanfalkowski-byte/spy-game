@@ -64,7 +64,8 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'c8.list') === 'copied') holds.push({ id: 'list', label: 'Meridian’s client list, copied three ways', source: 'The night you got over the wall' });
   if (c(s, 'c6.photo-custody') === 'phone') holds.push({ id: 'leaf', label: 'The ledger leaf, photographed and kept', source: 'Your own phone' });
   if (s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn') holds.push({ id: 'glass-house', label: 'What you carried out of the Glass House yourself', source: 'The Glass House' });
-  if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'Two poisoned details, waiting to show you who she passes them to', source: 'The notes you rewrote' });
+  if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
+  if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };
 }
 

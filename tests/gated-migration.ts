@@ -4,6 +4,7 @@ import { act, initialState } from '../src/state/reducer';
 import { chapter7Choices } from '../src/content/chapter7';
 import { chapter8Choices } from '../src/content/chapter8';
 import { chapter9Choices } from '../src/content/chapter9';
+import { chapter10Choices } from '../src/content/chapter10';
 
 /**
  * Neutral picks for beats added to the gated chapters after their goldens were captured (Chapter 7
@@ -25,6 +26,19 @@ export const GATED_DEFAULTS = [
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
   'chapter9.name-dark',
+  // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
+  // back, hand over the only copy, move the date.
+  'chapter10.ask-happened',
+  'chapter10.door-stay',
+  'chapter10.job-lie',
+  'chapter10.job-ignore',
+  'chapter10.job-withhold',
+  'chapter10.job-clean',
+  'chapter10.job-date',
+  // …tell her the truth about the dream, and wear black.
+  'chapter10.dream-true',
+  'chapter10.green-black',
+  'chapter10.close-end',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
@@ -50,11 +64,24 @@ export function migrateGated(ledger: GameEvent[], revision: number): GameEvent[]
         s = next;
         break;
       }
-      const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
-      if (!fill || inserted > 8) throw new Error(`Refused ${JSON.stringify(intent)} at ${s.scene}.${s.phase} (event ${event.sequence}) with no default`);
-      const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
-      s = act(s, { type, id: fill.id } as Intent);
+      const filled = fillDefault(s);
+      if (!filled || inserted > 8) throw new Error(`Refused ${JSON.stringify(intent)} at ${s.scene}.${s.phase} (event ${event.sequence}) with no default`);
+      s = filled;
     }
   }
+  // A ledger that ended on a chapter's last move may now stop short of it (a beat was added after that
+  // move): finish it on the neutral picks, so a captured "complete" stays complete.
+  for (let tail = 0; tail < 8 && s.phase !== 'complete'; tail++) {
+    const filled = fillDefault(s);
+    if (!filled) break;
+    s = filled;
+  }
   return s.ledger;
+}
+
+function fillDefault(s: GameState): GameState | undefined {
+  const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s), ...chapter10Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
+  if (!fill) return undefined;
+  const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE', chapter10: 'CHAPTER10_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
+  return act(s, { type, id: fill.id } as Intent);
 }

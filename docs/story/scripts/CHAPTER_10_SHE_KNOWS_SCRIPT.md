@@ -43,31 +43,48 @@ generic line. Then: *She waits for you to begin, chin on her hand.*
 - **open-case** · Put the case on the table. `case.strength` supported/strong: she stops smiling
   for one sentence ("I hate having breakfast with people who haven't done the reading"). Thin:
   "It was a Thursday, darling, not the Wednesday."
-- **open-evelyn** · Play Evelyn. Evelyn's chair; she hated orchids and Celeste kept sending them;
+- **open-evelyn** · Play the woman she knew. Evelyn's chair; she hated orchids and Celeste kept sending them;
   "I kept the last one." Record `c10.orchids`.
 - **open-silent** · Eat, and let her talk. She lets slip that the board meets on the first Thursday.
   Sets `act3.board-day = first-thursday`.
 
-All three end on the turn: **"Eat your eggs, Adrian. You never did look after yourself."**
+Each ends on a bridge: *"Ask me something, darling."*
+
+**2b. Ask her something** (`c10.asked`, pass 2)
+- **ask-happened** · "She stopped being useful, darling, and then she stopped being anywhere." /
+  "I read almost none of them. That was the one I read twice."
+- **ask-like** · Impossible, late for everything; she stole the sugar cubes; Celeste sets two by your cup.
+- **ask-meridian** · "So few products get to read their own specifications."
+
+**2c. Her question back** (`c10.dream`, pass 2): *"When you dream, darling, are you him or are you her?"*
+- **dream-true** · "I wake up before I find out." (pity) · **dream-lie** · "Her. Always." ("Not yet.")
+  · **dream-refuse** · "That one's mine."
+
+All end on the turn: **"Eat your eggs, Adrian. You never did look after yourself."**
 
 **3. How do you take it?** (`c10.adrian`) → `claimed`
 - **adrian-composed** · Don't flinch. "There you are. I did hope you would be good at this."
 - **adrian-asked** · Ask her what she wants. "Nothing yet, darling. That's the lovely thing about
   owning something."
-- **adrian-walked** · Walk out and leave her the bill. "Same time next week?"
+- **adrian-walked** · Walk out first. "Same time next week?"
 
 ## `claimed` — Old Friends
 
 The society-page photograph (Lindqvist or bakery); caption *Old friends. Evelynn Vale and Celeste
-Laurent, reunited.* Then the calls.
+Laurent, reunited.*; the article ("rarely photographed and never interviewed"; the two women "go back
+years"). Then the calls.
 
-**Who you answer first** (`c10.first-call`) → `wall`; the rest go to voicemail:
+**Who you answer first** (`c10.first-call`); the rest go to voicemail:
 - **call-sloane** (always) · "Laurent is not a friend of this directorate." (+ "Or is this another
   guess?" if `sloaneDoubts`.)
 - **call-maya** (`c6.maya = restored`) · "People like that don't have friends. They have holdings."
 - **call-theo** (Theo in play) · "I'm not letting it go."
 - **call-odile** (`own.campaign`) · Laurent's people want her for the autumn campaign, paid in
   advance: Celeste becoming the hand that feeds her.
+
+**The doorstep** (`c10.doorstep`, pass 2) → `wall`: photographers by four.
+- **door-face** · "Celeste is a very old friend. Of a friend." · **door-back** · the service door, and
+  her man in the alley anyway · **door-stay** · curtains; one watcher who is not a photographer.
 
 ## `wall` — The Wall
 
@@ -90,7 +107,18 @@ Her clearance renews in nine days…"* Then the ask, by target (`target10`):
 
 Without the counterplay requirement, a thought names the missing asset ("If Theo trusted me…").
 
-**The answer** (`c10.answer`) → `answer`:
+**The answer** (`c10.answer`) → a moment inside the job (`c10.job`, pass 2), then `answer`:
+- Tape comply: Theo on the archive stair — **job-lie** (the scarf; he decides not to see) /
+  **job-hide** (lamp off; "Goodnight, then."; `c10.theo-suspects`).
+- Workroom comply: Julian back early — **job-lie** (the view) / **job-cover** (kiss him first).
+- Notes comply: with Maya's copy, "Are you in trouble?" — **job-lie** / **job-half**; otherwise
+  **job-clean** / **job-copy** (a photograph of every page: `c10.kept-copy`, a board asset).
+- Any refusal: the black phone at 03:00 — **job-answer** ("Tell Maya I'm sorry.") / **job-ignore**
+  ("Nine days, darling. Eight, now.").
+- Counterplay, tape/workroom: "Who is she to you?" — **job-name** (`act3.theo-knows` /
+  `act3.julian-knows = celeste`) / **job-withhold**. Notes: **job-date** / **job-letter**.
+
+The answers:
 - **order-comply** · complied. `act3.maya-clearance = renewed`; `c10.betrayed = theo | julian | maya
   | none`. Tape: the archive, with his key if she slept with him. Workroom: the page while Julian
   takes a call. Notes: two in the morning at the kitchen table; if Maya holds a copy, the lie to
@@ -100,7 +128,7 @@ Without the counterplay requirement, a thought names the missing asset ("If Theo
 - **order-counter** (when available) · countered. `act3.maya-clearance = renewed`,
   `act3.celeste-surprised = once`. Tape: Theo cuts the question and sends it himself
   (`act3.ally.theo = in`). Workroom: Julian drafts a decoy schedule (`act3.ally.julian = in`).
-  Notes: two poisoned details (`c10.poison = planted`).
+  Notes: one poisoned detail she chooses (`c10.poison = date | letter`).
 
 ## `answer` — What It Cost
 
@@ -123,6 +151,9 @@ meet you. Wear the green. Bring nobody. — C."* (Ch11's field op.) If `act3.boa
 the board's own day.
 
 - **invite-accept** ("I know.") / **invite-wait** (`c10.invitation = accepted | pending`).
+- **Wear the green** (`c10.green`, pass 2; Chapter 11 reads it): **green-own** (the gala green, if
+  `c8.gala`) · **green-odile** (if the campaign: `own.odile = owed`) · **green-buy** ($150) ·
+  **green-black** (refuse the colour).
 - Then, only with a partner she already chose **and did not betray this chapter**
   (`eveningPartners10`): **evening-julian / evening-theo / evening-sebastian** →
   **evening-<p>-no-sex** / **evening-<p>-sex** / **evening-leave** → **evening-stop** /
@@ -156,5 +187,7 @@ untouched.
 ## Size (honest)
 
 Pass 1 builds every scene, branch and consequence in the design. Measured on full paths:
-**~1.5–1.9k words**, against the 12.5k budget. Deepening passes follow (the breakfast conversation,
+**~1.5–1.9k words**, against the 12.5k budget. Pass 2 (2026-09-24) adds the question
+about Evelyn, Celeste's question back, the article, the doorstep, a moment inside every job, fuller
+aftermaths and the green: **~2.3–2.7k words** on full paths. Deepening passes follow (the breakfast conversation,
 the job scenes and the calls are the biggest lifts), as with Chapters 7–9.
