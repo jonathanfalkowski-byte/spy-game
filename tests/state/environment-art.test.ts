@@ -34,6 +34,7 @@ it('never replaces exact art and never runs inside a scripted reading sequence',
   vi.stubEnv('VITE_EVE_CHAPTER6', '1');
   vi.stubEnv('VITE_EVE_CHAPTER7', '1');
   vi.stubEnv('VITE_EVE_CHAPTER8', '1');
+  vi.stubEnv('VITE_EVE_CHAPTER9', '1');
   const blank = new Set<string>();
   for (let run = 0; run < 40; run++) {
     let s: GameState = newGameState();

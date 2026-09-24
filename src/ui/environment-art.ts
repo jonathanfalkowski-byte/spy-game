@@ -173,6 +173,11 @@ const byNode: Record<string, Key> = {
   'chapter8.advance': 'apartmentNight',
   'chapter8.close': 'apartmentNight',
   'chapter8.complete': 'apartmentNight',
+  // Chapter 9 (the shared bridge).
+  'chapter9.arrive': 'apartmentDay',
+  'chapter9.assemble': 'phone',
+  'chapter9.resolve': 'apartmentNight',
+  'chapter9.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {
