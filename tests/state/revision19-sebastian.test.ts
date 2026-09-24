@@ -4,7 +4,7 @@ import { sebastianNpc, type GameState } from '../../src/state/schema';
 import { availableIntents, replay } from '../../src/state/reducer';
 import { chapter5Choices } from '../../src/content/chapter5';
 import { get5 } from '../../src/content/chapter5-model';
-import { SEBASTIAN_SEX_BODY_READY } from '../../src/content/chapter5-sebastian';
+import { SEBASTIAN_SEX_SCOPE_OFFERED } from '../../src/content/chapter5-sebastian';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { currentPlace } from '../../src/ui/chapter4-presentation';
 import { readingBlocks } from '../../src/ui/reading-presentation';
@@ -110,7 +110,7 @@ it('speaks the walk-back offer once, after talk or request', () => {
 it('honours withdrawal at scope and in his room, and records only what Evelynn said', () => {
   const wanting = c5(c5(c5(toSalon(meet(start19())), 'salon-talk'), 'talk-lie'), 'sebastian-want');
   expect(get5(wanting, 'want-target')).toBe('sebastian');
-  expect(ids(wanting).sort()).toEqual(['scope-back', 'scope-no-sex']);
+  expect(ids(wanting).sort()).toEqual(['scope-back', 'scope-no-sex', 'scope-sex']);
   const back = c5(wanting, 'scope-back');
   expect(back.phase).toBe('return');
   expect(get5(back, 'sebastian-outcome')).toBe('withdrawn');
@@ -133,11 +133,32 @@ it('honours withdrawal at scope and in his room, and records only what Evelynn s
   ]);
 });
 
-it('completes the no-sex scope, never offers scope-sex while its body is gated, and carries the flags forward', () => {
-  expect(SEBASTIAN_SEX_BODY_READY).toBe(false);
+it('offers the sex scope as a heat-3 fade: consent restated, stop still honoured, nothing explicit', () => {
+  expect(SEBASTIAN_SEX_SCOPE_OFFERED).toBe(true);
   const wanting = c5(c5(toSalon(start19()), 'salon-request'), 'sebastian-want');
-  expect(ids(wanting)).not.toContain('scope-sex');
-  expect(() => c5(wanting, 'scope-sex')).toThrow(/Unavailable/);
+  expect(ids(wanting)).toEqual(expect.arrayContaining(['scope-no-sex', 'scope-sex', 'scope-back']));
+  const agreed = c5(wanting, 'scope-sex');
+  expect(get5(agreed, 'scope')).toBe('sex');
+  expect(get5(agreed, 'authorization')).toBe('granted');
+  expect(lastText(agreed)).toContain('either of us says stop, and it stops');
+  expect(ids(agreed)).toEqual(expect.arrayContaining(['handoff-withdraw', 'handoff-continue']));
+  const stopped = c5(agreed, 'handoff-withdraw');
+  expect(get5(stopped, 'sebastian-outcome')).toBe('withdrawn');
+  const room = c5(agreed, 'handoff-continue');
+  expect(get5(room, 'sebastian-outcome')).toBe('intimate-sex');
+  expect(get5(room, 'intimacy')).toBe('intimate-sex');
+  expect(text(room)).toContain('whether you are sure');
+  expect(text(room)).toContain('The scene fades.');
+  expect(text(room)).not.toContain('explicit body');
+  expect(lastText(room)).toContain('hair still down');
+  for (const h of room.history) expect(() => readingBlocks(h.blocks, h.node, room.contentRevision)).not.toThrow();
+  const complete = drive(room, (x) => x.phase === 'complete');
+  expect(get5(complete, 'sebastian-outcome')).toBe('intimate-sex');
+  expect(decodeSave(encodeSave(complete))).toEqual(complete);
+});
+
+it('completes the no-sex scope and carries the flags forward', () => {
+  const wanting = c5(c5(toSalon(start19()), 'salon-request'), 'sebastian-want');
   const room = c5(c5(wanting, 'scope-no-sex'), 'handoff-continue');
   expect(get5(room, 'sebastian-outcome')).toBe('intimate-no-sex');
   expect(get5(room, 'intimacy')).toBe('intimate-no-sex');

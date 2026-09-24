@@ -178,6 +178,5 @@ start earlier. Sloane's monitoring and Rook's price are already leverage in Acts
 3. **Player comfort:** a content notice at the start plus the optional "fade the coercion
    beats" setting.
 4. **Sebastian's switched-off sex path:** rewrite it as a heat-3 fade, so the choice exists
-   and the scene fades like Julian's. (Script task; tracked in
-   [BEAT_MAP.md](BEAT_MAP.md) under Chapter 5.)
+   and the scene fades like Julian's. **Done 2026-09-24** (`src/content/chapter5-sebastian.ts`).
 5. **The 18+ patch:** undecided, deferred.

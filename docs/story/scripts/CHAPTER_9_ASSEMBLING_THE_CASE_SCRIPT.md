@@ -17,7 +17,7 @@ Phases: `arrive` → `assemble` (hub) → `resolve` → `complete`.
 
 Driving job (settled): **assemble a case from what the route holds, and reach the one name on
 Meridian's board you have already met.** That name is **Celeste Laurent** (endgame canon; the
-confrontation itself is Chapter 10, not here — Chapter 9 reaches and *sources* the name).
+confrontation itself is Act IV (~Ch17, see ../BEAT_MAP.md), not here — Chapter 9 reaches and *sources* the name).
 
 ---
 
@@ -159,9 +159,13 @@ Cost register (shared):
 > looking, and Meridian is a thing that looks back. *(always:)* And you are still the only person
 > holding what you assembled. → Chapter 9 `complete`.
 
-> t: You have the name, and a case the size of your road, and a room ahead of you with Celeste in
-> it and Sloane somewhere behind her. Whatever you do in that room, you walk in holding more than
-> anyone meant you to. → sets up Chapter 10 (the convergent endgame operation).
+> t: You have the name, and a case the size of your road. You went looking for a face on that
+> board and found one you had already met, which means she has already met yours. Celeste has
+> seen your face too. She saw it first, across a room at the Glass House, and she smiled.
+> → sets up Chapter 10, "She Knows" (the Act III opener; see [../BEAT_MAP.md](../BEAT_MAP.md)).
+>
+> *(Revised 2026-09-24 for the four-act structure: Ch9 is the midpoint, not the lead-in to the
+> endgame, so it ends on Celeste knowing rather than on a confrontation.)*
 
 ---
 

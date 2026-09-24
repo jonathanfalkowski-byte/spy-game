@@ -154,7 +154,7 @@ export function chapter9Blocks(s: GameState): Block[] {
     return [p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
-    return [t('You have the name, and a case the size of your road, and a room ahead of you with Celeste in it and Sloane somewhere behind her. Whatever you do in that room, you walk in holding more than anyone meant you to.')];
+    return [t('You have the name, and a case the size of your road. You went looking for a face on that board and found one you had already met, which means she has already met yours. Celeste has seen your face too. She saw it first, across a room at the Glass House, and she smiled.')];
   return [];
 }
 

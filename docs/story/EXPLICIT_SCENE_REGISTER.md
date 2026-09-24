@@ -28,7 +28,7 @@ deferred. See [intimate/README.md](intimate/README.md) and
 
 | # | Scene | Where (file · gate) | Status | Writer card | Art anchors |
 |---|---|---|---|---|---|
-| 1 | **Sebastian — hotel room, sex scope** (C5) | salon-room `handoff-continue`, scope = sex, `c5.sebastian-outcome = intimate-sex` (rev19 content, added by EVE Code job 4; script §3f) | **DEFERRED** — no-sex body ships; sex path gated off until the body is authored | [intimate/cards/c5-sebastian-night.md](intimate/cards/c5-sebastian-night.md) | F7 lead-in `1f4df211-70d8-43dc-a33e-1bdaffbdaa93`, F8 aftermath `f0382b59-4511-476e-9c9c-5c4dd68cd8e1` |
+| 1 | **Sebastian — hotel room, sex scope** (C5) | salon-room `handoff-continue`, scope = sex, `c5.sebastian-outcome = intimate-sex` (rev19 content, added by EVE Code job 4; script §3f) | **SHIPPING as heat 3** (2026-09-24): the sex scope is offered and fades at the act, like Julian's; no explicit body | [intimate/cards/c5-sebastian-night.md](intimate/cards/c5-sebastian-night.md) | F7 lead-in `1f4df211-70d8-43dc-a33e-1bdaffbdaa93`, F8 aftermath `f0382b59-4511-476e-9c9c-5c4dd68cd8e1` |
 | 2 | Sebastian — hotel room, no-sex scope (C5) | salon-room `handoff-continue`, scope = no-sex, `intimate-no-sex` | **SHIPPING** (heat 2–3, implied; authored in script §3f) | n/a (non-explicit) | F7/F8 as above |
 | 3 | **Julian — Chapter 4 intimacy, sex scope** | `src/content/chapter4-power.ts` — sex option :481, `planned-outcome` :493, `fade` :562 | **FADE** (non-graphic by design) — candidate explicit point | none yet | Julian refs; no dedicated frame yet |
 | 4 | **Julian — Chapter 5 want, sex scope** | `src/content/chapter5-desire.ts` — `fade` :461, "scene fades" :482 | **FADE** — candidate explicit point | none yet | Julian refs; no dedicated frame yet |
@@ -36,7 +36,7 @@ deferred. See [intimate/README.md](intimate/README.md) and
 
 ## Notes per point
 
-- **#1 Sebastian sex body.** The local 8B writer could not produce a clean explicit take even segmented (off-register dialogue, POV slips, degeneration). Best raw segments are kept in `local/writer-out/c5-sebastian-night-seg/` (gitignored) for the owner's edit pass. Until an explicit body exists, EVE Code gates the `scope-sex` option OFF via a `SEBASTIAN_SEX_BODY_READY` constant (currently false); only `scope-no-sex` is offered. Flip the constant and insert the take when authored.
+- **#1 Sebastian sex body.** The local 8B writer could not produce a clean explicit take even segmented (off-register dialogue, POV slips, degeneration). Best raw segments are kept in `local/writer-out/c5-sebastian-night-seg/` (gitignored) for the owner's edit pass. **Resolved 2026-09-24 (Mature direction):** the `scope-sex` option is now offered (`SEBASTIAN_SEX_SCOPE_OFFERED = true`) with a heat-3 body that fades at the act. No explicit body will be written for the base game.
 - **#3 / #4 Julian.** Both currently fade to black, which is the reviewed design. They are listed here only as candidate points if the owner later wants explicit bodies; changing them is a separate decision, not part of rev19.
 - **#5 Chapter 6.** Bounded goodbye; if it becomes intimate it needs its own fresh-choice consent step and its own card and anchors.
 
@@ -44,4 +44,4 @@ deferred. See [intimate/README.md](intimate/README.md) and
 
 1. Prose: refine the writer card, run `tools/writer/write-scene.mjs <card>` (segment it — the model can't hold a long scene in one pass), cull, do the edit pass. Insert the chosen take where the code marks the placeholder.
 2. Image: use the recorded art anchors as the base image in ZenCreator, per [OWNER_EXPLICIT_FRAMES.md](../art/OWNER_EXPLICIT_FRAMES.md). Stage in `art/staging/owner-explicit/`, then bind.
-3. Flip the readiness gate for that point (e.g. `SEBASTIAN_SEX_BODY_READY = true`).
+3. (Superseded 2026-09-24: no explicit bodies in the base game.)

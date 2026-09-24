@@ -126,8 +126,8 @@ operation that reads who arrived. The endings are positions, not verdicts.
 
 ## Next steps, in order
 
-1. **Ch9 last-line fix** (one line): end on *she has seen your face too*.
-2. **Sebastian heat-3 rewrite** (Ch5): turn the switched-off sex path into a fade like
+1. ~~**Ch9 last-line fix**~~ **Done 2026-09-24:** Ch9 now ends on *Celeste has seen your face too*.
+2. ~~**Sebastian heat-3 rewrite**~~ **Done 2026-09-24:** the sex scope is offered and fades like
    Julian's.
 3. **Deepen Ch7–9** (own-power) toward their budgets: turn hub options into scenes, add
    one relationship evening each.

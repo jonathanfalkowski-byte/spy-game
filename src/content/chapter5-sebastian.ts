@@ -6,9 +6,9 @@ import { paragraph as p, speech as q, thought as t, type Block } from './schema'
 import { type C5Scene, type C5Choice, get5, set5, offer5, note5, intimate5, intimatePartner5 } from './chapter5-model';
 
 export const rev19 = (s: GameState) => s.contentRevision === 19;
-/** Owner decision: the explicit sex-scope body ships later (docs/story/EXPLICIT_SCENE_REGISTER.md, point 1).
- * While false, scope-sex is never offered. To enable: insert the chosen take below and set true. */
-export const SEBASTIAN_SEX_BODY_READY = false;
+/** Owner decision (2026-09-24, docs/story/CONTENT_DIRECTION.md §8): EVE is Mature, so the sex scope
+ * is offered with a heat-3 body that fades at the act, like Julian's. No explicit body. */
+export const SEBASTIAN_SEX_SCOPE_OFFERED = true;
 const met = (s: GameState) => get5(s, 'sebastian-met') === 'harbour';
 const S = 'Sebastian';
 
@@ -365,12 +365,12 @@ function scopeChoices(s: GameState): C5Choice[] {
       'Go back with him, but not sex tonight.',
       'Good. I’d like that very much. You say stop and I stop, and I’ll say it too if I need to.',
     ),
-    ...(SEBASTIAN_SEX_BODY_READY
+    ...(SEBASTIAN_SEX_SCOPE_OFFERED
       ? [
           scope(
             'sex',
             'Go back with him and have sex',
-            'Your stated choice. Either of you can stop at any time.',
+            'Your stated choice. Either of you can stop at any time. The scene fades.',
             'Go back with him and have sex.',
             'Yes. And the same rule both ways: either of us says stop, and it stops.',
           ),
@@ -417,9 +417,12 @@ function roomChoices(s: GameState): C5Choice[] {
                 'You let him undo the dress. He does it slowly and says out loud what he likes about what he finds, and every word of it lands. You pull his shirt over his head and learn the shape of him with your hands. At some point you are on the bed with his mouth at your throat and your heels kicked off somewhere in the dark, and it is very good, and when you say “that’s where tonight stops”, he laughs against your skin and stays exactly there with you.',
               ),
             ]
-          : // TODO: insert the chosen take from writer card docs/story/intimate/cards/c5-sebastian-night.md
-            // verbatim, then set SEBASTIAN_SEX_BODY_READY. Unreachable while the gate is false.
-            [p('(explicit body — writer card c5-sebastian-night)')]),
+          : [
+              p(
+                'He undoes the dress slowly, and this time neither of you is keeping count of where it stops. The lamp stays on. You pull him down by the collar; his mouth finds your shoulder, the line of your collarbone, the place under your ear that makes you say his name. Your heels are somewhere in the dark. When he asks once more, low, whether you are sure, you answer by drawing him down onto the bed with you.',
+              ),
+              p('What happens next is yours and his, and it stays in that room. The scene fades.'),
+            ]),
         ...aftermath,
       ];
     }),

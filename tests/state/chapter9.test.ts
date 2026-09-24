@@ -169,7 +169,7 @@ it('plays a real Chapter 9 to complete on every captured road, and every ending 
     s = walk(s, ['assemble-stop', 'resolve-end']);
     expect(`${s.scene}.${s.phase}`, name).toBe('chapter9.complete');
     expect(chapter9Choices(s)).toEqual([]);
-    expect(text(s)).toContain('a room ahead of you with Celeste in it');
+    expect(text(s)).toContain('Celeste has seen your face too');
     for (const [k, v] of Object.entries(s.choices)) if (/^(c9\.|case\.)/.test(k)) expect(v.length, k).toBeLessThanOrEqual(80);
     expect(replay(s.ledger, 19)).toEqual(s);
     expect(decodeSave(encodeSave(s))).toEqual(s);
