@@ -39,6 +39,8 @@ export const GATED_DEFAULTS = [
   'chapter10.dream-true',
   'chapter10.green-black',
   'chapter10.close-end',
+  // The breakfast set piece: let her order.
+  'chapter10.menu-let',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

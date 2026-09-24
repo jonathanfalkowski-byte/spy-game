@@ -34,10 +34,17 @@ your name at the door."), *She is not asking whether I will come.*
 - **breakfast-stay** · Don't go → `ambushed`. She comes to the bakery on your street with two
   coffees, in front of the queue. Place: *09:10 · THE BAKERY ON YOUR STREET*. Worse: public.
 
-**Celeste's openers** (all that apply, in order): the card (`c7.card` kept/studied, or burned) ·
+**The menu** (`c10.menu`, the set piece): at the Lindqvist, *"Shall I order for you? I know what you
+like."* — **menu-let** (Evelyn's eggs, which Celeste used to eat for her) / **menu-own** (Adrian's
+black coffee and dry toast: "That's new."). At the bakery, the too-sweet coffee she brought
+(two sugars and cinnamon: Evelyn's) / buying your own.
+
+**Celeste's reading of your week** (all that apply, in order): the card (`c7.card` kept/studied, or burned) ·
 the terrace (`c9.terrace` turn/truth) · the name beat (`c9.name-beat` walk, or photos: she slides
 the ninth frame across) · the station poster (`own.campaign = taken`) · Theo (in play) · else a
-generic line. Then: *She waits for you to begin, chin on her hand.*
+generic line; plus the talc trap (`c8.breakin = trap`: the woman's print was hers), notes hidden
+in a coat (`c7.notes = hide`: "So did she."), Julian's view or Sebastian's train (an intimate Ch7
+evening). Then: *She waits for you to begin, chin on her hand.*
 
 **2. How do you open?** (`c10.open`)
 - **open-case** · Put the case on the table. `case.strength` supported/strong: she stops smiling
@@ -60,7 +67,15 @@ Each ends on a bridge: *"Ask me something, darling."*
 - **dream-true** · "I wake up before I find out." (pity) · **dream-lie** · "Her. Always." ("Not yet.")
   · **dream-refuse** · "That one's mine."
 
-All end on the turn: **"Eat your eggs, Adrian. You never did look after yourself."**
+Follow-ups: where the first Evelyn is now ("Somewhere dry"), whether she loved her ("very fond… it
+lasts longer"), what Celeste is at Meridian ("Quality control.").
+
+All end on the build and the turn: Celeste's "nothing" (Priya's promotion, Benton's slate, the
+crease in the sofa), her rules ("I won't threaten you, darling… Things will simply happen"), then
+**"Eat your eggs / Eat your toast / Drink your coffee, Adrian. You never did look after yourself."**
+(whichever is on the table). Every way out ends on the flinch afterwards (the taxi, or the tap).
+
+Set piece length (2026-09-24): **~1.7–2.2k words** on one path, from dawn to the flinch.
 
 **3. How do you take it?** (`c10.adrian`) → `claimed`
 - **adrian-composed** · Don't flinch. "There you are. I did hope you would be good at this."

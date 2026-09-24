@@ -36,7 +36,7 @@ const plain = {
 };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete9('records-name-thin'), { ...plain, ...flags });
 /** Through breakfast, the calls and the wall to the order. */
-const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build']);
+const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build']);
 /** An answer to the order, through its one moment (the first beat offered). */
 const answer = (order: GameState, id: string) => {
   const opened = c10(order, id);
@@ -55,14 +55,25 @@ it('plays breakfast on her ground or yours, reads last week back, and ends on "A
   const morning = c10(start({ 'c7.card': 'kept', 'c9.name-beat': 'walk' }), 'begin');
   expect(ids(morning)).toEqual(['breakfast-go', 'breakfast-stay']);
   expect(currentPlace(morning, 'x')).toBe('DAWN · APARTMENT');
-  const went = c10(morning, 'breakfast-go');
-  expect(currentPlace(went, 'x')).toBe('07:00 · THE LINDQVIST');
+  const arrived = c10(morning, 'breakfast-go');
+  expect(currentPlace(arrived, 'x')).toBe('07:00 · THE LINDQVIST');
+  expect(text(arrived)).toContain('Shall I order for you? I know what you like.');
+  expect(ids(arrived)).toEqual(['menu-let', 'menu-own']);
+  expect(text(c10(arrived, 'menu-own'))).toContain('That’s new.');
+  const went = c10(arrived, 'menu-let');
+  expect(text(went)).toContain('I used to eat them for her.');
   expect(text(went)).toContain('You kept my card. She never kept anything.');
   expect(text(went)).toContain('You walked past my building on Tuesday.');
   expect(ids(went)).toEqual(['open-case', 'open-evelyn', 'open-silent']);
   const ambushed = c10(morning, 'breakfast-stay');
   expect(currentPlace(ambushed, 'x')).toBe('09:10 · THE BAKERY ON YOUR STREET');
   expect(text(ambushed)).toContain('It is so much more public than my club.');
+  expect(ids(ambushed)).toEqual(['menu-let', 'menu-own']);
+  // At the bakery she brought the coffee, and the line that ends breakfast follows what is on the table.
+  const bakeryAdrian = walk(ambushed, ['menu-let', 'open-silent', 'ask-happened', 'dream-true']);
+  expect(text(bakeryAdrian)).toContain('Two sugars and cinnamon.');
+  expect(text(bakeryAdrian)).toContain('Drink your coffee, Adrian.');
+  expect(text(walk(arrived, ['menu-own', 'open-silent', 'ask-happened', 'dream-true']))).toContain('Eat your toast, Adrian.');
   for (const open of ['open-case', 'open-evelyn', 'open-silent']) {
     const asked = c10(went, open);
     expect(text(asked)).toContain('Ask me something, darling.');
@@ -77,12 +88,12 @@ it('plays breakfast on her ground or yours, reads last week back, and ends on "A
   }
   // A thin case is corrected, gently; a supported one lands.
   expect(text(c10(went, 'open-case'))).toContain('It was a Thursday, darling');
-  expect(text(c10(c10(c10(start({ 'case.strength': 'strong' }), 'begin'), 'breakfast-go'), 'open-case'))).toContain('Celeste stops smiling');
+  expect(text(walk(start({ 'case.strength': 'strong' }), ['begin', 'breakfast-go', 'menu-let', 'open-case']))).toContain('Celeste stops smiling');
   expect(c10(went, 'open-silent').choices['act3.board-day']).toBe('first-thursday');
 });
 
 it('claims her in public, and lets her choose whose call to take first', () => {
-  const noon = walk(start({ 'c6.maya': 'restored', 'own.campaign': 'taken', 'c7.theo': 'curious' }), ['begin', 'breakfast-go', 'open-silent', 'ask-like', 'dream-refuse', 'adrian-composed']);
+  const noon = walk(start({ 'c6.maya': 'restored', 'own.campaign': 'taken', 'c7.theo': 'curious' }), ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-like', 'dream-refuse', 'adrian-composed']);
   expect(noon.phase).toBe('claimed');
   expect(text(noon)).toContain('the two women “go back years”');
   expect(text(noon)).toContain('Old friends. Evelynn Vale and Celeste Laurent, reunited.');
@@ -98,7 +109,7 @@ it('claims her in public, and lets her choose whose call to take first', () => {
 
 it('builds the wall from the debts already in the save, and opens the leverage board', () => {
   const debts = start({ 'own.alliance.rook': 'owed', 'own.marcus': 'owed', 'own.odile': 'owed', 'c8.list': 'read' });
-  const wall = walk(debts, ['begin', 'breakfast-go', 'open-silent', 'ask-meridian', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay']);
+  const wall = walk(debts, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-meridian', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay']);
   expect(leverageBoardOpen(wall)).toBe(false);
   const built = c10(wall, 'wall-build');
   expect(leverageBoardOpen(built)).toBe(true);
@@ -160,7 +171,7 @@ it.each(cases)('plays the %s order through every answer, each with its own cost'
 });
 
 it('plays a real Chapter 10 on an untouched save, and the save authenticates', () => {
-  let s = walk(complete9('records-name-thin'), ['begin', 'breakfast-stay', 'open-evelyn', 'ask-like', 'dream-true', 'adrian-walked']);
+  let s = walk(complete9('records-name-thin'), ['begin', 'breakfast-stay', 'menu-own', 'open-evelyn', 'ask-like', 'dream-true', 'adrian-walked']);
   s = c10(s, ids(s)[0]);
   s = walk(s, ['door-face', 'wall-build', 'order-refuse', 'job-answer']);
   s = c10(s, ids(s)[0]);
@@ -262,4 +273,29 @@ it('lets her choose what to wear to the Vesper Gallery, at a cost that follows h
   const bought = c10(card({ 'own.cash': '400' }), 'green-buy');
   expect([bought.choices['c10.green'], bought.choices['own.cash']]).toEqual(['buy', '250']);
   expect(text(c10(card({}), 'green-black'))).toContain('Let her notice.');
+});
+
+// ── The breakfast set piece ──
+
+it('plays breakfast as one scene: the menu, her reading of your week, and the build to "Adrian"', () => {
+  const reads = { 'c8.breakin': 'trap', 'c7.notes': 'hide', 'c7.evening': 'julian', 'c7.evening-outcome': 'intimate-sex' };
+  const read = walk(start(reads), ['begin', 'breakfast-go', 'menu-let']);
+  expect(text(read)).toContain('Talc on the floor, darling.');
+  expect(text(read)).toContain('And you hide things in coats. So did she.');
+  expect(text(read)).toContain('How is Julian’s view?');
+  const turned = walk(read, ['open-silent', 'ask-happened', 'dream-true']);
+  expect(text(turned)).toContain('Somewhere dry. Somewhere you can find it again');
+  expect(text(turned)).toContain('Did they ever fix the crease in the sofa?');
+  expect(text(turned)).toContain('I won’t threaten you, darling.');
+  const left = c10(turned, 'adrian-composed');
+  expect(text(left)).toContain('your hands finally start to shake');
+  expect(text(c10(turned, 'adrian-walked'))).toContain('As if it were something she had given me.');
+});
+
+it('keeps Celeste as canon describes her: close-cropped hair, never pinned up', () => {
+  const both = [c10(c10(start(), 'begin'), 'breakfast-go'), c10(c10(start(), 'begin'), 'breakfast-stay')];
+  for (const s of both) {
+    expect(text(s)).toContain('her hair cropped close to her head');
+    expect(text(s)).not.toMatch(/Celeste[^.]*hair up/);
+  }
 });
