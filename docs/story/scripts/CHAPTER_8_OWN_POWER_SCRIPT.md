@@ -1,5 +1,14 @@
 # Chapter 8 (own-power) — "The Cost Bites" script
 
+> **Deepened 2026-09-24 (heat-and-danger pass, Celebrity route).** Implemented wording lives in
+> `src/content/chapter8.ts`. Everyone sees the apartment intrusion; an exposed player meets Sloane in person at
+> her car. Each road over the wall is a scene with its own choice: the Harbour gala with Tobias Keel (dance or
+> ask on the red carpet), the sender's debt paid by watching Sloane's office (report truthfully or lie), the
+> reporter Clara Duvall (print or hold), Maya at the counter (send her away or keep her close), Julian's contracts
+> room with security on the floor (photograph or only read), Sloane's car (ask why or watch her hands), and the
+> night registry dig (find out who else is looking, or leave). The reveal adds that Helix is also a Meridian
+> client. The sender now collects the debt (the review found it ran backwards).
+
 Source of wording and flags for EVE Code. The second own-power development chapter, the
 route's **temptation**. Design authority: [OWN_POWER_ROUTE.md](../routes/OWN_POWER_ROUTE.md)
 §4, [CAMPAIGN_ROUTE_MAP.md](../CAMPAIGN_ROUTE_MAP.md) (crossover doctrine). Follows

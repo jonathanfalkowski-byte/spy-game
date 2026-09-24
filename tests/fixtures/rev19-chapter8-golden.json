@@ -1,14 +1,14 @@
 {
-  "note": "Chapter 8 complete ledgers (revision 19, Chapter 6-8 gates open), captured before any Chapter 9 content affects them (Chapter 8 source unchanged since 7670da4). Replaying each must reproduce these exact save hashes. Migrated 2026-09-24 to the deepened Chapter 7 (heat-and-danger pass): new sub-choices filled with behaviour-neutral defaults; outcome fields verified unchanged.",
+  "note": "Chapter 8 complete ledgers (revision 19, Chapter 6-8 gates open), captured before any Chapter 9 content affects them (Chapter 8 source unchanged since 7670da4). Replaying each must reproduce these exact save hashes. Migrated 2026-09-24 to the deepened Chapters 7 and 8 (heat-and-danger pass): new scene choices filled with behaviour-neutral defaults; outcome fields verified unchanged.",
   "commit": "8a9cd1b",
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 198,
+      "events": 199,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "96cefd7f37fd78365319d108e4497552e9d20381ea5b0d4740b2b6cb70999c8e",
+      "saveSha256": "91db4dc70f801b648447314686d11aa0577f262fbd81a537e6ff95eec2d3c9f8",
       "ledger": [
         {
           "sequence": 1,
@@ -1572,7 +1572,7 @@
           "sequence": 197,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 196
           }
         },
@@ -1580,19 +1580,27 @@
           "sequence": 198,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.advance-continue",
             "expectedRevision": 197
+          }
+        },
+        {
+          "sequence": 199,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 198
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 216,
+      "events": 217,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "73208ad93b3e9b3f49096da924e5b186374f18588624ba18d5a959d1550232af",
+      "saveSha256": "ff14142bd4ddb1a17b87cb88a2ca6399db9f5b00f06725100da9fdfbfa9a838e",
       "ledger": [
         {
           "sequence": 1,
@@ -3300,7 +3308,7 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.debt-true",
             "expectedRevision": 214
           }
         },
@@ -3308,19 +3316,27 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.advance-continue",
             "expectedRevision": 215
+          }
+        },
+        {
+          "sequence": 217,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 216
           }
         }
       ]
     },
     {
       "name": "own-maya-nothing",
-      "events": 205,
+      "events": 206,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "75bc74e2e18adf71adea2b5a556f9514b731d4753994ff589cca70dc93dea32b",
+      "saveSha256": "396258518482ee97fbc2f6dcebbf5ae25aded078660988dd653834174e0e2de9",
       "ledger": [
         {
           "sequence": 1,
@@ -4940,7 +4956,7 @@
           "sequence": 204,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 203
           }
         },
@@ -4948,8 +4964,16 @@
           "sequence": 205,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.advance-continue",
             "expectedRevision": 204
+          }
+        },
+        {
+          "sequence": 206,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 205
           }
         }
       ]

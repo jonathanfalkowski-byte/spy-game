@@ -6,6 +6,7 @@ import { act, availableIntents, replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter8Choices } from '../../src/content/chapter8';
 import { resolveSceneArt } from '../../src/ui/scene-art';
+import { currentPlace } from '../../src/ui/chapter4-presentation';
 
 beforeEach(() => {
   for (const n of [6, 7, 8]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
@@ -20,6 +21,8 @@ const c8 = (s: GameState, id: string) => {
   return next;
 };
 const walk = (s: GameState, path: string[]) => path.reduce(c8, s);
+/** Take a road's own scene choice (the first one) to go over the wall. */
+const through = (s: GameState) => c8(s, ids(s)[0]);
 const complete7 = (name: string) => replay(golden7.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -78,7 +81,9 @@ it('reaches the same core turn by every road, recording the road and any crossov
     [{}, 'leverage-refuse-cross', 'dig', 'none'],
   ];
   for (const [flags, road, entered, crossover] of cases) {
-    const s = c8(leverage(flags), road);
+    const scene = c8(leverage(flags), road);
+    expect(scene.phase, road).toBe('leverage');
+    const s = through(scene);
     expect(s.phase, road).toBe('advance');
     expect([s.choices['c8.meridian'], s.choices['c8.entered'], s.choices['own.crossover']], road).toEqual(['product', entered, crossover]);
     expect(text(s)).toContain('Project Eve is a product. Axiom is a client.');
@@ -86,10 +91,10 @@ it('reaches the same core turn by every road, recording the road and any crossov
     expect(s.choices['route.lane']).toBe('own-power');
     expect(() => encodeSave(s)).not.toThrow();
   }
-  const rook = c8(leverage({ 'own.alliance.rook': 'owed' }), 'leverage-rook');
+  const rook = through(c8(leverage({ 'own.alliance.rook': 'owed' }), 'leverage-rook'));
   expect(rook.choices['own.alliance.rook']).toBe('spent');
   expect(text(rook)).toContain('a marker called, a patience spent');
-  const maya = c8(leverage({ 'c6.maya': 'restored' }), 'leverage-maya');
+  const maya = through(c8(leverage({ 'c6.maya': 'restored' }), 'leverage-maya'));
   expect(maya.choices['own.alliance.maya']).toBe('used');
   expect(text(maya)).not.toContain('a marker called, a patience spent');
   const loud = c8(leverage({ 'c5.published': 'yes' }), 'leverage-audience');
@@ -106,9 +111,9 @@ it('keeps the hard way open at any budget: the dig costs $120 or is recorded unp
 it('plays a real own-power Chapter 8 to complete, and the save authenticates', () => {
   let s = walk(complete7('pivot-own-rook-debt'), ['begin', 'cost-continue']);
   expect(ids(s)).toContain('leverage-rook');
-  s = walk(s, ['leverage-rook', 'advance-continue']);
+  s = walk(s, ['leverage-rook', 'debt-true', 'advance-continue']);
   expect(text(s)).toContain('The next room is the one with the name in it');
-  expect(text(s)).not.toContain('Except you did not stand entirely alone this time');
+  expect(text(s)).not.toContain('Except I did not stand entirely alone this time');
   s = c8(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter8.complete');
   expect(chapter8Choices(s)).toEqual([]);
@@ -122,8 +127,44 @@ it('plays a real own-power Chapter 8 to complete, and the save authenticates', (
 it('lets her borrow Julian’s door once, remembered as a crossover without changing her road', () => {
   const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.method': undefined, 'c4.personal-withdrawn': undefined };
   expect(ids(leverage(julian))).toContain('leverage-executive');
-  const s = walk(leverage(julian), ['leverage-executive', 'advance-continue']);
+  const s = walk(leverage(julian), ['leverage-executive', 'room-read', 'advance-continue']);
   expect([s.choices['own.crossover'], s.choices['c8.entered'], s.choices['route.lane']]).toEqual(['executive', 'executive', 'own-power']);
   expect(text(s)).toContain('someone opened a door for you');
-  expect(text(s)).toContain('Except you did not stand entirely alone this time, and you know it.');
+  expect(text(s)).toContain('Except I did not stand entirely alone this time, and I know it.');
+});
+
+it('opens every road as a scene with its own place and choice, each recorded, all reaching the same turn', () => {
+  const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.method': undefined, 'c4.personal-withdrawn': undefined };
+  const cases: [Record<string, string | undefined>, string, [string, string], string, string, string][] = [
+    [{ 'c5.published': 'yes' }, 'leverage-audience', ['gala-dance', 'gala-carpet'], 'c8.gala', 'Harbour winter gala', 'Tobias Keel'],
+    [{ 'own.alliance.rook': 'owed' }, 'leverage-rook', ['debt-true', 'debt-false'], 'c8.rook-report', 'Axiom Tower lobby', 'you tell me'],
+    [{ 'c5.editor-contact': 'yes' }, 'leverage-editor', ['press-run', 'press-hold'], 'c8.press', 'Aster Review', 'Clara Duvall'],
+    [{ 'c6.maya': 'restored' }, 'leverage-maya', ['maya-away', 'maya-close'], 'own.maya-distance', 'counter near Compliance', 'the one in the magazine'],
+    [julian, 'leverage-executive', ['room-photo', 'room-read'], 'c8.room', 'contracts room', 'You are not here for me'],
+    [{ 'own.exposed': 'yes' }, 'leverage-institutional', ['car-ask', 'car-watch'], 'c8.sloane', 'Sloane’s car', 'I am not the top of this'],
+    [{}, 'leverage-refuse-cross', ['dig-watch', 'dig-leave'], 'c8.dig-rival', 'night terminal', 'Meridian Holdings'],
+  ];
+  for (const [flags, road, picks, key, place, line] of cases) {
+    const scene = c8(leverage(flags), road);
+    expect(ids(scene), road).toEqual(picks);
+    expect(currentPlace(scene, 'x'), road).toContain(place);
+    expect(text(scene), road).toContain(line);
+    for (const pick of picks) {
+      const over = c8(scene, pick);
+      expect([over.phase, over.choices[key]], pick).toEqual(['advance', expect.any(String)]);
+      expect(over.choices['c8.leverage-open'], pick).toBeUndefined();
+      expect(text(over), pick).toContain('halfway down the page, in the same plain type, is Helix'.replace('halfway', 'Halfway'));
+    }
+  }
+});
+
+it('shows the intrusion to everyone and a line from a partner she already chose', () => {
+  const plain = c8(withFlags(complete7('own-records-stop'), { 'c7.evening-outcome': undefined }), 'begin');
+  expect(text(plain)).toContain('a cigarette nobody in this building smokes');
+  const julianNight = c8(withFlags(complete7('own-records-stop'), { 'c7.evening': 'julian', 'c7.evening-outcome': 'intimate-sex' }), 'begin');
+  expect(text(julianNight)).toContain('Still thinking about the window.');
+  const sebNight = c8(withFlags(complete7('own-records-stop'), { 'c7.evening': 'sebastian', 'c7.evening-outcome': 'intimate-no-sex' }), 'begin');
+  expect(text(sebNight)).toContain('the second of Sebastian’s four cities');
+  const declined = c8(withFlags(complete7('own-records-stop'), { 'c7.evening': 'julian', 'c7.evening-outcome': 'declined' }), 'begin');
+  expect(text(declined)).not.toContain('Still thinking about the window.');
 });
