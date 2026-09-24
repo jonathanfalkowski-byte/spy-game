@@ -26,9 +26,11 @@ Prose words across **all** branches in `src/content/`:
 
 One playthrough reads roughly half of that (~25–30k words). At the usual visual-novel pace of
 **~10,000 words per hour** (reading plus choices and investigation screens), **the game is
-currently ~4–5 hours long.**
+currently ~3 hours long.** (Corrected 2026-09-24: an earlier draft said 4–5 hours, which
+didn't match its own arithmetic.) The chapter-by-chapter budgets are in
+[BEAT_MAP.md](BEAT_MAP.md).
 
-**Target:** 20–25 hours ≈ **200,000+ words on a single path**, about five times what exists.
+**Target:** 20–25 hours ≈ **200,000+ words on a single path**, about seven times what exists.
 
 Two separate problems:
 1. **Too few chapters.** The arc was planned to end around Chapter 10.
@@ -43,7 +45,7 @@ The Celeste reveal becomes the **midpoint twist**, not the lead-in to the finale
 |---|---|---|---|
 | **I. Second Skin** | Opening–Ch5 (built) | ~5–6 | The identity, the job, the first life. Deepen what exists. |
 | **II. The Road** | Ch6–Ch9 (built as skeletons) | ~5–6 | Proof, the route choice, the investigation. **Ends on the Celeste reveal: the midpoint.** |
-| **III. The Counteroffensive** | ~Ch10–Ch15 (new) | ~7–8 | Celeste knows you know and plays you. Meridian pushes back. The burned Evelyn's trail in Singapore. Sloane's turn. Relationships deepen; the heaviest adult content lives here. |
+| **III. The Counteroffensive** | ~Ch10–Ch15 (new) | ~7–8 | Celeste knows you know and plays you. Meridian pushes back. The burned Evelyn's trail in Singapore. Sloane's turn. The blackmail arc: Celeste's orders and the leverage board ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)). Relationships deepen. |
 | **IV. The Position** | ~Ch16–Ch18 | ~3–4 | The endgame operation: the confrontation with Celeste, Sloane's resolution, the endings as positions. |
 
 Acts I and IV are **shared** by all four route lanes. Acts II–III are the **route-specific**
@@ -60,14 +62,14 @@ decision 4).
    immediate confrontation. It should end on the realisation that **she has seen your face too**,
    opening Act III. One-line fix, pending.
 3. **Chapters 7–9 get deepened** to about 3–4 times their length: more scenes per chapter, field
-   operations, relationship and explicit-scene beats. Otherwise Act II is a fast skim.
+   operations and relationship beats (heat 3 at most). Otherwise Act II is a fast skim.
 4. **Every new chapter carries a length budget** (target words / minutes) from the beat map, and
    build checkpoints report the chapter's word count against it.
 
 ## Rules of thumb for hitting length honestly
 
 - Length comes from **play**, not padding: field operations, investigation screens, relationship
-  scenes, explicit scenes, consequences that come back. Never stretch a beat that has done its job.
+  scenes, consequences that come back. Never stretch a beat that has done its job.
 - A full chapter is roughly **8–12k words on one path** (~1 hour), across several scenes, not one
   hub.
 - Hubs (like Ch7 `pursue` and Ch9 `assemble`) are for *choice*. Each hub option should open a
@@ -75,5 +77,4 @@ decision 4).
 
 ## Next step
 
-**Write the Acts I–IV beat map**, chapter by chapter with hour targets and word budgets, before
-building anything further. Then deepen Chapters 7–9 and design Act III.
+**Done:** the Acts I–IV beat map is [BEAT_MAP.md](BEAT_MAP.md), with its own ordered next steps.

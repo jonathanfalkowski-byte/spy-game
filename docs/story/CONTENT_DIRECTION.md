@@ -170,13 +170,14 @@ start earlier. Sloane's monitoring and Rook's price are already leverage in Acts
 6. Is the leverage specific and recorded?
 7. Is the clinic untouched by sexual content?
 
-## Decisions for the owner
+## Decisions (owner, 2026-09-24): all settled as recommended
 
-1. **Rating:** Mature 17+ / PEGI 18. *Decided 2026-09-24.*
-2. **Sexual coercion frequency:** at most one or two beats per playthrough, off screen.
-   Confirm or change.
-3. **Player comfort:** content notice plus the optional "fade the coercion beats" setting.
-   Confirm.
-4. **Sebastian's switched-off sex path:** leave it off, or rewrite it as a heat-3 fade.
-   Recommended: rewrite as heat 3, so the choice exists and the scene fades like Julian's.
-5. **The 18+ patch:** leave undecided. Recommended.
+1. **Rating:** Mature 17+ / PEGI 18.
+2. **Sexual coercion frequency:** at most one or two beats per playthrough, always off
+   screen.
+3. **Player comfort:** a content notice at the start plus the optional "fade the coercion
+   beats" setting.
+4. **Sebastian's switched-off sex path:** rewrite it as a heat-3 fade, so the choice exists
+   and the scene fades like Julian's. (Script task; tracked in
+   [BEAT_MAP.md](BEAT_MAP.md) under Chapter 5.)
+5. **The 18+ patch:** undecided, deferred.
