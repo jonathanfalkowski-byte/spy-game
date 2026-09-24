@@ -132,7 +132,10 @@ operation that reads who arrived. The endings are positions, not verdicts.
 3. **Deepen Ch7–9** (Celebrity route) toward their budgets. *Ch7 pass 1 done 2026-09-24 (every hub door a scene, the interview, the evening; ~1.7–2.5k words per path). Ch7 pass 2 done 2026-09-24: the standing morning as scenes (watcher, Odile Frayne's campaign offer, the letter from "C."), a second beat on every door, Theo's drink, the day between, what she does with her notes (read by Ch8). Measured on engaged paths: ~3.0–3.1k words (Celebrity), ~2.1k (quiet). Still short of 13k: the next lift is a relationship evening for players without Julian or Sebastian (Theo Marr is set up; owner decision). Ch8 pass 2 done 2026-09-24: the break-in played (lock / trap / report), the week's money made concrete (pay / sell the gown / Odile's advance / let it run), the client list a choice (reading it finds VALE, E. returned to inventory), the night after answers both. ~1.1–1.2k words per path (from ~0.75k). Ch9 pass 2 done 2026-09-24: the witness's second beat (Celeste: "Do you like being her?"; Marcus: what did you take from my party, with a debt that seeds the Predator route) and a quiet beat for the name (the photographs, the dark, her building). ~0.7–1.1k on the golden paths, more on engaged ones. **All three chapters remain far below budget (13–14k each): the next passes need whole new scenes per chapter, not second beats.*** turn hub options into scenes, add
    one relationship evening each.
 4. **Design Ch10 "She Knows"**: the Act III opener, the leverage board mechanic and the
-   first order. This is also a code task (the leverage board screen).
+   first order. This is also a code task (the leverage board screen). *Design written
+   2026-09-24: [CHAPTER_10_SHE_KNOWS_DESIGN.md](CHAPTER_10_SHE_KNOWS_DESIGN.md) (five owner
+   decisions open, §10). The first order now follows the player's relationships: Theo's raw
+   tape, then Julian's page, then her own notes.*
 5. **Deepen Act I** chapter by chapter (Ch3 and Ch4 first: the biggest gaps).
 6. **Art:** the leverage board UI; Celeste's client evening; the Singapore traces; the
    Act III field op. All in the dark noir band.
