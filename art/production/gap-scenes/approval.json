@@ -259,17 +259,136 @@
   "heldNotPromoted": [
     {
       "file": "art/staging/full-game/chapter4/chapter4-outside-public-counter-v1-candidate.png",
-      "reason": "Shows a clerk (character); job is empty environments only."
+      "reason": "Shows a clerk (character); job is empty environments only.",
+      "resolution": "Replaced by empty-room dark noir v2 (see darkRelightV2)."
     },
     {
       "file": "art/staging/full-game/chapter4/chapter4-favor-public-desk-v1-candidate.png",
-      "reason": "Shows a clerk (character)."
+      "reason": "Shows a clerk (character).",
+      "resolution": "Replaced by empty-room dark noir v2 (see darkRelightV2)."
     },
     {
       "file": "art/staging/full-game/chapter4/chapter4-favor-julian-workroom-v1-candidate.png",
-      "reason": "Shows Julian (identity reveal)."
+      "reason": "Shows Julian (identity reveal).",
+      "resolution": "Replaced by empty-room dark noir v2 (see darkRelightV2)."
     }
   ],
   "runtimeBound": false,
-  "catalogNote": "New directory: EVE Code must import art/production/gap-scenes/records.json in src/visual/catalog.ts alongside approvedChapter5Art."
+  "catalogNote": "New directory: EVE Code must import art/production/gap-scenes/records.json in src/visual/catalog.ts alongside approvedChapter5Art.",
+  "darkRelightV2": {
+    "date": "2026-09-24",
+    "source": "Owner approved all 10 dark relights as-is (relayed by EVE Design).",
+    "assets": [
+      {
+        "assetId": "clinic-consultation-suite-noir-v2-production",
+        "file": "art/production/gap-scenes/clinic-consultation-suite-noir-v2-production.png",
+        "sha256": "2a4c2c50d4c557a1bea6647444c0107c4ddc4a4e51619d66995ac92f30c24ec2",
+        "supersedes": "clinic-consultation-suite-noir-v1-production",
+        "providerAssetId": "66126cde-a91f-47e6-9208-4b1711357b4f",
+        "luminance": {
+          "mean": 21.4,
+          "nearBlackPct": 92.2
+        }
+      },
+      {
+        "assetId": "harbour-room-noir-v2-production",
+        "file": "art/production/gap-scenes/harbour-room-noir-v2-production.png",
+        "sha256": "8fef11a1bf1cef2bb5dda1ef2d1f9a43b5d473dec4ca05973d75fa773959eec9",
+        "supersedes": "harbour-room-noir-v1-production",
+        "providerAssetId": "fc5caef5-80f6-4e2e-bffc-4456dc2cc7c6",
+        "luminance": {
+          "mean": 22.8,
+          "nearBlackPct": 89.0
+        }
+      },
+      {
+        "assetId": "clinical-records-room-noir-v2-production",
+        "file": "art/production/gap-scenes/clinical-records-room-noir-v2-production.png",
+        "sha256": "748b79606b3fa4d55e7b528d97cb0ed91c7f0268c00503b0028b2900cba2cf2d",
+        "supersedes": "clinical-records-room-noir-v1-production",
+        "providerAssetId": "cfb47e24-b8b7-471f-9b7b-39373c13c7cc",
+        "luminance": {
+          "mean": 18.8,
+          "nearBlackPct": 93.4
+        }
+      },
+      {
+        "assetId": "helix-small-reception-noir-v2-production",
+        "file": "art/production/gap-scenes/helix-small-reception-noir-v2-production.png",
+        "sha256": "e59b58cdf1cab1f08b7ce99ac09c5e21117ed4fbd3b9e4245dce06906633884a",
+        "supersedes": "helix-small-reception-noir-v1-production",
+        "providerAssetId": "9321d386-1e3a-4666-ae62-7cecdfe1aa26",
+        "luminance": {
+          "mean": 38.6,
+          "nearBlackPct": 77.6
+        }
+      },
+      {
+        "assetId": "aster-proof-table-noir-v2-production",
+        "file": "art/production/gap-scenes/aster-proof-table-noir-v2-production.png",
+        "sha256": "386eac01213c39b43031bb790260146d679263ac62e0c0b41232bbdebc0d2be4",
+        "supersedes": "aster-proof-table-noir-v1-production",
+        "providerAssetId": "e22d4bf5-6083-4b4d-a183-b87634cd9f3f",
+        "luminance": {
+          "mean": 30.4,
+          "nearBlackPct": 88.3
+        }
+      },
+      {
+        "assetId": "ch4-review-room-noir-v2-production",
+        "file": "art/production/gap-scenes/ch4-review-room-noir-v2-production.png",
+        "sha256": "0937fb2b2a59fc1a4247008725afb42f861278aed1eef3e003b9b84447f68587",
+        "supersedes": "ch4-review-room-noir-v1-production",
+        "providerAssetId": "99f93f16-55f7-4ee5-876a-e74fe3c2cf9c",
+        "luminance": {
+          "mean": 41.0,
+          "nearBlackPct": 75.0
+        }
+      },
+      {
+        "assetId": "helix-exec-suite-noir-v2-production",
+        "file": "art/production/gap-scenes/helix-exec-suite-noir-v2-production.png",
+        "sha256": "d81b964238af639c781495745a2c19d6a1050bb3ba419c7e15ed911ddf724676",
+        "supersedes": "helix-exec-suite-noir-v1-production",
+        "providerAssetId": "cdc615cc-09ba-4993-bf20-95a7ebed53a1",
+        "luminance": {
+          "mean": 48.1,
+          "nearBlackPct": 70.4
+        }
+      },
+      {
+        "assetId": "chapter4-favor-julian-workroom-noir-v2-production",
+        "file": "art/production/gap-scenes/chapter4-favor-julian-workroom-noir-v2-production.png",
+        "sha256": "6d53b26ed2cd1108092d83696babe265f302818dede2863bf2ce9effa76daa85",
+        "supersedes": null,
+        "providerAssetId": "f133e8ad-898e-43c5-b19e-3271f87565a7",
+        "luminance": {
+          "mean": 44.9,
+          "nearBlackPct": 70.7
+        }
+      },
+      {
+        "assetId": "chapter4-outside-public-counter-noir-v2-production",
+        "file": "art/production/gap-scenes/chapter4-outside-public-counter-noir-v2-production.png",
+        "sha256": "5b6f8e9665332b70e22dd5373ff3a9ac4a5e82305c806e392354b7cea32c29b1",
+        "supersedes": null,
+        "providerAssetId": "a030b6fe-85cb-42fd-8c0b-a108fea3124e",
+        "luminance": {
+          "mean": 27.6,
+          "nearBlackPct": 82.0
+        }
+      },
+      {
+        "assetId": "chapter4-favor-public-desk-noir-v2-production",
+        "file": "art/production/gap-scenes/chapter4-favor-public-desk-noir-v2-production.png",
+        "sha256": "40aa64fbedc88165fc47d742a2d4d834708c2508578fb708c9531e4f40734abe",
+        "supersedes": null,
+        "providerAssetId": "c582ceec-d497-4bcf-8a4a-ed9b048af1c3",
+        "luminance": {
+          "mean": 29.1,
+          "nearBlackPct": 78.8
+        }
+      }
+    ]
+  }
 }

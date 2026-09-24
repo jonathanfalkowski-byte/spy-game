@@ -61,7 +61,7 @@ beforeAll(() => {
 it('small runtime manifest contains exactly explicit runtime-approved production records', () => {
   const records = [...homes, ...continuity, ...chapter5, ...opening, ...gapScenes];
   const eligible = records.filter(isRuntimeApprovedProductionRecord);
-  expect(eligible).toHaveLength(127);
+  expect(eligible).toHaveLength(130);
   expect(production.map((a) => a.id)).toEqual(eligible.map((r) => r.spec.assetId));
   expect(production.map((a) => a.id)).not.toContain('axiom-opening-office-master-v1-production');
   expect(

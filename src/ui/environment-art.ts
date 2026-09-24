@@ -29,6 +29,16 @@ const masters = {
   officeDusk: { assetId: 'si-office-dusk-noir-v1-production', alt: 'The Strategic Intelligence office at dusk, empty.' },
   axiomGates: { assetId: 'axiom-gates-noir-v1-production', alt: 'Outside the Axiom gates, empty, in the rain.' },
   lantern: { assetId: 'lantern-exterior-noir-v1-production', alt: 'Outside the Lantern, empty, the windows lit.' },
+  helixSuite: { assetId: 'helix-exec-suite-noir-v2-production', alt: 'The Helix executive suite, empty: a long desk, city light and closed doors.' },
+  helixReception: { assetId: 'helix-small-reception-noir-v2-production', alt: 'Outside the smaller Helix reception, empty.' },
+  clinicalRecords: { assetId: 'clinical-records-room-noir-v2-production', alt: 'The clinical records room, empty: files, a reading table and a lamp.' },
+  reviewRoom: { assetId: 'ch4-review-room-noir-v2-production', alt: 'The Helix review room, empty: a long table set for an authorized session.' },
+  asterProof: { assetId: 'aster-proof-table-noir-v2-production', alt: 'The Aster studio proof table, empty.' },
+  harbourRoom: { assetId: 'harbour-room-noir-v2-production', alt: 'The Harbour room, empty, the works along the wall.' },
+  consultation: { assetId: 'clinic-consultation-suite-noir-v2-production', alt: 'The clinic consultation suite, empty.' },
+  recordsCounter: { assetId: 'chapter4-outside-public-counter-noir-v2-production', alt: 'The public records counter, empty, a copy-request tray on the ledge.' },
+  publicDesk: { assetId: 'chapter4-favor-public-desk-noir-v2-production', alt: 'A reserved desk in the public records office, empty.' },
+  helixWorkroom: { assetId: 'chapter4-favor-julian-workroom-noir-v2-production', alt: 'A Helix workroom booked for the afternoon, empty.' },
 } satisfies Record<string, Master>;
 type Key = keyof typeof masters;
 
@@ -53,6 +63,14 @@ const byNode: Record<string, Key> = {
   'clinic.screened': 'securityLobby',
   'clinic.departure': 'securityLobby',
   'clinic.complete': 'car',
+  // Consultation suite (partial states fall back only where no exact frame resolves).
+  'clinic.profileReview': 'consultation',
+  'clinic.voice': 'consultation',
+  'clinic.voiceReply': 'consultation',
+  'clinic.stopConfirm': 'consultation',
+  'clinic.stopped': 'consultation',
+  'clinic.examResult': 'consultation',
+  'clinic.makeup': 'consultation',
   // Glass House evening.
   'mission.home': 'apartmentNight',
   'mission.homePresentation': 'apartmentNight',
@@ -106,7 +124,16 @@ const byNode: Record<string, Key> = {
   'chapter3.disclosure': 'phone',
   'chapter3.calendar': 'phone',
   'chapter3.departure': 'apartment',
-  // Chapter 4 (records-room scenes only on the public path; see below).
+  'chapter3.executive': 'helixSuite',
+  'chapter3.executiveWork': 'helixSuite',
+  'chapter3.marcusRecord': 'helixSuite',
+  'chapter3.marcusLeverage': 'helixSuite',
+  'chapter3.reception': 'helixReception',
+  'chapter3.institutional': 'clinicalRecords',
+  'chapter3.reviewQualification': 'clinicalRecords',
+  // Chapter 4 (review scenes and the favor branch on the client; see below).
+  'chapter4.outside': 'recordsCounter',
+  'chapter4.power': 'recordsCounter',
   'chapter4.notice': 'phone',
   'chapter4.interest': 'closedReport',
   'chapter4.intimacy': 'privateDinner',
@@ -118,6 +145,8 @@ const byNode: Record<string, Key> = {
   'chapter5.offer': 'apartmentDay',
   'chapter5.terms': 'apartmentDay',
   'chapter5.spend': 'shoppingStreet',
+  'chapter5.proof': 'asterProof',
+  'chapter5.room': 'harbourRoom',
   'chapter5.salon': 'rooftop',
   'chapter5.salon-room': 'hotelRoom',
   'chapter5.people': 'apartmentNight',
@@ -152,9 +181,10 @@ export function environmentShot(state: GameState): { shotId: string; assetId: st
   // Evening disclosure/closure away from the Lantern happen at home.
   if (!key && state.scene === 'evening' && ['disclosure', 'closure'].includes(state.phase) && state.day.evening !== 'meet')
     key = 'apartment';
-  // Chapter 4 review scenes: only the public records path has a matching room master.
-  if (!key && state.scene === 'chapter4' && ['room', 'assessment', 'privateAccess', 'complete'].includes(state.phase) && !helix4(state))
-    key = 'publicRecords';
+  // Chapter 4 review scenes and the favor: the public records rooms, or Helix's on the Helix path.
+  if (!key && state.scene === 'chapter4' && ['room', 'assessment', 'privateAccess', 'complete'].includes(state.phase))
+    key = helix4(state) ? 'reviewRoom' : 'publicRecords';
+  if (!key && node === 'chapter4.favor') key = helix4(state) ? 'helixWorkroom' : 'publicDesk';
   // Chapter 6 friction is at home, or at the noodle counter once the Counter is arranged.
   if (!key && node === 'chapter6.friction') key = state.choices['c6.counter-arranged'] ? 'noodleCounter' : 'apartmentNight';
   if (!key) return undefined;
@@ -166,13 +196,4 @@ export const environmentMasterIds = Object.values(masters).map((m) => m.assetId)
 /** Reached scenes with no suitable existing master: text-only until EVE Art supplies noir art.
  * Kept in one place so the audit test and the art handoff agree. */
 export const environmentGaps = [
-  // Held by EVE Art pending owner review (character frames): no empty master yet.
-  'chapter4.outside', 'chapter4.favor', 'chapter4.power',
-  // Held by the owner as too bright; darker v2 masters to follow.
-  'chapter3.executive', 'chapter3.executiveWork', 'chapter3.marcusRecord', 'chapter3.marcusLeverage', 'chapter3.reception',
-  'chapter3.institutional', 'chapter3.reviewQualification',
-  'chapter4.room', 'chapter4.assessment', 'chapter4.privateAccess', 'chapter4.complete',
-  'chapter5.proof', 'chapter5.room',
-  'clinic.profileReview', 'clinic.voice', 'clinic.voiceReply', 'clinic.stopConfirm', 'clinic.stopped',
-  'clinic.examResult', 'clinic.makeup',
 ] as const;

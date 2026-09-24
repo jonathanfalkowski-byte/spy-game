@@ -15,11 +15,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task d57a5e9d-1803-470b-b224-9a5ab69b5f13, provider asset 000e9366-a21a-4358-ae54-39d587903bc7; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task d57a5e9d-1803-470b-b224-9a5ab69b5f13, provider asset 000e9366-a21a-4358-ae54-39d587903bc7; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by helix-exec-suite-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/helix-exec-suite-noir-v1-production.png",
     "sha256": "0ea8b19ab927356be692e78b8ac20ade3c63049cfebe70b31c6c56c1f0f567b4",
     "review": {
@@ -39,6 +39,45 @@
   },
   {
     "spec": {
+      "assetId": "helix-exec-suite-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "helix-exec-suite",
+      "environment": "Empty noir environment: helix exec suite.",
+      "intendedUse": "Empty-environment fill for: chapter3.executive, executiveWork, marcusRecord, marcusLeverage. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task de45a872-a72f-485a-85ad-84b13c9a5d6c, provider asset cdc615cc-09ba-4993-bf20-95a7ebed53a1; relight of 000e9366-a21a-4358-ae54-39d587903bc7 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 48.1, near-black 70.4%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/helix-exec-suite-noir-v2-production.png",
+    "sha256": "d81b964238af639c781495745a2c19d6a1050bb3ba419c7e15ed911ddf724676",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 48.1 <= 85, near-black 70.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "clinical-records-room-noir-v1-production",
       "assetType": "environment",
       "styleBibleVersion": "1.0",
@@ -53,11 +92,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task 07ba94f6-4f05-4397-adda-307350488752, provider asset 25fa3ac8-dd34-4d2d-a9c0-7e310e4661a5; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 07ba94f6-4f05-4397-adda-307350488752, provider asset 25fa3ac8-dd34-4d2d-a9c0-7e310e4661a5; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by clinical-records-room-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/clinical-records-room-noir-v1-production.png",
     "sha256": "50d81c5db413fed5e09699a81480098f0e4be501b300c4df303131153c9e9368",
     "review": {
@@ -77,6 +116,45 @@
   },
   {
     "spec": {
+      "assetId": "clinical-records-room-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "clinical-records-room",
+      "environment": "Empty noir environment: clinical records room.",
+      "intendedUse": "Empty-environment fill for: chapter3.institutional, reviewQualification. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 93cc4150-b0c1-496d-ab0f-a3777aa4d34f, provider asset cfb47e24-b8b7-471f-9b7b-39373c13c7cc; relight of 25fa3ac8-dd34-4d2d-a9c0-7e310e4661a5 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 18.8, near-black 93.4%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/clinical-records-room-noir-v2-production.png",
+    "sha256": "748b79606b3fa4d55e7b528d97cb0ed91c7f0268c00503b0028b2900cba2cf2d",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 18.8 <= 85, near-black 93.4% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "ch4-review-room-noir-v1-production",
       "assetType": "environment",
       "styleBibleVersion": "1.0",
@@ -91,11 +169,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task 1fec9f45-7222-48ad-b155-104a401e579b, provider asset c17c15af-881f-4812-86f1-e72d1923da83; inputs b0d169e9-993e-4ef2-9f36-0bc78e46b18a, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 1fec9f45-7222-48ad-b155-104a401e579b, provider asset c17c15af-881f-4812-86f1-e72d1923da83; inputs b0d169e9-993e-4ef2-9f36-0bc78e46b18a, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by ch4-review-room-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/ch4-review-room-noir-v1-production.png",
     "sha256": "06212af079dda1c38d40a4f5fa28ce5fc023d031fa1a339d79437fef7bbfd817",
     "review": {
@@ -115,6 +193,45 @@
   },
   {
     "spec": {
+      "assetId": "ch4-review-room-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "ch4-review-room",
+      "environment": "Empty noir environment: ch4 review room.",
+      "intendedUse": "Empty-environment fill for: chapter4.room, assessment, privateAccess, complete. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 0b45dd6c-06af-466b-9136-0ae37dc05820, provider asset 99f93f16-55f7-4ee5-876a-e74fe3c2cf9c; relight of c17c15af-881f-4812-86f1-e72d1923da83 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 41.0, near-black 75.0%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/ch4-review-room-noir-v2-production.png",
+    "sha256": "0937fb2b2a59fc1a4247008725afb42f861278aed1eef3e003b9b84447f68587",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 41.0 <= 85, near-black 75.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "aster-proof-table-noir-v1-production",
       "assetType": "environment",
       "styleBibleVersion": "1.0",
@@ -129,11 +246,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task a6bf71ce-a1ea-4c5a-a008-d7a1eb5865ac, provider asset a32a9452-7c04-44f0-8296-cef98fae6422; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task a6bf71ce-a1ea-4c5a-a008-d7a1eb5865ac, provider asset a32a9452-7c04-44f0-8296-cef98fae6422; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by aster-proof-table-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/aster-proof-table-noir-v1-production.png",
     "sha256": "88fd66816ad1c462e3ae0305db5291066363506cc1748fb345a86b2cefb57f6a",
     "review": {
@@ -153,6 +270,45 @@
   },
   {
     "spec": {
+      "assetId": "aster-proof-table-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "aster-proof-table",
+      "environment": "Empty noir environment: aster proof table.",
+      "intendedUse": "Empty-environment fill for: chapter5.proof. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task b15fba77-0a88-41c0-acdd-b1965bac234e, provider asset e22d4bf5-6083-4b4d-a183-b87634cd9f3f; relight of a32a9452-7c04-44f0-8296-cef98fae6422 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 30.4, near-black 88.3%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/aster-proof-table-noir-v2-production.png",
+    "sha256": "386eac01213c39b43031bb790260146d679263ac62e0c0b41232bbdebc0d2be4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 30.4 <= 85, near-black 88.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "harbour-room-noir-v1-production",
       "assetType": "environment",
       "styleBibleVersion": "1.0",
@@ -167,11 +323,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task 7ab47ff8-cf4c-403f-be7c-8658daa710e8, provider asset 946113fa-a1a8-4c24-8444-275cf8b4adfd; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 7ab47ff8-cf4c-403f-be7c-8658daa710e8, provider asset 946113fa-a1a8-4c24-8444-275cf8b4adfd; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by harbour-room-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/harbour-room-noir-v1-production.png",
     "sha256": "41c3c7fd829212fb9af05d1634a36f7c86e5195a45debaa99d956dbea81e3355",
     "review": {
@@ -187,6 +343,45 @@
       "reviewer": "Project owner",
       "date": "2026-09-23",
       "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "harbour-room-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "harbour-room",
+      "environment": "Empty noir environment: harbour room.",
+      "intendedUse": "Empty-environment fill for: chapter5.room (outside reading beats). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 3487dd74-c7cd-4985-89af-8e51db71277a, provider asset fc5caef5-80f6-4e2e-bffc-4456dc2cc7c6; relight of 946113fa-a1a8-4c24-8444-275cf8b4adfd with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 22.8, near-black 89.0%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/harbour-room-noir-v2-production.png",
+    "sha256": "8fef11a1bf1cef2bb5dda1ef2d1f9a43b5d473dec4ca05973d75fa773959eec9",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 22.8 <= 85, near-black 89.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
     }
   },
   {
@@ -319,11 +514,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task db886962-5b23-4d33-9821-31b969ff1b5f, provider asset 4b2e2ed2-7a82-4576-a60c-5f7e059121f7; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task db886962-5b23-4d33-9821-31b969ff1b5f, provider asset 4b2e2ed2-7a82-4576-a60c-5f7e059121f7; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by clinic-consultation-suite-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/clinic-consultation-suite-noir-v1-production.png",
     "sha256": "48ecd96dc702415d853d569855a3afd8fcbf421c1724aea2499de8aff20482f8",
     "review": {
@@ -343,6 +538,45 @@
   },
   {
     "spec": {
+      "assetId": "clinic-consultation-suite-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "clinic-consultation-suite",
+      "environment": "Empty noir environment: clinic consultation suite.",
+      "intendedUse": "Empty-environment fill for: clinic.profileReview, voice, voiceReply, stopConfirm, stopped (partial: examResult, makeup). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task a92e4f6e-222f-4f80-a96e-1bde30bd1e3f, provider asset 66126cde-a91f-47e6-9208-4b1711357b4f; relight of 4b2e2ed2-7a82-4576-a60c-5f7e059121f7 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 21.4, near-black 92.2%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/clinic-consultation-suite-noir-v2-production.png",
+    "sha256": "2a4c2c50d4c557a1bea6647444c0107c4ddc4a4e51619d66995ac92f30c24ec2",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 21.4 <= 85, near-black 92.2% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "helix-small-reception-noir-v1-production",
       "assetType": "environment",
       "styleBibleVersion": "1.0",
@@ -357,11 +591,11 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "ZenCreator image_editor SEEDREAM_5 task d316f56d-47d9-42af-8621-6a2aa4ff06f8, provider asset 88335f48-2627-4e48-ade2-8c0448f10cbd; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+      "notes": "ZenCreator image_editor SEEDREAM_5 task d316f56d-47d9-42af-8621-6a2aa4ff06f8, provider asset 88335f48-2627-4e48-ade2-8c0448f10cbd; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json. Superseded 2026-09-24 by helix-small-reception-noir-v2-production (dark noir relight); retained for provenance."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/gap-scenes/helix-small-reception-noir-v1-production.png",
     "sha256": "465c013184c3c77df9a8125db066be099607e9934d6bf618f16d1447d47508eb",
     "review": {
@@ -377,6 +611,45 @@
       "reviewer": "Project owner",
       "date": "2026-09-23",
       "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "helix-small-reception-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "helix-small-reception",
+      "environment": "Empty noir environment: helix small reception.",
+      "intendedUse": "Empty-environment fill for: chapter3.reception. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task bf75e501-7f8b-4f48-ac0d-d206b4678402, provider asset 9321d386-1e3a-4666-ae62-7cecdfe1aa26; relight of 88335f48-2627-4e48-ade2-8c0448f10cbd with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 38.6, near-black 77.6%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/helix-small-reception-noir-v2-production.png",
+    "sha256": "e59b58cdf1cab1f08b7ce99ac09c5e21117ed4fbd3b9e4245dce06906633884a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 38.6 <= 85, near-black 77.6% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
     }
   },
   {
@@ -681,6 +954,123 @@
       "reviewer": "Project owner",
       "date": "2026-09-23",
       "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-favor-julian-workroom-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "chapter4-favor-julian-workroom",
+      "environment": "Empty noir environment: chapter4 favor julian workroom.",
+      "intendedUse": "Empty-environment fill for: chapter4.favor (Helix workroom branch). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 3efa3c66-ebae-41ba-b5ae-addf8bec9341, provider asset f133e8ad-898e-43c5-b19e-3271f87565a7; relight of 63268ee9-e747-4d3a-b617-fb556ade3adc with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 44.9, near-black 70.7%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/chapter4-favor-julian-workroom-noir-v2-production.png",
+    "sha256": "6d53b26ed2cd1108092d83696babe265f302818dede2863bf2ce9effa76daa85",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 44.9 <= 85, near-black 70.7% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-outside-public-counter-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "chapter4-outside-public-counter",
+      "environment": "Empty noir environment: chapter4 outside public counter.",
+      "intendedUse": "Empty-environment fill for: chapter4.outside (records counter, copy request). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 0199345b-8136-4da8-affe-fc1727b1c03e, provider asset a030b6fe-85cb-42fd-8c0b-a108fea3124e; relight of 9da45668-aede-4fb1-a5b8-40d0ca89a307 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 27.6, near-black 82.0%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/chapter4-outside-public-counter-noir-v2-production.png",
+    "sha256": "5b6f8e9665332b70e22dd5373ff3a9ac4a5e82305c806e392354b7cea32c29b1",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 27.6 <= 85, near-black 82.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-favor-public-desk-noir-v2-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "chapter4-favor-public-desk",
+      "environment": "Empty noir environment: chapter4 favor public desk.",
+      "intendedUse": "Empty-environment fill for: chapter4.favor (public desk branch). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 16ace6db-65fe-4b82-a536-d6ac5315efae, provider asset c582ceec-d497-4bcf-8a4a-ed9b048af1c3; relight of fbc5f21b-5674-41ed-a16a-5f075473ea91 with lighting anchor ae9cf62b-dddf-485c-b13b-6b763e1baa32. Luminance mean 29.1, near-black 78.8%. Approval: art/production/gap-scenes/approval.json.",
+      "lighting": "Low-key noir: mostly charcoal/black, one warm practical against cold window/ambient light."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/chapter4-favor-public-desk-noir-v2-production.png",
+    "sha256": "40aa64fbedc88165fc47d742a2d4d834708c2508578fb708c9531e4f40734abe",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "Luminance gate passed: mean 29.1 <= 85, near-black 78.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the 10 dark noir relights as-is (relayed by EVE Design)."
     }
   }
 ]
