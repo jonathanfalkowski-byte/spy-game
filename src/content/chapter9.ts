@@ -151,7 +151,7 @@ export function chapter9Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter9') return [];
   if (s.phase === 'arrive') return arriveBlocks(s);
   if (s.phase === 'assemble')
-    return [p('Every road left a different pile. You spread yours out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
+    return [p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
     return [t('You have the name, and a case the size of your road, and a room ahead of you with Celeste in it and Sloane somewhere behind her. Whatever you do in that room, you walk in holding more than anyone meant you to.')];
@@ -275,7 +275,7 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-crossover-contact', 'Use the borrowed door once more', 'It is still ajar. Each use costs more standing.', 'assemble', (x) => {
         take(x, 'crossover');
         set9(x, 'crossover', 'deepened');
-        return [p('The door you borrowed in the last chapter is still ajar, and you use it again. It works. It also means you owe that door a little more than you did, and the people behind it know it.')];
+        return [p('The door you borrowed to get over the wall is still ajar, and you use it again. It works. It also means you owe that door a little more than you did, and the people behind it know it.')];
       }),
     );
   if (!getKey(s, 'case.name'))

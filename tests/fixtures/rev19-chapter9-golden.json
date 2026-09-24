@@ -8,7 +8,7 @@
       "strength": "thin",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "a7bdc2669fbadb81fe60784ae00565b74aae4dcbfa122d815306392366881757",
+      "saveSha256": "4276753e6483424688b3369ff63bc76829ac2c070cf22879c76baf0b0282d3b3",
       "ledger": [
         {
           "sequence": 1,
@@ -1624,7 +1624,7 @@
       "strength": "thin",
       "nameRoad": "floor",
       "entered": "own-power",
-      "saveSha256": "b3374ff2003946cdb5918d6b1dbca86c39122033321bd6b6076cbdb762e8d7c5",
+      "saveSha256": "8a1ea4ef0e3ed0b00579e0d3230e11bab69a8303375197a5712fe01823605381",
       "ledger": [
         {
           "sequence": 1,
@@ -3232,7 +3232,7 @@
       "strength": "strong",
       "nameRoad": "rook",
       "entered": "own-power",
-      "saveSha256": "da76a684303374e23c59a33a20e897ac0c18df8c89d1e89cbc94e5fb8245a0e8",
+      "saveSha256": "f8ba105b3e8c643e7ec5eaf2a82645f4e02f511155477ed217a20288a668e257",
       "ledger": [
         {
           "sequence": 1,
@@ -5024,7 +5024,7 @@
       "strength": "strong",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "45aadee18fc4a1342f16cb913f2d8bcb1d9703bd81572ac2e791157e6d4e24e8",
+      "saveSha256": "359617302357fcf0df696f326e8ba769fc5a2e6f03581dd5c9d9c516d619a04b",
       "ledger": [
         {
           "sequence": 1,
@@ -6728,7 +6728,7 @@
       "strength": "strong",
       "nameRoad": "public",
       "entered": "outside",
-      "saveSha256": "def6479ae5dac2906a47a6ce5ab50fbbf51f40f3824cb70eaf30cf831cd1dbc5",
+      "saveSha256": "cb4a276e2dd23ff9ec61b0c3431a22ae0916f4edf1a9511b13a5dbac350682b7",
       "ledger": [
         {
           "sequence": 1,
