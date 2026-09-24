@@ -46,7 +46,7 @@ it('opens only after an own-power Chapter 7 ending, and stays closed in producti
 it('names Meridian at the wall only if she found it, and brings in Sloane only if she was seen', () => {
   const found = c8(complete7('own-records-stop'), 'begin');
   expect(text(found)).toContain('at Meridian and whoever sits on its board');
-  expect(text(found)).toContain('No one has noticed you yet.');
+  expect(text(found)).toContain('Nobody has come to you yet.');
   const unnamed = c8(complete7('own-maya-nothing'), 'begin');
   expect(text(unnamed)).toContain('something you cannot name yet');
   expect(text(unnamed)).not.toContain('Meridian');

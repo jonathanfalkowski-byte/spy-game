@@ -30,7 +30,7 @@ export const priorPromise6 = (s: GameState) =>
 
 const request: Record<ExitArrangement6, Block> = {
   'julian-workroom': q('Julian', 'There’s a dinner Thursday — people worth your knowing, and one who asked about you by name. Come as my guest. It isn’t work. I’d just like you there.'),
-  'public-artifact': q('Aster editor', 'The first piece did numbers. I want a follow-up while the attention’s warm — a little more of you, a little less clothed, entirely your call on where the line is. Same rights conversation as before.'),
+  'public-artifact': q('Aster editor', 'The first piece did numbers. I want a follow-up while the attention’s warm — a little more of you this time, a picture if you’ll give me one, entirely your call on where the line is. Same rights conversation as before.'),
   'sloane-institutional': q('Sloane', 'A small thing. When Compliance asks — and they will — you tell them the review of your file is closed and cooperative. It is true enough. It keeps everyone’s paperwork quiet, including yours.'),
   'self-funded': p('No one asks you for anything, because no one is holding a thing you need. The only expectation on you today is the one you set yourself. It is a strange, light feeling, and you notice how unused to it you are.'),
 };
@@ -129,7 +129,7 @@ function counterChoices(s: GameState): C6Choice[] {
         p('You give her the warning and not the person: that you knew Adrian, that he would want her careful about the lookup she was never meant to see. It is true, and it is a wall, and holding it costs you more than she will ever know.'),
       ]),
       tell('none', 'Stay a stranger with a warning', 'Give her the caution; keep yourself out of it.', 'none', 'A stranger warned her about the 12:14 lookup.', [
-        p('You are a woman she has never met, with a warning she takes seriously and a self she does not get to see. She thanks the stranger. It is the loneliest thing you have done since the mirror.'),
+        p('You are a woman she has never met, with a warning she takes seriously and a self she does not get to see. She thanks the stranger. Once, when you laugh, she looks at you a beat too long, as if a voice has reminded her of someone, and then she lets it go. It is the loneliest thing you have done since the mirror.'),
       ]),
     ];
   }
@@ -254,7 +254,7 @@ function sloaneOpening(s: GameState): Block[] {
         : 'I have a line saying you met Ms Reyes off-hours.';
   return [
     q('Sloane', seen + ' I am not asking you to explain any of it. I am telling you I can see the parts you let me see, and I would like you to remember that before you decide I can see all of it.'),
-    t('She is right about the risk and wrong about the reason, and she cannot tell the difference from where she sits. That gap is the only privacy you have.'),
+    t('She is right about the risk and wrong about the reason, and she cannot tell the difference from where she sits. That gap is the only privacy I have.'),
   ];
 }
 
@@ -287,7 +287,7 @@ const beats: Beat[] = [
     label: 'The same door',
     open: () => [
       q('Julian', 'You’ve been a little further away since the audit. I’m not asking why — that’s yours. I’d just like to know it’s the same door: that if you want the room, or the conversation, it’s there, and that I haven’t misread where we stand.'),
-      t('He is not pushing. He is checking. There is a difference, and the fact that he knows there’s a difference is most of what you’ve ever liked about him.'),
+      t('He is not pushing. He is checking. There is a difference, and the fact that he knows there’s a difference is most of what I have ever liked about him.'),
     ],
     options: [
       ['hold', 'Keep it exactly professional', 'Clear, warm, no more than that.', 'professional', [q('You', 'The same door. Professional, and real, and I mean both words. I’d tell you if that changed.')]],
@@ -357,15 +357,15 @@ export function frontChoices6(s: GameState): C6Choice[] {
         set6(x, 'benefit-response', value);
         return [t(line)];
       });
-    const who = choose('who', 'Ask who this actually serves', 'Name the provider and what they get.', 'examined', 'Someone provides this, and provision is never free of interest. Not a trap — a fact. You would rather know whose convenience you are also serving by taking your own.');
-    const accept = choose('accept', 'Take the convenience and get on with the day', 'Use it. A benefit is not a debt.', 'accepted', 'You use the good thing because it is good, and you refuse to pretend that using it is the same as owing for it. It is not. Not yet, and maybe not ever.');
+    const who = choose('who', 'Ask who this actually serves', 'Name the provider and what they get.', 'examined', 'Someone provides this, and provision is never free of interest. Not a trap — a fact. I would rather know whose convenience I am also serving by taking my own.');
+    const accept = choose('accept', 'Take the convenience and get on with the day', 'Use it. A benefit is not a debt.', 'accepted', 'I use the good thing because it is good, and I refuse to pretend that using it is the same as owing for it. It is not. Not yet, and maybe not ever.');
     if (selfFunded(s)) return [who, accept];
     return [
       who,
-      choose('workaround', 'Note the independent way to do the same thing', 'Price the alternative before you need it.', 'alternative-priced', 'The public desk exists. The Harbour week you can pay for exists. You do not take them today, but you learn what they cost, so that leaving is a decision you could make and not a cliff you would fall off.'),
+      choose('workaround', 'Note the independent way to do the same thing', 'Price the alternative before you need it.', 'alternative-priced', 'The public desk exists. The Harbour week I can pay for exists. I do not take them today, but I learn what they cost, so that leaving is a decision I could make and not a cliff I would fall off.'),
       accept,
       ...(priorPromise6(s)
-        ? [choose('leverage', 'Remember what you were promised', 'A prior promise is a card, not just a comfort.', 'leverage-noted', 'When they set this up, they said words you can hold them to. You file those words where you can reach them. If this ever tightens, you will not be arguing from nothing.')]
+        ? [choose('leverage', 'Remember what you were promised', 'A prior promise is a card, not just a comfort.', 'leverage-noted', 'When they set this up, they said words I can hold them to. I file those words where I can reach them. If this ever tightens, I will not be arguing from nothing.')]
         : []),
     ];
   }

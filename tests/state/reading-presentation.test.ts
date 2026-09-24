@@ -150,3 +150,22 @@ it('gives each capture a distinctive title without changing its evidentiary cate
   expect(titles.size).toBe(6);
   expect(displayName('Evelyn Vale / evelyn')).toBe('Evelynn Vale / evelyn');
 });
+
+it('keeps bookkeeping out of the reading view and shows Chapter 3 choices as choices (review 2026-09-24)', () => {
+  const shown = readingBlocks(
+    [
+      { kind: 'notice', text: 'Your choice: Keep the chosen call' },
+      { kind: 'notice', text: 'Source: Kept 18:00 call' },
+      { kind: 'notice', text: 'julian-mercer received: I am here for the call we arranged.' },
+      { kind: 'notice', text: 'Route signal: own-power.' },
+      { kind: 'notice', text: 'Object: salon. Stated desire: no-interest.' },
+      { kind: 'notice', text: 'Close the the unknown sender scheduling thread' },
+      { kind: 'narrative', text: 'You follow the path toward the river bend.' },
+    ],
+    'chapter4.entry',
+    19,
+  ).map((b) => b.text);
+  expect(shown).toEqual(['Your choice: Keep the chosen call', 'Close the unknown sender scheduling thread', 'You follow the path toward the river bend.']);
+  const choice = readingBlocks([{ kind: 'speech', speaker: 'You', text: 'Continue · If I do nothing' }, { kind: 'speech', speaker: 'You', text: 'I am awake.' }], 'chapter3.morningPlan', 19);
+  expect(choice.map((b) => [b.kind, b.text])).toEqual([['notice', 'Your choice: Continue'], ['speech', 'I am awake.']]);
+});

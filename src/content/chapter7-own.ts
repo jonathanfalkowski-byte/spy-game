@@ -10,6 +10,7 @@ import { paragraph as p, speech as q, thought as t, type Block } from './schema'
 import { get4 } from './chapter4-model';
 import { get5 } from './chapter5-model';
 import { sebastianDoorOpen5 } from './chapter5-sebastian';
+import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { get6 } from './chapter6-model';
 import { type C7Choice, get7, getKey, note7, offer7, set7, setKey } from './chapter7-model';
 
@@ -44,18 +45,40 @@ export function place7(s: GameState): string | undefined {
     return evening.startsWith('julian') ? 'Late · Julian’s apartment' : 'Late · Harbour, after the last set';
 }
 
+/** What Chapter 5 actually put into the world: a portrait (the provocative one is "the famous back"), words only, or nothing. */
+export function publicImage7(s: GameState): 'back' | 'portrait' | 'words' | 'none' {
+  if (!get5(s, 'published')) return 'none';
+  if (get5(s, 'image-use') === 'none') return 'words';
+  return get5(s, 'concept') === 'provocative' ? 'back' : 'portrait';
+}
+/** Maya already knows Evelynn is Adrian (told at the counter, or earlier). */
+const mayaKnowsWho7 = (s: GameState) => get6(s, 'maya-knows') === 'in-person' || mayaKnowsAdaptation(s);
+
+/** The Chapter 5 personal phone, the only line Axiom does not monitor. */
+const ownPhone7 = (s: GameState) => get5(s, 'purchase') === 'phone';
+const builtFrame = (s: GameState) =>
+  get5(s, 'service') === 'julian'
+    ? `You wake in a life with your name on most of it. ${ownPhone7(s) ? 'The phone that answers only to you; ' : ''}the work you do in a room Julian’s office still books for you, which you have made sure you could walk away from; the small stubborn independence you have refused to trade. It is quieter than the lives you were offered. This morning you find out what quiet is worth.`
+    : `You wake in a life with your name on as much of it as you could manage. ${get5(s, 'service') === 'self' ? 'The desk you pay for, ' : 'The public desk and its queue, '}${ownPhone7(s) ? 'the phone that answers only to you, ' : ''}the small stubborn independence you have refused to trade. It is quieter than the lives you were offered. This morning you find out what quiet is worth.`;
 const entryFrame: Record<string, string> = {
-  built: 'You wake in a life with your name on all of it and no one else’s. The desk you pay for, the phone that answers only to you, the small stubborn independence you spent real money to keep. It is quieter than the lives you were offered. This morning you find out what quiet is worth.',
+  built: '',
   partial: 'You turned toward this a week ago and you are still learning the footing. Some of what you built still holds; some of it you are building now, in the open, with your own hands. It is slower this way. You knew that when you chose it.',
   unbuilt: 'A week ago you walked out of the arrangement that made everything easy, and into this — a room you pay for that is barely furnished, a budget you can count, a quiet that is mostly just alone. You chose it against everything that pointed the other way. Now you have to make it into something before it makes you regret it.',
 };
 
-const famousMorning = [
-  p('Your face is on a bus shelter at the end of the street. You pass it on the way to buy coffee: the Aster print, the famous back, a line of type across the bottom that isn’t your name and is. A girl waiting for the 38 looks from the poster to you and back again, and decides she must be wrong.'),
-  p('By nine your phone has forty messages. An editor wants a cover. A stylist wants a fitting. Somebody’s assistant wants to know whether you would consider a campaign, and doesn’t say for what. Three numbers you don’t recognise send nothing at all, which is its own kind of message.'),
-  p('And there is a man across the road who has been reading the same newspaper outside the bakery since eight. When you come back with the coffee he has gone, and the paper is on the bench, folded open at the page with your picture.'),
-  t('Press, or Sloane’s people, or someone worse. The trouble with being looked at is that you stop being able to tell who is looking.'),
-];
+function famousMorning(s: GameState): Block[] {
+  const image = publicImage7(s);
+  return [
+    p(
+      image === 'words'
+        ? 'The Aster piece ran without a picture, at your insistence, and it turns out that is its own kind of famous: a name people repeat without a face to put to it. At the café the barista has the issue open beside the till. She doesn’t look up, and you enjoy that more than you should.'
+        : `Your face is on a bus shelter at the end of the street. You pass it on the way to buy coffee: the Aster portrait${image === 'back' ? ', the famous back,' : ','} a line of type across the bottom that isn’t your name and is. A girl waiting for the 38 looks from the poster to you and back again, and decides she must be wrong.`,
+    ),
+    p('By nine your phone has forty messages. An editor wants a cover. A stylist wants a fitting. Somebody’s assistant wants to know whether you would consider a campaign, and doesn’t say for what. Three numbers you don’t recognise send nothing at all, which is its own kind of message.'),
+    p(`And there is a man across the road who has been reading the same newspaper outside the bakery since eight. When you come back with the coffee he has gone, and the paper is on the bench, folded open at ${image === 'words' ? 'the page that quotes you' : 'the page with your picture'}.`),
+    t('Press, or Sloane’s people, or someone worse. The trouble with being looked at is that you stop being able to tell who is looking.'),
+  ];
+}
 const quietMorning = [
   p('Nobody on the street knows your face. The Aster pictures never ran, and some mornings that feels like a door you didn’t walk through. Other mornings it feels like the only reason you can still buy coffee without anyone watching you drink it.'),
 ];
@@ -78,25 +101,42 @@ export function ownBlocks7(s: GameState): Block[] {
   }
   if (s.phase === 'standing')
     return [
-      p(entryFrame[getKey(s, 'route.entry') ?? 'built']),
-      ...(get5(s, 'published') ? famousMorning : quietMorning),
-      p('You keep circling the same seam. ORACLE predicted you would take the identity willingly and that Sloane could not hold you — and Sloane proceeded anyway. But Sloane did not build the Evelyn identity. She was handed it, the way you were. Someone, above her or before her, decided a real operative’s whole life could be pulled off a shelf and fitted to Adrian Vale.'),
-      t('Who signed that. Not who ran it — who authorized reusing her. That name is the start of the real shape of this, and you have no clearance to ask for it. Which means you do it the only way left to you. Yourself.'),
+      p((getKey(s, 'route.entry') ?? 'built') === 'built' ? builtFrame(s) : entryFrame[getKey(s, 'route.entry')!]),
+      ...(get5(s, 'published') ? famousMorning(s) : quietMorning),
+      p(
+        get6(s, 'oracle-seen') === 'yes'
+          ? 'You keep circling the same seam. ORACLE predicted you would take the identity willingly and that Sloane could not hold you — and Sloane proceeded anyway. Sloane ran this; but nobody builds eight years of a woman’s life in a month. Someone, above her or before her, decided a real operative’s whole life could be pulled off a shelf and fitted to Adrian Vale.'
+          : 'You keep circling the same seam. Sloane ran this; but nobody builds eight years of a woman’s life in a month, and the Evelyn in the Blackglass file had been living it long before anyone looked at you. Someone, above Sloane or before her, decided a real operative’s whole life could be pulled off a shelf and fitted to Adrian Vale.',
+      ),
+      t('Who signed that. Not who ran it — who authorized reusing her. That name is the start of the real shape of this, and I have no clearance to ask for it. Which means I do it the only way left to me. Myself.'),
       p(
         `You count what you have. ${cash7(s) >= LOW_CASH ? 'Enough to work with, if you are careful and the work is quick.' : 'Barely enough, if nothing goes wrong.'} Every road from here costs something — money, time, or being seen — and you are the one who pays.`,
       ),
     ];
   if (s.phase === 'pursue')
     return [
-      p('You write the ways in on the back of an envelope, the way Adrian used to lay out a case: the paper trail, the people who might tell you something, the voices that trade in secrets, and your own face, which opens doors and draws eyes. You can walk through two of them before somebody notices you walking.'),
+      p(
+        `You write the ways in on the back of an envelope, the way Adrian used to lay out a case: the paper trail, the people who might tell you something, the voices that trade in secrets${
+          get5(s, 'published') ? ', and your own name, which opens doors and draws eyes' : ''
+        }. You can walk through two of them before somebody notices you walking.`,
+      ),
     ];
   if (s.phase === 'close') {
     const finding = get7(s, 'finding');
     return [
       ...(finding === 'shape'
         ? [
-            p('You lay the pieces beside each other. Meridian — the operation’s own name, reused. A signature that had to come from directorate level or above. And, from more than one direction, the same wrongness: Sloane did not author this. She was handed it, the way you were.'),
-            t('You went looking for who signed off on reusing her, and you found the first true edge of the shape: the person you have spent this whole affair fearing is not the top of it. Sloane executed a decision made over her head, by whoever controls Meridian and sits on the Project Eve board. That is who you are actually looking for. And you found the edge of it with no clearance, no cover, and no one’s permission but your own.'),
+            p(
+              [
+                'You lay the pieces beside each other.',
+                ...(getKey(s, 'own.piece.records') ? ['Meridian Holdings, behind the apartment and the accounts that dress her.'] : []),
+                ...(getKey(s, 'own.piece.maya') ? ['A signature that had to come from directorate level or above.'] : []),
+                ...(getKey(s, 'own.piece.rook') ? ['A sender who says the signature sits on a board, not with Sloane.'] : []),
+                ...(getKey(s, 'own.piece.audience') ? ['A frightened stranger who says Sloane did not authorize it.'] : []),
+                'And, from more than one direction, the same wrongness: Sloane did not author this. She was handed it, the way you were.',
+              ].join(' '),
+            ),
+            t('I went looking for who signed off on reusing her, and I found the first true edge of the shape: the person I have spent this whole affair fearing is not the top of it. Sloane executed a decision made over her head, by whoever sits above her. That is who I am actually looking for. And I found the edge of it with no clearance, no cover, and no one’s permission but my own.'),
           ]
         : finding === 'lead'
           ? [p('One thread, not yet a shape — a name that is only an initial, or a floor without a face, or a warning you cannot source. It points somewhere above Sloane. It is not enough to act on. It is enough to know you are pulling the right thread.')]
@@ -108,7 +148,7 @@ export function ownBlocks7(s: GameState): Block[] {
           'And you are still the only person holding what you found.',
         ].join(' '),
       ),
-      t('Standing alone is slower, and it costs, and it is beginning to be seen. It is also, so far, working — and it is entirely yours.'),
+      t('Standing alone is slower, and it costs, and it is beginning to be seen. It is also, so far, working — and it is entirely mine.'),
     ];
   }
   return [];
@@ -122,8 +162,8 @@ const afterPiece = (s: GameState) => (pieces7(s) + 1 >= 2 ? 'close' : 'pursue');
 const recordsFinding = [
   p('The file is thinner than it should be. Stapled inside the cover is the sign-out card, and two days ago somebody else pulled this exact bundle. The requester’s name has been scored through so hard the pen went through the card.'),
   p('At a quarter to twelve the lights in the far aisle click off on their timer, one bank and then the next, walking toward you. In the dark at the end of the row something shifts: a chair, a coat, a person. You don’t wait to find out which. You photograph the pages, put the file back exactly as it was, and walk out past the night desk without running.'),
-  p('On the train home you read what you took. The apartment you live in, and the accounts that dress the Evelyn identity, trace to a single holding company — Meridian Holdings. The same word that was on the courier page. Its only named officer is an initial, and a registered agent that exists to have no face.'),
-  t('Meridian. Whoever reused her, reused her name for the operation too. That is not tidiness. That is someone who was there the first time. And someone else was in that file two days before you.'),
+  p('On the train home you read what you took. The apartment you live in, and the accounts that dress the Evelyn identity, trace to a single holding company — Meridian Holdings. Its only named officer is an initial, and a registered agent that exists to have no face.'),
+  t('Meridian. Whoever reused her kept the operation’s name for the company that owns the rest of it. That is not tidiness. That is someone who was there the first time. And someone else was in that file two days before me.'),
 ];
 function recordsChoices(s: GameState): C7Choice[] {
   const next = afterPiece(s);
@@ -172,14 +212,18 @@ function mayaChoices(s: GameState): C7Choice[] {
       q('Maya', 'I can’t pull it and I wouldn’t. But I can tell you this much for free: a reuse authorization — taking a live legend off one operative and fitting it to another — never clears at Compliance. That’s a directorate signature or higher. Someone with the authority to spend a person.'),
       p('She has not named anyone. She has drawn you a floor: this was signed at the level of a directorate — Executive Intelligence, or above it. Sloane’s level, or over Sloane’s head.'),
       p('When you leave, a flash goes off across the street: a photographer on the steps of the cinema, long lens, already turning away. Tomorrow there may be a picture of you and a woman from Axiom Compliance, heads together in a corner booth.'),
-      t('You have just made Maya visible. Whatever comes for you now knows her face.'),
+      t('I have just made Maya visible. Whatever comes for me now knows her face.'),
     ];
   };
   return [
     offer7('maya-truth', 'Tell her more than you should', 'She deserves it. It makes her closer to you, and more dangerous to know you.', next, (x) => {
       setKey(x, 'own.maya-knows', 'more');
       return [
-        p('You tell her some of it. Not Adrian — never Adrian — but that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.'),
+        p(
+          mayaKnowsWho7(x)
+            ? 'She already knows who you are; she has known since the counter. What you give her now is the rest of it: that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.'
+            : 'You tell her some of it. Not Adrian — never Adrian — but that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.',
+        ),
         q('Maya', 'Okay. Okay. Then I’ll tell you what I can, and you are never going to say where you heard it.'),
         ...finish(x),
       ];
@@ -208,7 +252,7 @@ function rookTrade(s: GameState): C7Choice[] {
       note7(x, 'piece-rook', 'The sender says the reuse was signed on the Project Eve board, not by Sloane. Unconfirmed, and convenient.', 'The sender, traded for; unverified');
       return [
         q(SENDER, 'It was not Sloane’s authority to give. She executed it. The signature is on the Project Eve board — and one name there you have already met, and did not expect.'),
-        t('Or that is exactly what someone would say to point you away from Sloane and toward a door of their choosing. You cannot source it. You write it down with a mark next to it: unconfirmed, and convenient.'),
+        t('Or that is exactly what someone would say to point me away from Sloane and toward a door of their choosing. I cannot source it. I write it down with a mark next to it: unconfirmed, and convenient.'),
         q(SENDER, 'And Evelynn. The woman under the timetable isn’t mine. Leave by the river side.'),
         p('You leave by the river side. When you look back from the embankment, the side door is shut, and someone is standing behind the glass.'),
       ];
@@ -305,7 +349,7 @@ const invitation: Record<Partner, Block[]> = {
   julian: [
     p('His apartment is on the forty-first floor of a building Helix doesn’t own, he tells you at the door, as if that matters, and perhaps it does. He has taken off his tie and forgotten his cufflinks, and he looks at you the way he did the first time, as if you were a problem he would very much like to have.'),
     p('On the desk by the window, under a glass of whisky, lies a contract with the Helix crest. The counterparty line is folded under. You could unfold it. You don’t. Not tonight.'),
-    t('Everyone you want is standing next to something you are trying to find. That is the job now. It is also, tonight, beside the point.'),
+    t('Everyone I want is standing next to something I am trying to find. That is the job now. It is also, tonight, beside the point.'),
     q('Julian Mercer', 'Stay as long as you like. Tell me what you want, and that’s what happens.'),
   ],
   sebastian: [
@@ -465,7 +509,12 @@ export function ownChoices7(s: GameState): C7Choice[] {
         set7(x, 'pursue-open', 'maya');
         return [
           p('Maya is already at the Lantern when you arrive, in the corner booth under the bad painting, with two glasses of the house red and the face of someone who has been rehearsing what to say.'),
-          q('Maya', 'I saw you on the side of a bus. On the side of a bus, Evelynn. I nearly walked into a bin.'),
+          q(
+            'Maya',
+            publicImage7(x) === 'back' || publicImage7(x) === 'portrait'
+              ? 'I saw you on the side of a bus. On the side of a bus, Evelynn. I nearly walked into a bin.'
+              : 'I read you in Aster. In Aster, Evelynn. I read it twice on the train and nearly missed my stop.',
+          ),
           p('She pushes a glass across the table. “You look good. You look like somebody I’d be scared of.” For a while it is only this: her stories about Compliance, yours about photographers, the old easy rhythm, both of you laughing too loudly. It is the best hour you have had in weeks. Then you ask your question, and she goes quiet and looks at you properly.'),
           q('Maya', 'Why do you want to know who signs a reuse authorisation?'),
         ];
@@ -495,10 +544,18 @@ export function ownChoices7(s: GameState): C7Choice[] {
           q('Stylist', 'Don’t let them light you flat. You’re better in shadow.'),
           t('Everyone is better in shadow. That’s the whole job.'),
           p('The studio is a black box with one bright island in the middle: two low chairs, a table, a glass of water nobody will drink. The host rises to meet you. Theo Marr, handsome in the way television likes, forty and pretending otherwise, famous for making guests say one thing more than they meant to. He takes your hand in both of his and holds it a beat too long.'),
-          q('Theo Marr', 'I’ve wanted you in that chair since the Aster pictures. Everyone has. Do you know what they call you upstairs? The woman nobody can place.'),
+          q('Theo Marr', `I’ve wanted you in that chair since the Aster ${publicImage7(x) === 'words' ? 'piece' : 'pictures'}. Everyone has. Do you know what they call you upstairs? The woman nobody can place.`),
           p('He means it as a compliment. He has no idea how close he is. You smile the Glass House smile, the one that gives a man the feeling he has been let in, and you feel the room lean toward you: the floor manager, the camera operator, the boy holding the cables. Forty strangers wanting something from you, and you could spend it however you liked.'),
-          t('Adrian never had a room lean toward him in his life. You are going to have to be careful how much you enjoy this.'),
-          p('The red light comes on. Theo is good. He starts warm — the pictures, the dress, whether the famous back of the Aster print was your idea (it was) — and walks you slowly toward the things you haven’t said anywhere. Where you grew up. Why nobody had heard of you a year ago. He leans in when he asks, close enough that the question feels private, with half the city watching.'),
+          t('Adrian never had a room lean toward him in his life. I am going to have to be careful how much I enjoy this.'),
+          p(
+            `The red light comes on. Theo is good. He starts warm — ${
+              publicImage7(x) === 'back'
+                ? 'the pictures, the dress, whether the famous back of the Aster print was your idea (it was)'
+                : publicImage7(x) === 'portrait'
+                  ? 'the portrait, the dress, what it is like to see your own face on a bus shelter'
+                  : 'the Aster piece, the dress, why a woman who talks like that won’t let anyone photograph her'
+            } — and walks you slowly toward the things you haven’t said anywhere. Where you grew up. Why nobody had heard of you a year ago. He leans in when he asks, close enough that the question feels private, with half the city watching.`,
+          ),
           q('Theo Marr', 'You came out of nowhere. That’s the rumour. A woman with a face like that doesn’t come out of nowhere.'),
           p('This is the opening. You came to put one question into the public air, a question that will mean nothing to almost everyone watching and everything to the few who know what Project Eve is. How you ask it decides who hears it, and who hears you.'),
         ];

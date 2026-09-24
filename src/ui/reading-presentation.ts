@@ -237,20 +237,44 @@ function readingBlocksRaw(blocks: Block[], node?: string): Block[] {
   });
 }
 
+/** Bookkeeping notices kept in history for the journal and records, never shown in the reading view:
+ * source citations, delivered-message receipts, route tallies and state dumps (review 2026-09-24). */
+const hiddenNotice = (text: string) =>
+  /^Source: /.test(text) ||
+  /^[^:\n]{1,40} received: /.test(text) ||
+  /^Route signal:/.test(text) ||
+  /Stated desire: /.test(text) ||
+  /^Derived from stored /.test(text) ||
+  /^(Adult Evelynn and adult|Both adults are willing)/.test(text);
+
+/** Chapter 3's choice handler records the chosen label as a first line spoken by "You"; show it as a choice. */
+function choiceLabelAsNotice(blocks: Block[], node?: string): Block[] {
+  const [first, ...rest] = blocks;
+  if (!first || !node?.startsWith('chapter3.') || first.kind !== 'speech' || first.speaker !== 'You') return blocks;
+  const label = first.text.startsWith('Continue · ') ? 'Continue' : first.text;
+  return [{ kind: 'notice', text: 'Your choice: ' + label }, ...rest];
+}
+
 export function readingBlocks(blocks: Block[], node?: string, contentRevision?: number): Block[] {
   const authoredBlocks =
     hasRevision18Presentation(contentRevision)
       ? blocks.map((block) => ({ ...block, text: renderRevision18Text(block.text, node) }))
       : blocks;
-  return readingBlocksRaw(authoredBlocks, node).map((block) => ({
-    ...block,
-    speaker: block.speaker ? renderCurrentPresentationText(block.speaker, node, contentRevision) : block.speaker,
-    text: renderCurrentPresentationText(block.text, node, contentRevision),
-  }));
+  return choiceLabelAsNotice(readingBlocksRaw(authoredBlocks, node), node)
+    .filter((block) => !(block.kind === 'notice' && hiddenNotice(block.text)))
+    .map((block) => ({
+      ...block,
+      speaker: block.speaker ? templateFix(renderCurrentPresentationText(block.speaker, node, contentRevision)) : block.speaker,
+      text: templateFix(renderCurrentPresentationText(block.text, node, contentRevision)),
+    }));
 }
 
+/** Names slotted into templates ("Close the {name}") where the name already carries its article. */
+const templateFix = (text: string) =>
+  text === 'the unknown sender' ? 'Unknown sender' : text.replace(/\bthe the\b/g, 'the').replace(/^the unknown sender’s/, 'The unknown sender’s');
+
 export function renderChoiceText(rawText: string, node: string, contentRevision?: number): string {
-  return renderCurrentPresentationText(rawText, node, contentRevision);
+  return templateFix(renderCurrentPresentationText(rawText, node, contentRevision));
 }
 
 export function missionActionLabel(id: string, fallback: string, s: GameState): string {

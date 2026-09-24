@@ -90,7 +90,7 @@ it('weights seeds over the primary signal and breaks ties by the primary lane, t
 it('stands alone with money that follows actual cash', () => {
   const s = standing();
   expect([s.phase, s.choices['route.entry']]).toEqual(['standing', 'built']);
-  expect(text(s)).toContain('You wake in a life with your name on all of it');
+  expect(text(s)).toContain('You wake in a life with your name on');
   expect(text(s)).toContain(Number(s.choices['own.cash']) >= 100 ? 'Enough to work with' : 'Barely enough, if nothing goes wrong.');
   expect(ids(s)).toEqual(['standing-begin']);
 });
@@ -165,7 +165,7 @@ it('opens each hub door as a scene with its own choice and place, and resolves t
   for (const [pick, knows] of [['maya-truth', 'more'], ['maya-shield', 'little']] as const) {
     const maya = c7(c7(hub, 'pursue-maya'), pick);
     expect([maya.choices['own.maya-knows'], maya.choices['own.piece.maya'], maya.choices['c7.maya-photographed']]).toEqual([knows, 'directorate', 'yes']);
-    expect(text(maya)).toContain('Whatever comes for you now knows her face.');
+    expect(text(maya)).toContain('Whatever comes for me now knows her face.');
   }
   const rook = c7(hub, 'pursue-rook');
   expect(currentPlace(rook, 'x')).toBe('02:00 · The old ferry terminal');
@@ -226,4 +226,16 @@ it('offers a chosen evening only with a partner she already chose, consent-gated
     for (const key of ['c7.finding', 'own.piece.records', 'own.exposed', 'own.cash', 'own.alliance.rook'])
       expect(stayed.choices[key], key).toBe(both.choices[key]);
   }
+});
+
+it('writes the celebrity scenes from what Chapter 5 actually published and what Maya already knows', () => {
+  const hub = (flags: Record<string, string | undefined>) => withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.maya': 'restored', ...flags });
+  const words = c7(hub({ 'c5.image-use': 'none' }), 'pursue-audience');
+  expect(text(words)).toContain('since the Aster piece');
+  expect(text(words)).not.toContain('famous back');
+  const back = c7(hub({ 'c5.image-use': undefined, 'c5.concept': 'provocative' }), 'pursue-audience');
+  expect(text(back)).toContain('the famous back of the Aster print');
+  const told = c7(c7(hub({ 'c6.maya-knows': 'in-person' }), 'pursue-maya'), 'maya-truth');
+  expect(text(told)).toContain('she has known since the counter');
+  expect(text(told)).not.toContain('never Adrian');
 });

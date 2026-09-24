@@ -31,10 +31,10 @@ const gentle: Record<Exclude<ExitArrangement6, 'self-funded'>, Block[]> = {
   ],
 };
 const hand: Record<ReturnType<typeof endPosition6>, Block> = {
-  'oracle-truth': t('You know something now that changes the arithmetic. Their own system said you would take the identity willingly and that Sloane would not be able to hold you. She read that and proceeded. Whatever this is, it was never about keeping you. That is a crack, and you are standing in it.'),
-  'own-hand': t('You did not need the sender in the end. You have your own: a thing you kept, a statement you can correct, an audience you can aim, a term written down in your favour. It is not a revelation. It is better — it is yours, and no one can un-give it to you.'),
-  both: t('You have the truth the sender sold you and the leverage you built yourself. One tells you what they wanted; the other lets you act on it. You are, for the first time since the file appeared under your name, not the one being moved.'),
-  none: t('You have no proof and no held card — you spent nothing, trusted no one, kept clean. It leaves you lighter than you expected. You cannot force the outcome. You can still choose your own part in it, and refuse to pretend the choice was made for you.'),
+  'oracle-truth': t('I know something now that changes the arithmetic. Their own system said I would take the identity willingly and that Sloane would not be able to hold me. She read that and proceeded. Whatever this is, it was never about keeping me. That is a crack, and I am standing in it.'),
+  'own-hand': t('I did not need the sender in the end. I have my own: what I kept, what I wrote down, what I refused to sign away. It is not a revelation. It is better — it is mine, and no one can un-give it to me.'),
+  both: t('I have the truth the sender sold me and the leverage I built myself. One tells me what they wanted; the other lets me act on it. For the first time since the file appeared under my name, I am not the one being moved.'),
+  none: t('I have no proof and no held card — I spent nothing, trusted no one, kept clean. It leaves me lighter than I expected. I cannot force the outcome. I can still choose my own part in it, and refuse to pretend the choice was made for me.'),
 };
 
 /** Entering counterpower fixes the end position from what she now holds. */
@@ -50,7 +50,11 @@ function demandBlocks(s: GameState): Block[] {
 export function counterpowerBlocks6(s: GameState): Block[] {
   if (s.phase === 'counterpower')
     return [
-      p('It comes to a point the way these things do — not a threat, a request, made by someone who assumes the answer is yes because it has always been yes. What is different tonight is you. You are not the same person who accepted the first favour.'),
+      p(
+        `It comes to a point the way these things do — not a threat, a request, made by someone who assumes the answer is yes. What is different tonight is you. ${
+          ['julian-workroom', 'sloane-institutional'].includes(arrangement(s)) ? 'You are not the same person who accepted the first favour.' : 'You are not the same person who walked into Sloane’s office.'
+        }`,
+      ),
       ...demandBlocks(s),
       hand[(get6(s, 'end-position') ?? endPosition6(s)) as ReturnType<typeof endPosition6>],
       p('You know what you have. Now you decide what to do with it.'),
@@ -60,8 +64,10 @@ export function counterpowerBlocks6(s: GameState): Block[] {
     if (!lane) return [];
     return [
       p(closing[lane]),
-      p('The file appeared under your name and made you its subject. Tonight, for the first time, you moved. What that becomes — who you take with you, who you refuse, what it costs to keep going — is not written yet. But it is yours to write now, and they know it.'),
-      t('Sloane wanted the adoption, and got it, and lost the leash exactly as her own system said she would. Why is the only thing left she is still holding. You intend to take that too.'),
+      p(
+        (get6(s, 'resolve-action') === 'resolve-hold' ? 'The file appeared under your name and made you its subject. Tonight you chose to hold still, and holding still, knowing what you know, is a move too.' : 'The file appeared under your name and made you its subject. Tonight, for the first time, you moved.') +
+          ' What that becomes — who you take with you, who you refuse, what it costs to keep going — is not written yet. But it is yours to write now, and they know it.'),
+      t('Sloane wanted the adoption, and got it, and is losing the leash. Why she wanted it is the only thing she is still holding. I intend to take that too.'),
     ];
   }
   return [];
@@ -252,7 +258,7 @@ export function resolveChoices6(s: GameState): C6Choice[] {
       resolve6(x, 'resolve-trade-' + id, 'exposed', { benefit: 'retained', response: id === 'expose' ? 'Exposed the ORACLE fact.' : 'Traded the sender’s proof away.', actorKnowledge: knowledge, knows: id === 'expose' ? 'oracle-circulating' : 'unnamed-actor-holds-proof' });
       return [
         p('Proof is only power while you hold it; you decide to spend it. ' + variant + ' Either way, it is out of your hands now, and moving.'),
-        t('You still do not know who the sender is, or what they wanted you to do with this. You did it anyway, with your eyes open. That is not the same as being used.'),
+        t('I still do not know who the sender is, or what they wanted me to do with this. I did it anyway, with my eyes open. That is not the same as being used.'),
       ];
     });
   if (oracle)
@@ -288,5 +294,5 @@ const closing: Record<RouteLane6, string> = {
   institutional: 'You go home on the monitored phone, the way you always have, except that the line runs both ways now. Sloane knows you know. Whatever comes next, you are inside it as a person with a position, not a package with a location.',
   outside: 'The proof is loose in the world and the sender is still a voice without a face. You have chosen to act on a truth you cannot fully source. It is a risk. It is also the first move you made that no institution authored.',
   executive: 'The arrangement holds, on your terms, in writing. You have decided access is worth keeping when you are the one holding the wording. It is still there in the morning — the room, the page, the door that opens — and whoever offered it now knows exactly where your line is.',
-  'own-power': 'Nothing is holding the other end of you. No room, no issue, no favour, no file you had to borrow. It is quieter than the other lives on offer, and slower, and entirely yours. You will find out what that is worth.',
+  'own-power': 'Nothing important is holding the other end of you. Whatever you still use, you could put down tomorrow. It is quieter than the other lives on offer, and slower, and entirely yours. You will find out what that is worth.',
 };

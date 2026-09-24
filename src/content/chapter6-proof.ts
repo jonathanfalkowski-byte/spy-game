@@ -8,32 +8,32 @@ import { type C6Choice, get6, note6, offer6, set6 } from './chapter6-model';
 const SENDER = 'Unknown sender';
 
 export const proofEntry6: Block[] = [
-  p('The message comes on the untraceable channel, the way they all have. No name, no header, only a line and an attachment held back behind it.'),
+  p('The message comes on the unknown-number thread, slipping past the Axiom filter the way the others did. No name, no header, only a line and an attachment held back behind it.'),
   q(SENDER, 'You keep asking who I am. I will do better than answer. I will show you where you come from. One page. You decide what it is worth.'),
   p('The attachment waits. You have learned what a claim is worth, and what a photograph is worth, and what “trust me” is worth. This is none of those yet.'),
 ];
 
 const leaf: Block[] = [
-  p('It is a single page, scanned clean: a courier log, ruled by hand, one night’s entries in a column. Operation names you do not know. A date — 14 March, a year before your assignment. One line is circled: a handoff logged at 02:40, received by a courier entered only as “R.”'),
-  p('And in the margin, in a small, fast hand, a note that was never meant to be evidence: “missed the Marikina breakfast for this. C. will sulk.”'),
-  t('You have seen the Blackglass package. Age 31, Singapore location history, ninety-nine point nine seven percent compatibility. A specification. A thing they built and handed to you.'),
+  p('It is a single page, scanned clean: a courier log, ruled by hand, one night’s entries in a column, headed in block capitals with a word you do not know: MERIDIAN. Operation names you do not recognise. A date — 14 March, a year before your assignment. One line is circled: a handoff logged at 02:40, received by a courier entered only as “R.”'),
+  p('And in the margin, in a small, fast hand, a note that was never meant to be evidence: “missed the Katong breakfast for this. C. will sulk.”'),
+  t('I have seen the Blackglass package. Age 31, Singapore location history, ninety-nine point nine seven percent compatibility. A specification. A thing they built and handed to me.'),
   t('This is a person’s handwriting. Someone stayed up until two in the morning, and was annoyed about a breakfast, and wrote it down. Evelyn Vale was not a file. She was somebody, and somebody is still holding the paper.'),
 ];
 
 const celesteCall: Block[] = [
   p('You reach Celeste on the fund’s line. You do not mention a courier log, or Axiom, or a sender. You ask her, lightly, about Singapore — about a breakfast.'),
-  q('Celeste', 'The Marikina one. God, yes. I planned it for a week and she simply wasn’t there. No message, no apology, and then she breezed back two days later as if I’d imagined the whole thing. I adored her and I could have killed her.'),
-  p('She is talking about a woman she knew. Warmly. To your face. She has no idea she is describing you, or the person who came before you, or that a page exists with that exact morning written in its margin.'),
-  t('She cannot tell you the courier’s name, or what was in the handoff, or anything Axiom decided. She was never inside it. She only knew Evelyn — the real one — well enough to be hurt when she vanished. That is all she has, and it is enough.'),
+  q('Celeste', 'The Katong one. God, yes. I planned it for a week and she simply wasn’t there. No message, no apology, and then she breezed back two days later as if I’d imagined the whole thing. I adored her and I could have killed her.'),
+  p('She is talking about a woman she knew. Warmly. To your face. And she says she, not you, as if the woman she planned that breakfast for were somebody else. You tell yourself it is only the way people talk about who you used to be. You do not let yourself wonder how she would know to say it.'),
+  t('She cannot tell me the courier’s name, or what was in the handoff, or anything Axiom decided. I decide she was never inside it: that she only knew Evelyn — the real one — well enough to be hurt when she vanished. That is all I let her be, and it is enough for tonight.'),
 ];
 
 const oracle: Block[] = [
   q(SENDER, 'Now you know the page is real, here is what it is a page of. Pull the ORACLE assessment for Project Eve. You were denied it. I was not.'),
   p('The attachment opens on a prediction, dated before your assignment. ORACLE ran the identity transfer and returned two numbers. High probability of voluntary adoption — that the candidate would come to live as Evelyn willingly, and call it a choice. Low probability of durable long-term control by the sponsoring directorate.'),
-  t('They predicted you would choose it. They also predicted that once you had, Sloane would not be able to hold the leash for long. And Sloane read that, and signed, and proceeded anyway.'),
+  t('They predicted I would choose it. They also predicted that once I had, Sloane would not be able to hold the leash for long. And Sloane read that, and signed, and proceeded anyway.'),
   q(SENDER, 'Sit with the second number. She was told she could not keep you. She did it regardless. Ask yourself what she wanted, if it was never control.'),
 ];
-const distance = t('The sender has not told you who they are. You have proof they were there, and no proof of what they want. That distance is the only thing you are sure of.');
+const distance = t('The sender has not told me who they are. I have proof they were there, and no proof of what they want. That distance is the only thing I am sure of.');
 
 /** Retained, self-authenticated evidence: a Glass House item or the Chapter 3 verified date. */
 export const canCompare6 = (s: GameState) =>

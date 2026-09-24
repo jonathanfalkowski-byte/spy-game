@@ -67,14 +67,14 @@ function costBlocks(s: GameState): Block[] {
     : 'The thread from last week points up, past Sloane, to something you cannot name yet — a signature you never found, an authority above the woman you’ve been fearing. You know it is there. You do not know what it is called. That is the wall.';
   return [
     p(frame),
-    t('This is the part they meant when they said independence was expensive. Not the money, or not only. It is that some rooms will not open for someone with no institution behind her, and you chose to be someone with no institution behind her.'),
+    t('This is the part they meant when they said independence was expensive. Not the money, or not only. Some rooms will not open for someone with no institution behind her, and I chose to be someone with no institution behind her.'),
     ...(getKey(s, 'own.exposed')
       ? [
           p('The message is not from an account that deletes itself. It is from Sloane, on the record, unhurried.'),
           q('Sloane', 'You have been asking who authorized reusing her. I know, because you asked it where I could hear. I am not going to tell you to stop. I am going to tell you that you are about to walk into something with no cover, and that I could give you cover, and that you should think hard about why I would offer.'),
-          t('Help, or a leash held out as help. From what you found last week, Sloane may be as much inside this as you are — which makes the offer either the truest thing anyone has said to you, or the most useful lie. You cannot yet tell. That is the trap of it.'),
+          t('Help, or a leash held out as help. From what I found last week, Sloane may be as much inside this as I am — which makes the offer either the truest thing anyone has said to me, or the most useful lie. I cannot tell yet. That is the trap of it.'),
         ]
-      : [p('No one has noticed you yet. That is its own kind of alone — no help offered, because no one knows to offer it. The wall is still there, and it is yours to get over quietly.')]),
+      : [p('Nobody has come to you yet. Whoever has been watching has not introduced themselves, and no help is offered, because no one knows you need it. That is its own kind of alone. The wall is still there, and it is yours to get over quietly.')]),
   ];
 }
 
@@ -82,8 +82,8 @@ function advanceBlocks(s: GameState): Block[] {
   const crossed = (getKey(s, 'own.crossover') ?? 'none') !== 'none';
   const allyPaid = getKey(s, 'own.alliance.rook') === 'spent' || getKey(s, 'own.alliance.editor') === 'spent';
   return [
-    p('However you got over it, the same shape is on the other side, and it is bigger than you feared and smaller than you hoped. Meridian Holdings is not Helix. It is not Axiom. It is a private concern that builds operations — identities, legends, whole manufactured people — and sells them to whoever can pay. Project Eve is a product. Axiom is a client. Sloane is a client’s officer.'),
-    t('You were never Axiom’s asset, or Sloane’s. You are Meridian’s product, sold on. The person who authorized reusing her authorized it as a vendor reusing stock. That is the coldest thing you have learned yet, and you learned it yourself.'),
+    p('On the other side of the wall the shape is waiting, and it is bigger than you feared and smaller than you hoped. Meridian Holdings is not Helix. It is not Axiom. It is a private concern that builds operations — identities, legends, whole manufactured people — and sells them to whoever can pay. Project Eve is a product. Axiom is a client. Sloane is a client’s officer.'),
+    t('I was never Axiom’s asset, or Sloane’s. I am Meridian’s product, sold on. Whoever authorized reusing her authorized it as a vendor reusing stock. That is the coldest thing I have learned yet, and I learned it myself.'),
     p(
       crossed
         ? 'You know it because someone opened a door for you. You will not forget who, or that you needed them to.'
@@ -109,7 +109,7 @@ export function chapter8Blocks(s: GameState): Block[] {
   if (s.phase === 'advance') return advanceBlocks(s);
   if (s.phase === 'close') return closeBlocks(s);
   if (s.phase === 'complete')
-    return [p('You lie awake with the shape of it — a company that makes people and sells them, a board above Sloane, one face on it you are almost sure you know. Tomorrow you go looking for the name. Tonight you hold what it cost to get this far, and whose door you had to walk through, or didn’t.')];
+    return [p('You lie awake with it. Tomorrow you go looking for the name. Tonight you hold what it cost to get this far.')];
   return [];
 }
 
@@ -146,7 +146,7 @@ function leverageChoices(s: GameState): C8Choice[] {
         over(x, 'rook', 'none');
         setKey(x, 'own.alliance.rook', 'spent');
         note8(x, 'rook-debt', 'Evelynn called the sender’s marker; the debt is settled with one document from Meridian’s offshore board. Unreliable, but concrete.', 'The sender, collecting in kind');
-        return [q(SENDER, 'You owe me one and I collect in kind. Here: Meridian’s registered board meets offshore, and I can put one document in your hands. Read it fast; I was never here.')];
+        return [q(SENDER, 'You owe me one, and this is how you pay it: you read what I give you, and you tell me who in Sloane’s office moves when you do. Meridian’s registered board meets offshore. Here is one page of it. Read it fast; I was never here.')];
       }),
     );
   if (who === 'editor')

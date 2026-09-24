@@ -51,7 +51,7 @@ it('supports the leaf by comparison and by a passed prediction, recording what t
   const predicted = c6(opened(atProof({ greeting: true })), 'verify-predict');
   expect([get6(predicted, 'rook-proof'), get6(predicted, 'verify-method')]).toEqual(['supported', 'prediction']);
   expect(optionalNpc(predicted, 'rook')?.known.map((k) => k.key)).toContain('The Marikina breakfast, Celeste Laurent’s table, the 02:40 handoff.');
-  expect(text(predicted)).toContain('The Marikina one. God, yes.');
+  expect(text(predicted)).toContain('The Katong one. God, yes.');
 });
 
 it('breaks the prediction if she misled the sender, skipping Celeste and ORACLE', () => {

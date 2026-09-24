@@ -37,10 +37,10 @@ const descriptor: Record<RouteLane6, string> = {
   outside: 'the ones who trade in what the institutions bury',
 };
 const mirror: Record<RouteLane6, string> = {
-  institutional: 'Look at the last months honestly. You stayed inside the machine — you told Sloane what you were doing, you kept the apartment and the cover, you learned to hold a position from within the walls rather than outside them. It is not weakness. It is a place to stand, and you know its corridors now.',
+  institutional: 'Look at the last weeks honestly. You stayed inside the machine — you told Sloane what you were doing, you kept the apartment and the cover, you learned to hold a position from within the walls rather than outside them. It is not weakness. It is a place to stand, and you know its corridors now.',
   outside: 'Look honestly. You went to the one source no institution authored, spent your own knowledge to test it, and came away holding a truth the people in charge would rather you did not have. You have been becoming someone who trades in what others hide.',
   executive: 'Look honestly. You have been building access — the room, the dinners, the man who opens doors and means it, terms written where they favour you. You have learned that proximity to power, held on your own wording, is itself a kind of power.',
-  'own-power': 'Look honestly. You paid your own way, released your own image, kept your own evidence, and refused the extensions that would have made you easier to hold. Your face is on other people’s walls now, and it still belongs to you. You have been building a base that is small and slow and entirely yours.',
+  'own-power': 'Look honestly. You kept your own evidence, spoke in your own name, and took only the help you could walk away from. Your name is out in the world now, on your own terms. You have been building a base that is small and slow and entirely yours.',
 };
 export const suggested7 = (s: GameState): RouteLane6 =>
   deriveRoute6(s)?.lane ?? ((s.choices['c6.route-lane'] as RouteLane6 | undefined) ?? 'own-power');
@@ -67,7 +67,7 @@ function confirmChoices(s: GameState): C7Choice[] {
         delete x.choices['c7.break-pending'];
         choose(x, opposite, 'unbuilt');
         return [
-          p('You choose the thing your last months point away from. It is allowed — you are not a prediction, and the road you walked does not own you. But you walk into this one almost unbuilt: the allies, the resources, the standing are on the road you left. You will make them here from the beginning, and it will be harder, and it will be yours in a way nothing inherited ever is.'),
+          p('You choose the thing your last weeks point away from. It is allowed — you are not a prediction, and the road you walked does not own you. But you walk into this one almost unbuilt: the allies, the resources, the standing are on the road you left. You will make them here from the beginning, and it will be harder, and it will be yours in a way nothing inherited ever is.'),
           closeLine,
         ];
       }),
@@ -104,8 +104,8 @@ export function chapter7Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter7') return [];
   if (s.phase === 'confirm')
     return [
-      p('A week after the night everything moved, the city has not changed and you have. You wake in whatever life your last months built, and for once nothing is demanding a decision before breakfast. Which means the decision is yours to make first, unprompted, about how you intend to go on.'),
-      t('Nobody handed you this the way the file was handed to you. You can see the shape of the road you have actually been walking. You can keep walking it. You can also, now, choose to turn.'),
+      p('A week after the night everything moved, the city has not changed and you have. You wake in whatever life your last weeks built, and for once nothing is demanding a decision before breakfast. Which means the decision is yours to make first, unprompted, about how you intend to go on.'),
+      t('Nobody handed me this the way the file was handed to me. I can see the shape of the road I have actually been walking. I can keep walking it. I can also, now, choose to turn.'),
       p(mirror[suggested7(s)]),
       p('That is where you have been going. The question is only whether you meant it, and whether you still do.'),
     ];

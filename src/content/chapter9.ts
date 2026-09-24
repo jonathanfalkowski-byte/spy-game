@@ -99,10 +99,28 @@ export const chapter9Scenes = Object.entries(chapter9Definitions).map(([phase, s
 
 // ── Blocks ──
 
+const numbers = ['', 'one thing', 'two things', 'three things', 'four things'];
+/** The evidence chain names only what she actually holds (review 2026-09-24). */
+function chainText9(s: GameState): string {
+  const links = [
+    ...(get6(s, 'photo-custody') === 'phone' ? ['the leaf’s dated handoff, photographed and kept'] : []),
+    ...(s.choices['c3.verified-date'] ? ['the instruction date in your own clinical record'] : []),
+    ...(s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn' ? ['what you carried out of the Glass House yourself'] : []),
+    'the Blackglass Singapore location history you already hold',
+    ...(took(s, 'witness') ? ['the witness’s confirmation'] : []),
+  ];
+  const list = links.length > 1 ? links.slice(0, -1).join(', ') + ' and ' + links.at(-1) : links[0];
+  return `You build the chain the way it has to be built to survive contact with a lawyer: ${list}. ${
+    links.length >= 3
+      ? `${numbers[links.length] ?? 'Several things'}, captured independently, that could not have fed each other. Agreement across them is the closest thing to proof you can own.`
+      : 'It is not much. It is sourced, and it is yours, and it points the same way.'
+  }`;
+}
+
 function arriveBlocks(s: GameState): Block[] {
   const frame: Block[] = ownPower(s)
     ? [
-        p('You came this far the hardest way — a desk you pay for, a phone that answers only to you, and a truth you pulled out of a closed shell with no clearance and no one’s permission. You know what Meridian is now: not a company that keeps secrets, a company that makes them — that builds people out of other people’s lives and sells them. You are one of its products. So is the woman whose name you wear.'),
+        p('You came this far the hardest way, with no clearance and no one’s permission, and a truth you pulled out of a closed shell. You know what Meridian is now: not a company that keeps secrets, a company that makes them. You are one of its products. So is the woman whose name you wear.'),
         p(
           borrowedDoor(s)
             ? 'You did not do all of it alone, and you have not forgotten whose door you borrowed to get here.'
@@ -112,20 +130,20 @@ function arriveBlocks(s: GameState): Block[] {
     : [p(`[Chapter 9 · ${getKey(s, 'route.lane') ?? 'unknown'} road into the bridge — in development] You arrive at the same wall the others do, carrying what your road gave you.`)];
   return [
     ...frame,
-    p('Meridian Holdings. A private intelligence concern that manufactures operations — identities, legends, whole manufactured people — and sells them to whoever can pay. Project Eve is a product. Axiom is a client. Sloane is a client’s officer. And the authorization to reuse her legend — the real woman who lived it before you were fitted into it — was signed at Meridian’s board.'),
-    t('You have the shape. What you do not have is a case — something sourced, something that holds when an institution tries to make it disappear — and you do not have the name. One person on that board you have already met, and did not expect. Before you can decide what to do, you find out who, and you build something you can carry into the room.'),
+    p('And the authorization to reuse her legend — the real woman who lived it before you were fitted into it — was signed at Meridian’s board.'),
+    t('I have the shape. What I do not have is a case — something sourced, something that holds when an institution tries to make it disappear — and I do not have the name. Before I decide anything, I find out who, and I build something I can carry into the room.'),
   ];
 }
 
 function resolveBlocks(s: GameState): Block[] {
   const blocks: Block[] = [];
   if (get9(s, 'name-road') === 'floor')
-    blocks.push(t('You already have the last piece and have been refusing to say it: the face on the board is one you’ve met, and when you let yourself, you know it. Celeste.'));
+    blocks.push(t('I already have the last piece. I have been refusing to say it: the face on the board is one I have met, and when I let myself, I know it. Celeste.'));
   const strength = getKey(s, 'case.strength');
   blocks.push(
     p(
       strength === 'strong'
-        ? 'It holds. A named board member who knew the original, a legend proven reused, a system that flagged the defect before it was sold. Not a rumor — a case, sourced three ways, that would survive someone trying to make it vanish. You can walk into the next room and put it on the table.'
+        ? `It holds. A named board member who knew the original${get9(s, 'chain') ? ', a chain of records that agree' : ''}${get9(s, 'lever') ? ', a system that flagged the defect before it was sold' : ''}. Not a rumour — a case from more than one direction, that would survive someone trying to make it vanish. You can walk into the next room and put it on the table.`
         : strength === 'supported'
           ? 'It holds up, mostly. Enough to force a conversation, not yet enough to force a hand. You have the name and one clean corroboration; the rest you will have to argue.'
           : 'It is thin. A name you are sure of and not much you can prove around it. It is enough to walk in knowing who you are looking at. It is not enough to make them afraid. That, too, is a place you can start from — and it is entirely yours.',
@@ -154,7 +172,7 @@ export function chapter9Blocks(s: GameState): Block[] {
     return [p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
-    return [t('You have the name, and a case the size of your road. You went looking for a face on that board and found one you had already met, which means she has already met yours. Celeste has seen your face too. She saw it first, across a room at the Glass House, and she smiled.')];
+    return [t('I have the name, and a case the size of my road. I went looking for a face on that board and found one I had already met, which means she has already met mine. Celeste has seen my face too. She saw it first, across a room at the Glass House, and she smiled.')];
   return [];
 }
 
@@ -185,7 +203,13 @@ function witnessBlocks(s: GameState, who: 'celeste' | 'marcus'): Block[] {
 function nameBlocks(s: GameState, road: ReturnType<typeof nameRoad9>): Block[] {
   return [
     p(
-      `You go at the board itself.${ownPower(s) ? ' You use the one instrument you own — attention — to make Meridian’s silence expensive, and you read what moves when a closed thing is looked at.' : ''} ${
+      `You go at the board itself.${
+        ownPower(s)
+          ? get5(s, 'published')
+            ? ' You use the one instrument you own — attention — to make Meridian’s silence expensive, and you read what moves when a closed thing is looked at.'
+            : ' You use the only instruments you have — patience, paper and the public record — and you read what moves when someone keeps asking.'
+          : ''
+      } ${
         road === 'public'
           ? 'It is slow, self-funded, and entirely yours.'
           : road === 'editor'
@@ -195,8 +219,11 @@ function nameBlocks(s: GameState, road: ReturnType<typeof nameRoad9>): Block[] {
               : 'The door you borrowed shows you the board faster and cleaner than you could alone.'
       }`,
     ),
-    p('And the name surfaces, and you go still. You know it. Not from a file — from a morning. A hand on your arm and “You disappeared before breakfast.” She was not greeting an old friend she mistook you for. She was reading the fit of a legend she had helped sign away.'),
-    t('Celeste. The warmth was the appraisal. Someone who knew the woman you are wearing — knew her the way you know a person — sat on the board that spent her, and then touched your arm.'),
+    p('And the name surfaces, and you go still. You know it. Not from a file — from an evening. A hand on your arm and “You disappeared before breakfast.” She was not greeting an old friend she mistook you for. She was reading the fit of a legend she had helped sign away.'),
+    t('Celeste. The warmth was the appraisal. Someone who knew the woman I am wearing — knew her the way you know a person — sat on the board that spent her, and then touched my arm.'),
+    ...(took(s, 'witness') && witness9(s) === 'celeste'
+      ? [p('And she is the one who confirmed the leaf for you. Her own words are in your case now: she knew the woman, she knew the week she vanished. A board member’s firsthand account, freely given, of the life her board reused. She did not help you. She testified.')]
+      : []),
   ];
 }
 
@@ -237,7 +264,7 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-evidence', 'Corroborate the paper into a chain', 'Custody, dates, a handoff in her hand. Make it hold.', 'assemble', (x) => {
         take(x, 'evidence');
         set9(x, 'chain', 'built');
-        return [p('You build the chain the way it has to be built to survive contact with a lawyer: the leaf’s dated handoff, the Blackglass Singapore location history you already hold, and the witness’s confirmation, three things captured independently that could not have fed each other. Agreement across all three is the closest thing to proof you can own.')];
+        return [p(chainText9(x))];
       }),
     );
   const allies = allies9(s);
