@@ -3,7 +3,8 @@ import type { Block } from '../content/schema';
 import type { GameState } from '../state/schema';
 import { leadNames } from '../content/mission';
 import { renderRevision18Text } from '../content/revision18-editorial';
-import { hasRevision18Presentation } from '../content/revision';
+import { hasRevision18Presentation, hasRevision20 } from '../content/revision';
+import { renderRevision20Text, revision20Blocks } from '../content/revision20-editorial';
 
 // UI copy only. Never feed these blocks back into history, the reducer or saves.
 // Match the originating scene and its authored text, so reviewing old exchanges
@@ -45,7 +46,8 @@ const currentHelixSubmittedCopy =
  * boundary. Authenticated history and save data remain unchanged.
  */
 export function renderCurrentPresentationText(rawText: string, node?: string, contentRevision?: number): string {
-  const authored = hasRevision18Presentation(contentRevision) ? renderRevision18Text(rawText, node) : rawText;
+  const r18 = hasRevision18Presentation(contentRevision) ? renderRevision18Text(rawText, node) : rawText;
+  const authored = hasRevision20(contentRevision) ? renderRevision20Text(r18, node) : r18;
   const rendered = renderCanonicalIdentityText(authored);
   return node === 'helix.submitted' && rendered === historicalHelixSubmittedCopy
     ? currentHelixSubmittedCopy
@@ -260,7 +262,8 @@ export function readingBlocks(blocks: Block[], node?: string, contentRevision?: 
     hasRevision18Presentation(contentRevision)
       ? blocks.map((block) => ({ ...block, text: renderRevision18Text(block.text, node) }))
       : blocks;
-  return choiceLabelAsNotice(readingBlocksRaw(authoredBlocks, node), node)
+  const polished = choiceLabelAsNotice(readingBlocksRaw(authoredBlocks, node), node);
+  return (hasRevision20(contentRevision) ? revision20Blocks(polished, node) : polished)
     .filter((block) => !(block.kind === 'notice' && hiddenNotice(block.text)))
     .map((block) => ({
       ...block,

@@ -52,3 +52,39 @@ old wording. Scope, from the review's Group 3:
 ## Size
 Commit 1: small but careful (about half a day). Commit 2: large (the text pass across
 Chapters 3–5 plus two Julian scenes); best done chapter by chapter with a checkpoint after each.
+
+## Status (2026-09-24)
+
+**Commit 1 done** (93c40bf): new games start at revision 20; revisions 13–19 replay unchanged; all
+25 golden routes replay identically at 19 and 20.
+
+**Commit 2 done**, built as a *presentation layer* like revision 18
+([src/content/revision20-editorial.ts](../../src/content/revision20-editorial.ts)), not as branches in
+the content files. Rewrites apply only when the save's revision is 20, at the reading boundary
+(reading blocks, choice labels and hints, scene titles). State, history, the ledger and replay are
+untouched, so revision-19 saves read exactly as before **and** revision-20 saves stay valid. One
+engine change: Sloane's debrief when Benton is named without evidence (`mission.ts`,
+`debriefEvidence`, gated on `hasRevision20`; `mission.debrief` is in `REWRITTEN`).
+
+Done: menu narration and milestone text; covering-every-path phrasing; Chapter 3 legal speech
+(Sloane, Voss, Helix, Marcus) rewritten in voice; Sloane's debrief (Benton on leave pending review,
+Voss's team, "the breach stays in my drawer"); Helix/Julian acknowledge the Glass House exit
+(Marcus probing); Maya hears the voice; the date reveal gets a reaction; Benton guess costs Sloane's
+confidence; frozen accounts explain the $0; wardrobe said once; Sloane on the Helix room; duplicate
+rehearsal, raised finger and "family" lines; the mirror is looked into (except "Look away"); Chapter
+4–5 term-sheet, consent-clause and duplicate notices hidden (choices and money stay); Julian's Chapter 4
+and Chapter 5 evenings written at heat 3 for both scopes (lead-in, consent in character, cut at the
+act, aftermath).
+
+Already fine on screen, no change: the Evelyn/Evelynn spelling (the display shows "Evelynn"
+throughout; the review read raw transcripts); "the the" (fixed at display earlier).
+
+**Deferred:**
+- Collapsing the Aster negotiation to two choices is a gameplay change (choice set and flags read
+  later), not presentation. The replies are rewritten and the term sheets hidden; the menu is still
+  long.
+- The Benton cost is Sloane's words only; a trust or proof penalty would need state later chapters read.
+- Chapter 6 "She thanks the stranger" friction (gated chapter, fix in place later).
+
+Tools: `EVE_DUMP=<dir> npx vitest run tests/tools/transcript-dump.test.ts` writes revision-19 and 20
+reading transcripts for every golden route. Tests: `tests/state/revision20-editorial.test.ts`.

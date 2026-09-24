@@ -18,7 +18,7 @@ afterEach(() => vi.unstubAllEnvs());
 /** A revision-20 run with its revision number set back to 19, for comparison with the revision-19 replay. */
 const as19 = (s: GameState) => JSON.stringify({ ...s, contentRevision: 19 });
 /** Nodes whose text revision 20 deliberately rewrites (the editorial pass); everything else must match. */
-const REWRITTEN = new Set<string>([]);
+const REWRITTEN = new Set<string>(['mission.debrief']);
 const unchanged = (s: GameState) => ({ ...s, history: s.history.filter((h) => !REWRITTEN.has(String(h.node))) });
 
 const routes = [
