@@ -1,0 +1,195 @@
+# Chapter 9 — "Assembling the Case" script (shared bridge)
+
+Source of wording and flags for EVE Code. The **convergent bridge**: every route lane arrives
+here and assembles, from what the route actually gave them, a case they can act on — and finds
+the name. Design authority: [ENDGAME_RECONVERGENCE.md](../ENDGAME_RECONVERGENCE.md) (§6 + settled
+decisions §10), [CAMPAIGN_ROUTE_MAP.md](../CAMPAIGN_ROUTE_MAP.md) (reconvergence doctrine),
+[CHAPTER_6_PROOF_AND_COUNTERPOWER.md](../CHAPTER_6_PROOF_AND_COUNTERPOWER.md) (Celeste/Marcus
+firsthand scope, ORACLE, the ledger leaf).
+
+Format as the Ch7/Ch8 scripts. New gated content revision (additive, `VITE_EVE_CHAPTER9`).
+Reachable from a route lane's Chapter 8 `complete`. **Own-power is the live feeder** (Ch8
+own-power is built); other lanes reach the same bridge as their Ch8-equivalents ship — the
+`arrive` frame already branches on `route.lane`, and a lane with no Ch8 yet routes through the
+dev-gated placeholder to `arrive` cleanly (the Ch7-confirm placeholder pattern).
+
+Phases: `arrive` → `assemble` (hub) → `resolve` → `complete`.
+
+Driving job (settled): **assemble a case from what the route holds, and reach the one name on
+Meridian's board you have already met.** That name is **Celeste Laurent** (endgame canon; the
+confrontation itself is Chapter 10, not here — Chapter 9 reaches and *sources* the name).
+
+---
+
+## Phase `arrive` — the bridge frame
+
+### Entry frame — by `route.lane` + `own.crossover`
+
+The shape is one shape; the road that reached it differs. Own-power is written live; the other
+three are stubbed here (one line each) until their Ch8-equivalents ship.
+
+- **own-power (live):**
+  > p: You came this far the hardest way — a desk you pay for, a phone that answers only to you,
+  > and a truth you pulled out of a closed shell with no clearance and no one's permission. You
+  > know what Meridian is now: not a company that keeps secrets, a company that *makes* them —
+  > that builds people out of other people's lives and sells them. You are one of its products.
+  > So is the woman whose name you wear.
+  > *(own.crossover = executive/institutional:)* p: You did not do all of it alone, and you have
+  > not forgotten whose door you borrowed to get here.
+  > *(own.crossover = none:)* p: And you did it without borrowing a single door. Whatever you
+  > build next, no one gets to say they handed it to you.
+- **institutional / outside / executive (stub until built):**
+  > p: *(placeholder — this lane's road into the bridge is in development.)* You arrive at the same
+  > wall the others do, carrying what your road gave you. → `arrive` continues shared.
+
+### The turn lands (shared)
+
+> p: Meridian Holdings. A private intelligence concern that manufactures operations — identities,
+> legends, whole manufactured people — and sells them to whoever can pay. Project Eve is a
+> product. Axiom is a client. Sloane is a client's officer. And the authorization to reuse *her*
+> legend — the real woman who lived it before you were fitted into it — was signed at Meridian's
+> board.
+>
+> t: You have the shape. What you do not have is a case — something sourced, something that holds
+> when an institution tries to make it disappear — and you do not have the name. One person on
+> that board you have already met, and did not expect. Before you can decide what to do, you find
+> out who, and you build something you can carry into the room.
+
+→ **arrive-begin** · Assemble what you have · *Every road left a different pile. Sort it into a case.* → `assemble`.
+
+## Phase `assemble` — the hub
+
+A hub: each move is playable once and returns here; each contributes a **sourced** piece toward
+two outputs — **`case.strength`** (thin | supported | strong) and **`case.name`** (unfound →
+celeste). Moves are gated by what the route actually holds; a player sees only the doors their
+biography opened. An **autonomy floor** guarantees the name and a thin case are reachable with the
+free-agent core alone (`assemble-name` always offers at least the slow public road).
+
+**Case-strength budget:** each contributing move adds one weight. `thin` = 0–1, `supported` = 2,
+`strong` = 3+. `assemble-stop` ends early with whatever is held. `assemble-name` is separate — it
+sets `case.name`, and also adds one strength weight (a sourced name is itself evidence).
+
+**assemble-witness** · Take the corroborator as far as they'll go · *Firsthand, and only as far as they really know.* *(gated: Ch6 corroborator engaged — Celeste, or Marcus fallback)*
+
+> q(Celeste): I knew her. Not the file of her — *her*, the way you know someone you had breakfast
+> with. If you show me a date and a handoff and it matches the woman I knew, I'll tell you it
+> matches. I won't tell you it was a crime, because I don't know that it was. I'll tell you it
+> was her.
+> p: She confirms the ledger leaf *fits the person she knew* — the date, the habit, the absence.
+> No more than that; she is not pushed past it. It is firsthand, and it is clean.
+> Adds one strength weight; sets `c9.witness = confirmed`. (Marcus fallback: same, professional
+> scope — "she handled that transaction," not "I knew her.")
+
+**assemble-oracle** · Turn the prediction into a lever · *The maker knew the product was defective. That's the whole case.* *(gated: `c6.oracle-seen`; else a reconstruction sub-path at higher cost)*
+
+> p: You lay out what ORACLE scored before any of this began: that you would take the identity
+> willingly, that Sloane could not truly hold you — and that they proceeded anyway. It is not a
+> confession. It is worse: it is a *specification*. They sold Axiom a controllable asset their own
+> system had already marked uncontrollable.
+> *(if !c6.oracle-seen:)* p: You never saw the assessment itself, so you rebuild its shape from
+> the edges — slower, and you can only argue it, not wave it. It still points the same way.
+> Adds one strength weight; sets `c9.lever = oracle` (or `oracle-inferred`).
+
+**assemble-evidence** · Corroborate the paper into a chain · *Custody, dates, a handoff in her hand. Make it hold.* *(gated: ledger leaf / current-op evidence in custody)*
+
+> p: You build the chain the way it has to be built to survive contact with a lawyer: the leaf's
+> dated handoff, the Blackglass Singapore location history you already hold, and the witness's
+> confirmation, three things captured independently that could not have fed each other. Agreement
+> across all three is the closest thing to proof you can own.
+> Adds one strength weight; sets `c9.chain = built`.
+
+**assemble-ally** · Spend who's left · *Help isn't free. Choose which kind of not-free.* *(gated by remaining allies)*
+
+> - **assemble-rook** *(if `own.alliance.rook` engaged and not spent):* the sender puts one more
+>   offshore-board document in your hands — concrete, unsourceable, fast. Adds a weight; marks
+>   `own.alliance.rook = spent`; flags the piece `unverified`.
+> - **assemble-editor** *(if the `c5.published` editor line exists and not spent):* the reporter's
+>   corporate-veil filing comes back — slow, clean, filing-grade. Adds a weight; marks the editor
+>   `spent`.
+> - **assemble-maya-bounded** *(if `c6.maya = restored` and not used-up):* public-scope only — she
+>   confirms the *category and the floor* (a directorate-level or private-contractor sign-off),
+>   never the answer. Adds a weight; marks `own.alliance.maya = used`.
+> - **assemble-crossover-contact** *(if `own.crossover = executive|institutional`):* the door you
+>   borrowed in Chapter 8 is still ajar — one more use, at a further standing cost. Adds a weight;
+>   records the deepened dependency (reconvergence reads it).
+
+**assemble-name** · Find the face on the board · *One name, and you have already met it.* *(always available — the road differs by lane; own-power = the slow public veil-peel)*
+
+> p: You go at the board itself. *(own-power:)* You use the one instrument you own — attention —
+> to make Meridian's silence expensive, and you read what moves when a closed thing is looked at.
+> *(if a road-piece is held — Rook doc / editor filing / crossover access — it names the board
+> faster and cleaner; otherwise it is slow, self-funded, and entirely yours.)*
+> p: And the name surfaces, and you go still. You know it. Not from a file — from a morning. A
+> hand on your arm and *"You disappeared before breakfast."* She was not greeting an old friend
+> she mistook you for. She was reading the fit of a legend she had helped sign away.
+> t: **Celeste.** The warmth was the appraisal. Someone who knew the woman you are wearing — knew
+> her the way you know a person — sat on the board that spent her, and then touched your arm.
+> Sets `case.name = celeste`; adds one strength weight; sets `c9.name-road ∈ {public, rook,
+> editor, crossover}` (how she was reached — reconvergence/Ch10 read it).
+
+**assemble-stop** · Move with what you have · *You don't have to find every piece to act.* → `resolve` (with however much is held; if `case.name` is still unfound, see the resolve floor).
+
+## Phase `resolve` — what you can carry
+
+Computes `case.strength` from the weights and states plainly what is provable vs argued, then
+sets the endgame entry contract.
+
+- **strong (3+):**
+  > p: It holds. A named board member who knew the original, a legend proven reused, a system that
+  > flagged the defect before it was sold. Not a rumor — a case, sourced three ways, that would
+  > survive someone trying to make it vanish. You can walk into the next room and put it on the table.
+- **supported (2):**
+  > p: It holds up, mostly. Enough to force a conversation, not yet enough to force a hand. You
+  > have the name and one clean corroboration; the rest you will have to argue.
+- **thin (0–1):**
+  > p: It is thin. A name you are sure of and not much you can prove around it. It is enough to
+  > walk in knowing who you are looking at. It is not enough to make them afraid. That, too, is a
+  > place you can start from — and it is entirely yours.
+
+**Name floor (autonomy guarantee):** if the player reached `resolve` without `case.name`
+(possible only by taking `assemble-stop` before `assemble-name`), the resolve text still surfaces
+the name at the lowest resolution — *"You already have the last piece and have been refusing to
+say it: the face on the board is one you've met, and when you let yourself, you know it. Celeste."*
+So the name is **never** missable; the case around it is what scales. Sets `case.name = celeste`.
+
+Cost register (shared):
+
+> p: *(if allies spent:)* You are lighter an ally or two than you were; help was not free, and you
+> chose which kind. *(if own.exposed / name-road = public:)* You are more visible for having gone
+> looking, and Meridian is a thing that looks back. *(always:)* And you are still the only person
+> holding what you assembled. → Chapter 9 `complete`.
+
+> t: You have the name, and a case the size of your road, and a room ahead of you with Celeste in
+> it and Sloane somewhere behind her. Whatever you do in that room, you walk in holding more than
+> anyone meant you to. → sets up Chapter 10 (the convergent endgame operation).
+
+---
+
+## Flags this chapter sets
+
+`case.strength` (thin|supported|strong), `case.name` (unfound→celeste), `c9.witness`,
+`c9.lever` (oracle|oracle-inferred), `c9.chain`, `c9.name-road` (public|rook|editor|crossover),
+ally-spend updates (`own.alliance.*`), further `own.exposed`/`own.cash`, and a `c9.entered`
+resolution for Chapter 10's entry contract. All sourced and re-derivable.
+
+## Notes for EVE Code
+
+- New gated content revision (additive, `VITE_EVE_CHAPTER9`), reachable from a lane's Chapter 8
+  `complete`. Own-power Ch8 (`complete`) is the live feeder; other lanes route through the
+  dev-gated placeholder into `arrive` until their Ch8-equivalents ship — same placeholder pattern
+  as the Ch7 confirm beat's non-own-power lanes.
+- `assemble` mirrors the Ch7 `pursue` hub: gated one-shot options returning to the hub, a stop
+  option, and a strength budget rather than a fixed piece count. `assemble-name` and
+  `assemble-stop` are always present; the rest are gated by biography.
+- **Autonomy floor:** `case.name = celeste` is reachable by the always-available `assemble-name`
+  (slow public road), and the `resolve` name-floor guarantees it even if the player stops early.
+  The *strength* scales with the route; the *name* never gates behind a faction or intimacy.
+- `case.strength` + `case.name` + `c9.name-road` + the ally/exposure updates are the entry
+  contract Chapter 10 reads (endgame doc §5). Store them cleanly and re-derivably.
+- Celeste stays firsthand-bounded in `assemble-witness` exactly as Ch6 — she confirms the leaf
+  *fits the woman she knew*, never supplies the ORACLE plan, Axiom internals, or Adrian's clinic
+  history. The board-member reveal is reached in `assemble-name` (the public/road piece), not from
+  her mouth — she is the reveal's *subject*, not its source.
+- No intimacy in this chapter.
+- Design owns wording and which signals count; EVE Code owns the exact weighting, gate predicates,
+  and how `case.strength` bands map. Report Phase 0 before building, as with Ch6–8.
