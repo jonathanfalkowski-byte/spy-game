@@ -127,3 +127,14 @@ what it cost.
    and the `adult-work` overlay are dropped. Routes are now **Institutional (Sloane),
    Outside (Rook), Executive (Julian/Helix) and Celebrity**, with two overlays:
    **Kept life** and **Exploitation & recovery**.
+7. **Corporate Predator becomes its own route** (owner, 2026-09-24). Split from Executive:
+   **Executive** is the Julian route (access through trust, care and intimacy);
+   **Predator** is Evelynn's own takeover of Helix from the inside (access through leverage
+   over Marcus and others, secrets, and seduction used as a weapon). It is the dark mirror of
+   Act III: there she is blackmailed; here she holds the leverage. Content rules are
+   unchanged ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)): heat 3, fades, and she never
+   sexually coerces anyone; her weapons are secrets, leverage and charm. Built second, after
+   Celebrity, reusing the shared Act III scaffolding (~6–7h unique rather than ~10h). Route
+   design doc and the `deriveRoute6` lane split come with that build. **Routes are now five:
+   Institutional, Outside, Executive, Predator, Celebrity.**
+
