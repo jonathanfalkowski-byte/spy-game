@@ -175,3 +175,19 @@ it('plays a real Chapter 9 to complete on every captured road, and every ending 
     expect(decodeSave(encodeSave(s))).toEqual(s);
   }
 });
+
+it('lands last week’s choices the next morning, sets the witness scene, and ends on the orchid', () => {
+  const morning = (flags: Record<string, string | undefined>) => text(c9(withFlags(complete8('own-records-stop'), flags), 'begin'));
+  expect(morning({ 'c8.gala': 'carpet' })).toContain('a lawyer’s letter, hand-delivered');
+  expect(morning({ 'c8.press': 'run' })).toContain('a lawyer’s letter, hand-delivered');
+  expect(morning({ 'c7.theo': 'curious' })).toContain('did not exist eighteen months ago');
+  expect(morning({ 'c8.dig-rival': 'seen' })).toContain('the man in the good coat from the registry');
+  expect(morning({ 'c8.rook-report': 'false' })).toContain('silent for three days');
+  const quiet = morning({ 'c8.gala': undefined, 'c8.press': undefined, 'c7.theo': undefined, 'c8.dig-rival': undefined, 'c8.rook-report': undefined });
+  expect(quiet).not.toMatch(/lawyer’s letter|eighteen months|good coat|silent for three days/);
+  expect(text(walk(hub({ 'c6.celeste': 'let-be' }), ['assemble-witness']))).toContain('holds your hands a moment too long');
+  expect(text(walk(hub({ 'c6.celeste': 'pressed' }), ['assemble-witness']))).toContain('She does not stand when you arrive.');
+  const done = walk(hub(), ['assemble-name', 'assemble-stop', 'resolve-end']);
+  expect(`${done.scene}.${done.phase}`).toBe('chapter9.complete');
+  expect(text(done)).toContain('“Breakfast? — C.”');
+});

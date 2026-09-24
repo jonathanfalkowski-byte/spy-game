@@ -117,6 +117,20 @@ function chainText9(s: GameState): string {
   }`;
 }
 
+/** What last week's choices cost this morning (Chapters 7 and 8, own-power). */
+function morningAfter9(s: GameState): Block[] {
+  const out: Block[] = [];
+  if (s.choices['c8.gala'] === 'carpet' || s.choices['c8.press'] === 'run')
+    out.push(p('The first thing through the door is a lawyer’s letter, hand-delivered, addressed to Evelynn Vale. It is two paragraphs long, courteous and very specific, on behalf of a client it does not name, about statements concerning a company it does not name either. You read it twice. It is the most frightened thing anyone has sent you.'));
+  if (s.choices['c7.theo'] === 'curious')
+    out.push(q('Theo Marr · voicemail', 'Evelynn. Theo. I did a little digging, as one does. You are a very beautiful woman who did not exist eighteen months ago. No school, no flat, no dentist. Call me before I decide what that is. I would so much rather hear it from you.'));
+  if (s.choices['c8.dig-rival'] === 'seen')
+    out.push(p('At the café on the corner, the man in the good coat from the registry is reading a newspaper at the window table. He does not look up when you pass. He does not need to.'));
+  if (s.choices['c8.rook-report'] === 'false')
+    out.push(p('The unknown thread has been silent for three days. In all the time you have known the sender, it has never been silent for three days.'));
+  return out;
+}
+
 function arriveBlocks(s: GameState): Block[] {
   const frame: Block[] = ownPower(s)
     ? [
@@ -130,6 +144,7 @@ function arriveBlocks(s: GameState): Block[] {
     : [p(`[Chapter 9 · ${getKey(s, 'route.lane') ?? 'unknown'} road into the bridge — in development] You arrive at the same wall the others do, carrying what your road gave you.`)];
   return [
     ...frame,
+    ...(ownPower(s) ? morningAfter9(s) : []),
     p('And the authorization to reuse her legend — the real woman who lived it before you were fitted into it — was signed at Meridian’s board.'),
     t('I have the shape. What I do not have is a case — something sourced, something that holds when an institution tries to make it disappear — and I do not have the name. Before I decide anything, I find out who, and I build something I can carry into the room.'),
   ];
@@ -172,13 +187,27 @@ export function chapter9Blocks(s: GameState): Block[] {
     return [p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
-    return [t('I have the name, and a case the size of my road. I went looking for a face on that board and found one I had already met, which means she has already met mine. Celeste has seen my face too. She saw it first, across a room at the Glass House, and she smiled.')];
+    return [
+      t('I have the name, and a case the size of my road. I went looking for a face on that board and found one I had already met, which means she has already met mine. Celeste has seen my face too. She saw it first, across a room at the Glass House, and she smiled.'),
+      p('Near midnight there is a knock. When you open the door there is nobody in the corridor: only a single white orchid in a black pot on the mat, and a card tucked into the moss in a confident, looping hand.'),
+      p('“Breakfast? — C.”'),
+    ];
   return [];
 }
 
 // ── The hub ──
 
 function witnessBlocks(s: GameState, who: 'celeste' | 'marcus'): Block[] {
+  return [witnessSetting(s, who), ...witnessWords(s, who)];
+}
+function witnessSetting(s: GameState, who: 'celeste' | 'marcus'): Block {
+  if (who === 'marcus')
+    return p('Marcus meets you in a hotel bar that closes to the public at six, because men like Marcus do not meet anyone anywhere that stays open. He watches you cross the room the way he did at the Glass House, and this time you let him watch.');
+  if (get6(s, 'celeste') === 'pressed')
+    return p('Celeste gives you twenty minutes on the terrace of her fund, above the river, with the heaters on and nobody at the other tables. She does not stand when you arrive.');
+  return p('Celeste gives you lunch on the terrace of her fund, above the river, with the heaters on and nobody at the other tables. She kisses you on both cheeks, holds your hands a moment too long, and orders for you without asking. It is warm and generous, and it makes the back of your neck prickle.');
+}
+function witnessWords(s: GameState, who: 'celeste' | 'marcus'): Block[] {
   if (who === 'marcus')
     return [
       q('Marcus', 'She left the gathering before the speeches. I noticed because we were meant to close something that night, and we closed it without her. That’s what I can give you: where she was, and when she stopped being there. Not why.'),
