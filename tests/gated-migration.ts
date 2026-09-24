@@ -48,6 +48,8 @@ export const GATED_DEFAULTS = [
   'chapter10.car-silent',
   'chapter10.round-stay',
   'chapter10.doorman-none',
+  // The remaining scenes as set pieces: close the wardrobe door on the wall.
+  'chapter10.wall-close',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

@@ -36,7 +36,7 @@ const plain = {
 };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete9('records-name-thin'), { ...plain, ...flags });
 /** Through breakfast, the calls and the wall to the order. */
-const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build']);
+const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build', 'wall-close']);
 /** An answer to the order, played through its moments (the first choice offered at each). */
 const answer = (order: GameState, id: string) => {
   let s = c10(order, id);
@@ -174,7 +174,7 @@ it.each(cases)('plays the %s order through every answer, each with its own cost'
 it('plays a real Chapter 10 on an untouched save, and the save authenticates', () => {
   let s = walk(complete9('records-name-thin'), ['begin', 'breakfast-stay', 'menu-own', 'open-evelyn', 'ask-like', 'dream-true', 'adrian-walked']);
   s = c10(s, ids(s)[0]);
-  s = walk(s, ['door-face', 'wall-build', 'order-refuse', 'job-answer']);
+  s = walk(s, ['door-face', 'wall-build', 'wall-open', 'order-refuse', 'job-answer']);
   s = c10(s, ids(s)[0]);
   s = walk(s, ['invite-wait', 'green-buy']);
   if (s.phase === 'invitation') s = c10(s, 'close-end');
@@ -335,4 +335,55 @@ it('gives the job set pieces their second moments, each recorded', () => {
   expect(text(notes)).toContain('Shall I say who it’s from, madam?');
   const e = c10(notes, 'doorman-e');
   expect([e.phase, e.choices['c10.doorman'], e.choices['c10.poison']]).toEqual(['answer', 'e', 'date']);
+});
+
+// ── The remaining scenes as set pieces ──
+
+it('plays the calls and the doorstep as scenes', () => {
+  const noon = walk(start({ 'c6.maya': 'restored', 'c7.theo': 'curious', 'own.campaign': 'taken' }), ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed']);
+  expect(text(noon)).toContain('Whoever took it was sitting in the room with you');
+  const maya = c10(noon, 'call-maya');
+  expect(text(maya)).toContain('Isn’t that Adrian’s friend from the magazine?');
+  expect(text(maya)).toContain('Call me back. That is not a request.');
+  expect(text(c10(noon, 'call-theo'))).toContain('People like her are never photographed by accident.');
+  expect(text(c10(noon, 'call-odile'))).toContain('it is never for the face');
+  expect(text(c10(noon, 'call-sloane'))).toContain('I don’t make offers on open lines.');
+  expect(text(c10(maya, 'door-back'))).toContain('while you don’t');
+});
+
+it('asks where she keeps the wall once it is built, and records it', () => {
+  const wall = walk(start(), ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay']);
+  const built = c10(wall, 'wall-build');
+  expect(built.phase).toBe('wall');
+  expect(ids(built)).toEqual(['wall-close', 'wall-photo', 'wall-open']);
+  expect(text(built)).toContain('anyone who opens this door can see it too');
+  for (const [id, kept] of [['wall-close', 'close'], ['wall-photo', 'photo'], ['wall-open', 'open']] as const) {
+    const next = c10(built, id);
+    expect([next.phase, next.choices['c10.wall-kept']]).toEqual(['order', kept]);
+  }
+  expect(text(c10(built, 'wall-photo'))).toContain('in the order of the holes');
+});
+
+it('plays Maya’s refusal scene at the counter, and the aftermath of every answer', () => {
+  const close = { 'case.strength': 'strong', 'c6.maya': 'restored', 'c6.maya-knows': 'in-person' };
+  const refused = answer(toOrder(start(close)), 'order-refuse');
+  expect(text(refused)).toContain('holding a cardboard box with a cactus in it');
+  expect(text(refused)).toContain('It hasn’t felt like a few weeks for a while.');
+  expect(ids(refused)).toEqual(['maya-truth', 'maya-part', 'maya-nothing']);
+  // At the counter she pays and leaves; nobody hangs up a phone.
+  const nothing = c10(refused, 'maya-nothing');
+  expect(text(nothing)).toContain('She pays for both bowls');
+  expect(text(nothing)).not.toContain('hangs up');
+
+  const complied = answer(toOrder(start(close)), 'order-comply');
+  expect(text(complied)).toContain('Clearance renewed EARLY.');
+  expect(ids(complied)).toEqual(['wall-move', 'wall-card']);
+  expect(c10(complied, 'wall-card').choices['c10.reply']).toBe('card');
+  expect(text(c10(complied, 'wall-card'))).toContain('She has given me a receipt.');
+
+  const countered = answer(toOrder(start(close)), 'order-counter');
+  expect(text(countered)).toContain('like a lover you do not trust');
+  const done = walk(c10(countered, 'reply-silence'), ['invite-accept', 'green-black']);
+  expect(text(done)).toContain('They are all so like you.');
+  expect(text(done)).toContain('You could live in an inch.');
 });

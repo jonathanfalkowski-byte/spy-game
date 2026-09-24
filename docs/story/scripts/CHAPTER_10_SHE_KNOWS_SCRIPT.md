@@ -85,9 +85,15 @@ Set piece length (2026-09-24): **~1.7–2.2k words** on one path, from dawn to t
 
 ## `claimed` — Old Friends
 
-The society-page photograph (Lindqvist or bakery); caption *Old friends. Evelynn Vale and Celeste
+Noon, the newsagent's queue: a stranger's phone, then the society-page photograph (Lindqvist or
+bakery), taken from a table inside the room; caption *Old friends. Evelynn Vale and Celeste
 Laurent, reunited.*; the article ("rarely photographed and never interviewed"; the two women "go back
-years"). Then the calls.
+years"); the comments ("Nobody you will ever meet."). Then the phone, four numbers taking turns.
+
+Each call is a short scene (set pieces, 2026-09-24): Sloane ("I don't make offers on open lines"),
+Maya from the stairwell (the break-room joke, "Adrian's friend from the magazine"), Theo (two
+photographs of Laurent in twenty years; "People like her are never photographed by accident"),
+Odile from a fitting ("When somebody pays in advance, it is never for the face").
 
 **Who you answer first** (`c10.first-call`); the rest go to voicemail:
 - **call-sloane** (always) · "Laurent is not a friend of this directorate." (+ "Or is this another
@@ -103,15 +109,21 @@ years"). Then the calls.
 
 ## `wall` — The Wall
 
-The mirror comes off the wardrobe door; index cards, red thread, pins.
+The mirror comes off the wardrobe door; Adrian did this once before, on a kitchen door; index
+cards, red thread, pins.
 
-→ **wall-build** · Put it all on the wall → `order`. Sets `c10.wall = built` (the leverage board
-opens in Records) and fixes `c10.target`. Lists one card per holder from
-`src/content/leverage.ts` and her own column.
+→ **wall-build** · Put it all on the wall (stays in `wall`). Sets `c10.wall = built` (the leverage
+board opens in Records) and fixes `c10.target`. Celeste's card first, at eye height; one card per
+holder from `src/content/leverage.ts`; her own column; the thread runs out and she finishes in black.
+
+**Where she keeps it** (`c10.wall-kept`, set pieces; Chapter 11 reads it) → `order`:
+**wall-close** (close the wardrobe on it) · **wall-photo** (photograph it, take it down each morning,
+the pins stay in the wood) · **wall-open** (leave it facing the bed: let them read it).
 
 ## `order` — One Small Thing
 
-The courier at 23:00; a black phone with one contact, **C.**: *"Maya Reyes. Compliance, level three.
+The courier at 23:00 (gone before the concierge rings; the envelope squared to the door frame); a
+black phone with one contact, **C.**, that lights in her hand: *"Maya Reyes. Compliance, level three.
 Her clearance renews in nine days…"* Then the ask, by target (`target10`):
 
 | Target | When | The ask | Counterplay needs |
@@ -166,13 +178,18 @@ The answers:
 
 ## `answer` — What It Cost
 
-- **refused:** Maya calls ("Somebody pulled my clearance this morning") or, if she is not close
-  (`own.maya-distance = away` or not restored), Daniel tells you at noon.
+- **refused:** Maya calls ("Somebody pulled my clearance this morning"; the pavement, the cactus),
+  then the counter at one, as a set piece: the lanyard with nothing on the end of it, the guard who
+  does the crossword with her at Christmas, the review room without a window and its three
+  questions, "It hasn't felt like a few weeks for a while." If she is not close
+  (`own.maya-distance = away` or not restored), Daniel rings at noon ("She's Maya.").
   Replies (`c10.maya-told`): **maya-truth** (if Maya knows who you are) · **maya-part** ·
   **maya-nothing**; or, when she kept you out, **maya-call** · **maya-leave**.
-- **complied:** the renewal comes early; a second orchid, "Lovely."; the betrayed partner doesn't
-  know yet. → **wall-move** · Move Celeste's card closer to the middle.
-- **countered:** the renewal comes on the ninth day; C.: "You edit well, darling. So does he." /
+- **complied:** the renewal comes early (Maya's baffled message, if she is back); a second orchid,
+  "Lovely."; the betrayed partner doesn't know yet. → **wall-move** · Move Celeste's card closer to
+  the middle, or **wall-card** · pin "Lovely." under her name, a receipt (`c10.reply = move | card`).
+- **countered:** the renewal comes on the ninth day; eight days of silence from the black phone;
+  then, at midnight, C.: "You edit well, darling. So does he." /
   "Julian always did draft beautiful fictions." / "Such a tidy hand. Such a tired one."
   Replies (`c10.reply`): **reply-silence** · **reply-orchid** ("Breakfast was lovely. — E.").
 
@@ -184,7 +201,9 @@ The card: *"The first Thursday. The Vesper Gallery, eight o'clock. Some of our c
 meet you. Wear the green. Bring nobody. — C."* (Ch11's field op.) If `act3.board-day` is known:
 the board's own day.
 
-- **invite-accept** ("I know.") / **invite-wait** (`c10.invitation = accepted | pending`).
+- The card arrives by the concierge's hand; the Vesper Gallery, black glass, one painting, never
+  for sale. **invite-accept** ("I know." / "They are all so like you.") / **invite-wait** (a car is
+  booked in her name anyway) (`c10.invitation = accepted | pending`).
 - **Wear the green** (`c10.green`, pass 2; Chapter 11 reads it): **green-own** (the gala green, if
   `c8.gala`) · **green-odile** (if the campaign: `own.odile = owed`) · **green-buy** ($150) ·
   **green-black** (refuse the colour).
@@ -197,7 +216,9 @@ the board's own day.
 
 ## `complete`
 
-(After a chosen night: *The orchid has opened another flower in the night.*)
+(After a chosen night: *The orchid has opened another flower in the night.* Otherwise, the orchid
+in the street light.) Then the wall, by answer: Maya pinned back inside the thread; the tighter
+thread; the inch of bare wood.
 
 > t: She knows my name. Both of them. And for the first time since the clinic I know exactly what
 > I am being asked to be. That, at least, is something to push against.
@@ -225,3 +246,8 @@ Pass 1 builds every scene, branch and consequence in the design. Measured on ful
 about Evelyn, Celeste's question back, the article, the doorstep, a moment inside every job, fuller
 aftermaths and the green: **~2.3–2.7k words** on full paths. Deepening passes follow (the breakfast conversation,
 the job scenes and the calls are the biggest lifts), as with Chapters 7–9.
+
+Set pieces (2026-09-24): the breakfast, then every job, then the remaining scenes (the photograph and
+the calls, the doorstep, the wall and where she keeps it, the courier, Maya's counter scene and every
+aftermath, the invitation, the evenings, the close). Measured on the golden paths: **~4.6–4.8k
+words**; engaged paths with a second job moment and an evening run longer.
