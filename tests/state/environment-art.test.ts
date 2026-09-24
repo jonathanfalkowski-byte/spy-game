@@ -16,7 +16,7 @@ it('shows fitting masters on the day-chapter scenes the owner reported', () => {
   const home = day(departure, 'release.home');
   const plan = day(home, 'release.evening');
   const cases: [GameState, string, string][] = [
-    [departure, 'release.departure', 'eve-bg-sloane-office-continuity-v2'],
+    [departure, 'release.departure', 'eve-bg-sloane-office-continuity-noir-v2-production'],
     [home, 'release.home', 'opening-apartment-master-v3-production'],
     [plan, 'evening.plan', 'opening-apartment-master-v3-production'],
   ];

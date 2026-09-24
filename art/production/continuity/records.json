@@ -26,11 +26,11 @@
       "editSources": [
         "eve-bg-wardrobe-v1"
       ],
-      "notes": "Bounded continuity correction; Three distinct garment options: one suit, one long gown and one plain charcoal cocktail dress; tactical harness removed. Room remains empty; mirror, vanity, tiles and warm semi-cel illustration preserve the original visual language."
+      "notes": "Bounded continuity correction; Three distinct garment options: one suit, one long gown and one plain charcoal cocktail dress; tactical harness removed. Room remains empty; mirror, vanity, tiles and warm semi-cel illustration preserve the original visual language. Superseded 2026-09-24 by eve-bg-wardrobe-continuity-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-wardrobe-continuity-v2.png",
     "sha256": "c93d718ef20cdf4d01c334a907d7eff12020616b5ed71af5582a325a97be303a",
     "generation": {
@@ -86,6 +86,55 @@
       "reviewer": "Project owner via explicitly delegated passing-image review",
       "date": "2026-09-16",
       "source": "Owner instruction 2026-09-16: approve exact 4-credit batch, review against Art Bible, and promote only images that pass. Codex visually inspected full-resolution results; no canonical-reference promotion."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "mood": "Sophisticated adult espionage, restrained psychological tension",
+      "continuityRequirements": [
+        "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+        "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+      ],
+      "assetId": "eve-bg-wardrobe-continuity-noir-v2-production",
+      "assetType": "background",
+      "sceneId": "clinic.wardrobe",
+      "locationId": "wardrobe",
+      "environment": "Preparation room with full-length mirror, vanity and exactly one tailored suit, one long black gown and one plain charcoal cocktail dress; no tactical gear.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Reusable staged location background",
+      "editSources": [
+        "eve-bg-wardrobe-continuity-v2"
+      ],
+      "notes": "Dark noir relight of eve-bg-wardrobe-continuity-v2. ZenCreator image_editor SEEDREAM_5 task 30ef95d0-ba81-4763-a1d5-38e73880e235, provider asset a8bce80c-b906-4ed6-b5b3-8947edde7bce; image 1 = b37659b4-8195-47c2-976b-8fba0ebbae90 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 43.1, near-black 74.2%. Layout and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-wardrobe-continuity-noir-v2-production.png",
+    "sha256": "038ebaa9a2995069b5d27afd9f254b9ecf31cd0ca2477fffa224bca7141a1bef",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 43.1 <= 85, near-black 74.2% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
     }
   },
   {
@@ -212,12 +261,12 @@
       "editSources": [
         "eve-bg-sloane-office-v1"
       ],
-      "notes": "Bounded continuity correction; Daytime cloudy skyline resolves the midday mismatch. Desk, chairs, window divisions, pale stone and dark wood retained; graphic directional shadows are permitted by Art Bible lighting guidance.",
+      "notes": "Bounded continuity correction; Daytime cloudy skyline resolves the midday mismatch. Desk, chairs, window divisions, pale stone and dark wood retained; graphic directional shadows are permitted by Art Bible lighting guidance. Superseded 2026-09-24 by eve-bg-sloane-office-continuity-noir-v2-production (dark noir relight).",
       "timeOfDay": "Overcast midday"
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-sloane-office-continuity-v2.png",
     "sha256": "cef805860650cbc6c0ca4165c779cc4c6e227e8f25ec37d997aafa4771629668",
     "generation": {
@@ -278,6 +327,56 @@
   {
     "spec": {
       "styleBibleVersion": "1.0",
+      "canonicalReferences": [
+        "evelynn-helix-gala-v1"
+      ],
+      "mood": "Sophisticated adult espionage, restrained psychological tension",
+      "continuityRequirements": [
+        "Preserve EVE polished 2D linework and semi-cel shading; no photographic rendering.",
+        "Provisional staging artwork does not establish story facts, branch outcomes, consent, identity acceptance or NPC knowledge."
+      ],
+      "assetId": "eve-bg-sloane-office-continuity-noir-v2-production",
+      "assetType": "background",
+      "sceneId": "sloane.intro",
+      "locationId": "sloane-office",
+      "environment": "High corporate executive office overlooking city, dark wood, pale stone, spare desk and empty visitor chair, water glass. Beautiful but uncomfortable; no family photos.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 empty location establishing shot with readable spatial layout",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "Reusable staged location background",
+      "editSources": [
+        "eve-bg-sloane-office-continuity-v2"
+      ],
+      "notes": "Dark noir relight of eve-bg-sloane-office-continuity-v2. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 446c3e2a-b87d-4228-9adb-553d97b198fb; image 1 = 70f035de-c2fd-45b1-98a2-4f604e3ddf87 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 35.3, near-black 74.5%. Layout and props unchanged; lighting only.",
+      "timeOfDay": "Overcast midday"
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-sloane-office-continuity-noir-v2-production.png",
+    "sha256": "27287753d547f4a82e0f477cfd8350ed4eff7a27af63d78ae48cea1d2ef10ba1",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 35.3 <= 85, near-black 74.5% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
       "assetId": "car-rain-window-v1-production",
       "assetType": "background",
       "sceneId": "mission.car",
@@ -295,11 +394,11 @@
         "eve-bg-car-v1",
         "car-rain-window-v1-candidate"
       ],
-      "notes": "Zero-credit deterministic 960x540 crop enlarged to 1920x1080; source SHA-256 8c7ea067b2dadf76973e13ed5088e265e22414ff540a9ed5bbe639a2e02cf4fd; candidate SHA-256 b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3."
+      "notes": "Zero-credit deterministic 960x540 crop enlarged to 1920x1080; source SHA-256 8c7ea067b2dadf76973e13ed5088e265e22414ff540a9ed5bbe639a2e02cf4fd; candidate SHA-256 b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3. Superseded 2026-09-24 by car-rain-window-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/car-rain-window-v1-production.png",
     "sha256": "b9e203071ce7d24cff47f92b1bdb51c9f789bd256dd870266883ebd4943f0fa3",
     "review": {
@@ -314,6 +413,47 @@
       "reviewer": "Delegated design review under owner-approved full-game coverage plan",
       "date": "2026-09-22",
       "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "car-rain-window-noir-v2-production",
+      "assetType": "background",
+      "sceneId": "mission.car",
+      "locationId": "car",
+      "environment": "Rainy twilight car window POV with coherent vehicle frame and city lights.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.car rainy twilight window POV HOLD; crop excludes empty rear bench and shows no characters or action.",
+      "editSources": [
+        "car-rain-window-v1-production"
+      ],
+      "notes": "Dark noir relight of car-rain-window-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 95b604e0-fdde-480a-a13d-45c707f4b04b; image 1 = 2fcb6ed5-219e-40b9-9360-1dc37a3f014d (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.1, near-black 80.0%. Layout and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/car-rain-window-noir-v2-production.png",
+    "sha256": "9667383b29980f7464fefed837feb9d0a2dffd08a6a092f7281b68216edc59fc",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 27.1 <= 85, near-black 80.0% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
     }
   },
   {
@@ -335,11 +475,11 @@
       "editSources": [
         "eve-bg-glass-entrance-v1"
       ],
-      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied."
+      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied. Superseded 2026-09-24 by eve-bg-glass-entrance-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-glass-entrance-v1-production.png",
     "sha256": "1432871fd4c0ca687d6aecbbaea33bcfed46c8e3632530f6e3ee64a558b688e9",
     "review": {
@@ -354,6 +494,47 @@
       "reviewer": "Delegated design review under owner-approved full-game coverage plan",
       "date": "2026-09-22",
       "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-bg-glass-entrance-noir-v2-production",
+      "assetType": "background",
+      "sceneId": "mission.arrival",
+      "locationId": "glass-entrance",
+      "environment": "Luxury glass canopy, rain, polished stone and revolving-door entrance; empty.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.arrival environment establishing view; people remain off-frame and no attendance/branch outcome is implied.",
+      "editSources": [
+        "eve-bg-glass-entrance-v1-production"
+      ],
+      "notes": "Dark noir relight of eve-bg-glass-entrance-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset b2f848cf-dc94-4568-8f33-b31bd67c9f0f; image 1 = 4d9b3921-3dd7-4619-b200-9820528e3ac4 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 45.3, near-black 72.3%. Layout and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-glass-entrance-noir-v2-production.png",
+    "sha256": "51054303b4f061c5658593b71c0103b01003149ebd0c0650c8d35594bdd73ce5",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 45.3 <= 85, near-black 72.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
     }
   },
   {
@@ -375,11 +556,11 @@
       "editSources": [
         "eve-bg-glass-lobby-v1"
       ],
-      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied."
+      "notes": "Owner-approved exact production copy of the staged PASS environment; empty environment only, no participant or branch outcome implied. Superseded 2026-09-24 by eve-bg-glass-lobby-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/continuity/eve-bg-glass-lobby-v1-production.png",
     "sha256": "6c926b2d4c89dd84e45daf6d503442c297f20c43d9058e62ffcc7ee9623d0b30",
     "review": {
@@ -394,6 +575,47 @@
       "reviewer": "Delegated design review under owner-approved full-game coverage plan",
       "date": "2026-09-22",
       "source": "Explicit owner approval for exact production copy and shot-scoped runtime binding."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "eve-bg-glass-lobby-noir-v2-production",
+      "assetType": "background",
+      "sceneId": "mission.reception",
+      "locationId": "glass-lobby",
+      "environment": "Low stone invitation desk, coat-check alcove and dark elevator doors; empty.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "cameraFraming": "Wide 16:9 environment establishing frame; no story participants or reflections.",
+      "cameraAngle": "Eye-level cinematic wide",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "intendedUse": "ONLY mission.reception environment insert before/around access handling; staff and protagonist remain off-frame and no completed scan is claimed.",
+      "editSources": [
+        "eve-bg-glass-lobby-v1-production"
+      ],
+      "notes": "Dark noir relight of eve-bg-glass-lobby-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 52198d35-41a3-4240-96d0-0a16a9225307; image 1 = 11c75d0c-f250-4c9b-870c-0ccbbf2f5757 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 27.7, near-black 90.3%. Layout and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/continuity/eve-bg-glass-lobby-noir-v2-production.png",
+    "sha256": "f6a1928f34a1c914387862ecc026358e53d0706cad63be4b151c6fa45113ceee",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 27.7 <= 85, near-black 90.3% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
     }
   },
   {

@@ -354,11 +354,11 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'clinic-preparation-suite',
   },
   'mission.car': {
-    assetId: 'car-rain-window-v1-production',
+    assetId: 'car-rain-window-noir-v2-production',
     location: 'car',
   },
   'mission.arrival': {
-    assetId: 'eve-bg-glass-entrance-v1-production',
+    assetId: 'eve-bg-glass-entrance-noir-v2-production',
     location: 'glass-entrance',
   },
   'mission.reception': {
@@ -386,11 +386,11 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'chapter4-river-bench',
   },
   'chapter4.resource.shot01': {
-    assetId: 'chapter4-public-records-v1-production',
+    assetId: 'chapter4-public-records-noir-v2-production',
     location: 'municipal-records-reading-room',
   },
   'chapter4.assignment.shot01': {
-    assetId: 'chapter4-assignment-index-v1-production',
+    assetId: 'chapter4-assignment-index-noir-v2-production',
     location: 'municipal-records-reading-room',
   },
   'c05.s03.shot01-no-purchase': {

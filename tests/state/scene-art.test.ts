@@ -232,12 +232,12 @@ it('binds only the approved environment holds for the mission car and Glass Hous
   expect(car.scene).toBe('mission');
   expect(car.phase).toBe('car');
   expect(resolveSceneArt(car).shot?.shotId).toBe('mission.car');
-  expect(resolveSceneArt(car).art?.asset.id).toBe('car-rain-window-v1-production');
+  expect(resolveSceneArt(car).art?.asset.id).toBe('car-rain-window-noir-v2-production');
   expect(resolveSceneArt(car).issues).toEqual([]);
 
   const arrival = mission(car, 'car.arrive');
   expect(resolveSceneArt(arrival).shot?.shotId).toBe('mission.arrival');
-  expect(resolveSceneArt(arrival).art?.asset.id).toBe('eve-bg-glass-entrance-v1-production');
+  expect(resolveSceneArt(arrival).art?.asset.id).toBe('eve-bg-glass-entrance-noir-v2-production');
   expect(resolveSceneArt(arrival).issues).toEqual([]);
 
   const reception = mission(arrival, 'arrival.enter');
@@ -295,12 +295,12 @@ it('binds the first Chapter 4 river and public-records cuts to exact nodes', () 
   }
   const resource = choose4(resourceSource, 'next-day');
   expect(resolveSceneArt(resource).shot?.shotId).toBe('chapter4.resource.shot01');
-  expect(resolveSceneArt(resource).art?.asset.id).toBe('chapter4-public-records-v1-production');
+  expect(resolveSceneArt(resource).art?.asset.id).toBe('chapter4-public-records-noir-v2-production');
   expect(resolveSceneArt(resource).issues).toEqual([]);
 
   const assignment = choose4(resource, 'reader-pass');
   expect(resolveSceneArt(assignment).shot?.shotId).toBe('chapter4.assignment.shot01');
-  expect(resolveSceneArt(assignment).art?.asset.id).toBe('chapter4-assignment-index-v1-production');
+  expect(resolveSceneArt(assignment).art?.asset.id).toBe('chapter4-assignment-index-noir-v2-production');
   expect(resolveSceneArt(assignment).issues).toEqual([]);
 });
 

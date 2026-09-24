@@ -4010,11 +4010,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by chapter4-public-records-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/chapter4-public-records-v1-production.png",
     "sha256": "58b85725cccb9dc7ee4480c647adf3d5bc880e6bdbb2d42973979edfc0150926",
     "review": {
@@ -4033,6 +4033,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-public-records-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "municipal-records-reading-room",
+      "sceneId": "chapter4.resource",
+      "environment": "The next-morning public records room is ready before any reader-pass or paid-access choice; the folder and registration form remain unfilled.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Dark low-key noir night, matched to chapter4-assignment-index-noir-v2-production (same room, same camera).",
+      "intendedUse": "ONLY chapter4.resource.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-public-records-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of chapter4-public-records-v1-production. ZenCreator image_editor SEEDREAM_5 task 3658ea59-c820-47f0-95b0-1d65715085eb, provider asset 1918f256-6636-4dc4-842a-d973aa8eaab7; image 1 = cdedf61c-ffd7-419d-8643-1c5979090254 (the previous production file), lighting reference 635ef15d-94b4-4b87-8191-470e695cae79 (the approved night assignment index). Luminance mean 54.8, near-black 65.7%. Composition, hand and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-public-records-noir-v2-production.png",
+    "sha256": "51fa69c5f167287e73a444afaec0569356cbfdc7caa4a0b82683dd79432b33c1",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Matches the next shot (assignment index) in lighting and geography.",
+        "Luminance gate passed: mean 54.8 <= 85, near-black 65.7% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved relighting the reading-room pair; pick B chosen by EVE Design at the owner's request."
     }
   },
   {
@@ -4057,11 +4101,11 @@
         "width": 1672,
         "height": 941
       },
-      "notes": "Owner-reviewed exact-state candidate; staged source preserved."
+      "notes": "Owner-reviewed exact-state candidate; staged source preserved. Superseded 2026-09-24 by chapter4-assignment-index-noir-v2-production (dark noir relight)."
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/chapter4-assignment-index-v1-production.png",
     "sha256": "aef15e39d3c1433162e0ef8ebf63a924b0914c1916bf9b040c386343ff38168f",
     "review": {
@@ -4080,6 +4124,50 @@
       "reviewer": "Owner-authorized exact-state visual review",
       "date": "2026-09-22",
       "source": "Staged Chapter 4 residual candidate reviewed against current node and branch contract."
+    }
+  },
+  {
+    "spec": {
+      "styleBibleVersion": "1.0",
+      "assetId": "chapter4-assignment-index-noir-v2-production",
+      "assetType": "scene-cg",
+      "locationId": "municipal-records-reading-room",
+      "sceneId": "chapter4.assignment",
+      "environment": "The public PA-17 bundle is open before the private audit or inquiry choices; redactions preserve the authored evidence boundary.",
+      "cameraFraming": "16:9 exact-state Chapter 4 composition.",
+      "lighting": "Dark low-key noir: one warm practical against cold window/ambient light (style lock, 2026-09-24).",
+      "intendedUse": "ONLY chapter4.assignment.shot01; no generic Chapter 4, evidence or contact fallback.",
+      "continuityRequirements": [
+        "Approval is exact scene/state only.",
+        "Do not reveal branch-specific contact, result, culprit, access, or payment before authored choice."
+      ],
+      "editSources": [
+        "chapter4-assignment-index-v1-production"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Dark noir relight of chapter4-assignment-index-v1-production. ZenCreator image_editor SEEDREAM_5 task d1eda09f-c967-4ad4-898b-61394bd5c4a3, provider asset 635ef15d-94b4-4b87-8191-470e695cae79; image 1 = 410dc9bf-f9ac-4c8a-8dbe-b43429441344 (the previous production file), lighting anchor de3c7bbd-baaf-43fc-b3d9-38e658edcb57 (opening-apartment-master-v3). Luminance mean 55.2, near-black 64.8%. Layout and props unchanged; lighting only."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/chapter4-assignment-index-noir-v2-production.png",
+    "sha256": "4e25687dbc1663247df5e35128f51ff092f923eb37071016ea63aff56325e3f2",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Design full-resolution QA + luminance gate; project owner",
+      "date": "2026-09-24",
+      "reasons": [
+        "Layout, props and staging match the previous production file; lighting only.",
+        "Luminance gate passed: mean 55.2 <= 85, near-black 64.8% >= 40."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-24",
+      "source": "Owner approved the Pass A dark relight picks (dressing room C) on 2026-09-24."
     }
   },
   {
