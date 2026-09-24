@@ -289,3 +289,8 @@ All §9 recommendations confirmed by the owner:
    map.
 
 Next: Chapter 9 script → Phase-0 build plan for EVE Code.
+
+> **Timing superseded (owner, 2026-09-24):** the game targets 20–25 hours, so this endgame is
+> **Act IV (~Ch16–18)**, not Chapter 10. The Celeste reveal (Ch9) is the **midpoint**, and Act III
+> (~Ch10–15, the counteroffensive) comes between. All canon above stands; only the timing and
+> item 6's build order change. See [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
