@@ -112,6 +112,7 @@ it('plays a real own-power Chapter 8 to complete, and the save authenticates', (
   s = c8(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter8.complete');
   expect(chapter8Choices(s)).toEqual([]);
+  expect(text(s)).toContain('Tomorrow you go looking for the name.');
   expect(replay(s.ledger, 19)).toEqual(s);
   expect(decodeSave(encodeSave(s))).toEqual(s);
   for (const node of ['chapter8.cost', 'chapter8.leverage', 'chapter8.advance', 'chapter8.close', 'chapter8.complete'])

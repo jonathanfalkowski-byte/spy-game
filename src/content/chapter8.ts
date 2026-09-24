@@ -108,6 +108,8 @@ export function chapter8Blocks(s: GameState): Block[] {
   if (s.phase === 'cost') return costBlocks(s);
   if (s.phase === 'advance') return advanceBlocks(s);
   if (s.phase === 'close') return closeBlocks(s);
+  if (s.phase === 'complete')
+    return [p('You lie awake with the shape of it — a company that makes people and sells them, a board above Sloane, one face on it you are almost sure you know. Tomorrow you go looking for the name. Tonight you hold what it cost to get this far, and whose door you had to walk through, or didn’t.')];
   return [];
 }
 
