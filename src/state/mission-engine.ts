@@ -1,6 +1,7 @@
 import { missionPresentation } from '../content/mission-presentation';
 import type { GameState } from './schema';
 import type { Lead, MissionState } from './mission-schema';
+import { SLOANE_DOUBT_BELIEF, sloaneDoubts } from '../content/sloane-standing';
 import { availableMissionChoices, missionBlocks, findings, sourceNames } from '../content/mission';
 import {
   paragraph as p,
@@ -519,6 +520,8 @@ export function applyMissionChoice(state: GameState, s: GameState, id: string): 
       'Live earpiece assessment',
     );
     // Private lead findings are not automatically transmitted with the name.
+    if (sloaneDoubts(s))
+      know('sloane', SLOANE_DOUBT_BELIEF, 'She heard the name before any finding; the right answer on a guess', true);
   }
   if (id.startsWith('method.')) m.method = value as MissionState['method'];
   if (id === 'exchange.follow') {

@@ -80,7 +80,6 @@ Already fine on screen, no change: the Evelyn/Evelynn spelling (the display show
 throughout; the review read raw transcripts); "the the" (fixed at display earlier).
 
 **Deferred:**
-- The Benton cost is Sloane's words only; a trust or proof penalty would need state later chapters read.
 - Chapter 6 "She thanks the stranger" friction (gated chapter, fix in place later).
 
 Tools: `EVE_DUMP=<dir> npx vitest run tests/tools/transcript-dump.test.ts` writes revision-19 and 20
@@ -99,3 +98,16 @@ revision-20 game; `tests/fixtures/rev20-golden-ledgers.json` freezes them with s
 only for a deliberate change: `EVE_CAPTURE_REV20=1 npx vitest run tests/tools/capture-rev20-golden.test.ts`).
 `tests/state/revision20.test.ts` proves the same decisions reach the same consequences (flags, money,
 relationships, knowledge; ignoring event-numbered records) at revisions 19 and 20 across Chapters 1–9.
+
+**Benton trust penalty done** (follow-up commit). `src/content/sloane-standing.ts`:
+`sloaneDoubts(s)` is true at revision 20 when Benton was named with nothing that placed him in the
+room (`mission.source === 'benton'`, `mission.reasoning === 'unsupported'`), derived from the mission
+record already in every save rather than a new score. Effects:
+- Sloane records a belief at the assessment ("Evelynn named Benton before anything placed him in the
+  room"), and the debrief says she will remember it.
+- Chapter 6 route tally: Institutional (Sloane's lane) loses one seed. None of the golden routes is
+  close enough for this to change its lane.
+- Chapter 6 "What Sloane can see": she raises the guess ("I do not build on luck").
+- Chapter 8 Sloane's cover comes with a condition: no more guessing.
+A supported name (a guest, service or security finding) avoids all of it. Tests:
+`tests/state/sloane-standing.test.ts`; the revision 19/20 equivalence projection allows only that belief.

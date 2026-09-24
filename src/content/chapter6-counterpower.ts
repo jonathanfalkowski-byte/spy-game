@@ -4,6 +4,7 @@
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4, get5 } from './chapter5-model';
+import { sloaneDoubts } from './sloane-standing';
 import { type C6Choice, type ExitArrangement6, endPosition6, get6, note6, offer6, set6 } from './chapter6-model';
 
 export const routeLanes6 = ['institutional', 'outside', 'executive', 'own-power'] as const;
@@ -114,6 +115,8 @@ export function deriveRoute6(s: GameState): { lane: RouteLane6; totals: RouteTot
   if (get5(s, 'message-sloane')) totals.institutional += 2;
   if (service === 'axiom') totals.institutional += 1;
   if (get6(s, 'photo-custody') === 'phone' || get6(s, 'counter-arranged') === 'monitored') totals.institutional += 1;
+  // Revision 20: Sloane does not back an officer who guessed at the Glass House.
+  if (sloaneDoubts(s)) totals.institutional -= 1;
   // Outside seeds.
   if (get6(s, 'rook-proof') === 'supported') totals.outside += 2;
   if (get6(s, 'oracle-seen') === 'yes') totals.outside += 1;

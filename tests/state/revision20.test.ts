@@ -7,6 +7,7 @@ import { replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { hasRevision20 } from '../../src/content/revision';
 import { rev19Routes, toRevision20 } from '../rev20-ledger';
+import { SLOANE_DOUBT_BELIEF } from '../../src/content/sloane-standing';
 
 beforeEach(() => {
   for (const n of [6, 7, 8, 9]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
@@ -20,11 +21,14 @@ const positional = /^c\d+\.(rec|event|layer)\.|sent-\d+-/;
 const drop = (k: string) => aster.test(k) || positional.test(k) || /^c5\.(rec|event|layer)\.(negotiation-|sent-)/.test(k);
 
 /** What the rest of the game reads from a save: flags, money, relationships, knowledge; not the
- * transcript, the ledger or event numbers. */
+ * transcript, the ledger or event numbers. Chapter 6 stores only the lane, so the tally penalty shows
+ * here only if it flips a lane (no golden route is close). */
 function consequences(s: GameState) {
   const { history: _h, ledger: _l, revision: _r, contentRevision: _c, ...rest } = s;
   const choices = Object.fromEntries(Object.entries(s.choices).filter(([k]) => !drop(k)));
   const npcs = JSON.parse(JSON.stringify(s.npcs, (k, v) => (k === 'event' ? undefined : v)));
+  // The one deliberate revision-20 consequence: Sloane remembers a guessed Benton (sloane-standing.ts).
+  npcs.sloane.beliefs = npcs.sloane.beliefs.filter((b: { key: string }) => b.key !== SLOANE_DOUBT_BELIEF);
   const keys = (xs: string[]) => xs.filter((k) => !drop(k));
   return { ...rest, choices, npcs, facts: keys(s.facts), claims: keys(s.claims), knowledge: keys(s.knowledge) };
 }

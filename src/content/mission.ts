@@ -10,7 +10,7 @@ import {
   type NodeId,
 } from './schema';
 import type { GameState } from '../state/schema';
-import { hasRevision20 } from './revision';
+import { sloaneDoubts } from './sloane-standing';
 import type { Lead } from '../state/mission-schema';
 
 export const missionSections = [
@@ -1074,7 +1074,7 @@ function escapeScene(s: GameState): Block[] {
 export function debriefEvidence(s: GameState): string {
   const m = s.mission;
   const opening =
-    m.source === 'benton' && m.reasoning === 'unsupported' && hasRevision20(s.contentRevision)
+    sloaneDoubts(s)
       ? 'You named Benton on a guess. It was the right guess. I cannot take a guess to the board, and I will remember that you made one. '
       : m.source === 'benton'
       ? 'You named Benton and reached the gallery in time. '

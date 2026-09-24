@@ -9,6 +9,7 @@ import { paragraph as p, speech as q, thought as t, type Block, type NodeId } fr
 import { get5, julian5 } from './chapter5-model';
 import { get6 } from './chapter6-model';
 import { get7, getKey, setKey } from './chapter7-model';
+import { sloaneDoubts } from './sloane-standing';
 
 export type C8Scene = { title: string; place: string; blocks: Block[] };
 export type C8Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -96,6 +97,9 @@ function costBlocks(s: GameState): Block[] {
       ? [
           p('Sloane does not send a message. When you come down the next morning her car is at the kerb, engine running, the rear window lowered two inches.'),
           q('Sloane', 'You have been asking who authorized reusing her. I know, because you asked it where I could hear. I am not going to tell you to stop. I am going to tell you that you are about to walk into something with no cover, and that I could give you cover, and that you should think hard about why I would offer. Get in when you are ready. Not today, if you like.'),
+          ...(sloaneDoubts(s)
+            ? [q('Sloane', 'One condition. At the Glass House you gave me a name on a guess, and it happened to be right. If you get in this car, you do not guess again. You bring me what you have, or you bring me nothing.')]
+            : []),
           p('The window goes up. The car pulls away. She has left you her card on the step, face down, as if it might be read by the wrong person.'),
           t('Help, or a leash held out as help. From what I found last week, Sloane may be as much inside this as I am — which makes the offer either the truest thing anyone has said to me, or the most useful lie. I cannot tell yet. That is the trap of it.'),
         ]

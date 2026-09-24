@@ -5,6 +5,7 @@ import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get5, julian5, old } from './chapter5-model';
 import { get4 } from './chapter4-model';
+import { sloaneDoubts } from './sloane-standing';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { type C6Choice, type ExitArrangement6, get6, note6, offer6, set6 } from './chapter6-model';
 
@@ -254,6 +255,11 @@ function sloaneOpening(s: GameState): Block[] {
         : 'I have a line saying you met Ms Reyes off-hours.';
   return [
     q('Sloane', seen + ' I am not asking you to explain any of it. I am telling you I can see the parts you let me see, and I would like you to remember that before you decide I can see all of it.'),
+    ...(sloaneDoubts(s)
+      ? [
+          q('Sloane', 'And one thing you did not let me see, because there was nothing to see. At the Glass House you gave me Benton’s name before a single thing had put him in the room. You were right. I have been waiting since to learn whether that was judgment or luck. I do not build on luck.'),
+        ]
+      : []),
     t('She is right about the risk and wrong about the reason, and she cannot tell the difference from where she sits. That gap is the only privacy I have.'),
   ];
 }
