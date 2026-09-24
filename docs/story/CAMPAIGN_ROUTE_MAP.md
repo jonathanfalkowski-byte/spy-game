@@ -49,12 +49,12 @@ the families' distinctions.
 | **Institutional (Sloane)** | Sloane Operative | Sloane ties (`c5.message-sloane`, `service=axiom`), institutional exit-arrangement, and a Ch6 `challenge-Sloane` or `enforce` action that engages rather than breaks the arrangement | Operational infrastructure, formal authority, real backup | Monitoring, scope disputes, loyalty expectations | Refuse a directive, leak a scope breach, or walk with what you know |
 | **Outside intelligence (Rook)** | (Rook alignment; free-agent-adjacent) | `c6.rook-proof = supported` + `oracle-seen`, and a Ch6 `trade/expose the proof` action | Actionable truth others cannot get | Dependence on a source who chooses which truths arrive; provenance risk | Verify independently, or cut the source |
 | **Executive (Julian/Helix)** | Corporate Predator, Executive Companion | Julian professional + personal state, `julian-workroom` arrangement, and a Ch6 `enforce a term` or knowing-deepen action | Access to decisions, status, genuine useful help | Conflicts between professional terms, private care and influence | Enforce the exact term, self-fund the benefit, or exit with rights intact |
-| **Own-power (public / independent)** | Free Agent, Celebrity Power | Self-funding, public artifacts (`c5.published`), refusal of provider extensions, and a Ch6 `own-hand` end-position | Control of evidence, audience as leverage, selective alliances | Less money, slower access, personal exposure | Pay/wait, restrict use, correct a claim, or use attention to protect someone |
+| **Celebrity (own-power)** | Celebrity Power, Free Agent | Self-funding, public artifacts (`c5.published`), refusal of provider extensions, and a Ch6 `own-hand` end-position | Control of evidence, audience as leverage, selective alliances | Less money, slower access, personal exposure | Pay/wait, restrict use, correct a claim, or use attention to protect someone |
 
 Overlays (cause-driven, on top of any lane):
 - **Exploitation / recovery** — a named threat, a constrained alternative, harm, then a recovery step. Never a re-description of chosen work.
 - **Kept / dependency** — emerges only from a *sequence* of accepted terms under a consolidating provider, with shrinking alternatives. Never inferred from a luxury or a chosen intimacy.
-- **Chosen adult professional work** — a future offer with real terms, rights, representation, payment, distribution and exit. Not a corruption route.
+- ~~Chosen adult professional work~~ — **removed** (owner, 2026-09-24; see decision 6).
 
 ## How Chapter 6 assigns the lane (no single switch)
 
@@ -68,7 +68,7 @@ accumulated state, with the Chapter 6 counterpower action as the strongest singl
 - A player near a boundary is offered a **legible early divergence choice** in Chapter 7 (not a hidden assignment) that confirms or redirects the lane, so the route is chosen in play, not diagnosed.
 
 Design-only field sketch: `route.lane` (institutional|outside|executive|own-power),
-`route.overlay[]` (exploitation|kept|adult-work), both **derived and re-derivable** from
+`route.overlay[]` (exploitation|kept), both **derived and re-derivable** from
 sourced records, never a hidden score. EVE Code owns the exact weighting; design owns which
 signals count and the Chapter 7 confirm-or-redirect beat.
 
@@ -119,3 +119,11 @@ what it cost.
 3. **At most one overlay at a time**, cause-driven.
 4. **Own-power is built first** — it depends least on the others and proves the investigation stays solvable with no faction's help; it is the template for the rest.
 5. **One reconverged endgame operation** for all lanes, reacting to the route with different evidence, allies and exits — not separate endgame variants.
+6. **Own-power becomes the Celebrity route; adult work is removed** (owner, 2026-09-24,
+   with the Mature direction in [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)). The lane
+   keeps its internal id `own-power`, but in play it is the **Celebrity** route: Evelynn's
+   independence is built on fame, image, press and an audience she can aim. The quiet,
+   low-exposure Free Agent play stays inside it. The **Adult Entertainment Career** family
+   and the `adult-work` overlay are dropped. Routes are now **Institutional (Sloane),
+   Outside (Rook), Executive (Julian/Helix) and Celebrity**, with two overlays:
+   **Kept life** and **Exploitation & recovery**.

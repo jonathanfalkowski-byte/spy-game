@@ -1,5 +1,10 @@
 # Own-power route — development design (draft)
 
+> **Now the Celebrity route (owner, 2026-09-24).** The lane id stays `own-power`; in play it is
+> the Celebrity route, where Evelynn's independence rests on fame, image, press and an audience
+> she can aim. The quiet Free Agent play remains inside it. See
+> [../CAMPAIGN_ROUTE_MAP.md](../CAMPAIGN_ROUTE_MAP.md) decision 6.
+
 **Design draft for owner review.** The first route arc built after Chapter 6, and the
 template for the other three lanes. No runtime/schema/content is implemented here. Builds on
 [CAMPAIGN_ROUTE_MAP.md](../CAMPAIGN_ROUTE_MAP.md) (settled: four lanes, own-power first, one

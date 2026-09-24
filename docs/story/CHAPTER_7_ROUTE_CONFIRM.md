@@ -65,7 +65,7 @@ never from the lane tally:
 
 - `kept` — a sequence of ≥2 accepted terms under one consolidating provider with a shrinking alternative (e.g. `c5.service=julian` + `exit-prep=deepened` + an accepted expectation). Recommend **at most one overlay** at a time.
 - `exploitation` — a recorded threat/coercion cause with harm and no real alternative. Must never be set from chosen work, luxury, or a lane.
-- `adult-work` — an accepted adult-work term (future content; none exists yet, so this stays empty for now).
+- ~~`adult-work`~~ — removed (owner, 2026-09-24). Only `kept` and `exploitation` remain.
 
 Overlays modify a lane; they never replace it.
 

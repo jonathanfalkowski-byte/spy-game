@@ -70,6 +70,9 @@ Reconnections below are possibilities for later design, never promised scenes or
 
 ## 5. Adult Entertainment Career
 
+> **Removed (owner, 2026-09-24).** Out of scope with the Mature direction; celebrity carries
+> the public-image themes. Kept below for history only.
+
 - **Core fantasy:** pursue a chosen adult profession with ownership of work, boundaries, income and public presentation.
 - **Autonomy level:** high when participation, terms, partners, distribution and departure remain meaningfully chosen.
 - **Appetite pattern:** expression, attention, enterprise, experience or financial security; none implies a fixed identity or unlimited willingness.
