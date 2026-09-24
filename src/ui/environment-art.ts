@@ -110,6 +110,12 @@ const byNode: Record<string, Key> = {
   'chapter7.pursue': 'publicRecords',
   'chapter7.close': 'apartmentNight',
   'chapter7.complete': 'apartmentNight',
+  // Chapter 8 (the Helix room on the executive road is on EVE Art's gap list; advance keeps the apartment).
+  'chapter8.cost': 'apartmentDay',
+  'chapter8.leverage': 'phone',
+  'chapter8.advance': 'apartmentNight',
+  'chapter8.close': 'apartmentNight',
+  'chapter8.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

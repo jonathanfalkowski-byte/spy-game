@@ -10,6 +10,8 @@ import { Chapter6work } from './Chapter6work';
 import { chapter6Scenes } from '../content/chapter6';
 import { Chapter7work } from './Chapter7work';
 import { chapter7Scenes } from '../content/chapter7';
+import { Chapter8work } from './Chapter8work';
+import { chapter8Scenes } from '../content/chapter8';
 import { chapter5Scenes } from '../content/chapter5';
 import { conversationHistory, currentPlace } from './chapter4-presentation';
 import { Chapter4work } from './Chapter4work';
@@ -179,6 +181,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'chapter5',
         'chapter6',
         'chapter7',
+        'chapter8',
         'file',
         'security',
         'sloane',
@@ -211,6 +214,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'chapter5',
       'chapter6',
       'chapter7',
+      'chapter8',
       'file',
       'security',
       'sloane',
@@ -282,7 +286,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           ? 'Glass House / 03'
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
-            : state.scene === 'chapter7'
+            : state.scene === 'chapter8'
+              ? 'Chapter 8 / The Cost Bites'
+              : state.scene === 'chapter7'
               ? 'Chapter 7 / The Road You Choose'
               : state.scene === 'chapter6'
               ? 'Chapter 6 / The Cage You Choose'
@@ -303,6 +309,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           'Above the city.'
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
+        ) : state.scene === 'chapter8' ? (
+          'The Cost Bites.'
         ) : state.scene === 'chapter7' ? (
           state.choices['route.lane'] === 'own-power' ? 'Standing Alone.' : 'The Road You Choose.'
         ) : state.scene === 'chapter6' ? (
@@ -333,7 +341,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             ).map((s, i) => ['mission' + i, s.label])
           : state.scene === 'clinic'
             ? clinicSections.map((s, i) => ['clinic' + i, s.label])
-            : state.scene === 'chapter7'
+            : state.scene === 'chapter8'
+              ? chapter8Scenes.map((s) => [s.id, s.title])
+              : state.scene === 'chapter7'
               ? chapter7Scenes.map((s) => [s.id, s.title])
               : state.scene === 'chapter6'
               ? chapter6Scenes.map((s) => [s.id, s.title])
@@ -381,7 +391,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             key={id}
             aria-current={
               state.scene === id ||
-              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7'].includes(state.scene) && id === node) ||
+              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8'].includes(state.scene) && id === node) ||
               (state.scene === 'mission' &&
                 id ===
                   'mission' +
@@ -441,7 +451,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -592,6 +602,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'chapter5',
                     'chapter6',
                     'chapter7',
+                    'chapter8',
                     'file',
                     'security',
                     'sloane',
@@ -706,6 +717,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   {!readingScene && <Chapter5work state={state} send={send} />}
                   {!readingScene && <Chapter6work state={state} send={send} />}
                   {!readingScene && <Chapter7work state={state} send={send} />}
+                  {!readingScene && <Chapter8work state={state} send={send} />}
                   <Clinicwork state={state} send={send} />
                   {!(assessment.status === 'required' && assessment.flow === 'mission') && (
                     <Missionwork state={state} send={send} />
@@ -886,7 +898,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : 'GLASS HOUSE'
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
-                        : state.scene === 'chapter7'
+                        : state.scene === 'chapter8'
+                          ? 'Chapter 8 / The Cost Bites'
+                          : state.scene === 'chapter7'
                           ? 'Chapter 7 / The Road You Choose'
                           : state.scene === 'chapter6'
                           ? 'Chapter 6 / The Cage You Choose'
