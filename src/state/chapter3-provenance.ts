@@ -79,6 +79,13 @@ export function pressureSource(s: GameState): PressureSource {
   return 'access';
 }
 
+/** Maya has heard the post-clinic voice call itself Adrian (the Scene 2 call or the 06:45 call). She may
+ * not know what changed, but she will know that voice across a counter. */
+export const mayaHeardNewVoice = (s: GameState) =>
+  s.npcs.maya.known.some((k) =>
+    ['Evelynn’s delivered Scene 2 call on the monitored phone', 'Delivered 06:45 call'].includes(k.source),
+  );
+
 export const mayaKnowsAdaptation = (s: GameState) =>
   s.npcs.maya.known.some(
     (k) =>

@@ -80,7 +80,6 @@ Already fine on screen, no change: the Evelyn/Evelynn spelling (the display show
 throughout; the review read raw transcripts); "the the" (fixed at display earlier).
 
 **Deferred:**
-- Chapter 6 "She thanks the stranger" friction (gated chapter, fix in place later).
 
 Tools: `EVE_DUMP=<dir> npx vitest run tests/tools/transcript-dump.test.ts` writes revision-19 and 20
 reading transcripts for every golden route. Tests: `tests/state/revision20-editorial.test.ts`.
@@ -111,3 +110,15 @@ record already in every save rather than a new score. Effects:
 - Chapter 8 Sloane's cover comes with a condition: no more guessing.
 A supported name (a guest, service or security finding) avoids all of it. Tests:
 `tests/state/sloane-standing.test.ts`; the revision 19/20 equivalence projection allows only that belief.
+
+**Chapter 6 "She thanks the stranger" fixed** (in place, every revision: Chapter 6 is gated and
+unreleased). `mayaHeardNewVoice` (`src/state/chapter3-provenance.ts`) is true when Maya has heard the
+post-clinic voice call itself Adrian (the Scene 2 call or the 06:45 call). Then the counter's
+"Stay a stranger" becomes "Don't confirm what she hears" (she knows the voice and lets Evelynn not say
+it), and "Tell her only what protects her" acknowledges the recognition. Stored values are unchanged
+(`maya-knows: none | partial`). Chapter 7's "tell her more" follows through ("Still not the name").
+A Maya who only ever had texts still meets a stranger. The six affected Chapter 6–9 revision-19
+goldens were re-hashed with `EVE_REHASH_GATED=1 npx vitest run tests/tools/rehash-gated-goldens.test.ts`
+(ledgers unchanged; the Chapter 1–5 fixture is never touched). Tests: `tests/state/chapter6-maya-voice.test.ts`.
+
+With this, every Group 3 item in the 2026-09-24 review is done.

@@ -6,7 +6,7 @@ import { paragraph as p, speech as q, thought as t, type Block } from './schema'
 import { get5, julian5, old } from './chapter5-model';
 import { get4 } from './chapter4-model';
 import { sloaneDoubts } from './sloane-standing';
-import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
+import { mayaHeardNewVoice, mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { type C6Choice, type ExitArrangement6, get6, note6, offer6, set6 } from './chapter6-model';
 
 const arrangement = (s: GameState) => (get6(s, 'exit-arrangement') ?? 'self-funded') as ExitArrangement6;
@@ -114,6 +114,7 @@ function counterChoices(s: GameState): C6Choice[] {
       }),
     ];
   const knows = mayaKnowsAdaptation(s);
+  const heard = mayaHeardNewVoice(s);
   if (!knows && !get6(s, 'maya-knows')) {
     const tell = (id: 'tell' | 'partial' | 'none', label: string, hint: string, value: string, learned: string, blocks: Block[]) =>
       offer6('counter-' + id, label, hint, 'friction', (x) => {
@@ -126,12 +127,28 @@ function counterChoices(s: GameState): C6Choice[] {
         p('You tell her who you are. She asks one question only Adrian could answer — the name of the bar you both hated, the year of the audit that nearly broke you — and you answer it, and she stops asking.'),
         q('Maya', 'Okay. Okay. I’m not going to cry in the noodle place. Give me the second again.'),
       ]),
-      tell('partial', 'Tell her only what protects her', '“I knew Adrian. Watch the 12:14 lookup.” True, bounded.', 'partial', 'A woman who knew Adrian warned her to be careful about the 12:14 lookup.', [
-        p('You give her the warning and not the person: that you knew Adrian, that he would want her careful about the lookup she was never meant to see. It is true, and it is a wall, and holding it costs you more than she will ever know.'),
-      ]),
-      tell('none', 'Stay a stranger with a warning', 'Give her the caution; keep yourself out of it.', 'none', 'A stranger warned her about the 12:14 lookup.', [
-        p('You are a woman she has never met, with a warning she takes seriously and a self she does not get to see. She thanks the stranger. Once, when you laugh, she looks at you a beat too long, as if a voice has reminded her of someone, and then she lets it go. It is the loneliest thing you have done since the mirror.'),
-      ]),
+      ...(heard
+        ? [
+            // She has heard this voice call itself Adrian: she cannot meet it as a stranger (review 2026-09-24).
+            tell('partial', 'Tell her only what protects her', '“I knew Adrian. Watch the 12:14 lookup.” She will hear the rest.', 'partial', 'The woman at the counter, in the voice from Adrian’s calls, said she knew Adrian and warned her about the 12:14 lookup.', [
+              p('She knows the voice before she has finished looking at you: the one that called her on Axiom’s phone and said Adrian’s name. You give her the warning and not the person. You knew Adrian. He would want her careful about the lookup she was never meant to see.'),
+              q('Maya', 'You knew Adrian.'),
+              p('She says it back slowly, like a term she is agreeing to, and does not ask the next question. Holding the wall costs you more than she will ever know, and you can see that she knows that too.'),
+            ]),
+            tell('none', 'Don’t confirm what she hears', 'She knows the voice from the phone. Don’t say the name.', 'none', 'The woman at the counter had the voice from Adrian’s calls. She gave the 12:14 warning and did not confirm who she was.', [
+              p('She knows the voice before she knows the face. She has heard it on the phone saying Adrian’s name, and now it is across a counter coming out of a stranger. You give her the warning and nothing else. She does not make you give her more.'),
+              q('Maya', 'All right. You are someone who is worried about me. I can hold that for as long as you need me to.'),
+              t('She knows. She is letting me not say it. It is the kindest thing anyone has done for me since the mirror, and I cannot even thank her for it.'),
+            ]),
+          ]
+        : [
+            tell('partial', 'Tell her only what protects her', '“I knew Adrian. Watch the 12:14 lookup.” True, bounded.', 'partial', 'A woman who knew Adrian warned her to be careful about the 12:14 lookup.', [
+              p('You give her the warning and not the person: that you knew Adrian, that he would want her careful about the lookup she was never meant to see. It is true, and it is a wall, and holding it costs you more than she will ever know.'),
+            ]),
+            tell('none', 'Stay a stranger with a warning', 'Give her the caution; keep yourself out of it.', 'none', 'A stranger warned her about the 12:14 lookup.', [
+              p('You are a woman she has never met, with a warning she takes seriously and a self she does not get to see. She thanks the stranger. Once, when you laugh, she looks at you a beat too long, as if a voice has reminded her of someone, and then she lets it go. It is the loneliest thing you have done since the mirror.'),
+            ]),
+          ]),
     ];
   }
   const topics = Number(get6(s, 'counter-topics') ?? 0);

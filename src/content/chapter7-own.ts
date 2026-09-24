@@ -10,7 +10,7 @@ import { paragraph as p, speech as q, thought as t, type Block } from './schema'
 import { get4 } from './chapter4-model';
 import { get5 } from './chapter5-model';
 import { sebastianDoorOpen5 } from './chapter5-sebastian';
-import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
+import { mayaHeardNewVoice, mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { get6 } from './chapter6-model';
 import { type C7Choice, get7, getKey, note7, offer7, set7, setKey } from './chapter7-model';
 
@@ -53,6 +53,8 @@ export function publicImage7(s: GameState): 'back' | 'portrait' | 'words' | 'non
 }
 /** Maya already knows Evelynn is Adrian (told at the counter, or earlier). */
 const mayaKnowsWho7 = (s: GameState) => get6(s, 'maya-knows') === 'in-person' || mayaKnowsAdaptation(s);
+/** She recognised the voice from Adrian's calls at the counter and let Evelynn not confirm it. */
+const unspokenAtCounter7 = (s: GameState) => mayaHeardNewVoice(s) && ['none', 'partial'].includes(get6(s, 'maya-knows') ?? '');
 
 /** The Chapter 5 personal phone, the only line Axiom does not monitor. */
 const ownPhone7 = (s: GameState) => get5(s, 'purchase') === 'phone';
@@ -222,7 +224,9 @@ function mayaChoices(s: GameState): C7Choice[] {
         p(
           mayaKnowsWho7(x)
             ? 'She already knows who you are; she has known since the counter. What you give her now is the rest of it: that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.'
-            : 'You tell her some of it. Not Adrian — never Adrian — but that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.',
+            : unspokenAtCounter7(x)
+              ? 'You tell her some of it. Still not the name; she has never asked for it since the counter, and you have never said it, and you both know. But you tell her that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.'
+              : 'You tell her some of it. Not Adrian — never Adrian — but that the life you are wearing belonged to a real woman first, and somebody signed her away. Maya listens without interrupting, the way she always did, and when you finish she reaches across the table and holds your wrist, hard.',
         ),
         q('Maya', 'Okay. Okay. Then I’ll tell you what I can, and you are never going to say where you heard it.'),
         ...finish(x),
