@@ -87,3 +87,46 @@ Chapter 9 is the shared bridge and unblocks the most, so it is built before the 
 own-power endgame operation (which I'll design next, once Ch9 checkpoints). Keep it gated;
 it ships nothing until the endgame arc is whole. Report Phase 0, then I'll confirm and you build.
 No commits until a checkpoint.
+
+## Phase 0 decisions (2026-09-23, after EVE Code's report)
+
+Approach accepted as reported (additive in rev 19, `CHAPTER9_CHOOSE`, scene `chapter9`, gate
+`VITE_EVE_CHAPTER9`, new Ch8 + Ch9 golden fixtures, the 5181-only launch flag, placeholder
+entry from `chapter7.complete` for the non-own-power lanes, `case.strength` derived at resolve
+from the `c9.took.*` count). Decisions:
+
+- **D1 — Marcus fallback: accepted.** Source = the Glass House claim record
+  `mission.marcus-memory` present AND `c6.celeste` unset → `c9.witness = confirmed-pro`. Ch6
+  never built a Marcus witness, so this is the honest firsthand source. Prose (professional
+  scope, no more than his record supports):
+  > q(Marcus): She left the gathering before the speeches. I noticed because we were meant to
+  > close something that night, and we closed it without her. That's what I can give you: where
+  > she was, and when she stopped being there. Not why.
+  > p: Professional memory, not friendship: a date, an absence, a deal that went on without her.
+  > It fits the record. It proves nothing about why.
+- **D2 — `c6.celeste = pressed` still confirms, cooler:**
+  > q(Celeste): You pushed me once already. Fine. Show me the date.
+  > p: She reads it the way you'd check a bill. *"That's her. That's the week she vanished."* She
+  > doesn't touch your arm this time.
+- **D3 — inferred ORACLE:** gated on `c6.proof-opened` (agreed, or it's free for everyone).
+  Cost **$60** `own.cash`, never blocking (clamp at 0, note unpaid, like the Ch7 fee and Ch8
+  dig). No cash cost on non-own-power lanes.
+- **assemble-evidence reading: confirmed.** `c6.photo-custody = phone` OR `canCompare6` (Glass
+  House item or `c3.verified-date`).
+- **D4 — Maya: one use in total.** If Ch8 used her, she isn't offered in Ch9. When Ch9 is her
+  first use, set `own.alliance.maya = used` (no `spent`; a public-scope read is within her
+  line, not a strain, per Ch8 D3b).
+- **D5 — name-road order accepted:** editor → crossover → rook → public, first match wins. The
+  resolve floor records **`floor`** so Ch10 can tell a named case from a floored one.
+- **D6 — multiple allies: yes.** Each qualifying ally is its own option ("spend who's left"),
+  each spend costs that ally, band caps at strong.
+- **D7 — witness after the name (design catch).** Celeste is both the witness and the board
+  member. If the player takes `assemble-name` **before** `assemble-witness` (Celeste path), the
+  witness move stays available with a variant, still firsthand-bounded, still +1 weight:
+  > q(Celeste): So you know. *(a pause)* That's her. That's the week she vanished. Now you know I
+  > knew her. Ask yourself why I'm still telling you the truth.
+  > p: She confirms it anyway, and it is the most frightening thing she has done. She is not
+  > afraid of what you hold. Not yet.
+  The Marcus variant is unaffected (he isn't the reveal). No new flag; branch on `case.name`
+  being set when the witness move is taken.
+- **Art:** chapter9 on the existing dark apartment/phone masters is fine. No new rooms now.
