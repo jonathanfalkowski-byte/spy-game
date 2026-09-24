@@ -80,11 +80,22 @@ Already fine on screen, no change: the Evelyn/Evelynn spelling (the display show
 throughout; the review read raw transcripts); "the the" (fixed at display earlier).
 
 **Deferred:**
-- Collapsing the Aster negotiation to two choices is a gameplay change (choice set and flags read
-  later), not presentation. The replies are rewritten and the term sheets hidden; the menu is still
-  long.
 - The Benton cost is Sloane's words only; a trust or proof penalty would need state later chapters read.
 - Chapter 6 "She thanks the stranger" friction (gated chapter, fix in place later).
 
 Tools: `EVE_DUMP=<dir> npx vitest run tests/tools/transcript-dump.test.ts` writes revision-19 and 20
 reading transcripts for every golden route. Tests: `tests/state/revision20-editorial.test.ts`.
+
+**Aster collapse done** (follow-up commit). Revision 20 offers two levers, "Ask for a higher fee" and
+"Keep your face and full name out of it" (sets `name-use: initials` and `image-use: none`, the flags
+Chapter 7 reads), then four one-click offers that name the piece and fee, plus decline. Concept
+previews, the approval request (approval is always yours) and the directory request are gone; the
+proposal panel in `Chapter5work.tsx` is retired for revision 20. Revision 19 and older keep the old
+menu.
+
+Because the menu is shorter, revision-20 ledgers differ from revision-19 ones.
+`tests/rev20-ledger.ts` translates each revision-19 golden route into the same decisions made in a
+revision-20 game; `tests/fixtures/rev20-golden-ledgers.json` freezes them with save hashes (recapture
+only for a deliberate change: `EVE_CAPTURE_REV20=1 npx vitest run tests/tools/capture-rev20-golden.test.ts`).
+`tests/state/revision20.test.ts` proves the same decisions reach the same consequences (flags, money,
+relationships, knowledge; ignoring event-numbered records) at revisions 19 and 20 across Chapters 1–9.

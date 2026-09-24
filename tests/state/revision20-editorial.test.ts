@@ -2,17 +2,22 @@ import { expect, it } from 'vitest';
 import golden from '../fixtures/rev19-golden-ledgers.json';
 import type { GameEvent } from '../../src/state/actions';
 import type { GameState } from '../../src/state/schema';
-import { replay } from '../../src/state/reducer';
+import { act, replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { readingBlocks, renderChoiceText } from '../../src/ui/reading-presentation';
 import { evening, choose4 as c4 } from '../chapter4-helpers';
 import { end4, walk5, dress5 } from '../chapter5-helpers';
+import { toRevision20 } from '../rev20-ledger';
+import { chapter5Choices } from '../../src/content/chapter5';
 
 /** What a reader of this save sees, at the save's own revision unless another is forced. */
 const shown = (s: GameState, revision = s.contentRevision) =>
   s.history.flatMap((h) => readingBlocks(h.blocks, h.node, revision).map((b) => b.text)).join('\n');
 
 const route = (name: string) => golden.routes.find((r) => r.name === name)!.ledger as GameEvent[];
+const act20 = (s: GameState, id: string) => act(s, { type: 'CHAPTER5_CHOOSE', id } as Parameters<typeof act>[1]);
+/** A golden route's decisions played as a revision-20 game (Aster's menu is shorter there). */
+const play20 = (name: string) => replay(toRevision20(route(name)), 20);
 
 /** Review 2026-09-24, Group 3: phrases a revision-20 reader should never meet in Chapters 1–5. */
 const RETIRED = [
@@ -33,7 +38,7 @@ const RETIRED = [
 
 it.each(golden.routes.map((r) => r.name))('retires the review’s legal and menu prose for revision 20 only: %s', (name) => {
   const r19 = replay(route(name), 19);
-  const r20 = replay(route(name), 20);
+  const r20 = play20(name);
   const old = shown(r19);
   const now = shown(r20);
   for (const phrase of RETIRED) expect(now, phrase).not.toContain(phrase);
@@ -51,7 +56,7 @@ it.each(golden.routes.map((r) => r.name))('retires the review’s legal and menu
 
 it('makes an evidence-free Benton guess cost Sloane’s confidence from revision 20', () => {
   const r19 = replay(route('julian-intimate'), 19);
-  const r20 = replay(route('julian-intimate'), 20);
+  const r20 = play20('julian-intimate');
   expect(r20.mission.reasoning).toBe('unsupported');
   expect(shown(r20)).toContain('You named Benton on a guess.');
   expect(shown(r19)).not.toContain('You named Benton on a guess.');
@@ -59,13 +64,13 @@ it('makes an evidence-free Benton guess cost Sloane’s confidence from revision
 });
 
 it('explains the frozen accounts wherever the settled balance is shown', () => {
-  const now = shown(replay(route('public-want-none'), 20));
+  const now = shown(play20('public-want-none'));
   expect(now).toContain('Available settled money: $0.');
   expect(now).toContain('Adrian Vale’s accounts froze');
 });
 
 it('lets the mirror be looked into before it is named, and keeps “Look away” honest', () => {
-  const now = shown(replay(route('julian-intimate'), 20));
+  const now = shown(play20('julian-intimate'));
   expect(now).toContain('Something moves at the edge of the glass.');
   expect(now).toContain('You look properly this time.');
   expect(renderChoiceText('Pass the mirror without looking', 'clinic.mirror', 20)).toBe('Look away');
@@ -107,4 +112,28 @@ it.each([
   for (const line of lines) expect(now).toContain(line);
   expect(now).not.toMatch(/Private time ends within the agreed scope|fade to black/);
   expect(shown(s, 19)).toContain('Later, dressed in the clothes you arrived in');
+});
+
+it('collapses the Aster negotiation to two levers and four named offers at revision 20', () => {
+  const ledger = route('public-want-none');
+  const at = ledger.findIndex((e) => String((e.action as { id?: string }).id).startsWith('chapter5.concept-'));
+  const labels = (s: GameState) => chapter5Choices(s).map((c) => c.label);
+  const r19 = replay(ledger.slice(0, at), 19);
+  const r20 = replay(toRevision20(ledger.slice(0, at)), 20);
+  expect(`${r20.scene}.${r20.phase}`).toBe('chapter5.offer');
+  expect(chapter5Choices(r19).length).toBeGreaterThan(10);
+  expect(labels(r20)).toEqual([
+    'Ask for a higher fee',
+    'Keep your face and full name out of it',
+    'Take the professional profile · $400',
+    'Take the fashion-led piece · $600',
+    'Take the sensual portrait, fully clothed · $800',
+    'Take the private sitting, never printed · $100',
+    'Decline the editorial work',
+  ]);
+  const privacy = act20(r20, 'chapter5.negotiate-private');
+  expect(privacy.choices['c5.name-use']).toBe('initials');
+  expect(privacy.choices['c5.image-use']).toBe('none');
+  expect(labels(privacy)).not.toContain('Keep your face and full name out of it');
+  expect(chapter5Choices(privacy).find((c) => c.id === 'chapter5.offer-accept-provocative')!.hint).toContain('as E. Vale, words only');
 });

@@ -13,6 +13,7 @@ import {
   money5,
 } from './chapter5-model';
 import { rev19, soundCheckAttention5 } from './chapter5-sebastian';
+import { hasRevision20 } from './revision';
 export const publicScenes5: Record<string, C5Scene> = {
   presentation: {
     title: 'Dress for yourself',
@@ -351,6 +352,9 @@ export function publicChoices5(s: GameState): C5Choice[] {
     );
   }
   if (s.phase === 'offer') {
+    // Revision 20 (review 2026-09-24): the negotiation is two levers, then the piece itself.
+    const r20 = hasRevision20(s.contentRevision);
+    if (!r20)
     for (const [id, label] of [
       ['professional', 'Choose a professional profile'],
       ['glamorous', 'Choose a fashion-led profile'],
@@ -415,7 +419,7 @@ export function publicChoices5(s: GameState): C5Choice[] {
         'Here is our public directory. You would need to approach them yourself.',
       ],
     ])
-      if (!get5(s, 'negotiated-' + id))
+      if (!get5(s, 'negotiated-' + id) && (!r20 || id === 'fee'))
         c.push(
           offer5('negotiate-' + id, label, 'Ask for these exact amended terms.', 'offer', (x) => {
             set5(x, 'negotiated-' + id);
@@ -425,6 +429,30 @@ export function publicChoices5(s: GameState): C5Choice[] {
             return [q('Aster editor', line)];
           }),
         );
+    if (r20 && !get5(s, 'negotiated-private'))
+      c.push(
+        offer5(
+          'negotiate-private',
+          'Keep your face and full name out of it',
+          'Credit E. Vale, text only. The fee stays.',
+          'offer',
+          (x) => {
+            set5(x, 'negotiated-private');
+            set5(x, 'negotiated-name');
+            set5(x, 'negotiated-image');
+            set5(x, 'name-use', 'initials');
+            set5(x, 'image-use', 'none');
+            send5(x, 'aster', 'Credit me as E. Vale, and no portrait.', 'Evelynn’s explicit negotiation request');
+            note5(
+              x,
+              'negotiation-private',
+              'E. Vale, and no portrait. The words will have to carry it. The fee stands.',
+              'Aster editor accepts the named amendment',
+            );
+            return [q('Aster editor', 'E. Vale, and no portrait. The words will have to carry it. The fee stands.')];
+          },
+        ),
+      );
     c.push(
       offer5(
         'offer-accept',
@@ -450,9 +478,23 @@ export function publicChoices5(s: GameState): C5Choice[] {
     );
     // Draft changes are presentation-only; accepting a reviewed concept is one durable event.
     const accept = c.find(choice => choice.id === 'chapter5.offer-accept')!;
+    const pieces20: Record<string, string> = {
+      professional: 'Take the professional profile',
+      glamorous: 'Take the fashion-led piece',
+      provocative: 'Take the sensual portrait, fully clothed',
+      private: 'Take the private sitting, never printed',
+    };
     for (const concept of asterConcepts) c.push({
       ...accept, id: 'chapter5.offer-accept-' + concept,
-      hint: rights5(proposal5(s, concept)),
+      ...(r20
+        ? {
+            label: `${pieces20[concept]} · $${fee5(proposal5(s, concept))}`,
+            hint:
+              concept === 'private'
+                ? 'Paid when the sitting is done. Nothing is ever printed.'
+                : `Paid on publication, as ${publicName5(s)}${get5(s, 'image-use') === 'none' ? ', words only' : ''}. You see the proof first, or it doesn’t run.`,
+          }
+        : { hint: rights5(proposal5(s, concept)) }),
       apply: x => { set5(x, 'concept', concept); return accept.apply?.(x) ?? []; },
     });
     c.splice(c.indexOf(accept), 1);

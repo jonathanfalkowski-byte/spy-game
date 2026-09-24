@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isCurrentAuthoringRevision } from '../content/revision';
+import { hasRevision20, isCurrentAuthoringRevision } from '../content/revision';
 import type { Intent } from '../state/actions';
 import type { GameState } from '../state/schema';
 import { chapter5Choices } from '../content/chapter5';
@@ -13,8 +13,10 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
   const currentConcept = concept5(state);
   const [draft, setDraft] = useState({ base: currentConcept, value: currentConcept });
   const concept = draft.base === currentConcept ? draft.value : currentConcept;
+  // Revision 20 names each piece and fee on its own button, so the proposal panel is retired.
+  const collapsed = hasRevision20(state.contentRevision);
   const proposal =
-    (isCurrentAuthoringRevision(state.contentRevision)) && state.scene === 'chapter5' && state.phase === 'offer';
+    !collapsed && isCurrentAuthoringRevision(state.contentRevision) && state.scene === 'chapter5' && state.phase === 'offer';
   const choices = chapter5Choices(state).filter(
     (c) =>
       !proposal ||
@@ -23,7 +25,7 @@ function Chapter5Decisions({ state, send }: { state: GameState; send: (a: Intent
   );
   return choices.length ? (
     <section className="decision" aria-label="Chapter 5 action">
-      {state.scene === 'chapter5' && state.phase === 'offer' && (
+      {state.scene === 'chapter5' && state.phase === 'offer' && !collapsed && (
         <section aria-label="Current Aster proposal">
           <h2>Current proposal</h2>
           {proposal && (

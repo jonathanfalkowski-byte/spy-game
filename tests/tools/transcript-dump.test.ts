@@ -10,6 +10,7 @@ import type { GameEvent } from '../../src/state/actions';
 import type { GameState } from '../../src/state/schema';
 import { replay } from '../../src/state/reducer';
 import { readingBlocks } from '../../src/ui/reading-presentation';
+import { toRevision20 } from '../rev20-ledger';
 
 /** Editorial tool, skipped by default: EVE_DUMP=<dir> [EVE_DUMP_REV=19,20] npx vitest run tests/tools/transcript-dump.test.ts
  * writes the player-visible transcript of every golden route, one file per route and revision. */
@@ -37,7 +38,9 @@ it.skipIf(!dir)('dumps golden-route transcripts', () => {
   for (const [name, ledger] of routes)
     for (const rev of revisions) {
       const safe = name.replace(/[^a-z0-9-]/gi, '_');
-      writeFileSync(resolve(out, `${safe}.r${rev}.txt`), transcript(replay(ledger as GameEvent[], rev)) + '\n');
+      // Revision 20 plays the same decisions through its shorter Aster menu.
+      const played = rev >= 20 ? toRevision20(ledger as GameEvent[]) : (ledger as GameEvent[]);
+      writeFileSync(resolve(out, `${safe}.r${rev}.txt`), transcript(replay(played, rev)) + '\n');
     }
   vi.unstubAllEnvs();
 }, 300_000);
