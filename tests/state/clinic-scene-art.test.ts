@@ -2,6 +2,9 @@ import { expect, it } from 'vitest';
 import { clinic, clinicStart, traverse } from '../clinic-helpers';
 import { resolveSceneArt } from '../../src/ui/scene-art';
 
+/** Exact shot art only: an empty-room environment fill never counts as the refused asset. */
+const exactArt = (result: ReturnType<typeof resolveSceneArt>) => (result.art?.kind === 'environment' ? undefined : result.art);
+
 it('binds reception and privacy variants to the reached clinic participants', () => {
   const reception = traverse(clinicStart(), {}, 'reception');
   expect(resolveSceneArt(reception).shot?.shotId).toBe('clinic.reception.shot01');
@@ -46,7 +49,7 @@ it('keeps examination result branch-safe and returns to the protocol hold', () =
   const stay = traverse(clinicStart(), { privacy: 'privacy.stay' }, 'examResult');
   expect(stay.clinic.sloanePresent).toBe(true);
   expect(resolveSceneArt(stay).shot?.shotId).toBe('clinic.examResult.shot01-private');
-  expect(resolveSceneArt(stay).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(stay))).toBeUndefined();
   expect(resolveSceneArt(stay).issues).toContain('LOCATION_MISMATCH');
 });
 
@@ -85,13 +88,13 @@ it('keeps voice and face assets branch-safe across pause and response holds', ()
   const privateVoice = traverse(clinicStart(), { privacy: 'privacy.ask' }, 'voice');
   // The current reducer restores Sloane before protocol/voice; the private voice
   // asset therefore remains fail-closed until a legal private voice route exists.
-  expect(resolveSceneArt(privateVoice).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(privateVoice))).toBeUndefined();
   expect(resolveSceneArt(privateVoice).issues).toContain('LOCATION_MISMATCH');
   const voiceReply = clinic(privateVoice, 'voice.lower');
-  expect(resolveSceneArt(voiceReply).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(voiceReply))).toBeUndefined();
 
   const stayVoice = traverse(clinicStart(), { privacy: 'privacy.stay' }, 'voice');
-  expect(resolveSceneArt(stayVoice).art).toBeUndefined();
+  expect(exactArt(resolveSceneArt(stayVoice))).toBeUndefined();
   const voicePause = clinic(stayVoice, 'voice.pause');
   expect(resolveSceneArt(voicePause).art?.asset.id).toBe('clinic-voice-pause-v1-production');
 

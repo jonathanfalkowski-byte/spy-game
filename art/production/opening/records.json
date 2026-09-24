@@ -113,14 +113,14 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Owner-approved promotion from apartment-opening-insert-housing-notice-v1; bounded production authority for opening.apartment.inspect-lease only. Retains the staging LOW/POLISH editorial object-in-context note.",
+      "notes": "Owner-approved promotion from apartment-opening-insert-housing-notice-v1; bounded production authority for opening.apartment.inspect-lease only. Retains the staging LOW/POLISH editorial object-in-context note. Superseded 2026-09-23 by opening-apartment-housing-notice-v2-production (rebuilt on the v3 noir apartment master); retained for provenance.",
       "editSources": [
         "opening-apartment-master-v2-production"
       ]
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/opening-apartment-housing-notice-v1-production.png",
     "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7",
     "review": {
@@ -142,6 +142,47 @@
   },
   {
     "spec": {
+      "assetId": "opening-apartment-housing-notice-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored Axiom housing notice on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "ONLY opening.apartment.inspect-lease, immediately after INSPECT_APARTMENT lease; no generic apartment fallback, later housing/medical consequence, character authority, diagnosis, or future state.",
+      "continuityRequirements": [
+        "The notice states subsidized housing converts to market rate after thirty days; it is not an eviction today.",
+        "No invented deadline, signature, account number, or later story state."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit rebuild on opening-apartment-master-v3-production: same card graphics and wording as v1. Recipe: art/staging/full-game/opening-apartment/build-inspection-cards.py."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/opening-apartment-housing-notice-v2-production.png",
+    "sha256": "cf5ba0d5c60b125ff6d5e1d996de477f056473eb883cdc8d23bb1f5d4c6c0cf2",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Card text identical to v1 and legible.",
+        "Background is a noir crop of the v3 master with v1 framing."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the gap-scene batch including both inspection cards (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
       "assetId": "opening-apartment-medical-package-v1-production",
       "assetType": "scene-cg",
       "styleBibleVersion": "1.0",
@@ -159,14 +200,14 @@
         "width": 1920,
         "height": 1080
       },
-      "notes": "Owner-approved promotion from apartment-opening-insert-medical-package-v1; bounded production authority for opening.apartment.inspect-medical only. Retains the staging LOW/POLISH editorial object-in-context note.",
+      "notes": "Owner-approved promotion from apartment-opening-insert-medical-package-v1; bounded production authority for opening.apartment.inspect-medical only. Retains the staging LOW/POLISH editorial object-in-context note. Superseded 2026-09-23 by opening-apartment-medical-package-v2-production (rebuilt on the v3 noir apartment master); retained for provenance.",
       "editSources": [
         "opening-apartment-master-v2-production"
       ]
     },
     "role": "production",
     "approvalStatus": "approved",
-    "runtimeEligibility": "runtime-approved",
+    "runtimeEligibility": "not-runtime",
     "file": "art/production/opening/opening-apartment-medical-package-v1-production.png",
     "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f",
     "review": {
@@ -184,6 +225,47 @@
       "reviewer": "Project owner",
       "date": "2026-09-18",
       "source": "Owner design decision: APPROVE for production, subject to exact runtime-state verification, apartment-opening-insert-medical-package-v1; bind ONLY to opening.apartment.inspect-medical. Do not approve jacket V1 or the mirror."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "opening-apartment-medical-package-v2-production",
+      "assetType": "scene-cg",
+      "styleBibleVersion": "1.0",
+      "sceneId": "apartment.bond",
+      "locationId": "apartment",
+      "pose": "Object-led close insert of the authored annual endocrine screening package on its actual apartment surface.",
+      "cameraFraming": "Readable 16:9 object insert; no person required.",
+      "lighting": "Same rainy-morning palette as the apartment master.",
+      "intendedUse": "ONLY opening.apartment.inspect-medical, immediately after INSPECT_APARTMENT medical; no generic apartment fallback, later housing/medical consequence, character authority, diagnosis, or future state.",
+      "continuityRequirements": [
+        "Axiom preventative-care framing and the unexpected extended panel are visible; no medical result is invented.",
+        "No later clinic material, diagnosis, or identity interpretation."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "Deterministic zero-credit rebuild on opening-apartment-master-v3-production: same card graphics and wording as v1. Recipe: art/staging/full-game/opening-apartment/build-inspection-cards.py."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/opening/opening-apartment-medical-package-v2-production.png",
+    "sha256": "ec9ebf7322fd5ca8beb6868c8346601b88d20e87ff1f4693aeb22831216909f0",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Card text identical to v1 and legible.",
+        "Background is a noir crop of the v3 master with v1 framing."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the gap-scene batch including both inspection cards (relayed by EVE Design)."
     }
   },
   {

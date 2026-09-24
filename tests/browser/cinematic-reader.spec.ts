@@ -211,10 +211,10 @@ test('opening evidence inspections cut only on their exact action and survive re
   await load(reply, 1440);
   await page.getByRole('button', { name: /Axiom housing notice/i }).click();
   await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.inspect-lease');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v1-production');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v2-production');
   await expect(page.locator('.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/opening-apartment-housing-notice-v1-production\.png$/,
+    /art\/opening\/opening-apartment-housing-notice-v2-production\.png$/,
   );
   await page.screenshot({
     animations: 'disabled',
@@ -228,15 +228,15 @@ test('opening evidence inspections cut only on their exact action and survive re
     fullPage: true,
   });
   await page.reload();
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v1-production');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-housing-notice-v2-production');
 
   await load(reply, 1440);
   await page.getByRole('button', { name: /Medical package/i }).click();
   await expect(stage).toHaveAttribute('data-reading-shot', 'opening.apartment.inspect-medical');
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v1-production');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v2-production');
   await expect(page.locator('.scene-art-image')).toHaveAttribute(
     'src',
-    /art\/opening\/opening-apartment-medical-package-v1-production\.png$/,
+    /art\/opening\/opening-apartment-medical-package-v2-production\.png$/,
   );
   await page.screenshot({
     animations: 'disabled',
@@ -250,7 +250,7 @@ test('opening evidence inspections cut only on their exact action and survive re
     fullPage: true,
   });
   await page.reload();
-  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v1-production');
+  await expect(stage).toHaveAttribute('data-asset-id', 'opening-apartment-medical-package-v2-production');
 });
 
 test('unavailable image collapses safely without breaking text or decisions', async ({ page }) => {

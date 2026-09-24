@@ -184,20 +184,20 @@
     "sha256": "926e8a25fc600b7066c3b3277a6abddb1959883acd033b84fb322b4cc89b66d5"
   },
   {
-    "id": "opening-apartment-housing-notice-v1-production",
-    "src": "art/opening/opening-apartment-housing-notice-v1-production.png",
+    "id": "opening-apartment-housing-notice-v2-production",
+    "src": "art/opening/opening-apartment-housing-notice-v2-production.png",
     "location": "apartment",
     "width": 1920,
     "height": 1080,
-    "sha256": "519b10cf7c18dda8868e1aff7af078d1771b23b282b94b9dbe32ea19ec61edf7"
+    "sha256": "cf5ba0d5c60b125ff6d5e1d996de477f056473eb883cdc8d23bb1f5d4c6c0cf2"
   },
   {
-    "id": "opening-apartment-medical-package-v1-production",
-    "src": "art/opening/opening-apartment-medical-package-v1-production.png",
+    "id": "opening-apartment-medical-package-v2-production",
+    "src": "art/opening/opening-apartment-medical-package-v2-production.png",
     "location": "apartment",
     "width": 1920,
     "height": 1080,
-    "sha256": "8f6a50ea0991562dfad2c2d201c8764ecddaeb73b50c30ddff62f007dd113d5f"
+    "sha256": "ec9ebf7322fd5ca8beb6868c8346601b88d20e87ff1f4693aeb22831216909f0"
   },
   {
     "id": "axiom-security-lobby-v2-production",
@@ -870,5 +870,149 @@
     "width": 1672,
     "height": 941,
     "sha256": "bdeb72526240866cb39fb6219eef49d3164e671833d96b5afc10bc5a54a48f7a"
+  },
+  {
+    "id": "helix-exec-suite-noir-v1-production",
+    "src": "art/gap-scenes/helix-exec-suite-noir-v1-production.png",
+    "location": "helix-exec-suite",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "0ea8b19ab927356be692e78b8ac20ade3c63049cfebe70b31c6c56c1f0f567b4"
+  },
+  {
+    "id": "clinical-records-room-noir-v1-production",
+    "src": "art/gap-scenes/clinical-records-room-noir-v1-production.png",
+    "location": "clinical-records-room",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "50d81c5db413fed5e09699a81480098f0e4be501b300c4df303131153c9e9368"
+  },
+  {
+    "id": "ch4-review-room-noir-v1-production",
+    "src": "art/gap-scenes/ch4-review-room-noir-v1-production.png",
+    "location": "ch4-review-room",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "06212af079dda1c38d40a4f5fa28ce5fc023d031fa1a339d79437fef7bbfd817"
+  },
+  {
+    "id": "aster-proof-table-noir-v1-production",
+    "src": "art/gap-scenes/aster-proof-table-noir-v1-production.png",
+    "location": "aster-proof-table",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "88fd66816ad1c462e3ae0305db5291066363506cc1748fb345a86b2cefb57f6a"
+  },
+  {
+    "id": "harbour-room-noir-v1-production",
+    "src": "art/gap-scenes/harbour-room-noir-v1-production.png",
+    "location": "harbour-room",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "41c3c7fd829212fb9af05d1634a36f7c86e5195a45debaa99d956dbea81e3355"
+  },
+  {
+    "id": "glass-house-service-gallery-noir-v1-production",
+    "src": "art/gap-scenes/glass-house-service-gallery-noir-v1-production.png",
+    "location": "glass-house-service-gallery",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "bc510cc2965a7db2cde86f577a5c53d236a19946db7fb3a22cbd11eb451da977"
+  },
+  {
+    "id": "descending-elevator-noir-v1-production",
+    "src": "art/gap-scenes/descending-elevator-noir-v1-production.png",
+    "location": "descending-elevator",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "5f5c5f14fafe329d7dc0cce0b80a553f051a3f8f949ee0b8b9905498346d8e39"
+  },
+  {
+    "id": "service-garage-noir-v1-production",
+    "src": "art/gap-scenes/service-garage-noir-v1-production.png",
+    "location": "service-garage",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "c2395660d15013638921719d42918ac70e9f8471f5720e07782548366f4af2b6"
+  },
+  {
+    "id": "clinic-consultation-suite-noir-v1-production",
+    "src": "art/gap-scenes/clinic-consultation-suite-noir-v1-production.png",
+    "location": "clinic-consultation-suite",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "48ecd96dc702415d853d569855a3afd8fcbf421c1724aea2499de8aff20482f8"
+  },
+  {
+    "id": "helix-small-reception-noir-v1-production",
+    "src": "art/gap-scenes/helix-small-reception-noir-v1-production.png",
+    "location": "helix-small-reception",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "465c013184c3c77df9a8125db066be099607e9934d6bf618f16d1447d47508eb"
+  },
+  {
+    "id": "harbour-rooftop-terrace-noir-v1-production",
+    "src": "art/gap-scenes/harbour-rooftop-terrace-noir-v1-production.png",
+    "location": "harbour-rooftop-terrace",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "cd4d4a1a94fffe01946c09cbdeca3adda5a3abe23a17659ea604c1cfd037c957"
+  },
+  {
+    "id": "harbour-hotel-room-noir-v1-production",
+    "src": "art/gap-scenes/harbour-hotel-room-noir-v1-production.png",
+    "location": "harbour-hotel-room",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "3d85505442d9f04697a9533d702a438ba6273b396bd4142286a956cabe105f62"
+  },
+  {
+    "id": "si-office-dusk-noir-v1-production",
+    "src": "art/gap-scenes/si-office-dusk-noir-v1-production.png",
+    "location": "si-office-dusk",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "b36efe4ffd9a2d8be8b3b431081c35bed699012221b8a6b89d61d23d93f73134"
+  },
+  {
+    "id": "noodle-counter-noir-v1-production",
+    "src": "art/gap-scenes/noodle-counter-noir-v1-production.png",
+    "location": "noodle-counter",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "90b9e2c87e1ec2a4c61547b7c055db5392fd52e9c88d598f4144bf2bbf6dbcf5"
+  },
+  {
+    "id": "axiom-gates-noir-v1-production",
+    "src": "art/gap-scenes/axiom-gates-noir-v1-production.png",
+    "location": "axiom-gates",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "bfc43b4cb3c7123b992db46143d7f5299ed1e1ddcba89fce143d3589cffa2638"
+  },
+  {
+    "id": "lantern-exterior-noir-v1-production",
+    "src": "art/gap-scenes/lantern-exterior-noir-v1-production.png",
+    "location": "lantern-exterior",
+    "width": 1920,
+    "height": 1080,
+    "sha256": "38b19e84da253921dc602cc27beb68d71c824cd2e21d5de761b556f72fb94968"
+  },
+  {
+    "id": "chapter4-interest-closed-report-v1-production",
+    "src": "art/gap-scenes/chapter4-interest-closed-report-v1-production.png",
+    "location": "chapter4-interest-closed-report",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2ec19fdd908f387ffc8cabd53562faabd3b4fd210b6287205322ea0a3f436267"
+  },
+  {
+    "id": "chapter4-private-time-dinner-v1-production",
+    "src": "art/gap-scenes/chapter4-private-time-dinner-v1-production.png",
+    "location": "chapter4-private-time-dinner",
+    "width": 1672,
+    "height": 941,
+    "sha256": "1ef567ba1dd72d47829df45e0a744d76d4d28ed68e3b7de3b9f15bf57837ad9a"
   }
 ]

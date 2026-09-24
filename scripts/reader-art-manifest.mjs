@@ -6,7 +6,7 @@ import {
   assertValidRuntimeEligibility,
   isRuntimeApprovedProductionRecord,
 } from './runtime-eligibility.mjs';
-const records = ['apartment', 'continuity', 'chapter5', 'opening'].flatMap((group) =>
+const records = ['apartment', 'continuity', 'chapter5', 'opening', 'gap-scenes'].flatMap((group) =>
   JSON.parse(readFileSync(`art/production/${group}/records.json`, 'utf8')),
 );
 for (const record of records) assertValidRuntimeEligibility(record);

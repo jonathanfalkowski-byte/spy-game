@@ -1,0 +1,686 @@
+[
+  {
+    "spec": {
+      "assetId": "helix-exec-suite-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "helix-exec-suite",
+      "environment": "Empty noir environment: helix exec suite.",
+      "intendedUse": "Empty-environment fill for: chapter3.executive, executiveWork, marcusRecord, marcusLeverage. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task d57a5e9d-1803-470b-b224-9a5ab69b5f13, provider asset 000e9366-a21a-4358-ae54-39d587903bc7; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/helix-exec-suite-noir-v1-production.png",
+    "sha256": "0ea8b19ab927356be692e78b8ac20ade3c63049cfebe70b31c6c56c1f0f567b4",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "clinical-records-room-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "clinical-records-room",
+      "environment": "Empty noir environment: clinical records room.",
+      "intendedUse": "Empty-environment fill for: chapter3.institutional, reviewQualification. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 07ba94f6-4f05-4397-adda-307350488752, provider asset 25fa3ac8-dd34-4d2d-a9c0-7e310e4661a5; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/clinical-records-room-noir-v1-production.png",
+    "sha256": "50d81c5db413fed5e09699a81480098f0e4be501b300c4df303131153c9e9368",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "ch4-review-room-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "ch4-review-room",
+      "environment": "Empty noir environment: ch4 review room.",
+      "intendedUse": "Empty-environment fill for: chapter4.room, assessment, privateAccess, complete. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 1fec9f45-7222-48ad-b155-104a401e579b, provider asset c17c15af-881f-4812-86f1-e72d1923da83; inputs b0d169e9-993e-4ef2-9f36-0bc78e46b18a, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/ch4-review-room-noir-v1-production.png",
+    "sha256": "06212af079dda1c38d40a4f5fa28ce5fc023d031fa1a339d79437fef7bbfd817",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "aster-proof-table-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "aster-proof-table",
+      "environment": "Empty noir environment: aster proof table.",
+      "intendedUse": "Empty-environment fill for: chapter5.proof. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task a6bf71ce-a1ea-4c5a-a008-d7a1eb5865ac, provider asset a32a9452-7c04-44f0-8296-cef98fae6422; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/aster-proof-table-noir-v1-production.png",
+    "sha256": "88fd66816ad1c462e3ae0305db5291066363506cc1748fb345a86b2cefb57f6a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "harbour-room-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "harbour-room",
+      "environment": "Empty noir environment: harbour room.",
+      "intendedUse": "Empty-environment fill for: chapter5.room (outside reading beats). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 7ab47ff8-cf4c-403f-be7c-8658daa710e8, provider asset 946113fa-a1a8-4c24-8444-275cf8b4adfd; inputs fa4d7dcf-a3fc-4525-b698-2ca5aada238c. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/harbour-room-noir-v1-production.png",
+    "sha256": "41c3c7fd829212fb9af05d1634a36f7c86e5195a45debaa99d956dbea81e3355",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "glass-house-service-gallery-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "glass-house-service-gallery",
+      "environment": "Empty noir environment: glass house service gallery.",
+      "intendedUse": "Empty-environment fill for: mission.exchange, confrontation. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 35bc49c9-c3ea-4a27-96c3-6b728f5db869, provider asset b25d7e5e-8acc-46cc-88c1-918aa2080f4c; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/glass-house-service-gallery-noir-v1-production.png",
+    "sha256": "bc510cc2965a7db2cde86f577a5c53d236a19946db7fb3a22cbd11eb451da977",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "descending-elevator-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "descending-elevator",
+      "environment": "Empty noir environment: descending elevator.",
+      "intendedUse": "Empty-environment fill for: mission.debrief, debriefReply, warning1-3. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 55e7d275-3d8c-4b42-b76c-83143d0d40fb, provider asset 678dd4d6-ebca-44de-8db5-8f235d28c7ea; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/descending-elevator-noir-v1-production.png",
+    "sha256": "5f5c5f14fafe329d7dc0cce0b80a553f051a3f8f949ee0b8b9905498346d8e39",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "service-garage-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "service-garage",
+      "environment": "Empty noir environment: service garage.",
+      "intendedUse": "Empty-environment fill for: mission.garage, complete. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 24d110fd-7ebe-4c89-8de5-44f544f0442a, provider asset 3df5a49d-1961-4822-89f6-d038551fce91; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/service-garage-noir-v1-production.png",
+    "sha256": "c2395660d15013638921719d42918ac70e9f8471f5720e07782548366f4af2b6",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "clinic-consultation-suite-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "clinic-consultation-suite",
+      "environment": "Empty noir environment: clinic consultation suite.",
+      "intendedUse": "Empty-environment fill for: clinic.profileReview, voice, voiceReply, stopConfirm, stopped (partial: examResult, makeup). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task db886962-5b23-4d33-9821-31b969ff1b5f, provider asset 4b2e2ed2-7a82-4576-a60c-5f7e059121f7; inputs 3e350e89-7d96-4fd1-bfa3-37d9fc3631bb, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/clinic-consultation-suite-noir-v1-production.png",
+    "sha256": "48ecd96dc702415d853d569855a3afd8fcbf421c1724aea2499de8aff20482f8",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "helix-small-reception-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "helix-small-reception",
+      "environment": "Empty noir environment: helix small reception.",
+      "intendedUse": "Empty-environment fill for: chapter3.reception. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task d316f56d-47d9-42af-8621-6a2aa4ff06f8, provider asset 88335f48-2627-4e48-ade2-8c0448f10cbd; inputs 76f8ba07-5afd-49cb-9652-568485d2c119, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/helix-small-reception-noir-v1-production.png",
+    "sha256": "465c013184c3c77df9a8125db066be099607e9934d6bf618f16d1447d47508eb",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "harbour-rooftop-terrace-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "harbour-rooftop-terrace",
+      "environment": "Empty noir environment: harbour rooftop terrace.",
+      "intendedUse": "Empty-environment fill for: chapter5.salon. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 0a11bdf2-29f2-4b63-9a4d-09259c3ce48f, provider asset 403b2537-5e39-4bc5-9040-e0ca63f18e3c; inputs 48c5e816-3a61-430e-8152-f01b16a721f4. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/harbour-rooftop-terrace-noir-v1-production.png",
+    "sha256": "cd4d4a1a94fffe01946c09cbdeca3adda5a3abe23a17659ea604c1cfd037c957",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "harbour-hotel-room-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "harbour-hotel-room",
+      "environment": "Empty noir environment: harbour hotel room.",
+      "intendedUse": "Empty-environment fill for: chapter5.salon-room. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task b91053bf-96a0-4673-97f4-65d8e1de5f87, provider asset 31e82f69-fc34-4c10-af85-0ebf57ae79a8; inputs 1f4df211-70d8-43dc-a33e-1bdaffbdaa93. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/harbour-hotel-room-noir-v1-production.png",
+    "sha256": "3d85505442d9f04697a9533d702a438ba6273b396bd4142286a956cabe105f62",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "si-office-dusk-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "si-office-dusk",
+      "environment": "Empty noir environment: si office dusk.",
+      "intendedUse": "Empty-environment fill for: dayend.cautious. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task c8c1e52f-ecf3-49f2-bdcb-1d1188da7f86, provider asset e33a5a29-0c5b-461e-8af9-eca0129bb375; inputs b0d169e9-993e-4ef2-9f36-0bc78e46b18a. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/si-office-dusk-noir-v1-production.png",
+    "sha256": "b36efe4ffd9a2d8be8b3b431081c35bed699012221b8a6b89d61d23d93f73134",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "noodle-counter-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "noodle-counter",
+      "environment": "Empty noir environment: noodle counter.",
+      "intendedUse": "Empty-environment fill for: chapter6.friction (Counter). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 0a96fda8-ad1b-4a01-a1da-d3bbb39af300, provider asset 628bb4f3-88e6-46aa-afe7-b181341df977; inputs 8bcdddbb-96fd-4591-9842-87a377d5bc1b, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/noodle-counter-noir-v1-production.png",
+    "sha256": "90b9e2c87e1ec2a4c61547b7c055db5392fd52e9c88d598f4144bf2bbf6dbcf5",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "axiom-gates-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "axiom-gates",
+      "environment": "Empty noir environment: axiom gates.",
+      "intendedUse": "Empty-environment fill for: dayend.walkaway. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task 9518a5d1-82c9-4433-8410-f9fc3a0a31b8, provider asset bbb2a4df-03ef-4339-b4b8-46b3762bf390; inputs b0d169e9-993e-4ef2-9f36-0bc78e46b18a, fb163e61-b577-4f68-a6c3-24ab85c7ba38. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/axiom-gates-noir-v1-production.png",
+    "sha256": "bfc43b4cb3c7123b992db46143d7f5299ed1e1ddcba89fce143d3589cffa2638",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "lantern-exterior-noir-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "lantern-exterior",
+      "environment": "Empty noir environment: lantern exterior.",
+      "intendedUse": "Empty-environment fill for: evening.goodbye. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "notes": "ZenCreator image_editor SEEDREAM_5 task b8187405-b6d7-46d6-9354-c734b9ccc623, provider asset 35c401ab-ead4-4df9-ac57-51cd7031610b; inputs 6ec07aa4-8806-47d4-8112-75ce2d47eba8, fa4d7dcf-a3fc-4525-b698-2ca5aada238c. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/lantern-exterior-noir-v1-production.png",
+    "sha256": "38b19e84da253921dc602cc27beb68d71c824cd2e21d5de761b556f72fb94968",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-interest-closed-report-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "chapter4-interest-closed-report",
+      "environment": "Closed report folder, receipt and pencil on a walnut desk; object-only.",
+      "intendedUse": "Empty-environment fill for: chapter4.interest. Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Pre-existing staging candidate (art/staging/full-game/chapter4/), provenance not recorded at generation. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/chapter4-interest-closed-report-v1-production.png",
+    "sha256": "2ec19fdd908f387ffc8cabd53562faabd3b4fd210b6287205322ea0a3f436267",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  },
+  {
+    "spec": {
+      "assetId": "chapter4-private-time-dinner-v1-production",
+      "assetType": "environment",
+      "styleBibleVersion": "1.0",
+      "locationId": "chapter4-private-time-dinner",
+      "environment": "Adrian's apartment at night, empty, dinner bowl and mug on the table; same apartment geography.",
+      "intendedUse": "Empty-environment fill for: chapter4.intimacy (private time). Superseded by any later exact character composition for a scene.",
+      "continuityRequirements": [
+        "Environment only: no character, outfit, identity or custody reveal.",
+        "Safe across the listed scene states; not a generic fallback for other locations."
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "notes": "Pre-existing staging candidate (art/staging/full-game/chapter4/), provenance not recorded at generation. Approval: art/production/gap-scenes/approval.json."
+    },
+    "role": "production",
+    "approvalStatus": "approved",
+    "runtimeEligibility": "runtime-approved",
+    "file": "art/production/gap-scenes/chapter4-private-time-dinner-v1-production.png",
+    "sha256": "1ef567ba1dd72d47829df45e0a744d76d4d28ed68e3b7de3b9f15bf57837ad9a",
+    "review": {
+      "decision": "PASS",
+      "reviewer": "EVE Art full-resolution QA against EVE_STYLE_LOCK; project owner",
+      "date": "2026-09-23",
+      "reasons": [
+        "Empty environment, no people or identity reveal.",
+        "House noir rendering; no readable text or logos."
+      ]
+    },
+    "approval": {
+      "reviewer": "Project owner",
+      "date": "2026-09-23",
+      "source": "Owner approved the full 2026-09-23 gap-scene noir batch (relayed by EVE Design)."
+    }
+  }
+]

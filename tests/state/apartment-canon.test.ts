@@ -39,6 +39,7 @@ it('preserves the historical apartment source inventory without approving old PA
     // This proposal snapshot predates the separately tested shot-specific Chapter 5 promotion.
     !r.file?.startsWith('art/production/chapter5/') &&
     !r.file?.startsWith('art/production/opening/') &&
+    !r.file?.startsWith('art/production/gap-scenes/') &&
     (r.spec.locationId?.includes('apartment') || r.spec.environment?.includes('apartment')));
   expect(inspection.assets.map(a => a.assetId).sort()).toEqual(existing.map(a => a.spec.assetId).sort());
   expect(inspection.assets).toHaveLength(12);

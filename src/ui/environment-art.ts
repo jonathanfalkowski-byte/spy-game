@@ -18,6 +18,17 @@ const masters = {
   glassLobby: { assetId: 'eve-bg-glass-lobby-v1-production', alt: 'The Glass House elevator lobby: marble, warm light and closed elevator doors.' },
   shoppingStreet: { assetId: 'c5-s02-shopping-street-master-v1-production', alt: 'A quiet shopping street with a lit shop window.' },
   publicRecords: { assetId: 'chapter4-public-records-v1-production', alt: 'The public records reading room: long tables, a folder and a registration form.' },
+  closedReport: { assetId: 'chapter4-interest-closed-report-v1-production', alt: 'The closed report lies on the table after the session.' },
+  privateDinner: { assetId: 'chapter4-private-time-dinner-v1-production', alt: 'An apartment table set for dinner, no one yet seated.' },
+  rooftop: { assetId: 'harbour-rooftop-terrace-noir-v1-production', alt: 'The Harbour roof terrace at night: chairs, the parapet light and the towers beyond.' },
+  hotelRoom: { assetId: 'harbour-hotel-room-noir-v1-production', alt: 'A small hotel room near the harbour, one lamp lit.' },
+  noodleCounter: { assetId: 'noodle-counter-noir-v1-production', alt: 'The late noodle counter near Compliance, the stools empty.' },
+  serviceGallery: { assetId: 'glass-house-service-gallery-noir-v1-production', alt: 'The Glass House service gallery, empty.' },
+  elevator: { assetId: 'descending-elevator-noir-v1-production', alt: 'The inside of a descending elevator, empty.' },
+  garage: { assetId: 'service-garage-noir-v1-production', alt: 'The service garage below the Glass House, empty.' },
+  officeDusk: { assetId: 'si-office-dusk-noir-v1-production', alt: 'The Strategic Intelligence office at dusk, empty.' },
+  axiomGates: { assetId: 'axiom-gates-noir-v1-production', alt: 'Outside the Axiom gates, empty, in the rain.' },
+  lantern: { assetId: 'lantern-exterior-noir-v1-production', alt: 'Outside the Lantern, empty, the windows lit.' },
 } satisfies Record<string, Master>;
 type Key = keyof typeof masters;
 
@@ -59,6 +70,19 @@ const byNode: Record<string, Key> = {
   'mission.leadRead': 'glassLobby',
   'mission.assessmentReview': 'glassLobby',
   'mission.escape': 'glassLobby',
+  'mission.exchange': 'serviceGallery',
+  'mission.confrontation': 'serviceGallery',
+  'mission.debrief': 'elevator',
+  'mission.debriefReply': 'elevator',
+  'mission.warning1': 'elevator',
+  'mission.warning2': 'elevator',
+  'mission.warning3': 'elevator',
+  'mission.garage': 'garage',
+  'mission.complete': 'garage',
+  // Opening day, the three formerly blank endings.
+  'dayend.cautious': 'officeDusk',
+  'dayend.walkaway': 'axiomGates',
+  'evening.goodbye': 'lantern',
   // Chapter 3.
   'chapter3.home': 'apartment',
   'chapter3.complete': 'apartment',
@@ -84,6 +108,8 @@ const byNode: Record<string, Key> = {
   'chapter3.departure': 'apartment',
   // Chapter 4 (records-room scenes only on the public path; see below).
   'chapter4.notice': 'phone',
+  'chapter4.interest': 'closedReport',
+  'chapter4.intimacy': 'privateDinner',
   // Chapter 5.
   'chapter5.home': 'apartmentDay',
   'chapter5.presentation': 'wardrobe',
@@ -92,6 +118,8 @@ const byNode: Record<string, Key> = {
   'chapter5.offer': 'apartmentDay',
   'chapter5.terms': 'apartmentDay',
   'chapter5.spend': 'shoppingStreet',
+  'chapter5.salon': 'rooftop',
+  'chapter5.salon-room': 'hotelRoom',
   'chapter5.people': 'apartmentNight',
   'chapter5.want': 'apartmentNight',
   'chapter5.return': 'apartmentNight',
@@ -127,8 +155,8 @@ export function environmentShot(state: GameState): { shotId: string; assetId: st
   // Chapter 4 review scenes: only the public records path has a matching room master.
   if (!key && state.scene === 'chapter4' && ['room', 'assessment', 'privateAccess', 'complete'].includes(state.phase) && !helix4(state))
     key = 'publicRecords';
-  // Chapter 6 friction is at home unless the Counter was arranged.
-  if (!key && node === 'chapter6.friction' && !state.choices['c6.counter-arranged']) key = 'apartmentNight';
+  // Chapter 6 friction is at home, or at the noodle counter once the Counter is arranged.
+  if (!key && node === 'chapter6.friction') key = state.choices['c6.counter-arranged'] ? 'noodleCounter' : 'apartmentNight';
   if (!key) return undefined;
   return { shotId: `environment.${key}`, ...masters[key] };
 }
@@ -138,15 +166,13 @@ export const environmentMasterIds = Object.values(masters).map((m) => m.assetId)
 /** Reached scenes with no suitable existing master: text-only until EVE Art supplies noir art.
  * Kept in one place so the audit test and the art handoff agree. */
 export const environmentGaps = [
+  // Held by EVE Art pending owner review (character frames): no empty master yet.
+  'chapter4.outside', 'chapter4.favor', 'chapter4.power',
+  // Held by the owner as too bright; darker v2 masters to follow.
   'chapter3.executive', 'chapter3.executiveWork', 'chapter3.marcusRecord', 'chapter3.marcusLeverage', 'chapter3.reception',
   'chapter3.institutional', 'chapter3.reviewQualification',
-  'chapter4.interest', 'chapter4.outside', 'chapter4.favor', 'chapter4.power', 'chapter4.intimacy',
   'chapter4.room', 'chapter4.assessment', 'chapter4.privateAccess', 'chapter4.complete',
-  'chapter5.proof', 'chapter5.salon', 'chapter5.salon-room', 'chapter5.room',
-  'chapter6.friction',
+  'chapter5.proof', 'chapter5.room',
   'clinic.profileReview', 'clinic.voice', 'clinic.voiceReply', 'clinic.stopConfirm', 'clinic.stopped',
   'clinic.examResult', 'clinic.makeup',
-  'dayend.cautious', 'dayend.walkaway', 'evening.goodbye',
-  'mission.exchange', 'mission.confrontation', 'mission.debrief', 'mission.debriefReply',
-  'mission.warning1', 'mission.warning2', 'mission.warning3', 'mission.garage', 'mission.complete',
 ] as const;

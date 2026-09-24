@@ -126,11 +126,11 @@ export const shotBindings: Record<string, { assetId: string; location: string }>
     location: 'apartment',
   },
   'opening.apartment.inspect-lease': {
-    assetId: 'opening-apartment-housing-notice-v1-production',
+    assetId: 'opening-apartment-housing-notice-v2-production',
     location: 'apartment',
   },
   'opening.apartment.inspect-medical': {
-    assetId: 'opening-apartment-medical-package-v1-production',
+    assetId: 'opening-apartment-medical-package-v2-production',
     location: 'apartment',
   },
   'opening.axiom.shot01-approach': {

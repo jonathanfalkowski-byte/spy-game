@@ -43,7 +43,7 @@ describe('opening visual occupancy contract', () => {
       artVisible: true,
     });
     expect(resolveSceneArt(inspected).art?.asset.id).toBe(
-      'opening-apartment-housing-notice-v1-production',
+      'opening-apartment-housing-notice-v2-production',
     );
 
     const unillustrated = act(reply, { type: 'INSPECT_APARTMENT', id: 'mirror' });

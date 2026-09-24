@@ -6,6 +6,7 @@ import homes from '../../art/production/apartment/records.json';
 import continuity from '../../art/production/continuity/records.json';
 import chapter5 from '../../art/production/chapter5/records.json';
 import opening from '../../art/production/opening/records.json';
+import gapScenes from '../../art/production/gap-scenes/records.json';
 import { resolveSceneArt, validateSceneShot } from '../../src/ui/scene-art';
 
 /** Exact shot art only: an empty-room environment fallback never counts as the refused asset. */
@@ -58,9 +59,9 @@ beforeAll(() => {
 }, 30000);
 
 it('small runtime manifest contains exactly explicit runtime-approved production records', () => {
-  const records = [...homes, ...continuity, ...chapter5, ...opening];
+  const records = [...homes, ...continuity, ...chapter5, ...opening, ...gapScenes];
   const eligible = records.filter(isRuntimeApprovedProductionRecord);
-  expect(eligible).toHaveLength(109);
+  expect(eligible).toHaveLength(127);
   expect(production.map((a) => a.id)).toEqual(eligible.map((r) => r.spec.assetId));
   expect(production.map((a) => a.id)).not.toContain('axiom-opening-office-master-v1-production');
   expect(
@@ -69,7 +70,7 @@ it('small runtime manifest contains exactly explicit runtime-approved production
     ),
   ).toBe(false);
   for (const a of production) {
-    expect(a.src).toMatch(/^art\/(apartment|chapter5|continuity|opening)\/[\w-]+\.png$/);
+    expect(a.src).toMatch(/^art\/(apartment|chapter5|continuity|opening|gap-scenes)\/[\w-]+\.png$/);
     expect(
       createHash('sha256')
         .update(readFileSync('public/' + a.src))
@@ -151,8 +152,8 @@ it('binds each approved opening inspection only to its immediately reached apart
   ]);
   expect(openingShots.slice(0, 3).map((visual) => visual.art?.asset.id)).toEqual([
     'adrian-first-bathroom-mirror-apartment-v1-production',
-    'opening-apartment-housing-notice-v1-production',
-    'opening-apartment-medical-package-v1-production',
+    'opening-apartment-housing-notice-v2-production',
+    'opening-apartment-medical-package-v2-production',
   ]);
   for (const visual of openingShots.slice(0, 3)) expect(visual.issues).toEqual([]);
   expect(openingShots[3].art?.asset.id).toBe('adrian-first-bathroom-mirror-apartment-v1-production');
@@ -186,7 +187,7 @@ it('returns to the approved opening master after an inspection is no longer the 
   const reply = choice(initialState(), 'bond.friend');
   const inspected = act(reply, { type: 'INSPECT_APARTMENT', id: 'lease' });
   expect(resolveSceneArt(inspected).art?.asset.id).toBe(
-    'opening-apartment-housing-notice-v1-production',
+    'opening-apartment-housing-notice-v2-production',
   );
   const departure = choice(inspected, 'morning.yes');
   expect(resolveSceneArt(departure).shot?.shotId).toBe('opening.apartment.shot01');

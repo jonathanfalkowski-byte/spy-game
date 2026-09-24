@@ -3,6 +3,7 @@ import apartment from '../../art/production/apartment/records.json';
 import continuity from '../../art/production/continuity/records.json';
 import chapter5 from '../../art/production/chapter5/records.json';
 import opening from '../../art/production/opening/records.json';
+import gapScenes from '../../art/production/gap-scenes/records.json';
 import manifest from '../../src/ui/approved-scene-art.json';
 import { VisualAssetRecordSchema } from '../../src/visual/schema';
 import {
@@ -10,7 +11,7 @@ import {
   isRuntimeApprovedProductionRecord,
 } from '../../scripts/runtime-eligibility.mjs';
 
-const records = [...apartment, ...continuity, ...chapter5, ...opening];
+const records = [...apartment, ...continuity, ...chapter5, ...opening, ...gapScenes];
 const m5 = opening.find((record) => record.spec.assetId === 'axiom-opening-office-master-v1-production')!;
 
 it('requires every production record to declare runtime eligibility', () => {
@@ -67,7 +68,7 @@ it('keeps M5 as a passing production component outside the runtime manifest', ()
 
 it('admits only explicitly runtime-approved records to the current runtime manifest', () => {
   const eligible = records.filter(isRuntimeApprovedProductionRecord);
-  expect(eligible).toHaveLength(109);
+  expect(eligible).toHaveLength(127);
   expect(eligible.map((record) => record.spec.assetId)).toEqual(manifest.map((asset) => asset.id));
   const revise = apartment.find(
     (record) => record.spec.assetId === 'apartment-pre-glasshouse-executive-v1-production',

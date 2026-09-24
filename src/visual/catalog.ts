@@ -12,6 +12,7 @@ import approvedCorrections from '../../art/production/continuity/records.json';
 import apartmentSpecs from '../../art/staging/apartment/records.json';
 import approvedHomeArt from '../../art/production/apartment/records.json';
 import approvedChapter5Art from '../../art/production/chapter5/records.json';
+import approvedGapSceneArt from '../../art/production/gap-scenes/records.json';
 import openingSpecs from '../../art/staging/opening/records.json';
 import openingSourceRecords from '../../art/staging/opening/source-records.json';
 import productionSourceRecords from '../../art/staging/production-source-records.json';
@@ -51,7 +52,7 @@ export const visualCatalog = VisualAssetRecordSchema.array().parse([
       throw Error('Approved Adrian references require explicit canonical approval');
     return reference;
   }),
-  ...[...approvedHomeArt, ...approvedChapter5Art, ...approvedOpeningArt].map((record) => {
+  ...[...approvedHomeArt, ...approvedChapter5Art, ...approvedOpeningArt, ...approvedGapSceneArt].map((record) => {
     const asset = VisualAssetRecordSchema.parse(record);
     if (asset.role !== 'production' || asset.approvalStatus !== 'approved' || !asset.approval)
       throw Error('Home scene artwork requires explicit owner production approval');
