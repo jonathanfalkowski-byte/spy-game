@@ -29,9 +29,26 @@ as is. Restyle it first (the restyle trick below, with `sloane-brief` as image 2
 review the restyled master as a new candidate, and anchor on that. Originals stay
 untouched in `art/production`.
 
-Daylight in the house style means: the same ink lines and hard cel shadows, with a
-brighter palette (cream, stone, pale sky blue, warm sun patches) and crisp cast
-shadows instead of noir darkness.
+~~Daylight in the house style means a brighter palette instead of noir darkness.~~
+**Superseded (owner, 2026-09-23): EVE is dark noir, always.** Owner feedback on the
+gap-scene batch: "it is a dark noir sort of type… that feels like too much light."
+
+- **Low-key is the default for every frame.** Most of the frame sits in charcoal/black;
+  light is a *shape* (a lamp pool, a window slab, a strip light), never an even fill.
+  No white floors, no sunlit rooms, no blown-out windows, no bright wood.
+- **Environment fills default to night or dusk** unless the prose pins the time of day.
+  Where the prose pins daytime, render it **overcast/rain, blinds half-drawn, interior
+  lights off or dim**: daylight as a cold grey slab through the window against a dark
+  room. Never a bright, airy, evenly lit interior.
+- **One warm practical against cold window/ambient** (the warm/cool noir split) in every
+  interior. Deep blacks in the corners and under furniture.
+- **Luminance QA gate (hard):** on a greyscale downsample, **mean ≤ 85** (0–255) and
+  **≥ 40% of pixels near-black (< 50)**. Reference: the approved v3 apartment master is
+  mean ~68 / ~47% near-black; the service garage ~48 / ~64%. Anything above the gate is
+  rejected before it reaches a comparison sheet.
+- **Anchor on the dark references** (night apartment master v3, harbour composite, service
+  garage). Do not use `sloane-brief`, the daytime apartment v2 or clinic reception as
+  *lighting* anchors. They may still be image 2 for *ink* only.
 
 ## World look: near-future luxury (owner, 2026-09-23)
 
@@ -86,7 +103,12 @@ Never add: photoreal, 8k, hyperrealistic, octane, cinematic photo, anime, chibi,
 
 ## Style reference set
 
-Pick the nearest match by lighting, not by location.
+Pick the nearest match by lighting, not by location. **Lighting anchors must pass the
+luminance gate above.** The daylight rows below (sloane-brief, daytime apartment, clinic
+reception, street day) are **ink/material references only**, not lighting anchors. For
+lighting use the night apartment master v3
+(`art/production/opening/opening-apartment-master-v3-production.png`), the harbour
+composite, or `art/production/gap-scenes/service-garage-noir-v1-production.png`.
 
 | Lighting family | Reference |
 |---|---|
