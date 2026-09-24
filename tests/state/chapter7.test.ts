@@ -5,6 +5,8 @@ import { optionalNpc, type GameState } from '../../src/state/schema';
 import { act, availableIntents, replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter7Choices, adjacent7, opposite7, suggested7 } from '../../src/content/chapter7';
+import { eveningPartners7 } from '../../src/content/chapter7-own';
+import { currentPlace } from '../../src/ui/chapter4-presentation';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { resolveSceneArt } from '../../src/ui/scene-art';
 
@@ -106,10 +108,10 @@ it('offers each pursuit only when she has the means', () => {
 
 it('keeps the thread pullable alone: records only reaches a lead, even at $0 with the fee unpaid', () => {
   const broke = withFlags(c7(standing(), 'standing-begin'), { 'own.cash': '0' });
-  const lead = walk(broke, ['pursue-records', 'pursue-stop']);
+  const lead = walk(broke, ['pursue-records', 'records-pay', 'pursue-stop']);
   expect([lead.phase, lead.choices['c7.finding'], lead.choices['c7.fee'], lead.choices['own.cash']]).toEqual(['close', 'lead', 'unpaid', '0']);
   expect(text(lead)).toContain('Meridian Holdings');
-  const paid = walk(withFlags(c7(standing(), 'standing-begin'), { 'own.cash': '500' }), ['pursue-records']);
+  const paid = walk(withFlags(c7(standing(), 'standing-begin'), { 'own.cash': '500' }), ['pursue-records', 'records-pay']);
   expect([paid.choices['c7.fee'], paid.choices['own.cash']]).toEqual(['paid', '460']);
   const nothing = c7(c7(standing(), 'standing-begin'), 'pursue-stop');
   expect([nothing.choices['c7.finding'], text(nothing).includes('So is the money you kept.')]).toEqual(['none', true]);
@@ -118,7 +120,7 @@ it('keeps the thread pullable alone: records only reaches a lead, even at $0 wit
 it('closes on the second piece with the shape, and sets the Chapter 8 hooks', () => {
   const hub = withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'own.cash': '500' });
   const sloaneBefore = hub.npcs.sloane.known.length;
-  const exposed = walk(hub, ['pursue-audience', 'pursue-records']);
+  const exposed = walk(hub, ['pursue-audience', 'plant-subtle', 'exit-crowd', 'pursue-records', 'records-pay']);
   expect([exposed.phase, exposed.choices['c7.finding'], exposed.choices['own.exposed']]).toEqual(['close', 'shape', 'yes']);
   expect(exposed.npcs.sloane.known).toHaveLength(sloaneBefore + 1);
   expect(text(exposed)).toContain('Sloane’s directorate knows the independent one is asking.');
@@ -132,7 +134,7 @@ it('closes on the second piece with the shape, and sets the Chapter 8 hooks', ()
 });
 
 it('plays a real own-power chapter to complete, and the save authenticates', () => {
-  let s = walk(standing(), ['standing-begin', 'pursue-records']);
+  let s = walk(standing(), ['standing-begin', 'pursue-records', 'records-pay']);
   s = c7(s, ids(s).includes('pursue-rook') ? 'pursue-rook' : 'pursue-stop');
   if (s.phase === 'pursue') s = c7(s, 'rook-trade-debt');
   s = c7(s, 'close-end');
@@ -143,4 +145,85 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
   expect(decodeSave(encodeSave(s))).toEqual(s);
   for (const node of ['chapter7.confirm', 'chapter7.standing', 'chapter7.pursue', 'chapter7.close', 'chapter7.complete'])
     expect(s.history.some((h) => h.node === node), node).toBe(true);
+});
+
+// ── Heat-and-danger pass: each hub door is a scene with its own choice, resolving to the same piece ──
+
+const richHub = () =>
+  withFlags(c7(standing(), 'standing-begin'), { 'c5.published': 'yes', 'c6.proof-opened': 'yes', 'c6.maya': 'restored', 'own.cash': '500' });
+
+it('opens each hub door as a scene with its own choice and place, and resolves to the same piece', () => {
+  const hub = richHub();
+  expect(text(hub)).toContain('You write the ways in on the back of an envelope');
+  const records = c7(hub, 'pursue-records');
+  expect([records.phase, ids(records)]).toEqual(['pursue', ['records-charm', 'records-pay']]);
+  expect(currentPlace(records, 'x')).toBe('23:10 · Municipal registry · Night desk');
+  const charmed = c7(records, 'records-charm');
+  expect([charmed.choices['c7.fee'], charmed.choices['own.cash'], charmed.choices['own.piece.records']]).toEqual(['waived', '500', 'meridian']);
+  expect(text(charmed)).toContain('scored through so hard the pen went through the card');
+  expect(currentPlace(charmed, 'x')).toBe('x');
+  for (const [pick, knows] of [['maya-truth', 'more'], ['maya-shield', 'little']] as const) {
+    const maya = c7(c7(hub, 'pursue-maya'), pick);
+    expect([maya.choices['own.maya-knows'], maya.choices['own.piece.maya'], maya.choices['c7.maya-photographed']]).toEqual([knows, 'directorate', 'yes']);
+    expect(text(maya)).toContain('Whatever comes for you now knows her face.');
+  }
+  const rook = c7(hub, 'pursue-rook');
+  expect(currentPlace(rook, 'x')).toBe('02:00 · The old ferry terminal');
+  expect(text(c7(rook, 'rook-trade-debt'))).toContain('The woman under the timetable isn’t mine.');
+});
+
+it('plays the interview: three ways to plant the question, two ways home, the same warning', () => {
+  const studio = c7(richHub(), 'pursue-audience');
+  expect(ids(studio)).toEqual(['plant-subtle', 'plant-bold', 'plant-theo']);
+  expect(text(studio)).toContain('The woman nobody can place.');
+  expect(currentPlace(studio, 'x')).toBe('Evening · A studio on the river');
+  const modes: [string, string, string, string | undefined][] = [
+    ['plant-subtle', 'subtle', 'yes', undefined],
+    ['plant-bold', 'bold', 'yes-deep', undefined],
+    ['plant-theo', 'theo', 'yes', 'curious'],
+  ];
+  for (const [pick, mode, exposed, theo] of modes) {
+    const planted = c7(studio, pick);
+    expect([planted.choices['c7.audience-mode'], planted.choices['own.exposed'], planted.choices['c7.theo']]).toEqual([mode, exposed, theo]);
+    expect(ids(planted)).toEqual(['exit-crowd', 'exit-river']);
+    expect(text(planted)).toContain('You stand like someone taught you to stand quite recently.');
+  }
+  for (const exit of ['exit-crowd', 'exit-river']) {
+    const home = c7(c7(studio, 'plant-subtle'), exit);
+    expect([home.phase, home.choices['c7.exit'], home.choices['own.piece.audience']]).toEqual(['pursue', exit.slice(5), 'adjacent']);
+    expect(text(home)).toContain('You’re asking the right question about the wrong person.');
+  }
+});
+
+it('offers a chosen evening only with a partner she already chose, consent-gated, and it fades', () => {
+  const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'pursue-stop']);
+  const alone = withFlags(atClose, romance);
+  expect(eveningPartners7(alone)).toEqual([]);
+  expect(chapter7Choices(alone).map((c) => c.label)).toEqual(['Carry it into tomorrow']);
+  const both = withFlags(atClose, { ...romance, 'c5.sebastian-outcome': 'walk', 'c4.mutual-interest': 'yes' });
+  expect(ids(both)).toEqual(['evening-julian', 'evening-sebastian', 'close-end']);
+  expect(chapter7Choices(both).at(-1)?.label).toBe('Stay in tonight');
+  for (const partner of ['julian', 'sebastian'] as const) {
+    const invited = c7(both, 'evening-' + partner);
+    expect(invited.phase).toBe('close');
+    expect(ids(invited)).toEqual([`evening-${partner}-no-sex`, `evening-${partner}-sex`, 'evening-leave']);
+    expect(currentPlace(invited, 'x')).toBe(partner === 'julian' ? 'Late · Julian’s apartment' : 'Late · Harbour, after the last set');
+    const agreed = c7(invited, `evening-${partner}-sex`);
+    expect(ids(agreed)).toEqual(['evening-stop', 'evening-stay']);
+    expect(text(agreed)).toMatch(/stop, it stops|says stop, and it stops/);
+    const stopped = c7(agreed, 'evening-stop');
+    expect([stopped.phase, stopped.choices['c7.evening-outcome']]).toEqual(['complete', 'withdrawn']);
+    const stayed = c7(agreed, 'evening-stay');
+    expect([stayed.phase, stayed.choices['c7.evening-outcome']]).toEqual(['complete', 'intimate-sex']);
+    expect(text(stayed)).toContain('The scene fades.');
+    const soft = c7(c7(invited, `evening-${partner}-no-sex`), 'evening-stay');
+    expect(soft.choices['c7.evening-outcome']).toBe('intimate-no-sex');
+    expect(text(soft)).not.toContain('The scene fades.');
+    const left = c7(invited, 'evening-leave');
+    expect([left.phase, left.choices['c7.evening-outcome']]).toEqual(['complete', 'declined']);
+    // Firewall: the evening changes nothing the investigation reads.
+    for (const key of ['c7.finding', 'own.piece.records', 'own.exposed', 'own.cash', 'own.alliance.rook'])
+      expect(stayed.choices[key], key).toBe(both.choices[key]);
+  }
 });

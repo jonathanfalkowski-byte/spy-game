@@ -31,7 +31,7 @@ export const adjacent7 = (lane: RouteLane6): RouteLane6[] => {
 };
 export const opposite7 = (lane: RouteLane6): RouteLane6 => ring[(ring.indexOf(lane) + 2) % 4];
 const descriptor: Record<RouteLane6, string> = {
-  'own-power': 'the quiet you built yourself, that no one holds but you',
+  'own-power': 'the public life you built, a face and an audience that answer to no one but you',
   institutional: 'the machine you already know from the inside',
   executive: 'the rooms that open when the right person walks you in',
   outside: 'the ones who trade in what the institutions bury',
@@ -40,7 +40,7 @@ const mirror: Record<RouteLane6, string> = {
   institutional: 'Look at the last months honestly. You stayed inside the machine — you told Sloane what you were doing, you kept the apartment and the cover, you learned to hold a position from within the walls rather than outside them. It is not weakness. It is a place to stand, and you know its corridors now.',
   outside: 'Look honestly. You went to the one source no institution authored, spent your own knowledge to test it, and came away holding a truth the people in charge would rather you did not have. You have been becoming someone who trades in what others hide.',
   executive: 'Look honestly. You have been building access — the room, the dinners, the man who opens doors and means it, terms written where they favour you. You have learned that proximity to power, held on your own wording, is itself a kind of power.',
-  'own-power': 'Look honestly. You paid your own way, released your own image, kept your own evidence, and refused the extensions that would have made you easier to hold. You have been building a base that is small and slow and entirely yours.',
+  'own-power': 'Look honestly. You paid your own way, released your own image, kept your own evidence, and refused the extensions that would have made you easier to hold. Your face is on other people’s walls now, and it still belongs to you. You have been building a base that is small and slow and entirely yours.',
 };
 export const suggested7 = (s: GameState): RouteLane6 =>
   deriveRoute6(s)?.lane ?? ((s.choices['c6.route-lane'] as RouteLane6 | undefined) ?? 'own-power');

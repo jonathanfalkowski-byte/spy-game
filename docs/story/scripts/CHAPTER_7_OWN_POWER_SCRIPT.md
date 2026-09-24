@@ -1,5 +1,12 @@
 # Chapter 7 (own-power) — "Standing Alone" script
 
+> **Deepened 2026-09-24 (heat-and-danger pass, Celebrity route).** The implemented wording now lives in
+> `src/content/chapter7-own.ts`: the celebrity morning; each hub door as a scene with its own choice (the
+> registry night desk: charm or pay; drinks with Maya: truth or shield; the ferry-terminal dead drop; the
+> live interview, per [CHAPTER_7_CELEBRITY_SAMPLE_INTERVIEW.md](CHAPTER_7_CELEBRITY_SAMPLE_INTERVIEW.md));
+> and an optional chosen evening with Julian or Sebastian (consent-gated, heat 3, fades). The pieces and
+> hooks below are unchanged. "No intimacy in this chapter" is superseded by the chosen evening.
+
 Source of wording and flags for EVE Code. The first own-power development chapter. Design
 authority: [OWN_POWER_ROUTE.md](../routes/OWN_POWER_ROUTE.md),
 [CHAPTER_7_ROUTE_CONFIRM.md](../CHAPTER_7_ROUTE_CONFIRM.md) (the confirm beat that precedes

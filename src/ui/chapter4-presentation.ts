@@ -2,6 +2,7 @@ import type { GameState } from '../state/schema';
 import { get4 } from '../content/chapter4-model';
 import { helix4 } from '../content/chapter4-case';
 import { sebastianReturnPlace5 } from '../content/chapter5-sebastian';
+import { place7 } from '../content/chapter7-own';
 /** Journal records remain in the authenticated history; this is display only. */
 export function conversationHistory(s: GameState) {
   const records = new Set(
@@ -22,6 +23,7 @@ export function currentPlace(s: GameState, fallback: string) {
     if (s.phase === 'vossPlan' && s.choices['c3.careMode'] !== 'attend')
       return '08:48 · Apartment · Follow-up messages';
   }
+  if (s.scene === 'chapter7') return place7(s) ?? fallback;
   if (s.scene === 'chapter6' && s.phase === 'friction' && s.choices['c6.counter-arranged'])
     return '22:00 · THE COUNTER NEAR COMPLIANCE';
   if (s.scene === 'chapter5') {

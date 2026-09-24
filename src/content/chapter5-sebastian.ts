@@ -450,6 +450,12 @@ export function sebastianReturn5(s: GameState): Block[] {
   return [p(line), ...(get5(s, 'sebastian-talk') === 'lie' ? [t('The sea. You wonder what the winter water really sounds like.')] : [])];
 }
 
+/** Whether the salon left a door open (they were intimate, walked, or he left his number). The only
+ * sanctioned read of the Sebastian outcome outside this file: later chosen evenings, never the investigation. */
+export function sebastianDoorOpen5(s: GameState): boolean {
+  return ['intimate-sex', 'intimate-no-sex', 'walk', 'open'].includes(get5(s, 'sebastian-outcome') ?? '');
+}
+
 /** Return-scene place by how the salon ended; every other path keeps the authored 22:30. */
 export function sebastianReturnPlace5(s: GameState): string | undefined {
   if (!rev19(s) || s.phase !== 'return') return;

@@ -1,14 +1,14 @@
 {
-  "note": "Chapter 8 complete ledgers (revision 19, Chapter 6-8 gates open), captured before any Chapter 9 content affects them (Chapter 8 source unchanged since 7670da4). Replaying each must reproduce these exact save hashes.",
+  "note": "Chapter 8 complete ledgers (revision 19, Chapter 6-8 gates open), captured before any Chapter 9 content affects them (Chapter 8 source unchanged since 7670da4). Replaying each must reproduce these exact save hashes. Migrated 2026-09-24 to the deepened Chapter 7 (heat-and-danger pass): new sub-choices filled with behaviour-neutral defaults; outcome fields verified unchanged.",
   "commit": "8a9cd1b",
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 197,
+      "events": 198,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "2505d9356dce8e8fce0fe5a0f1f7fb36dd90e1a39030b57f01d316f4430f3a81",
+      "saveSha256": "f70843ee37947cd644ea9f38892d08b23619f1591dd04f85cacef43e6c50b9cf",
       "ledger": [
         {
           "sequence": 1,
@@ -1524,7 +1524,7 @@
           "sequence": 191,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-stop",
+            "id": "chapter7.records-pay",
             "expectedRevision": 190
           }
         },
@@ -1532,15 +1532,15 @@
           "sequence": 192,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.pursue-stop",
             "expectedRevision": 191
           }
         },
         {
           "sequence": 193,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 192
           }
         },
@@ -1548,7 +1548,7 @@
           "sequence": 194,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.begin",
             "expectedRevision": 193
           }
         },
@@ -1556,7 +1556,7 @@
           "sequence": 195,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 194
           }
         },
@@ -1564,7 +1564,7 @@
           "sequence": 196,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 195
           }
         },
@@ -1572,19 +1572,27 @@
           "sequence": 197,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.advance-continue",
             "expectedRevision": 196
+          }
+        },
+        {
+          "sequence": 198,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 197
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 215,
+      "events": 216,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "701c9a8cfcd54303d1cb4c47148e355f5c673f8d686ef435845b845c962a0f80",
+      "saveSha256": "2c4b49bca289e0b308ea39ecf7517a64747b139888cf2799f2e70f0270ca3d89",
       "ledger": [
         {
           "sequence": 1,
@@ -3252,15 +3260,15 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.records-pay",
             "expectedRevision": 209
           }
         },
         {
           "sequence": 211,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 210
           }
         },
@@ -3268,7 +3276,7 @@
           "sequence": 212,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.begin",
             "expectedRevision": 211
           }
         },
@@ -3276,7 +3284,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-rook",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 212
           }
         },
@@ -3284,7 +3292,7 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.advance-continue",
+            "id": "chapter8.leverage-rook",
             "expectedRevision": 213
           }
         },
@@ -3292,8 +3300,16 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.advance-continue",
             "expectedRevision": 214
+          }
+        },
+        {
+          "sequence": 216,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 215
           }
         }
       ]
@@ -3304,7 +3320,7 @@
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "4bd4af90fec11394178bd8dc8b1805e9d83016fea9e8f73535b1e6f705f81d3b",
+      "saveSha256": "c75d92dcc821c9a1ddabe58495fd4842af2867aebabb1e17ea64bb579958d44e",
       "ledger": [
         {
           "sequence": 1,
