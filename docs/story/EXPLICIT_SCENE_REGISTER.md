@@ -1,5 +1,11 @@
 # Explicit scene register
 
+> **SUPERSEDED (owner, 2026-09-24).** EVE is now a Mature game
+> ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)). Explicit bodies and explicit CGs are out of
+> scope for the base game. Read this register as a list of **fade and heat-3 points**; the
+> DEFERRED explicit bodies are closed as out of scope. Nothing below needs pulling from the
+> build: every sex scope already fades or is switched off.
+
 Every point in EVE where an explicit sexual body would go, so they can be found and
 authored later. Kept current as lanes are added.
 

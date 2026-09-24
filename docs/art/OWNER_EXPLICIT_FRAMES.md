@@ -1,5 +1,10 @@
 # Owner-made explicit frames
 
+> **SHELVED (owner, 2026-09-24).** EVE is now a Mature game: no explicit CGs in the base
+> game; intimate CGs are heat 3 at most. See
+> [../story/CONTENT_DIRECTION.md](../story/CONTENT_DIRECTION.md). This workflow is kept only
+> in case an optional consensual-only 18+ patch is ever made.
+
 Explicit CGs are in scope for EVE (owner, 2026-09-23), in the **same noir house style**
 as every other frame. This is the standing pipeline for them: the **owner** generates the
 explicit images and their prompts directly in ZenCreator, using the method proven on
