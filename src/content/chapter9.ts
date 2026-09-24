@@ -3,7 +3,10 @@
  * arrive through the Chapter 7 in-development placeholder), gated behind chapter9Playable(). Wording and flags:
  * docs/story/scripts/CHAPTER_9_ASSEMBLING_THE_CASE_SCRIPT.md with the Phase 0 decisions in
  * docs/handoffs/2026-09-23-code-chapter9-assembling-the-case.md. case.strength derives at resolve from the
- * c9.took.* count; the name is never missable (the resolve floor). No intimacy in this chapter. */
+ * c9.took.* count; the name is never missable (the resolve floor). No intimacy in this chapter.
+ * Deepening pass 2 (2026-09-24): the witness has a second beat (Celeste asks whether she likes being her; Marcus asks
+ * what she took from his party) and the name has a quiet beat of its own (the photographs, the dark, her building).
+ * Both are held in c9.open and add no case weight. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -262,7 +265,80 @@ function nameBlocks(s: GameState, road: ReturnType<typeof nameRoad9>): Block[] {
   ];
 }
 
+// ── Second beats (held in c9.open; no case weight) ──
+
+function witnessAfterChoices(who: 'celeste' | 'marcus'): C9Choice[] {
+  const after = (id: string, label: string, hint: string, key: string, body: Block[], extra?: (x: GameState) => void) =>
+    offer9(id, label, hint, 'assemble', (x) => {
+      delete x.choices['c9.open'];
+      set9(x, key, id.replace(/^(terrace|marcus)-/, ''));
+      extra?.(x);
+      return body;
+    });
+  if (who === 'marcus')
+    return [
+      after('marcus-deflect', 'Tell him he gave everything away himself', 'Charm, and a closed door.', 'marcus', [
+        q('You', 'Nothing you didn’t hand me yourself, Marcus. You were very generous that night.'),
+        p('He laughs, once, and it is almost real. He finishes his drink and stands, and buttons his jacket, and looks at you for a moment as if he is pricing you.'),
+        q('Marcus', 'One day you’ll want something from Helix you can’t charm out of it. Come and see me then.'),
+      ]),
+      after('marcus-debt', 'Owe him one', 'He’ll want it back. Men like Marcus always collect.', 'marcus', [
+        q('You', 'I’ll owe you. Not tonight.'),
+        p('Something in his face settles, the way it does in men who have just been handed a thing they know how to use. He writes a number on the back of a bar bill and slides it across the table without looking at it.'),
+        q('Marcus', 'Then we understand each other. I always collect, Ms Vale. I’m told it’s my best quality.'),
+        t('A debt to Marcus Chen. It is a leash. It is also, if I am careful, a door into Helix that nobody else has.'),
+      ], (x) => setKey(x, 'own.marcus', 'owed')),
+    ];
+  return [
+    after('terrace-truth', 'Tell her the truth: some days you do', 'Give her something real. See what she does with it.', 'terrace', [
+      q('You', 'Some days. More than I expected to.'),
+      p('Celeste smiles, and for once the smile reaches her eyes, and that is the worst thing you have seen all week.'),
+      q('Celeste', 'She did too. Some days. That was always the trouble with her.'),
+      t('She talks about her the way you talk about someone who is still in the next room.'),
+    ]),
+    after('terrace-turn', 'Turn it back on her', '“Do you like looking at her?”', 'terrace', [
+      q('You', 'Do you like looking at her?'),
+      p('For a moment the terrace is very quiet. Then Celeste laughs, lightly, signals for the bill and pays it, and on her way past touches your cheek with cool fingers, the way you would straighten a painting.'),
+      q('Celeste', 'Very much, darling. That’s rather the point.'),
+      t('She did not deny it. She did not need to.'),
+    ]),
+    after('terrace-leave', 'Thank her and go', 'Take what she gave you and get out of range.', 'terrace', [
+      p('You thank her for her time, and she lets you, and you feel her watching you all the way to the lift. The doors close on her raising her glass to you, very slightly, as if to a private joke.'),
+      t('I came for a witness. I am leaving with the feeling of having been inspected.'),
+    ]),
+  ];
+}
+
+function nameAfterChoices(): C9Choice[] {
+  const sit = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9(id, label, hint, 'assemble', (x) => {
+      delete x.choices['c9.open'];
+      set9(x, 'name-beat', id.replace(/^name-/, ''));
+      return body;
+    });
+  return [
+    sit('name-photos', 'Find her in the Glass House photographs', 'You were in the same room. There will be pictures.', [
+      p('The society pages kept the Glass House: forty photographs of people being seen, and you in eleven of them. You go through them slowly with the lights off. In the ninth, you are laughing at something Marcus said. In the background, out of focus, Celeste is standing by the window with a glass she is not drinking from.'),
+      p('She is not looking at the camera. She is not looking at Marcus. She is looking at you, the way you would look at a coat you had once owned, being worn by somebody else in the street.'),
+      t('She was looking at me in every frame she is in. I just never looked at the background.'),
+    ]),
+    sit('name-dark', 'Sit with it in the dark', 'Don’t do anything yet. Let it be true.', [
+      p('You do nothing. You sit at the window with the lights off and the name in your mouth, and let it be true for a while before you make it useful.'),
+      p('You disappeared before breakfast. You had heard it as an old friend’s reproach. It was an inventory check. She was confirming the stock had come back to the shelf, and noting, with interest, that it walked differently now.'),
+      t('Somebody knew her. Loved her, maybe, in whatever way people like that love. And signed her away anyway, and then came to a party to see how the new fitting took.'),
+    ]),
+    sit('name-walk', 'Walk past her building', 'See where she lives. Let her see you, if she’s looking.', [
+      p('Her fund keeps the top three floors of a glass tower on the river, and the terrace is lit even at midnight. You walk past on the far pavement in a dark coat, not hurrying, not looking up more than a woman walking home would look up.'),
+      p('On the terrace, a figure stands at the rail with a glass. It does not wave. It does not move. It stays at the rail exactly as long as it takes you to reach the corner, and then it is gone.'),
+      t('If that was her, she knows where I walk now. If it was not, somebody she pays does.'),
+    ]),
+  ];
+}
+
 function assembleChoices(s: GameState): C9Choice[] {
+  const open = get9(s, 'open');
+  if (open === 'witness-celeste' || open === 'witness-marcus') return witnessAfterChoices(open === 'witness-celeste' ? 'celeste' : 'marcus');
+  if (open === 'name') return nameAfterChoices();
   const c: C9Choice[] = [];
   const who = witness9(s);
   if (who && !took(s, 'witness'))
@@ -270,7 +346,13 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-witness', 'Take the corroborator as far as they’ll go', 'Firsthand, and only as far as they really know.', 'assemble', (x) => {
         take(x, 'witness');
         set9(x, 'witness', who === 'celeste' ? 'confirmed' : 'confirmed-pro');
-        return witnessBlocks(x, who);
+        set9(x, 'open', 'witness-' + who);
+        return [
+          ...witnessBlocks(x, who),
+          who === 'celeste'
+            ? q('Celeste', 'May I ask you something, now that you have asked me so much? Do you like being her?')
+            : q('Marcus', 'That’s my half. Now yours. What did you take from my party, Ms Vale?'),
+        ];
       }),
     );
   const lever = lever9(s);
@@ -348,6 +430,7 @@ function assembleChoices(s: GameState): C9Choice[] {
         setKey(x, 'case.name', 'celeste');
         set9(x, 'name-road', road);
         if (road === 'public' && ownPower(x) && !getKey(x, 'own.exposed')) setKey(x, 'own.exposed', 'yes');
+        set9(x, 'open', 'name');
         return nameBlocks(x, road);
       }),
     );

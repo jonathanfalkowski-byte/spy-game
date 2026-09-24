@@ -17,10 +17,16 @@ const ids = (s: GameState) => chapter9Choices(s).map((c) => c.id.replace(/^chapt
 const text = (s: GameState) => s.history.flatMap((h) => h.blocks.map((b) => b.text)).join('\n');
 /** Only what the last choice added to the page. */
 const added = (before: GameState, after: GameState) => text({ ...after, history: after.history.slice(before.history.length) });
-const c9 = (s: GameState, id: string) => {
+const choose9 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER9_CHOOSE', id: 'chapter9.' + id });
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
   return next;
+};
+/** Pass 2's second beats (witness, name) settle on their neutral pick when a walk asks for a hub move instead. */
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark'];
+const c9 = (s: GameState, id: string) => {
+  const pending = ids(s).find((x) => settle9.includes(x));
+  return choose9(pending && !ids(s).includes(id) ? choose9(s, pending) : s, id);
 };
 const walk = (s: GameState, path: string[]) => path.reduce(c9, s);
 const complete7 = (name: string) => replay(golden7.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
@@ -130,7 +136,7 @@ it('keeps the witness firsthand-bounded, with the Marcus fallback and the cooler
 });
 
 it('offers the Celeste witness after the name, with the variant line and still one weight (D7)', () => {
-  const named = walk(hub({ 'c6.celeste': 'let-be' }), ['assemble-name']);
+  const named = walk(hub({ 'c6.celeste': 'let-be' }), ['assemble-name', 'name-dark']);
   expect(ids(named)).toContain('assemble-witness');
   const after = walk(named, ['assemble-witness', 'assemble-stop']);
   expect(text(after)).toContain('Ask yourself why I’m still telling you the truth.');
@@ -190,4 +196,38 @@ it('lands last week’s choices the next morning, sets the witness scene, and en
   const done = walk(hub(), ['assemble-name', 'assemble-stop', 'resolve-end']);
   expect(`${done.scene}.${done.phase}`).toBe('chapter9.complete');
   expect(text(done)).toContain('“Breakfast? — C.”');
+});
+
+// ── Deepening pass 2: second beats ──
+
+it('gives the witness a second beat: Celeste asks, Marcus collects', () => {
+  const asked = c9(hub({ 'c6.celeste': 'let-be' }), 'assemble-witness');
+  expect(text(asked)).toContain('Do you like being her?');
+  expect(ids(asked)).toEqual(['terrace-truth', 'terrace-turn', 'terrace-leave']);
+  const turned = c9(asked, 'terrace-turn');
+  expect([turned.choices['c9.terrace'], turned.choices['c9.open']]).toEqual(['turn', undefined]);
+  expect(text(turned)).toContain('That’s rather the point.');
+  expect(ids(turned)).toContain('assemble-name');
+  // The second beat adds no case weight.
+  expect(Object.keys(turned.choices).filter((k) => k.startsWith('c9.took.'))).toEqual(['c9.took.witness']);
+});
+
+it('gives the name its own quiet beat before the case goes on', () => {
+  const named = c9(hub(), 'assemble-name');
+  expect(ids(named)).toEqual(['name-photos', 'name-dark', 'name-walk']);
+  const photos = c9(named, 'name-photos');
+  expect([photos.choices['c9.name-beat'], photos.phase]).toEqual(['photos', 'assemble']);
+  expect(text(photos)).toContain('She was looking at me in every frame she is in.');
+  expect(ids(photos)).toEqual(['assemble-stop']);
+});
+
+it('lets her owe Marcus: a leash, and the Predator route’s first door into Helix', () => {
+  const metMarcus = noMarcusNoItem(withFlags(complete8('own-records-stop'), bare));
+  metMarcus.day.records.push({ key: 'mission.marcus-memory', layer: 'claim', text: 'Marcus claims Evelyn left the Singapore gathering early.', source: 'Marcus’s answer to your question', event: 1 });
+  const asked = walk(metMarcus, ['begin', 'arrive-begin', 'assemble-witness']);
+  expect(text(asked)).toContain('What did you take from my party, Ms Vale?');
+  expect(ids(asked)).toEqual(['marcus-deflect', 'marcus-debt']);
+  const owed = c9(asked, 'marcus-debt');
+  expect([owed.choices['own.marcus'], owed.choices['c9.marcus']]).toEqual(['owed', 'debt']);
+  expect(c9(asked, 'marcus-deflect').choices['own.marcus']).toBeUndefined();
 });

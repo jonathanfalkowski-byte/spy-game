@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "records-name-thin",
-      "events": 211,
+      "events": 212,
       "strength": "thin",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "ed0b256d7f4300c04ce9d5d02a92a8562ee456825fa76a30bd80a5b0b77f66ba",
+      "saveSha256": "1db03460c660450f67558548bbb6781a7cbb094015c90910e4c15ecaecb966d3",
       "ledger": [
         {
           "sequence": 1,
@@ -1676,7 +1676,7 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.name-dark",
             "expectedRevision": 209
           }
         },
@@ -1684,8 +1684,16 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.assemble-stop",
             "expectedRevision": 210
+          }
+        },
+        {
+          "sequence": 212,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 211
           }
         }
       ]
@@ -3372,11 +3380,11 @@
     },
     {
       "name": "rook-all",
-      "events": 232,
+      "events": 234,
       "strength": "strong",
       "nameRoad": "rook",
       "entered": "own-power",
-      "saveSha256": "6795dfdb2c1cf8ac5bbf69bbaf4b9f6264d08549d5ca1e8ce3acf21161ff9723",
+      "saveSha256": "f45953d6828892daf6c6edb646a945befd842bd7b2d8e0301fb8f4fc99167acd",
       "ledger": [
         {
           "sequence": 1,
@@ -5180,7 +5188,7 @@
           "sequence": 227,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-oracle",
+            "id": "chapter9.terrace-leave",
             "expectedRevision": 226
           }
         },
@@ -5188,7 +5196,7 @@
           "sequence": 228,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-evidence",
+            "id": "chapter9.assemble-oracle",
             "expectedRevision": 227
           }
         },
@@ -5196,7 +5204,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-maya-bounded",
+            "id": "chapter9.assemble-evidence",
             "expectedRevision": 228
           }
         },
@@ -5204,7 +5212,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-name",
+            "id": "chapter9.assemble-maya-bounded",
             "expectedRevision": 229
           }
         },
@@ -5212,7 +5220,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.assemble-name",
             "expectedRevision": 230
           }
         },
@@ -5220,19 +5228,35 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.name-dark",
             "expectedRevision": 231
+          }
+        },
+        {
+          "sequence": 233,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.assemble-stop",
+            "expectedRevision": 232
+          }
+        },
+        {
+          "sequence": 234,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 233
           }
         }
       ]
     },
     {
       "name": "maya-all",
-      "events": 219,
+      "events": 220,
       "strength": "strong",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "d40b4bac340867ebdad5ecc9d46944525c7273ad0a77f61dab6a24816e72d6b4",
+      "saveSha256": "b036d3d0d63f33400cae22406a6b0c789993b346bdb0447ec510bc6c00c3b790",
       "ledger": [
         {
           "sequence": 1,
@@ -6964,7 +6988,7 @@
           "sequence": 218,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.name-dark",
             "expectedRevision": 217
           }
         },
@@ -6972,19 +6996,27 @@
           "sequence": 219,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.assemble-stop",
             "expectedRevision": 218
+          }
+        },
+        {
+          "sequence": 220,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 219
           }
         }
       ]
     },
     {
       "name": "outside-placeholder-all",
-      "events": 214,
+      "events": 216,
       "strength": "strong",
       "nameRoad": "public",
       "entered": "outside",
-      "saveSha256": "92aa60d601420012386783416f2e290316e120233ab0cd6dab5b8943b1035605",
+      "saveSha256": "c8aed6bf4e6b87fd14931cf6803f5320f116b73ea62480363d856b728f5ec057",
       "ledger": [
         {
           "sequence": 1,
@@ -8644,7 +8676,7 @@
           "sequence": 209,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-oracle",
+            "id": "chapter9.terrace-leave",
             "expectedRevision": 208
           }
         },
@@ -8652,7 +8684,7 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-evidence",
+            "id": "chapter9.assemble-oracle",
             "expectedRevision": 209
           }
         },
@@ -8660,7 +8692,7 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-maya-bounded",
+            "id": "chapter9.assemble-evidence",
             "expectedRevision": 210
           }
         },
@@ -8668,7 +8700,7 @@
           "sequence": 212,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-name",
+            "id": "chapter9.assemble-maya-bounded",
             "expectedRevision": 211
           }
         },
@@ -8676,7 +8708,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.assemble-name",
             "expectedRevision": 212
           }
         },
@@ -8684,8 +8716,24 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.name-dark",
             "expectedRevision": 213
+          }
+        },
+        {
+          "sequence": 215,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.assemble-stop",
+            "expectedRevision": 214
+          }
+        },
+        {
+          "sequence": 216,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 215
           }
         }
       ]

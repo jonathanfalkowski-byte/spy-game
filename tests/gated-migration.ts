@@ -3,6 +3,7 @@ import type { GameState } from '../src/state/schema';
 import { act, initialState } from '../src/state/reducer';
 import { chapter7Choices } from '../src/content/chapter7';
 import { chapter8Choices } from '../src/content/chapter8';
+import { chapter9Choices } from '../src/content/chapter9';
 
 /**
  * Neutral picks for beats added to the gated chapters after their goldens were captured (Chapter 7
@@ -20,6 +21,10 @@ export const GATED_DEFAULTS = [
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
+  // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
+  'chapter9.terrace-leave',
+  'chapter9.marcus-deflect',
+  'chapter9.name-dark',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
@@ -45,9 +50,10 @@ export function migrateGated(ledger: GameEvent[], revision: number): GameEvent[]
         s = next;
         break;
       }
-      const fill = [...chapter7Choices(s), ...chapter8Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
+      const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
       if (!fill || inserted > 8) throw new Error(`Refused ${JSON.stringify(intent)} at ${s.scene}.${s.phase} (event ${event.sequence}) with no default`);
-      s = act(s, { type: fill.id.startsWith('chapter8.') ? 'CHAPTER8_CHOOSE' : 'CHAPTER7_CHOOSE', id: fill.id } as Intent);
+      const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
+      s = act(s, { type, id: fill.id } as Intent);
     }
   }
   return s.ledger;
