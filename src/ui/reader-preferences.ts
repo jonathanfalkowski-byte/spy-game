@@ -8,6 +8,22 @@ export function readNavigation(storage: StoragePort): boolean | undefined {
     return undefined;
   }
 }
+export const FADE_KEY = 'eve.reader.fade-coercion.v1';
+/** "Fade coercion scenes" (CONTENT_DIRECTION §6): a per-reader preference, outside the save. */
+export function readFade(storage: StoragePort): boolean {
+  try {
+    return storage.getItem(FADE_KEY) === 'yes';
+  } catch {
+    return false;
+  }
+}
+export function writeFade(storage: StoragePort, fade: boolean) {
+  try {
+    storage.setItem(FADE_KEY, fade ? 'yes' : 'no');
+  } catch {
+    /* Keep session choice. */
+  }
+}
 export function writeNavigation(storage: StoragePort, collapsed: boolean) {
   try {
     storage.setItem(NAVIGATION_KEY, collapsed ? 'yes' : 'no');

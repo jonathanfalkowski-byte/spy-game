@@ -1,6 +1,6 @@
 import { assessmentStatus, assessmentLabels } from './assessment-status';
 import { isCurrentAuthoringRevision, hasRevision18Presentation } from '../content/revision';
-import { readNavigation, writeNavigation } from './reader-preferences';
+import { readFade, readNavigation, writeFade, writeNavigation } from './reader-preferences';
 import { SceneArtStage } from './SceneArtStage';
 import { openingReadingTitle } from './opening-beats';
 import { resolveSceneArt, validateSceneShot, type SceneArt } from './scene-art';
@@ -21,6 +21,9 @@ import { Chapter11work } from './Chapter11work';
 import { chapter11Scenes } from '../content/chapter11';
 import { Chapter12work } from './Chapter12work';
 import { chapter12Scenes } from '../content/chapter12';
+import { Chapter13work } from './Chapter13work';
+import { chapter13Scenes } from '../content/chapter13';
+import { FadeCoercionContext } from './reader-context';
 import { LeverageBoard } from './LeverageBoard';
 import { leverageBoardOpen } from '../content/leverage';
 import { chapter5Scenes } from '../content/chapter5';
@@ -92,6 +95,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
     'journal' | 'history' | 'leverage' | 'assessment' | 'restart' | 'restore' | 'navigation' | null
   >(null);
   const [textSize, setTextSize] = useState(() => readSize(storage));
+  const [fadeCoercion, setFadeCoercion] = useState(() => readFade(storage));
   const heading = useRef<HTMLHeadingElement>(null);
   const latestExchange = useRef<HTMLDivElement>(null);
   const previousNode = useRef<string | null>(null);
@@ -197,6 +201,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'chapter10',
         'chapter11',
         'chapter12',
+        'chapter13',
         'file',
         'security',
         'sloane',
@@ -234,6 +239,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'chapter10',
       'chapter11',
       'chapter12',
+      'chapter13',
       'file',
       'security',
       'sloane',
@@ -305,6 +311,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           ? 'Glass House / 03'
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
+            : state.scene === 'chapter13'
+              ? 'Chapter 13 / The Honeypot'
             : state.scene === 'chapter12'
               ? 'Chapter 12 / Singapore'
             : state.scene === 'chapter11'
@@ -336,6 +344,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           'Above the city.'
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
+        ) : state.scene === 'chapter13' ? (
+          'The Honeypot.'
         ) : state.scene === 'chapter12' ? (
           'Singapore.'
         ) : state.scene === 'chapter11' ? (
@@ -376,6 +386,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             ).map((s, i) => ['mission' + i, s.label])
           : state.scene === 'clinic'
             ? clinicSections.map((s, i) => ['clinic' + i, s.label])
+            : state.scene === 'chapter13'
+              ? chapter13Scenes.map((s) => [s.id, s.title])
             : state.scene === 'chapter12'
               ? chapter12Scenes.map((s) => [s.id, s.title])
             : state.scene === 'chapter11'
@@ -434,7 +446,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             key={id}
             aria-current={
               state.scene === id ||
-              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12'].includes(state.scene) && id === node) ||
+              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13'].includes(state.scene) && id === node) ||
               (state.scene === 'mission' &&
                 id ===
                   'mission' +
@@ -475,6 +487,17 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             <option value="24">Extra large</option>
           </select>
         </label>
+        <label className="text-control">
+          <input
+            type="checkbox"
+            checked={fadeCoercion}
+            onChange={(e) => {
+              setFadeCoercion(e.target.checked);
+              writeFade(storage, e.target.checked);
+            }}
+          />
+          Fade coercion scenes
+        </label>
         <button onClick={() => setModal('restore')}>Restore save backup</button>
         <button className="subtle" onClick={() => setModal('restart')}>
           Restart story
@@ -488,6 +511,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
     </nav>
   );
   return (
+    <FadeCoercionContext.Provider value={fadeCoercion}>
     <div className="app" style={{ '--reading-size': `${textSize}px` } as CSSProperties}>
       <a className="skip" href="#story">
         Skip to story
@@ -495,7 +519,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter12' ? 'SINGAPORE' : state.scene === 'chapter11' ? 'THE ASSET' : state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter13' ? 'THE HONEYPOT' : state.scene === 'chapter12' ? 'SINGAPORE' : state.scene === 'chapter11' ? 'THE ASSET' : state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -651,6 +675,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'chapter10',
                     'chapter11',
                     'chapter12',
+                    'chapter13',
                     'file',
                     'security',
                     'sloane',
@@ -770,6 +795,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   {!readingScene && <Chapter10work state={state} send={send} />}
                   {!readingScene && <Chapter11work state={state} send={send} />}
                   {!readingScene && <Chapter12work state={state} send={send} />}
+                  {!readingScene && <Chapter13work state={state} send={send} />}
                   <Clinicwork state={state} send={send} />
                   {!(assessment.status === 'required' && assessment.flow === 'mission') && (
                     <Missionwork state={state} send={send} />
@@ -950,6 +976,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : 'GLASS HOUSE'
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
+                        : state.scene === 'chapter13'
+                          ? 'Chapter 13 / The Honeypot'
                         : state.scene === 'chapter12'
                           ? 'Chapter 12 / Singapore'
                         : state.scene === 'chapter11'
@@ -1080,5 +1108,6 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         </Modal>
       )}
     </div>
+    </FadeCoercionContext.Provider>
   );
 }

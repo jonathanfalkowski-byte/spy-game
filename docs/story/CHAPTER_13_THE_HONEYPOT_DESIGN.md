@@ -6,7 +6,10 @@ Design authority: [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) (§2 what is on a
 coercion framework, §5 hard lines, §6 player comfort, §11 checklist), [BEAT_MAP.md](BEAT_MAP.md) (Act III),
 [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md) (the exploitation / recovery overlay),
 [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) (canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–12 (`VITE_EVE_CHAPTER13`, content
+Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_13_THE_HONEYPOT_SCRIPT.md](scripts/CHAPTER_13_THE_HONEYPOT_SCRIPT.md), code: `src/content/chapter13.ts`.
+~1.8–2.3k words on the golden paths (lean; deepening follows). The content notice and the "Fade coercion scenes"
+setting are built. Gated like Chapters 6–12 (`VITE_EVE_CHAPTER13`, content
 revision ≥ 19), entered from an own-power `chapter12.complete`.
 
 > **This is the game's reserved sexual-coercion beat** (one of at most two per playthrough). It follows

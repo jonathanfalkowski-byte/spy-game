@@ -1,0 +1,113 @@
+# Chapter 13 — "The Honeypot" (script: flow and flags)
+
+Design: [../CHAPTER_13_THE_HONEYPOT_DESIGN.md](../CHAPTER_13_THE_HONEYPOT_DESIGN.md) (approved 2026-09-25, all seven
+decisions as recommended). Code: `src/content/chapter13.ts` (the wording lives there), `src/content/leverage.ts`
+(the board), `src/ui/Chapter13work.tsx`, and the reader's fade (`src/ui/reader-preferences.ts`,
+`src/ui/reader-context.ts`, `src/ui/Narrative.tsx`). Gated behind `VITE_EVE_CHAPTER13` (content revision ≥ 19),
+entered from an own-power `chapter12.complete` with **begin** ("The placement"; its hint carries the content
+notice).
+
+Phases: `brief` → `week` → `answer` → `thursday` → `after` → `morning` → `complete`
+
+**The reserved sexual-coercion beat.** On the comply path the order, the choice, getting ready, the car, the bar,
+the lift, the corridor and the door are on screen; the door closes and the phase ends; `after` opens in the car at
+two. Nothing behind the door is shown or described, then or later. `tests/state/chapter13.test.ts` scans every
+coerced path (comply and refuse, all recovery steps) for sexual vocabulary and fails on any hit.
+
+## Player comfort (CONTENT_DIRECTION §6, built here)
+
+- **Content notice**: the first block of `brief`, and the `begin` hint.
+- **"Fade coercion scenes"** (Settings, a per-reader preference `eve.reader.fade-coercion.v1`, outside the save):
+  `fadeCoercion13` replaces the comply lead-in entry (recognised by its first line, `COMPLY_OPENING13`) with one
+  line, keeping the corridor, the door and the choice. Presentation only: the save, the ledger and the goldens are
+  never touched.
+
+## `brief` — The Placement (11:00 · THE VESPER, READING ROOM)
+
+The Vesper by day; Celeste with the grey folder. Singapore colours her opening (`act3.singapore`: moved-in "You
+looked so at home there"; everything "Nine flats. You counted."). **The target:** Owen Marsh, deputy director of
+enforcement at the Markets Authority; the one inquiry into Halvorsen's fund. **The client:** Halvorsen (by
+`c11.iris`: lost Iris, or still has her). **The job:** the Claremont bar, Thursday, nine; suite 1109; the camera
+behind the mirror. **The leverage:** Maya's file, *unauthorised disclosure … referred to the police*, dated Friday.
+Twice surprised: "something you cannot be clever about".
+
+**brief-ask** ("It is very restful, being owned.") · **brief-silent** (neutral; the cup on page seven).
+
+## `week` — Six Days (THE WEEK · LONDON)
+
+1109 on the wall; the city carrying on; the black phone quiet. One move (`c13.week`; allies set `c13.told`):
+**week-marsh** (Kennington, the café, eleven years of never letting anybody off) · **week-maya** (dinner and
+"I noticed" if `c6.maya = restored`; otherwise her lit window across the road) · **week-iris** (if Iris is an
+ally: the cupboard behind the mirror, the card) · **week-theo** (if Theo is an ally: "I have waited twenty years
+for that sentence") · **week-julian** (if Julian is an ally: "right about the pensions") · **week-alone**
+(neutral; two cards, and the empty third put in the drawer).
+
+## `answer` — The Answer (WEDNESDAY · MIDNIGHT)
+
+Nell's photograph on the table (or her name, if Evelynn walked away from Nora). `c13.answer`:
+**order-comply** (`act3.honeypot = done`) · **order-refuse** (`act3.honeypot = refused`,
+`act3.maya-status = detained`; if `act3.nell`, she keeps the name back) · **order-counter** (only with a way built,
+`counterWays13`: *turn* = week-marsh plus proof (Ashby recorded, the catalogue photographed, a strong case, or
+Nell's note) or Julian told; *swap* = Iris told; *expose* = Theo told, or week-marsh, famous and a strong case).
+
+## `thursday` — The Claremont (THURSDAY · 21:00)
+
+- **Comply:** getting ready as armour ("I am leaving me in the drawer"); Pryce turns the heating up on the Strand;
+  Marsh at the bar, kind and lonely; the count; the lift; the corridor; "Are you all right?" **door-look** /
+  **door-away** (neutral) → "The door closes behind you." End of phase.
+- **Refuse:** home, not going; Maya's call from the car (or C.'s photograph of her); the station waiting room all
+  night. "They only have to do it to her, and let you watch." **station-wait** (neutral) · **station-lawyer** (if
+  `c9.lawyer = retain`: Nadia Brandt at half past one, "Nobody who leaks is this tidy"; `act3.maya-lawyer`).
+- **Counterplay** (`c13.counter`; each raises `act3.celeste-surprised`): **counter-turn** (the truth at the bar,
+  the proof; in 1109 they stage it for the camera, both in on it: "Is this all right?"; both still dressed, the lamp
+  off, laughing; heat 2, chosen; `act3.ally.marsh`, `act3.honeypot = staged`, fact `c13.marsh`) ·
+  **counter-swap** (Iris behind the mirror; the card: a month of 1109; one drink and a handshake at the lift;
+  `c13.card`, `act3.honeypot = pulled`, fact `c13.card`) · **counter-expose** (Theo's show at seven, or the
+  Courier; the lobby full of photographers; the whisky lifted to the eleventh floor; `act3.honeypot = burned`,
+  `act3.exposed`).
+
+## `after` — Afterwards (2 A.M.)
+
+- **Comply** (exploitation / recovery overlay): the car (Pryce: "Goodnight, Ms Vale"); the chain on the door; the
+  shower, as time and not detail; the dress in a bin bag; C.: "Received. Thank you."; Maya ringing, unanswered;
+  "Done to me. Not by me." **The recovery step** (`c13.recover`): **recover-maya** (the sofa; she doesn't ask) ·
+  **recover-julian / -theo / -sebastian** (`c13.refuge`: being held, in his clothes, nothing else) ·
+  **recover-wall** (THURSDAY. 1109. DONE TO ME. NOT BY ME.) · **recover-alone** (neutral).
+- **Refuse:** six o'clock; bail, suspension, no charge yet; Maya: "It was about you" (restored: **maya-tell** /
+  **maya-quiet**), or she walks past a stranger (**after-home**).
+- **Counterplay:** Marsh at the revolving doors ("I'm most of it"), Iris and the card in a glove, or the city
+  talking. **after-drink** · **after-home** (neutral).
+
+## `morning` — Friday (FRIDAY · MORNING)
+
+C. by answer: complied ("Your friend's file has gone back in my drawer. I keep everything."), refused ("Your friend
+is home, I hear … There is always a next time."), countered (Benedick / the cupboard / "How vulgar, and how
+effective", then the tally: once, twice, three times). The wall moves. **reply-none** (neutral) · **reply-nell**
+(if `c12.bed = drawer`: "Nell said you'd bring flowers"; silence all day) · **reply-count** (countered: "So have
+I."). Every reply sets `act3.sloane-came`.
+
+## `complete` — A Knock (EVENING · THE LANDING)
+
+Sloane in the Glass House coat, the folder held like schoolbooks: the recording request, Maya's charge sheet with
+her own directorate's stamp, or the Markets Authority's new inquiry with Axiom on the list. "I didn't know they did
+this." Last line: *She came to me. The woman who built this cage came to my door to ask if she could come in.*
+
+## Board, flags, tests
+
+- Board: Celeste wants "Owen Marsh, on camera, in suite 1109 at the Claremont"; threat "Maya, on a leak charge
+  already written" (or, refused, "detained … suspended, on bail"). Evelynn holds Marsh, the 1109 card, or the
+  broadcast.
+- Flags: `c13.brief`, `c13.week`, `c13.told`, `c13.answer`, `c13.door`, `c13.station`, `c13.counter`, `c13.card`,
+  `c13.recover`, `c13.refuge`, `c13.maya`, `c13.drink`, `c13.reply`; Act III keys `act3.honeypot`,
+  `act3.maya-status`, `act3.maya-lawyer`, `act3.ally.marsh`, `act3.exposed`, `act3.celeste-surprised` (thrice),
+  `act3.sloane-came`.
+- Tests: `tests/state/chapter13.test.ts` (the vocabulary scan over coerced paths; counterplay only when earned;
+  every option reaches `complete`; the fade); goldens `tests/fixtures/rev19-chapter13-golden.json` (comply-alone,
+  refuse-station, counter-turn; capture with `EVE_CAPTURE_CH13=1 npx vitest run tests/tools/capture-chapter13-golden.test.ts`).
+
+## Size (honest)
+
+Pass 1: **~1.8–2.3k words on the golden paths** against the 7k budget (the design estimated ~6.5k). Every scene,
+branch, safeguard and consequence is in; the prose is lean. The deepening pass should go to the week (more than
+one move, and Marsh seen twice), the brief (Celeste at greater length), the refuse night (Maya, and the station),
+the counterplay ops, and Friday. It should **not** lengthen the comply lead-in for its own sake.

@@ -176,7 +176,8 @@ start earlier. Sloane's monitoring and Rook's price are already leverage in Acts
 2. **Sexual coercion frequency:** at most one or two beats per playthrough, always off
    screen.
 3. **Player comfort:** a content notice at the start plus the optional "fade the coercion
-   beats" setting.
+   beats" setting. **Built 2026-09-25 with Chapter 13**: the chapter-open notice, and "Fade coercion
+   scenes" in Settings (a per-reader preference outside the save; `fadeCoercion13`).
 4. **Sebastian's switched-off sex path:** rewrite it as a heat-3 fade, so the choice exists
    and the scene fades like Julian's. **Done 2026-09-24** (`src/content/chapter5-sebastian.ts`).
 5. **The 18+ patch:** undecided, deferred.

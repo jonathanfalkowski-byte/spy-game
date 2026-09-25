@@ -31,6 +31,8 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   const answer = c(s, 'c10.answer') as LeverageStatus | undefined;
   const target = c(s, 'c10.target');
   const answer11 = c(s, 'c11.answer') as LeverageStatus | undefined;
+  const answer13 = c(s, 'c13.answer') as LeverageStatus | undefined;
+  const latest = answer13 ?? answer11 ?? answer;
   held.push({
     holder: 'Celeste Laurent',
     holds: [
@@ -41,7 +43,12 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
       ...(c(s, 'c12.cover') ? ['Singapore: where you went, and whom you saw'] : []),
       ...(c(s, 'c12.harbour') ? ['A photograph of Maya leaving work, taken from across the road'] : []),
     ],
-    ...(answer11
+    ...(answer13
+      ? {
+          wants: 'Owen Marsh, on camera, in suite 1109 at the Claremont',
+          threat: c(s, 'act3.maya-status') === 'detained' ? 'Maya, detained on a leak charge: suspended, on bail' : 'Maya, on a leak charge already written',
+        }
+      : answer11
       ? { wants: 'Iris Moreau, ended, by your hand', threat: 'Maya’s clearance, escalated' }
       : target
         ? {
@@ -49,8 +56,8 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
             threat: 'Maya’s clearance renewal, in nine days',
           }
         : {}),
-    status: (answer11 ?? answer) === 'complied' || (answer11 ?? answer) === 'refused' || (answer11 ?? answer) === 'countered' ? (answer11 ?? answer)! : 'open',
-    source: answer11 ? 'The Vesper terrace, the first Thursday' : 'Breakfast, and the black phone with one contact',
+    status: latest === 'complied' || latest === 'refused' || latest === 'countered' ? latest : 'open',
+    source: answer13 ? 'The Vesper reading room, the placement' : answer11 ? 'The Vesper terrace, the first Thursday' : 'Breakfast, and the black phone with one contact',
   });
   held.push({
     holder: 'Victoria Sloane',
@@ -98,6 +105,9 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'c12.statement') === 'recorded') holds.push({ id: 'ashby', label: 'Colin Ashby on the record: the order to burn her came “from a friend of hers”', source: 'The Punkah Bar, the Marlowe' });
   if (c(s, 'act3.ally.nora') === 'in') holds.push({ id: 'nora', label: 'Nora Linden, who wants to be in the room', source: 'A kitchen in Holland Village' });
   if (c(s, 'act3.nell') === 'known') holds.push({ id: 'nell', label: 'Her name: Eleanor Linden. Nell.', source: 'Her sister' });
+  if (c(s, 'act3.ally.marsh') === 'in') holds.push({ id: 'marsh', label: 'Owen Marsh of the Markets Authority, who knows he was the target, and is in it now', source: 'The Claremont, suite 1109' });
+  if (c(s, 'c13.card') === 'taken') holds.push({ id: 'card-1109', label: 'The 1109 card: a month of Meridian placements on Meridian’s own camera', source: 'Iris, behind the mirror' });
+  if (c(s, 'act3.honeypot') === 'burned') holds.push({ id: 'broadcast', label: 'The honeypot, burned in public before it happened', source: c(s, 'c13.told') === 'theo' ? 'Theo Marr’s show' : 'The Courier' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };
