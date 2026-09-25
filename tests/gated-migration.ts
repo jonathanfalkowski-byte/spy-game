@@ -145,6 +145,10 @@ export const GATED_DEFAULTS = [
   'chapter13.box-keep',
   'chapter13.week-rest',
   'chapter13.vigil-silent',
+  // Chapter 14 deepening: ask Sloane nothing; leave Maya to think; say nothing on the stairs.
+  'chapter14.ask-none',
+  'chapter14.maya-leave',
+  'chapter14.stairs-silent',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

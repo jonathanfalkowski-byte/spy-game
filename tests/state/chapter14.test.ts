@@ -40,8 +40,8 @@ const bare = {
   'own.crossover': undefined,
 };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete13('comply-alone'), { ...bare, ...flags });
-const toAnswer = (s: GameState, sloane = 'sloane-hear', said = 'said-enough') => walk(s, ['begin', sloane, 'tell-now', said]);
-const prefer = ['sloane-hear', 'tell-now', 'said-enough', 'comply-clean', 'escape-fire', 'after-alone'];
+const toAnswer = (s: GameState, sloane = 'sloane-hear', said = 'said-enough') => walk(s, ['begin', 'ask-none', sloane, 'tell-now', said, 'maya-leave']);
+const prefer = ['ask-none', 'sloane-hear', 'tell-now', 'said-enough', 'maya-leave', 'comply-clean', 'stairs-silent', 'escape-fire', 'after-alone'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c14(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -65,19 +65,28 @@ it('lets Sloane confess, and gives her the door not taken', () => {
   expect(words).toContain('a copy of Thursday’s recording');
   expect(words).toContain('C. Laurent.');
   expect(text(c14(start({ 'c13.answer': 'refused' }), 'begin'))).toContain('Somebody used my stamp.');
-  expect(ids(door)).toEqual(['sloane-hear', 'sloane-hold', 'sloane-shut']);
-  expect(ids(c14(start({ 'own.crossover': 'institutional' }), 'begin'))).toEqual(['sloane-hear', 'sloane-hold', 'sloane-shut', 'sloane-take']);
-  const heard = c14(door, 'sloane-hear');
+  // One question first.
+  expect(ids(door)).toEqual(['ask-why', 'ask-adrian', 'ask-nell', 'ask-none']);
+  expect(ids(c14(start({ 'act3.nell': undefined }), 'begin'))).toEqual(['ask-why', 'ask-adrian', 'ask-none']);
+  expect(text(c14(door, 'ask-adrian'))).toContain('Recommendation: the trap is the lever.');
+  expect(text(c14(door, 'ask-nell'))).toContain('I didn’t ask.');
+  expect(text(c14(door, 'ask-why'))).toContain('exactly what they counted on me telling myself');
+  const asked = c14(door, 'ask-none');
+  expect([asked.phase, asked.choices['c14.ask']]).toEqual(['door', 'none']);
+  expect(ids(asked)).toEqual(['sloane-hear', 'sloane-hold', 'sloane-shut']);
+  expect(ids(walk(start({ 'own.crossover': 'institutional' }), ['begin', 'ask-none']))).toEqual(['sloane-hear', 'sloane-hold', 'sloane-shut', 'sloane-take']);
+  const heard = c14(asked, 'sloane-hear');
   expect([heard.choices['c14.file'], heard.choices['act3.sloane'], heard.facts.includes('c14.verdict')]).toEqual(['yes', 'truce', true]);
-  const held = c14(door, 'sloane-hold');
+  const held = c14(asked, 'sloane-hold');
   expect([held.choices['c14.file'], held.choices['act3.sloane']]).toEqual(['yes', 'held']);
-  const shut = c14(door, 'sloane-shut');
+  const shut = c14(asked, 'sloane-shut');
   expect([shut.choices['c14.file'], shut.choices['act3.sloane']]).toEqual([undefined, 'shut']);
   expect(text(shut)).toContain('Be careful this weekend.');
 });
 
 it('gives the last order, with Adrian’s name as the price, and Maya before or after', () => {
-  const order = walk(start({ 'c8.pryce': 'chain' }), ['begin', 'sloane-hear']);
+  const order = walk(start({ 'c8.pryce': 'chain' }), ['begin', 'ask-none', 'sloane-hear']);
+  expect(text(order)).toContain('She must think you’re worth a great deal.');
   expect(order.phase).toBe('order');
   expect(text(order)).toContain('Bring her to the Vesper on Sunday at six, and bring what she carries.');
   expect(text(order)).toContain('Axiom will be told where its missing analyst is');
@@ -91,7 +100,7 @@ it('gives the last order, with Adrian’s name as the price, and Maya before or 
 });
 
 it('tells Maya, and lets her choose for herself', () => {
-  const kitchen = (flags: Record<string, string | undefined>) => walk(start(flags), ['begin', 'sloane-hear', 'tell-now']);
+  const kitchen = (flags: Record<string, string | undefined>) => walk(start(flags), ['begin', 'ask-none', 'sloane-hear', 'tell-now']);
   const close = kitchen({ 'c6.maya': 'restored' });
   expect(ids(close)).toEqual(['said-all', 'said-enough', 'said-go']);
   expect(c14(close, 'said-all').choices['act3.maya-choice']).toBe('stay');
@@ -104,6 +113,12 @@ it('tells Maya, and lets her choose for herself', () => {
   expect([all.choices['act3.maya-choice'], all.facts.includes('c14.maya-witness')]).toEqual(['witness', true]);
   expect(c14(distant, 'said-go').choices['act3.maya-choice']).toBe('away');
   expect(leverageBoard(all).holds.map((a) => a.id)).toContain('maya');
+  // Then an hour with her, the wall, or leaving her to think.
+  expect([all.phase, ids(all)]).toEqual(['maya', ['maya-dinner', 'maya-wall', 'maya-leave']]);
+  expect(text(c14(all, 'maya-dinner'))).toContain('who does magic tricks at parties');
+  const wall = c14(all, 'maya-wall');
+  expect([wall.phase, wall.choices['c14.mayamove']]).toEqual(['answer', 'wall']);
+  expect(text(wall)).toContain('There. Now it’s accurate.');
 });
 
 it('offers counterplay only with the verdict and one more thing', () => {
@@ -118,13 +133,18 @@ it('offers counterplay only with the verdict and one more thing', () => {
 it('hands Sloane over on the comply path, and Celeste forgets to say darling', () => {
   const sunday = c14(toAnswer(start()), 'order-comply');
   expect(sunday.phase).toBe('sunday');
-  expect(text(sunday)).toContain('I would have done the same.');
+  expect(text(sunday)).toContain('Oh, come on');
   expect(ids(sunday)).toEqual(['comply-copy', 'comply-clean']);
-  const copy = c14(sunday, 'comply-copy');
-  expect([copy.phase, copy.choices['act3.sloane'], copy.choices['c14.copy']]).toEqual(['after', 'handed', 'yes']);
+  const taxi = c14(sunday, 'comply-copy');
+  expect([taxi.phase, taxi.choices['c14.copy']]).toEqual(['sunday', 'yes']);
+  expect(text(taxi)).toContain('I would have done the same.');
+  expect(ids(taxi)).toEqual(['stairs-sorry', 'stairs-silent']);
+  const copy = c14(taxi, 'stairs-sorry');
+  expect([copy.phase, copy.choices['act3.sloane'], copy.choices['c14.stairs']]).toEqual(['after', 'handed', 'sorry']);
+  expect(text(copy)).toContain('Be good at it.');
   expect(text(copy)).toContain('For one sentence, when she speaks, she forgets to say darling.');
   expect(leverageBoard(copy).holds.find((a) => a.id === 'verdict')?.label).toContain('photograph');
-  const clean = c14(sunday, 'comply-clean');
+  const clean = walk(sunday, ['comply-clean', 'stairs-silent']);
   expect(leverageBoard(clean).holds.map((a) => a.id)).not.toContain('verdict');
   expect(text(finish(clean))).toContain('I handed her the woman who showed it to me.');
   expect(leverageBoard(clean).held[0].wants).toBe('Victoria Sloane and her file, at the Vesper, Sunday at six');
@@ -152,6 +172,7 @@ it('makes Celeste afraid on the counterplay path, and wins bounded terms', () =>
   const laid = c14(sunday, 'lay-marsh');
   expect([laid.choices['act3.celeste-afraid'], laid.choices['act3.terms'], laid.choices['act3.sloane'], laid.choices['act3.maya-status']]).toEqual(['yes', 'agreed', 'free', 'withdrawn']);
   expect(text(laid)).toContain('She does it too carefully');
+  expect(text(laid)).toContain('That’s why it was never in my desk.');
   expect(text(laid)).toContain('You know exactly what it is worth, darling.');
   expect(text(laid)).toContain('That you would turn round.');
   expect(leverageBoard(laid).holds.map((a) => a.id)).toEqual(expect.arrayContaining(['verdict', 'sloane', 'terms']));
@@ -184,6 +205,7 @@ it('reaches the end from every option in every scene', () => {
     return x;
   };
   const every = [
+    ['ask-why'], ['ask-adrian'], ['ask-nell'], ['maya-dinner'], ['maya-wall'], ['order-comply', 'comply-copy', 'stairs-sorry'],
     ['sloane-hold'], ['sloane-shut', 'order-counter', 'lay-case'], ['sloane-take', 'order-counter', 'lay-nora'],
     ['tell-later', 'said-all'], ['said-go'], ['order-comply', 'comply-copy'], ['order-refuse', 'escape-front', 'evening-marsh', 'evening-leave'],
     ['order-counter', 'lay-card'], ['order-counter', 'lay-broadcast'], ['order-counter', 'lay-ashby', 'evening-julian', 'evening-julian-no-sex', 'evening-stay'],

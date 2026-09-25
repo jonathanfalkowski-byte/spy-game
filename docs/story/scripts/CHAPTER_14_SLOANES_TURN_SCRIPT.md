@@ -90,8 +90,29 @@ who showed it to me"; "They took the flat … Everything else I am taking with m
   `tests/fixtures/rev19-chapter14-golden.json` (comply-hear, refuse-shut, counter-hold; capture with
   `EVE_CAPTURE_CH14=1 npx vitest run tests/tools/capture-chapter14-golden.test.ts`).
 
+## Deepening pass (2026-09-25)
+
+Three moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and more of every shared scene:
+
+- **One question to Sloane** (`door`, before the door choice) (`c14.ask`): **ask-why** ("exactly what they counted
+  on me telling myself") · **ask-adrian** (Candidate 7A from memory: "the trap is the lever … He will take it,
+  because he will think he is choosing") · **ask-nell** (if `act3.nell`: "I didn't ask … the thing I am going to carry
+  out of it") · **ask-none** (neutral; "You're very like him, you know").
+- **After the telling** (`maya`, after `c14.said`) (`c14.mayamove`): **maya-dinner** (an ordinary hour: too much
+  garlic, the sister's boyfriend who does magic tricks) · **maya-wall** (she reads the wall like an audit trail and
+  adds KNOWS to her own card) · **maya-leave** (neutral).
+- **Comply, the taxi and then the stairs**: **comply-copy** / **comply-clean** now happen in the taxi (next
+  `sunday`), and a stairs moment follows (`c14.stairs`): **stairs-sorry** ("Don't be. Be good at it.") ·
+  **stairs-silent** (neutral). Then the reading room.
+- More prose: Sloane close to (the ladder in her stocking, the bitten nails) and the memory of the desk; Sloane at
+  the kitchen window reading over her shoulder ("She must think you're worth a great deal"); Maya's unchanged flat;
+  midnight's wall and the light across the gap; the empty reading room on the refusal night; "What's your second
+  thing?" in the taxi; Celeste and Sloane at the lectern ("That's why it was never in my desk"); the SLOANE card
+  answered after the handover; counting what she has in the hotel; the arithmetic of the month.
+
 ## Size (honest)
 
-Pass 1: **~2.0–2.3k words on the golden paths** against the 7k budget. The set pieces are written, but they are
-split across the branches, so any one path reads about a third of the chapter. A deepening pass should add a
-second moment inside the door scene, more of Maya's kitchen, and more of Sunday on each path.
+Pass 1: ~2.0–2.3k words on the golden paths. After the deepening pass: **~2.6–2.8k on the golden (quiet) paths**,
+more when the new moments are played engaged, against the 7k budget. The branch structure keeps any one path at
+roughly a third of what is written; the next lift would be a shared scene all paths pass through (a Saturday
+night set piece before the answer).

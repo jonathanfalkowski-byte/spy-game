@@ -8,7 +8,11 @@
  * crossover). The last order: deliver Sloane and her file to the Vesper on Sunday; refusal spends Adrian Vale's name to
  * Axiom and takes the flat (non-sexual); counterplay needs the ORACLE verdict plus one more thing, and makes Celeste
  * afraid. Maya is told the truth, or enough of it, and chooses for herself (act3.maya-choice, derived, never picked
- * over her). The optional chosen evening (heat 3, consent-gated, fades) can include Owen Marsh if he was turned. */
+ * over her). The optional chosen evening (heat 3, consent-gated, fades) can include Owen Marsh if he was turned.
+ * Deepening pass (2026-09-25): one question to Sloane before the door choice (c14.ask = why | adrian | nell | none:
+ * "the trap is the lever"; "I didn't ask"); a moment with Maya after what she is told (c14.mayamove = dinner | wall |
+ * leave); on the comply path the taxi (copy | clean) is split from the stairs (c14.stairs = sorry | silent) before the
+ * reading room; and more of Saturday, midnight, Sunday and the nights after. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -124,6 +128,8 @@ function doorBlocks(s: GameState): Block[] {
     p('You let her in. You had always thought, if this ever happened, that you would make her wait on the landing, the way she made Adrian wait outside her office with his coat on his knee. You open the door, and stand aside, and she comes in, and it is only afterwards that you notice you did not decide to.'),
     p('She does not sit down until you have asked her twice. She stands in the middle of the room in the grey coat, dripping on the floorboards, looking at the wall. At the cards. At Celeste’s. At Nell’s. At the card that says only SLOANE, and under it, in your own hand, a single question mark.'),
     q('Sloane', 'That’s a fair question. I’ve been asking it too.'),
+    p('Close to, she is older than you remembered: grey at the temples under the dye, a ladder in one stocking, no rings, the nails bitten short on one hand and not the other. She keeps the folder flat against her knees with both palms, the way you would hold down something that might blow away.'),
+    t('The last time we were this close, she was telling Adrian who he was going to become, across a desk, with a tablet. I have thought about that room every day since. I don’t think she has thought about it once. Or I didn’t, until tonight.'),
     p('She sits, at last, on the edge of the sofa, with the folder on her knees, and tells it in order, the way she used to brief a room: no adjectives, no apologies, the facts in the sequence they happened. It is how you know she means it. She has never once, in all the time you have known her, told you a story.'),
     q('Sloane', 'Project Eve did not start at Axiom. It came to us from Meridian, finished, like a car. A legend with eight years of life already in it, and a candidate to fit. The candidate was you. I was made officer of record. My name is on every page.'),
     q('Sloane', 'The file came with an ORACLE assessment already attached. Two numbers. Voluntary adoption: high. Durable control: low. I raised it. In writing. I was told it was a known characteristic of the product, and priced in.'),
@@ -147,7 +153,46 @@ function doorBlocks(s: GameState): Block[] {
   ];
 }
 
+/** One question before the door choice (deepening pass). */
+function askChoices(s: GameState): C14Choice[] {
+  const ask = (id: string, label: string, hint: string, body: Block[]) =>
+    offer14('ask-' + id, label, hint, 'door', (x) => {
+      set14(x, 'ask', id);
+      return body;
+    });
+  return [
+    ask('why', 'Ask her why she signed', 'She raised it in writing. And then she signed.', [
+      q('You', 'You raised it in writing. And then you signed. Why?'),
+      p('She takes a long time over it. Outside a bus goes by, and the windows hum.'),
+      q('Sloane', 'Because if I hadn’t, they would have given the file to somebody who wouldn’t have raised it at all. I told myself that for a year. It was true. It was also exactly what they counted on me telling myself.'),
+      t('The only person in this whole story who has ever answered that question honestly. I did not expect it to be her.'),
+    ]),
+    ask('adrian', 'Ask what the file said about Adrian', 'Before. What you read, when you chose him.', [
+      q('You', 'What did the file say about me? Before.'),
+      p('She doesn’t need to look it up. She says it from memory, the way you would recite something you had read too many times.'),
+      q('Sloane', 'Candidate 7A. Thirty-four. Brilliant, cautious, ambitious, professionally trapped. Eleven years at Axiom and passed over once too often. Recommendation: the trap is the lever. Offer a way out of one cage through the door of another. He will take it, because he will think he is choosing.'),
+      p('She looks up at you.'),
+      q('Sloane', 'You did take it. And you were choosing. That’s the part ORACLE got right and none of us understood.'),
+    ]),
+    ...(getKey(s, 'act3.nell') === 'known'
+      ? [
+          ask('nell', 'Ask if she knew about Nell', 'The first one. The woman in the harbour.', [
+            q('You', 'Did you know about her? The first one. Eleanor Linden.'),
+            p('Sloane closes her eyes.'),
+            q('Sloane', 'I knew there was a first one. It said so, on the first page: legend previously deployed, returned to inventory. I didn’t know she had a name. I didn’t ask. I have been in this work twenty years, and that is the thing I am going to carry out of it.'),
+            t('I didn’t ask. The whole machine runs on those three words.'),
+          ]),
+        ]
+      : []),
+    ask('none', 'Ask her nothing', 'Let her say what she came to say.', [
+      p('You ask her nothing. You let the silence do it, the way Adrian learned to in interviews, and after a while she fills it herself.'),
+      q('Sloane', 'You’re very like him, you know. He used to do that. Wait until the other person couldn’t bear it.'),
+    ]),
+  ];
+}
+
 function doorChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'ask')) return askChoices(s);
   const door = (id: string, label: string, hint: string, sloane: string, file: boolean, body: Block[]) =>
     offer14('sloane-' + id, label, hint, 'order', (x) => {
       set14(x, 'sloane', id);
@@ -204,11 +249,19 @@ function orderBlocks(s: GameState): Block[] {
         : 'Saturday comes up grey. You have not slept. You stand in the kitchen with the black phone in your hand before it has even lit, because you know it is going to.',
     ),
     p('It lights.'),
+    ...(sloaneHere(s)
+      ? [
+          p('Sloane is awake before you have finished reading, folding the blanket into a perfect square, and she comes and stands at your shoulder with her coffee and reads the screen without asking, because she is Sloane, and some things do not change in a night.'),
+        ]
+      : []),
     q('C.', 'You had a visitor. She has something of ours, darling, and she has been carrying it about for a year like a handbag. Bring her to the Vesper on Sunday at six, and bring what she carries.'),
     q('C.', surprised === 'thrice' ? 'Do this one thing properly and I shall stop counting. I shan’t ask you for anything for a long time. You have my word.' : 'Do this one thing, and I shan’t ask you for anything for a long time. You have my word.'),
     p('A minute. Then the second message, which is the one she has been saving.'),
     q('C.', 'If you would rather not, then on Monday Axiom will be told where its missing analyst is, and who he is now, with the clinic’s file to prove it. Sloane’s own people will be sent to recover their property. And the flat will want its keys back. We own the building, darling. We always have.'),
     t('Adrian’s name. She has held it since the breakfast, and never once touched it. She has been keeping it for exactly this.'),
+    ...(sloaneHere(s)
+      ? [q('Sloane', 'She’s kept him back all this time. She must think you’re worth a great deal. That’s the only good news on that screen, and it’s very good news.')]
+      : []),
     ...(pryceKnown(s) ? [p('Across the gap, in the flat opposite, a curtain moves. Of course. Mr Pryce saw Sloane on the stairs last night. That is his job. He has never pretended it wasn’t.')] : []),
     t('And Maya. Whatever I do tomorrow, somebody is going to tell Maya something before Monday. It had better be me.'),
   ];
@@ -257,6 +310,7 @@ function mayaBlocks(s: GameState): Block[] {
     ...(mayaCharged(s)
       ? [p('There is a letter from Axiom on the table, face down. There is a letter from the police under it. She has put the sugar bowl on top of both of them, as if they might blow away.')]
       : []),
+    p('Her flat is exactly as it was the last time Adrian was here, which is the strangest thing about it: the same blue sofa, the same stack of true-crime paperbacks by the radiator, the same photograph of her and her sister on a beach in Wales, squinting. Only the person looking at it has changed.'),
     p('You sit at her table. She sits opposite. It is the table where Adrian ate a hundred takeaways, and argued about audits, and once, very late, cried about his father, and she held his hand across it and said nothing, which was exactly right.'),
     q('Maya', mayaClose(s) ? 'Go on, then. Whatever it is. You’ve looked like this for a month.' : 'You’d better say it, whatever it is. You’ve been carrying it round for weeks. I can see it from here.'),
   ];
@@ -266,7 +320,7 @@ function mayaChoices(s: GameState): C14Choice[] {
   const knows = mayaKnowsWho(s);
   const close = mayaClose(s);
   const say = (id: 'all' | 'enough' | 'go', label: string, hint: string, body: Block[], choice: 'stay' | 'witness' | 'away', outcome: Block[]) =>
-    offer14('said-' + id, label, hint, 'answer', (x) => {
+    offer14('said-' + id, label, hint, 'maya', (x) => {
       set14(x, 'said', id);
       setKey(x, 'act3.maya-choice', choice);
       if (choice === 'witness') note14(x, 'maya-witness', 'Maya Reyes will go on record about the forged emails and who wrote them.', 'Maya herself');
@@ -337,6 +391,41 @@ function mayaChoices(s: GameState): C14Choice[] {
   ];
 }
 
+/** After the telling (deepening pass): an hour with Maya, the wall, or leaving her to think. */
+function mayaMoveChoices(s: GameState): C14Choice[] {
+  const later = get14(s, 'tell') === 'later';
+  const move = (id: string, label: string, hint: string, body: Block[]) =>
+    offer14('maya-' + id, label, hint, 'answer', (x) => {
+      set14(x, 'mayamove', id);
+      return body;
+    });
+  return [
+    move('dinner', 'Stay for dinner', 'An ordinary hour. You may not get another before Sunday.', [
+      p(
+        later
+          ? 'You bring her in out of the rain and make pasta, badly, the way she always did, too much garlic and not enough salt, and you eat it at your kitchen table under the wall with the radio on.'
+          : 'You stay. She makes pasta, badly, the way she always has, too much garlic and not enough salt, and you eat it at her table with the radio on.',
+      ),
+      p('For an hour nobody says Meridian, or Celeste, or 1109. She tells you about her sister’s terrible new boyfriend, who does magic tricks at parties, uninvited, and you laugh until you have to put your fork down, and so does she, and neither of you says anything about why you are both laughing so hard.'),
+      t('An ordinary hour. I had forgotten you could have one of those in the middle of all this. I had forgotten she was funny.'),
+    ]),
+    move('wall', 'Show her the wall', 'Let her read it the way you do.', [
+      p(later ? 'You take her in and stand her in front of the wall.' : 'You take her back to yours on the bus, and stand her in front of the wall.'),
+      p('She reads it card by card, in silence, the way she reads an audit trail: left to right, top to bottom, every source, every date. It takes her forty minutes. At the end she takes a pen from her pocket and, on the card with her own name on it, under what you wrote about her, adds in her own small capitals: KNOWS.'),
+      q('Maya', 'There. Now it’s accurate.'),
+    ]),
+    move('leave', 'Leave her to think', 'She has had enough for one day.', [
+      p(
+        later
+          ? 'She goes. You watch her from the window all the way to the end of the street, walking fast, with her phone in her hand and not looking at it.'
+          : mayaClose(s)
+            ? 'You leave her to think. At the door she hugs you, hard, suddenly, the way she used to at the end of a bad audit, and lets go before you can say anything.'
+            : 'You leave her to think. She lets you out without a word, and stands in the doorway, and watches you go.',
+      ),
+    ]),
+  ];
+}
+
 // ── The Answer ──
 
 function answerBlocks(s: GameState): Block[] {
@@ -348,7 +437,8 @@ function answerBlocks(s: GameState): Block[] {
           ? 'Saturday, midnight. The signed verdict is on the kitchen table under the fruit bowl.'
           : 'Saturday, midnight. The kitchen table is bare. Whatever Sloane carried, she carried away with her.',
     ),
-    p('The black phone, with its one contact. The wall, with all of them.'),
+    p('The black phone, with its one contact. The wall, with all of them. Maya’s card, if she wrote on it, with KNOWS in her small capitals. Nell’s. 1109. The newest card at the top, still with nothing on it.'),
+    p('You make tea you do not drink. You stand at the window. In the flat across the gap the light is on, and for once you are glad of it: somebody else awake in the world, even if they are paid to be.'),
     t('She wants me to hand her the one person in London who can hurt her, and the one piece of paper that proves why. And if I don’t, she spends Adrian.'),
   ];
 }
@@ -392,13 +482,12 @@ function sundayBlocks(s: GameState): Block[] {
     return [
       p('Sunday, and the city shut up for the day behind its shutters. You dress for the Vesper the way you would dress for a funeral you have arranged yourself: black, plain, the good coat.'),
       sloaneWith,
-      p('The Vesper is closed, its window empty, its door opened before you touch it by the same young man in the same black suit. He looks at Sloane and then at you and then at nothing, and says, “They’re upstairs.”'),
-      p('On the stairs Sloane stops, one step below you, and looks up at you, and you watch her understand. Not the whole of it; enough. She does not run. She takes the next step, and the one after that, with her hand on the rail.'),
-      q('Sloane', 'I would have done the same. I want you to know I know that.'),
+      p('The file is in its folder on your knee. The taxi smells of pine air freshener and wet coats. The driver is listening to the football, and every time somebody scores he says “Oh, come on,” quietly, to himself.'),
     ];
   if (answer === 'refused')
     return [
       p('At six on Sunday you are at home, with Sloane’s number in your phone and the black phone face down on the table, not going to the Vesper.'),
+      p('Somewhere across the river the reading room lamp is on, and Celeste is sitting under it with The Autumn Collection open at page seven, waiting for two women who are not coming. You imagine her looking at her watch. You imagine her not looking at it, which is worse, and much more like her.'),
       p('At seven you go out for milk, because you cannot sit still, and when you come back up the four flights with the carton in your hand, your key does not fit your own door.'),
       p('You try it again. It goes in a centimetre and stops. The lock is new: brass, bright, the scratches of the fitting still on the plate. Taped to the door, at eye level, a printed notice on Meridian Property Services paper, advising the occupant that the tenancy has been terminated with immediate effect and that personal effects may be collected by appointment.'),
       p('Downstairs the street door opens. Voices in the hall. Two men, and one of them you know: he sat two floors below Adrian for six years and never once said good morning. Axiom security. They are coming up.'),
@@ -414,6 +503,7 @@ function sundayBlocks(s: GameState): Block[] {
     sloaneWith,
     p('The Vesper is closed, its window empty, its door opened before you touch it. The young man in the black suit looks at Sloane, and then at you, and then at the folder under your arm, and something in his face goes careful.'),
     q('Doorman', 'They’re upstairs.'),
+    p('In the taxi neither of you says anything for a long time. Then Sloane, looking out of the window, says, “My first year in the service, my section head told me: never walk into a room with only one thing. They always know what the one thing is.” She turns her head. “What’s your second thing?” You tell her. She nods, slowly, and for the first time since the landing, something that is very nearly a smile.'),
     p('On the stairs you tell Sloane, very quietly, what you are going to do. She listens without breaking step. At the top she says only:'),
     q('Sloane', 'Let me stand where she can see me. I’d like her to have to look at me while she reads it.'),
   ];
@@ -433,17 +523,41 @@ function sundayChoices(s: GameState): C14Choice[] {
     ...(get14(x, 'copy') === 'yes' ? [t('I photographed every page of it in the taxi, with Sloane watching me do it and saying nothing. Celeste has the paper. I have the paper’s face.')] : []),
     t('I handed her the woman who showed me who I was. I did it well. I am going to have to look at that on the wall every morning, next to 1109.'),
   ];
+  const arrival: Block[] = [
+    p('The Vesper is closed, its window empty, its door opened before you touch it by the same young man in the same black suit. He looks at Sloane and then at you and then at nothing, and says, “They’re upstairs.”'),
+    p('On the stairs Sloane stops, one step below you, and looks up at you, and you watch her understand. Not the whole of it; enough. She does not run. She takes the next step, and the one after that, with her hand on the rail.'),
+    q('Sloane', 'I would have done the same. I want you to know I know that.'),
+  ];
+  if (answer === 'complied' && !get14(s, 'copy'))
+    return [
+      offer14('comply-copy', 'Photograph the verdict in the taxi first', 'Every page. She will have the paper. You will have its face.', 'sunday', (x) => {
+        set14(x, 'copy', 'yes');
+        return [
+          p('In the taxi, with Sloane watching and saying nothing, you take the verdict out of the folder and photograph every page on your knee, one by one, in the orange light of the street lamps going past.'),
+          q('Sloane', 'Good. I would have.'),
+          ...arrival,
+        ];
+      }),
+      offer14('comply-clean', 'Hand it over as it is', 'Do exactly what she asked. Nothing she can find later.', 'sunday', (x) => {
+        set14(x, 'copy', 'no');
+        return [p('You leave the folder closed on your knee all the way there. Whatever she finds later, she will not find that.'), ...arrival];
+      }),
+    ];
   if (answer === 'complied')
     return [
-      offer14('comply-copy', 'Photograph the verdict in the taxi first', 'Every page. She will have the paper. You will have its face.', 'after', (x) => {
-        set14(x, 'copy', 'yes');
+      offer14('stairs-sorry', 'Tell her you’re sorry', 'On the stairs. Before the door.', 'after', (x) => {
+        set14(x, 'stairs', 'sorry');
         setKey(x, 'act3.sloane', 'handed');
-        return readingRoom(x);
+        return [
+          q('You', 'I’m sorry.'),
+          q('Sloane', 'Don’t be. Be good at it. That’s all I ever asked of anyone, and you always were.'),
+          ...readingRoom(x),
+        ];
       }),
-      offer14('comply-clean', 'Hand it over as it is', 'Do exactly what she asked. Nothing she can find later.', 'after', (x) => {
-        set14(x, 'copy', 'no');
+      offer14('stairs-silent', 'Say nothing', 'Neither of you has anything left to say.', 'after', (x) => {
+        set14(x, 'stairs', 'silent');
         setKey(x, 'act3.sloane', 'handed');
-        return readingRoom(x);
+        return [p('You say nothing. Neither does she. You go up the last flight side by side, like two women going in to a meeting.'), ...readingRoom(x)];
       }),
     ];
   if (answer === 'refused') {
@@ -487,6 +601,8 @@ function sundayChoices(s: GameState): C14Choice[] {
         q('Celeste', 'Victoria. How lovely. And you brought her something, darling. Give it here.'),
         p('You don’t give it to her. You walk past her to the lectern, where The Autumn Collection lies open at page seven, and lay the verdict down on top of your own photograph: the two numbers, voluntary adoption high, durable control low, and underneath them the board’s sign-off, and three signatures, and one of them hers.'),
         ...what,
+        q('Celeste', 'Victoria. You kept it a year. I would have had it out of your desk in a week, if I had known it was there.'),
+        q('Sloane', 'I know. That’s why it was never in my desk.'),
         p('Celeste gets up. She comes to the lectern and reads it standing, with one hand on the page, and it takes her a long time, far longer than it takes to read three lines and three names.'),
         p('Then she puts the verdict down. She does it too carefully, the way people put down something that is hot, and you see it: her hand is not quite steady, and she knows you saw.'),
         t('She is afraid. For the first time since I have known her. Only for a sentence. I watched it cross her face like weather.'),
@@ -538,6 +654,7 @@ function afterBlocks(s: GameState): Block[] {
       q('C.', 'Thank you.'),
       p('Just that. No darling. You look at it for a long time, standing on the bridge with the river going under you black and fast.'),
       t('She read her own name twice. I saw it. Whatever she says, it frightened her, and she needed me to be the one who brought it to her, so that she could watch me do it.'),
+      p('At home you take down the card that says SLOANE, with its question mark, and stand holding it for a long time. Then you pin it back up, and write the answer underneath, small: handed over, by me.'),
     ];
   if (answer === 'refused')
     return [
@@ -551,6 +668,7 @@ function afterBlocks(s: GameState): Block[] {
       ...(getKey(s, 'act3.maya-choice') === 'away'
         ? [q('Maya · message', 'I’m on the train. You said stay away. I’m staying away. I hate you. Be alive on Monday.')]
         : [q('Maya · message', 'Where are you? Don’t tell me. Just tell me you’re somewhere with a lock on the door.')]),
+      p('You lie on top of the covers in the dark with the television still on, sound down, and count what you have: a coat, a phone, a pair of shoes with the heels scuffed from the fire escape, some money, your face. The wall is on the other side of London behind a new lock. You find that you remember every card on it, in order, which is something.'),
       t('They took the flat. They can have it. It was hers.'),
     ];
   return [
@@ -689,6 +807,7 @@ function completeBlocks(s: GameState): Block[] {
         : 'On Monday morning you take a new card from the drawer and pin it to the wall, at the top, above everything else.',
     ),
     q('The card', 'THE BOARD MEETS. THE FIRST THURSDAY.'),
+    p('A month. Four Thursdays, and then the fifth. You stand in front of it and do the arithmetic the way Adrian used to count down to a filing deadline: what has to be true by when, and who has to be standing where, and what you will have to spend to get them there.'),
     p(
       answer === 'countered'
         ? 'Sloane told you on the embankment: the Meridian board sits at the Vesper on the first Thursday of next month, and Celeste will have to stand up in front of it and explain one page.'
@@ -727,7 +846,7 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (s.scene !== 'chapter14') return [];
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'order') return orderChoices();
-  if (s.phase === 'maya') return mayaChoices(s);
+  if (s.phase === 'maya') return get14(s, 'said') ? mayaMoveChoices(s) : mayaChoices(s);
   if (s.phase === 'answer') return answerChoices(s);
   if (s.phase === 'sunday') return sundayChoices(s);
   if (s.phase === 'after') return afterChoices(s);
