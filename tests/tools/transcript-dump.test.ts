@@ -11,6 +11,7 @@ import golden11 from '../fixtures/rev19-chapter11-golden.json';
 import golden12 from '../fixtures/rev19-chapter12-golden.json';
 import golden13 from '../fixtures/rev19-chapter13-golden.json';
 import golden14 from '../fixtures/rev19-chapter14-golden.json';
+import golden15 from '../fixtures/rev19-chapter15-golden.json';
 import type { GameEvent } from '../../src/state/actions';
 import type { GameState } from '../../src/state/schema';
 import { replay } from '../../src/state/reducer';
@@ -33,12 +34,12 @@ const transcript = (s: GameState) =>
     .join('\n\n');
 
 it.skipIf(!dir)('dumps golden-route transcripts', () => {
-  for (const n of [6, 7, 8, 9, 10, 11, 12, 13, 14]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
   const out = resolve(dir!);
   mkdirSync(out, { recursive: true });
   const routes = [
     ...golden.routes.map((r) => ['ch1-5-' + r.name, r.ledger] as const),
-    ...[golden6, golden7, golden8, golden9, golden10, golden11, golden12, golden13, golden14].flatMap((g, i) => g.routes.map((r) => [`ch${i + 6}-${r.name}`, r.ledger] as const)),
+    ...[golden6, golden7, golden8, golden9, golden10, golden11, golden12, golden13, golden14, golden15].flatMap((g, i) => g.routes.map((r) => [`ch${i + 6}-${r.name}`, r.ledger] as const)),
   ];
   for (const [name, ledger] of routes)
     for (const rev of revisions) {

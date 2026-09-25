@@ -5,7 +5,9 @@
 Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III: "The coercion ends here: by breaking it, not by obeying"),
 [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3 and §11, [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) (§5, the
 entry contract Act IV reads), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md) (thrilling, erotic, fun).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–14 (`VITE_EVE_CHAPTER15`, content revision
+Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_15_BREAKING_THE_LEASH_SCRIPT.md](scripts/CHAPTER_15_BREAKING_THE_LEASH_SCRIPT.md), code: `src/content/chapter15.ts`.
+~2.3k words on the golden paths. Gated like Chapters 6–14 (`VITE_EVE_CHAPTER15`, content revision
 ≥ 19), entered from an own-power `chapter14.complete`.
 
 ---

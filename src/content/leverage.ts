@@ -34,7 +34,15 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   const answer13 = c(s, 'c13.answer') as LeverageStatus | undefined;
   const answer14 = c(s, 'c14.answer') as LeverageStatus | undefined;
   const latest = answer14 ?? answer13 ?? answer11 ?? answer;
-  held.push({
+  const broken = c(s, 'act3.leash') === 'broken';
+  if (broken)
+    held.push({
+      holder: 'Celeste Laurent',
+      holds: c(s, 'act3.adrian') === 'held' ? ['Adrian Vale’s name, in her head if not in a drawer'] : [],
+      status: 'countered',
+      source: 'The archive, emptied; the black phone, answered: “No more orders.”',
+    });
+  else held.push({
     holder: 'Celeste Laurent',
     holds: [
       'Maya Reyes’s clearance',
@@ -116,6 +124,12 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'act3.sloane') === 'free') holds.push({ id: 'sloane', label: 'Victoria Sloane, free, and out of Celeste’s reach', source: 'The Vesper, Sunday' });
   if (c(s, 'act3.maya-choice') === 'witness' || c(s, 'act3.maya-choice') === 'stay') holds.push({ id: 'maya', label: c(s, 'act3.maya-choice') === 'stay' ? 'Maya Reyes, who knows, and is in it with you' : 'Maya Reyes, on the record about the forged emails', source: 'Maya’s kitchen' });
   if (c(s, 'act3.celeste-afraid') === 'yes') holds.push({ id: 'terms', label: 'Celeste’s word: no orders until the board has met', source: 'The reading room, Sunday' });
+  if (c(s, 'c15.maya-file') === 'yes') holds.push({ id: 'maya-file', label: 'The drafts of the emails used against Maya, with the writer’s name on every one', source: 'The archive at the Vesper' });
+  if (c(s, 'act3.page') === 'torn') holds.push({ id: 'page-seven', label: 'Page seven, torn out of The Autumn Collection', source: 'The lectern at the Vesper' });
+  if (c(s, 'act3.adrian') === 'hers') holds.push({ id: 'adrian-file', label: 'Adrian Vale’s file: nobody spends the name again', source: 'The archive at the Vesper' });
+  if (c(s, 'act3.cards') === 'taken') holds.push({ id: 'cards', label: 'The 1109 safe: years of placements on Meridian’s own camera', source: 'The archive at the Vesper' });
+  if (c(s, 'act3.nell-order') === 'taken') holds.push({ id: 'nell-order', label: 'The order that burned Nell in Jakarta, signed C.', source: 'Nell’s drawer in the archive' });
+  if (c(s, 'act3.switch') === 'set') holds.push({ id: 'switch', label: 'The dead man’s switch: three copies of everything, with three people', source: 'The week after the archive' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };

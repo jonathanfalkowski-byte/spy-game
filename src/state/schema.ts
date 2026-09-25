@@ -65,7 +65,7 @@ export const StateSchema = z
       'dayend',
       'clinic',
       'mission',
-      'chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14',
+      'chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14', 'chapter15',
     ]),
     day: DayStateSchema,
     clinic: ClinicSchema,
