@@ -103,8 +103,29 @@ it.") / **evening-theo** / **evening-sebastian** → **evening-<p>-no-sex** / **
   (refuse-escalated, comply-quiet, counter-surprised; capture with
   `EVE_CAPTURE_CH11=1 npx vitest run tests/tools/capture-chapter11-golden.test.ts`).
 
+## Deepening pass (2026-09-25)
+
+Every scene written as a set piece (the dressing, the doorman, the numbered brass plates;
+Halvorsen on Iris; the board on Maya, "a handle", and on Iris, "Tonight"; the catalogue's notes,
+"Tolerates public exposure; seeks it"; Celeste's first ending, in Lisbon; the room thinning), plus
+four moments, each with a neutral pick for the goldens:
+
+- **Celeste by the terrace doors** (`viewing`, after the room): "Do you like being looked at?"
+  (`c11.looked`): **look-yes** ("So did she. It was the only thing about her I never had to
+  teach.") · **look-turn** ("Do you like selling it?") · **look-silent** (neutral).
+- **Two board members in the corridor** (`upstairs`, after the catalogue) (`c11.hide`):
+  **hide-curtain** (neutral; "Page seven. Even better in person, I thought.") · **hide-brazen**
+  ("The powder room is downstairs, Ms Vale. So is everything else you're looking for.") ·
+  **hide-down**.
+- **The last minutes with Iris** (`ending`, before the cloakroom): "Walk me out?" (`c11.walk`):
+  **walk-name** (she was Helen) · **walk-laugh** · **walk-quiet** (neutral).
+- **The way home** (`after`, before the evening) (`c11.way`): **way-car** (Mr Pryce: "I drive. I
+  don't do the endings."; if Kessler was followed, "I drove Miss Kessler home, once.") ·
+  **way-walk** (neutral). Celeste's word at midnight follows; Maya's Monday and Iris's word move to
+  the close.
+
 ## Size (honest)
 
-Pass 1 builds every scene, branch and consequence in the design: **~1.7k words on the golden
-paths** against the 7k budget, more on engaged paths. As with Chapter 10, deepening passes follow:
-the room, the op upstairs and the order scene as set pieces are the biggest lifts.
+Pass 1: ~1.7k words on the golden paths. After the deepening pass: **~3.5–3.6k on the golden
+(quiet) paths, ~3.8–4k engaged**, against the 7k budget. The remaining gap is where the next pass
+would go: a longer op upstairs and the evening.

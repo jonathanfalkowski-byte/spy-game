@@ -31,7 +31,7 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 /** The comply-workroom Chapter 10 ending, adjusted per case. */
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete10('comply-workroom'), flags);
 /** Into the Vesper, through the room and upstairs, to the order. */
-const toOrder = (s: GameState) => walk(s, ['begin', 'arrive-quiet', 'room-listen', 'iris-how', 'up-escort', 'cat-leave']);
+const toOrder = (s: GameState) => walk(s, ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-how', 'up-escort', 'cat-leave', 'hide-curtain']);
 
 it('opens after an own-power Chapter 10 ending, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
@@ -62,13 +62,18 @@ it('makes the evening a viewing, and puts Iris in the powder room', () => {
   expect(ids(room)).toEqual(['room-dazzle', 'room-listen', 'room-dance']);
   const danced = c11(room, 'room-dance');
   expect(text(danced)).toContain('You’re on page seven.');
-  expect(text(danced)).toContain('Iris. Iris Moreau.');
-  expect(ids(danced)).toEqual(['iris-how', 'iris-out']);
-  expect(ids(c11(withFlags(room, { 'c9.kessler': 'follow' }), 'room-listen'))).toEqual(['iris-how', 'iris-anna', 'iris-out']);
+  // Celeste's question by the terrace doors, then Iris.
+  expect(text(danced)).toContain('Do you like being looked at?');
+  expect(ids(danced)).toEqual(['look-yes', 'look-turn', 'look-silent']);
+  const yes = c11(danced, 'look-yes');
+  expect([yes.choices['c11.looked'], text(yes).includes('It was the only thing about her I never had to teach.')]).toEqual(['yes', true]);
+  expect(text(yes)).toContain('Iris. Iris Moreau.');
+  expect(ids(yes)).toEqual(['iris-how', 'iris-out']);
+  expect(ids(walk(withFlags(room, { 'c9.kessler': 'follow' }), ['room-listen', 'look-silent']))).toEqual(['iris-how', 'iris-anna', 'iris-out']);
 });
 
 it('takes her upstairs to the board and the catalogue, and records what she takes', () => {
-  const up = walk(start({ 'c8.pryce': 'chain' }), ['begin', 'arrive-quiet', 'room-dazzle', 'iris-out']);
+  const up = walk(start({ 'c8.pryce': 'chain' }), ['begin', 'arrive-quiet', 'room-dazzle', 'look-silent', 'iris-out']);
   expect(up.phase).toBe('upstairs');
   expect(ids(up)).toEqual(['up-stairs', 'up-escort', 'up-iris']);
   const stairs = c11(up, 'up-stairs');
@@ -77,12 +82,21 @@ it('takes her upstairs to the board and the catalogue, and records what she take
   expect(text(stairs)).toContain('E. V. · Reissued · Public profile · Available for placement from the first Thursday of next month.');
   expect(text(stairs)).toContain('I. M. · Four years · Ending.');
   expect(ids(stairs)).toEqual(['cat-photo', 'cat-page', 'cat-leave']);
+  expect(text(stairs)).toContain('A handle. Every product comes with one.');
+  expect(text(stairs)).toContain('Tolerates public exposure; seeks it.');
   const photo = c11(stairs, 'cat-photo');
-  expect([photo.phase, photo.facts.includes('c11.catalogue')]).toEqual(['order', true]);
+  expect([photo.phase, photo.facts.includes('c11.catalogue')]).toEqual(['upstairs', true]);
+  // Two board members in the corridor.
+  expect(text(photo)).toContain('Laurent always did like to watch them learn.');
+  expect(ids(photo)).toEqual(['hide-curtain', 'hide-brazen', 'hide-down']);
+  const brazen = c11(photo, 'hide-brazen');
+  expect([brazen.phase, brazen.choices['c11.hide']]).toEqual(['order', 'brazen']);
+  expect(text(brazen)).toContain('So is everything else you’re looking for.');
+  expect(text(c11(photo, 'hide-curtain'))).toContain('Page seven. Even better in person, I thought.');
   expect(leverageBoard(photo).holds.map((a) => a.id)).toContain('catalogue');
   expect(ids(c11(up, 'up-escort'))).toEqual(['cat-photo', 'cat-page', 'cat-leave']);
-  expect(ids(walk(start(), ['begin', 'arrive-quiet', 'room-dazzle', 'iris-how']))).not.toContain('up-iris');
-  expect(text(c11(stairs, 'cat-page'))).toContain('You tore out page seven.');
+  expect(ids(walk(start(), ['begin', 'arrive-quiet', 'room-dazzle', 'look-silent', 'iris-how']))).not.toContain('up-iris');
+  expect(text(c11(c11(stairs, 'cat-page'), 'hide-down'))).toContain('You tore out page seven.');
 });
 
 it('gives the second order with the threat to Maya escalated, and the third way only if she built one', () => {
@@ -99,7 +113,12 @@ it('gives the second order with the threat to Maya escalated, and the third way 
 
 it('plays every answer through the cloakroom, with its cost', () => {
   const order = toOrder(start({ 'act3.celeste-surprised': 'once', 'act3.maya-clearance': 'renewed', 'c7.robe': 'coats' }));
-  const complied = c11(order, 'order-comply');
+  const walking = c11(order, 'order-comply');
+  // The last minutes with Iris before the cloakroom.
+  expect(text(walking)).toContain('Walk me out? I hate the last ten minutes of these.');
+  expect(ids(walking)).toEqual(['walk-name', 'walk-laugh', 'walk-quiet']);
+  const complied = c11(walking, 'walk-name');
+  expect(text(complied)).toContain('Helen. It was Helen.');
   expect([complied.phase, complied.choices['c11.answer']]).toEqual(['ending', 'complied']);
   expect(text(complied)).toContain('number 41, fourteen months old');
   expect(text(complied)).toContain('You have always known about linings.');
@@ -107,34 +126,40 @@ it('plays every answer through the cloakroom, with its cost', () => {
   const burned = c11(complied, 'plant-look');
   expect([burned.phase, burned.choices['c11.iris']]).toEqual(['after', 'burned']);
   expect(text(burned)).toContain('She looked at me as if I were the next page.');
-  expect(text(burned)).toContain('Lovely. You see how easy it is.');
+  // The way home: Mr Pryce's car, and Celeste's word at midnight.
+  expect(ids(burned)).toEqual(['way-car', 'way-walk']);
+  const driven = c11(burned, 'way-car');
+  expect(driven.choices['c11.way']).toBe('car');
+  expect(text(driven)).toContain('I don’t do the endings.');
+  expect(text(driven)).toContain('Lovely. You see how easy it is.');
 
   const refused = c11(order, 'order-refuse');
   expect(refused.choices['act3.maya-clearance']).toBe('suspended');
-  const told = c11(refused, 'refuse-tell');
+  const told = c11(c11(refused, 'walk-quiet'), 'refuse-tell');
   expect([told.choices['c11.iris'], text(told).includes('Do your own ending.')]).toEqual(['spared', true]);
-  expect(text(told)).toContain('Maya’s renewal is pulled for review');
+  // Maya's Monday belongs to the close, after the night.
+  expect(text(walk(told, ['way-walk', 'after-home']))).toContain('Maya’s renewal is pulled for review');
   // Refusal lands on Maya's clearance and nothing else: no evening forced, no sexual consequence.
   expect(told.choices['c11.evening-open']).toBeUndefined();
-  const revoked = c11(c11(toOrder(start({ 'act3.maya-clearance': 'suspended' })), 'order-refuse'), 'refuse-silent');
+  const revoked = walk(toOrder(start({ 'act3.maya-clearance': 'suspended' })), ['order-refuse', 'walk-quiet', 'refuse-silent']);
   expect(revoked.choices['act3.maya-clearance']).toBe('revoked');
-  expect(text(revoked)).toContain('the review becomes a dismissal');
+  expect(text(walk(revoked, ['way-walk', 'after-home']))).toContain('the review becomes a dismissal');
 
-  const countered = c11(order, 'order-counter');
+  const countered = walk(order, ['order-counter', 'walk-laugh']);
   expect(countered.choices['act3.celeste-surprised']).toBe('twice');
   expect(text(countered)).toContain('This was meant for your bag.');
   const free = c11(countered, 'free-stay');
   expect([free.choices['c11.iris'], free.choices['act3.ally.iris']]).toEqual(['free', 'in']);
-  expect(text(free)).toContain('Twice now. I am starting to enjoy you.');
+  expect(text(c11(free, 'way-walk'))).toContain('Twice now. I am starting to enjoy you.');
   expect(leverageBoard(free).holds.map((a) => a.id)).toContain('iris');
   expect(leverageBoard(free).held[0].wants).toBe('Iris Moreau, ended, by your hand');
-  const poisoned = c11(toOrder(start({ 'c10.poison': 'date' })), 'order-counter');
+  const poisoned = walk(toOrder(start({ 'c10.poison': 'date' })), ['order-counter', 'walk-quiet']);
   expect(text(poisoned)).toContain('Halvorsen’s own head of security');
 });
 
 it('offers a chosen evening only with a partner she did not betray, consent-gated, and it fades', () => {
   const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined };
-  const after = c11(c11(toOrder(start(julian)), 'order-comply'), 'plant-away');
+  const after = walk(toOrder(start(julian)), ['order-comply', 'walk-quiet', 'plant-away', 'way-walk']);
   expect(ids(after)).toEqual(['evening-julian', 'after-home']);
   const invited = c11(after, 'evening-julian');
   expect(text(invited)).toContain('I have never once watched one from the wall before.');
@@ -146,12 +171,12 @@ it('offers a chosen evening only with a partner she did not betray, consent-gate
   expect([stayed.phase, stayed.choices['c11.evening-outcome']]).toEqual(['complete', 'intimate-sex']);
   expect(text(stayed)).toContain('The scene fades.');
   expect(c11(scoped, 'evening-stop').choices['c11.evening-outcome']).toBe('withdrawn');
-  expect(ids(c11(c11(toOrder(start({ ...julian, 'c10.betrayed': 'julian' })), 'order-comply'), 'plant-away'))).toEqual(['after-home']);
+  expect(ids(walk(toOrder(start({ ...julian, 'c10.betrayed': 'julian' })), ['order-comply', 'walk-quiet', 'plant-away', 'way-walk']))).toEqual(['after-home']);
 });
 
 it('plays a real Chapter 11 on an untouched save, and the save authenticates', () => {
-  let s = walk(complete10('refuse-notes'), ['begin', 'arrive-star', 'room-dance', 'iris-out', 'up-iris', 'cat-page']);
-  s = walk(s, ['order-refuse', 'refuse-tell']);
+  let s = walk(complete10('refuse-notes'), ['begin', 'arrive-star', 'room-dance', 'look-turn', 'iris-out', 'up-iris', 'cat-page', 'hide-brazen']);
+  s = walk(s, ['order-refuse', 'walk-name', 'refuse-tell']);
   s = c11(s, ids(s).includes('after-home') ? 'after-home' : ids(s)[0]);
   while (s.phase !== 'complete') s = c11(s, ids(s)[0]);
   expect(`${s.scene}.${s.phase}`).toBe('chapter11.complete');

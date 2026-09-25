@@ -128,6 +128,11 @@ export const GATED_DEFAULTS = [
   'chapter10.doorman-none',
   // The remaining scenes as set pieces: close the wardrobe door on the wall.
   'chapter10.wall-close',
+  // Chapter 11 deepening: say nothing to Celeste; behind the curtain.
+  'chapter11.look-silent',
+  'chapter11.hide-curtain',
+  'chapter11.walk-quiet',
+  'chapter11.way-walk',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
