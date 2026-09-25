@@ -242,7 +242,7 @@ untouched.
 ## Size (honest)
 
 Pass 1 builds every scene, branch and consequence in the design. Measured on full paths:
-**~1.5–1.9k words**, against the 12.5k budget. Pass 2 (2026-09-24) adds the question
+**~1.5–1.9k words**, against the then 12.5k budget (7k since the 12–15 hour re-budget of 2026-09-25). Pass 2 (2026-09-24) adds the question
 about Evelyn, Celeste's question back, the article, the doorstep, a moment inside every job, fuller
 aftermaths and the green: **~2.3–2.7k words** on full paths. Deepening passes follow (the breakfast conversation,
 the job scenes and the calls are the biggest lifts), as with Chapters 7–9.

@@ -1,80 +1,90 @@
-# Campaign pacing plan — reaching 20–25 hours
+# Campaign pacing plan — 12–15 hours a playthrough
 
-**Owner direction (2026-09-24):** EVE should be **20–25 hours** of play per playthrough. An endgame
-at Chapter 10 is too early. This document is the reference for length and act structure. Every
-chapter design and build plan should name its act and its hour budget from here.
+**Owner direction (2026-09-25):** EVE is **12–15 hours per playthrough**, about 13.5 hours on a
+typical path. This replaces the 20–25 hour target of 2026-09-24. Every chapter design and build
+plan names its act and its budget from here.
 
-Related: [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md) (the diamond, the four lanes),
+**What matters most (owner, 2026-09-25):** the game must be **thrilling, erotic and fun**. Hours
+are only the frame for that. So every scene has to earn its place:
+- **Thrilling:** danger, being watched, a choice with a price, a secret closing in.
+- **Erotic:** tension, desire and chosen intimacy with men she wants, heat 3 at most, consent on
+  the page, the scene fading at the act. Nothing coerced is ever eroticised
+  ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)).
+- **Fun:** she is good at this, the city looks at her, and she gets to win some.
+
+A scene that is none of the three gets cut or folded into one that is, however many words it
+adds.
+
+Related: [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md) (the routes),
 [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) (endgame canon: Celeste, Meridian, Sloane).
-Those stay canon. This plan changes **when** things land and **how long** each part is.
+Those stay canon. This plan sets **when** things land and **how long** each part is.
 
-## Where the game stands (measured 2026-09-24)
+## Why 12–15 hours
 
-Prose words across **all** branches in `src/content/`:
+- For a branching, text-led thriller, 12–15 hours reads as a full game. Much past 20 hours of
+  reading, many players stop before the ending, and the endgame is the payoff of everything.
+- Replay value comes from the **five routes**, not from one very long route.
+- It keeps the whole game buildable: about **36 hours of content in total** across five routes
+  (below), instead of 70+.
 
-| Part | Words | Status |
-|---|---|---|
-| Opening (day, mission, clinic) | ~23,000 | built |
-| Chapter 3 | ~6,500 | built |
-| Chapter 4 | ~4,900 | built |
-| Chapter 5 | ~8,400 | built |
-| Chapter 6 | ~6,600 | built, gated |
-| Chapter 7 (own-power) | ~2,300 | built, gated |
-| Chapter 8 (own-power) | ~1,800 | built, gated |
-| Chapter 9 (shared bridge) | ~2,200 | built, gated |
-| **Total** | **~55,800** | |
+## The budget
 
-One playthrough reads roughly half of that (~25–30k words). At the usual visual-novel pace of
-**~10,000 words per hour** (reading plus choices and investigation screens), **the game is
-currently ~3 hours long.** (Corrected 2026-09-24: an earlier draft said 4–5 hours, which
-didn't match its own arithmetic.) The chapter-by-chapter budgets are in
-[BEAT_MAP.md](BEAT_MAP.md).
+About **10,000 words per hour** of play (reading, choices, investigation screens). Budgets are
+**words read on one path**, not words written.
 
-**Target:** 20–25 hours ≈ **200,000+ words on a single path**, about seven times what exists.
+| Act | Chapters | Shared or route | Hours | Words (one path) |
+|---|---|---|---|---|
+| I. Second Skin | Opening–Ch5 | shared | ~4 | ~41,000 |
+| II. The Road | Ch6 shared, Ch7–8 route, Ch9 shared bridge | mixed | ~3.2 | ~32,000 |
+| III. The Counteroffensive | Ch10–15 | route | ~4.2 | ~42,000 |
+| IV. The Position | Ch16–18 | shared, route-flavoured | ~2 | ~20,000 |
+| **Total** | **18** | | **~13.5** | **~135,000** |
 
-Two separate problems:
-1. **Too few chapters.** The arc was planned to end around Chapter 10.
-2. **Chapters too thin.** Chapters 7–9 are ~2k words each (~20 minutes). They are working
-   skeletons, not full chapters.
+- **Shared per playthrough:** Act I, Ch6, Ch9, Act IV ≈ 78k words (~7.8h), built once.
+- **Route-specific per playthrough:** Ch7–8 and Act III ≈ 57k words (~5.7h), built once per
+  route.
+- **Whole game:** 78k + 5 × 57k ≈ **363k words (~36h) of content**. Act III's orders, the field
+  op and Singapore stay shared scaffolding, with each route changing how she answers them, which
+  brings the real build lower still.
 
-## The four-act structure
+A full chapter is now about **6–9k words on one path** (40–60 minutes), across several scenes.
+Chapter-by-chapter budgets are in [BEAT_MAP.md](BEAT_MAP.md).
 
-The Celeste reveal becomes the **midpoint twist**, not the lead-in to the finale.
+## Where the game stands (2026-09-25, Celebrity route, golden paths)
 
-| Act | Chapters | Hours | Content |
+The golden paths take the quietest choice at every beat, so they undercount: engaged play reads
+roughly 1–2k words longer per chapter.
+
+| Chapter | Budget | Golden paths | Verdict |
 |---|---|---|---|
-| **I. Second Skin** | Opening–Ch5 (built) | ~5–6 | The identity, the job, the first life. Deepen what exists. |
-| **II. The Road** | Ch6–Ch9 (built as skeletons) | ~5–6 | Proof, the route choice, the investigation. **Ends on the Celeste reveal: the midpoint.** |
-| **III. The Counteroffensive** | ~Ch10–Ch15 (new) | ~7–8 | Celeste knows you know and plays you. Meridian pushes back. The burned Evelyn's trail in Singapore. Sloane's turn. The blackmail arc: Celeste's orders and the leverage board ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)). Relationships deepen. |
-| **IV. The Position** | ~Ch16–Ch18 | ~3–4 | The endgame operation: the confrontation with Celeste, Sloane's resolution, the endings as positions. |
+| Ch7 | 8k | ~4.4–5.1k | close; engaged play is near budget |
+| Ch8 | 7k | ~3.9–4.1k | close; one more thread of play |
+| Ch9 | 8k | ~4.3–5.0k | close; engaged play is near budget |
+| Ch10 | 7k | ~4.9–5.1k | close |
 
-Acts I and IV are **shared** by all four route lanes. Acts II–III are the **route-specific**
-bulk, so each lane is a large build. **Own-power is built first** as the template (route-map
-decision 4).
+Act I (~22k of ~41k) and Ch6 (~3.5k of 9k) remain the biggest gaps on the shared path.
 
-## What this changes
+## The four acts (unchanged in shape)
 
-1. **The endgame moves to ~Chapter 16.** Everything settled in `ENDGAME_RECONVERGENCE.md` stays
-   canon (Celeste on the board, Meridian sells lived-in legends, Sloane as a person in the
-   machine, wound-not-topple). Only its timing changes. The "Ch10 = endgame" build order in that
-   doc is superseded by this plan.
-2. **Chapter 9's last beat changes.** It ends on "a room ahead with Celeste in it", pointing at an
-   immediate confrontation. It should end on the realisation that **she has seen your face too**,
-   opening Act III. One-line fix, pending.
-3. **Chapters 7–9 get deepened** to about 3–4 times their length: more scenes per chapter, field
-   operations and relationship beats (heat 3 at most). Otherwise Act II is a fast skim.
-4. **Every new chapter carries a length budget** (target words / minutes) from the beat map, and
-   build checkpoints report the chapter's word count against it.
+The Celeste reveal is the **midpoint twist** (end of Ch9), not the lead-in to the finale.
 
-## Rules of thumb for hitting length honestly
+| Act | Content |
+|---|---|
+| **I. Second Skin** | The identity, the job, the first life. |
+| **II. The Road** | Proof, the route choice, the investigation. **Ends on the Celeste reveal.** |
+| **III. The Counteroffensive** | Celeste knows you know and plays you: her orders and the leverage board, the field op, the burned Evelyn's trail in Singapore, Sloane's turn, breaking the leash. |
+| **IV. The Position** | The endgame operation: Celeste confronted, Sloane resolved, endings as positions. |
 
-- Length comes from **play**, not padding: field operations, investigation screens, relationship
-  scenes, consequences that come back. Never stretch a beat that has done its job.
-- A full chapter is roughly **8–12k words on one path** (~1 hour), across several scenes, not one
-  hub.
-- Hubs (like Ch7 `pursue` and Ch9 `assemble`) are for *choice*. Each hub option should open a
-  scene, not a paragraph.
+## Rules of thumb
+
+- Length comes from **play**, not padding. Never stretch a beat that has done its job.
+- Every scene is thrilling, erotic or fun, and the best are two at once.
+- Threads that open must **pay off**, ideally in the next chapter (Ch10 pays off Ch7–9's).
+- Hubs are for choice: each hub option opens a scene, not a paragraph.
+- Build checkpoints report the chapter's words against its budget.
 
 ## Next step
 
-**Done:** the Acts I–IV beat map is [BEAT_MAP.md](BEAT_MAP.md), with its own ordered next steps.
+With Ch7–10 near budget, effort moves forward: **design Chapter 11 ("The Asset", the Vesper
+Gallery field op)**, then Act III on through the endgame on the Celebrity route, then the shared
+Act I gaps.

@@ -1,7 +1,7 @@
 # Chapter 10 — "She Knows" (design)
 
 **Act III opener · route chapter (Celebrity / own-power built first) · NEW**
-**Budget: 1.25h / ~12.5k words on one path** ([BEAT_MAP.md](BEAT_MAP.md)).
+**Budget: 0.7h / ~7k words on one path** ([BEAT_MAP.md](BEAT_MAP.md); re-budgeted 2026-09-25 from 1.25h / ~12.5k when the game was set at 12–15 hours).
 Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)
 §3 (coercion framework) and §11 (checklist), [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md)
 (canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md). Status: **approved (owner, 2026-09-24: all five
