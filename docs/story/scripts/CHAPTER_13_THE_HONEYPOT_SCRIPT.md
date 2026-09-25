@@ -105,9 +105,33 @@ this." Last line: *She came to me. The woman who built this cage came to my door
   every option reaches `complete`; the fade); goldens `tests/fixtures/rev19-chapter13-golden.json` (comply-alone,
   refuse-station, counter-turn; capture with `EVE_CAPTURE_CH13=1 npx vitest run tests/tools/capture-chapter13-golden.test.ts`).
 
+## Deepening pass (2026-09-25)
+
+The comply lead-in was **not** lengthened. Everything else was:
+
+- **The brief:** Celeste on placements ("Nell was placed eleven times in eight years"; "The first time is the only
+  difficult one … I have watched a great many first times").
+- **The week, two moves either side of Celeste's box.** The first move (as before) is followed midweek by a box
+  from the Vesper: the dress for Thursday, "Something you can forget. C." (`c13.box`): **box-keep** (neutral; the
+  comply path then wears it: "fitted so well and belonged to you less"; Wednesday's reply is "Wear the dress.") ·
+  **box-return** ("a dress that is nobody's") · **box-cut** (the kitchen scissors, posted back; on Friday Celeste:
+  "It was Nell's size, you know. I had it let out for you."). Then a **second move** (`c13.week2`, `c13.told2`),
+  never the same as the first, or **week-rest** (neutral). `counterWays13` reads both moves. Also the campaign shoot
+  ("You look haunted. The lens adores it.") and Odile.
+- **Midnight:** the three drafts she deletes, and the light in the flat across the gap.
+- **The refusal night:** the waiting room's other people ("like a congregation"), and a **vigil** at half past ten
+  (`c13.vigil`): Pryce without his cap, or a man in a good coat: "it isn't too late. The car's outside."
+  **vigil-no** ("Tell her I'm waiting for my friend.") · **vigil-silent** (neutral). Refusal stays refusal either
+  way. At six, Maya on the steps: the forged emails in her own phrases.
+- **Counterplay:** the lift rehearsal ("He keeps asking what his motivation is") and Marsh's guilty look at the
+  mirror; the security man and "Eleven-oh-four, love" in the service corridor; the black phone ringing eleven times
+  at five past seven; Marsh's own number on a coaster; Iris: "You keep it. I'd only lose my nerve."
+- **Friday:** the bright morning; Maya's full stop (complied), the Courier's four lines (refused), the widened
+  inquiry (countered).
+- **The knock:** the spyhole; Sloane smaller than she was across a desk.
+
 ## Size (honest)
 
-Pass 1: **~1.8–2.3k words on the golden paths** against the 7k budget (the design estimated ~6.5k). Every scene,
-branch, safeguard and consequence is in; the prose is lean. The deepening pass should go to the week (more than
-one move, and Marsh seen twice), the brief (Celeste at greater length), the refuse night (Maya, and the station),
-the counterplay ops, and Friday. It should **not** lengthen the comply lead-in for its own sake.
+Pass 1: ~1.8–2.3k words on the golden paths. After the deepening pass: **~2.9–3.1k on the golden (quiet) paths**,
+more when the new moments are played engaged, against the 7k budget. Still the leanest Act III chapter. The
+remaining room is in the counterplay ops and in the week's second move; the comply lead-in stays as it is.

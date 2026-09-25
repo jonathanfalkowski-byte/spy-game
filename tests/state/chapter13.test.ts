@@ -44,8 +44,8 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 /** The kind-tenant Chapter 12 ending, with no allies told and nothing to prove, adjusted per case. */
 const bare = { 'act3.ally.iris': undefined, 'act3.ally.theo': undefined, 'act3.ally.julian': undefined, 'c12.statement': undefined, 'c11.catalogue': 'leave', 'case.strength': 'thin', 'c12.bed': 'mirror' };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete12('kind-tenant'), { ...bare, ...flags });
-const toAnswer = (s: GameState, week = 'week-alone') => walk(s, ['begin', 'brief-silent', week]);
-const prefer = ['brief-silent', 'week-alone', 'door-away', 'station-wait', 'maya-quiet', 'after-home', 'recover-alone', 'reply-none'];
+const toAnswer = (s: GameState, week = 'week-alone', box = 'box-keep', week2 = 'week-rest') => walk(s, ['begin', 'brief-silent', week, box, week2]);
+const prefer = ['brief-silent', 'week-alone', 'box-keep', 'week-rest', 'door-away', 'vigil-silent', 'station-wait', 'maya-quiet', 'after-home', 'recover-alone', 'reply-none'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c13(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -76,6 +76,8 @@ it('briefs the placement: Marsh, 1109, and Maya’s file', () => {
   expect(text(c13(start({ 'c11.iris': 'spared' }), 'begin'))).toContain('He still has Iris, which is your doing');
   expect(ids(brief)).toEqual(['brief-ask', 'brief-silent']);
   expect(text(c13(brief, 'brief-ask'))).toContain('It is very restful, being owned.');
+  expect(words).toContain('Nell was placed eleven times in eight years');
+  expect(words).toContain('I have watched a great many first times.');
 });
 
 it('gives her six days and one move, with allies only if she has them', () => {
@@ -90,6 +92,20 @@ it('gives her six days and one move, with allies only if she has them', () => {
   expect(text(c13(week, 'week-marsh'))).toContain('in eleven years he has never once let anybody off');
   expect(text(c13(withFlags(week, { 'c6.maya': 'restored' }), 'week-maya'))).toContain('I just want you to know I noticed.');
   expect(text(c13(withFlags(week, { 'c6.maya': 'strained' }), 'week-maya'))).toContain('watch her light go on on the third floor');
+  // Midweek, Celeste's box; then a second move, never the same one twice.
+  const boxed = c13(week, 'week-marsh');
+  expect(boxed.phase).toBe('week');
+  expect(text(boxed)).toContain('For Thursday. Something you can forget. C.');
+  expect(ids(boxed)).toEqual(['box-keep', 'box-return', 'box-cut']);
+  expect(text(c13(boxed, 'box-cut'))).toContain('a heap of beautiful black ribbons');
+  const second = c13(boxed, 'box-return');
+  expect([second.choices['c13.box'], text(second).includes('Three days left.')]).toEqual(['return', true]);
+  expect(ids(second)).toEqual(['week-maya', 'week-rest']);
+  const alliesSecond = walk(allies, ['week-iris', 'box-keep']);
+  expect(ids(alliesSecond)).toEqual(['week-marsh', 'week-maya', 'week-theo', 'week-julian', 'week-rest']);
+  const both = c13(alliesSecond, 'week-theo');
+  expect([both.phase, both.choices['c13.told'], both.choices['c13.told2'], both.choices['c13.week2']]).toEqual(['answer', 'iris', 'theo', 'ally']);
+  expect(counterWays13(both)).toEqual(['swap', 'expose']);
 });
 
 it('offers counterplay only when she has built something', () => {
@@ -101,6 +117,7 @@ it('offers counterplay only when she has built something', () => {
   expect(counterWays13(toAnswer(start({ 'act3.ally.iris': 'in' }), 'week-iris'))).toEqual(['swap']);
   expect(counterWays13(toAnswer(start({ 'act3.ally.theo': 'in' }), 'week-theo'))).toEqual(['expose']);
   expect(counterWays13(toAnswer(start({ 'act3.ally.julian': 'in' }), 'week-julian'))).toEqual(['turn']);
+  expect(counterWays13(toAnswer(start({ 'c12.statement': 'recorded' }), 'week-alone', 'box-keep', 'week-marsh'))).toEqual(['turn']);
 });
 
 it('keeps compliance off screen: the lead-in, the door, a cut, and nothing sexual anywhere on the path', () => {
@@ -108,6 +125,11 @@ it('keeps compliance off screen: the lead-in, the door, a cut, and nothing sexua
   expect([door.phase, door.choices['c13.answer'], door.choices['act3.honeypot']]).toEqual(['thursday', 'complied', 'done']);
   expect(door.history.at(-1)!.blocks[0].text).toBe(COMPLY_OPENING13);
   expect(text(door)).toContain('At the lights on the Strand he turns the heating up');
+  expect(text(door)).toContain('Wear the dress.');
+  expect(text(door)).toContain('Her dress, out of its tissue at last');
+  const own = c13(toAnswer(start(), 'week-alone', 'box-return'), 'order-comply');
+  expect(text(own)).toContain('It won’t matter in the least.');
+  expect(text(own)).toContain('A dress that is nobody’s');
   expect(ids(door)).toEqual(['door-look', 'door-away']);
   for (const id of ['door-look', 'door-away']) {
     const after = c13(door, id);
@@ -137,8 +159,13 @@ it('lands refusal on Maya, never on her: detained, suspended, bailed', () => {
   expect(currentPlace(refused, 'x')).toBe('21:00 · Home, and then the police station');
   expect(text(refused)).toContain('They said leaking.');
   expect(text(refused)).toContain('They only have to do it to her, and let you watch.');
-  expect(ids(refused)).toEqual(['station-wait', 'station-lawyer']);
-  const lawyer = c13(refused, 'station-lawyer');
+  expect(text(refused)).toContain('it isn’t too late. The car’s outside.');
+  expect(ids(refused)).toEqual(['vigil-no', 'vigil-silent']);
+  const no = c13(refused, 'vigil-no');
+  expect([no.phase, no.choices['c13.vigil'], no.choices['c13.answer']]).toEqual(['thursday', 'no', 'refused']);
+  expect(text(no)).toContain('Tell her I’m waiting for my friend.');
+  expect(ids(no)).toEqual(['station-wait', 'station-lawyer']);
+  const lawyer = c13(no, 'station-lawyer');
   expect(lawyer.choices['act3.maya-lawyer']).toBe('brandt');
   expect(text(lawyer)).toContain('Nobody who leaks is this tidy.');
   expect(ids(lawyer)).toEqual(['maya-tell', 'maya-quiet']);
@@ -148,7 +175,7 @@ it('lands refusal on Maya, never on her: detained, suspended, bailed', () => {
   expect(textFrom(finish(told), ['answer', 'thursday', 'after', 'morning', 'complete'])).not.toMatch(SEXUAL);
   const stranger = c13(toAnswer(start({ 'c6.maya': 'strained' })), 'order-refuse');
   expect(text(stranger)).toContain('a photograph. Maya in the back of a car');
-  expect(ids(c13(stranger, 'station-wait'))).toEqual(['after-home']);
+  expect(ids(walk(stranger, ['vigil-silent', 'station-wait']))).toEqual(['after-home']);
   expect(leverageBoard(stranger).held[0].threat).toBe('Maya, detained on a leak charge: suspended, on bail');
 });
 
@@ -161,6 +188,7 @@ it('turns Marsh, and the only charge in the room is the one they both choose', (
   expect(text(turned)).toContain('From a friend of hers.');
   expect(text(turned)).toContain('Is this all right?');
   expect(text(turned)).toContain('both of you still dressed');
+  expect(text(turned)).toContain('He keeps asking what his motivation is.');
   expect(turned.facts).toContain('c13.marsh');
   expect(leverageBoard(turned).holds.map((a) => a.id)).toContain('marsh');
   const morning = walk(turned, ['after-drink']);
@@ -172,10 +200,12 @@ it('swaps the card with Iris, or burns it in public first', () => {
   const swapped = walk(toAnswer(start({ 'act3.ally.iris': 'in' }), 'week-iris'), ['order-counter', 'counter-swap']);
   expect([swapped.choices['act3.honeypot'], swapped.choices['c13.card'], swapped.choices['act3.celeste-surprised']]).toEqual(['pulled', 'taken', 'once']);
   expect(text(swapped)).toContain('Six years of 1109, darling.');
+  expect(text(swapped)).toContain('Eleven-oh-four, love.');
   expect(leverageBoard(swapped).holds.map((a) => a.id)).toContain('card-1109');
   const burned = walk(toAnswer(start({ 'act3.ally.theo': 'in' }), 'week-theo'), ['order-counter', 'counter-expose']);
   expect([burned.choices['act3.honeypot'], burned.choices['act3.exposed']]).toEqual(['burned', 'yes']);
   expect(text(burned)).toContain('We know this because somebody who was asked to do it told us, and refused.');
+  expect(text(burned)).toContain('It rings eleven times');
   expect(leverageBoard(burned).holds.map((a) => a.id)).toContain('broadcast');
 });
 
@@ -183,6 +213,7 @@ it('answers Celeste on Friday, and ends on Sloane at the door', () => {
   const morning = walk(toAnswer(start({ 'c12.bed': 'drawer' })), ['order-comply', 'door-away', 'recover-alone']);
   expect(morning.phase).toBe('morning');
   expect(text(morning)).toContain('Your friend’s file has gone back in my drawer.');
+  expect(text(walk(toAnswer(start(), 'week-alone', 'box-cut'), ['order-comply', 'door-away', 'recover-alone']))).toContain('You cut up my dress, I hear.');
   expect(ids(morning)).toEqual(['reply-none', 'reply-nell']);
   const nell = c13(morning, 'reply-nell');
   expect(nell.phase).toBe('complete');
@@ -223,7 +254,9 @@ it('reaches the end from every option in every scene', () => {
     ['week-iris', 'order-counter', 'counter-swap', 'after-drink'], ['week-theo', 'order-counter', 'counter-expose', 'after-drink'],
     ['week-julian', 'order-counter', 'counter-turn', 'after-home'],
     ['order-comply', 'door-look', 'recover-maya'], ['order-comply', 'recover-julian', 'reply-nell'], ['order-comply', 'recover-wall'],
-    ['order-refuse', 'station-lawyer', 'maya-tell'], ['order-refuse', 'station-wait', 'maya-quiet'],
+    ['order-refuse', 'vigil-no', 'station-lawyer', 'maya-tell'], ['order-refuse', 'vigil-silent', 'station-wait', 'maya-quiet'],
+    ['box-return'], ['box-cut'], ['week-alone', 'week-maya'], ['week-maya', 'week-marsh', 'order-counter', 'counter-turn'],
+    ['week-iris', 'week-theo', 'order-counter', 'counter-expose'],
   ];
   for (const wants of every) {
     const end = drive(wants);

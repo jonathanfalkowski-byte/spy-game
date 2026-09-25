@@ -8,7 +8,7 @@ coercion framework, §5 hard lines, §6 player comfort, §11 checklist), [BEAT_M
 [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) (canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
 Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_13_THE_HONEYPOT_SCRIPT.md](scripts/CHAPTER_13_THE_HONEYPOT_SCRIPT.md), code: `src/content/chapter13.ts`.
-~1.8–2.3k words on the golden paths (lean; deepening follows). The content notice and the "Fade coercion scenes"
+~1.8–2.3k words on the golden paths at pass 1; deepened 2026-09-25 to ~2.9–3.1k (the comply lead-in unchanged). The content notice and the "Fade coercion scenes"
 setting are built. Gated like Chapters 6–12 (`VITE_EVE_CHAPTER13`, content
 revision ≥ 19), entered from an own-power `chapter12.complete`.
 

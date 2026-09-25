@@ -10,7 +10,12 @@
  * lands on the named, non-sexual threat: Maya detained on a fabricated leak charge. Counterplay is earned (turn him and
  * stage it for the camera, both in on it; swap the camera's card with Iris; expose it first). The refuge after
  * compliance is being held, nothing more. The comply lead-in can be faded by the reader (fadeCoercion13, presentation
- * only: it never touches the save). */
+ * only: it never touches the save).
+ * Deepening pass (2026-09-25): Celeste at greater length in the brief (placements, Nell's eleven, "the first time is
+ * the only difficult one"); the week becomes two moves either side of Celeste's box (c13.box = keep | return | cut: the
+ * dress for Thursday, which the comply path then wears or doesn't; c13.week2 / c13.told2, neutral week-rest); a vigil
+ * at the police station on the refusal night (c13.vigil = no | silent: "It isn't too late. The car's outside."); the
+ * counterplay ops at greater length; and Friday. The comply lead-in is not lengthened. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -96,12 +101,13 @@ const proof13 = (s: GameState) =>
   get12(s, 'statement') === 'recorded' || get11(s, 'catalogue') === 'photo' || c(s, 'case.strength') === 'strong' || get12(s, 'bed') === 'drawer';
 
 /** The ways out she has built by Wednesday (CONTENT_DIRECTION §3b: counterplay needs something she built). */
+const told13 = (s: GameState, who: string) => get13(s, 'told') === who || get13(s, 'told2') === who;
+const watched13 = (s: GameState) => get13(s, 'week') === 'marsh' || get13(s, 'week2') === 'marsh';
 export function counterWays13(s: GameState): ('turn' | 'swap' | 'expose')[] {
-  const told = get13(s, 'told');
   const out: ('turn' | 'swap' | 'expose')[] = [];
-  if ((get13(s, 'week') === 'marsh' && proof13(s)) || told === 'julian') out.push('turn');
-  if (told === 'iris') out.push('swap');
-  if (told === 'theo' || (get13(s, 'week') === 'marsh' && famous(s) && c(s, 'case.strength') === 'strong')) out.push('expose');
+  if ((watched13(s) && proof13(s)) || told13(s, 'julian')) out.push('turn');
+  if (told13(s, 'iris')) out.push('swap');
+  if (told13(s, 'theo') || (watched13(s) && famous(s) && c(s, 'case.strength') === 'strong')) out.push('expose');
   return out;
 }
 
@@ -158,6 +164,18 @@ function briefBlocks(s: GameState): Block[] {
     q('The file', 'AXIOM INTERNAL · COMPLIANCE · M. REYES · Unauthorised disclosure of client data to a member of the press (three occasions). Referred to the police. Evidence attached.'),
     p('It is dated next Friday. The evidence is attached. You recognise the style of it, because Adrian used to write reports exactly like it, for real.'),
     q('Celeste', 'It is only paper, darling. Paper is what you make it. If you would rather I made it into nothing, you know how.'),
+    p('She leaves the file where it is, on top of his face, and sits back and crosses her legs, and looks at you the way she looked at the empty frames on the first Thursday: as something she has hung, and is deciding whether she hung straight.'),
+    q(
+      'Celeste',
+      getKey(s, 'act3.nell') === 'known'
+        ? 'Everybody in the collection is placed, sooner or later. It is what the collection is for. Iris was placed with Mr Halvorsen for four years. Nell was placed eleven times in eight years, and never once came home without what she went for. She used to say it was the only honest work in the building, because at least everybody in the room wanted something.'
+        : 'Everybody in the collection is placed, sooner or later. It is what the collection is for. Iris was placed with Mr Halvorsen for four years. The last one in your page was placed eleven times, and never once came home without what she went for.',
+    ),
+    ...(getKey(s, 'act3.nell') === 'known'
+      ? [t('Nell. She says the name the way you would say the name of a dog you once had. As if she had not rung Nora at seven on a Sunday morning to say she was so terribly sorry.')]
+      : []),
+    q('Celeste', 'The first time is the only difficult one. After that it is simply work. I promise you, darling. I have watched a great many first times.'),
+    t('Watched. She means it exactly. There is a camera behind the mirror, and she has sat in front of the screen.'),
     ...(getKey(s, 'act3.celeste-surprised') === 'twice'
       ? [q('Celeste', 'You have been clever twice. I have given you something you cannot be clever about. Humour me.')]
       : []),
@@ -192,55 +210,71 @@ function weekBlocks(): Block[] {
     p('Six days.'),
     p('You pin one card to the wall, above the date, and write on it only a room number: 1109. It is the only thing you write all week. Everything else you do in your head, walking, the way Adrian used to work a problem on the long way home: along the river to the bridges and back, in the rain, until your shoes are ruined and you have to buy new ones, and you do not care which.'),
     p('The city carries on around you with a cheerfulness you find obscene. The campaign posters go up at the station. A girl on the tube asks for a selfie, and you smile for it. Odile rings about a shoot. You say yes to all of it, and hear yourself saying it, from a long way off.'),
+    p('On the second day there is a shoot for the campaign, in a white studio in Hackney, and you do it, because it was booked before Thursday existed. You stand in the lights in somebody else’s silk and do everything you are asked, and the photographer keeps stopping to look at the back of his camera, delighted.'),
+    q('Photographer', 'Whatever you’re thinking about, keep thinking about it. You look haunted. The lens adores it.'),
+    p('Odile rings afterwards, from a taxi.'),
+    q('Odile Frayne', 'They’re calling the pictures the best of the year, darling. They say you look like a woman with a secret. I told them you have dozens. Are you eating? You don’t sound as if you’re eating.'),
     p('The black phone is quiet all week. That is how you know she is sure.'),
     t('Six days to decide what I am. She has already decided. She decided the day she hung me on page seven. All I get to choose is whether she was right.'),
   ];
 }
 
-function weekChoices(s: GameState): C13Choice[] {
-  const move = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer13('week-' + id, label, hint, 'answer', (x) => {
-      set13(x, 'week', ['iris', 'theo', 'julian'].includes(id) ? 'ally' : id);
-      if (['iris', 'theo', 'julian'].includes(id)) set13(x, 'told', id);
-      after?.(x);
-      return body;
+/** One preparation move (the first, or the second after the box). Allies set c13.told / c13.told2. */
+function weekMoves(s: GameState, second: boolean): C13Choice[] {
+  const first = get13(s, 'week');
+  const firstTold = get13(s, 'told');
+  const move = (id: string, label: string, hint: string, body: Block[]) =>
+    offer13('week-' + id, label, hint, second ? 'answer' : 'week', (x) => {
+      const ally = ['iris', 'theo', 'julian'].includes(id);
+      set13(x, second ? 'week2' : 'week', ally ? 'ally' : id);
+      if (ally) set13(x, second ? 'told2' : 'told', id);
+      return second ? body : [...body, ...boxArrives];
     });
+  const taken = (id: string) => second && (first === id || firstTold === id);
   return [
-    move('marsh', 'Find out who he is', 'Watch him. Read him. Know what you would be doing.', [
-      p('On Monday you are across the road from his flat in Kennington at a quarter to eight, in a coffee shop window, when he comes out with his bicycle, trouser clips on, and a banana in his mouth, and has to go back in for his helmet.'),
-      p('On Tuesday you sit two tables behind him in a café by the Authority and listen to him make the woman at the till laugh about the weather, and leave her a tip he plainly can’t afford, and read a report with a red pen and a face like a man carrying something heavy up a long stair.'),
-      p('On Wednesday you read everything the Markets Authority has ever published with his name on it. It is dull, and careful, and decent, and in eleven years he has never once let anybody off.'),
-      t('He is the only one doing his job. That is why she wants him. That is the only reason.'),
-    ]),
-    move(
-      'maya',
-      mayaBack(s) ? 'See Maya' : 'Go and look at Maya’s building',
-      mayaBack(s) ? 'Dinner at the old place. One true sentence, if you can find one.' : 'You have no right to more than that.',
-      mayaBack(s)
-        ? [
-            p('Dinner on Tuesday at the Portuguese place near Axiom where you used to go after long audits, a lifetime ago, as somebody else. Maya orders for both of you without asking, and is right.'),
-            q('Maya', 'I’ve got an interview. For head of section. Friday week. Don’t say anything, I’ll jinx it.'),
-            p('You say nothing. You say nothing for two hours, beautifully, and laugh in the right places, and ask the right questions, and there is not one true sentence in any of it, and at the end she looks at you across the table with her chin on her hand.'),
-            q('Maya', 'You’re somewhere else. You’ve been somewhere else all night. You don’t have to tell me. I just want you to know I noticed.'),
-            t('Friday week. The file is dated Friday. She will not get to the interview. Unless I go up to 1109.'),
-          ]
-        : [
-            p('You stand across the road from Maya’s building at seven in the evening, in the rain, under a tree, the way Meridian’s people stand across the road from yours, and watch her light go on on the third floor.'),
-            p('She comes to the window once, with a mug, and looks out at the rain without seeing you. Then she draws the curtain.'),
-            t('The file is dated Friday. She has no idea there is a file. She has no idea there is a me.'),
-          ],
-    ),
-    ...(irisAlly(s)
+    ...(taken('marsh')
+      ? []
+      : [
+          move('marsh', 'Find out who he is', 'Watch him. Read him. Know what you would be doing.', [
+            p('Early one morning you are across the road from his flat in Kennington, in a coffee shop window, when he comes out with his bicycle, trouser clips on and a banana in his mouth, and has to go back in for his helmet.'),
+            p('The next day you sit two tables behind him in a café by the Authority and listen to him make the woman at the till laugh about the weather, and leave her a tip he plainly can’t afford, and read a report with a red pen and a face like a man carrying something heavy up a long stair.'),
+            p('That night you read everything the Markets Authority has ever published with his name on it. It is dull, and careful, and decent, and in eleven years he has never once let anybody off.'),
+            t('He is the only one doing his job. That is why she wants him. That is the only reason.'),
+          ]),
+        ]),
+    ...(taken('maya')
+      ? []
+      : [
+          move(
+            'maya',
+            mayaBack(s) ? 'See Maya' : 'Go and look at Maya’s building',
+            mayaBack(s) ? 'Dinner at the old place. One true sentence, if you can find one.' : 'You have no right to more than that.',
+            mayaBack(s)
+              ? [
+                  p('Dinner at the Portuguese place near Axiom where you used to go after long audits, a lifetime ago, as somebody else. Maya orders for both of you without asking, and is right.'),
+                  q('Maya', 'I’ve got an interview. For head of section. Friday week. Don’t say anything, I’ll jinx it.'),
+                  p('You say nothing. You say nothing for two hours, beautifully, and laugh in the right places, and ask the right questions, and there is not one true sentence in any of it, and at the end she looks at you across the table with her chin on her hand.'),
+                  q('Maya', 'You’re somewhere else. You’ve been somewhere else all night. You don’t have to tell me. I just want you to know I noticed.'),
+                  t('Friday week. The file is dated Friday. She will not get to the interview. Unless I go up to 1109.'),
+                ]
+              : [
+                  p('You stand across the road from Maya’s building at seven in the evening, in the rain, under a tree, the way Meridian’s people stand across the road from yours, and watch her light go on on the third floor.'),
+                  p('She comes to the window once, with a mug, and looks out at the rain without seeing you. Then she draws the curtain.'),
+                  t('The file is dated Friday. She has no idea there is a file. She has no idea there is a me.'),
+                ],
+          ),
+        ]),
+    ...(irisAlly(s) && !taken('iris')
       ? [
           move('iris', 'Tell Iris', 'She knows how placements are run. She has been one.', [
-            p('Iris answers the number on the postcard from a phone box by the sound of it, with the sea behind her.'),
+            p('Iris answers the number on the postcard from a phone box, by the sound of it, with the sea behind her.'),
             q('Iris', 'The Claremont. Eleven-oh-nine. Oh, darling. That room.'),
             q('Iris', 'There’s a cupboard behind that mirror, off the service corridor. A camera the size of a paperback, and a card in it. Nobody changes the card more than once a month, because nobody ever thinks anybody will look. I know, because for four years it was my job to collect it.'),
             q('Iris', 'I’m coming up to town on Thursday. Don’t argue. I owe you an ending.'),
           ]),
         ]
       : []),
-    ...(theoAlly(s)
+    ...(theoAlly(s) && !taken('theo')
       ? [
           move('theo', 'Tell Theo', 'He wanted the story. Here is one that could end him, or make him.', [
             p('You tell Theo in the back of a taxi going round Parliament Square three times, because the driver is deaf and the rain is loud.'),
@@ -250,7 +284,7 @@ function weekChoices(s: GameState): C13Choice[] {
           ]),
         ]
       : []),
-    ...(julianAlly(s)
+    ...(julianAlly(s) && !taken('julian')
       ? [
           move('julian', 'Tell Julian', 'Helix has sat across a table from Marsh. Julian knows him.', [
             p('You tell Julian at his window, with the whole city under you both, and watch his face go very still.'),
@@ -259,13 +293,56 @@ function weekChoices(s: GameState): C13Choice[] {
           ]),
         ]
       : []),
-    move('alone', 'Tell nobody', 'Work it out on the wall.', [
-      p('You tell nobody. You work it out on the wall, at night, the way you have worked out everything else.'),
-      p('Three cards, side by side under 1109. On the first you write what happens if you go up. On the second, what happens to Maya if you don’t. On the third you write nothing at all, and look at it every night for five nights, waiting for something to appear on it.'),
-      p('Nothing does. On the sixth night you take the empty card down, and put it in the drawer, and shut the drawer.'),
-      t('Two cards. She made sure there would only be two. That is what the six days were for.'),
+    ...(second
+      ? [
+          move('rest', 'Sleep, or try to', 'Three days. Let them go by.', [
+            p('You spend the rest of the week trying to sleep, and managing it in the afternoons, in snatches, like somebody on nights, with the curtains drawn against the posters of your own face at the bus stop outside.'),
+            p('Once you wake at four in the afternoon with your heart going and no idea what day it is, and lie there counting backwards until you know. Tuesday. Wednesday tomorrow. Then Thursday.'),
+          ]),
+        ]
+      : [
+          move('alone', 'Tell nobody', 'Work it out on the wall.', [
+            p('You tell nobody. You work it out on the wall, at night, the way you have worked out everything else.'),
+            p('Three cards, side by side under 1109. On the first you write what happens if you go up. On the second, what happens to Maya if you don’t. On the third you write nothing at all, and look at it every night, waiting for something to appear on it.'),
+            p('Nothing does. On the third night you take the empty card down, and put it in the drawer, and shut the drawer.'),
+            t('Two cards. She made sure there would only be two. That is what the six days are for.'),
+          ]),
+        ]),
+  ];
+}
+
+/** Midweek: Celeste's box, with the dress for Thursday in it. */
+const boxArrives: Block[] = [
+  p('In the middle of the week a box comes by courier, with the Vesper’s mark on the lid and a black ribbon round it. Inside, in tissue, is a dress: black, simple, beautifully cut, in your size to the centimetre. And a card, in green ink.'),
+  q('The card', 'For Thursday. Something you can forget. C.'),
+  t('She has chosen what I will wear to it. Of course she has. She chose what Nell wore to eleven of them.'),
+];
+
+function boxChoices(): C13Choice[] {
+  const box = (id: string, label: string, hint: string, body: Block[]) =>
+    offer13('box-' + id, label, hint, 'week', (x) => {
+      set13(x, 'box', id);
+      return [...body, p('Three days left.')];
+    });
+  return [
+    box('keep', 'Hang it in the wardrobe', 'Don’t look at it. Don’t send it back.', [
+      p('You hang it at the far end of the wardrobe, still in its tissue, behind everything else, and shut the door on it. All week you know exactly where it is, the way you know where a wasp is in a room.'),
+    ]),
+    box('return', 'Send it back unopened', 'You will choose what you wear.', [
+      p('You tie the ribbon back the way it came, ring the courier, and send it back to the Vesper with nothing written on the card, and feel, for about an hour, enormous.'),
+      t('One thing she doesn’t get to choose. It is a very small thing. I will take it.'),
+    ]),
+    box('cut', 'Cut it up', 'With the kitchen scissors. Slowly. Then post it back.', [
+      p('You take the kitchen scissors to it on the table, slowly, seam by seam, the way Adrian used to shred a draft he was ashamed of, until it is a heap of beautiful black ribbons. Then you put the ribbons back in the tissue, and the tissue back in the box, and tie the bow, and send it back to the Vesper by the same courier.'),
+      t('Childish. Completely. I feel better than I have in a week.'),
     ]),
   ];
+}
+
+function weekChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'week')) return weekMoves(s, false);
+  if (!get13(s, 'box')) return boxChoices();
+  return weekMoves(s, true);
 }
 
 // ── The Answer ──
@@ -277,6 +354,8 @@ function answerBlocks(s: GameState): Block[] {
         ? 'Wednesday, a minute to midnight. The kitchen table, the black phone with its one contact, and beside it the card with Nell’s name on it, which you took down off the wall to look at. You have no photograph of her. You have a name, and her sister barefoot in a hot road, and that will have to do.'
         : 'Wednesday, a minute to midnight. The kitchen table, the black phone with its one contact, and beside it, because you took it off the wall to look at, Nora’s photograph of Nell on the harbour wall, laughing, in flat shoes.',
     ),
+    p('You have been sitting here since ten. You have written three messages and deleted them. One was long, and explained everything, and would have made her laugh. One was a single word. One was Nell’s name, and nothing else, and your thumb stayed over it for a long time.'),
+    p('Outside, a bus goes by, lit and empty. In the flat across the gap, the one that watches yours, a light goes on and off again, as if somebody over there were waiting up too.'),
     p('You pick the phone up. The screen lights your face from below, the way a torch does in a ghost story.'),
     t('She was placed. Nell was placed, eight years, and when she tried to stop being placed, they put her in the harbour. Whatever I type now, I am typing it with her sitting across the table.'),
   ];
@@ -292,7 +371,7 @@ function answerChoices(s: GameState): C13Choice[] {
   return [
     say('comply', 'Type “Thursday.”', 'Maya’s file stays in the drawer. You go up to 1109.', [
       q('You · to C.', 'Thursday.'),
-      q('C.', 'Thank you, darling. Wear something you can forget.'),
+      q('C.', get13(s, 'box') === 'keep' ? 'Thank you, darling. Wear the dress.' : 'Thank you, darling. Wear whatever you like. It won’t matter in the least.'),
       p('You put the phone face down on the table and sit with your hands flat on either side of it, until the kitchen clock has gone round once.'),
     ], (x) => {
       set13(x, 'answer', 'complied');
@@ -312,7 +391,7 @@ function answerChoices(s: GameState): C13Choice[] {
       ? [
           say('counter', 'Type “Thursday,” and mean something else', 'The same word as yes. That is the point.', [
             q('You · to C.', 'Thursday.'),
-            q('C.', 'Thank you, darling. Wear something you can forget.'),
+            q('C.', get13(s, 'box') === 'keep' ? 'Thank you, darling. Wear the dress.' : 'Thank you, darling. Wear whatever you like. It won’t matter in the least.'),
             t('Thursday. She will get a Thursday. Just not the one she ordered.'),
           ], (x) => {
             set13(x, 'answer', 'countered');
@@ -329,7 +408,11 @@ function thursdayBlocks(s: GameState): Block[] {
   if (answer === 'complied')
     return [
       p(COMPLY_OPENING13),
-      p('A dress that is nobody’s: black, plain, nothing on it you have ever worn for anyone you chose. You will never wear it again, and you know it as you do up the zip. The face, finished once and not finished again. No perfume. You leave off the good earrings, and the green, and everything that is yours, and put them all in a drawer, and shut the drawer, as if that could keep them out of it.'),
+      p(
+        get13(s, 'box') === 'keep'
+          ? 'Her dress, out of its tissue at last: black, simple, cut to the centimetre. You have never worn anything that fitted so well and belonged to you less. The face, finished once and not finished again. No perfume. You leave off the good earrings, and the green, and everything that is yours, and put them all in a drawer, and shut the drawer, as if that could keep them out of it.'
+          : 'A dress that is nobody’s: black, plain, nothing on it you have ever worn for anyone you chose. You will never wear it again, and you know it as you do up the zip. The face, finished once and not finished again. No perfume. You leave off the good earrings, and the green, and everything that is yours, and put them all in a drawer, and shut the drawer, as if that could keep them out of it.',
+      ),
       t('Whatever she has placed tonight, it is not going to be me. I am leaving me in the drawer.'),
       pryceKnown(s)
         ? p('At half past eight the car is at the kerb. Mr Pryce holds the door, and does not say Ms Laurent’s compliments, and does not look at you, and all the way along the Embankment he says nothing at all. At the lights on the Strand he turns the heating up, though it is not cold, and you understand that it is the only thing he has to give you.')
@@ -356,8 +439,17 @@ function thursdayBlocks(s: GameState): Block[] {
         : [
             p('At twenty past nine the black phone lights. No message: a photograph. Maya in the back of a car at night, between two men, her face turned to the rain on the window. No caption. It does not need one.'),
           ]),
+      p('You are out of the door before you have decided to go, in the jumper, with your coat over it and your hair not done, and for once in two months nobody on the street looks at you twice.'),
       p('You are at the station by ten. They will not tell you anything, because on paper you are nobody to her. You sit on a plastic chair in a waiting room that smells of bleach and wet coats, under a poster about pickpockets, with the black phone in your lap, and wait.'),
+      p('There are other people waiting. A woman in a nurse’s tunic with her coat on over it, holding a carrier bag of clean clothes for somebody. An old man asleep with his mouth open. A boy of seventeen in a football shirt who keeps going to the desk to ask about his brother and being told to sit down. Every time the inner door opens, all of you look up, and every time it is not for you, all of you look down again, together, like a congregation.'),
       p('Nobody touches you. Nobody asks anything of you at all. That is how it works, you understand, sitting there under the strip light: they do not have to do anything to you. They only have to do it to her, and let you watch.'),
+      p(
+        pryceKnown(s)
+          ? 'At half past ten the door from the street opens and lets in the rain and Mr Pryce, without his cap, who looks round the waiting room once and sits down in the chair beside yours, as if the room were full.'
+          : 'At half past ten the door from the street opens and lets in the rain and a man in a good coat, who looks round the waiting room once and sits down in the chair beside yours, as if the room were full.',
+      ),
+      q(pryceKnown(s) ? 'Pryce' : 'Man in a good coat', 'Ms Laurent asks me to say it isn’t too late. The car’s outside. He orders his second whisky at eleven. He always does.'),
+      t('Still time. She wants me to know that I could make this stop. That I am choosing it, every minute I sit on this chair.'),
     ];
   return [
     p('Thursday. You get ready the way you would for any job: carefully, and for yourself.'),
@@ -381,6 +473,23 @@ function thursdayChoices(s: GameState): C13Choice[] {
       door('away', 'Don’t look', 'At anything but the mirror.', [p('You don’t look at the mirror. You look at the window, at the lights on the river, at anything else.')]),
     ];
   }
+  if (answer === 'refused' && !get13(s, 'vigil'))
+    return [
+      offer13('vigil-no', 'Tell him no', 'Out loud, so the desk sergeant hears.', 'thursday', (x) => {
+        set13(x, 'vigil', 'no');
+        return [
+          q('You', 'No. Tell her no. Tell her I’m waiting for my friend.'),
+          p('The desk sergeant looks up. The man beside you looks at you for a long moment, then nods, and gets up, and buttons his coat.'),
+          ...(pryceKnown(x)
+            ? [p('At the door, without turning round, he says, “For what it’s worth, Ms Vale, I’d have said the same,” and goes out into the rain.')]
+            : [p('At the door he says, to nobody, “She did say you would,” and goes out into the rain.')]),
+        ];
+      }),
+      offer13('vigil-silent', 'Don’t look at him', 'Look at the poster. Wait for him to go.', 'thursday', (x) => {
+        set13(x, 'vigil', 'silent');
+        return [p('You don’t look at him. You look at the poster about pickpockets until you could draw it from memory. After a while the chair beside you creaks, and the street door lets in the rain again, and he is gone.')];
+      }),
+    ];
   if (answer === 'refused')
     return [
       offer13('station-wait', 'Wait all night', 'The plastic chair. The strip light. Her.', 'after', (x) => {
@@ -435,11 +544,13 @@ function thursdayChoices(s: GameState): C13Choice[] {
             q('You', 'So something has to happen. For the camera.'),
             p('He is quiet for a moment. Then, to your surprise, he laughs, low, the first real laugh of the evening.'),
             q('Owen Marsh', 'I did amateur dramatics at university. I was a very bad Benedick.'),
+            p('In the lift you rehearse in whispers, like two people planning a surprise party: where the mirror is, where the camera will be looking, what it will need to see. He is terrible at it. He keeps asking what his motivation is. By the eleventh floor you are both trying not to laugh, and that, you realise, is exactly how you will look to the camera: like two people who can hardly wait.'),
             p('In 1109 the lamps are low and the mirror over the desk is long and dark, and you both know exactly where it is. You stage it like a scene in a play: his jacket over the chair, your shoes kicked off by the bed, your hair coming down, his tie in your hand. You kiss him where the camera can see, slow and convincing, and it is not entirely acting, and you can feel that it is not entirely acting for him either.'),
             p('His mouth by your ear, under the sound of the shower you have left running in the next room, off the microphone:'),
             q('Owen Marsh', 'Is this all right?'),
             q('You', 'Yes. Keep going. Slower. They’ll want to believe it.'),
             p('You pull him down onto the bed, both of you still dressed, and reach over and turn off the lamp, and in the dark you lie side by side on top of the covers with your hearts going like teenagers’, his hand in yours, and you both start, very quietly, to laugh.'),
+            p('At one, as agreed, he gets up and puts his jacket on in the light from the bathroom door, like a man who has done something he will regret, and at the door he turns and gives the mirror a long, guilty, haunted look that would have got him cast as Benedick at last.'),
             t('The only thing that happened in this room tonight is the thing we chose. Let her watch that.'),
           ], (x) => {
             setKey(x, 'act3.honeypot', 'staged');
@@ -455,6 +566,9 @@ function thursdayChoices(s: GameState): C13Choice[] {
             q('Iris', 'Four years with Halvorsen, darling. You learn where everybody keeps their cameras.'),
             p('The service corridor behind the eleventh floor is bare concrete and strip lights and the hum of machinery, the back of the hotel, the part the guests are never meant to imagine. Behind 1109 there is a cupboard with a cheap lock that Iris opens with a hairgrip faster than you could have. Inside, on a shelf, a black box the size of a paperback with a lens pressed to the back of the glass, and a small green light, patiently on.'),
             p('Iris ejects the card and slides in a blank one, and holds the real one up between two fingers in the strip light, like a woman holding up a bad tooth.'),
+            p('Footsteps at the far end of the corridor: a security man on his round, torch in hand, whistling. Iris does not hurry. She shuts the cupboard with her hip, turns the trolley across the corridor so that he has to stop, and holds out a stack of towels to him as if he were late.'),
+            q('Iris', 'Eleven-oh-four, love. They’ve rung down twice. You couldn’t, could you? My back.'),
+            p('He takes the towels. He takes them all the way to 1104, and knocks, and argues with whoever answers, and by the time he comes back the corridor is empty and the trolley is by the service lift with nobody near it.'),
             q('Iris', 'Once a month, nobody changes it more than that. So this is a month of that room. And the one before is in a safe in the Vesper, and the one before that. Six years of 1109, darling. Everybody who was ever placed there, and everybody they were placed with.'),
             p('At nine you go down to the bar and sit two stools along from Owen Marsh and have one drink with him, and he is funny and kind and tired. At half past ten you say you have an early start, and shake his hand at the lift, and watch the doors close on a man who will never know what didn’t happen to him.'),
             t('One drink, and a handshake, and a month of Meridian’s own tape in Iris’s glove. She will know by the morning. I want her to.'),
@@ -476,6 +590,7 @@ function thursdayChoices(s: GameState): C13Choice[] {
               : [
                   p('At seven the Courier’s website runs it across the top of the page, with a photograph of the Claremont’s front door: REGULATOR TARGETED IN HONEY TRAP FOR FUND UNDER INVESTIGATION. The source is “a woman approached to carry it out”. The room number is in the second paragraph.'),
                 ]),
+            p('At five past seven the black phone rings. It has never rung before; it has only ever lit. It rings eleven times, and stops, and does not ring again.'),
             p('By eight the Claremont’s lobby is full of photographers. By half past, Owen Marsh has been rung by his minister, and by the Authority’s chairman, and by his daughter, and is on the pavement outside his flat in Kennington telling a camera, in his cycling jacket, that he has no comment, and that his inquiry continues.'),
             p('At nine, because you want to, you walk into the Claremont bar in the green, through the photographers, and sit on the end stool, the one he would have been on, and order a whisky, and lift it once, very slightly, towards the lifts and the eleventh floor.'),
             t('Everybody in London is going to try to guess who the woman was. Some of them are going to guess right. It was worth it. Ask me again in a month.'),
@@ -515,10 +630,13 @@ function afterBlocks(s: GameState): Block[] {
             q('Maya', 'You were here all night.'),
             q('You', 'Yes.'),
             q('Maya', 'It was about you. Wasn’t it. Somebody wanted something from you, and you said no, and they did this to me instead.'),
+            p('It is not a question, and she does not wait for an answer. She stands on the station steps in the grey light with her arms folded over her chest, shaking, not from the cold.'),
+            q('Maya', 'They had printouts. Emails I never sent, to a man at the Courier I’ve never met, from an account I’ve never heard of, and they were perfect. They had my phrases in them. My sign-off. Somebody has been reading everything I’ve written for months.'),
           ]
         : [
             p('Maya comes out through the double doors in yesterday’s clothes, grey in the face, and looks at the stranger in the raincoat who has been sitting in the waiting room all night. She does not know you. She nods once, not knowing why, and walks past you into the rain.'),
             t('She will never know it was me. She will never know it was for her. That is the whole of the price, and I agreed to it at midnight on Wednesday.'),
+            p('You watch her go down the street to the bus stop, and stand there in the rain with her arms round herself, and get on the first bus that comes without looking at the number.'),
           ]),
     ];
   const counter = get13(s, 'counter');
@@ -527,11 +645,14 @@ function afterBlocks(s: GameState): Block[] {
         p('At one you go down in the lift separately, a floor apart, like lovers in a farce. He is waiting for you by the revolving doors with his cycling clips back on.'),
         q('Owen Marsh', 'I have spent eleven years investigating people like that and never once got inside the room. Whatever this is, I’m in it now.'),
         q('Owen Marsh', 'When you need the Markets Authority, ring me. It turns out that, on a Thursday night, I’m most of it.'),
+        p('He writes a number on the back of a Claremont coaster, his own, not the office’s, and gives it to you, and then stands in the rain with his bicycle helmet in his hand, looking up at the eleventh floor as if he were trying to remember it for evidence.'),
       ]
     : counter === 'swap'
       ? [
           p('At midnight you meet Iris in an all-night café near the station, among the cab drivers. She has the card in the finger of a housekeeping glove, and she puts the glove on the table between you like a dead mouse.'),
           q('Iris', 'Halvorsen’s on it, you know. From before. And a minister. And a girl who was nineteen, the month I started collecting it. I never looked. I’m going to look now.'),
+          p('She pushes the glove across to you, and then, when you reach for it, puts her hand over yours and holds it there for a moment, hard.'),
+          q('Iris', 'You keep it. I’d only lose my nerve. I lost it for four years.'),
         ]
       : [
           p('By midnight it is everywhere. Your phone does not stop. Odile rings four times. The Courier’s follow-up has a photograph of a woman in green lifting a glass in the Claremont bar, taken through the window, too dark to be sure of.'),
@@ -636,7 +757,8 @@ function morningBlocks(s: GameState): Block[] {
   const count = getKey(s, 'act3.celeste-surprised');
   const tally = count === 'thrice' ? 'Three times, darling. I have started keeping count too.' : count === 'twice' ? 'Twice now.' : 'Once. I shall remember it.';
   return [
-    p('Friday comes up bright, which feels like an insult.'),
+    p('Friday comes up bright, which feels like an insult. The kind of London morning people take photographs of: a hard blue sky, the river full of light, the posters of your face at the bus stop shining as if somebody had polished them in the night.'),
+    p('You make coffee and do not drink it. You stand at the window and watch the street wake up, the man with the dog, the girl on the scooter, the delivery van double-parked, all of them going about their business as if nothing had happened anywhere to anyone.'),
     p('The black phone lights at eight.'),
     ...(answer === 'complied'
       ? [q('C.', 'You were beautiful. He will be very useful. Your friend’s file has gone back in my drawer. I keep everything, darling. You know that now.')]
@@ -647,6 +769,17 @@ function morningBlocks(s: GameState): Block[] {
           : counter === 'swap'
             ? [q('C.', 'Somebody has been in my cupboard. A whole month of my cupboard. Well.'), q('C.', tally)]
             : [q('C.', 'On television. How vulgar, and how effective. Mr Halvorsen has withdrawn his interest, Mr Marsh is a hero, and you have become rather famous in a way I cannot use.'), q('C.', tally)]),
+    ...(get13(s, 'box') === 'cut' ? [q('C.', 'You cut up my dress, I hear. How very dramatic. It was Nell’s size, you know. I had it let out for you.')] : []),
+    ...(answer === 'complied' && mayaBack(s)
+      ? [
+          p('At ten, a message from Maya: “You didn’t answer last night. You don’t have to. Just send me a full stop so I know you’re alive.”'),
+          p('You send her a full stop. She sends back a heart. You look at it for a long time.'),
+        ]
+      : answer === 'refused'
+        ? [p('At eleven it is in the Courier’s business pages, low down, four lines: AXIOM INVESTIGATOR SUSPENDED IN LEAK INQUIRY. They spell her name right. Somebody made sure they would.')]
+        : answer === 'countered'
+          ? [p('At eleven Owen Marsh’s inquiry into Mr Halvorsen’s fund is on the Authority’s website, in the same dull careful type as always, with one new line at the end: the inquiry has been widened.')]
+          : []),
     p(
       answer === 'complied'
         ? 'You look at the wall for a long time. The card that says 1109 is still there. You leave it there.'
@@ -693,6 +826,8 @@ function completeBlocks(s: GameState): Block[] {
   return [
     p('That evening, at seven, a knock.'),
     p('Not the black phone. Not the post. A knock at your own door, three times, the way somebody knocks who has made up her mind to do it before she can change it.'),
+    p('You look through the spyhole first. Of course you do. You have learned to.'),
+    p('The last time you saw her close to, she was on the other side of a desk with a tablet in her hand, telling a man called Adrian Vale what he was going to become. She had seemed very tall then, and very sure, and entirely made of edges.'),
     p('Victoria Sloane is on the landing in the grey coat she wore the night of the Glass House, with the rain still on its shoulders. She is holding a document folder against her chest with both arms, like a girl with her schoolbooks.'),
     p(
       answer === 'complied'
@@ -701,6 +836,7 @@ function completeBlocks(s: GameState): Block[] {
           ? 'In it, you will learn later, is Maya Reyes’s charge sheet, with Sloane’s own directorate’s stamp on the referral. She did not authorise it. Somebody used her stamp.'
           : 'In it, you will learn later, is a notice from the Markets Authority, dated this morning, opening an inquiry into “the targeting of public officials by private intelligence concerns”, and a list of the concerns. Axiom is on it.',
     ),
+    p('She looks smaller. She looks as if she has not slept either, and as if she has been standing on the stairs for some time, deciding.'),
     p('She looks, for the first time since you have known her, frightened.'),
     q('Sloane', 'I didn’t know they did this. I need you to believe that. And I need you to let me in.'),
     t('She came to me. The woman who built this cage came to my door to ask if she could come in.'),

@@ -140,6 +140,10 @@ export const GATED_DEFAULTS = [
   'chapter12.bed-mirror',
   'chapter12.bar-cool',
   'chapter12.boy-nora',
+  // Chapter 13 deepening: hang the dress; rest; don't look at him.
+  'chapter13.box-keep',
+  'chapter13.week-rest',
+  'chapter13.vigil-silent',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
