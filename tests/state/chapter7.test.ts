@@ -387,3 +387,15 @@ it('offers Theo’s evening only once she has let him in, consent-gated, and it 
       expect(stayed.choices[key], key).toBe(s.choices[key]);
   }
 });
+
+it('plays the quiet edges as scenes: the morning nobody knows her face, the night alone', () => {
+  const quiet = withFlags(standing(), { 'c5.published': undefined });
+  const morning = ownBlocks7(quiet).map((b) => b.text).join(' ');
+  expect(morning).toContain('It is the longest conversation you have had with anyone in three days.');
+  expect(text(choose(quiet, 'card-keep'))).toContain('evidence or company');
+  const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
+  const atClose = withFlags(walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-burn']), romance);
+  const night = c7(atClose, 'close-end');
+  expect(text(night)).toContain('a face nobody gave her permission to have');
+  expect(text(night)).toContain('You fall asleep between them.');
+});

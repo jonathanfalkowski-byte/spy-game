@@ -9,7 +9,10 @@
  * when her face is public; the forwarded letter from "C." for everyone, which Chapter 9's orchid echoes);
  * each door has a second beat (the dark aisle, the photographer, the woman in the raincoat; Theo's drink as
  * a third way out of the interview); the day between the doors; and what she does with her notes, which
- * Chapter 8's break-in answers (c7.notes). */
+ * Chapter 8's break-in answers (c7.notes).
+ * Set pieces (2026-09-24): the quiet morning, Odile at the Carlisle, every answer to the watcher, the campaign and the
+ * card, the envelope of ways in, the sender's price, the day between, a close with nothing or one thread, and the
+ * night alone are written as scenes. Prose only: no new choices or flags. */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -99,6 +102,8 @@ const letterArrives: Block[] = [
 const odileMeets: Block[] = [
   p('At eleven one of the forty messages turns into a voice: Odile Frayne, who represents three faces you have seen on the sides of buildings and would like to represent a fourth. She will be in the bar of the Carlisle at noon. “Bring nothing, sign nothing,” she says, as if she has said it to frightened people before.'),
   p('The Carlisle bar is dark wood, low lamps and the kind of quiet that costs money. Odile is sixty, silver hair cropped close, in a black suit that has never been in a hurry. She slides a card across the table: a perfume house, a one-day shoot, a campaign that would put your face six metres high on the side of the station.'),
+  p('She looks at you for a long time before she says anything: your hands, your hair, the way you sit. Not the way men look. The way a jeweller looks at a stone somebody else has cut.'),
+  q('Odile Frayne', 'Somebody taught you to sit like that. Don’t tell me who. I don’t want to know, and I’d charge them if I did.'),
   q('Odile Frayne', 'Fifteen hundred for a day, paid thirty days after the posters go up. More later, if they like you, and they will. They want the woman nobody can place. I want to know if you understand what that costs.'),
   t('Money, which I am short of. My face, which is already the problem. And a hundred thousand strangers a day looking up at a woman who was somebody else first.'),
 ];
@@ -117,15 +122,18 @@ function standingChoices(s: GameState): C7Choice[] {
         p('He has ten minutes on you, and a man who reads a newspaper for an hour is not in a hurry. You find him two streets over, walking without looking at anything, which is its own tell. You keep a bus between you, then a queue, then the reflection in a jeweller’s window, the way Sloane’s people taught you without meaning to.'),
         p('He stops at a black saloon parked where nobody is allowed to park. The driver winds the window down and takes something from him: a small envelope, or a phone. On the dashboard, face up, is a parking permit with a green H on it. The car pulls out. He walks away in the other direction, lighter.'),
         t('Helix. Marcus watched me leave his party, and now he has someone on my street. Or someone wants me to think it is Marcus. A permit is a thing you can put on any dashboard.'),
+        p('You walk home the long way, through the market, and buy nothing, and check every window you pass for a man with a newspaper. There isn’t one. That is almost worse.'),
       ], (x) => note7(x, 'watcher', 'A man watching Evelynn’s street handed something to a car displaying a Helix parking permit.', 'Evelynn followed him herself')),
       watch('paper', 'Take his newspaper', 'He left it on purpose. Read it.', [
         p('You pick up the paper as if it were yours. Folded inside the page with you on it is a smaller page torn from a hotel notepad, the hotel’s name cut away. Two words in pencil, in a hand that presses hard: WELCOME BACK.'),
         p('Under them, fainter, as if the writer had thought better of it: a phone number with the last two digits missing.'),
         t('Not a threat. Worse: a greeting. Somebody here knew her and wants me to know they think I am her. Or wants me to know they know I am not.'),
+        p('You fold the note into your wallet behind your own card, which has her name on it, and go upstairs and try all hundred numbers the missing digits could make, in your head, until you are sick of the sound of them. You do not dial any of them.'),
       ]),
       watch('ignore', 'Let him watch', 'Go about your day. Being watched is the job now.', [
         p('You drink the coffee on the bakery step with your face turned to the sun and let him have his look. If being seen is the price of the life, you might as well be seen enjoying it.'),
         p('He is back at six, with a different paper, on the same bench. You wave. He does not wave back, but he does leave.'),
+        t('If they want to watch me, let them watch a woman who waves. It costs me nothing, and it costs them the pleasure of being unseen.'),
       ]),
     ];
   }
@@ -138,6 +146,7 @@ function standingChoices(s: GameState): C7Choice[] {
         return [
           p('You sign nothing, as instructed, and shake her hand, which in this bar is the same thing. The shoot is next week. The money comes thirty days after the posters go up, which is thirty days you do not have. She knows it, and she lets you watch her decide not to mention it.'),
           q('Odile Frayne', 'Get some sleep. Eat something. They are paying for the face, so the face is now my business.'),
+          p('On the way out she tells the barman to put your drink on her account, and he nods as if you were already one of hers.'),
           t('Six metres high. Whoever is looking for her will not have to look very hard.'),
           ...letterArrives,
         ];
@@ -149,6 +158,7 @@ function standingChoices(s: GameState): C7Choice[] {
         return [
           p('“Hands,” you say. “A voice-over. The back of my head, if they must.” Odile looks at you for a long moment, then laughs, one short bark that turns heads at the bar.'),
           q('Odile Frayne', 'Four hundred, and they will hate it, and they will say yes, because saying no to you is becoming unfashionable. You are going to be very difficult to represent. I think I am going to enjoy it.'),
+          p('She writes “hands, voice, back of head” on the back of her own card, in capitals, and underlines “back” twice, and laughs again.'),
           t('Some of me for sale. Not the part anyone could recognise across a station.'),
           ...letterArrives,
         ];
@@ -158,6 +168,7 @@ function standingChoices(s: GameState): C7Choice[] {
         return [
           p('You push the card back across the table. Odile does not argue. She tucks it into her breast pocket as though she were filing it, not losing it.'),
           q('Odile Frayne', 'Everyone says no the first time. The ones who mean it are the interesting ones. Call me when somebody else decides what your face is for.'),
+          p('You walk out into the noon light with nothing signed and nothing earned, and the doorman touches his hat to you as if you had just bought the building.'),
           t('That was either the smartest thing I have done this week or the most expensive.'),
           ...letterArrives,
         ];
@@ -167,7 +178,11 @@ function standingChoices(s: GameState): C7Choice[] {
     return [
       offer7('card-keep', 'Keep it', 'It’s hers. It is also the only thing anyone ever sent her that you can hold.', 'standing', (x) => {
         set7(x, 'card', 'kept');
-        return [p('You slide the orchid back into the envelope and put the envelope in the drawer with your passport and the phone that is only yours. It feels like theft, and like the opposite of theft.')];
+        return [
+          p('You slide the orchid back into the envelope and put the envelope in the drawer with your passport and the phone that is only yours. It feels like theft, and like the opposite of theft.'),
+          p('Twice that afternoon you open the drawer to check it is still there. The second time you catch yourself doing it and close the drawer too hard.'),
+          t('Somebody loved her enough to wait fourteen months for breakfast. I am keeping that. I don’t know yet whether it is evidence or company.'),
+        ];
       }),
       offer7('card-study', 'Read the postmarks like evidence', 'Adrian’s way. The envelope has a history.', 'standing', (x) => {
         set7(x, 'card', 'studied');
@@ -181,6 +196,7 @@ function standingChoices(s: GameState): C7Choice[] {
         set7(x, 'card', 'burned');
         return [
           p('You hold the corner of the card to the gas ring, drop it in the sink and watch the green ink go brown and then go. The orchid does not burn so much as vanish. The smell stays in the kitchen for an hour.'),
+          p('You open the window and stand at it with the cold coming in until the kitchen smells only of the street again.'),
           t('Whoever C. is, they are waiting for someone who is not coming. I will not be the thing that walks in and sits down in her chair.'),
         ];
       }),
@@ -190,6 +206,9 @@ function standingChoices(s: GameState): C7Choice[] {
 
 const quietMorning = [
   p('Nobody on the street knows your face. The Aster pictures never ran, and some mornings that feels like a door you didn’t walk through. Other mornings it feels like the only reason you can still buy coffee without anyone watching you drink it.'),
+  p('The girl at the bakery gives you the same croissant as yesterday without asking, which is the closest thing you have to being known. You eat it on the step in the cold with your coat buttoned to the throat, dressed properly anyway, hair up, the face finished, because whoever is looking will look at a woman who has made an effort, and whoever is not looking will not care.'),
+  p('An old man at the bus stop tells you it will rain by eleven. You tell him you know. It is the longest conversation you have had with anyone in three days.'),
+  t('Adrian had a desk, a badge and forty people who said good morning to him whether he wanted them to or not. I have a croissant and a weather forecast. I chose this. I keep choosing it.'),
 ];
 
 const eveningLines: Record<string, Block[]> = {
@@ -207,6 +226,7 @@ export function ownBlocks7(s: GameState): Block[] {
     return [
       ...extra,
       p('The night does not answer you, and you do not need it to. You know more than you did this morning, and you found it alone. That will have to be enough to sleep on. It is.'),
+      p('Somewhere across the river a bell strikes one, and then, a long way off, another bell, late, as if it had had to think about it. You fall asleep between them.'),
     ];
   }
   if (s.phase === 'standing')
@@ -231,6 +251,8 @@ export function ownBlocks7(s: GameState): Block[] {
           get5(s, 'published') ? ', and your own name, which opens doors and draws eyes' : ''
         }. You can walk through two of them before somebody notices you walking.`,
       ),
+      p('You sit with the envelope under the lamp and look at it for a long time. Each way in has a price written next to it in pencil, and the prices are not all in money. Some of them are in people.'),
+      t('Adrian would have picked the cheapest door and felt clever about it. I am learning that the cheapest door is the one somebody else pays for.'),
     ];
   if (s.phase === 'close') {
     const finding = get7(s, 'finding');
@@ -250,8 +272,14 @@ export function ownBlocks7(s: GameState): Block[] {
             t('I went looking for who signed off on reusing her, and I found the first true edge of the shape: the person I have spent this whole affair fearing is not the top of it. Sloane executed a decision made over her head, by whoever sits above her. That is who I am actually looking for. And I found the edge of it with no clearance, no cover, and no one’s permission but my own.'),
           ]
         : finding === 'lead'
-          ? [p('One thread, not yet a shape — a name that is only an initial, or a floor without a face, or a warning you cannot source. It points somewhere above Sloane. It is not enough to act on. It is enough to know you are pulling the right thread.')]
-          : [p('You did not spend what it would have cost, and you carry the question forward unanswered. That is a choice, not a failure. The thread is still there. So is the money you kept.')]),
+          ? [
+              p('One thread, not yet a shape — a name that is only an initial, or a floor without a face, or a warning you cannot source. It points somewhere above Sloane. It is not enough to act on. It is enough to know you are pulling the right thread.'),
+              p('You write it on a single card and prop it against the lamp, and every time you pass it on the way to the kettle you read it again, as if it might have changed its mind.'),
+            ]
+          : [
+              p('You did not spend what it would have cost, and you carry the question forward unanswered. That is a choice, not a failure. The thread is still there. So is the money you kept.'),
+              p('You put the envelope of ways in on the mantelpiece, face out, where you will see it in the morning. The prices in pencil are still there. They will still be there tomorrow, and some of them will have gone up.'),
+            ]),
       p(
         [
           ...(getKey(s, 'own.exposed') ? ['You are more visible than you were this morning; Sloane’s directorate knows the independent one is asking.'] : []),
@@ -433,6 +461,7 @@ function rookTrade(s: GameState): C7Choice[] {
       return [
         q(SENDER, 'It was not Sloane’s authority to give. She executed it. The signature is on the Project Eve board — and one name there you have already met, and did not expect.'),
         t('Or that is exactly what someone would say to point me away from Sloane and toward a door of their choosing. I cannot source it. I write it down with a mark next to it: unconfirmed, and convenient.'),
+        p('The voice on the phone is doing something to disguise itself, and doing it well: flat, unhurried, neither young nor old. But it pauses before your name, the way you pause before a word in a language you learned late.'),
         q(SENDER, 'And Evelynn. The woman under the timetable isn’t mine. Leave by the river side.'),
       ];
     });
@@ -730,7 +759,9 @@ function closeChoices(s: GameState): C7Choice[] {
       partners.length ? 'Go to bed alone with what you found. Chapter 7 ends here.' : 'Chapter 7 ends here.',
       'complete',
       (x) => [
-        p('You eat standing up at the counter, the way Adrian always did, then sit at the window with the lights off and watch the street. Nobody is on the bench. You watch it anyway, for an hour, until watching is a habit and not a fear.'),
+        p('You cook for one, properly, because the alternative is standing at the fridge at midnight: an omelette, a glass of the wine that came with the flat and that nobody has drunk. You eat it standing up at the counter, the way Adrian always did, and laugh at yourself, and sit down to finish it.'),
+        p('Then you take your make-up off slowly in the bathroom mirror, and watch her come off in layers until there is only a tired woman with good bones and a face nobody gave her permission to have.'),
+        p('You sit at the window with the lights off and watch the street. Nobody is on the bench. You watch it anyway, for an hour, until watching is a habit and not a fear.'),
         ...(get7(x, 'card') === 'kept' || get7(x, 'card') === 'studied'
           ? [p('Before bed you take the envelope out of the drawer and do not open it. Somewhere, C. is still waiting for breakfast.')]
           : []),
@@ -750,6 +781,8 @@ function between7(x: GameState): Block[] {
         : 'One message, from a number you do not have: a single photograph of your own front door, taken from across the street, this morning.',
     ),
     t('Someone wants me to know they are keeping up. Fine. So am I.'),
+    p('You spend the afternoon doing the ordinary things that make a life look lived in: the dry cleaner, the chemist, a coffee at the café on the corner where the waiter now calls you madam. You pay cash for all of it. You notice, for the first time, how many cameras there are on an ordinary street, and how few of them point at the road.'),
+    p('At six you go through what you found again, from the beginning, at the kitchen table, until it stops being frightening and starts being work.'),
   ];
 }
 /** A door's closing beat: when it lands the first piece and the hub reopens, the day between follows. */

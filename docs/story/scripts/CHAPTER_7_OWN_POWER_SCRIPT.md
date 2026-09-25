@@ -140,3 +140,13 @@ entry. All sourced and re-derivable.
 - Gates: `pursue-records` always; `pursue-maya` on a non-strained Maya; `pursue-rook` on any engaged `npcs.rook`; `pursue-audience` on `c5.published`. A player with only records still reaches a one-piece lead — the autonomy guarantee (the thread is pullable with the free-agent core alone).
 - `own.exposed` and `own.alliance.rook = owed` are the two hooks Chapter 8 ("The Cost Bites") reads; store them cleanly.
 - No intimacy in this chapter.
+
+## Set pieces (2026-09-24)
+
+Prose only, no new choices or flags; the wording lives in `src/content/chapter7-own.ts`. Written as
+scenes: the quiet morning (the bakery croissant, the old man's weather forecast), Odile's appraisal at
+the Carlisle ("Somebody taught you to sit like that."), every answer to the watcher, the campaign and
+the card, the envelope of ways in with its prices in pencil, the sender's voice pausing before her
+name, the day between the doors (the errands, the cameras that do not point at the road), a close
+with nothing or with one thread, and the night alone (the omelette, the make-up coming off in
+layers, the two bells).
