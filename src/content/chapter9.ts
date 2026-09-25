@@ -15,7 +15,10 @@
  * New scenes (2026-09-24), own-power, before the hub opens (held in c9.open): the Usual Table (Castellane keeps a
  * standing Thursday table for two in her name, settled by the Laurent fund; c9.table = sit | ask | cancel), then,
  * if the Aster piece ran, the Harbour auction where the Laurent fund buys Lot 14, which is her (c9.auction). Neither
- * adds case weight; both put Celeste in the room before the name. */
+ * adds case weight; both put Celeste in the room before the name.
+ * New scenes, round 2 (2026-09-24): the tailor (own-power, before Castellane: the man who made her charcoal finds his
+ * chalk mark and a centimetre's difference; c9.tailor = alter | ask | leave), and the lawyer (every road, at resolve:
+ * Nadia Brandt, "Are you ready to be Exhibit A?"; c9.lawyer = retain | exhibit | thank). Neither adds case weight. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -181,6 +184,39 @@ function arriveBlocks(s: GameState): Block[] {
   ];
 }
 
+// ── The lawyer (new scene, round 2): what the case makes of her ──
+
+const lawyerLead: Block[] = [
+  p('Before you decide anything, you do what Adrian would have done: you get an opinion. Nadia Brandt is seventy, retired from the bar in the sense that she no longer wears the wig, and gives three free hours a month in a flat full of books above a locksmith’s. You find her the way you find everything now: a name that comes up three times in three places.'),
+  p('She gives you forty minutes and a cup of very strong tea. She reads everything you have, fast, with a pencil she never uses, and then she takes her glasses off.'),
+  q('Nadia Brandt', 'It’s a case. Of a sort. Here is your difficulty. Every one of these documents is about a woman who, legally, is you. The moment you put this in front of anybody who matters, you stop being the person bringing the case and start being the evidence in it.'),
+  q('Nadia Brandt', 'They will want your history. Your records. Your medical file, very possibly. Are you ready to be Exhibit A, Ms Vale?'),
+];
+
+function lawyerChoices(): C9Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('lawyer-' + id, label, hint, 'resolve', (x) => {
+      set9(x, 'lawyer', id);
+      return body;
+    });
+  return [
+    answer('retain', 'Ask her to act for you', 'When it comes to it. She will want to know you mean it.', [
+      q('You', 'When it comes to it, will you act for me?'),
+      q('Nadia Brandt', 'I’m seventy. I have exactly one more fight in me, and I was saving it for something with a better villain. Fine. When you are ready, and not a day before.'),
+      t('A lawyer who knows. The first person on my side who will be paid, when it comes, to be on it.'),
+    ]),
+    answer('exhibit', 'Tell her you are ready to be the evidence', 'You have been evidence since the day you woke in this face.', [
+      q('You', 'I have been evidence since the day I woke up in this face. I would rather be evidence I chose.'),
+      p('She looks at you for a long time, and then laughs, one short dry bark, and pours you more tea you did not ask for.'),
+      q('Nadia Brandt', 'Well. That’s the first answer anyone has given me in ten years that I couldn’t have written for them.'),
+    ]),
+    answer('thank', 'Thank her, and keep it yourself', 'Not yet. Not anybody.', [
+      p('You thank her and fold everything back into its envelope. On the stairs down past the locksmith’s you stop for a moment, because your hands are not quite steady.'),
+      t('Exhibit A. I knew that. I had not heard anybody say it out loud.'),
+    ]),
+  ];
+}
+
 function resolveBlocks(s: GameState): Block[] {
   const blocks: Block[] = [
     p('You put it back together into one pile on the floor and sit with your back against the bed and read it through from the beginning, the way a stranger would: a lawyer, a reporter, a board. Slowly. Looking for the place where it gives.'),
@@ -211,6 +247,7 @@ function resolveBlocks(s: GameState): Block[] {
     ),
     t('Adrian would have called it a first draft. He would also have been frightened of it, and he would have been right to be.'),
   );
+  if (!get9(s, 'lawyer')) blocks.push(...lawyerLead);
   return blocks;
 }
 
@@ -222,7 +259,7 @@ export function chapter9Blocks(s: GameState): Block[] {
       p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.'),
       p('The kitchen table is too small, so you use the floor: three piles on the boards under the window, the way Adrian sorted an acquisition before he let anyone else see it. Sourced. Argued. Missing. The third pile is a single blank card.'),
       t('A case is not what I know. It is what I can make somebody else unable to deny.'),
-      ...(get9(s, 'open') === 'table' ? tableLead : []),
+      ...(get9(s, 'open') === 'tailor' ? [...tableMessage, ...tailorLead] : []),
     ];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
@@ -377,10 +414,51 @@ function nameAfterChoices(): C9Choice[] {
 
 // ── New scenes: the Usual Table, then the auction (before the hub; no case weight) ──
 
-const tableLead: Block[] = [
+const tableMessage: Block[] = [
   p('At noon your phone lights with a message from a number you don’t know, in the courteous grammar of expensive places: “Castellane is delighted to confirm your table for two this Thursday, as always. We have missed you, Madame Vale.”'),
   p('You have never been to Castellane. You know of it: a long low room on the river with white cloths and no prices on the menu, where people go to be seen not being seen.'),
   t('As always.'),
+];
+
+// ── The tailor (new scene, round 2): the charcoal, and a centimetre ──
+
+const tailorLead: Block[] = [
+  p('The charcoal, when you take it out for Thursday, is loose at the shoulder. It always has been, a little; you had stopped noticing. Now you notice. You take it to the tailor above the dry cleaner on the hill, an old man called Mr Anand who works in his waistcoat under a bare bulb with the radio on low.'),
+  p('He turns the dress inside out on his table and runs his thumb down the side seam, and stops. There is a small chalk mark inside it: a triangle and a number. He looks at it for a long time. Then he looks at you.'),
+  q('Mr Anand', 'I made this. For you. Two years ago, perhaps more. You stood exactly there.'),
+  p('He takes the tape from round his neck and measures you without asking, shoulder, back, waist, the way a doctor takes a pulse, and writes the numbers down, and compares them with a card from a drawer, and frowns.'),
+  q('Mr Anand', 'A centimetre at the shoulder. Less at the waist. Nobody would ever see it. I see it.'),
+  t('A centimetre. That is how close they got. That is how far I am.'),
+];
+
+function tailorChoices(): C9Choice[] {
+  const fit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer9('tailor-' + id, label, hint, 'assemble', (x) => {
+      set9(x, 'tailor', id);
+      set9(x, 'open', 'table');
+      after?.(x);
+      return [...body, ...tableLead];
+    });
+  return [
+    fit('alter', 'Let him take it in to fit you', 'Make it yours, a centimetre at a time.', [
+      q('You', 'Take it in. To fit me now.'),
+      p('He pins it on you, humming with the radio, and has it ready by Wednesday. When you put it on in his little curtained corner it fits like something that was always yours.'),
+      t('The first thing of hers I have made mine.'),
+    ]),
+    fit('ask', 'Ask who brought her in', '“Did I come alone, that time?”', [
+      q('You', 'Did I come alone, that time?'),
+      q('Mr Anand', 'No. A lady brought you. Tall. She chose the cloth, and the colour, and stood where I am standing and told me where it should fall. She paid. You never once looked at the price, I remember. You looked at her.'),
+      t('She dressed her. Of course she did. She is still dressing me.'),
+    ], (x) => note9(x, 'tailor', 'Mr Anand made the charcoal dress for the first Evelynn about two years ago. A tall woman brought her in, chose the cloth and the colour, and paid.', 'Mr Anand, the tailor on the hill')),
+    fit('leave', 'Take it as it is', 'Wear her shape to her table.', [
+      q('You', 'Leave it. It’s fine as it is.'),
+      p('He folds it into tissue without a word and gives it back, and does not charge you for the pressing, and at the door he says to your back: “It was a very good fit, before.”'),
+      t('Her shape, then. I will wear it to her table and see who notices the centimetre.'),
+    ]),
+  ];
+}
+
+const tableLead: Block[] = [
   p('You go on Thursday at one, dressed for it: the charcoal, the heels, hair up and pinned, the face finished twice. The maître d’ is an old man with a white moustache who sees you at the door and stops, and for a moment his whole face is open, like a door somebody forgot to shut.'),
   q('Maître d’', 'Madame. Madame Vale. Welcome back.'),
   p('He takes you, without asking, to a table in the corner window, half hidden by a pillar, with the river on one side and the whole room on the other. Two places are laid. He pulls out the chair with its back to the wall for you, the one that sees the door, and leaves the other empty.'),
@@ -580,6 +658,7 @@ function assembleChoices(s: GameState): C9Choice[] {
   const open = get9(s, 'open');
   if (open === 'witness-celeste' || open === 'witness-marcus') return witnessAfterChoices(open === 'witness-celeste' ? 'celeste' : 'marcus');
   if (open === 'name') return nameAfterChoices();
+  if (open === 'tailor') return tailorChoices();
   if (open === 'table') return tableChoices();
   if (open === 'auction') return auctionChoices();
   if (open === 'oracle') return oracleAfterChoices();
@@ -737,12 +816,13 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.phase === 'arrive')
     return [
       offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble', (x) => {
-        if (ownPower(x)) set9(x, 'open', 'table');
+        if (ownPower(x)) set9(x, 'open', 'tailor');
         return [];
       }),
     ];
   if (s.phase === 'assemble') return assembleChoices(s);
-  if (s.phase === 'resolve') return [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')];
+  if (s.phase === 'resolve')
+    return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices();
   return [];
 }
 

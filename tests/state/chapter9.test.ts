@@ -23,7 +23,7 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 4 && !(id && ids(x).includes(id)); i++) {
@@ -290,7 +290,10 @@ it('ends the day on the floor, the seventh name, and the orchid carried in', () 
 
 it('sets the Usual Table before the hub, and the auction if the Aster piece ran', () => {
   const base = withFlags(complete8('own-records-stop'), { ...bare, 'c5.published': undefined });
-  const table = walk(noMarcusNoItem(base), ['begin', 'arrive-begin']);
+  const tailor = walk(noMarcusNoItem(base), ['begin', 'arrive-begin']);
+  expect(text(tailor)).toContain('Castellane is delighted to confirm your table for two this Thursday');
+  expect(ids(tailor)).toEqual(['tailor-alter', 'tailor-ask', 'tailor-leave']);
+  const table = choose9(tailor, 'tailor-leave');
   expect(text(table)).toContain('By the Laurent fund, madame. As it always was.');
   expect(ids(table)).toEqual(['table-sit', 'table-ask', 'table-cancel']);
   const asked = choose9(table, 'table-ask');
@@ -312,4 +315,22 @@ it('sets the Usual Table before the hub, and the auction if the Aster piece ran'
   // Other lanes reach the hub straight from arrive.
   const outside = walk(complete7('outside-placeholder'), ['begin-placeholder', 'arrive-begin']);
   expect(ids(outside)).not.toContain('table-sit');
+});
+
+it('fits the charcoal before Castellane, and sends the case past a lawyer before it leaves the room', () => {
+  const tailor = walk(noMarcusNoItem(withFlags(complete8('own-records-stop'), bare)), ['begin', 'arrive-begin']);
+  expect(text(tailor)).toContain('A centimetre at the shoulder.');
+  const asked = choose9(tailor, 'tailor-ask');
+  expect([asked.choices['c9.tailor'], asked.choices['c9.open'], asked.facts.includes('c9.tailor')]).toEqual(['ask', 'table', true]);
+  expect(text(asked)).toContain('You looked at her.');
+
+  const resolved = walk(hub(), ['assemble-name', 'assemble-stop']);
+  expect(resolved.phase).toBe('resolve');
+  expect(text(resolved)).toContain('Are you ready to be Exhibit A, Ms Vale?');
+  expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
+  const retained = choose9(resolved, 'lawyer-retain');
+  expect([retained.phase, retained.choices['c9.lawyer']]).toEqual(['resolve', 'retain']);
+  expect(ids(retained)).toEqual(['resolve-end']);
+  // No case weight: the band is fixed on entering resolve.
+  expect(retained.choices['case.strength']).toBe(resolved.choices['case.strength']);
 });

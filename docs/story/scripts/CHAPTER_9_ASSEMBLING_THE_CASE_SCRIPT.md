@@ -240,3 +240,14 @@ name):
   **auction-leave** (her laugh through the door).
 
 Neutral picks: table-sit, auction-leave.
+
+## New scenes, round 2 (2026-09-24)
+
+- **The tailor** (own-power, between Castellane's message and Thursday): Mr Anand above the dry
+  cleaner finds his own chalk mark in the charcoal: "I made this. For you." A centimetre at the
+  shoulder. `c9.tailor`: **tailor-alter** (make it hers) · **tailor-ask** (a tall lady chose the cloth
+  and paid; "You looked at her"; a fact) · **tailor-leave** (neutral).
+- **The lawyer** (every road, at `resolve`, before `resolve-end`; the band is already fixed):
+  Nadia Brandt, seventy, above a locksmith's: "Are you ready to be Exhibit A, Ms Vale?" `c9.lawyer`:
+  **lawyer-retain** ("when you are ready, and not a day before") · **lawyer-exhibit** ("evidence I
+  chose") · **lawyer-thank** (neutral).

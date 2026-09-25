@@ -15,7 +15,10 @@
  * night alone are written as scenes. Prose only: no new choices or flags.
  * New scene (2026-09-24): the Old Flat. After the letter, she walks without deciding to to Adrian's old street
  * (someone else's name on his buzzer) and rings, watches, or walks on (c7.old-flat). Ringing brings Adrian's post
- * and a letter saying his personal effects were collected; she never collected anything (a note Chapter 8 can read). */
+ * and a letter saying his personal effects were collected; she never collected anything (a note Chapter 8 can read).
+ * New scenes, round 2 (2026-09-24): on the bridge home, Lotte from Emerald Hill knows her as "Evie" (c7.lotte = played |
+ * ask | deny; asking remembers "you and C." on a Singapore balcony); and, entering close, the night tram past Axiom
+ * with Daniel, who worked across the corridor from Adrian and does not know her (c7.daniel = ask | tie | quiet). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -126,7 +129,7 @@ function oldFlatChoices(): C7Choice[] {
     offer7('flat-' + id, label, hint, 'standing', (x) => {
       set7(x, 'old-flat', id);
       after?.(x);
-      return body;
+      return [...body, ...evieLead];
     });
   return [
     visit('ring', 'Ring the bell', 'Meet whoever lives in his rooms now.', [
@@ -155,6 +158,46 @@ function oldFlatChoices(): C7Choice[] {
       p('You walk on, past his door, past the launderette, down to the river path where he ran every morning before work, badly, in a grey sweatshirt with a hole in the cuff.'),
       p('The bench at the second bridge is where he used to stop to pretend he was stretching. A runner goes past, one of the regulars: you know his gait, the left foot that turns out a little. He nodded to Adrian every morning for six years. He does not nod to you. Why would he?'),
       t('Nobody here knows me. That was the point. I didn’t know it would feel like this.'),
+    ]),
+  ];
+}
+
+// ── Evie (new scene, round 2): on the bridge home, somebody from her Singapore ──
+
+const evieLead: Block[] = [
+  p('On the bridge home, halfway across, a woman coming the other way stops dead in front of you, so suddenly that the man behind her walks into her.'),
+  q('Woman on the bridge', 'Evie? Oh my God. Evie!'),
+  p('She is your age, or the age you look: sun-browned, sunglasses pushed up into hair the colour of wet sand, a canvas bag of shopping on her shoulder. Before you can move she has her arms round you, and she smells of sun cream and oranges, and she is laughing.'),
+  q('Woman on the bridge', 'It’s Lotte! Lotte, from Emerald Hill! You never answered a single letter. They said you’d gone home. Where even is home? You never said.'),
+  t('Evie. Nobody has ever called me that. Somebody called her that.'),
+];
+
+function evieChoices(): C7Choice[] {
+  const meet = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('evie-' + id, label, hint, 'standing', (x) => {
+      set7(x, 'lotte', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    meet('play', 'Be Evie for her', 'Hug her back. Take her number. Let her have her friend.', [
+      p('You hug her back. You say her name as if you had been saying it for years. You let her put her number into your phone and promise coffee, and ask after people you have never heard of, and she tells you, delighted, all the way to the end of the bridge.'),
+      q('Lotte', 'You look well. You look — different. Softer, somehow. Whatever you’re doing, keep doing it.'),
+      t('I have just made a friend by pretending to be her friend. Somewhere, the real Evie is still not answering her letters.'),
+    ], (x) => note7(x, 'lotte', 'Lotte, from Emerald Hill in Singapore, knew the first Evelynn as “Evie” and now has Evelynn’s number.', 'Lotte herself, on the bridge')),
+    meet('ask', 'Ask her how you knew each other', 'Carefully. As if you were testing her memory, not yours.', [
+      q('You', 'Remind me how we met. This last year has been — a lot.'),
+      q('Lotte', 'The terrible parties! The flat on Emerald Hill with no furniture and that view. You and C. out on the balcony every night, plotting. God, I was jealous of you two.'),
+      p('She stops. Her face changes, just slightly, the way a face does when it steps on something it was told not to mention.'),
+      q('Lotte', 'Sorry. I never know if I’m allowed to say. You were always so private about her.'),
+      p('She hugs you again, quickly, and goes, and looks back once from the end of the bridge.'),
+      t('C. On a balcony in Singapore, every night. The looping green hand. Breakfast when you do.'),
+    ], (x) => note7(x, 'lotte', 'Lotte, who knew the first Evelynn in Singapore as “Evie”, remembers her and “C.” as close: the flat on Emerald Hill, the balcony every night.', 'Lotte herself, on the bridge')),
+    meet('deny', 'Tell her she has the wrong woman', 'Gently. It is kinder, and it is safer.', [
+      q('You', 'I’m so sorry. I think you have me confused with somebody.'),
+      p('Her arms drop. She looks at your face, really looks, from very close, the way nobody has looked at it since the clinic mirror.'),
+      q('Lotte', 'I — yes. Sorry. God. You look exactly like — sorry.'),
+      p('She goes. At the end of the bridge she turns and looks back at you for a long time, and she does not look like somebody who believes she was wrong.'),
     ]),
   ];
 }
@@ -226,6 +269,7 @@ function standingChoices(s: GameState): C7Choice[] {
       }),
     ];
   if (get7(s, 'card') && !get7(s, 'old-flat')) return oldFlatChoices();
+  if (get7(s, 'old-flat') && !get7(s, 'lotte')) return evieChoices();
   if (!get7(s, 'card'))
     return withOldFlat([
       offer7('card-keep', 'Keep it', 'It’s hers. It is also the only thing anyone ever sent her that you can hold.', 'standing', (x) => {
@@ -312,6 +356,7 @@ export function ownBlocks7(s: GameState): Block[] {
   if (s.phase === 'close') {
     const finding = get7(s, 'finding');
     return [
+      ...(get7(s, 'daniel') ? [] : tramLead(s)),
       ...(finding === 'shape'
         ? [
             p(
@@ -765,8 +810,54 @@ function notesChoices(s: GameState): C7Choice[] {
   ];
 }
 
+// ── The last tram (new scene, round 2): Daniel, who worked across the corridor from Adrian ──
+
+function tramLead(s: GameState): Block[] {
+  const famous = !!get5(s, 'published');
+  return [
+    p('You take the night tram home, the slow one that goes the long way round past Axiom Tower. At the Axiom stop a man gets on with his tie pulled loose and his lanyard still round his neck, and sits down opposite you, and you know him before he has finished sitting down.'),
+    p('Daniel. Adrian worked across the corridor from Daniel for six years: Daniel who ate the same sandwich every day, who said “per my last email” out loud, who cried once at a leaving do and blamed the wine. He has started wearing a tie. It is a terrible tie.'),
+    p(
+      famous
+        ? 'He looks at you, and then looks again, and goes pink, and turns to the window, where your reflection is, and has to look away from that too.'
+        : 'He does not look at you. He looks at his phone, and then at nothing, the way people do at the end of a day that went on too long.',
+    ),
+    q('Daniel', famous ? 'Sorry. You’re — from the magazine. Sorry. I’m not going to ask you for anything.' : 'Sorry. Does this one go past the market? I never know.'),
+    q('You', famous ? 'It’s all right.' : 'It does.'),
+    q('Daniel', 'Long day. They gave away a man’s desk today. Somebody I worked with. He’s been gone a while, but they only just gave it to someone else, and she’s put a plant on it, and I found I minded. Stupid.'),
+  ];
+}
+
+function danielChoices(): C7Choice[] {
+  const ride = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('daniel-' + id, label, hint, 'close', (x) => {
+      set7(x, 'daniel', id);
+      return body;
+    });
+  return [
+    ride('ask', 'Ask him about the man', 'Let him talk about Adrian. You will have to sit still for it.', [
+      q('Daniel', 'Adrian. He read everything. I used to send him my reports at eleven at night and they’d come back fixed by seven, and he never told anyone they’d needed fixing. I never thanked him. You always think there’ll be another Friday.'),
+      p('He gets off at the market with a nod and a “sorry, going on”, and the tram pulls away, and you sit with your hands in your lap.'),
+      t('You did thank me, Daniel. Once, at the leaving do, when you blamed the wine. I remember it better than you do.'),
+    ]),
+    ride('tie', 'Tell him the tie doesn’t suit him', 'Adrian always did.', [
+      q('You', 'That tie doesn’t suit you.'),
+      p('He stares at you. For a second something goes across his face, very fast, like a bird across a window.'),
+      q('Daniel', 'Someone used to say that to me. Exactly that.'),
+      q('You', 'Then someone was right.'),
+      p('He laughs, not quite, and takes the tie off, there on the tram, and puts it in his pocket. At his stop he looks back at you through the glass as the doors close, frowning, as if he were trying to remember a word.'),
+      t('That was careless. It was also the first time in weeks that anybody has looked at me and nearly seen him.'),
+    ]),
+    ride('quiet', 'Let him be', 'Say nothing. He is not yours to comfort any more.', [
+      p('You say nothing. He gets off at the market and leaves his coffee cup on the seat beside him, the lid chewed at the edge, the way he chewed every lid for six years.'),
+      t('Six years across a corridor, and I could pick his rubbish out of a bin. He could not pick me out of a tram.'),
+    ]),
+  ];
+}
+
 function closeChoices(s: GameState): C7Choice[] {
   if (get7(s, 'evening-open')) return eveningChoices(s);
+  if (!get7(s, 'daniel')) return danielChoices();
   if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
   const partners = eveningPartners7(s);
   const c: C7Choice[] = [];

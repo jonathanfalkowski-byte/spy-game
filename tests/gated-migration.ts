@@ -21,6 +21,9 @@ export const GATED_DEFAULTS = [
   'chapter7.notes-hide',
   // New scene, the Old Flat: walk on.
   'chapter7.flat-go',
+  // Round 2: tell Lotte she has the wrong woman; let Daniel be.
+  'chapter7.evie-deny',
+  'chapter7.daniel-quiet',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -29,6 +32,9 @@ export const GATED_DEFAULTS = [
   // New scenes: let the work answer, leave the account where it is.
   'chapter8.work-hold',
   'chapter8.bank-leave',
+  // Round 2: thank the neighbour and say nothing; close the door on the reporter.
+  'chapter8.neighbour-thank',
+  'chapter8.hack-door',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -44,6 +50,9 @@ export const GATED_DEFAULTS = [
   // New scenes: sit at the usual table, leave the auction before she reaches you.
   'chapter9.table-sit',
   'chapter9.auction-leave',
+  // Round 2: take the charcoal as it is; thank the lawyer and keep it yourself.
+  'chapter9.tailor-leave',
+  'chapter9.lawyer-thank',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

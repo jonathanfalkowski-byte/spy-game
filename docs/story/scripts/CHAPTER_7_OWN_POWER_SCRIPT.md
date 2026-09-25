@@ -165,3 +165,13 @@ door, yellow curtains in his window, and K. OKAFOR on masking tape over his name
   left foot who nodded to Adrian for six years and does not nod to her.
 
 Adrian's official status stays open ("went away", "wasn't coming back"): nobody says he died.
+
+## New scenes, round 2 (2026-09-24)
+
+- **Evie** (`standing`, after the Old Flat): on the bridge home, Lotte from Emerald Hill hugs her as
+  "Evie". `c7.lotte`: **evie-play** (take her number; a fact) · **evie-ask** ("You and C. out on the
+  balcony every night, plotting"; a fact) · **evie-deny** (neutral; she looks back, unconvinced).
+- **The night tram** (entering `close`, before the notes): Daniel, who worked across the corridor
+  from Adrian for six years, in a terrible tie; they gave Adrian's desk away today. `c7.daniel`:
+  **daniel-ask** ("You always think there'll be another Friday") · **daniel-tie** ("That tie doesn't
+  suit you": Adrian's line; Daniel nearly sees him) · **daniel-quiet** (neutral; the chewed lid).

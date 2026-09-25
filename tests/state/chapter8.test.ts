@@ -21,7 +21,7 @@ const choose8 = (s: GameState, id: string) => {
   return next;
 };
 /** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
-const settle8 = ['work-hold', 'bank-leave'];
+const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'hack-door'];
 const c8 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 4 && !ids(x).includes(id); i++) {
@@ -186,7 +186,8 @@ it('shows the intrusion to everyone and a line from a partner she already chose'
 it('plays the break-in and the week’s money before the wall, each with a real cost', () => {
   const home = c8(withFlags(complete7('own-records-stop'), { 'own.cash': '200', 'own.campaign': undefined }), 'begin');
   expect(ids(home)).toEqual(['breakin-locks', 'breakin-trap', 'breakin-report']);
-  const locked = c8(home, 'breakin-locks');
+  // The neighbour comes between the break-in and the week.
+  const locked = c8(c8(home, 'breakin-locks'), 'neighbour-thank');
   expect([locked.choices['c8.breakin'], locked.choices['own.cash']]).toEqual(['locks', '140']);
   expect(text(locked)).toContain('Somebody opened it with a key.');
   expect(text(locked)).toContain('Meridian Holdings, behind the building');
@@ -200,7 +201,7 @@ it('plays the break-in and the week’s money before the wall, each with a real 
   expect(ids(c8(locked, 'money-owing'))).toEqual(['work-give', 'work-hold']);
   const reported = c8(home, 'breakin-report');
   expect(text(reported)).toContain('Meridian’s agent, the company that exists to have no face');
-  const advance = c8(withFlags(home, { 'own.campaign': 'taken' }), 'breakin-trap');
+  const advance = c8(c8(withFlags(home, { 'own.campaign': 'taken' }), 'breakin-trap'), 'neighbour-thank');
   expect(ids(advance)).toContain('money-advance');
   const fed = c8(advance, 'money-advance');
   expect([fed.choices['own.cash'], fed.choices['own.odile']]).toEqual(['410', 'owed']);
@@ -268,4 +269,24 @@ it('plays the working week: the shoot where Laurent’s money watches, or the de
   const gave = choose8(shoot, 'work-give');
   expect(gave.choices['c8.work-kind']).toBe('shoot');
   expect(text(choose8(shoot, 'work-hold'))).toContain('It makes them curious.');
+});
+
+it('has the neighbour meet her friend with a key, and a reporter at the door if her face is public', () => {
+  const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
+  const landing = choose8(home, 'breakin-report');
+  expect(text(landing)).toContain('she said she knew, she had a key');
+  expect(ids(landing)).toEqual(['neighbour-ask', 'neighbour-warn', 'neighbour-thank']);
+  const asked = choose8(landing, 'neighbour-ask');
+  expect([asked.choices['c8.neighbour'], asked.facts.includes('c8.friend')]).toEqual(['ask', true]);
+  expect(text(asked)).toContain('Hair very short, like a boy’s');
+  expect(text(asked)).toContain('The week comes to $90');
+
+  const quiet = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read']);
+  expect(ids(quiet)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
+  const famous = walk(leverage({ 'c5.published': 'yes' }), ['leverage-refuse-cross', 'dig-leave', 'list-read']);
+  expect(text(famous)).toContain('Rafe Collis, the Sunday Courier.');
+  expect(ids(famous)).toEqual(['hack-line', 'hack-meridian', 'hack-door']);
+  const set = choose8(famous, 'hack-meridian');
+  expect([set.phase, set.choices['c8.hack']]).toEqual(['close', 'meridian']);
+  expect(ids(set)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
 });

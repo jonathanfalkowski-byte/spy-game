@@ -21,10 +21,21 @@ afterEach(() => vi.unstubAllEnvs());
 
 const ids = (s: GameState) => chapter7Choices(s).map((c) => c.id.replace(/^chapter7\./, ''));
 const text = (s: GameState) => s.history.flatMap((h) => h.blocks.map((b) => b.text)).join('\n');
-const c7 = (s: GameState, id: string) => {
+const choose7 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER7_CHOOSE', id: 'chapter7.' + id });
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
   return next;
+};
+/** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
+const settle7 = ['daniel-quiet'];
+const c7 = (s: GameState, id: string) => {
+  let x = s;
+  for (let i = 0; i < 3 && !ids(x).includes(id); i++) {
+    const pending = ids(x).find((y) => settle7.includes(y));
+    if (!pending) break;
+    x = choose7(x, pending);
+  }
+  return choose7(x, id);
 };
 const walk = (s: GameState, path: string[]) => path.reduce(c7, s);
 const complete6 = (name: string) => replay(golden6.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
@@ -147,6 +158,7 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
   let s = walk(begin(), ['pursue-records', 'records-pay', 'dark-wait']);
   s = c7(s, ids(s).includes('pursue-rook') ? 'pursue-rook' : 'pursue-stop');
   if (s.phase === 'pursue') s = walk(s, ['rook-trade-debt', 'woman-river']);
+  s = c7(s, 'daniel-quiet');
   if (ids(s).includes('notes-hide')) s = c7(s, 'notes-hide');
   s = c7(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter7.complete');
@@ -293,7 +305,7 @@ it('runs the famous morning as scenes: the watcher, Odile’s offer, then the le
   const studied = choose(taken, 'card-study');
   expect(text(studied)).toContain('a release instruction');
   expect(ids(studied)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
-  expect(ids(c7(studied, 'flat-go'))).toEqual(['standing-begin']);
+  expect(ids(c7(studied, 'flat-go'))).toEqual(['evie-play', 'evie-ask', 'evie-deny']);
 });
 
 it('gives the quiet morning the letter straight away, and no watcher or offer', () => {
@@ -318,7 +330,7 @@ it('lets staying in remember the letter', () => {
 });
 
 it('asks what she does with what she found before the night, and offers Maya only if Maya is back', () => {
-  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop']);
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'daniel-quiet']);
   expect(atClose.choices['c7.finding']).toBe('lead');
   expect(ids(atClose)).toEqual(['notes-hide', 'notes-burn', 'notes-maya']);
   expect(ids(withFlags(atClose, { 'c6.maya': undefined }))).toEqual(['notes-hide', 'notes-burn']);
@@ -412,5 +424,26 @@ it('walks her to Adrian’s old street after the letter: ring, watch or walk on'
   expect(rang.facts).toContain('c7.old-flat');
   expect(text(choose(kept, 'flat-watch'))).toContain('You’re the first.');
   expect(choose(kept, 'flat-go').facts).not.toContain('c7.old-flat');
-  expect(ids(rang)).toEqual(['standing-begin']);
+  expect(ids(rang)).toEqual(['evie-play', 'evie-ask', 'evie-deny']);
+  expect(ids(c7(rang, 'evie-deny'))).toEqual(['standing-begin']);
+});
+
+it('meets her Singapore on the bridge, and Adrian’s colleague on the night tram', () => {
+  const quiet = withFlags(standing(), { 'c5.published': undefined });
+  const bridge = walk(quiet, ['card-keep', 'flat-go']);
+  expect(text(bridge)).toContain('Evie? Oh my God. Evie!');
+  const asked = c7(bridge, 'evie-ask');
+  expect(asked.choices['c7.lotte']).toBe('ask');
+  expect(text(asked)).toContain('You and C. out on the balcony every night');
+  expect(asked.facts).toContain('c7.lotte');
+  expect(c7(bridge, 'evie-deny').facts).not.toContain('c7.lotte');
+
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop']);
+  expect(text(atClose)).toContain('It is a terrible tie.');
+  expect(ids(atClose)).toEqual(['daniel-ask', 'daniel-tie', 'daniel-quiet']);
+  const tie = choose7(atClose, 'daniel-tie');
+  expect(tie.choices['c7.daniel']).toBe('tie');
+  expect(text(tie)).toContain('Someone used to say that to me. Exactly that.');
+  expect(ids(tie)).toContain('notes-hide');
+  expect(text(choose7(atClose, 'daniel-ask'))).toContain('You always think there’ll be another Friday.');
 });

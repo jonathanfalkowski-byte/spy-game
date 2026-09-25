@@ -203,3 +203,13 @@ In `cost`, after the money and before `cost-continue`:
   (a tripwire). Money is unchanged.
 
 Neutral picks: work-hold, bank-leave.
+
+## New scenes, round 2 (2026-09-24)
+
+- **The neighbour** (`cost`, after the break-in, before the week): Mrs Kowalczyk, eighty-one, and
+  Bishop the cat: "Your friend came… she had a key." `c8.neighbour`: **neighbour-ask** (tall, hair
+  cropped like a boy's, asked after the cat by name; a fact: Celeste's shape before her name) ·
+  **neighbour-warn** · **neighbour-thank** (neutral).
+- **The Sunday reporter** (`close`, before the night, only if Chapter 5 published): Rafe Collis of
+  the Sunday Courier, "women who appear from nowhere". `c8.hack`: **hack-line** ("I just didn't bring
+  it with me") · **hack-meridian** (point him at Meridian) · **hack-door** (neutral).

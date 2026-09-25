@@ -13,7 +13,10 @@
  * New scenes (2026-09-24), in cost after the money: the work (Odile's shoot if she took the campaign, else a
  * freelance reading at a small firm; c8.work = give | hold, c8.work-kind = shoot | desk), where Laurent's money is
  * glimpsed for the first time; then the bank, where her account turns out to sit under a corporate relationship she
- * never opened (c8.bank = cash | new | leave). */
+ * never opened (c8.bank = cash | new | leave).
+ * New scenes, round 2 (2026-09-24): after the break-in, Mrs Kowalczyk across the landing says "your friend" let herself
+ * in with a key (c8.neighbour = ask | warn | thank; asking gets a tall woman with close-cropped hair, a fact); and, if
+ * her face is public, a Sunday Courier reporter at her door the night after the list (c8.hack = line | meridian | door). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -202,6 +205,43 @@ function closeBlocks(s: GameState): Block[] {
     t(
       `Standing alone got me here — to a truth an institution would have buried, held by no one but me.${crossed ? ' Except I did not stand entirely alone this time, and I know it.' : ''} The next room is the one with the name in it, and I will decide then whose door I walk through to reach it.`,
     ),
+    ...(hackComes(s) ? hackLead : []),
+  ];
+}
+
+// ── The Sunday reporter (new scene, round 2): only if her face is public ──
+
+const hackComes = (s: GameState) => !!get5(s, 'published') && !get8(s, 'hack');
+const hackLead: Block[] = [
+  p('At nine there is a man on your doorstep with a notebook, which nobody carries any more, and the smile of somebody who has been told no by better people than you.'),
+  q('Rafe Collis', 'Rafe Collis, the Sunday Courier. We’re running something this weekend about women who appear from nowhere. Beautiful ones. No school, no family, no dentist, and then suddenly on the side of a bus. You’re in it either way. I thought you’d like to give me your side.'),
+];
+
+function hackChoices(): C8Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('hack-' + id, label, hint, 'close', (x) => {
+      set8(x, 'hack', id);
+      return body;
+    });
+  return [
+    answer('line', 'Give him one line', 'Make it good enough that he stops looking.', [
+      q('You', 'I came from exactly where everybody comes from, Mr Collis. I just didn’t bring it with me.'),
+      p('He writes it down, and reads it back to himself, and looks almost disappointed at how good it is.'),
+      q('Rafe Collis', 'That’s the headline, then. You’ve made my Sunday.'),
+      t('And his readers will spend Sunday wondering where I came from. So will whoever else reads the Courier.'),
+    ]),
+    answer('meridian', 'Give him somewhere else to look', 'Meridian. A company that appeared from nowhere too.', [
+      q('You', 'If you want something that appeared from nowhere, Mr Collis, try Meridian Holdings. It owns half the river and nobody has ever seen its face.'),
+      p('His pen stops.'),
+      q('Rafe Collis', 'That’s not a story about you.'),
+      q('You', 'No. It’s a better one.'),
+      p('He looks at you for a long time. Then he writes the name down, underlines it twice, and goes without saying goodbye, which you decide to take as a compliment.'),
+      t('I have just set a dog on them. I don’t know yet whose leg it will bite.'),
+    ]),
+    answer('door', 'Close the door', 'Gently. In the middle of his sentence.', [
+      p('You close the door, gently, in the middle of his next sentence. Through it you hear him laugh, and then his feet going down the stairs, unhurried: a man with a story either way.'),
+      t('He is right. I am in it either way.'),
+    ]),
   ];
 }
 
@@ -445,12 +485,45 @@ function weekIntro(x: GameState): Block[] {
   ];
 }
 
+// ── The neighbour (new scene, round 2) ──
+
+const neighbourLead: Block[] = [
+  p('In the morning Mrs Kowalczyk from across the landing stops you by the lift. She is eighty-one and takes in everybody’s parcels, and she has a cat called Bishop who is not allowed out and gets out anyway.'),
+  q('Mrs Kowalczyk', 'Your friend came. The day before yesterday, in the afternoon. I told her you were out, and she said she knew, she had a key. Lovely manners. Such a coat.'),
+  t('My friend.'),
+];
+
+function neighbourChoices(): C8Choice[] {
+  const talk = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer8('neighbour-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'neighbour', id);
+      after?.(x);
+      return [...body, ...weekIntro(x)];
+    });
+  return [
+    talk('ask', 'Ask her what your friend looked like', 'Lightly. As if you had several friends with keys.', [
+      q('Mrs Kowalczyk', 'Tall. Taller than you. Hair very short, like a boy’s, but on her it was elegant, you know how some women can. She asked after Bishop by name. I don’t know how she knew his name.'),
+      p('She laughs, pleased, as if it had been a charming trick.'),
+      t('Tall, with her hair cropped close. I have met one woman who looks like that. She told me I had disappeared before breakfast.'),
+    ], (x) => note8(x, 'friend', 'Mrs Kowalczyk saw a tall woman with close-cropped hair let herself into Evelynn’s flat with a key on the afternoon of the break-in. She called herself a friend.', 'Mrs Kowalczyk, across the landing')),
+    talk('warn', 'Ask her not to open her door to anyone', 'Frighten her a little. It may keep her safe.', [
+      q('You', 'Mrs Kowalczyk, if anyone comes again, anyone at all, don’t open your door. Ring me.'),
+      p('She looks at you over her glasses for a long moment. She has lived eighty-one years, and some of them, you remember, were not in this country, and were not easy.'),
+      q('Mrs Kowalczyk', 'I know that look. I had it once. Yes. I will ring.'),
+    ]),
+    talk('thank', 'Thank her, and say nothing', 'She is eighty-one. Keep her out of it.', [
+      p('You thank her, and ask after Bishop, and say nothing about keys. She is eighty-one. She has a cat. Whatever is happening to you does not need to happen to her too.'),
+      t('Anybody who can let themselves into my flat can let themselves into hers.'),
+    ]),
+  ];
+}
+
 function breakInChoices(s: GameState): C8Choice[] {
   const records = !!getKey(s, 'own.piece.records');
   const deal = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
     offer8('breakin-' + id, label, hint, 'cost', (x) => {
       set8(x, 'breakin', id);
-      return [...body(x), ...weekIntro(x)];
+      return [...body(x), ...neighbourLead];
     });
   return [
     deal('locks', 'Change the lock yourself, tonight', `$${LOCK_COST} you can’t really spare.`, (x) => {
@@ -707,6 +780,7 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   if (s.scene !== 'chapter8') return [];
   if (s.phase === 'cost') {
     if (!get8(s, 'breakin')) return breakInChoices(s);
+    if (!get8(s, 'neighbour')) return neighbourChoices();
     if (!get8(s, 'money')) return moneyChoices(s);
     if (!get8(s, 'work')) return workChoices(s);
     if (!get8(s, 'bank')) return bankChoices();
@@ -714,8 +788,10 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   }
   if (s.phase === 'leverage') return leverageChoices(s);
   if (s.phase === 'advance') return listChoices();
-  if (s.phase === 'close')
+  if (s.phase === 'close') {
+    if (hackComes(s)) return hackChoices();
     return get8(s, 'night') ? [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')] : nightChoices();
+  }
   return [];
 }
 
