@@ -6,7 +6,12 @@
  * c9.took.* count; the name is never missable (the resolve floor). No intimacy in this chapter.
  * Deepening pass 2 (2026-09-24): the witness has a second beat (Celeste asks whether she likes being her; Marcus asks
  * what she took from his party) and the name has a quiet beat of its own (the photographs, the dark, her building).
- * Both are held in c9.open and add no case weight. */
+ * Both are held in c9.open and add no case weight.
+ * Set pieces (2026-09-24): every hub move is a scene with a moment of its own, held in c9.open and adding no case
+ * weight: the ORACLE page (score yourself / close the file), the chain (split it / keep it together), the sender's
+ * last page (ask who they are / call it square), the reporter (her name / a source), Maya before her shift
+ * (are you in danger?), the borrowed door (tell them / keep it). The morning, the floor, the name and the orchid
+ * at midnight play as scenes too. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -137,9 +142,24 @@ function morningAfter9(s: GameState): Block[] {
   return out;
 }
 
+/** Last night's list, still with her in the morning (Chapter 8's c8.list). */
+function listMorning9(s: GameState): Block[] {
+  const list = s.choices['c8.list'];
+  if (list === 'read')
+    return [
+      p('You wake at six with the list still behind your eyes, the way a bright window stays when you close them: the plain type, the blank line, and under it the entry that was you. VALE, E. RETURNED TO INVENTORY. You lie still and let it fade, and it does not fade.'),
+    ];
+  if (list === 'copied')
+    return [
+      p('You wake at six. In the night the three lines on the inside of your wrist have smudged into something like a bruise. You copy them onto paper at the kitchen table before you shower, in capitals, and then you stand under the water and watch the last of the eyeliner go grey and run down the drain.'),
+    ];
+  return [];
+}
+
 function arriveBlocks(s: GameState): Block[] {
   const frame: Block[] = ownPower(s)
     ? [
+        ...listMorning9(s),
         p('You came this far the hardest way, with no clearance and no one’s permission, and a truth you pulled out of a closed shell. You know what Meridian is now: not a company that keeps secrets, a company that makes them. You are one of its products. So is the woman whose name you wear.'),
         p(
           borrowedDoor(s)
@@ -152,12 +172,15 @@ function arriveBlocks(s: GameState): Block[] {
     ...frame,
     ...(ownPower(s) ? morningAfter9(s) : []),
     p('And the authorization to reuse her legend — the real woman who lived it before you were fitted into it — was signed at Meridian’s board.'),
+    p('You make coffee and drink it at the window. The bench across the road is empty. The bakery shutters go up at seven, the way they always do, and the girl who opens them looks up at your window, the way she has started to, and then away.'),
     t('I have the shape. What I do not have is a case — something sourced, something that holds when an institution tries to make it disappear — and I do not have the name. Before I decide anything, I find out who, and I build something I can carry into the room.'),
   ];
 }
 
 function resolveBlocks(s: GameState): Block[] {
-  const blocks: Block[] = [];
+  const blocks: Block[] = [
+    p('You put it back together into one pile on the floor and sit with your back against the bed and read it through from the beginning, the way a stranger would: a lawyer, a reporter, a board. Slowly. Looking for the place where it gives.'),
+  ];
   if (get9(s, 'name-road') === 'floor')
     blocks.push(t('I already have the last piece. I have been refusing to say it: the face on the board is one I have met, and when I let myself, I know it. Celeste.'));
   const strength = getKey(s, 'case.strength');
@@ -182,6 +205,7 @@ function resolveBlocks(s: GameState): Block[] {
         .filter(Boolean)
         .join(' '),
     ),
+    t('Adrian would have called it a first draft. He would also have been frightened of it, and he would have been right to be.'),
   );
   return blocks;
 }
@@ -190,12 +214,18 @@ export function chapter9Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter9') return [];
   if (s.phase === 'arrive') return arriveBlocks(s);
   if (s.phase === 'assemble')
-    return [p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.')];
+    return [
+      p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.'),
+      p('The kitchen table is too small, so you use the floor: three piles on the boards under the window, the way Adrian sorted an acquisition before he let anyone else see it. Sourced. Argued. Missing. The third pile is a single blank card.'),
+      t('A case is not what I know. It is what I can make somebody else unable to deny.'),
+    ];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
     return [
       t('I have the name, and a case the size of my road. I went looking for a face on that board and found one I had already met, which means she has already met mine. Celeste has seen my face too. She saw it first, across a room at the Glass House, and she smiled.'),
+      p('You make tea you do not drink. You put the case into one stiff envelope and the envelope into the bag that goes everywhere with you. At eleven you turn the lights off and sit at the window, the way you have every night this week, and watch the bench.'),
       p('Near midnight there is a knock. When you open the door there is nobody in the corridor: only a single white orchid in a black pot on the mat, and a card tucked into the moss in a confident, looping hand.'),
+      p('You stand in the doorway in your stockinged feet and look up and down the corridor for a long time. The lift is on the ground floor. The stairwell door is still swinging, very slightly, on its closer.'),
       p('“Breakfast? — C.”'),
       // Chapter 7's forwarded letter: the same hand, fourteen months on.
       ...(['kept', 'studied'].includes(s.choices['c7.card'] ?? '')
@@ -203,6 +233,7 @@ export function chapter9Blocks(s: GameState): Block[] {
         : s.choices['c7.card'] === 'burned'
           ? [t('I burned the last one. It turns out she writes more than once.')]
           : []),
+      p('You carry the orchid in and put it on the kitchen table, because you cannot think where else it would go. Then you sit down across from it, as if it were a guest, and you do not sleep.'),
     ];
   return [];
 }
@@ -214,7 +245,7 @@ function witnessBlocks(s: GameState, who: 'celeste' | 'marcus'): Block[] {
 }
 function witnessSetting(s: GameState, who: 'celeste' | 'marcus'): Block {
   if (who === 'marcus')
-    return p('Marcus meets you in a hotel bar that closes to the public at six, because men like Marcus do not meet anyone anywhere that stays open. He watches you cross the room the way he did at the Glass House, and this time you let him watch.');
+    return p('Marcus meets you in a hotel bar that closes to the public at six, because men like Marcus do not meet anyone anywhere that stays open. The barman sets down two glasses without being asked and goes to polish something at the far end. Marcus watches you cross the room the way he did at the Glass House, and this time you let him watch.');
   if (get6(s, 'celeste') === 'pressed')
     return p('Celeste gives you twenty minutes on the terrace of her fund, above the river, with the heaters on and nobody at the other tables. She does not stand when you arrive.');
   return p('Celeste gives you lunch on the terrace of her fund, above the river, with the heaters on and nobody at the other tables. She kisses you on both cheeks, holds your hands a moment too long, and orders for you without asking. It is warm and generous, and it makes the back of your neck prickle.');
@@ -260,7 +291,8 @@ function nameBlocks(s: GameState, road: ReturnType<typeof nameRoad9>): Block[] {
               : 'The door you borrowed shows you the board faster and cleaner than you could alone.'
       }`,
     ),
-    p('And the name surfaces, and you go still. You know it. Not from a file — from an evening. A hand on your arm and “You disappeared before breakfast.” She was not greeting an old friend she mistook you for. She was reading the fit of a legend she had helped sign away.'),
+    p('It takes most of the day. You work it the way Adrian worked a due diligence: every director, every filing, every company that shares an address with another company. By four in the afternoon the board has seven seats, and six of them are names that mean nothing: nominees, accountants, a lawyer in Jersey who sits on four hundred boards and has never attended one.'),
+    p('And the seventh name surfaces, and you go still. You know it. Not from a file — from an evening. A hand on your arm and “You disappeared before breakfast.” She was not greeting an old friend she mistook you for. She was reading the fit of a legend she had helped sign away.'),
     t('Celeste. The warmth was the appraisal. Someone who knew the woman I am wearing — knew her the way you know a person — sat on the board that spent her, and then touched my arm.'),
     ...(took(s, 'witness') && witness9(s) === 'celeste'
       ? [p('And she is the one who confirmed the leaf for you. Her own words are in your case now: she knew the woman, she knew the week she vanished. A board member’s firsthand account, freely given, of the life her board reused. She did not help you. She testified.')]
@@ -338,10 +370,129 @@ function nameAfterChoices(): C9Choice[] {
   ];
 }
 
+/** A hub move's own moment: it closes c9.open, records its pick, and adds no case weight. */
+function moment9(id: string, label: string, hint: string, key: string, body: (x: GameState) => Block[]): C9Choice {
+  return offer9(id, label, hint, 'assemble', (x) => {
+    delete x.choices['c9.open'];
+    set9(x, key, id.replace(/^[a-z]+-/, ''));
+    return body(x);
+  });
+}
+
+function oracleAfterChoices(): C9Choice[] {
+  return [
+    moment9('oracle-score', 'Score yourself the way it scored you', 'Honestly. What would it predict now?', 'oracle-beat', () => [
+      p('On the back of the page you write the questions it would have asked, and answer them the way it would have: will she go to the board, will she take a deal, will she run. You are honest. It takes an hour. When you read your own answers back, two of them surprise you.'),
+      t('Predictable is a thing you can be used for. So is unpredictable, if you know which one they are counting on.'),
+    ]),
+    moment9('oracle-close', 'Close the file', 'You are not its product. Don’t read yourself like one.', 'oracle-beat', () => [
+      p('You close the folder on the line and put your hand flat on it, the way you would hold a door shut against a draught. Then you walk down the hill in the cold and buy a coffee and drink it standing up, like a person.'),
+      t('It predicted me. It doesn’t get to keep doing it.'),
+    ]),
+  ];
+}
+
+function chainAfterChoices(): C9Choice[] {
+  return [
+    moment9('chain-split', 'Split it three ways', 'The originals in one place, copies in two others. Nobody finds all of it.', 'chain-kept', () => [
+      p('The originals go into a safe-deposit box at a bank on the far side of the river, rented in the name on your passport. A copy goes into the lining of the old jacket. The third you post to yourself, care of a poste restante counter that will hold it for a month and ask no questions.'),
+      t('They would have to find all three. I have watched them find things. I am counting on them getting tired.'),
+    ]),
+    moment9('chain-one', 'Keep it together, with you', 'One envelope. Nothing to reassemble, nothing out of reach.', 'chain-kept', () => [
+      p('You keep it together, in one stiff envelope, in the bag that goes everywhere you go. If they want it, they will have to take it from you in the street, and people like that do not like doing anything in the street.'),
+      t('One envelope. Everything I can prove, weighing less than a paperback.'),
+    ]),
+  ];
+}
+
+function rookAfterChoices(): C9Choice[] {
+  return [
+    moment9('rook-ask', 'Ask who they are', 'You won’t get a name. You might get a voice.', 'rook-beat', () => [
+      q('You', 'Who are you?'),
+      p('Silence on the line, and then something that might be a laugh, or a breath let out through the nose.'),
+      q(SENDER, 'Someone who knew her before you did. Leave by the river side.'),
+      p('The line goes dead, and stays dead.'),
+      t('Knew her. Everyone I meet knew her before I did.'),
+    ]),
+    moment9('rook-square', 'Agree you are square', 'Take the page. Owe nothing. Go.', 'rook-beat', () => [
+      q('You', 'Square.'),
+      p('You put the phone back in the locker and close the door on it, and leave by the river side without being told to, because you have learned.'),
+    ]),
+  ];
+}
+
+function claraAfterChoices(): C9Choice[] {
+  return [
+    moment9('clara-name', 'Let her use your name', 'On the record. Nobody can say you hid.', 'clara', () => [
+      q('You', 'Use it.'),
+      p('Clara writes it down, the name you wear, in a hand like a surgeon’s, and underlines it once.'),
+      q('Clara Duvall', 'Brave. Or you know something I don’t. I’ll find out which.'),
+    ]),
+    moment9('clara-source', 'Stay a source', 'Unnamed. Safer, and smaller.', 'clara', () => [
+      q('You', 'A source close to the matter.'),
+      q('Clara Duvall', 'They always are.'),
+      p('She closes the folder and pays for both coffees, and does not ask again.'),
+    ]),
+  ];
+}
+
+function mayaAfterChoices(): C9Choice[] {
+  return [
+    moment9('maya-honest', 'Tell her yes', 'She asked. She is owed the truth.', 'maya-beat', () => [
+      q('You', 'Yes.'),
+      p('She nods, as if you had told her the time. Then she reaches across and straightens your collar, which does not need straightening, and goes to work.'),
+      t('She didn’t ask me to stop. She knows better. She only wanted to know how frightened to be.'),
+    ]),
+    moment9('maya-fine', 'Tell her you’re fine', 'She will know. She will let you.', 'maya-beat', () => [
+      q('You', 'I’m fine.'),
+      q('Maya', 'Everyone says that. You say it worse than most.'),
+      p('She leaves first, the way she always does, and does not look back, and you sit with her empty cup until the steam stops.'),
+    ]),
+  ];
+}
+
+function doorAfterChoices(s: GameState): C9Choice[] {
+  const julian = crossover(s) === 'executive';
+  return [
+    moment9('door-tell', 'Tell them what you found', 'Some of it. Enough to be owed.', 'door-beat', () =>
+      julian
+        ? [
+            q('You', 'A board. And one name on it I have met.'),
+            p('Julian is quiet for a moment. Then he nods, slowly, the way he nods at a number he had expected and hoped not to see.'),
+            q('Julian Mercer', 'Then be careful which rooms you meet her in. Some of them are mine.'),
+          ]
+        : [
+            q('You', 'A board. And one name on it I have met.'),
+            p('Sloane does not ask which name. She looks out at the river for a long time, and when she speaks, it is to the window.'),
+            q('Sloane', 'Then you know as much as I do. That has never once been a comfortable position for anybody.'),
+          ],
+    ),
+    moment9('door-keep', 'Keep it to yourself', 'They opened the door. They don’t get the room.', 'door-beat', () =>
+      julian
+        ? [
+            q('You', 'Enough to know what to ask next.'),
+            q('Julian Mercer', 'That is a very good answer to a question I didn’t ask.'),
+            p('He lets you out through the side of the building and does not ask again, and you think he likes you better for it, and you are not sure that is good.'),
+          ]
+        : [
+            q('You', 'I haven’t decided.'),
+            p('Sloane almost smiles. It is the first time you have seen her try.'),
+            q('Sloane', 'Good. People who decide in cars decide badly.'),
+          ],
+    ),
+  ];
+}
+
 function assembleChoices(s: GameState): C9Choice[] {
   const open = get9(s, 'open');
   if (open === 'witness-celeste' || open === 'witness-marcus') return witnessAfterChoices(open === 'witness-celeste' ? 'celeste' : 'marcus');
   if (open === 'name') return nameAfterChoices();
+  if (open === 'oracle') return oracleAfterChoices();
+  if (open === 'chain') return chainAfterChoices();
+  if (open === 'rook') return rookAfterChoices();
+  if (open === 'editor') return claraAfterChoices();
+  if (open === 'maya') return mayaAfterChoices();
+  if (open === 'crossover') return doorAfterChoices(s);
   const c: C9Choice[] = [];
   const who = witness9(s);
   if (who && !took(s, 'witness'))
@@ -364,10 +515,17 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-oracle', 'Turn the prediction into a lever', 'The maker knew the product was defective. That’s the whole case.', 'assemble', (x) => {
         take(x, 'oracle');
         set9(x, 'lever', lever);
+        set9(x, 'open', 'oracle');
         const blocks = [
+          p('You do it at the public library on the hill, in the long reading room with the green lamps, because it has good light and bad wifi and nobody there has ever heard of you.'),
           p('You lay out what ORACLE scored before any of this began: that you would take the identity willingly, that Sloane could not truly hold you — and that they proceeded anyway. It is not a confession. It is worse: it is a specification. They sold Axiom a controllable asset their own system had already marked uncontrollable.'),
         ];
-        if (lever === 'oracle') return blocks;
+        const page = [
+          p('You write it out as a single page, the way Adrian wrote memos for people who would only read the first paragraph: what the system predicted, when, and what the company did next. When you have finished, the page is so plain that it frightens you.'),
+          p('Near the bottom of your notes is the line you copied from the assessment, or rebuilt from its edges: SUBJECT WILL ACCEPT THE IDENTITY WILLINGLY. You look at it for a long time.'),
+          t('It was right. That is the part nobody warns you about. The machine that said I could not be held also said I would want this, and I do.'),
+        ];
+        if (lever === 'oracle') return [...blocks, ...page];
         blocks.push(p('You never saw the assessment itself, so you rebuild its shape from the edges — slower, and you can only argue it, not wave it. It still points the same way.'));
         // Own-power pays for the reconstruction; never blocked, short of the fee it is recorded unpaid.
         if (ownPower(x)) {
@@ -376,7 +534,7 @@ function assembleChoices(s: GameState): C9Choice[] {
           setKey(x, 'own.cash', String(Math.max(0, before - ORACLE_FEE)));
           note9(x, 'oracle-fee', before >= ORACLE_FEE ? `Spent $${ORACLE_FEE} reconstructing the ORACLE assessment. Own cash: $${before - ORACLE_FEE}.` : `The $${ORACLE_FEE} reconstruction is unpaid; own cash was $${before}.`, 'Records, fees and time, paid by Evelynn');
         }
-        return blocks;
+        return [...blocks, ...page];
       }),
     );
   if (evidence9(s) && !took(s, 'evidence'))
@@ -384,7 +542,13 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-evidence', 'Corroborate the paper into a chain', 'Custody, dates, a handoff in her hand. Make it hold.', 'assemble', (x) => {
         take(x, 'evidence');
         set9(x, 'chain', 'built');
-        return [p(chainText9(x))];
+        set9(x, 'open', 'chain');
+        return [
+          p('You build it at the copy shop on the corner, which opens at seven and has a machine that will scan anything and a boy behind the counter who never looks at what.'),
+          p(chainText9(x)),
+          p('By nine you have it in three forms: the paper, the scans, and the order in your own head, each link numbered, each with its source in the margin in small hard capitals. The boy rings it up without reading any of it, and wishes you a good day, and means it.'),
+          t('Now it is a thing that exists outside me. That makes it stronger. It also makes it something that can be taken.'),
+        ];
       }),
     );
   const allies = allies9(s);
@@ -395,7 +559,14 @@ function assembleChoices(s: GameState): C9Choice[] {
         setKey(x, 'own.alliance.rook', 'spent');
         set9(x, 'rook-piece', 'unverified');
         note9(x, 'rook-piece', 'The sender supplied one more document from Meridian’s offshore board. Concrete, unsourced, unverified.', 'The sender, collecting the debt in kind');
-        return [q(SENDER, 'One more page from the offshore board, and then we are square. Do not ask me where it came from.')];
+        set9(x, 'open', 'rook');
+        return [
+          p('The message gives you the old ferry terminal again, and the same locker. The side door is on the latch. The departures board still flickers over the empty hall, announcing boats that stopped running before you were born. Before you were anybody.'),
+          p('The phone in locker 41 is already ringing when you open the door.'),
+          q(SENDER, 'One more page from the offshore board, and then we are square. Do not ask me where it came from.'),
+          p('Under the phone is a single sheet in a plastic sleeve, folded once. A page of board minutes: a date, an offshore address, a column of initials down the left margin, and against one of them, in a different ink, a small neat tick.'),
+          q(SENDER, 'We are square now. I would like you to remember that I said so.'),
+        ];
       }),
     );
   if (allies.includes('editor') && !took(s, 'editor'))
@@ -403,7 +574,12 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-editor', 'Spend an ally · the reporter’s filing', 'Slow, clean, filing-grade. It costs the ally something.', 'assemble', (x) => {
         take(x, 'editor');
         setKey(x, 'own.alliance.editor', 'spent');
-        return [p('The reporter’s corporate-veil filing comes back: slow, clean, and filing-grade — another layer of the shell peeled, with a source attached to every line.')];
+        set9(x, 'open', 'editor');
+        return [
+          p('Aster’s editor sends you to a café by the courts where the reporters drink, and to a small unhurried woman called Clara Duvall, who has spent twenty years filing for things people would rather stayed sealed. She has already done the work. She slides it across the table in a manila folder with a coffee ring on it.'),
+          p('The reporter’s corporate-veil filing comes back: slow, clean, and filing-grade — another layer of the shell peeled, with a source attached to every line.'),
+          q('Clara Duvall', 'Every line has a source. Some of the sources are going to be very unhappy that I found them. Before this runs anywhere, I’d like to know whether your name goes in it.'),
+        ];
       }),
     );
   if (allies.includes('maya') && !took(s, 'maya'))
@@ -411,9 +587,13 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-maya-bounded', 'Spend an ally · what Maya can say', 'Public scope only: the category and the floor, never the answer.', 'assemble', (x) => {
         take(x, 'maya');
         setKey(x, 'own.alliance.maya', 'used');
+        set9(x, 'open', 'maya');
         return [
+          p('Maya meets you at the counter at seven, before her shift, with her coat buttoned to the throat and her badge already clipped on, which means she is going straight in afterwards and wants you to know it.'),
           q('Maya', 'I can tell you what level signs something like that. Directorate, or a private contractor with a board. Not who. That’s as far as I go.'),
           p('The category and the floor, within her line: a sign-off at that height is a board decision, not an officer’s.'),
+          p('She says it to the steam, not to you. Then she drinks her tea in three swallows, too hot, and puts the cup down.'),
+          q('Maya', 'Now you tell me something. Are you in danger?'),
         ];
       }),
     );
@@ -422,7 +602,18 @@ function assembleChoices(s: GameState): C9Choice[] {
       offer9('assemble-crossover-contact', 'Use the borrowed door once more', 'It is still ajar. Each use costs more standing.', 'assemble', (x) => {
         take(x, 'crossover');
         set9(x, 'crossover', 'deepened');
-        return [p('The door you borrowed to get over the wall is still ajar, and you use it again. It works. It also means you owe that door a little more than you did, and the people behind it know it.')];
+        set9(x, 'open', 'crossover');
+        return [
+          p(
+            crossover(x) === 'executive'
+              ? 'Julian lets you into the contracts room again, late, and this time he does not stay by the door. He sits on the edge of the long table with his jacket off and watches you read.'
+              : crossover(x) === 'institutional'
+                ? 'Sloane’s car again: the same dark leather, the same river. This time she has brought a second tablet, and a flask of coffee she does not offer you. She shows you the next layer down and watches you read it.'
+                : 'The door you borrowed is still ajar, and whoever holds it watches you go through it again.',
+          ),
+          p('The door you borrowed to get over the wall is still ajar, and you use it again. It works. It also means you owe that door a little more than you did, and the people behind it know it.'),
+          crossover(x) === 'executive' ? q('Julian Mercer', 'Did you find what you came for?') : q('Sloane', 'What will you do with it?'),
+        ];
       }),
     );
   if (!getKey(s, 'case.name'))

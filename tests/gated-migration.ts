@@ -26,6 +26,14 @@ export const GATED_DEFAULTS = [
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
   'chapter9.name-dark',
+  // Chapter 9 set pieces: close the ORACLE file, keep the chain together, call it square, stay a source,
+  // tell Maya you're fine, keep the room to yourself.
+  'chapter9.oracle-close',
+  'chapter9.chain-one',
+  'chapter9.rook-square',
+  'chapter9.clara-source',
+  'chapter9.maya-fine',
+  'chapter9.door-keep',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

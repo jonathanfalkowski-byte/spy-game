@@ -22,8 +22,8 @@ const choose9 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
   return next;
 };
-/** Pass 2's second beats (witness, name) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark'];
+/** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep'];
 const c9 = (s: GameState, id: string) => {
   const pending = ids(s).find((x) => settle9.includes(x));
   return choose9(pending && !ids(s).includes(id) ? choose9(s, pending) : s, id);
@@ -171,7 +171,7 @@ it('spends each ally it uses and reads the name road editor → crossover → ro
 it('plays a real Chapter 9 to complete on every captured road, and every ending encodes', () => {
   for (const name of ['own-records-stop', 'pivot-own-rook-debt', 'own-maya-nothing']) {
     let s = walk(complete8(name), ['begin', 'arrive-begin']);
-    for (let i = 0; i < 12 && ids(s).some((x) => x !== 'assemble-stop'); i++) s = c9(s, ids(s).find((x) => x !== 'assemble-stop')!);
+    for (let i = 0; i < 30 && ids(s).some((x) => x !== 'assemble-stop'); i++) s = c9(s, ids(s).find((x) => x !== 'assemble-stop')!);
     s = walk(s, ['assemble-stop', 'resolve-end']);
     expect(`${s.scene}.${s.phase}`, name).toBe('chapter9.complete');
     expect(chapter9Choices(s)).toEqual([]);
@@ -238,4 +238,45 @@ it('has Theo’s voicemail tell her first, if she spent the night', () => {
   expect(text(night)).not.toContain('Call me before I decide what that is.');
   const curious = walk(withFlags(complete8('own-records-stop'), { 'c7.theo': 'curious' }), ['begin']);
   expect(text(curious)).toContain('Call me before I decide what that is.');
+});
+
+it('plays every hub move as a set piece with a moment of its own, adding no case weight', () => {
+  const oracle = choose9(hub({ 'c6.oracle-seen': 'yes' }), 'assemble-oracle');
+  expect(text(oracle)).toContain('SUBJECT WILL ACCEPT THE IDENTITY WILLINGLY');
+  expect(ids(oracle)).toEqual(['oracle-score', 'oracle-close']);
+  expect(choose9(oracle, 'oracle-score').choices['c9.oracle-beat']).toBe('score');
+
+  const chain = choose9(hub({ 'c6.photo-custody': 'phone' }), 'assemble-evidence');
+  expect(text(chain)).toContain('the copy shop on the corner');
+  const split = choose9(chain, 'chain-split');
+  expect([split.choices['c9.chain-kept'], split.choices['c9.open']]).toEqual(['split', undefined]);
+
+  const rook = choose9(hub({ 'own.alliance.rook': 'owed' }), 'assemble-rook');
+  expect(text(rook)).toContain('a small neat tick');
+  expect(text(choose9(rook, 'rook-ask'))).toContain('Someone who knew her before you did.');
+
+  const clara = choose9(hub({ 'c5.editor-contact': 'yes' }), 'assemble-editor');
+  expect(ids(clara)).toEqual(['clara-name', 'clara-source']);
+  expect(choose9(clara, 'clara-name').choices['c9.clara']).toBe('name');
+
+  const maya = choose9(hub({ 'c6.maya': 'restored' }), 'assemble-maya-bounded');
+  expect(text(maya)).toContain('Are you in danger?');
+  expect(text(choose9(maya, 'maya-fine'))).toContain('You say it worse than most.');
+
+  const julian = choose9(hub({ 'own.crossover': 'executive' }), 'assemble-crossover-contact');
+  expect(text(julian)).toContain('Did you find what you came for?');
+  const sloane = choose9(hub({ 'own.crossover': 'institutional' }), 'assemble-crossover-contact');
+  expect(text(choose9(sloane, 'door-keep'))).toContain('People who decide in cars decide badly.');
+
+  // The moments add no weight: two moves with their moments still band as supported.
+  const two = walk(hub({ 'c6.oracle-seen': 'yes', 'c6.maya': 'restored' }), ['assemble-oracle', 'oracle-score', 'assemble-maya-bounded', 'maya-honest', 'assemble-stop']);
+  expect(two.choices['case.strength']).toBe('supported');
+});
+
+it('ends the day on the floor, the seventh name, and the orchid carried in', () => {
+  const done = walk(hub(), ['assemble-name', 'assemble-stop', 'resolve-end']);
+  expect(text(done)).toContain('Sourced. Argued. Missing.');
+  expect(text(done)).toContain('And the seventh name surfaces');
+  expect(text(done)).toContain('The stairwell door is still swinging');
+  expect(text(done)).toContain('as if it were a guest');
 });

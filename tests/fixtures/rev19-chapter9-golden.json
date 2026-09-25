@@ -8,7 +8,7 @@
       "strength": "thin",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "1db03460c660450f67558548bbb6781a7cbb094015c90910e4c15ecaecb966d3",
+      "saveSha256": "fde21b887e6c80604dbe82d328718ca0d4141ace78294957721655d5d843b193",
       "ledger": [
         {
           "sequence": 1,
@@ -1704,7 +1704,7 @@
       "strength": "thin",
       "nameRoad": "floor",
       "entered": "own-power",
-      "saveSha256": "c444050497b76911e465b5220761727b579d8df9f23e5e536246934a43a82f33",
+      "saveSha256": "06b343eb748e857fb2d502123aeca4ac2c845987f7e26113c49d9acd0b22affa",
       "ledger": [
         {
           "sequence": 1,
@@ -3380,11 +3380,11 @@
     },
     {
       "name": "rook-all",
-      "events": 234,
+      "events": 237,
       "strength": "strong",
       "nameRoad": "rook",
       "entered": "own-power",
-      "saveSha256": "f45953d6828892daf6c6edb646a945befd842bd7b2d8e0301fb8f4fc99167acd",
+      "saveSha256": "5c0a0f86e50d8caffc25858d4cf8ca7fd497bc0ee6d8d2f558564e39cc581763",
       "ledger": [
         {
           "sequence": 1,
@@ -5204,7 +5204,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-evidence",
+            "id": "chapter9.oracle-close",
             "expectedRevision": 228
           }
         },
@@ -5212,7 +5212,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-maya-bounded",
+            "id": "chapter9.assemble-evidence",
             "expectedRevision": 229
           }
         },
@@ -5220,7 +5220,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-name",
+            "id": "chapter9.chain-one",
             "expectedRevision": 230
           }
         },
@@ -5228,7 +5228,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.name-dark",
+            "id": "chapter9.assemble-maya-bounded",
             "expectedRevision": 231
           }
         },
@@ -5236,7 +5236,7 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.maya-fine",
             "expectedRevision": 232
           }
         },
@@ -5244,19 +5244,43 @@
           "sequence": 234,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.assemble-name",
             "expectedRevision": 233
+          }
+        },
+        {
+          "sequence": 235,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.name-dark",
+            "expectedRevision": 234
+          }
+        },
+        {
+          "sequence": 236,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.assemble-stop",
+            "expectedRevision": 235
+          }
+        },
+        {
+          "sequence": 237,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 236
           }
         }
       ]
     },
     {
       "name": "maya-all",
-      "events": 220,
+      "events": 223,
       "strength": "strong",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "b036d3d0d63f33400cae22406a6b0c789993b346bdb0447ec510bc6c00c3b790",
+      "saveSha256": "a3f6d923e7bf22fd83be642614bc719ae0630ac44ef45a6667f8e22d552c94ef",
       "ledger": [
         {
           "sequence": 1,
@@ -6964,7 +6988,7 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-evidence",
+            "id": "chapter9.oracle-close",
             "expectedRevision": 214
           }
         },
@@ -6972,7 +6996,7 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-maya-bounded",
+            "id": "chapter9.assemble-evidence",
             "expectedRevision": 215
           }
         },
@@ -6980,7 +7004,7 @@
           "sequence": 217,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-name",
+            "id": "chapter9.chain-one",
             "expectedRevision": 216
           }
         },
@@ -6988,7 +7012,7 @@
           "sequence": 218,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.name-dark",
+            "id": "chapter9.assemble-maya-bounded",
             "expectedRevision": 217
           }
         },
@@ -6996,7 +7020,7 @@
           "sequence": 219,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.maya-fine",
             "expectedRevision": 218
           }
         },
@@ -7004,19 +7028,43 @@
           "sequence": 220,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.assemble-name",
             "expectedRevision": 219
+          }
+        },
+        {
+          "sequence": 221,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.name-dark",
+            "expectedRevision": 220
+          }
+        },
+        {
+          "sequence": 222,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.assemble-stop",
+            "expectedRevision": 221
+          }
+        },
+        {
+          "sequence": 223,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 222
           }
         }
       ]
     },
     {
       "name": "outside-placeholder-all",
-      "events": 216,
+      "events": 219,
       "strength": "strong",
       "nameRoad": "public",
       "entered": "outside",
-      "saveSha256": "c8aed6bf4e6b87fd14931cf6803f5320f116b73ea62480363d856b728f5ec057",
+      "saveSha256": "a1519da19f5169cfc3d5c6b3ece19e001bcb3c1b11744074f3e656ef3d0f25b1",
       "ledger": [
         {
           "sequence": 1,
@@ -8692,7 +8740,7 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-evidence",
+            "id": "chapter9.oracle-close",
             "expectedRevision": 210
           }
         },
@@ -8700,7 +8748,7 @@
           "sequence": 212,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-maya-bounded",
+            "id": "chapter9.assemble-evidence",
             "expectedRevision": 211
           }
         },
@@ -8708,7 +8756,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-name",
+            "id": "chapter9.chain-one",
             "expectedRevision": 212
           }
         },
@@ -8716,7 +8764,7 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.name-dark",
+            "id": "chapter9.assemble-maya-bounded",
             "expectedRevision": 213
           }
         },
@@ -8724,7 +8772,7 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.assemble-stop",
+            "id": "chapter9.maya-fine",
             "expectedRevision": 214
           }
         },
@@ -8732,8 +8780,32 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.assemble-name",
             "expectedRevision": 215
+          }
+        },
+        {
+          "sequence": 217,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.name-dark",
+            "expectedRevision": 216
+          }
+        },
+        {
+          "sequence": 218,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.assemble-stop",
+            "expectedRevision": 217
+          }
+        },
+        {
+          "sequence": 219,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 218
           }
         }
       ]

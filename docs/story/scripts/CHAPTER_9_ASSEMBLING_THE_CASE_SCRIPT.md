@@ -197,3 +197,26 @@ resolution for Chapter 10's entry contract. All sourced and re-derivable.
 - No intimacy in this chapter.
 - Design owns wording and which signals count; EVE Code owns the exact weighting, gate predicates,
   and how `case.strength` bands map. Report Phase 0 before building, as with Ch6–8.
+
+## Set pieces (2026-09-24)
+
+Every hub move is now a scene with a moment of its own, held in `c9.open` like the pass-2 witness
+and name beats. **No moment adds case weight** (`case.strength` still counts `c9.took.*` only). The
+wording lives in `src/content/chapter9.ts`.
+
+| Move | Scene | Moment → flag |
+|---|---|---|
+| `assemble-oracle` | the library on the hill; one plain page; SUBJECT WILL ACCEPT THE IDENTITY WILLINGLY | **oracle-score** / **oracle-close** → `c9.oracle-beat` |
+| `assemble-evidence` | the copy shop at seven; the chain in three forms | **chain-split** (bank box, jacket lining, poste restante) / **chain-one** (one envelope) → `c9.chain-kept` |
+| `assemble-rook` | the ferry terminal, locker 41 ringing; a board page with one tick | **rook-ask** ("Someone who knew her before you did.") / **rook-square** → `c9.rook-beat` |
+| `assemble-editor` | Clara Duvall at the café by the courts | **clara-name** / **clara-source** → `c9.clara` |
+| `assemble-maya-bounded` | the counter at seven, before her shift; "Are you in danger?" | **maya-honest** / **maya-fine** → `c9.maya-beat` |
+| `assemble-crossover-contact` | Julian's contracts room, or Sloane's car | **door-tell** / **door-keep** → `c9.door-beat` |
+
+Also played as scenes: the morning (last night's list, read or on her wrist; the bakery girl who
+looks up at her window), the floor (Sourced. Argued. Missing.), the day's work before the seventh
+name surfaces, the stranger's reading at `resolve`, and the orchid at midnight (the stairwell door
+still swinging; she carries it in and sits across from it, as if it were a guest).
+
+Neutral picks for the goldens (`tests/gated-migration.ts`): oracle-close, chain-one, rook-square,
+clara-source, maya-fine, door-keep.
