@@ -4,7 +4,15 @@
  * docs/story/scripts/CHAPTER_10_SHE_KNOWS_SCRIPT.md. Gated behind chapter10Playable(), reached from an own-power
  * Chapter 9 ending. The coercion beat follows docs/story/CONTENT_DIRECTION.md §3: comply / refuse / counterplay,
  * each with a real cost; refusal lands on the named, non-sexual threat (Maya's clearance). The only intimacy is the
- * optional chosen evening (heat 3, consent-gated, fades), never with a partner betrayed this chapter. */
+ * optional chosen evening (heat 3, consent-gated, fades), never with a partner betrayed this chapter.
+ * Payoffs (2026-09-25): the threads Chapters 7–9 opened come back here, each read from the save and silent when the
+ * flag is absent. Celeste's reading of the week is Mr Pryce's reports (the window, Ruth, Kessler, the auction,
+ * Castellane, Lotte's balcony, the tailor); the two sugars and cinnamon meet the receipt in the coat; at noon Lotte
+ * names C., the Courier runs or rings, Mrs Kowalczyk knows her friend with the key; the man in the alley is Pryce; the
+ * wall carries Pryce, the rent, the HELD card, the photographs, Kessler and the lawyer, and not Ruth; the black phone
+ * knows how the wall was kept; Maya saw her at the wake; Daniel remembers the tie; the first Thursday gathers
+ * Castellane, the club and Sloane's warning; the dress is paid the way she left the bank; Kessler comes back at the end.
+ * The refusal's cost is still only Maya's clearance. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -185,12 +193,68 @@ function celesteReads(s: GameState): Block[] {
       q('Celeste', 'Theo Marr is a sweet man. He asks such good questions. He should be more careful where he asks them.'),
       p('She says his name the way you would mention the weather somewhere the weather kills people.'),
     );
+  out.push(...weekReport10(s));
   if (!out.length) out.push(q('Celeste', 'You have had a busy fortnight. I do admire a busy woman. She was never busy. She was only ever away.'));
   return [
     p('She talks while you eat, easily, the way people talk to someone they have known for years. It takes you a minute to understand that every sentence is an item on a list she has already checked.'),
     ...out,
     p('Then she stops, and waits for you to begin, chin on her hand, as if you were the one who had asked for this.'),
   ];
+}
+
+/** What Mr Pryce reported (payoffs of Chapters 7–9): the window always, then at most two more, by weight. */
+function weekReport10(s: GameState): Block[] {
+  const out: Block[] = [];
+  const win = c(s, 'c9.window');
+  if (win === 'sign')
+    out.push(
+      q('Celeste', 'I got your message, by the way. Mr Pryce brought it round at breakfast, bless him, in a plastic sleeve. Good morning to you too.'),
+      p('Lipstick on the back of a cereal box. She has had it put in a sleeve, and she has read it, and she is pleased with it.'),
+    );
+  else if (win === 'wave') out.push(q('Celeste', 'Mr Pryce tells me you waved. He was quite undone. Nobody waves at Mr Pryce.'));
+  else if (win === 'dark') out.push(q('Celeste', 'You sat in the dark for an hour on Tuesday. Mr Pryce was worried. I told him you were thinking. She used to do that too.'));
+  const more: Block[][] = [];
+  if (c(s, 'c9.ruth'))
+    more.push([
+      q('Celeste', 'And you went to see Ruth Adair. Give Ruth my love. She never takes it.'),
+      t('I wrote Ruth’s name down nowhere. I said it to nobody. I walked to the harbour, and somebody walked behind me.'),
+    ]);
+  if (c(s, 'c9.kessler') === 'follow')
+    more.push([
+      q('Celeste', 'You have been reading old society pages, I hear. Poor Anna. She never did learn to sail.'),
+      p('She says it into her cup, fondly, the way you would mention a friend who was always late.'),
+    ]);
+  const auction = c(s, 'c9.auction');
+  if (auction)
+    more.push([
+      q(
+        'Celeste',
+        auction === 'thank'
+          ? 'You were very gracious at the auction. You hang in my hall now. I say good morning to you on the stairs.'
+          : auction === 'ask'
+            ? 'You asked me why, at the auction. I told you: a very good likeness. I still haven’t said of whom.'
+            : 'You left the auction before I could reach you. I had to say good night to your picture instead.',
+      ),
+    ]);
+  const table = c(s, 'c9.table');
+  if (table)
+    more.push([
+      q(
+        'Celeste',
+        table === 'cancel'
+          ? 'You tried to cancel my table at Castellane. Henri was beside himself. Nobody has cancelled my table in eleven years.'
+          : table === 'ask'
+            ? 'Henri tells me you asked who used to sit across from you. You did, darling. For years.'
+            : 'Henri tells me you left a third of the Chablis. She always did. I used to finish it.',
+      ),
+    ]);
+  const photos = c(s, 'c8.photos');
+  if (photos === 'all' || photos === 'one')
+    more.push([q('Celeste', 'Lotte gave you the balcony. That one was always my favourite. I took it, you know. She was laughing at me.')]);
+  const tailor = c(s, 'c9.tailor');
+  if (tailor === 'alter') more.push([q('Celeste', 'And you had Mr Anand take in the charcoal. A centimetre. I noticed the moment you sat down.')]);
+  else if (tailor === 'ask') more.push([q('Celeste', 'Mr Anand says you asked who brought you, that time. It was me. I chose the cloth. I still think I was right.')]);
+  return [...out, ...more.slice(0, 2).flat()];
 }
 
 function menuChoices(s: GameState): C10Choice[] {
@@ -206,6 +270,7 @@ function menuChoices(s: GameState): C10Choice[] {
           p('You drink it. It is sweet, much sweeter than you take it, with cinnamon on the foam, and you manage not to make a face.'),
           q('Celeste', 'Two sugars and cinnamon. She took it like a child. I used to tease her about it.'),
           t('It is not how I take it. It is how she did. Celeste knows that, and wanted to watch me drink it anyway.'),
+          ...receipt10(s),
         ]),
         menu('own', 'Buy your own coffee', 'Give her one thing she didn’t predict.', [
           p('You leave her coffee where it is, go to the counter, buy your own, black, and bring it back and sit down again.'),
@@ -219,6 +284,9 @@ function menuChoices(s: GameState): C10Choice[] {
           p('You tell her yes. She does not look at the menu. She tells the waiter two soft-boiled eggs, toast cut into soldiers, the Assam, milk on the side, and a small dish of the bitter marmalade, and the waiter writes none of it down.'),
           q('Celeste', 'She always ordered the eggs, and never ate them. I used to eat them for her. I think she ordered them so that I would.'),
           p('The eggs come in silver cups. Yours sits in front of you with its hat still on, and you understand that you are being watched to see whether you will take it off.'),
+          ...(c(s, 'c7.robe') === 'coats'
+            ? [p('And a coffee, which she orders without asking and the waiter brings without being told: two sugars, cinnamon on the foam.'), ...receipt10(s)]
+            : []),
           t('I am eating her breakfast, at her table, with her friend. The only thing in this room that is mine is the fork, and I am not sure about the fork.'),
         ]),
         menu('own', 'Order for yourself', 'Give her one thing she didn’t predict.', [
@@ -229,6 +297,12 @@ function menuChoices(s: GameState): C10Choice[] {
         ]),
       ];
 }
+
+/** The receipt in her coat pocket (Chapter 7's wardrobe), met at last. */
+const receipt10 = (s: GameState): Block[] =>
+  c(s, 'c7.robe') === 'coats'
+    ? [t('The receipt in the pocket of her coat: one black, one with two sugars and cinnamon. I said that one day somebody would order it for me and watch my face. It did not take long.')]
+    : [];
 
 function adrianTurn(s: GameState): Block[] {
   const bak = ambushed(s);
@@ -526,12 +600,39 @@ function callBody(s: GameState, who: Caller): Block[] {
     q('Odile Frayne', 'And darling. I have represented faces for thirty years. When somebody pays in advance, it is never for the face.'),
   ];
 }
-const doorstepIntro: Block[] = [
+const doorstepIntro = (s: GameState): Block[] => [
   p('By four there are photographers on the pavement outside your building: three of them, then seven, the kind who work for nobody and sell to everyone. They have the patient, bored look of men who are paid by the picture and have been paid before for waiting.'),
   p('The concierge rings up to ask, very politely, what you would like him to do. He has never asked you anything before. You like him better for sounding frightened.'),
+  ...(c(s, 'c8.neighbour')
+    ? [
+        p('On the landing Mrs Kowalczyk is waiting with the paper held out to you like a present, Bishop under her other arm.'),
+        q('Mrs Kowalczyk', 'Your friend! In the paper! The one with the key! I knew she was somebody.'),
+      ]
+    : []),
 ];
 
-function doorstepChoices(): C10Choice[] {
+/** Noon (payoffs): Lotte names C.; the Courier ran her line, or Collis rings. */
+function noonPayoffs10(s: GameState): Block[] {
+  const out: Block[] = [];
+  if (c(s, 'c8.lotte-meet')) {
+    const knows = ['play', 'ask'].includes(c(s, 'c7.lotte') ?? '');
+    out.push(
+      p('In among the calls, a message from Lotte:'),
+      q('Lotte · message', knows ? 'That’s her. That’s C. The balcony. Evie, what are you doing?' : 'That’s C. The one on the balcony. Whoever you are, be careful.'),
+      t('C. I knew. It is different, hearing it from somebody who watched them laugh on a balcony in Singapore.'),
+    );
+  }
+  const hack = c(s, 'c8.hack');
+  if (hack === 'line')
+    out.push(p('The Sunday Courier ran your line at the weekend, in bold, under a headline about women from nowhere. Next to this photograph it reads differently: I came from exactly where everybody comes from. I just didn’t bring it with me.'));
+  else if (hack === 'meridian')
+    out.push(q('Rafe Collis · message', 'Meridian’s lawyers rang my editor an hour after that photograph went up. Nobody has ever rung about Meridian before. Who is she, Ms Vale?'));
+  return out;
+}
+
+function doorstepChoices(s: GameState): C10Choice[] {
+  const pryce = !!c(s, 'c8.pryce');
+  const alley = pryce ? 'Mr Pryce' : 'Man in the alley';
   const door = (id: string, label: string, hint: string, body: Block[]) =>
     offer10('door-' + id, label, hint, 'wall', (x) => {
       set10(x, 'doorstep', id);
@@ -548,10 +649,15 @@ function doorstepChoices(): C10Choice[] {
     ]),
     door('back', 'Leave by the service door', 'Slip them, and see who else is waiting.', [
       p('The service door opens onto the bins, a wet courtyard and an alley nobody photographs. It smells of the bakery’s flour and the rain. There is a man in the alley anyway. He is not holding a camera.'),
-      p('He is fifty, clean-shaven, in a raincoat the colour of the wall, and he has been standing there long enough for the shoulders of it to darken. He does not come toward you. He only lifts his chin at the corner.'),
-      q('Man in the alley', 'Ms Laurent’s car is at the corner, if you need it.'),
+      p(
+        pryce
+          ? 'It is Mr Pryce, in a raincoat the colour of the wall instead of the grey coat, and he has been standing there long enough for the shoulders of it to darken. He does not come toward you. He only lifts his chin at the corner.'
+          : 'He is fifty, clean-shaven, in a raincoat the colour of the wall, and he has been standing there long enough for the shoulders of it to darken. He does not come toward you. He only lifts his chin at the corner.',
+      ),
+      q(alley, 'Ms Laurent’s car is at the corner, if you need it.'),
       q('You', 'And if I don’t?'),
-      q('Man in the alley', 'Then it will be at the corner, madam, while you don’t.'),
+      q(alley, 'Then it will be at the corner, madam, while you don’t.'),
+      ...(pryce ? [t('Pryce. The agents, the owner’s office, the list on a Monday. The owner has a car, and it is at the corner.')] : []),
       p('You don’t. You walk the other way, fast, and do not look back to see whether he follows. He doesn’t need to. At the end of the alley you glance once into the wing mirror of a parked van, and he is exactly where he was, looking at nothing, getting wetter.'),
       t('She has people at my back door too. Of course she does. The front door was never the one that mattered.'),
     ]),
@@ -565,7 +671,7 @@ function doorstepChoices(): C10Choice[] {
 }
 
 function claimedChoices(s: GameState): C10Choice[] {
-  if (get10(s, 'first-call')) return doorstepChoices();
+  if (get10(s, 'first-call')) return doorstepChoices(s);
   const callers: [Caller, string, string][] = [
     ['sloane', 'Answer Sloane first', 'She won’t wait for a second call.'],
     ...(mayaBack(s) ? ([['maya', 'Answer Maya first', 'She saw it. She is worried.']] as [Caller, string, string][]) : []),
@@ -576,7 +682,7 @@ function claimedChoices(s: GameState): C10Choice[] {
     offer10('call-' + who, label, hint, 'claimed', (x) => {
       set10(x, 'first-call', who);
       const rest = callers.filter(([other]) => other !== who).map(([other]) => voicemail[other]);
-      return [...callBody(x, who), ...(rest.length ? [p('The others you let go to voicemail, and listen to later, in the dark.'), ...rest] : []), ...doorstepIntro];
+      return [...callBody(x, who), ...(rest.length ? [p('The others you let go to voicemail, and listen to later, in the dark.'), ...rest] : []), ...doorstepIntro(x)];
     }),
   );
 }
@@ -619,6 +725,7 @@ function wallChoices(s: GameState): C10Choice[] {
           ? [p('You make a card for Maya too, though nobody holds her yet. You pin it outside the thread, on its own, and then you move it, and then you move it back.')]
           : []),
         p('Sloane’s card goes on the left, a little apart from Celeste’s. You run a thread between them anyway, loosely, because you are not sure yet which way it pulls.'),
+        ...(c(x, 'c9.ruth') ? [p('There is no card for Ruth Adair. You promised her that. You leave a space where it would go, and pin nothing in it, and run no thread to it.')] : []),
         p('Your own column is shorter. You write each of those cards slowly, in capitals, the way Adrian wrote the things he wanted to be able to read at three in the morning.'),
         p('It takes until two. The red thread runs out once, and you finish with a length of black cotton from the same kit, which you tell yourself means nothing.'),
         p('Then you stand back and look at it for a long time.'),
@@ -645,6 +752,23 @@ const noThirdWay: Record<Target10, string> = {
   notes: 'If I had a case she could not laugh at, or no paper to give her at all, there might be a third way. I don’t. Not this time.',
 };
 
+/** The black phone knows how she kept the wall: Mr Pryce has been in (payoff of c10.wall-kept). */
+function wallSeen10(s: GameState): Block[] {
+  const kept = get10(s, 'wall-kept');
+  if (!kept || !c(s, 'c8.pryce')) return [];
+  return [
+    q(
+      'C.',
+      kept === 'open'
+        ? 'Such a pretty wall, darling. Red thread is so old-fashioned. Mr Pryce says you finished it in black.'
+        : kept === 'photo'
+          ? 'Mr Pryce found a door full of pinholes and nothing on it. Clever girl.'
+          : 'Mr Pryce says your wardrobe door is shut. Very wise. Keep it that way.',
+    ),
+    t('He has been in again. Of course he has. I am always on the list.'),
+  ];
+}
+
 function orderBlocks(s: GameState): Block[] {
   const target = target10(s);
   return [
@@ -655,6 +779,7 @@ function orderBlocks(s: GameState): Block[] {
     q('C.', 'Maya Reyes. Compliance, level three. Her clearance renews in nine days. Renewals are such a formality. I would like one small thing from you, darling. Consider it a kindness to us both.'),
     t('Maya. She said Maya’s name. Nobody on that side of the table should know Maya’s name.'),
     p('Then nothing, for a whole minute, while you stand in the hall in your stockinged feet. She is letting you read it twice.'),
+    ...wallSeen10(s),
     q('C.', asks[target](s)),
     t(counterReady10(s, target) ? 'There might be a third way. There usually is, if you have built anything worth spending.' : noThirdWay[target]),
   ];
@@ -1184,6 +1309,17 @@ function answerBlocks(s: GameState): Block[] {
           q('Maya', 'It didn’t feel like a few weeks. That’s what I kept thinking, sitting there. It hasn’t felt like a few weeks for a while.'),
           q('Maya', 'I’ve got savings. I’ve got a union rep who owes me a drink. I’ll be fine for a month.'),
           p('She says it to her noodles, not to you.'),
+          ...(['stranger', 'friend', 'window'].includes(c(s, 'c8.wake') ?? '')
+            ? [
+                q(
+                  'Maya',
+                  c(s, 'c8.wake') === 'window'
+                    ? 'I took his mug to the Anchor, you know. For the drinks. I think I saw you outside the window. I didn’t say.'
+                    : 'I took his mug to the Anchor, you know. For the drinks. Daniel cried. You were there. I saw you.',
+                ),
+                p('She does not ask why you were there. She puts it on the counter between you and leaves it there.'),
+              ]
+            : []),
           q('Maya', 'I just want to know who hates me enough to do it properly.'),
           t('Nobody hates you, Maya. That is what makes it unbearable. You are only the nearest thing to me that she could reach.'),
           t('It is not me she hurt. It is never going to be me.'),
@@ -1193,6 +1329,9 @@ function answerBlocks(s: GameState): Block[] {
           q('Daniel', 'I don’t know what you are to her. I’m only ringing because she won’t, and somebody ought to.'),
           q('You', 'Is she all right?'),
           q('Daniel', 'She walked out of the gate with a box and a cactus and told the guard to have a nice weekend. So, no. She’s Maya.'),
+          ...(c(s, 'c7.daniel') === 'tie'
+            ? [q('Daniel', 'And — the tie thing. On the tram. Somebody used to say that to me. I’ve been thinking about it. I don’t know why I’m telling you.')]
+            : []),
           p('He rings off before you can thank him, which you suspect is the point.'),
           t('She didn’t call me. She kept me out of it. She is protecting me, and I am the reason she needs protecting.'),
         ];
@@ -1392,6 +1531,10 @@ function invitationBlocks(s: GameState): Block[] {
         : 'Some of our clients. She is going to show me to them.',
     ),
     p('You prop it against the pot on the kitchen table and look at it while the kettle boils. You have walked past the Vesper Gallery: a black glass front on the embankment with no name on the door and one painting in the window, changed every month, never for sale.'),
+    ...(c(s, 'c9.table') && c(s, 'c9.club')
+      ? [t('The first Thursday. The book at the Straits Club before lunch, the table for two at Castellane at one, and now the Vesper at eight. Her whole day, and she has put me at the end of it.')]
+      : []),
+    ...(c(s, 'c9.rail') ? [t('Do it before the first Thursday, Sloane said, at the rail. She knew about this before I did.')] : []),
     t('Wear the green. Bring nobody. She has written me a dress code and a guest list, and the guest list is me.'),
   ];
 }
@@ -1436,6 +1579,13 @@ function greenChoices(s: GameState, next: string): C10Choice[] {
       );
       return [
         p('The shop on the hill has three greens. You try all of them, standing in the little curtained room with your hair up and your arms bare, and choose the one that makes you look least like anyone’s idea of you. You pay for it yourself.'),
+        ...(c(x, 'c8.bank') === 'cash'
+          ? [p('You pay in notes from the envelope in the flour jar. The woman at the till counts them twice and looks at you with new respect.')]
+          : c(x, 'c8.bank') === 'new'
+            ? [p('You pay with the building society card from across the river, the only card in your purse whose statements nobody else reads.')]
+            : c(x, 'c8.bank') === 'leave'
+              ? [p('You pay with the card, and watch the machine think about it for a second longer than it should, and know that somebody is watching you buy a dress.')]
+              : []),
         t('In this city, this week, it is the only thing I have done entirely on my own terms.'),
       ];
     }),
@@ -1537,6 +1687,7 @@ export function chapter10Blocks(s: GameState): Block[] {
       p('Under the article there are already four hundred comments. You read nine of them. Three are about your dress. One asks who Celeste Laurent is, and the reply beneath it says only: “Nobody you will ever meet.”'),
       p('Then the phone starts, and does not stop.'),
       p('It rings in your pocket all the way up the stairs: four numbers, taking turns, as if they had agreed an order among themselves. You put it on the kitchen table beside the orchid and let it ring once all the way through, to hear who gives up first. Nobody does.'),
+      ...noonPayoffs10(s),
     ];
   if (s.phase === 'wall')
     return [
@@ -1564,6 +1715,7 @@ export function chapter10Blocks(s: GameState): Block[] {
             ? 'On the way to bed you stop at the wall. The thread from Celeste’s card is tighter than it was. You did that. You leave it.'
             : 'On the way to bed you stop at the wall and look at the inch of bare wood between Celeste’s card and where it used to be. An inch. You could live in an inch.',
       ),
+      ...(c(s, 'c9.kessler') === 'follow' ? [t('Anna Kessler had one season. I have had a few weeks. I intend to have a great deal more than a season.')] : []),
       t('She knows my name. Both of them. And for the first time since the clinic I know exactly what I am being asked to be. That, at least, is something to push against.'),
     ];
   }

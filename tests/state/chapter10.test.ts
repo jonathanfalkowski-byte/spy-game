@@ -115,7 +115,8 @@ it('builds the wall from the debts already in the save, and opens the leverage b
   const built = c10(wall, 'wall-build');
   expect(leverageBoardOpen(built)).toBe(true);
   const { held, holds } = leverageBoard(built);
-  expect(held.map((e) => e.holder)).toEqual(['Celeste Laurent', 'Victoria Sloane', 'The sender', 'Odile Frayne', 'Marcus Chen']);
+  expect(held.map((e) => e.holder)).toEqual(['Celeste Laurent', 'Victoria Sloane', 'The sender', 'Odile Frayne', 'Marcus Chen', 'Mr Pryce (D.P.)']);
+  expect(holds.map((a) => a.id)).toContain('watcher-rent');
   expect(holds.map((a) => a.id)).toContain('inventory');
   expect(text(built)).toContain('VALE, E. · RETURNED TO INVENTORY · REISSUED');
   expect(text(built)).toContain('The leverage board is now in your Records.');
@@ -386,4 +387,50 @@ it('plays Maya’s refusal scene at the counter, and the aftermath of every answ
   const done = walk(c10(countered, 'reply-silence'), ['invite-accept', 'green-black']);
   expect(text(done)).toContain('They are all so like you.');
   expect(text(done)).toContain('You could live in an inch.');
+});
+
+// ── Payoffs: the threads Chapters 7–9 opened ──
+
+it('has Celeste read back the week Mr Pryce reported, the window always and two more', () => {
+  const quiet = walk(start(), ['begin', 'breakfast-go', 'menu-let']);
+  expect(text(quiet)).toContain('You sat in the dark for an hour on Tuesday.');
+  expect(text(quiet)).toContain('Give Ruth my love. She never takes it.');
+  expect(text(quiet)).toContain('I had to say good night to your picture instead.');
+  expect(text(quiet)).not.toContain('Henri tells me');
+  const loud = walk(start({ 'c9.window': 'sign', 'c9.kessler': 'follow', 'c7.robe': 'coats' }), ['begin', 'breakfast-go', 'menu-let']);
+  expect(text(loud)).toContain('in a plastic sleeve. Good morning to you too.');
+  expect(text(loud)).toContain('Poor Anna. She never did learn to sail.');
+  expect(text(loud)).toContain('two sugars, cinnamon on the foam');
+  expect(text(loud)).toContain('It did not take long.');
+});
+
+it('pays the threads off at noon, on the doorstep and on the wall', () => {
+  const noon = walk(start({ 'c8.hack': 'meridian' }), ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed']);
+  expect(text(noon)).toContain('That’s C. The one on the balcony. Whoever you are, be careful.');
+  expect(text(noon)).toContain('Nobody has ever rung about Meridian before.');
+  const called = c10(noon, 'call-sloane');
+  expect(text(called)).toContain('Your friend! In the paper! The one with the key!');
+  const back = c10(called, 'door-back');
+  expect(text(back)).toContain('It is Mr Pryce, in a raincoat the colour of the wall');
+  expect(text(back)).toContain('Ms Laurent’s car is at the corner');
+  const wall = c10(back, 'wall-build');
+  expect(text(wall)).toContain('There is no card for Ruth Adair.');
+  const order = c10(wall, 'wall-open');
+  expect(text(order)).toContain('Mr Pryce says you finished it in black.');
+});
+
+it('lets Maya, Daniel, the first Thursday, the bank and the last one come back', () => {
+  const close = { 'case.strength': 'strong', 'c6.maya': 'restored', 'c6.maya-knows': 'in-person' };
+  const refused = answer(toOrder(start(close)), 'order-refuse');
+  expect(text(refused)).toContain('I think I saw you outside the window. I didn’t say.');
+  const away = answer(toOrder(start({ 'c7.daniel': 'tie' })), 'order-refuse');
+  expect(text(away)).toContain('And — the tie thing. On the tram.');
+  const invited = c10(refused, 'maya-part');
+  expect(text(invited)).toContain('Her whole day, and she has put me at the end of it.');
+  expect(text(invited)).toContain('Do it before the first Thursday, Sloane said');
+  const dressed = walk(invited, ['invite-accept', 'green-buy']);
+  expect(text(dressed)).toContain('somebody is watching you buy a dress');
+  const lastOne = walk(c10(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'), ids(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'))[0]), ['invite-accept', 'green-black']);
+  const done = lastOne.phase === 'invitation' ? c10(lastOne, 'close-end') : lastOne;
+  expect(text(done)).toContain('Anna Kessler had one season.');
 });

@@ -251,3 +251,23 @@ Set pieces (2026-09-24): the breakfast, then every job, then the remaining scene
 the calls, the doorstep, the wall and where she keeps it, the courier, Maya's counter scene and every
 aftermath, the invitation, the evenings, the close). Measured on the golden paths: **~4.6–4.8k
 words**; engaged paths with a second job moment and an evening run longer.
+
+## Payoffs of Chapters 7–9 (2026-09-25)
+
+Each reads the save and says nothing when its flag is absent. The refusal's cost is still only
+Maya's clearance.
+
+| Where | Pays off | What happens |
+|---|---|---|
+| Breakfast, Celeste's reading of the week | Pryce's reports (`c9.window`, then two of `c9.ruth`, `c9.kessler`, `c9.auction`, `c9.table`, `c8.photos`, `c9.tailor`) | "I got your message… in a plastic sleeve. Good morning to you too." / "Mr Pryce tells me you waved." / "You sat in the dark for an hour"; "Give Ruth my love. She never takes it."; "Poor Anna. She never did learn to sail."; the portrait in her hall; Henri at Castellane; "Lotte gave you the balcony… I took it"; Mr Anand's centimetre |
+| The coffee | `c7.robe = coats` | two sugars and cinnamon meets the receipt in the coat: "It did not take long." |
+| Noon | `c8.lotte-meet`, `c8.hack` | Lotte: "That's C."; the Courier ran her line, or Collis rings about Meridian's lawyers |
+| The doorstep | `c8.neighbour`, `c8.pryce` | Mrs Kowalczyk: "Your friend! The one with the key!"; the man in the alley is Mr Pryce |
+| The wall | `c9.ruth` and the board | no card for Ruth, as promised; the board gains Mr Pryce (D.P.) as a holder, and the watcher's rent, the HELD card, the photographs, Kessler and the lawyer as assets |
+| The black phone | `c10.wall-kept` with `c8.pryce` | "Mr Pryce says you finished it in black." / "a door full of pinholes" / "your wardrobe door is shut" |
+| Refusal | `c8.wake`, `c7.daniel = tie` | Maya: "I took his mug to the Anchor… I saw you."; Daniel remembers the tie |
+| The invitation | `c9.table` + `c9.club`, `c9.rail` | her whole first Thursday, with Evelynn at the end of it; Sloane's "before the first Thursday" |
+| The green, bought | `c8.bank` | notes from the flour jar, the building-society card, or the card somebody watches |
+| The close | `c9.kessler = follow` | "Anna Kessler had one season… I intend to have a great deal more than a season." |
+
+Golden paths: Chapter 10 now ~4.9–5.1k words.

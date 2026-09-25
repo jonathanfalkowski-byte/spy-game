@@ -54,6 +54,13 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
     held.push({ holder: 'Odile Frayne', holds: ['An advance against the campaign', 'Your diary'], status: 'open', source: 'The week you couldn’t pay' });
   if (c(s, 'own.marcus') === 'owed')
     held.push({ holder: 'Marcus Chen', holds: ['A debt. He always collects.'], status: 'open', source: 'A hotel bar that closes at six' });
+  if (c(s, 'c8.pryce'))
+    held.push({
+      holder: 'Mr Pryce (D.P.)',
+      holds: ['A key to your flat', 'Your window, your boiler, her post', 'A pair of binoculars across the gap'],
+      status: 'open',
+      source: 'Property Services, and the flat opposite',
+    });
 
   const holds: LeverageAsset[] = [];
   const strength = c(s, 'case.strength');
@@ -64,6 +71,12 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'c8.list') === 'copied') holds.push({ id: 'list', label: 'Meridian’s client list, copied three ways', source: 'The night you got over the wall' });
   if (c(s, 'c6.photo-custody') === 'phone') holds.push({ id: 'leaf', label: 'The ledger leaf, photographed and kept', source: 'Your own phone' });
   if (s.mission.capture?.owner === 'Evelyn' || s.mission.token === 'evelyn') holds.push({ id: 'glass-house', label: 'What you carried out of the Glass House yourself', source: 'The Glass House' });
+  if (c(s, 'c9.rent')) holds.push({ id: 'watcher-rent', label: 'The watcher’s rent: L.S.F. Facilities, the Laurent fund’s own company', source: 'The building opposite' });
+  if (c(s, 'c7.bundle') === 'card') holds.push({ id: 'held', label: 'D.P.’s HELD card: her post, kept fourteen months and released on instruction', source: 'The post room' });
+  if (c(s, 'c8.photos') === 'all') holds.push({ id: 'photos', label: 'Nine photographs from Emerald Hill, and the tall woman whose face is turned away', source: 'Lotte' });
+  else if (c(s, 'c8.photos') === 'one') holds.push({ id: 'photos', label: 'One photograph: her, laughing on a balcony in Singapore', source: 'Lotte' });
+  if (c(s, 'c9.kessler') === 'follow') holds.push({ id: 'kessler', label: 'Anna Kessler: the last one, one season, no family', source: 'The periodicals room' });
+  if (c(s, 'c9.lawyer') === 'retain') holds.push({ id: 'lawyer', label: 'Nadia Brandt, when you are ready and not a day before', source: 'Above the locksmith’s' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };
