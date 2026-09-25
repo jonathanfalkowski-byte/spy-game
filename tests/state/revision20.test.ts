@@ -10,7 +10,7 @@ import { rev19Routes, toRevision20 } from '../rev20-ledger';
 import { SLOANE_DOUBT_BELIEF } from '../../src/content/sloane-standing';
 
 beforeEach(() => {
-  for (const n of [6, 7, 8, 9, 10, 11, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 10, 11, 12, 13, 14]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
 });
 afterEach(() => vi.unstubAllEnvs());
 

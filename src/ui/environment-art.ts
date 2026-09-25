@@ -231,6 +231,14 @@ const byNode: Record<string, Key> = {
   'chapter13.after': 'car',
   'chapter13.morning': 'apartmentDay',
   'chapter13.complete': 'apartmentNight',
+  // Chapter 14 (stand-ins until EVE Art's frames: Sloane under the wall, Maya's kitchen, the reading room, the fire escape).
+  'chapter14.door': 'apartmentNight',
+  'chapter14.order': 'apartmentDay',
+  'chapter14.maya': 'apartmentDay',
+  'chapter14.answer': 'apartmentNight',
+  'chapter14.sunday': 'reviewRoom',
+  'chapter14.after': 'rooftop',
+  'chapter14.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

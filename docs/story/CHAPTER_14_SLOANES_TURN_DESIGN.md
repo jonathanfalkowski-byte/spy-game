@@ -6,7 +6,9 @@ Design authority: [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) §4 (Sloa
 handed a product her vendor had already scored uncontrollable; on the own-power lane she is **the door not taken**),
 [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3 and §11, [BEAT_MAP.md](BEAT_MAP.md) (Act III),
 [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md) (thrilling, erotic, fun).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–13 (`VITE_EVE_CHAPTER14`, content revision
+Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_14_SLOANES_TURN_SCRIPT.md](scripts/CHAPTER_14_SLOANES_TURN_SCRIPT.md), code: `src/content/chapter14.ts`.
+~2.0–2.3k words on the golden paths (deepening follows). Gated like Chapters 6–13 (`VITE_EVE_CHAPTER14`, content revision
 ≥ 19), entered from an own-power `chapter13.complete`.
 
 ---

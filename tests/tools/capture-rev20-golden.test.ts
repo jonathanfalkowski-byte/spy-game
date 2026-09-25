@@ -10,7 +10,7 @@ import { rev19Routes, toRevision20 } from '../rev20-ledger';
 /** Skipped by default. EVE_CAPTURE_REV20=1 npx vitest run tests/tools/capture-rev20-golden.test.ts
  * rewrites tests/fixtures/rev20-golden-ledgers.json. Recapture only for a deliberate revision-20 change. */
 it.skipIf(!process.env.EVE_CAPTURE_REV20)('captures the revision-20 golden ledgers', () => {
-  for (const n of [6, 7, 8, 9, 10, 11, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 10, 11, 12, 13, 14]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
   const routes = rev19Routes.map(([name, ledger]) => {
     const r20 = toRevision20(ledger);
     const state = replay(r20, 20);
