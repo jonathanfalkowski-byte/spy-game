@@ -8,9 +8,9 @@ import { newGameState } from '../../src/state/reducer';
 
 /** The restructuring pass (2026-09-25): each sequence is a phase with its own title, place, node and art stand-in. */
 const sequences = [
-  'chapter7.held', 'chapter7.street', 'chapter7.lift', 'chapter7.grey', 'chapter7.effects', 'chapter7.night',
-  'chapter8.work', 'chapter8.fireescape', 'chapter8.emerald', 'chapter8.wake', 'chapter8.number14', 'chapter8.call',
-  'chapter9.names', 'chapter9.table', 'chapter9.auction', 'chapter9.cafe', 'chapter9.river', 'chapter9.counsel',
+  'chapter7.held', 'chapter7.street', 'chapter7.lift', 'chapter7.wardrobe', 'chapter7.grey', 'chapter7.effects', 'chapter7.night',
+  'chapter8.work', 'chapter8.maintenance', 'chapter8.fireescape', 'chapter8.emerald', 'chapter8.wake', 'chapter8.number14', 'chapter8.call',
+  'chapter9.names', 'chapter9.table', 'chapter9.auction', 'chapter9.cafe', 'chapter9.river', 'chapter9.archive', 'chapter9.counsel',
 ];
 
 it.each(sequences)('gives the %s sequence a scene of its own', (node) => {

@@ -16,6 +16,7 @@ export const chapter7Definitions: Record<string, C7Scene> = {
   held: { title: 'Held', place: 'NOON · THE POST ROOM', blocks: [] },
   street: { title: 'His Street', place: 'AFTERNOON · ACROSS THE RIVER', blocks: [] },
   lift: { title: 'The Lift', place: '19:00 · YOUR BUILDING', blocks: [] },
+  wardrobe: { title: 'Her Wardrobe', place: 'NIGHT · THE WARDROBE', blocks: [] },
   grey: { title: 'The Grey Coat', place: 'MORNING · FOLLOWING HIM', blocks: [] },
   pursue: { title: 'Pulling the Thread', place: '· THE PATIENT WAY', blocks: [] },
   close: { title: 'The First Edge', place: '· WHAT YOU FOUND', blocks: [] },

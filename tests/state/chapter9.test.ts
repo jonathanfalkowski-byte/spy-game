@@ -24,7 +24,7 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark', 'ruth-letter', 'ruth-you', 'ruth-silent', 'walk-adrian', 'rail-quiet'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark', 'ruth-letter', 'ruth-you', 'ruth-silent', 'walk-adrian', 'rail-quiet', 'fiche-faces', 'kessler-stop'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 10 && !(id && ids(x).includes(id)); i++) {
@@ -328,7 +328,7 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   expect(text(asked)).toContain('You looked at her.');
 
   // Sloane comes first on the own-power road; the lawyer follows her.
-  const resolved = walk(walk(hub(), ['assemble-name', 'assemble-stop']), ['rent-agent', 'window-dark', 'sloane-nothing', 'walk-adrian', 'rail-quiet']);
+  const resolved = walk(walk(hub(), ['assemble-name', 'assemble-stop']), ['rent-agent', 'window-dark', 'sloane-nothing', 'walk-adrian', 'rail-quiet', 'fiche-faces', 'kessler-stop']);
   expect(resolved.phase).toBe('counsel');
   expect(text(resolved)).toContain('Are you ready to be Exhibit A, Ms Vale?');
   expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
@@ -366,8 +366,11 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   const trust = choose9(box, 'rail-trust');
   expect([trust.choices['c9.walk'], trust.choices['c9.rail'], trust.choices['c9.walk-open']]).toEqual(['box', 'trust', undefined]);
   expect(text(trust)).toContain('which is the most I have ever been able to do for anybody');
-  expect(text(trust)).toContain('Are you ready to be Exhibit A, Ms Vale?');
-  expect(ids(trust)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
+  // The Last One comes between the river and the lawyer.
+  expect(trust.phase).toBe('archive');
+  const counsel = walk(trust, ['fiche-faces', 'kessler-stop']);
+  expect(text(counsel)).toContain('Are you ready to be Exhibit A, Ms Vale?');
+  expect(ids(counsel)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
 
   // Other lanes: no club, no Sloane; straight to the lawyer.
   const outside = walk(complete7('outside-placeholder'), ['begin-placeholder']);
@@ -384,7 +387,8 @@ it('follows the watcher’s rent to the Laurent fund, then the window, then Sloa
   expect([post.choices['c9.rent'], post.facts.includes('c9.watcher-rent')]).toEqual(['post', true]);
   expect(ids(post)).toEqual(['window-wave', 'window-sign', 'window-dark']);
   // The knock: the man from the lift, named if she rang at Property Services in Chapter 7.
-  expect(text(choose9(resolve, 'rent-knock'))).toContain('It is the man from the lift.');
+  // He named himself at her door in Chapter 8; only a save that never met him leaves him unnamed.
+  expect(text(choose9(withFlags(resolve, { 'c8.pryce': undefined, 'c7.grey-door': undefined }), 'rent-knock'))).toContain('It is the man from the lift.');
   expect(text(choose9(withFlags(resolve, { 'c7.grey-door': 'ring' }), 'rent-knock'))).toContain('It is Mr Pryce');
   const sign = choose9(post, 'window-sign');
   expect(text(sign)).toContain('TELL HER I SAID GOOD MORNING');
@@ -412,4 +416,26 @@ it('works the eleven names to Ruth Adair, who knows a reissue when she sees one'
   expect(ids(told)).toEqual(['arrive-begin']);
   // No case weight.
   expect(Object.keys(told.choices).filter((k) => k.startsWith('c9.took.'))).toEqual([]);
+});
+
+it('follows Ruth’s “last one” to the microfiche and Anna Kessler, before the lawyer', () => {
+  const rail = walk(hub(), ['assemble-name', 'assemble-stop', 'rent-agent', 'window-dark', 'sloane-nothing', 'walk-adrian']);
+  const library = choose9(rail, 'rail-quiet');
+  expect(library.phase).toBe('archive');
+  expect(text(library)).toContain('Better than the last one I saw.');
+  expect(ids(library)).toEqual(['fiche-faces', 'fiche-words', 'fiche-ruth']);
+  const found = choose9(library, 'fiche-ruth');
+  expect(text(found)).toContain('Anna Kessler, the woman nobody can place, at the Harbour Ball.');
+  expect(ids(found)).toEqual(['kessler-follow', 'kessler-stop']);
+  const followed = choose9(found, 'kessler-follow');
+  expect([followed.phase, followed.facts.includes('c9.kessler')]).toEqual(['archive', true]);
+  expect(text(followed)).toContain('She had no family.');
+  expect(ids(followed)).toEqual(['last-case', 'last-screen', 'last-leave']);
+  const printed = choose9(followed, 'last-case');
+  expect([printed.phase, printed.choices['c9.last']]).toEqual(['counsel', 'case']);
+  expect(text(printed)).toContain('Are you ready to be Exhibit A, Ms Vale?');
+  const stopped = choose9(found, 'kessler-stop');
+  expect([stopped.phase, stopped.facts.includes('c9.kessler')]).toEqual(['counsel', false]);
+  // No case weight.
+  expect(printed.choices['case.strength']).toBe(rail.choices['case.strength']);
 });

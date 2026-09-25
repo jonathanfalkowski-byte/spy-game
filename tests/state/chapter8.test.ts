@@ -21,7 +21,7 @@ const choose8 = (s: GameState, id: string) => {
   return next;
 };
 /** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
-const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave', 'key-ring', 'board-leave', 'spare-keep', 'hack-door', 'call-down'];
+const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave', 'key-ring', 'board-leave', 'spare-keep', 'hack-door', 'call-down'];
 const c8 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 10 && !ids(x).includes(id); i++) {
@@ -262,7 +262,8 @@ it('plays the working week: the shoot where Laurent’s money watches, or the de
   expect(ids(held)).toEqual(['bank-cash', 'bank-new', 'bank-leave']);
   const cash = choose8(held, 'bank-cash');
   expect([cash.choices['c8.bank'], cash.choices['own.cash']]).toEqual(['cash', held.choices['own.cash']]);
-  expect(ids(cash)).toEqual(['bishop-stare', 'bishop-photo', 'bishop-cat']);
+  // Maintenance comes on Thursday, after the bank.
+  expect(ids(cash)).toEqual(['pryce-in', 'pryce-chain', 'pryce-away']);
 
   const shoot = walk(c8(withFlags(complete7('own-records-stop'), { ...clean, 'own.campaign': 'terms' }), 'begin'), ['breakin-report', 'money-owing']);
   expect(text(shoot)).toContain('Madame Laurent’s office.');
@@ -294,7 +295,7 @@ it('has the neighbour meet her friend with a key, and a reporter at the door if 
 
 it('sends her after Bishop onto the fire escape, and answers the landline at three', () => {
   const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
-  const escape = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave']);
+  const escape = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner']);
   expect(text(escape)).toContain('and see the binoculars');
   expect(ids(escape)).toEqual(['bishop-stare', 'bishop-photo', 'bishop-cat']);
   const photo = choose8(escape, 'bishop-photo');
@@ -378,4 +379,21 @@ it('takes Adrian’s spare key back to Number 14, where even his hiding place ha
   const broke = choose8(choose8(street, 'key-in'), 'board-leave');
   expect(text(broke)).toContain('This is what they did to me. Now I am doing it to her.');
   expect(text(choose8(broke, 'spare-kemi'))).toContain('CHANGE YOUR LOCK. Unsigned.');
+});
+
+it('sends Mr Pryce to service her boiler on Thursday, and she knows him at the binoculars on Saturday', () => {
+  const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
+  const door = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave']);
+  expect(door.phase).toBe('maintenance');
+  expect(text(door)).toContain('Pryce, Ms Vale. From the agents.');
+  expect(ids(door)).toEqual(['pryce-in', 'pryce-chain', 'pryce-away']);
+  const inside = choose8(door, 'pryce-in');
+  expect(ids(inside)).toEqual(['talk-owner', 'talk-window', 'talk-tea']);
+  const tea = choose8(inside, 'talk-tea');
+  expect([tea.phase, tea.choices['c8.pryce'], tea.choices['c8.pryce-talk']]).toEqual(['fireescape', 'in', 'tea']);
+  expect(text(tea)).toContain('You learn not to have anything.');
+  expect(text(tea)).toContain('It is Mr Pryce. He has taken off the grey coat.');
+  const away = choose8(door, 'pryce-away');
+  expect([away.phase, away.choices['c8.pryce']]).toEqual(['fireescape', 'away']);
+  expect(text(away)).toContain('For as long as it is.');
 });

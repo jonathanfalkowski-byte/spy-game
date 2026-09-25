@@ -289,3 +289,19 @@ dark. "It is still his key. It is not still his door."
 | `call` | The Landline | 03:10 · THE HALL | Mrs Tan, then `close-end` |
 
 Choice ids are unchanged; `c8.meridian` is still set on entering `advance`.
+
+## Sequence: Maintenance (2026-09-25)
+
+Its own phase, `maintenance` (Maintenance · THURSDAY · YOUR KITCHEN), after the bank and before
+Bishop. "Pryce, Ms Vale. From the agents. They've asked me to look at your boiler." ("My boiler is
+fine. He knows my boiler is fine.")
+1. **At the door** (`c8.pryce`): **pryce-in** (he goes straight to the boiler cupboard without
+   asking where it is) · **pryce-chain** (neutral; four inches of door) · **pryce-away** ("It's your
+   flat, Ms Vale. For as long as it is."; ends the sequence).
+2. **What she asks** (`c8.pryce-talk`): **talk-owner** (neutral; "I get a list on a Monday and I do
+   the list… You're always on the list, Ms Vale.") · **talk-window** ("Somebody reported it
+   sticking… No. Somebody did.") · **talk-tea** ("They ask, afterwards, whether I had anything.
+   Thirty years of other people's boilers."). SERVICED, D.P., on the boiler cupboard.
+
+He names himself at the door either way: on Saturday "It is Mr Pryce" at the binoculars, and
+Chapter 9's knock names him.

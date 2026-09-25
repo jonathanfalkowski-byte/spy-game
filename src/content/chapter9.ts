@@ -40,7 +40,13 @@
  * its lead-in that phase's opening: arrive (the morning, the Straits Club) → names (Ruth Adair) → table (the floor, the
  * tailor, Castellane) → auction (if the Aster piece ran) → assemble (the hub) → resolve (the band; the watcher's rent,
  * the window) → cafe (Sloane) → river (the walk) → counsel (the lawyer) → complete. Other lanes keep arrive → assemble
- * → resolve (the lawyer) → complete. Choice ids are unchanged. */
+ * → resolve (the lawyer) → complete. Choice ids are unchanged.
+ * Sequence (2026-09-25), "The Last One" (own-power, its own phase between the river and the lawyer): Ruth's "better
+ * than the last one I saw", followed to the library's microfiche. How she searches (c9.fiche = faces | words | ruth);
+ * Anna Kessler, "the woman nobody can place", one season six years ago with a tall woman with cropped hair at her
+ * shoulder; whether she follows the name forward (c9.kessler = follow | stop); if she does, a sailing accident two
+ * years later, "She had no family" (a fact), and what she does then (c9.last = case | screen | leave). Kessler's fate
+ * is left open (RETIRED or CLOSED) — an invention for the owner's review. No case weight. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -133,6 +139,7 @@ export const chapter9Definitions: Record<string, C9Scene> = {
   resolve: { title: 'What You Can Carry', place: '· THE CASE', blocks: [] },
   cafe: { title: 'The Watchers’ Table', place: 'MORNING · THE CAFÉ OUTSIDE', blocks: [] },
   river: { title: 'The River Walk', place: 'MORNING · THE EMBANKMENT', blocks: [] },
+  archive: { title: 'The Last One', place: 'AFTERNOON · THE PERIODICALS ROOM', blocks: [] },
   counsel: { title: 'Exhibit A', place: 'AFTERNOON · ABOVE THE LOCKSMITH’S', blocks: [] },
   complete: { title: 'The Room Ahead', place: '· THAT NIGHT', blocks: [] },
 };
@@ -374,7 +381,7 @@ const rentFound = (s: GameState): Block[] => [
 const RENT_FACT = 'The flat opposite Evelynn’s, where a man keeps binoculars on her window, is let to L.S.F. Facilities Ltd, a company wholly owned by the Laurent Sovereign Fund.';
 
 function rentChoices(s: GameState): C9Choice[] {
-  const pryce = s.choices['c7.grey-door'] === 'ring';
+  const pryce = s.choices['c7.grey-door'] === 'ring' || !!s.choices['c8.pryce'];
   const find = (id: string, label: string, hint: string, body: Block[], source: string) =>
     offer9('rent-' + id, label, hint, 'resolve', (x) => {
       set9(x, 'rent', id);
@@ -515,7 +522,7 @@ function walkChoices(s: GameState): C9Choice[] {
     ];
   }
   const rail = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('rail-' + id, label, hint, 'counsel', (x) => {
+    offer9('rail-' + id, label, hint, 'archive', (x) => {
       delete x.choices['c9.walk-open'];
       set9(x, 'rail', id);
       return [
@@ -536,6 +543,77 @@ function walkChoices(s: GameState): C9Choice[] {
       p('You say nothing, and stand beside her at the rail. After a while she takes her gloves off, and looks at her hands, and puts the gloves back on, one finger at a time.'),
       q('Sloane', 'Thank you.'),
       p('You do not ask what for.'),
+    ]),
+  ];
+}
+
+// ── The Last One (sequence): the microfiche, and Anna Kessler ──
+
+const archiveLead: Block[] = [
+  p('You have been carrying one sentence since the harbour, the way you carry a stone in a shoe. Better than the last one I saw.'),
+  p('The periodicals room of the central library is in the basement, under a ceiling of pipes, and it still keeps the society pages on microfiche, because nobody has ever thought them worth the money to put anywhere better. You sign in at the desk under the name on your passport and take the reader at the end, by the radiator, where nobody walking past can see the screen.'),
+  t('If they did it once before, there will be a face that arrived from nowhere and then went back there. Society pages are very good at arrivals. They are not interested in where anybody goes.'),
+];
+const KESSLER_FACT = 'Anna Kessler, “the woman nobody can place”, had one Harbour season six years ago, with a tall woman with cropped hair at her shoulder in three photographs. Two years later she died in a sailing accident off the south coast. “She had no family.”';
+
+function archiveChoices(s: GameState): C9Choice[] {
+  if (!get9(s, 'fiche')) {
+    const search = (id: string, label: string, hint: string, body: Block[]) =>
+      offer9('fiche-' + id, label, hint, 'archive', (x) => {
+        set9(x, 'fiche', id);
+        return [
+          ...body,
+          q('The caption', 'Anna Kessler, the woman nobody can place, at the Harbour Ball.'),
+          t(get5(x, 'published') ? 'The woman nobody can place. They said it about me too. I thought it was mine.' : 'The woman nobody can place. A good phrase. Somebody has been using it for years.'),
+          p('She is tall, dark-haired, beautifully dressed, and very slightly wrong in every photograph, the way a translation is wrong: the smile arriving a beat after the joke. In three of them, out of focus at her shoulder, there is a tall woman with her hair cropped close.'),
+          p('She has one season. Eleven photographs, a charity, a yacht, a rumour about a minister. Then nothing.'),
+        ];
+      });
+    return [
+      search('faces', 'Look for faces, not names', 'A face that arrives from nowhere stands a particular way.', [
+        p('You go through six years of charity dinners at speed, faces sliding past under the lamp, until one stops you: not because you know it, but because you know the way it stands.'),
+      ]),
+      search('words', 'Look for the words', 'From nowhere. Mysterious. Nobody can place her.', [
+        p('You search the captions instead, for the words they use about women like you: from nowhere, mysterious, nobody can place. You find them six years back, in a gossip column, under a photograph.'),
+      ]),
+      search('ruth', 'Look for Ruth', 'She saw the last one. She will be in a picture somewhere near it.', [
+        p('You look for Ruth Adair: a trade dinner, a function, a younger Ruth at the edge of something. You find her six years ago, straight-backed at the edge of a group, and beside her, looking straight at the camera, a woman you do not know.'),
+      ]),
+    ];
+  }
+  if (!get9(s, 'kessler'))
+    return [
+      offer9('kessler-follow', 'Follow her name forward', 'Year by year. Where did she go?', 'archive', (x) => {
+        set9(x, 'kessler', 'follow');
+        note9(x, 'kessler', KESSLER_FACT, 'The society pages and a later paragraph, on microfiche');
+        return [
+          p('You follow the name forward, year by year, through the index cards in their long wooden drawers. Nothing. Nothing. Then, two years later, page thirty-one, a paragraph at the bottom of a column:'),
+          q('The paragraph', 'Anna Kessler, 34, a fixture of the Harbour season some years ago, has died in a sailing accident off the south coast. Her body was not recovered. She had no family.'),
+          t('She had no family. No school, no flat, no dentist. RETIRED, or CLOSED. I did not look at which lines on the list said which. I should have.'),
+        ];
+      }),
+      offer9('kessler-stop', 'Stop there', 'You know how stories like hers end. You don’t need to read it.', 'counsel', (x) => {
+        set9(x, 'kessler', 'stop');
+        return [
+          p('You stop there. You switch the reader off, and the light inside it takes a long time to fade, and her face fades with it, laughing at somebody outside the frame.'),
+          t('I know how her story ends. I don’t need to read it to know. I need to make sure it does not end mine.'),
+        ];
+      }),
+    ];
+  const last = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('last-' + id, label, hint, 'counsel', (x) => {
+      set9(x, 'last', id);
+      return body;
+    });
+  return [
+    last('case', 'Print it, and put it in the envelope', 'It won’t make the case stronger. It will make it heavier.', [
+      p('You print both pages, the season and the paragraph, and they go into the envelope with the rest. They do not make the case stronger. They make it heavier.'),
+    ]),
+    last('screen', 'Look at your reflection over hers', 'Switch it off slowly.', [
+      p('When you switch the reader off the screen goes dark slowly, and for a moment your own reflection lies over her photograph: two tall women, both beautifully dressed, both very slightly wrong.'),
+    ]),
+    last('leave', 'Leave, now', 'Up the stairs. Into daylight.', [
+      p('You leave the reader on, with her face on it, for the next person, and go up the stairs into daylight too fast, and stand on the library steps breathing as if you had run.'),
     ]),
   ];
 }
@@ -627,6 +705,7 @@ export function chapter9Blocks(s: GameState): Block[] {
       : floor9;
   if (s.phase === 'cafe') return sloaneLead(s);
   if (s.phase === 'river') return walkLead;
+  if (s.phase === 'archive') return archiveLead;
   if (s.phase === 'counsel') return lawyerLead;
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
@@ -1182,6 +1261,7 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.phase === 'resolve' && ownPower(s)) return get9(s, 'rent') ? windowChoices() : rentChoices(s);
   if (s.phase === 'cafe') return sloaneChoices();
   if (s.phase === 'river') return walkChoices(s);
+  if (s.phase === 'archive') return archiveChoices(s);
   if (s.phase === 'resolve' || s.phase === 'counsel')
     return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices(s);
   return [];

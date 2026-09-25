@@ -37,6 +37,9 @@ export const GATED_DEFAULTS = [
   // Sequence, the Post Room: ask the porter; leave the bundle where it is.
   'chapter7.post-ask',
   'chapter7.bundle-leave',
+  // Sequence, Her Wardrobe: the evening dresses; put everything back.
+  'chapter7.robe-gowns',
+  'chapter7.keep-back',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -45,6 +48,9 @@ export const GATED_DEFAULTS = [
   // New scenes: let the work answer, leave the account where it is.
   'chapter8.work-hold',
   'chapter8.bank-leave',
+  // Sequence, Maintenance: talk through the chain; ask who he works for.
+  'chapter8.pryce-chain',
+  'chapter8.talk-owner',
   // Round 2: thank the neighbour and say nothing; close the door on the reporter.
   'chapter8.neighbour-thank',
   'chapter8.hack-door',
@@ -94,6 +100,9 @@ export const GATED_DEFAULTS = [
   // Sequence, the River Walk: ask what he was like; stand beside her.
   'chapter9.walk-adrian',
   'chapter9.rail-quiet',
+  // Sequence, the Last One: look for faces; stop there.
+  'chapter9.fiche-faces',
+  'chapter9.kessler-stop',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

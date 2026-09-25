@@ -167,6 +167,7 @@ const byNode: Record<string, Key> = {
   'chapter7.held': 'recordsCounter',
   'chapter7.street': 'shoppingStreet',
   'chapter7.lift': 'elevator',
+  'chapter7.wardrobe': 'wardrobe',
   'chapter7.grey': 'shoppingStreet',
   'chapter7.pursue': 'publicRecords',
   'chapter7.close': 'apartmentNight',
@@ -176,6 +177,7 @@ const byNode: Record<string, Key> = {
   // Chapter 8 (the Helix room on the executive road is on EVE Art's gap list; advance keeps the apartment).
   'chapter8.cost': 'apartmentDay',
   'chapter8.work': 'shoppingStreet',
+  'chapter8.maintenance': 'apartmentDay',
   'chapter8.fireescape': 'apartmentDay',
   'chapter8.leverage': 'phone',
   'chapter8.advance': 'apartmentNight',
@@ -194,6 +196,7 @@ const byNode: Record<string, Key> = {
   'chapter9.resolve': 'apartmentNight',
   'chapter9.cafe': 'shoppingStreet',
   'chapter9.river': 'shoppingStreet',
+  'chapter9.archive': 'publicRecords',
   'chapter9.counsel': 'publicRecords',
   'chapter9.complete': 'apartmentNight',
   // Chapter 10 (stand-ins until EVE Art's Chapter 10 frames: the Lindqvist, the wall, the archive).

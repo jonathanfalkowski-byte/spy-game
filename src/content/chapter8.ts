@@ -37,7 +37,11 @@
  * Restructuring pass (2026-09-25): each sequence is its own phase with its own title and place, its lead-in that
  * phase's opening: cost (break-in, neighbour, money) → work (the shoot or the desk; the bank) → fireescape (Bishop) →
  * leverage → advance (the list) → emerald (Lotte) → wake → number14 (the spare key) → close (the reporter, the night)
- * → call (the landline) → complete. Choice ids are unchanged. */
+ * → call (the landline) → complete. Choice ids are unchanged.
+ * Sequence (2026-09-25), "Maintenance" (its own phase, Thursday, after the bank): Mr Pryce at her door with a tool
+ * bag, "to look at your boiler". She lets him in, talks through the chain, or sends him away (c8.pryce = in | chain |
+ * away; away ends it); then what she asks him (c8.pryce-talk = owner | window | tea). He names himself either way, so
+ * Bishop's binoculars (Saturday) and Chapter 9's knock know him. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -90,6 +94,7 @@ const SENDER = 'Unknown sender';
 export const chapter8Definitions: Record<string, C8Scene> = {
   cost: { title: 'The Cost Bites', place: 'DAYS LATER · ON YOUR OWN', blocks: [] },
   work: { title: 'The Working Week', place: 'WEDNESDAY · AT WORK', blocks: [] },
+  maintenance: { title: 'Maintenance', place: 'THURSDAY · YOUR KITCHEN', blocks: [] },
   fireescape: { title: 'Bishop', place: 'SATURDAY · THE FIRE ESCAPE', blocks: [] },
   leverage: { title: 'Over the Wall', place: '· THE CHOICE', blocks: [] },
   advance: { title: 'What It Was Hiding', place: '· THE SHAPE', blocks: [] },
@@ -282,7 +287,8 @@ export function chapter8Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter8') return [];
   if (s.phase === 'cost') return costBlocks(s);
   if (s.phase === 'work') return workLead(s);
-  if (s.phase === 'fireescape') return bishopLead;
+  if (s.phase === 'maintenance') return maintLead;
+  if (s.phase === 'fireescape') return bishopLead(s);
   if (s.phase === 'advance') return advanceBlocks(s);
   if (s.phase === 'emerald') return lotteLead(s);
   if (s.phase === 'wake') return wakeLead;
@@ -653,12 +659,85 @@ function moneyChoices(s: GameState): C8Choice[] {
   ];
 }
 
+// ── Maintenance (sequence): Mr Pryce, in her kitchen ──
+
+const maintLead: Block[] = [
+  p('At four there is a knock, and a voice through the door, pleasant and unhurried: “Maintenance.”'),
+  p('Through the spyhole: a grey coat, a tool bag, a face you have seen in a lift. He waits with his hands folded in front of him, the way men stand at funerals.'),
+  q('Man at the door', 'Pryce, Ms Vale. From the agents. They’ve asked me to look at your boiler.'),
+  t('My boiler is fine. He knows my boiler is fine.'),
+];
+
+function maintChoices(s: GameState): C8Choice[] {
+  const how = get8(s, 'pryce');
+  if (!how)
+    return [
+      offer8('pryce-in', 'Let him in, and watch him work', 'Your kitchen. Your eyes on him the whole time.', 'maintenance', (x) => {
+        set8(x, 'pryce', 'in');
+        return [
+          p('You take the chain off and stand aside. He comes in, wipes his feet twice, and goes straight to the cupboard where the boiler is without asking where it is.'),
+          p('He works with his back to you, unhurried, in his shirtsleeves, the grey coat folded over a kitchen chair. You lean on the counter and watch every single thing his hands do.'),
+        ];
+      }),
+      offer8('pryce-chain', 'Talk through the chain', 'He can service the door, then.', 'maintenance', (x) => {
+        set8(x, 'pryce', 'chain');
+        return [
+          p('You leave the chain on. He does not seem to mind. He puts his tool bag down on the landing and talks to you through four inches of door, as if this were how he always did business, and perhaps it is.'),
+        ];
+      }),
+      offer8('pryce-away', 'Send him away', '“Another time, Mr Pryce.”', 'fireescape', (x) => {
+        set8(x, 'pryce', 'away');
+        return [
+          q('You', 'Another time, Mr Pryce.'),
+          q('Pryce', 'Of course.'),
+          p('He picks up his bag and goes without argument, and at the turn of the stairs he says, not unkindly, over his shoulder:'),
+          q('Pryce', 'It’s your flat, Ms Vale. For as long as it is.'),
+        ];
+      }),
+    ];
+  const inside = how === 'in';
+  const talk = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('talk-' + id, label, hint, 'fireescape', (x) => {
+      set8(x, 'pryce-talk', id);
+      return [
+        ...body,
+        p(
+          inside
+            ? 'He finishes, or pretends to, and packs his bag, and on his way out he peels a small white sticker off a sheet and presses it onto the boiler cupboard: SERVICED, today’s date, D.P.'
+            : 'He hands a small white sticker through the gap in the door instead of coming in: SERVICED, today’s date, D.P. “For the cupboard,” he says. “They like to see one.”',
+        ),
+        t('D.P. On my window, on the shelf in the basement, and now on my boiler. He initials everything he touches. I wonder who reads the initials.'),
+      ];
+    });
+  return [
+    talk('owner', 'Ask who he works for', 'Straight. See how far down the answer goes.', [
+      q('You', 'Who do you work for, Mr Pryce?'),
+      q('Pryce', 'The agents. The agents work for the owner’s office. I’ve never met the owner. Nobody has. I get a list on a Monday and I do the list.'),
+      q('You', 'Am I on the list?'),
+      q('Pryce', 'You’re always on the list, Ms Vale.'),
+    ]),
+    talk('window', 'Ask about the window', 'Somebody fixed it. You never asked anybody to.', [
+      q('You', 'Did you fix my window?'),
+      q('Pryce', 'Somebody reported it sticking.'),
+      q('You', 'I didn’t report it.'),
+      q('Pryce', 'No. Somebody did.'),
+      p(inside ? 'He does not look round from the boiler.' : 'He does not look up from his bag.'),
+    ]),
+    talk('tea', 'Offer him tea', 'He looks as if nobody has offered him anything in years.', [
+      p(inside ? 'You put the kettle on without asking and make two cups. When you hold one out to him he looks at it for a long moment, and does not take it.' : 'You make two cups and hold one out through the gap. He looks at it for a long moment, and does not take it.'),
+      q('Pryce', 'Better not, Ms Vale. They ask, afterwards, whether I had anything. Thirty years of other people’s boilers. You learn not to have anything.'),
+      p('For a moment he looks very tired: the way a man looks who has stood at other people’s windows for a long time and has stopped expecting to be asked in.'),
+    ]),
+  ];
+}
+
 // ── Bishop on the fire escape (new scene, round 3) ──
 
-const bishopLead: Block[] = [
+const bishopLead = (s: GameState): Block[] => [
   p('On Saturday afternoon there is a knock, and Mrs Kowalczyk is on the landing in her slippers, distraught. Bishop is out. Not in the corridor: out, through her kitchen window onto the fire escape, and he is sitting on the iron landing one floor up, washing his face, and she cannot manage the steps any more.'),
   p('You go out through her kitchen window in your stockinged feet. The iron is cold and wet. Bishop watches you come with contempt. You get a hand on him on the landing below the roof, and you are crouched there with an armful of furious cat when you look across the gap between the buildings and see the binoculars.'),
   p('The flat opposite, one floor above yours, has its blind half down. Under the blind, at a table in the window, a man sits with a pair of binoculars resting on a folded newspaper, the way you would rest a cup. They are pointed at your window. He is not using them now. He is looking at you, crouched on a fire escape holding a cat, and he has not yet decided what to do with his face.'),
+  ...(get8(s, 'pryce') ? [p('It is Mr Pryce. He has taken off the grey coat. On Thursday he stood in your kitchen.')] : []),
 ];
 
 function bishopChoices(): C8Choice[] {
@@ -833,7 +912,7 @@ function bankLead(s: GameState): Block[] {
 
 function bankChoices(): C8Choice[] {
   const bank = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('bank-' + id, label, hint, 'fireescape', (x) => {
+    offer8('bank-' + id, label, hint, 'maintenance', (x) => {
       set8(x, 'bank', id);
       return body;
     });
@@ -1199,6 +1278,7 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return moneyChoices(s);
   }
   if (s.phase === 'work') return get8(s, 'work') ? bankChoices() : workChoices(s);
+  if (s.phase === 'maintenance') return maintChoices(s);
   if (s.phase === 'fireescape')
     return get8(s, 'bishop') ? [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')] : bishopChoices();
   if (s.phase === 'leverage') return leverageChoices(s);

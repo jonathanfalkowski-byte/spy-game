@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 233,
+      "events": 237,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "755b174038c2e1c66161f832ca49f4390ffeda8ad1bd38e7dca54193bf1fff61",
+      "saveSha256": "f2d764a0fa9f203f22a7a0f8632bd287eb1426e17d41a6383a7a3b32b5e43e3e",
       "ledger": [
         {
           "sequence": 1,
@@ -1580,7 +1580,7 @@
           "sequence": 198,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-far",
+            "id": "chapter7.robe-gowns",
             "expectedRevision": 197
           }
         },
@@ -1588,7 +1588,7 @@
           "sequence": 199,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-home",
+            "id": "chapter7.keep-back",
             "expectedRevision": 198
           }
         },
@@ -1596,7 +1596,7 @@
           "sequence": 200,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-records",
+            "id": "chapter7.grey-far",
             "expectedRevision": 199
           }
         },
@@ -1604,7 +1604,7 @@
           "sequence": 201,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.records-pay",
+            "id": "chapter7.grey-home",
             "expectedRevision": 200
           }
         },
@@ -1612,7 +1612,7 @@
           "sequence": 202,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.dark-wait",
+            "id": "chapter7.pursue-records",
             "expectedRevision": 201
           }
         },
@@ -1620,7 +1620,7 @@
           "sequence": 203,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-stop",
+            "id": "chapter7.records-pay",
             "expectedRevision": 202
           }
         },
@@ -1628,7 +1628,7 @@
           "sequence": 204,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.daniel-quiet",
+            "id": "chapter7.dark-wait",
             "expectedRevision": 203
           }
         },
@@ -1636,7 +1636,7 @@
           "sequence": 205,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.box-now",
+            "id": "chapter7.pursue-stop",
             "expectedRevision": 204
           }
         },
@@ -1644,7 +1644,7 @@
           "sequence": 206,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.face-down",
+            "id": "chapter7.daniel-quiet",
             "expectedRevision": 205
           }
         },
@@ -1652,7 +1652,7 @@
           "sequence": 207,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.letter-keep",
+            "id": "chapter7.box-now",
             "expectedRevision": 206
           }
         },
@@ -1660,7 +1660,7 @@
           "sequence": 208,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.fan-away",
+            "id": "chapter7.face-down",
             "expectedRevision": 207
           }
         },
@@ -1668,7 +1668,7 @@
           "sequence": 209,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.notes-hide",
+            "id": "chapter7.letter-keep",
             "expectedRevision": 208
           }
         },
@@ -1676,23 +1676,23 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.fan-away",
             "expectedRevision": 209
           }
         },
         {
           "sequence": 211,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.notes-hide",
             "expectedRevision": 210
           }
         },
         {
           "sequence": 212,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.breakin-report",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 211
           }
         },
@@ -1700,7 +1700,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.neighbour-thank",
+            "id": "chapter8.begin",
             "expectedRevision": 212
           }
         },
@@ -1708,7 +1708,7 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.money-owing",
+            "id": "chapter8.breakin-report",
             "expectedRevision": 213
           }
         },
@@ -1716,7 +1716,7 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.work-hold",
+            "id": "chapter8.neighbour-thank",
             "expectedRevision": 214
           }
         },
@@ -1724,7 +1724,7 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bank-leave",
+            "id": "chapter8.money-owing",
             "expectedRevision": 215
           }
         },
@@ -1732,7 +1732,7 @@
           "sequence": 217,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.work-hold",
             "expectedRevision": 216
           }
         },
@@ -1740,7 +1740,7 @@
           "sequence": 218,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bank-leave",
             "expectedRevision": 217
           }
         },
@@ -1748,7 +1748,7 @@
           "sequence": 219,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "id": "chapter8.pryce-chain",
             "expectedRevision": 218
           }
         },
@@ -1756,7 +1756,7 @@
           "sequence": 220,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "id": "chapter8.talk-owner",
             "expectedRevision": 219
           }
         },
@@ -1764,7 +1764,7 @@
           "sequence": 221,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 220
           }
         },
@@ -1772,7 +1772,7 @@
           "sequence": 222,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 221
           }
         },
@@ -1780,7 +1780,7 @@
           "sequence": 223,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 222
           }
         },
@@ -1788,7 +1788,7 @@
           "sequence": 224,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 223
           }
         },
@@ -1796,7 +1796,7 @@
           "sequence": 225,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.list-read",
             "expectedRevision": 224
           }
         },
@@ -1804,7 +1804,7 @@
           "sequence": 226,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 225
           }
         },
@@ -1812,7 +1812,7 @@
           "sequence": 227,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 226
           }
         },
@@ -1820,7 +1820,7 @@
           "sequence": 228,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.photos-back",
             "expectedRevision": 227
           }
         },
@@ -1828,7 +1828,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.wake-window",
             "expectedRevision": 228
           }
         },
@@ -1836,7 +1836,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.hack-door",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 229
           }
         },
@@ -1844,7 +1844,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.key-ring",
             "expectedRevision": 230
           }
         },
@@ -1852,7 +1852,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.board-leave",
             "expectedRevision": 231
           }
         },
@@ -1860,19 +1860,51 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.spare-keep",
             "expectedRevision": 232
+          }
+        },
+        {
+          "sequence": 234,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.hack-door",
+            "expectedRevision": 233
+          }
+        },
+        {
+          "sequence": 235,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.night-sleep",
+            "expectedRevision": 234
+          }
+        },
+        {
+          "sequence": 236,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.call-down",
+            "expectedRevision": 235
+          }
+        },
+        {
+          "sequence": 237,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 236
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 248,
+      "events": 252,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "18b0819aab9064a330260cd97cc675690b248b698f00db89fa2ea9613cfbf4a2",
+      "saveSha256": "f5514e9f7af08a6c66340614298f7d1640c60ad2c27fc40e3523f09ec858f2d5",
       "ledger": [
         {
           "sequence": 1,
@@ -3564,7 +3596,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-far",
+            "id": "chapter7.robe-gowns",
             "expectedRevision": 212
           }
         },
@@ -3572,7 +3604,7 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-home",
+            "id": "chapter7.keep-back",
             "expectedRevision": 213
           }
         },
@@ -3580,7 +3612,7 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-rook",
+            "id": "chapter7.grey-far",
             "expectedRevision": 214
           }
         },
@@ -3588,7 +3620,7 @@
           "sequence": 216,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.rook-trade-debt",
+            "id": "chapter7.grey-home",
             "expectedRevision": 215
           }
         },
@@ -3596,7 +3628,7 @@
           "sequence": 217,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.woman-river",
+            "id": "chapter7.pursue-rook",
             "expectedRevision": 216
           }
         },
@@ -3604,7 +3636,7 @@
           "sequence": 218,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-records",
+            "id": "chapter7.rook-trade-debt",
             "expectedRevision": 217
           }
         },
@@ -3612,7 +3644,7 @@
           "sequence": 219,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.records-pay",
+            "id": "chapter7.woman-river",
             "expectedRevision": 218
           }
         },
@@ -3620,7 +3652,7 @@
           "sequence": 220,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.dark-wait",
+            "id": "chapter7.pursue-records",
             "expectedRevision": 219
           }
         },
@@ -3628,7 +3660,7 @@
           "sequence": 221,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.daniel-quiet",
+            "id": "chapter7.records-pay",
             "expectedRevision": 220
           }
         },
@@ -3636,7 +3668,7 @@
           "sequence": 222,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.box-now",
+            "id": "chapter7.dark-wait",
             "expectedRevision": 221
           }
         },
@@ -3644,7 +3676,7 @@
           "sequence": 223,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.face-down",
+            "id": "chapter7.daniel-quiet",
             "expectedRevision": 222
           }
         },
@@ -3652,7 +3684,7 @@
           "sequence": 224,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.letter-keep",
+            "id": "chapter7.box-now",
             "expectedRevision": 223
           }
         },
@@ -3660,7 +3692,7 @@
           "sequence": 225,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.notes-hide",
+            "id": "chapter7.face-down",
             "expectedRevision": 224
           }
         },
@@ -3668,23 +3700,23 @@
           "sequence": 226,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.letter-keep",
             "expectedRevision": 225
           }
         },
         {
           "sequence": 227,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.notes-hide",
             "expectedRevision": 226
           }
         },
         {
           "sequence": 228,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.breakin-report",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 227
           }
         },
@@ -3692,7 +3724,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.neighbour-thank",
+            "id": "chapter8.begin",
             "expectedRevision": 228
           }
         },
@@ -3700,7 +3732,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.money-owing",
+            "id": "chapter8.breakin-report",
             "expectedRevision": 229
           }
         },
@@ -3708,7 +3740,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.work-hold",
+            "id": "chapter8.neighbour-thank",
             "expectedRevision": 230
           }
         },
@@ -3716,7 +3748,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bank-leave",
+            "id": "chapter8.money-owing",
             "expectedRevision": 231
           }
         },
@@ -3724,7 +3756,7 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.work-hold",
             "expectedRevision": 232
           }
         },
@@ -3732,7 +3764,7 @@
           "sequence": 234,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bank-leave",
             "expectedRevision": 233
           }
         },
@@ -3740,7 +3772,7 @@
           "sequence": 235,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-rook",
+            "id": "chapter8.pryce-chain",
             "expectedRevision": 234
           }
         },
@@ -3748,7 +3780,7 @@
           "sequence": 236,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.debt-true",
+            "id": "chapter8.talk-owner",
             "expectedRevision": 235
           }
         },
@@ -3756,7 +3788,7 @@
           "sequence": 237,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 236
           }
         },
@@ -3764,7 +3796,7 @@
           "sequence": 238,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 237
           }
         },
@@ -3772,7 +3804,7 @@
           "sequence": 239,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.leverage-rook",
             "expectedRevision": 238
           }
         },
@@ -3780,7 +3812,7 @@
           "sequence": 240,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.debt-true",
             "expectedRevision": 239
           }
         },
@@ -3788,7 +3820,7 @@
           "sequence": 241,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.list-read",
             "expectedRevision": 240
           }
         },
@@ -3796,7 +3828,7 @@
           "sequence": 242,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 241
           }
         },
@@ -3804,7 +3836,7 @@
           "sequence": 243,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 242
           }
         },
@@ -3812,7 +3844,7 @@
           "sequence": 244,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.photos-back",
             "expectedRevision": 243
           }
         },
@@ -3820,7 +3852,7 @@
           "sequence": 245,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.wake-window",
             "expectedRevision": 244
           }
         },
@@ -3828,7 +3860,7 @@
           "sequence": 246,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 245
           }
         },
@@ -3836,7 +3868,7 @@
           "sequence": 247,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.key-ring",
             "expectedRevision": 246
           }
         },
@@ -3844,19 +3876,51 @@
           "sequence": 248,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.board-leave",
             "expectedRevision": 247
+          }
+        },
+        {
+          "sequence": 249,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.spare-keep",
+            "expectedRevision": 248
+          }
+        },
+        {
+          "sequence": 250,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.night-sleep",
+            "expectedRevision": 249
+          }
+        },
+        {
+          "sequence": 251,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.call-down",
+            "expectedRevision": 250
+          }
+        },
+        {
+          "sequence": 252,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 251
           }
         }
       ]
     },
     {
       "name": "own-maya-nothing",
-      "events": 238,
+      "events": 242,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "38ed9b6e1ed5a0cb63c735d094f39e8bb3f018d04db9cb8cb65b3b594a38d0f4",
+      "saveSha256": "0a2585f23fe5015422d7cb244934cb21a742e46fd4404886d3c69e2ed127da22",
       "ledger": [
         {
           "sequence": 1,
@@ -5500,7 +5564,7 @@
           "sequence": 207,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-far",
+            "id": "chapter7.robe-gowns",
             "expectedRevision": 206
           }
         },
@@ -5508,7 +5572,7 @@
           "sequence": 208,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.grey-home",
+            "id": "chapter7.keep-back",
             "expectedRevision": 207
           }
         },
@@ -5516,7 +5580,7 @@
           "sequence": 209,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.pursue-stop",
+            "id": "chapter7.grey-far",
             "expectedRevision": 208
           }
         },
@@ -5524,7 +5588,7 @@
           "sequence": 210,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.daniel-quiet",
+            "id": "chapter7.grey-home",
             "expectedRevision": 209
           }
         },
@@ -5532,7 +5596,7 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.box-now",
+            "id": "chapter7.pursue-stop",
             "expectedRevision": 210
           }
         },
@@ -5540,7 +5604,7 @@
           "sequence": 212,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.face-down",
+            "id": "chapter7.daniel-quiet",
             "expectedRevision": 211
           }
         },
@@ -5548,7 +5612,7 @@
           "sequence": 213,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.letter-keep",
+            "id": "chapter7.box-now",
             "expectedRevision": 212
           }
         },
@@ -5556,7 +5620,7 @@
           "sequence": 214,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.fan-away",
+            "id": "chapter7.face-down",
             "expectedRevision": 213
           }
         },
@@ -5564,23 +5628,23 @@
           "sequence": 215,
           "action": {
             "type": "CHAPTER7_CHOOSE",
-            "id": "chapter7.close-end",
+            "id": "chapter7.letter-keep",
             "expectedRevision": 214
           }
         },
         {
           "sequence": 216,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.begin",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.fan-away",
             "expectedRevision": 215
           }
         },
         {
           "sequence": 217,
           "action": {
-            "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.breakin-report",
+            "type": "CHAPTER7_CHOOSE",
+            "id": "chapter7.close-end",
             "expectedRevision": 216
           }
         },
@@ -5588,7 +5652,7 @@
           "sequence": 218,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.neighbour-thank",
+            "id": "chapter8.begin",
             "expectedRevision": 217
           }
         },
@@ -5596,7 +5660,7 @@
           "sequence": 219,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.money-owing",
+            "id": "chapter8.breakin-report",
             "expectedRevision": 218
           }
         },
@@ -5604,7 +5668,7 @@
           "sequence": 220,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.work-hold",
+            "id": "chapter8.neighbour-thank",
             "expectedRevision": 219
           }
         },
@@ -5612,7 +5676,7 @@
           "sequence": 221,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bank-leave",
+            "id": "chapter8.money-owing",
             "expectedRevision": 220
           }
         },
@@ -5620,7 +5684,7 @@
           "sequence": 222,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.work-hold",
             "expectedRevision": 221
           }
         },
@@ -5628,7 +5692,7 @@
           "sequence": 223,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bank-leave",
             "expectedRevision": 222
           }
         },
@@ -5636,7 +5700,7 @@
           "sequence": 224,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "id": "chapter8.pryce-chain",
             "expectedRevision": 223
           }
         },
@@ -5644,7 +5708,7 @@
           "sequence": 225,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "id": "chapter8.talk-owner",
             "expectedRevision": 224
           }
         },
@@ -5652,7 +5716,7 @@
           "sequence": 226,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 225
           }
         },
@@ -5660,7 +5724,7 @@
           "sequence": 227,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 226
           }
         },
@@ -5668,7 +5732,7 @@
           "sequence": 228,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 227
           }
         },
@@ -5676,7 +5740,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 228
           }
         },
@@ -5684,7 +5748,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.list-read",
             "expectedRevision": 229
           }
         },
@@ -5692,7 +5756,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 230
           }
         },
@@ -5700,7 +5764,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 231
           }
         },
@@ -5708,7 +5772,7 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.photos-back",
             "expectedRevision": 232
           }
         },
@@ -5716,7 +5780,7 @@
           "sequence": 234,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.wake-window",
             "expectedRevision": 233
           }
         },
@@ -5724,7 +5788,7 @@
           "sequence": 235,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.hack-door",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 234
           }
         },
@@ -5732,7 +5796,7 @@
           "sequence": 236,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.key-ring",
             "expectedRevision": 235
           }
         },
@@ -5740,7 +5804,7 @@
           "sequence": 237,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.board-leave",
             "expectedRevision": 236
           }
         },
@@ -5748,8 +5812,40 @@
           "sequence": 238,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.spare-keep",
             "expectedRevision": 237
+          }
+        },
+        {
+          "sequence": 239,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.hack-door",
+            "expectedRevision": 238
+          }
+        },
+        {
+          "sequence": 240,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.night-sleep",
+            "expectedRevision": 239
+          }
+        },
+        {
+          "sequence": 241,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.call-down",
+            "expectedRevision": 240
+          }
+        },
+        {
+          "sequence": 242,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 241
           }
         }
       ]

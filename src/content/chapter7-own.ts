@@ -39,7 +39,11 @@
  * Restructuring pass (2026-09-25): each sequence is its own phase with its own title and place, and its lead-in is
  * that phase's opening: standing → held (the post room) → street (the Old Flat, the bridge) → lift → grey (the Grey
  * Coat) → pursue (the hub) → close (the finding, the night tram) → effects (His Things, Amy's letter) → night (the
- * notes, the evening) → complete. Choice ids are unchanged. */
+ * notes, the evening) → complete. Choice ids are unchanged.
+ * Sequence (2026-09-25), "Her Wardrobe" (its own phase, between the lift and the Grey Coat): unable to sleep, she goes
+ * through the first Evelynn's clothes for the first time. Where she looks (c7.robe = gowns | coats | drawer: a place card
+ * in green ink, a receipt for two sugars and cinnamon, flat shoes from Jakarta worn down on the left; the last two are
+ * facts), and what she does with them (c7.wardrobe = wear | back | boxes). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -441,6 +445,7 @@ export function ownBlocks7(s: GameState): Block[] {
   if (s.phase === 'held') return postLead;
   if (s.phase === 'street') return oldFlatLead;
   if (s.phase === 'lift') return liftLead;
+  if (s.phase === 'wardrobe') return wardrobeLead;
   if (s.phase === 'grey') return greyLead;
   if (s.phase === 'pursue') return waysIn7(s);
   if (s.phase === 'effects') return boxLead;
@@ -514,7 +519,7 @@ const liftLead: Block[] = [
 
 function liftChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('lift-' + id, label, hint, 'grey', (x) => {
+    offer7('lift-' + id, label, hint, 'wardrobe', (x) => {
       set7(x, 'lift', id);
       return body;
     });
@@ -533,6 +538,62 @@ function liftChoices(): C7Choice[] {
       p('You turn and look at him. Not at the numbers: at him, the way Sloane looks at a report she does not believe. It takes him until the seventh floor. When at last he meets your eyes something in his face goes still and careful, the way a man’s face goes when the dog he was told was tame turns out not to be.'),
       p('He gets out at eight without a word.'),
       t('Somebody told him I would be frightened. Somebody was wrong, for about four floors.'),
+    ]),
+  ];
+}
+
+// ── Her Wardrobe (sequence): the clothes that came with the flat ──
+
+const wardrobeLead: Block[] = [
+  p('You do not sleep. At one you get up, and because there is nothing else in the flat to do at one in the morning that does not involve the window, you open the wardrobe.'),
+  p('You have worn these clothes for weeks without looking at them properly: the charcoal, the fitted black, the coats, the shoes lined up in pairs like a regiment. They came with the flat. They fit. You had let that be the end of the question.'),
+  t('They were hers. Every morning for weeks I have got dressed out of a missing woman’s wardrobe. Tonight I am going to look at it properly.'),
+];
+const wardrobeSit: Block[] = [
+  p('You sit on the edge of the bed with it in your lap for a long time. The wardrobe door stands open. In the mirror inside it, a woman you are still learning sits on the edge of a bed, holding somebody else’s things.'),
+];
+
+function wardrobeChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'robe')) {
+    const look = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+      offer7('robe-' + id, label, hint, 'wardrobe', (x) => {
+        set7(x, 'robe', id);
+        after?.(x);
+        return [...body, ...wardrobeSit];
+      });
+    return [
+      look('gowns', 'The evening dresses', 'The ones that were made to be looked at.', [
+        p('The silver one first. You hold it up to the lamp. At the back of the hem there is a tear, mended by hand: not by a tailor, but by somebody who loved the dress and could not sew. The stitches are big and uneven and very careful.'),
+        p('In the green, folded into the lining of the bodice, there is a place card, heavy and cream, with one letter on it in green ink: E. And under it, smaller, in the same looping hand: always on my left.'),
+        t('Always on my left. At every table, for years, somebody put her on their left and wrote it down so the staff would know.'),
+      ]),
+      look('coats', 'The coats', 'Coats keep what their owners forget.', [
+        p('You go through the pockets the way Adrian went through a set of accounts: every one, in order. A cloakroom ticket, number 41. A Singapore ten-cent coin. A matchbook from a hotel bar on the Straits. And a café receipt folded very small, fourteen months old: two coffees, one black, one with two sugars and cinnamon.'),
+        t('Two sugars and cinnamon. I take it black. I have never once wanted sugar. One day somebody is going to order me two sugars and cinnamon and watch my face while I drink it.'),
+      ], (x) => note7(x, 'robe-find', 'In the pocket of the first Evelynn’s coat: a café receipt, fourteen months old, for two coffees, one black and one with two sugars and cinnamon.', 'Her coat pockets, gone through by Evelynn')),
+      look('drawer', 'The drawer that sticks', 'Everything in this flat that sticks is telling you something.', [
+        p('The bottom drawer only opens halfway. You work it out an inch at a time. Behind the jumpers, right at the back, there is a pair of flat shoes, the only flat shoes in the wardrobe, worn through at the heel, with the name of a shop in Jakarta printed inside.'),
+        p('The left heel is worn much further down than the right. Somebody walked on these for a long time, favouring one side.'),
+        t('Jakarta. And a woman who put more weight on one foot than the other, and hid the shoes she walked in at the back of a drawer, where nobody who dressed her would look.'),
+      ], (x) => note7(x, 'robe-find', 'At the back of the first Evelynn’s wardrobe: flat shoes from a shop in Jakarta, the left heel worn much further down than the right.', 'Her wardrobe, gone through by Evelynn')),
+    ];
+  }
+  const keep = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('keep-' + id, label, hint, 'grey', (x) => {
+      set7(x, 'wardrobe', id);
+      return body;
+    });
+  return [
+    keep('wear', 'Put it on', 'At half past one in the morning. Look.', [
+      p('You put it on, whatever it is, and stand in front of the mirror at half past one in the morning, and for one whole second you do not recognise the woman in it. Then you do. That is worse.'),
+    ]),
+    keep('back', 'Put everything back exactly', 'Her pockets, her folds, the drawer an inch short of closed.', [
+      p('You put everything back exactly as it was: the pockets, the folds, the drawer an inch short of closed, the way she left it.'),
+      t('It is her wardrobe. I only borrow it.'),
+    ]),
+    keep('boxes', 'Box up what you can’t wear without thinking of her', 'Make room. A little.', [
+      p('You fold the things of hers you cannot wear without thinking of her into the two boxes the stationer’s order came in, and put the boxes on top of the wardrobe, and hang your own few things in the space they leave.'),
+      t('Three dresses and a coat of my own. It is a very small country. It is mine.'),
     ]),
   ];
 }
@@ -1284,6 +1345,7 @@ export function ownChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'held') return postChoices(s);
   if (s.phase === 'street') return streetChoices(s);
   if (s.phase === 'lift') return liftChoices();
+  if (s.phase === 'wardrobe') return wardrobeChoices(s);
   if (s.phase === 'grey') return get7(s, 'grey') ? greyDoorChoices() : greyChoices();
   if (['close', 'effects', 'night'].includes(s.phase)) return closeChoices(s);
   if (s.phase !== 'pursue') return [];

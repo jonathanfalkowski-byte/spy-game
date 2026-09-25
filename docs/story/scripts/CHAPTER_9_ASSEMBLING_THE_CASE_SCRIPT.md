@@ -338,3 +338,22 @@ Own-power:
 Other lanes keep arrive → assemble → resolve (the lawyer, then `resolve-end`) → complete.
 `enterResolve9` still fixes the name floor and the band on entering `resolve`, so nothing after it
 adds case weight. Choice ids are unchanged.
+
+## Sequence: The Last One (2026-09-25)
+
+Own-power, its own phase, `archive` (The Last One · AFTERNOON · THE PERIODICALS ROOM), between the
+river and the lawyer. Ruth's "better than the last one I saw", followed to the library's microfiche.
+1. **How she searches** (`c9.fiche`): **fiche-faces** (neutral) · **fiche-words** ("from nowhere,
+   mysterious, nobody can place") · **fiche-ruth** (a younger Ruth at a trade dinner, and beside
+   her…). All find **Anna Kessler**, "the woman nobody can place", one Harbour season six years ago:
+   "very slightly wrong in every photograph, the way a translation is wrong", a tall woman with
+   cropped hair out of focus at her shoulder.
+2. **Follow her forward?** (`c9.kessler`): **kessler-follow** (two years later: a sailing accident,
+   "Her body was not recovered. She had no family."; a fact) · **kessler-stop** (neutral; to the
+   lawyer).
+3. If followed (`c9.last`): **last-case** ("They make it heavier.") · **last-screen** (her
+   reflection over Kessler's) · **last-leave**.
+
+**For the owner's review:** Anna Kessler is an invention. She is an earlier reissue, which the canon
+allows (Meridian sells lived-in legends; Ruth has seen "the last one"). Her fate is deliberately
+open: RETIRED or CLOSED, with no body recovered. Say if she should change or go.

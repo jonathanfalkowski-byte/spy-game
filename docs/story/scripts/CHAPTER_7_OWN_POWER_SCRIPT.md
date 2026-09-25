@@ -263,3 +263,18 @@ moved.
 
 `enterClose7` still fixes the finding on entering `close`. The evening's place lines now key on
 `night`.
+
+## Sequence: Her Wardrobe (2026-09-25)
+
+Its own phase, `wardrobe` (Her Wardrobe · NIGHT · THE WARDROBE), between the lift and the Grey Coat.
+She cannot sleep, and for the first time looks properly at the clothes that came with the flat: "a
+missing woman's wardrobe".
+1. **Where she looks** (`c7.robe`): **robe-gowns** (neutral; the silver hem mended by somebody who
+   could not sew; a place card in green ink, "E. — always on my left") · **robe-coats** (a cloakroom
+   ticket, number 41; a Singapore coin; a receipt for two coffees, one black, one with two sugars
+   and cinnamon, which is Chapter 10's breakfast; a fact) · **robe-drawer** (flat shoes from a shop
+   in Jakarta, the left heel worn further down, which Ruth's "after Jakarta" pays off in Chapter 9;
+   a fact).
+2. **What she does** (`c7.wardrobe`): **keep-wear** (one whole second before she recognises the
+   woman in the mirror) · **keep-back** (neutral; "It is her wardrobe. I only borrow it.") ·
+   **keep-boxes** ("Three dresses and a coat of my own. It is a very small country.").

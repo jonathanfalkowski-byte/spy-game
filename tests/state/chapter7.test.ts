@@ -27,7 +27,7 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['post-ask', 'bundle-leave', 'daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
+const settle7 = ['post-ask', 'bundle-leave', 'robe-gowns', 'keep-back', 'daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 8 && !ids(x).includes(id); i++) {
@@ -47,7 +47,7 @@ const ready = (s: GameState) => {
   return s;
 };
 /** Into the hub: the lift plays first, on its neutral pick. */
-const begin = () => walk(c7(ready(standing()), 'standing-begin'), ['lift-out', 'grey-far', 'grey-home']);
+const begin = () => walk(c7(ready(standing()), 'standing-begin'), ['lift-out', 'robe-gowns', 'keep-back', 'grey-far', 'grey-home']);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
   for (const [k, v] of Object.entries(flags)) if (v === undefined) delete x.choices[k];
@@ -477,9 +477,21 @@ it('rides the lift with a man who knows her name before the hub opens', () => {
   expect(text(lift)).toContain('Good evening, Ms Vale.');
   expect(text(lift)).not.toContain('You write the ways in on the back of an envelope');
   expect(ids(lift)).toEqual(['lift-speak', 'lift-out', 'lift-stare']);
-  const spoke = choose7(lift, 'lift-speak');
-  expect([spoke.choices['c7.lift'], spoke.phase]).toEqual(['speak', 'grey']);
-  expect(text(spoke)).toContain('Mind the window. It sticks.');
+  const spoke0 = choose7(lift, 'lift-speak');
+  expect([spoke0.choices['c7.lift'], spoke0.phase]).toEqual(['speak', 'wardrobe']);
+  expect(text(spoke0)).toContain('Mind the window. It sticks.');
+  // Her Wardrobe: that night, before the Grey Coat.
+  expect(text(spoke0)).toContain('a missing woman’s wardrobe');
+  expect(ids(spoke0)).toEqual(['robe-gowns', 'robe-coats', 'robe-drawer']);
+  const coats = choose7(spoke0, 'robe-coats');
+  expect(text(coats)).toContain('two sugars and cinnamon');
+  expect([coats.choices['c7.robe'], coats.facts.includes('c7.robe-find')]).toEqual(['coats', true]);
+  expect(ids(coats)).toEqual(['keep-wear', 'keep-back', 'keep-boxes']);
+  expect(choose7(spoke0, 'robe-drawer').facts).toContain('c7.robe-find');
+  expect(choose7(spoke0, 'robe-gowns').facts).not.toContain('c7.robe-find');
+  const spoke = choose7(coats, 'keep-boxes');
+  expect([spoke.choices['c7.wardrobe'], spoke.phase]).toEqual(['boxes', 'grey']);
+  expect(text(spoke)).toContain('It is a very small country. It is mine.');
   // The Grey Coat: the morning after, she follows him.
   expect(text(spoke)).toContain('his shoulders dry again although the pavement is wet');
   expect(ids(spoke)).toEqual(['grey-close', 'grey-far', 'grey-ahead']);
