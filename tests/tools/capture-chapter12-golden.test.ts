@@ -18,7 +18,7 @@ const routes: [string, string, string[]][] = [
   ['kind-tenant', 'comply-quiet', ['search-wardrobe', 'caught-evie', 'ashby-evie', 'nora-kind', 'harbour-coffee']],
   ['walkaway-own', 'counter-surprised', ['search-balcony', 'caught-own', 'ashby-truth', 'nora-go', 'harbour-quiet']],
 ];
-const prefer = ['begin', 'cover-quiet', 'tan-listen', 'search-desk', 'caught-hide', 'ashby-evie', 'nora-kind', 'harbour-quiet', 'night-alone'];
+const prefer = ['begin', 'cover-quiet', 'first-sleep', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'nora-kind', 'boy-nora', 'harbour-quiet', 'night-alone'];
 
 function play(from: GameState, picks: string[]): GameState {
   let s = from;

@@ -8,7 +8,13 @@
  * sister. The first Evelyn was Eleanor "Nell" Linden: burned in Jakarta, running the night she "disappeared before
  * breakfast", found in the harbour a week later. Two witnesses seed that Celeste burned her (proof waits for Act IV).
  * No order this chapter: pressure from a distance (Celeste's messages, a photograph of Maya). The only intimacy is the
- * optional chosen evening with a man who came to Singapore (heat 3, consent-gated, fades). */
+ * optional chosen evening with a man who came to Singapore (heat 3, consent-gated, fades).
+ * Deepening pass (2026-09-25): four moments, each with a neutral pick for the goldens. The first hour (c12.first =
+ * hawker | salon | sleep: Mr Goh's coffee tab, paid monthly by "C."; Madame Lin's standing Friday, paid by L.S.F.);
+ * the bedroom at number 9 after the search (c12.bed = lie | drawer | mirror: Celeste's scent on the pillow; Nell's
+ * unsent note, "Not even for her"; her lipstick); Kit Harlow at the Punkah Bar before Ashby (c12.bar = flirt | truth |
+ * cool: "Only her. The tall one", and a boat); and Nora's son, Sam, after the kitchen (c12.boy = hold | friend |
+ * nora). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -120,12 +126,69 @@ function arrivalBlocks(s: GameState): Block[] {
     t('I have not told anybody about Mrs Tan. Not the wall. Not Maya. Not the pillow.'),
     p('You stand on the pavement in the heat with the phone in your hand and people going round you on both sides, and think, very clearly: she is not going to stop me. She is going to watch. She wants to see what I do with it.'),
     t('Then let her watch.'),
+    p('The taxi runs in along the coast road with the windows up and the air-conditioning roaring: palms, a sea full of ships at anchor as far as you can see, and then the city standing up out of the heat all at once, towers and cranes and a hotel with a ship on its roof, like a place somebody built to impress a child.'),
+    t('She lived here eight years. I have been here an hour, and it already knows my face.'),
+  ];
+}
+
+/** The first hour (deepening pass): the city still keeps her tab and her hair appointment, or lets her sleep. */
+function firstChoices(s: GameState): C12Choice[] {
+  const first = (id: string, label: string, hint: string, body: Block[], fact?: [string, string, string]) =>
+    offer12('first-' + id, label, hint, 'emerald', (x) => {
+      set12(x, 'first', id);
+      if (fact) note12(x, fact[0], fact[1], fact[2]);
+      return body;
+    });
+  return [
+    first(
+      'hawker',
+      'Breakfast where she ate',
+      'Let your feet choose. They seem to know.',
+      [
+        p('You tell the driver to stop somewhere you have never been, and your mouth gives him the name: a hawker centre off Chinatown, at seven in the morning, under a roof like a railway station, two hundred stalls opening their shutters one by one in a haze of charcoal and steam.'),
+        p('Your feet take you past the noodle stalls and the fish-ball stalls and a man frying carrot cake in a wok the size of a bath, to a coffee stall in the far corner with a hand-painted sign and an old man in a vest behind the counter, pouring coffee through a cloth sock from one tin jug to another, a metre high, without spilling a drop.'),
+        p('He sees you, and stops pouring.'),
+        q('Mr Goh', 'Aiyo. Miss Evie. Long time.'),
+        p('He does not ask what you want. He makes it, thick and sweet, two sugars, and slides it across on a saucer with a small dented tin beside it that you know, before you open it, has cinnamon in it.'),
+        q('Mr Goh', 'Your tin. I keep it for you. Nobody else touch.'),
+        p('You drink it standing at the counter. It is exactly right. When you reach for your purse he waves the purse away.'),
+        q('Mr Goh', 'No need. Your friend pay already. Tall lady. Every month she come, she pay one hundred dollars on your tab. For when Evie come back, she says. Fourteen months. One hundred, every month.'),
+        p('He taps a school exercise book by the till: a column of dates in his careful hand, and beside every one the same initial. C.'),
+        t('She has been paying for Nell’s coffee for fourteen months, for when she comes back. She knew she was never coming back. She was paying for mine.'),
+      ],
+      ['tab', 'A coffee stall off Chinatown keeps the first Evelyn’s tab. Every month for fourteen months a tall lady has paid a hundred dollars on it, “for when Evie comes back”, initialled C.', 'Mr Goh’s exercise book'],
+    ),
+    first(
+      'salon',
+      'Keep her appointment',
+      'A message at the hotel desk: your standing Friday, confirmed.',
+      [
+        p('At the hotel desk a message is waiting for Ms Vale on a card with a gold edge: Maison Lin confirms your standing appointment, Friday, eleven o’clock. We look forward to seeing you again.'),
+        p('Standing, the clerk says, when you ask. The salon has rung every Thursday to confirm, for as long as he has worked here.'),
+        p('Maison Lin is on the fourth floor of an old arcade off Orchard Road: white orchids at the door, of course, and a woman of fifty in black who takes both your hands, turns you to the light, and sighs.'),
+        q('Madame Lin', 'Fourteen months. Fourteen months you let somebody else cut this. Sit.'),
+        p('You sit. She cuts it the way it used to be without asking, her scissors quick and cold at the nape of your neck, and talks the whole time, about the heat, about a minister’s daughter, about you. In the mirror you watch the woman in the chair become, strand by strand, the woman in the photographs.'),
+        q('Madame Lin', 'Madame Laurent chose this, you know. The first time. She sat where my girl is sitting and said, shorter at the back, she has a beautiful neck, it is a crime to hide it. She was right. She is always right, that one.'),
+        q('Madame Lin', 'The account is still open. The fund pays, every Friday, whether you come or not. L.S.F.'),
+        ...(c(s, 'c9.rent')
+          ? [t('L.S.F. Facilities. The Laurent fund’s own company. It pays the rent on the flat that watches mine in London, and it has paid for her hair in Singapore every Friday for fourteen months.')]
+          : [t('L.S.F. I will find out what that stands for. I already know whose initial is in it.')]),
+        p('You tip her far too much, with your own money, and walk out into the heat with your neck bare, the way somebody else decided it should be, and you like it. That is the worst part. You like it.'),
+      ],
+      ['salon', 'Maison Lin off Orchard Road keeps the first Evelyn’s standing Friday appointment, paid every week for fourteen months by L.S.F. Celeste chose the cut.', 'Madame Lin'],
+    ),
+    first('sleep', 'Sleep first', 'Draw the curtains on the city. It will keep.', [
+      p('You go to the hotel and draw the curtains on the city and sleep face down in your clothes for five hours, the way Adrian used to sleep after a night filing: without dreams, like falling down a well.'),
+      p('When you wake it is noon. The room is full of thick gold light at the edges of the curtains, the air-conditioning is roaring, and somewhere far below a thousand car horns are having an argument. For a moment you do not know which city, or which body. Then you do, and get up, and dress, and go.'),
+      t('Emerald Hill. Before I lose my nerve.'),
+    ]),
   ];
 }
 
 function departureChoices(s: GameState): C12Choice[] {
+  if (get12(s, 'cover')) return firstChoices(s);
   const go = (id: string, label: string, hint: string, body: (x: GameState) => Block[], partner?: Partner12) =>
-    offer12('cover-' + id, label, hint, 'emerald', (x) => {
+    offer12('cover-' + id, label, hint, 'departure', (x) => {
       set12(x, 'cover', partner ? 'with' : id);
       if (partner) set12(x, 'with', partner);
       return [...body(x), ...arrivalBlocks(x)];
@@ -291,11 +354,7 @@ function searchChoices(): C12Choice[] {
     offer12('search-' + id, label, hint, 'flat', (x) => {
       set12(x, 'search', id);
       if (fact) note12(x, fact[0], fact[1], fact[2]);
-      return [
-        ...body,
-        p('And then, in the quiet, a key in the lock.'),
-        p('Not a knock. A key, and the unhurried sound of somebody who expects the flat to be empty, and a man’s voice on the landing saying something to Mrs Tan’s shut door, and laughing at his own joke.'),
-      ];
+      return body;
     });
   return [
     look(
@@ -337,6 +396,49 @@ function searchChoices(): C12Choice[] {
       ],
       ['balcony', 'Across the lane from number 9’s balcony, a window exactly level with it keeps a single white orchid on the sill, watered and turned to the light.', 'The balcony at number 9'],
     ),
+  ];
+}
+
+const keyInLock: Block[] = [
+  p('And then, in the quiet, a key in the lock.'),
+  p('Not a knock. A key, and the unhurried sound of somebody who expects the flat to be empty, and a man’s voice on the landing saying something to Mrs Tan’s shut door, and laughing at his own joke.'),
+];
+
+/** The bedroom (deepening pass): her bed, the drawer, or her mirror, before the caretaker's key. */
+function bedChoices(): C12Choice[] {
+  const bed = (id: string, label: string, hint: string, body: Block[], fact?: [string, string, string]) =>
+    offer12('bed-' + id, label, hint, 'flat', (x) => {
+      set12(x, 'bed', id);
+      if (fact) note12(x, fact[0], fact[1], fact[2]);
+      return [...body, ...keyInLock];
+    });
+  return [
+    bed('lie', 'Lie down on her bed', 'Just for a minute. It is your bed, apparently.', [
+      p('The bedroom is at the back, away from the lane: a wide low bed made up tight, white sheets, one pillow dented as if somebody had slept on it last night. Somebody has dented it on purpose.'),
+      p('You lie down on it in your clothes. The ceiling fan turns. The sheets are cool and smell of starch and, underneath the starch, very faintly, of a perfume you know: green and bitter, like a stem snapped off. You have smelled it in the back of a car, and across a breakfast table, and on a terrace over the river, close enough to touch.'),
+      t('They spray it on the pillow. Not hers. Celeste’s. Every month, on the schedule, so that the bed smells of the one person who ever lay in it with her.'),
+      p('You lie there longer than you mean to, with your eyes closed, in the scent of the woman who burned her, in a bed that was made up for you. It is the most intimate thing that has happened to you in weeks, and nobody touched you.'),
+    ]),
+    bed(
+      'drawer',
+      'The bedside drawer',
+      'The set dresser’s job ended at the surface.',
+      [
+        p('The bedside drawer holds what a set dresser thinks a woman keeps by her bed: a new paperback, spine uncracked, a sleep mask still in its packet, a tube of hand cream. Props.'),
+        p('But the drawer is a hand’s breadth shorter than the table. You have been looking for false backs since the night of the wardrobe. You take the drawer right out and reach into the dark behind it, and your fingers find paper, folded small and pushed to the back, where only somebody who had lived with this table would know there was a space.'),
+        p('It is a page torn from a notebook, written in pencil, in a hand that slopes the way yours has started to slope:'),
+        q('The note', 'N. — If anybody comes with flowers, don’t open the door. Not even for her. Especially not for her. Sunday. Spare bed. I’ll explain everything. E.'),
+        t('Not even for her. Especially not for her. She knew. She wrote it down, and never got to send it.'),
+        p('You fold it along its old folds and put it inside your bra, against your skin, where nobody in white gloves is ever going to find it.'),
+      ],
+      ['note', 'Behind the bedside drawer at number 9, an unsent note in the first Evelyn’s hand to her sister: “If anybody comes with flowers, don’t open the door. Not even for her. Especially not for her.”', 'Her own pencil, behind the drawer'],
+    ),
+    bed('mirror', 'The dressing table', 'Her lipstick, the cap off. Your shade.', [
+      p('The dressing table faces the window, with a round mirror and a little stool. On it lies a second lipstick, the twin of the one by the bathroom mirror, its cap off too: a dark red worn to a slant.'),
+      p('You sit. You pick it up. It is your shade: the one you have bought three times in London without once asking yourself why that one. You put it on the way you have learned to, two strokes and a blot, and look up.'),
+      p('The woman in the round mirror is sitting in her own bedroom, at her own table, in her own colour, in the light from her own window. She looks entirely at home.'),
+      t('They chose my lipstick because she chose it first. I have been wearing a dead woman’s mouth for two months, and it suits me.'),
+    ]),
   ];
 }
 
@@ -418,8 +520,59 @@ function straitsBlocks(s: GameState): Block[] {
     p('And all of it, every road, comes to the same door: the Marlowe, a white colonial hotel on the edge of the Straits, where the caretaker sends his photographs, on the fourth floor, and where on the top floor there is a bar.'),
     p('The Punkah Bar is the last room of its kind in the city. Long, dim, teak and brass, with the old cloth fans still hanging from the ceiling on their ropes, and electric fans turning above them to do the real work. The shutters stand open on the harbour: a thousand lights on black water, and ships at anchor as far as you can see, each lit like a small town.'),
     p('A pianist plays to nobody. A barman polishes a glass that is already clean. At the far end, at the last table by the shutters, sits a man of sixty in a linen suit that was very good twenty years ago, with a glass in front of him and three more in him.'),
-    p('He sees you in the doorway. He puts his glass down on the table very slowly, as if it might go off.'),
-    t('Colin Ashby. Meridian’s man in Singapore for nine years. And he knows my face, because he knew hers.'),
+    t('Colin Ashby. Meridian’s man in Singapore for nine years. He has not seen me yet.'),
+    p('Between you and him is the whole length of the bar, and on the last stool, turning to watch you come in the way men in bars have turned to watch women come in since there were bars, is a man who stops turning halfway, and stares.'),
+    p('Forty, tanned, a beautiful shirt, and the pale band of a wedding ring he has taken off and not quite hidden. He is up off the stool before you have taken three steps.'),
+    q('Kit Harlow', 'Evie. Jesus. Evie Vale. They said you’d gone back to London for good.'),
+  ];
+}
+
+const ashbySees: Block[] = [
+  p('Across the room the man in the linen suit has seen you now. He puts his glass down on the table very slowly, as if it might go off.'),
+  t('He knows my face, because he knew hers.'),
+];
+
+/** Kit Harlow at the bar (deepening pass): a man who wanted Evie, before Ashby. */
+function barChoices(): C12Choice[] {
+  const bar = (id: string, label: string, hint: string, body: Block[], fact?: [string, string, string]) =>
+    offer12('bar-' + id, label, hint, 'straits', (x) => {
+      set12(x, 'bar', id);
+      if (fact) note12(x, fact[0], fact[1], fact[2]);
+      return [...body, ...ashbySees];
+    });
+  return [
+    bar(
+      'flirt',
+      'Let Kit buy you a drink',
+      'He wants Evie. Let him think he has her, for one drink. Your lead.',
+      [
+        p('You let him. You let him order for you, a gin sling, “like always”, and you let that stand, and you sit on the stool beside his with your knee almost touching his and let him look at you, because he so plainly wants to, and because it costs you nothing you are not choosing to spend.'),
+        q('Kit Harlow', 'God, you look well. You look happier. London suits you.'),
+        p('He puts two fingers on the inside of your wrist, lightly, where the pulse is, as if he had done it before and been told off for it. You leave them there. You lean in, so that he has to lower his voice.'),
+        q('You', 'Tell me what you remember. About me. The last few months.'),
+        q('Kit Harlow', 'You want the truth? You never once went home with anybody from this bar. Not me, God knows, and I tried for a year. Only her.'),
+        q('Kit Harlow', 'The tall one. Laurent. You’d leave together at one in the morning, and you’d look — I used to hate her, for how you looked.'),
+        p('He takes his fingers off your wrist and looks at them.'),
+        q('Kit Harlow', 'And then at the end you stopped leaving with her. You sat at the end of the bar on your own and asked me if I knew anybody with a boat. I thought you were joking.'),
+        t('A boat. She was looking for a way out that didn’t go through an airport. And the only man who noticed thought she was flirting.'),
+        p('You put your hand on his cheek, once, lightly, and leave him the drink.'),
+        q('You', 'Thank you, Kit. Go home to your wife.'),
+      ],
+      ['kit', 'A regular at the Punkah Bar says the first Evelyn only ever left with “the tall one, Laurent”, until the last months, when she sat alone and asked him if he knew anybody with a boat.', 'Kit Harlow, at the bar'],
+    ),
+    bar('truth', 'Tell him he’s mistaken', 'Kindly. You are not who he thinks.', [
+      q('You', 'I’m sorry. I think you have me mixed up with somebody.'),
+      p('He looks at you for a long moment, the way they all do in the end: at your face, and then at the way you stand. Something goes out of his shoulders.'),
+      q('Kit Harlow', 'No. You’re right. Evie would have let me buy the drink, and then made me feel a fool for it. It was the best part of my week.'),
+      q('Kit Harlow', 'If you ever see her. Tell her Kit said the boat thing was never a joke to him. He’d have found her one.'),
+      p('He goes back to his stool and his glass, and does not look round again.'),
+      t('A boat. She was trying to get out by water.'),
+    ]),
+    bar('cool', 'Smile, and keep walking', 'He is not who you came for.', [
+      p('You give him the smile, her smile, you realise, the one that promises a great deal later, and keep walking, and feel him watch you all the way down the bar.'),
+      q('Kit Harlow', 'Still breaking hearts, Evie.'),
+      p('Behind you the barman says something to him, low, and he laughs without meaning it.'),
+    ]),
   ];
 }
 
@@ -442,6 +595,7 @@ const ashbyStory = (s: GameState): Block[] => [
 ];
 
 function straitsChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'bar')) return barChoices();
   const talk = (id: string, label: string, hint: string, body: Block[], record: boolean) =>
     offer12('ashby-' + id, label, hint, 'sister', (x) => {
       set12(x, 'ashby', id);
@@ -511,9 +665,62 @@ const noraStory: Block[] = [
   q('Nora', 'I have spent a year wondering how she knew.'),
 ];
 
+const samArrives: Block[] = [
+  p('The screen door bangs. Feet on the tiles, fast, and a boy of seven comes into the kitchen at a run with a football under his arm and grass on both knees, talking before he is through the door.'),
+  q('Sam', 'Mum, Mum, Ravi’s dad says —'),
+  p('He sees you, and stops dead in the middle of the floor, and the football rolls away under the table.'),
+  q('Sam', 'Auntie Nell?'),
+];
+
+/** Leaving Nora's (after Sam): the photograph at the gate. */
+function parting(s: GameState): Block[] {
+  return get12(s, 'nora') === 'truth'
+    ? [
+        p('It is dark when you leave. At the gate Nora puts a photograph into your hand: Nell on the harbour wall at night, laughing at whoever is holding the camera, in flat shoes, the left one worn down at the heel. It is your face. It is somebody else.'),
+        q('Nora', 'Whoever did this to her. When you find them. I want to be in the room.'),
+      ]
+    : [
+        p('At the gate she presses a photograph on you, “for her friend”: Nell on the harbour wall at night, laughing, in flat shoes. Your face. Somebody else.'),
+        t('I lied to her in her own kitchen, in her sister’s face, and she thanked me for it. I will have to put that on the wall too.'),
+      ];
+}
+
+/** Nora's son (deepening pass): Sam, seven, who remembers his aunt. */
+function samChoices(): C12Choice[] {
+  const sam = (id: string, label: string, hint: string, body: Block[]) =>
+    offer12('boy-' + id, label, hint, 'night', (x) => {
+      set12(x, 'boy', id);
+      return [...body, ...parting(x)];
+    });
+  return [
+    sam('hold', 'Let him hold on', 'Just for a moment. He has been waiting fourteen months too.', [
+      p('He hits you round the waist before anybody can stop him and holds on, his face pressed into your side, and you put your hand on his hot small head because there is nothing else in the world to do with it.'),
+      q('Sam', 'You smell different.'),
+      q('You', 'I’ve been away a long time.'),
+      p('Over his head Nora is watching you with her hand over her mouth. She does not stop it. After a while she says his name very gently, and he lets go, and looks up at you, and runs out into the yard again as if the world had been put back the right way up.'),
+      t('I will pay for that one. I don’t know yet how. I let him have it, and I would again.'),
+    ]),
+    sam('friend', 'Kneel down and tell him', '“I’m not your auntie. I’m her friend.”', [
+      p('You get down on your knees on the kitchen tiles, so that your face is level with his.'),
+      q('You', 'I’m not your auntie, Sam. I’m her friend. I look a bit like her. She told me all about you.'),
+      p('He studies you with the terrible frankness of seven.'),
+      q('Sam', 'Is she coming back?'),
+      p('You look at Nora. Nora looks at the floor.'),
+      q('You', 'No, sweetheart. She isn’t. But she wanted to. She was on her way.'),
+      p('He thinks about that. Then he nods, as if it were a thing he had known for a while and only needed somebody to say out loud, and goes to get his football from under the table.'),
+    ]),
+    sam('nora', 'Let Nora answer', 'It’s her son. It was her sister.', [
+      p('Nora is out of her chair before you can move. She catches him up under the arms, football and all, and turns him away from you towards the sink.'),
+      q('Nora', 'This is Auntie’s friend, Sam. From London. Go and wash your knees.'),
+      p('He goes, but slowly, walking backwards, looking at you over his shoulder all the way to the door, as if you might vanish if he took his eyes off you. You keep very still until he has gone.'),
+      q('Nora', 'He was five. He remembers her better than I do, some days.'),
+    ]),
+  ];
+}
+
 function sisterChoices(): C12Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer12('nora-' + id, label, hint, 'night', (x) => {
+    offer12('nora-' + id, label, hint, id === 'go' ? 'night' : 'sister', (x) => {
       set12(x, 'nora', id);
       setKey(x, 'act3.nell', 'known');
       setKey(x, 'act3.celeste-knew', 'seeded');
@@ -531,8 +738,7 @@ function sisterChoices(): C12Choice[] {
       q('Nora', 'Come in. You’d better come in. I don’t want the neighbours seeing her on my step, crying.'),
       p('You had not known you were crying.'),
       ...noraStory,
-      p('It is dark when you leave. At the gate Nora puts a photograph into your hand: Nell on the harbour wall at night, laughing at whoever is holding the camera, in flat shoes, the left one worn down at the heel. It is your face. It is somebody else.'),
-      q('Nora', 'Whoever did this to her. When you find them. I want to be in the room.'),
+      ...samArrives,
     ], (x) => {
       setKey(x, 'act3.ally.nora', 'in');
     }),
@@ -542,8 +748,7 @@ function sisterChoices(): C12Choice[] {
       q('Nora', 'She did? What did she say? No — come in. Come in, please. Tell me everything she said.'),
       p('So you go in, and you make it up, and you make it up beautifully: Sunday lunches, a sister she was proud of, a spare bed she was looking forward to. Nora cries, and laughs, and gives you back more than you give her.'),
       ...noraStory,
-      p('At the gate she presses a photograph on you, “for her friend”: Nell on the harbour wall at night, laughing, in flat shoes. Your face. Somebody else.'),
-      t('I lied to her in her own kitchen, in her sister’s face, and she thanked me for it. I will have to put that on the wall too.'),
+      ...samArrives,
     ]),
     answer('go', 'Walk away', 'You can’t do this to her. Say it’s the wrong house.', [
       q('You', 'I’m so sorry. I have the wrong house.'),
@@ -579,6 +784,12 @@ function nightBlocks(s: GameState): Block[] {
     p('And then, a minute later, a photograph. A London street at seven in the evening, in the rain, taken from across the road through a car window: Maya, coming out of the Axiom building with her bag over her shoulder, looking at her phone, not knowing.'),
     q('C.', 'London misses you.'),
     t('Nothing about Nell. Nothing about the harbour. She knows exactly where I am standing, and she has sent me Maya, in the rain.'),
+    ...(c(s, 'c6.maya') === 'restored'
+      ? [
+          p('You write three replies to Celeste and delete all three. Then you write one to Maya instead, on your own phone: “Thinking of you. Home soon. Take a taxi tonight, would you? Humour me.”'),
+          p('She answers inside a minute, from a bus in the rain: “A TAXI? who are you. fine. bring me something.” And a row of hearts. You stand on the sea wall in the heat laughing, with your eyes stinging.'),
+        ]
+      : [p('You write three replies to Celeste and delete all three. You do not have the right to write to Maya. You look at the photograph until the phone goes dark by itself.')]),
   ];
 }
 
@@ -756,9 +967,9 @@ export function chapter12Choices(s: GameState): C12Choice[] {
   if (s.scene !== 'chapter12') return [];
   if (s.phase === 'departure') return departureChoices(s);
   if (s.phase === 'emerald') return emeraldChoices();
-  if (s.phase === 'flat') return get12(s, 'search') ? caughtChoices() : searchChoices();
+  if (s.phase === 'flat') return !get12(s, 'search') ? searchChoices() : !get12(s, 'bed') ? bedChoices() : caughtChoices();
   if (s.phase === 'straits') return straitsChoices(s);
-  if (s.phase === 'sister') return sisterChoices();
+  if (s.phase === 'sister') return get12(s, 'nora') ? samChoices() : sisterChoices();
   if (s.phase === 'night') return nightChoices(s);
   return [];
 }

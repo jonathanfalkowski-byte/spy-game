@@ -134,6 +134,11 @@ export const GATED_DEFAULTS = [
   'chapter11.hide-curtain',
   'chapter11.walk-quiet',
   'chapter11.way-walk',
+  // Chapter 12 deepening: sleep first; the dressing table; walk past Kit; let Nora answer.
+  'chapter12.first-sleep',
+  'chapter12.bed-mirror',
+  'chapter12.bar-cool',
+  'chapter12.boy-nora',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

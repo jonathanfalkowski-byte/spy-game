@@ -94,6 +94,7 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'c12.search') === 'wardrobe') holds.push({ id: 'penang', label: 'A boarding pass to Penang, never used: she was running', source: 'A hatbox at number 9' });
   if (c(s, 'c12.caught') === 'hide') holds.push({ id: 'site-report', label: 'The caretaker’s report: Straits Property Services, the Marlowe, fourth floor', source: 'A clipboard, read through a bathroom door' });
   else if (c(s, 'c12.caught') === 'own') holds.push({ id: 'site-report', label: 'Nine flats in Singapore, kept for tenants who never come', source: 'The caretaker, in the doorway of number 9' });
+  if (c(s, 'c12.bed') === 'drawer') holds.push({ id: 'note', label: 'Her unsent note to Nora: “Not even for her. Especially not for her.”', source: 'Behind the bedside drawer at number 9' });
   if (c(s, 'c12.statement') === 'recorded') holds.push({ id: 'ashby', label: 'Colin Ashby on the record: the order to burn her came “from a friend of hers”', source: 'The Punkah Bar, the Marlowe' });
   if (c(s, 'act3.ally.nora') === 'in') holds.push({ id: 'nora', label: 'Nora Linden, who wants to be in the room', source: 'A kitchen in Holland Village' });
   if (c(s, 'act3.nell') === 'known') holds.push({ id: 'nell', label: 'Her name: Eleanor Linden. Nell.', source: 'Her sister' });

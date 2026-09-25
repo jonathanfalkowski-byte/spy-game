@@ -8,7 +8,7 @@ signatory), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3 and §11, [CAMPAIGN
 (the test: thrilling, erotic, fun).
 Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_12_SINGAPORE_SCRIPT.md](scripts/CHAPTER_12_SINGAPORE_SCRIPT.md), code: `src/content/chapter12.ts`.
-~3.7–4.1k words on the golden paths. (The bar is the Punkah Bar at the Marlowe Hotel: "the Lantern" is
+~3.7–4.1k words on the golden paths at pass 1; deepened 2026-09-25 to ~4.3–4.8k. (The bar is the Punkah Bar at the Marlowe Hotel: "the Lantern" is
 already a place in the game.) Gated like Chapters 6–11 (`VITE_EVE_CHAPTER12`, content
 revision ≥ 19), entered from an own-power `chapter11.complete`.
 

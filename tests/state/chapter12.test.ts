@@ -30,10 +30,11 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 };
 /** The comply-quiet Chapter 11 ending, adjusted per case. */
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete11('comply-quiet'), flags);
-const toFlat = (s: GameState) => walk(s, ['begin', 'cover-quiet', 'tan-listen']);
-const toStraits = (s: GameState, search = 'search-desk', caught = 'caught-hide') => walk(toFlat(s), [search, caught]);
-const toNight = (s: GameState, nora = 'nora-kind') => walk(toStraits(s), ['ashby-evie', nora]);
-const prefer = ['cover-quiet', 'tan-listen', 'search-desk', 'caught-hide', 'ashby-evie', 'nora-kind', 'harbour-quiet', 'night-alone'];
+const toHill = (s: GameState) => walk(s, ['begin', 'cover-quiet', 'first-sleep']);
+const toFlat = (s: GameState) => walk(toHill(s), ['tan-listen']);
+const toStraits = (s: GameState, search = 'search-desk', caught = 'caught-hide') => walk(toFlat(s), [search, 'bed-mirror', caught]);
+const toNight = (s: GameState, nora = 'nora-kind') => walk(toStraits(s), ['bar-cool', 'ashby-evie', nora, ...(nora === 'nora-go' ? [] : ['boy-nora'])]);
+const prefer = ['cover-quiet', 'first-sleep', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'nora-kind', 'boy-nora', 'harbour-quiet', 'night-alone'];
 /** Neutral picks to the end of the chapter. */
 const finish = (s: GameState) => {
   let x = s;
@@ -59,7 +60,8 @@ it('decides at the kitchen table, and Celeste is waiting at Changi', () => {
   expect(ids(c12(start({ 'own.campaign': undefined }), 'begin'))).not.toContain('cover-campaign');
   // Laurent's campaign pays for the trip.
   const paid = walk(start({ 'own.campaign': 'taken' }), ['begin', 'cover-campaign']);
-  expect(paid.phase).toBe('emerald');
+  expect(paid.phase).toBe('departure');
+  expect(ids(paid)).toEqual(['first-hawker', 'first-salon', 'first-sleep']);
   expect([paid.choices['c12.cover'], paid.choices['own.campaign-location']]).toEqual(['campaign', 'singapore']);
   expect(text(paid)).toContain('People always say yes to money they’ve already spent.');
   expect(text(paid)).toContain('Do give my love to Mrs Tan.');
@@ -70,13 +72,27 @@ it('decides at the kitchen table, and Celeste is waiting at Changi', () => {
   expect(text(flew)).toContain('I will ask where you’d like dinner');
 });
 
+it('lets the city keep her tab and her Friday, or lets her sleep', () => {
+  const landed = walk(start({ 'c9.rent': 'paid' }), ['begin', 'cover-quiet']);
+  expect(text(landed)).toContain('a hotel with a ship on its roof');
+  const coffee = c12(landed, 'first-hawker');
+  expect([coffee.phase, coffee.choices['c12.first'], coffee.facts.includes('c12.tab')]).toEqual(['emerald', 'hawker', true]);
+  expect(text(coffee)).toContain('Every month she come, she pay one hundred dollars on your tab.');
+  const hair = c12(landed, 'first-salon');
+  expect(hair.facts).toContain('c12.salon');
+  expect(text(hair)).toContain('Madame Laurent chose this, you know.');
+  expect(text(hair)).toContain('It pays the rent on the flat that watches mine in London');
+  expect(text(c12(withFlags(landed, { 'c9.rent': undefined }), 'first-salon'))).toContain('I already know whose initial is in it.');
+  expect(text(c12(landed, 'first-sleep'))).toContain('Emerald Hill. Before I lose my nerve.');
+});
+
 it('lets Mrs Tan greet her by what happened on the phone, and gives her the key', () => {
-  const greet = (call: string | undefined) => text(walk(start({ 'c8.call': call }), ['begin', 'cover-quiet']));
+  const greet = (call: string | undefined) => text(toHill(start({ 'c8.call': call })));
   expect(greet('evie')).toContain('You came. I said come and see them, and you came.');
   expect(greet('ask')).toContain('You rang me back. You asked me when they came.');
   expect(greet('down')).toContain('You put the phone down on me.');
   expect(greet(undefined)).toContain('Evie? No. Evie?');
-  const hill = walk(start(), ['begin', 'cover-quiet']);
+  const hill = toHill(start());
   expect(ids(hill)).toEqual(['tan-evie', 'tan-truth', 'tan-listen']);
   const told = c12(hill, 'tan-truth');
   expect(told.phase).toBe('flat');
@@ -95,17 +111,26 @@ it('opens number 9 on a set kept dressed for her, and lets the caretaker walk in
   const desk = c12(flat, 'search-desk');
   expect([desk.phase, desk.facts.includes('c12.schedule')]).toEqual(['flat', true]);
   expect(text(desk)).toContain('Family contact (sister): N. Linden');
-  expect(text(desk)).toContain('And then, in the quiet, a key in the lock.');
-  expect(ids(desk)).toEqual(['caught-hide', 'caught-evie', 'caught-own']);
+  expect(text(desk)).not.toContain('a key in the lock');
+  expect(ids(desk)).toEqual(['bed-lie', 'bed-drawer', 'bed-mirror']);
+  const drawer = c12(desk, 'bed-drawer');
+  expect([drawer.choices['c12.bed'], drawer.facts.includes('c12.note')]).toEqual(['drawer', true]);
+  expect(text(drawer)).toContain('Not even for her. Especially not for her.');
+  expect(leverageBoard(drawer).holds.map((a) => a.id)).toContain('note');
+  expect(text(c12(desk, 'bed-lie'))).toContain('green and bitter, like a stem snapped off');
+  const mirror = c12(desk, 'bed-mirror');
+  expect(text(mirror)).toContain('I have been wearing a dead woman’s mouth for two months');
+  expect(text(mirror)).toContain('And then, in the quiet, a key in the lock.');
+  expect(ids(mirror)).toEqual(['caught-hide', 'caught-evie', 'caught-own']);
   expect(text(c12(flat, 'search-wardrobe'))).toContain('an unused boarding pass for Penang');
   expect(text(c12(flat, 'search-balcony'))).toContain('a single white orchid in a pot');
-  const hid = c12(desk, 'caught-hide');
+  const hid = c12(mirror, 'caught-hide');
   expect([hid.phase, hid.choices['act3.singapore']]).toEqual(['straits', 'key']);
   expect(text(hid)).toContain('STRAITS PROPERTY SERVICES · THE MARLOWE HOTEL, 4TH FLOOR');
-  const tenant = c12(desk, 'caught-evie');
+  const tenant = c12(mirror, 'caught-evie');
   expect(tenant.choices['act3.singapore']).toBe('moved-in');
   expect(text(tenant)).toContain('She’s moved in.');
-  const own = c12(desk, 'caught-own');
+  const own = c12(mirror, 'caught-own');
   expect([own.choices['act3.singapore'], own.facts.includes('c12.nine')]).toEqual(['everything', true]);
 });
 
@@ -114,35 +139,50 @@ it('brings every road to the Marlowe, and lets Ashby say "a friend of hers"', ()
   expect(text(roads)).toContain('His name is Ashby. Tell him I sent you');
   expect(text(roads)).toContain('the matchbook from the pocket of her coat');
   expect(text(roads)).toContain('somebody gave her name to the wrong people');
-  expect(ids(roads)).toEqual(['ashby-evie', 'ashby-press', 'ashby-truth']);
+  expect(text(roads)).toContain('Evie. Jesus. Evie Vale.');
+  expect(ids(roads)).toEqual(['bar-flirt', 'bar-truth', 'bar-cool']);
+  const kit = c12(roads, 'bar-flirt');
+  expect([kit.phase, kit.facts.includes('c12.kit')]).toEqual(['straits', true]);
+  expect(text(kit)).toContain('asked me if I knew anybody with a boat');
+  expect(text(kit)).toContain('He puts his glass down on the table very slowly');
+  expect(text(c12(roads, 'bar-truth'))).toContain('the boat thing was never a joke to him');
+  const past = c12(roads, 'bar-cool');
+  expect(ids(past)).toEqual(['ashby-evie', 'ashby-press', 'ashby-truth']);
   // Nothing to lay on the bar: no pressing him.
   const bare = { 'c11.catalogue': 'leave', 'c8.list': undefined };
-  expect(ids(toStraits(start(bare), 'search-desk', 'caught-evie'))).toEqual(['ashby-evie', 'ashby-truth']);
-  const pressed = c12(roads, 'ashby-press');
+  expect(ids(c12(toStraits(start(bare), 'search-desk', 'caught-evie'), 'bar-cool'))).toEqual(['ashby-evie', 'ashby-truth']);
+  const pressed = c12(past, 'ashby-press');
   expect([pressed.phase, pressed.choices['c12.statement']]).toEqual(['sister', 'recorded']);
   expect(text(pressed)).toContain('My name is Colin Ashby.');
   expect(text(pressed)).toContain('It came down from upstairs. From a friend of hers.');
   expect(text(pressed)).toContain('White orchids. She hated orchids.');
-  const ghost = c12(roads, 'ashby-evie');
+  const ghost = c12(past, 'ashby-evie');
   expect([ghost.choices['c12.statement'], ghost.facts.includes('c12.ashby')]).toEqual([undefined, true]);
-  expect(text(c12(toStraits(start({ 'c9.kessler': 'follow' })), 'ashby-truth'))).toContain('Another one who liked boats.');
+  expect(text(walk(toStraits(start({ 'c9.kessler': 'follow' })), ['bar-cool', 'ashby-truth']))).toContain('Another one who liked boats.');
 });
 
 it('puts her at Nora’s door, and every answer carries the seed', () => {
-  const door = walk(toStraits(start()), ['ashby-evie']);
+  const door = walk(toStraits(start()), ['bar-cool', 'ashby-evie']);
   expect(text(door)).toContain('Nell?');
   expect(ids(door)).toEqual(['nora-truth', 'nora-kind', 'nora-go']);
   for (const id of ['nora-truth', 'nora-kind', 'nora-go']) {
     const after = c12(door, id);
-    expect(after.phase).toBe('night');
+    expect(after.phase).toBe(id === 'nora-go' ? 'night' : 'sister');
     expect([after.choices['act3.nell'], after.choices['act3.celeste-knew']]).toEqual(['known', 'seeded']);
     expect(after.facts).toEqual(expect.arrayContaining(['c12.nell', 'c12.sunday-call']));
     expect(text(after)).toMatch(/so (terribly )?sorry/);
   }
   const truth = c12(door, 'nora-truth');
   expect(truth.choices['act3.ally.nora']).toBe('in');
-  expect(text(truth)).toContain('I want to be in the room.');
   expect(text(truth)).toContain('The black was always her friend’s.');
+  expect(text(truth)).toContain('Auntie Nell?');
+  expect(ids(truth)).toEqual(['boy-hold', 'boy-friend', 'boy-nora']);
+  const told = c12(truth, 'boy-friend');
+  expect([told.phase, told.choices['c12.boy']]).toEqual(['night', 'friend']);
+  expect(text(told)).toContain('She was on her way.');
+  expect(text(told)).toContain('I want to be in the room.');
+  expect(text(c12(truth, 'boy-hold'))).toContain('You smell different.');
+  expect(text(c12(c12(door, 'nora-kind'), 'boy-nora'))).toContain('I lied to her in her own kitchen');
   expect(c12(door, 'nora-kind').choices['act3.ally.nora']).toBeUndefined();
   expect(text(c12(door, 'nora-go'))).toContain('Whoever sent you, tell them I know.');
 });
@@ -151,6 +191,8 @@ it('sends Maya from London to the harbour, and ends alone unless a man came', ()
   const night = toNight(start({ 'c4.mutual-interest': undefined }));
   expect(text(night)).toContain('You’ve met Nora. Such a sweet girl.');
   expect(text(night)).toContain('London misses you.');
+  expect(text(toNight(start({ 'c6.maya': 'restored' })))).toContain('A TAXI? who are you.');
+  expect(text(toNight(start({ 'c6.maya': 'distant' })))).toContain('You do not have the right to write to Maya.');
   expect(text(toNight(start(), 'nora-go'))).toContain('You went to Nora’s.');
   expect(ids(night)).toEqual(['harbour-name', 'harbour-coffee', 'harbour-quiet']);
   const coffee = c12(night, 'harbour-coffee');
@@ -163,7 +205,7 @@ it('sends Maya from London to the harbour, and ends alone unless a man came', ()
 
 it('keeps the Singapore evening chosen, consented and stoppable', () => {
   const julian = { 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined };
-  const came = walk(start(julian), ['begin', 'cover-julian', 'tan-listen', 'search-desk', 'caught-hide', 'ashby-evie', 'nora-kind', 'harbour-quiet']);
+  const came = walk(start(julian), ['begin', 'cover-julian', 'first-sleep', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'nora-kind', 'boy-nora', 'harbour-quiet']);
   expect(ids(came)).toEqual(['evening-julian', 'night-alone']);
   const invited = c12(came, 'evening-julian');
   expect(currentPlace(invited, 'x')).toBe('Late · A suite on the Straits');
@@ -187,7 +229,7 @@ it('brings her home to an orchid, a name on the wall, and a fuller board', () =>
   expect(text(tenant)).toContain('Eleanor Linden. Nell.');
   const counted = finish(toStraits(start(), 'search-desk', 'caught-own'));
   expect(text(counted)).toContain('Nine, darling. Do count them properly next time.');
-  const truth = finish(walk(toStraits(start()), ['ashby-press', 'nora-truth']));
+  const truth = finish(walk(toStraits(start()), ['bar-cool', 'ashby-press', 'nora-truth']));
   const board = leverageBoard(truth);
   expect(board.holds.map((a) => a.id)).toEqual(expect.arrayContaining(['schedule', 'site-report', 'ashby', 'nora', 'nell']));
   expect(board.held[0].holds).toEqual(expect.arrayContaining(['Singapore: where you went, and whom you saw', 'A photograph of Maya leaving work, taken from across the road']));
@@ -197,15 +239,21 @@ it('brings her home to an orchid, a name on the wall, and a fuller board', () =>
 
 it('reaches the end from every option in every scene', () => {
   const s0 = start({ 'own.campaign': 'taken', 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined });
-  const prefixes: string[][] = [
-    ['begin', 'cover-campaign'],
-    ['begin', 'cover-julian'],
-    ...['tan-evie', 'tan-truth', 'tan-listen'].map((t) => ['begin', 'cover-quiet', t]),
-    ...['search-desk', 'search-wardrobe', 'search-balcony'].flatMap((a) => ['caught-hide', 'caught-evie', 'caught-own'].map((b) => ['begin', 'cover-quiet', 'tan-listen', a, b])),
-    ...['ashby-evie', 'ashby-press', 'ashby-truth'].flatMap((a) => ['nora-truth', 'nora-kind', 'nora-go'].flatMap((b) => ['harbour-name', 'harbour-coffee', 'harbour-quiet'].map((h) => ['begin', 'cover-quiet', 'tan-listen', 'search-desk', 'caught-hide', a, b, h]))),
+  const drive = (wants: string[]) => {
+    let x = c12(s0, 'begin');
+    for (let i = 0; i < 25 && ids(x).length; i++) x = c12(x, wants.find((w) => ids(x).includes(w)) ?? prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
+    return x;
+  };
+  const every = [
+    ['cover-campaign'], ['cover-julian', 'evening-julian', 'evening-julian-no-sex', 'evening-stay'], ['cover-julian', 'evening-julian', 'evening-leave'],
+    ['first-hawker'], ['first-salon'], ['tan-evie'], ['tan-truth'], ['search-wardrobe'], ['search-balcony'], ['bed-lie'], ['bed-drawer'],
+    ['caught-evie'], ['caught-own'], ['bar-flirt'], ['bar-truth'], ['ashby-press'], ['ashby-truth'],
+    ['nora-truth', 'boy-hold'], ['nora-truth', 'boy-friend'], ['nora-kind', 'boy-hold'], ['nora-go'], ['harbour-name'], ['harbour-coffee'],
   ];
-  for (const path of prefixes) {
-    const end = finish(walk(s0, path));
+  for (const wants of every) {
+    const end = drive(wants);
     expect(`${end.scene}.${end.phase}`).toBe('chapter12.complete');
+    const taken = end.ledger.map((e) => (e.action as { id?: string }).id);
+    for (const w of wants) expect(taken).toContain('chapter12.' + w);
   }
 }, 120_000);

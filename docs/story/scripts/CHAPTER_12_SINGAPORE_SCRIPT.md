@@ -124,9 +124,28 @@ landing. A new card beside the date, and Nora's photograph unless she walked awa
   `tests/fixtures/rev19-chapter12-golden.json` (truth-hidden, kind-tenant, walkaway-own; capture with
   `EVE_CAPTURE_CH12=1 npx vitest run tests/tools/capture-chapter12-golden.test.ts`).
 
+## Deepening pass (2026-09-25)
+
+Four moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and the city on the taxi ride in:
+
+- **The first hour** (`departure`, after the cover) (`c12.first`): **first-hawker** (Mr Goh's coffee stall off
+  Chinatown keeps her tin of cinnamon, and her tab, paid a hundred dollars a month for fourteen months by "C.";
+  fact `c12.tab`) · **first-salon** (Maison Lin keeps her standing Friday, paid by L.S.F.; "Madame Laurent chose
+  this"; the L.S.F. line reads `c9.rent`; fact `c12.salon`) · **first-sleep** (neutral).
+- **The bedroom** (`flat`, after the search, before the key in the lock) (`c12.bed`): **bed-lie** (Celeste's scent
+  sprayed on the pillow) · **bed-drawer** (behind the drawer, Nell's unsent note to Nora: "If anybody comes with
+  flowers, don't open the door. Not even for her. Especially not for her."; fact `c12.note`; a board asset) ·
+  **bed-mirror** (neutral; the twin lipstick, her shade).
+- **Kit Harlow** (`straits`, before Ashby) (`c12.bar`): **bar-flirt** (one drink, her lead, two fingers on her
+  wrist: "Only her. The tall one. Laurent.", and at the end, "anybody with a boat"; fact `c12.kit`) · **bar-truth**
+  ("the boat thing was never a joke to him") · **bar-cool** (neutral). Ashby sees her after.
+- **Sam** (`sister`, after the kitchen on truth or kind; `nora-go` goes straight to the harbour) (`c12.boy`):
+  "Auntie Nell?" **boy-hold** ("You smell different.") · **boy-friend** ("She was on her way.") · **boy-nora**
+  (neutral). The photograph at the gate follows.
+- At the harbour: Maya answers from a bus in the rain if she is back (`c6.maya = restored`).
+
 ## Size (honest)
 
-Pass 1: **~3.7–4.1k words on the golden paths** against the 7k budget. The design's ~6k estimate was high:
-set pieces from the start still land near 4k. The gap is where a deepening pass would go: the city itself
-(a hawker centre, the society photographer's party on the campaign path), a longer search of number 9, and
-more of Nora.
+Pass 1: ~3.7–4.1k words on the golden paths. After the deepening pass: **~4.3–4.8k on the golden (quiet)
+paths**, roughly 500 more when the new moments are played engaged, against the 7k budget. Next lift, if wanted:
+the campaign path's night shoot at the harbour, and Ashby and Nora at greater length.
