@@ -30,17 +30,25 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   const held: LeverageEntry[] = [];
   const answer = c(s, 'c10.answer') as LeverageStatus | undefined;
   const target = c(s, 'c10.target');
+  const answer11 = c(s, 'c11.answer') as LeverageStatus | undefined;
   held.push({
     holder: 'Celeste Laurent',
-    holds: ['Maya Reyes’s clearance', 'Adrian Vale’s name', 'The apartment (Meridian owns the building)'],
-    ...(target
-      ? {
-          wants: orderWants[target] + (target === 'notes' && c(s, 'c7.notes') === 'maya' ? ', and the copy Maya holds' : ''),
-          threat: 'Maya’s clearance renewal, in nine days',
-        }
-      : {}),
-    status: answer === 'complied' || answer === 'refused' || answer === 'countered' ? answer : 'open',
-    source: 'Breakfast, and the black phone with one contact',
+    holds: [
+      'Maya Reyes’s clearance',
+      'Adrian Vale’s name',
+      'The apartment (Meridian owns the building)',
+      ...(c(s, 'act3.placement') ? ['A placement date: the first Thursday of next month'] : []),
+    ],
+    ...(answer11
+      ? { wants: 'Iris Moreau, ended, by your hand', threat: 'Maya’s clearance, escalated' }
+      : target
+        ? {
+            wants: orderWants[target] + (target === 'notes' && c(s, 'c7.notes') === 'maya' ? ', and the copy Maya holds' : ''),
+            threat: 'Maya’s clearance renewal, in nine days',
+          }
+        : {}),
+    status: (answer11 ?? answer) === 'complied' || (answer11 ?? answer) === 'refused' || (answer11 ?? answer) === 'countered' ? (answer11 ?? answer)! : 'open',
+    source: answer11 ? 'The Vesper terrace, the first Thursday' : 'Breakfast, and the black phone with one contact',
   });
   held.push({
     holder: 'Victoria Sloane',
@@ -77,6 +85,9 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   else if (c(s, 'c8.photos') === 'one') holds.push({ id: 'photos', label: 'One photograph: her, laughing on a balcony in Singapore', source: 'Lotte' });
   if (c(s, 'c9.kessler') === 'follow') holds.push({ id: 'kessler', label: 'Anna Kessler: the last one, one season, no family', source: 'The periodicals room' });
   if (c(s, 'c9.lawyer') === 'retain') holds.push({ id: 'lawyer', label: 'Nadia Brandt, when you are ready and not a day before', source: 'Above the locksmith’s' });
+  if (c(s, 'c11.catalogue') === 'photo') holds.push({ id: 'catalogue', label: 'The Autumn Collection, photographed: your page and Iris’s', source: 'The Vesper’s reading room' });
+  else if (c(s, 'c11.catalogue') === 'page') holds.push({ id: 'catalogue', label: 'Page seven of The Autumn Collection: your own, torn out', source: 'The Vesper’s reading room' });
+  if (c(s, 'act3.ally.iris') === 'in') holds.push({ id: 'iris', label: 'Iris Moreau, who knows how the house works, and owes you', source: 'The Vesper cloakroom' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };

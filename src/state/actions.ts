@@ -9,6 +9,7 @@ export const ActionSchema = z.discriminatedUnion('type', [
   z.object({ ...revision, type: z.literal('CHAPTER8_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('CHAPTER9_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('CHAPTER10_CHOOSE'), id: z.string().max(80) }).strict(),
+  z.object({ ...revision, type: z.literal('CHAPTER11_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('CHAPTER4_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('MISSION_CHOOSE'), id: z.string().max(80) }).strict(),
   z.object({ ...revision, type: z.literal('CLINIC_CHOOSE'), id: z.string().max(80) }).strict(),

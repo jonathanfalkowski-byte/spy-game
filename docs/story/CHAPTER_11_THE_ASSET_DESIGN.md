@@ -5,8 +5,9 @@
 Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)
 §3 (coercion framework) and §11 (checklist), [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md)
 (canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md) (the test: thrilling, erotic, fun).
-Status: **draft for owner decisions (§10).** Gated like Chapters 6–10 (`VITE_EVE_CHAPTER11`,
-content revision ≥ 19).
+Status: **approved (owner, 2026-09-25: all six decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_11_THE_ASSET_SCRIPT.md](scripts/CHAPTER_11_THE_ASSET_SCRIPT.md), code: `src/content/chapter11.ts`.
+Gated like Chapters 6–10 (`VITE_EVE_CHAPTER11`, content revision ≥ 19). ~1.7k words on the golden paths so far.
 
 ---
 

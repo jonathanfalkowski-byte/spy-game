@@ -17,6 +17,8 @@ import { Chapter9work } from './Chapter9work';
 import { chapter9Scenes } from '../content/chapter9';
 import { Chapter10work } from './Chapter10work';
 import { chapter10Scenes } from '../content/chapter10';
+import { Chapter11work } from './Chapter11work';
+import { chapter11Scenes } from '../content/chapter11';
 import { LeverageBoard } from './LeverageBoard';
 import { leverageBoardOpen } from '../content/leverage';
 import { chapter5Scenes } from '../content/chapter5';
@@ -191,6 +193,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'chapter8',
         'chapter9',
         'chapter10',
+        'chapter11',
         'file',
         'security',
         'sloane',
@@ -226,6 +229,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'chapter8',
       'chapter9',
       'chapter10',
+      'chapter11',
       'file',
       'security',
       'sloane',
@@ -297,6 +301,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           ? 'Glass House / 03'
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
+            : state.scene === 'chapter11'
+              ? 'Chapter 11 / The Asset'
             : state.scene === 'chapter10'
               ? 'Chapter 10 / She Knows'
               : state.scene === 'chapter9'
@@ -324,6 +330,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           'Above the city.'
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
+        ) : state.scene === 'chapter11' ? (
+          'The Asset.'
         ) : state.scene === 'chapter10' ? (
           'She Knows.'
         ) : state.scene === 'chapter9' ? (
@@ -360,6 +368,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             ).map((s, i) => ['mission' + i, s.label])
           : state.scene === 'clinic'
             ? clinicSections.map((s, i) => ['clinic' + i, s.label])
+            : state.scene === 'chapter11'
+              ? chapter11Scenes.map((s) => [s.id, s.title])
             : state.scene === 'chapter10'
               ? chapter10Scenes.map((s) => [s.id, s.title])
               : state.scene === 'chapter9'
@@ -414,7 +424,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             key={id}
             aria-current={
               state.scene === id ||
-              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10'].includes(state.scene) && id === node) ||
+              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11'].includes(state.scene) && id === node) ||
               (state.scene === 'mission' &&
                 id ===
                   'mission' +
@@ -475,7 +485,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter11' ? 'THE ASSET' : state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -629,6 +639,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'chapter8',
                     'chapter9',
                     'chapter10',
+                    'chapter11',
                     'file',
                     'security',
                     'sloane',
@@ -746,6 +757,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   {!readingScene && <Chapter8work state={state} send={send} />}
                   {!readingScene && <Chapter9work state={state} send={send} />}
                   {!readingScene && <Chapter10work state={state} send={send} />}
+                  {!readingScene && <Chapter11work state={state} send={send} />}
                   <Clinicwork state={state} send={send} />
                   {!(assessment.status === 'required' && assessment.flow === 'mission') && (
                     <Missionwork state={state} send={send} />
@@ -926,6 +938,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : 'GLASS HOUSE'
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
+                        : state.scene === 'chapter11'
+                          ? 'Chapter 11 / The Asset'
                         : state.scene === 'chapter10'
                           ? 'Chapter 10 / She Knows'
                           : state.scene === 'chapter9'

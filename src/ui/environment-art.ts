@@ -207,6 +207,14 @@ const byNode: Record<string, Key> = {
   'chapter10.answer': 'apartmentDay',
   'chapter10.invitation': 'apartmentNight',
   'chapter10.complete': 'apartmentNight',
+  // Chapter 11 (stand-ins until EVE Art's Vesper frames: the black-glass front, the empty frames, the catalogue).
+  'chapter11.arrival': 'glassLobby',
+  'chapter11.viewing': 'harbourRoom',
+  'chapter11.upstairs': 'serviceGallery',
+  'chapter11.order': 'rooftop',
+  'chapter11.ending': 'serviceGallery',
+  'chapter11.after': 'apartmentNight',
+  'chapter11.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {
