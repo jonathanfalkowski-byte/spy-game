@@ -6,7 +6,10 @@ Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III), [ENDGAME_RECONVERGENCE.m
 (canon: the prior Evelyn was burned, then inventoried; not secretly alive; Celeste is the board
 signatory), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3 and §11, [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md)
 (the test: thrilling, erotic, fun).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–11 (`VITE_EVE_CHAPTER12`, content
+Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_12_SINGAPORE_SCRIPT.md](scripts/CHAPTER_12_SINGAPORE_SCRIPT.md), code: `src/content/chapter12.ts`.
+~3.7–4.1k words on the golden paths. (The bar is the Punkah Bar at the Marlowe Hotel: "the Lantern" is
+already a place in the game.) Gated like Chapters 6–11 (`VITE_EVE_CHAPTER12`, content
 revision ≥ 19), entered from an own-power `chapter11.complete`.
 
 ---
@@ -54,7 +57,7 @@ and taking Celeste's money to investigate Celeste.
 | `c11.iris`, `act3.ally.iris` | Ch11 | Iris free knows who ran Singapore: she gives her Ashby's name. Iris burned: nobody does |
 | `c11.catalogue` (photo / page) | Ch11 | Her catalogue page carries a site code, **SG/EH-9**: Emerald Hill, number 9 |
 | `c8.call` (evie / ask / down) | Ch8 | How Mrs Tan greets her: "Evie!" / "You rang me, and asked. You came" / wary, a stranger |
-| `c7.robe = coats` (ticket 41, the matchbook) | Ch7 | The matchbook from a hotel bar on the Straits: a lead to the Lantern Bar and Ashby |
+| `c7.robe = coats` (ticket 41, the matchbook) | Ch7 | The matchbook from a hotel bar on the Straits: a lead to the Punkah Bar and Ashby |
 | `c7.robe` receipt (two sugars and cinnamon), shoes worn on the left | Ch7 | Nora knows them both: the cinnamon was Nell's, the black coffee was Celeste's |
 | `c9.names-open = end` (Ruth on Jakarta) | Ch9 | She knows the word "burned" before Ashby says it; Ruth gives her a line to open him with |
 | `c7.street` (Lotte) · `c8.emerald` | Ch7–8 | Lotte's balcony, "every night", with C. |
@@ -75,7 +78,7 @@ Phases (new gated nodes, each a scene with its own title and place):
 | 1 | `departure` | Welcome Home · CHANGI, 06:10 | ~800 | How she goes |
 | 2 | `emerald` | Mrs Tan's Orchids · EMERALD HILL | ~1,100 | Who she is to Mrs Tan |
 | 3 | `flat` | Number 9 · EMERALD HILL, AFTER DARK | ~1,400 | Where she looks; who she is when he walks in |
-| 4 | `straits` | The Lantern Bar · THE STRAITS HOTEL | ~1,200 | How she makes Ashby talk |
+| 4 | `straits` | The Punkah Bar · THE MARLOWE HOTEL | ~1,200 | How she makes Ashby talk |
 | 5 | `sister` | Nora · SUNDAY, HOLLAND VILLAGE | ~1,500 | What she tells Nora |
 | 6 | `night` | The Heat · THE HARBOUR, MIDNIGHT | ~800 (+~500 evening) | The harbour; an optional chosen evening |
 | | `complete` | A Name · ARRIVALS, LONDON | ~200 | |
@@ -168,14 +171,14 @@ contractor who keeps the site, and has never seen the tenant before.
   he does not know, and gives her the number he reports to. Board asset: the number. Celeste
   learns exactly what she did.
 
-### 4.4 The Lantern Bar (`straits`)
+### 4.4 The Punkah Bar (`straits`)
 
 The lead to the man who ran Singapore comes by whatever road she has: Iris (free) gave her a name;
 the matchbook from Nell's coat pocket (`c7.robe = coats`); Ruth's word for Jakarta; or, on every
 path, the number the caretaker reports to, answered by a hotel switchboard on the Straits.
 (Solvable alone: the fallback always exists.)
 
-The Lantern Bar at the top of an old colonial hotel: fans turning, a pianist playing to nobody,
+The Punkah Bar at the top of an old colonial hotel: fans turning, a pianist playing to nobody,
 the harbour lights beyond the shutters. **Colin Ashby**, sixty, linen suit, the manners of a man
 who used to be important, the drinking of a man who knows he no longer is. He ran Meridian's
 Singapore station for nine years. He sees her from across the room and puts his glass down very
@@ -302,7 +305,7 @@ Ashby's statement, Nora (a witness), and Nell's name.
 1. Changi at dawn through the glass, a lone figure in sunglasses (or the press call's flashes).
 2. Emerald Hill at night: shophouse shutters, a lit landing, orchids on a mat.
 3. Number 9 dressed and waiting: the ivory jacket on the chair, one lamp, no one home.
-4. The Lantern Bar: ceiling fans, a piano, the harbour lights through the shutters.
+4. The Punkah Bar: ceiling fans, a piano, the harbour lights through the shutters.
 5. Nora's doorway: frangipani, a porch light, a woman holding the door frame (no readable face).
 6. The harbour at midnight: black water, the city's lights, a figure at the wall.
 

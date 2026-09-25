@@ -215,6 +215,14 @@ const byNode: Record<string, Key> = {
   'chapter11.ending': 'serviceGallery',
   'chapter11.after': 'apartmentNight',
   'chapter11.complete': 'apartmentNight',
+  // Chapter 12 (stand-ins until EVE Art's Singapore frames: Changi, Emerald Hill, number 9, the Punkah Bar, the harbour).
+  'chapter12.departure': 'apartmentNight',
+  'chapter12.emerald': 'shoppingStreet',
+  'chapter12.flat': 'wardrobe',
+  'chapter12.straits': 'harbourRoom',
+  'chapter12.sister': 'apartmentDay',
+  'chapter12.night': 'rooftop',
+  'chapter12.complete': 'car',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

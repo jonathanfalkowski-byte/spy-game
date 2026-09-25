@@ -38,6 +38,8 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
       'Adrian Vale’s name',
       'The apartment (Meridian owns the building)',
       ...(c(s, 'act3.placement') ? ['A placement date: the first Thursday of next month'] : []),
+      ...(c(s, 'c12.cover') ? ['Singapore: where you went, and whom you saw'] : []),
+      ...(c(s, 'c12.harbour') ? ['A photograph of Maya leaving work, taken from across the road'] : []),
     ],
     ...(answer11
       ? { wants: 'Iris Moreau, ended, by your hand', threat: 'Maya’s clearance, escalated' }
@@ -88,6 +90,13 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'c11.catalogue') === 'photo') holds.push({ id: 'catalogue', label: 'The Autumn Collection, photographed: your page and Iris’s', source: 'The Vesper’s reading room' });
   else if (c(s, 'c11.catalogue') === 'page') holds.push({ id: 'catalogue', label: 'Page seven of The Autumn Collection: your own, torn out', source: 'The Vesper’s reading room' });
   if (c(s, 'act3.ally.iris') === 'in') holds.push({ id: 'iris', label: 'Iris Moreau, who knows how the house works, and owes you', source: 'The Vesper cloakroom' });
+  if (c(s, 'c12.search') === 'desk') holds.push({ id: 'schedule', label: 'Site SG/EH-9: the flat kept lived-in for a reissue, and a sister “not to be disturbed”', source: 'The bureau at number 9, Emerald Hill' });
+  if (c(s, 'c12.search') === 'wardrobe') holds.push({ id: 'penang', label: 'A boarding pass to Penang, never used: she was running', source: 'A hatbox at number 9' });
+  if (c(s, 'c12.caught') === 'hide') holds.push({ id: 'site-report', label: 'The caretaker’s report: Straits Property Services, the Marlowe, fourth floor', source: 'A clipboard, read through a bathroom door' });
+  else if (c(s, 'c12.caught') === 'own') holds.push({ id: 'site-report', label: 'Nine flats in Singapore, kept for tenants who never come', source: 'The caretaker, in the doorway of number 9' });
+  if (c(s, 'c12.statement') === 'recorded') holds.push({ id: 'ashby', label: 'Colin Ashby on the record: the order to burn her came “from a friend of hers”', source: 'The Punkah Bar, the Marlowe' });
+  if (c(s, 'act3.ally.nora') === 'in') holds.push({ id: 'nora', label: 'Nora Linden, who wants to be in the room', source: 'A kitchen in Holland Village' });
+  if (c(s, 'act3.nell') === 'known') holds.push({ id: 'nell', label: 'Her name: Eleanor Linden. Nell.', source: 'Her sister' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };

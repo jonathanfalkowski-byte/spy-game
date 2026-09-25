@@ -14,10 +14,10 @@ import { migrateGated } from '../gated-migration';
  * new beat now stands in the way (a no-op when nothing was added), then refreshes events and
  * saveSha256. It refuses to touch the Chapter 1–5 fixture, whose bytes must never change.
  */
-const files = ['6', '7', '8', '9', '10', '11'].map((n) => `tests/fixtures/rev19-chapter${n}-golden.json`);
+const files = ['6', '7', '8', '9', '10', '11', '12'].map((n) => `tests/fixtures/rev19-chapter${n}-golden.json`);
 
 it.skipIf(!process.env.EVE_REHASH_GATED)('migrates and refreshes the Chapter 6–10 revision-19 goldens', () => {
-  for (const n of [6, 7, 8, 9, 10, 11]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 10, 11, 12]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
   for (const file of files) {
     const raw = readFileSync(resolve(file), 'utf8');
     const data = JSON.parse(raw) as { routes: { name: string; events: number; saveSha256: string; ledger: GameEvent[] }[] };
