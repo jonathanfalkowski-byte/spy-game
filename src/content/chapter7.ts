@@ -12,8 +12,15 @@ import { ownBlocks7, ownChoices7, enterClose7 } from './chapter7-own';
 export const chapter7Definitions: Record<string, C7Scene> = {
   confirm: { title: 'The Road You Choose', place: 'ONE WEEK LATER', blocks: [] },
   standing: { title: 'Standing Alone', place: 'MORNING · ON YOUR OWN', blocks: [] },
+  // The own-power sequences, each a scene of its own (restructuring pass, 2026-09-25).
+  held: { title: 'Held', place: 'NOON · THE POST ROOM', blocks: [] },
+  street: { title: 'His Street', place: 'AFTERNOON · ACROSS THE RIVER', blocks: [] },
+  lift: { title: 'The Lift', place: '19:00 · YOUR BUILDING', blocks: [] },
+  grey: { title: 'The Grey Coat', place: 'MORNING · FOLLOWING HIM', blocks: [] },
   pursue: { title: 'Pulling the Thread', place: '· THE PATIENT WAY', blocks: [] },
   close: { title: 'The First Edge', place: '· WHAT YOU FOUND', blocks: [] },
+  effects: { title: 'His Things', place: 'NIGHT · THE KITCHEN FLOOR', blocks: [] },
+  night: { title: 'Tonight', place: 'LATE · YOUR FLAT', blocks: [] },
   complete: { title: 'Where It Points', place: '· THAT NIGHT', blocks: [] },
 };
 export const chapter7Scenes = Object.entries(chapter7Definitions).map(([phase, scene]) => ({

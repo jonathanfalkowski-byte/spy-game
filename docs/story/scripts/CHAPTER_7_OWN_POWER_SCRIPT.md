@@ -242,3 +242,24 @@ shelf marked HELD.
 3. With the porter there: "He comes in on Thursdays, Mr P., from the agents… He always knows."
 
 D.P. is Mr Pryce, the man from the lift: the initials arrive before the man does.
+
+## Structure after the restructuring pass (2026-09-25)
+
+Each sequence is its own phase, with its own title, place and art stand-in, and its lead-in is that
+phase's opening. Choice ids did not change, so the goldens replay the same moves; only their hashes
+moved.
+
+| Phase | Title | Place | Holds |
+|---|---|---|---|
+| `standing` | Standing Alone | MORNING · ON YOUR OWN | the morning, the watcher, Odile, the letter, the card |
+| `held` | Held | NOON · THE POST ROOM | the post room |
+| `street` | His Street | AFTERNOON · ACROSS THE RIVER | the Old Flat, the bridge, then `standing-begin` |
+| `lift` | The Lift | 19:00 · YOUR BUILDING | the lift |
+| `grey` | The Grey Coat | MORNING · FOLLOWING HIM | the tail, the green door, the window fixed |
+| `pursue` | Pulling the Thread | · THE PATIENT WAY | the envelope of ways in, the hub |
+| `close` | The First Edge | · WHAT YOU FOUND | the finding, the night tram |
+| `effects` | His Things | NIGHT · THE KITCHEN FLOOR | the box, Amy's letter |
+| `night` | Tonight | LATE · YOUR FLAT | the notes, the evening, `close-end` |
+
+`enterClose7` still fixes the finding on entering `close`. The evening's place lines now key on
+`night`.

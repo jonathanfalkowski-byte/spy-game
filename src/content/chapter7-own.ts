@@ -35,7 +35,11 @@
  * Sequence (2026-09-25), "The Post Room": after the letter from C., before the Old Flat. The basement shelf marked
  * HELD, and the card that held the first Evelynn's post for fourteen months, signed "Property Services, D.P." (held
  * in c7.post-open: ask → bundle). How she gets at it (c7.post = ask | charm | wait); what she does with the bundle
- * (c7.bundle = take | card | leave; photographing the card is a fact). D.P. is the man from the lift. */
+ * (c7.bundle = take | card | leave; photographing the card is a fact). D.P. is the man from the lift.
+ * Restructuring pass (2026-09-25): each sequence is its own phase with its own title and place, and its lead-in is
+ * that phase's opening: standing → held (the post room) → street (the Old Flat, the bridge) → lift → grey (the Grey
+ * Coat) → pursue (the hub) → close (the finding, the night tram) → effects (His Things, Amy's letter) → night (the
+ * notes, the evening) → complete. Choice ids are unchanged. */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -65,9 +69,6 @@ export function place7(s: GameState): string | undefined {
   const open = get7(s, 'pursue-open');
   if (s.phase === 'pursue' && open)
     return {
-      lift: '19:00 · Your building · The lift',
-      grey: 'Morning · Following the grey coat',
-      'grey-door': 'Late morning · Property Services, behind the old customs house',
       records: '23:10 · Municipal registry · Night desk',
       'records-dark': '23:45 · Municipal registry · The stacks',
       maya: '21:00 · The Lantern',
@@ -77,8 +78,10 @@ export function place7(s: GameState): string | undefined {
       audience: 'Evening · A studio on the river',
       'audience-exit': 'Late · A studio on the river',
     }[open];
+  if (s.phase === 'grey' && get7(s, 'grey')) return 'Late morning · Property Services, behind the old customs house';
+  if (s.phase === 'close' && !get7(s, 'daniel')) return 'Late · The night tram, past Axiom Tower';
   const evening = get7(s, 'evening-open');
-  if (s.phase === 'close' && evening)
+  if (s.phase === 'night' && evening)
     return evening.startsWith('julian') ? 'Late · Julian’s apartment' : evening.startsWith('theo') ? 'Late · Theo’s flat above the studio' : 'Late · Harbour, after the last set';
 }
 
@@ -152,7 +155,7 @@ const postCard: Block[] = [
 function postChoices(s: GameState): C7Choice[] {
   if (get7(s, 'post-open') === 'ask') {
     const get = (id: string, label: string, hint: string, body: Block[]) =>
-      offer7('post-' + id, label, hint, 'standing', (x) => {
+      offer7('post-' + id, label, hint, 'held', (x) => {
         set7(x, 'post', id);
         set7(x, 'post-open', 'bundle');
         return [...body, ...postCard];
@@ -174,15 +177,11 @@ function postChoices(s: GameState): C7Choice[] {
   }
   const porter = get7(s, 'post') !== 'wait';
   const bundle = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer7('bundle-' + id, label, hint, 'standing', (x) => {
+    offer7('bundle-' + id, label, hint, 'street', (x) => {
       delete x.choices['c7.post-open'];
       set7(x, 'bundle', id);
       after?.(x);
-      return [
-        ...body,
-        ...(porter ? [q('Tomasz', 'He comes in on Thursdays, Mr P., from the agents. Checks the shelf. He’ll know if anything’s gone. He always knows.')] : []),
-        ...oldFlatLead,
-      ];
+      return [...body, ...(porter ? [q('Tomasz', 'He comes in on Thursdays, Mr P., from the agents. Checks the shelf. He’ll know if anything’s gone. He always knows.')] : [])];
     });
   return [
     bundle('take', 'Take the whole bundle', 'It is addressed to you. Sign for it.', [
@@ -210,7 +209,7 @@ const oldFlatLead: Block[] = [
 
 function oldFlatChoices(): C7Choice[] {
   const visit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer7('flat-' + id, label, hint, 'standing', (x) => {
+    offer7('flat-' + id, label, hint, 'street', (x) => {
       set7(x, 'old-flat', id);
       after?.(x);
       return [...body, ...evieLead];
@@ -258,7 +257,7 @@ const evieLead: Block[] = [
 
 function evieChoices(): C7Choice[] {
   const meet = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer7('evie-' + id, label, hint, 'standing', (x) => {
+    offer7('evie-' + id, label, hint, 'street', (x) => {
       set7(x, 'lotte', id);
       after?.(x);
       return body;
@@ -352,16 +351,12 @@ function standingChoices(s: GameState): C7Choice[] {
         ];
       }),
     ];
-  if (get7(s, 'post-open')) return postChoices(s);
-  if (get7(s, 'card') && !get7(s, 'old-flat')) return oldFlatChoices();
-  if (get7(s, 'old-flat') && !get7(s, 'lotte')) return evieChoices();
-  if (!get7(s, 'card'))
-    return withOldFlat([
+  return withOldFlat([
       offer7('card-keep', 'Keep it', 'It’s hers. It is also the only thing anyone ever sent her that you can hold.', 'standing', (x) => {
         set7(x, 'card', 'kept');
         return [
           p('You slide the orchid back into the envelope and put the envelope in the drawer with your passport and the phone that is only yours. It feels like theft, and like the opposite of theft.'),
-          p('Twice that afternoon you open the drawer to check it is still there. The second time you catch yourself doing it and close the drawer too hard.'),
+          p('Twice in the next hour you open the drawer to check it is still there. The second time you catch yourself doing it and close the drawer too hard.'),
           t('Somebody loved her enough to wait fourteen months for breakfast. I am keeping that. I don’t know yet whether it is evidence or company.'),
         ];
       }),
@@ -382,22 +377,24 @@ function standingChoices(s: GameState): C7Choice[] {
         ];
       }),
     ]);
-  return [
-    offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue', (x) => {
-      set7(x, 'pursue-open', 'lift');
-      return [];
-    }),
-  ];
 }
 
-/** Every answer to the letter leads down to the post room (then the afternoon walk, the Old Flat). */
+/** His Street: the Old Flat, then the bridge, then the thread (the lift). */
+function streetChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'old-flat')) return oldFlatChoices();
+  if (!get7(s, 'lotte')) return evieChoices();
+  return [offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'lift')];
+}
+
+/** Every answer to the letter leads down to the post room (Held), then the afternoon walk (His Street). */
 const withOldFlat = (choices: C7Choice[]): C7Choice[] =>
   choices.map((c) => ({
     ...c,
+    next: 'held',
     apply: (x) => {
       const body = c.apply?.(x) ?? [];
       set7(x, 'post-open', 'ask');
-      return [...body, ...postLead];
+      return body;
     },
   }));
 
@@ -441,8 +438,14 @@ export function ownBlocks7(s: GameState): Block[] {
       ),
       ...(get5(s, 'published') ? [] : letterArrives),
     ];
-  // The lift plays first when the hub opens; the envelope of ways in follows it.
-  if (s.phase === 'pursue') return get7(s, 'pursue-open') === 'lift' ? liftLead : waysIn7(s);
+  if (s.phase === 'held') return postLead;
+  if (s.phase === 'street') return oldFlatLead;
+  if (s.phase === 'lift') return liftLead;
+  if (s.phase === 'grey') return greyLead;
+  if (s.phase === 'pursue') return waysIn7(s);
+  if (s.phase === 'effects') return boxLead;
+  if (s.phase === 'night')
+    return [p('It is past eleven when you finally put the box away, the jacket on its hanger at the end of the rail behind the dresses. The flat is very quiet. You stand at the window for a while and do not turn the lamp on.')];
   if (s.phase === 'close') {
     const finding = get7(s, 'finding');
     return [
@@ -511,10 +514,9 @@ const liftLead: Block[] = [
 
 function liftChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('lift-' + id, label, hint, 'pursue', (x) => {
-      set7(x, 'pursue-open', 'grey');
+    offer7('lift-' + id, label, hint, 'grey', (x) => {
       set7(x, 'lift', id);
-      return [...body, ...greyLead];
+      return body;
     });
   return [
     ride('speak', 'Ask him which floor', 'Make him say something he did not plan to.', [
@@ -553,9 +555,8 @@ const windowFixed: Block[] = [
 
 function greyChoices(): C7Choice[] {
   const tail = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('grey-' + id, label, hint, 'pursue', (x) => {
+    offer7('grey-' + id, label, hint, 'grey', (x) => {
       set7(x, 'grey', id);
-      set7(x, 'pursue-open', 'grey-door');
       return [...body, ...greyDoor];
     });
   return [
@@ -580,10 +581,9 @@ function greyChoices(): C7Choice[] {
 function greyDoorChoices(): C7Choice[] {
   const door = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
     offer7('grey-' + id, label, hint, 'pursue', (x) => {
-      delete x.choices['c7.pursue-open'];
       set7(x, 'grey-door', id);
       after?.(x);
-      return [...body, ...windowFixed, ...waysIn7(x)];
+      return [...body, ...windowFixed];
     });
   return [
     door('ring', 'Ring, and complain about your window', 'A tenant with a grievance. Nobody questions a grievance.', [
@@ -632,7 +632,7 @@ function boxChoices(s: GameState): C7Choice[] {
   const stage = get7(s, 'box-open');
   if (stage === 'open') {
     const open = (id: string, label: string, hint: string, body: Block[]) =>
-      offer7('box-' + id, label, hint, 'close', (x) => {
+      offer7('box-' + id, label, hint, 'effects', (x) => {
         set7(x, 'box', id);
         set7(x, 'box-open', 'face');
         return [...body, ...boxContents];
@@ -651,7 +651,7 @@ function boxChoices(s: GameState): C7Choice[] {
   }
   if (stage === 'face') {
     const face = (id: string, label: string, hint: string, body: Block[]) =>
-      offer7('face-' + id, label, hint, 'close', (x) => {
+      offer7('face-' + id, label, hint, 'effects', (x) => {
         set7(x, 'face', id);
         set7(x, 'box-open', 'letter');
         return [...body, ...boxJacket];
@@ -672,7 +672,7 @@ function boxChoices(s: GameState): C7Choice[] {
     ];
   }
   const letter = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('letter-' + id, label, hint, 'close', (x) => {
+    offer7('letter-' + id, label, hint, get5(s, 'published') ? 'effects' : 'night', (x) => {
       delete x.choices['c7.box-open'];
       set7(x, 'letter', id);
       return [...body, ...boxSlip, ...fanLead(x)];
@@ -706,7 +706,7 @@ function fanLead(s: GameState): Block[] {
 
 function fanChoices(): C7Choice[] {
   const keep = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('fan-' + id, label, hint, 'close', (x) => {
+    offer7('fan-' + id, label, hint, 'night', (x) => {
       set7(x, 'fan', id);
       return body;
     });
@@ -1085,7 +1085,7 @@ function eveningChoices(s: GameState): C7Choice[] {
   });
   if (!open.endsWith('-room')) {
     const scope = (id: 'no-sex' | 'sex', label: string, hint: string) =>
-      offer7(`evening-${partner}-${id}`, label, hint, 'close', (x) => {
+      offer7(`evening-${partner}-${id}`, label, hint, 'night', (x) => {
         set7(x, 'evening-open', partner + '-room');
         set7(x, 'evening-scope', id);
         note7(x, 'evening-consent', `Evelynn chose the evening’s scope (${id}); ${who[partner]} agreed to the same scope. Either may stop at any time.`, 'Evelynn’s stated choice and his explicit agreement');
@@ -1115,7 +1115,7 @@ function eveningChoices(s: GameState): C7Choice[] {
 /** Before the night: what Evelynn does with what she found. Chapter 8's break-in reads it (c7.notes). */
 function notesChoices(s: GameState): C7Choice[] {
   const keep = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer7('notes-' + id, label, hint, 'close', (x) => {
+    offer7('notes-' + id, label, hint, 'night', (x) => {
       set7(x, 'notes', id);
       after?.(x);
       return body;
@@ -1160,10 +1160,10 @@ function tramLead(s: GameState): Block[] {
 
 function danielChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('daniel-' + id, label, hint, 'close', (x) => {
+    offer7('daniel-' + id, label, hint, 'effects', (x) => {
       set7(x, 'daniel', id);
       set7(x, 'box-open', 'open');
-      return [...body, ...boxLead];
+      return body;
     });
   return [
     ride('ask', 'Ask him about the man', 'Let him talk about Adrian. You will have to sit still for it.', [
@@ -1187,16 +1187,15 @@ function danielChoices(): C7Choice[] {
 }
 
 function closeChoices(s: GameState): C7Choice[] {
+  if (s.phase === 'close') return get7(s, 'daniel') ? [] : danielChoices();
+  if (s.phase === 'effects') return get7(s, 'box-open') ? boxChoices(s) : get5(s, 'published') && !get7(s, 'fan') ? fanChoices() : [];
   if (get7(s, 'evening-open')) return eveningChoices(s);
-  if (!get7(s, 'daniel')) return danielChoices();
-  if (get7(s, 'box-open')) return boxChoices(s);
-  if (get5(s, 'published') && !get7(s, 'fan')) return fanChoices();
   if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
   const partners = eveningPartners7(s);
   const c: C7Choice[] = [];
   if (partners.includes('julian'))
     c.push(
-      offer7('evening-julian', 'Go to Julian’s', '“Dinner ran long. I’d like to see you. Only if you want to.”', 'close', (x) => {
+      offer7('evening-julian', 'Go to Julian’s', '“Dinner ran long. I’d like to see you. Only if you want to.”', 'night', (x) => {
         set7(x, 'evening', 'julian');
         set7(x, 'evening-open', 'julian');
         return [
@@ -1207,7 +1206,7 @@ function closeChoices(s: GameState): C7Choice[] {
     );
   if (partners.includes('sebastian'))
     c.push(
-      offer7('evening-sebastian', 'Go and hear Sebastian play', '“Back for one night. It holds its nerve now. Come and tell me if I’m lying.”', 'close', (x) => {
+      offer7('evening-sebastian', 'Go and hear Sebastian play', '“Back for one night. It holds its nerve now. Come and tell me if I’m lying.”', 'night', (x) => {
         set7(x, 'evening', 'sebastian');
         set7(x, 'evening-open', 'sebastian');
         return [
@@ -1218,7 +1217,7 @@ function closeChoices(s: GameState): C7Choice[] {
     );
   if (partners.includes('theo'))
     c.push(
-      offer7('evening-theo', 'Go to Theo’s', '“No cameras. No notes. Come over.”', 'close', (x) => {
+      offer7('evening-theo', 'Go to Theo’s', '“No cameras. No notes. Come over.”', 'night', (x) => {
         set7(x, 'evening', 'theo');
         set7(x, 'evening-open', 'theo');
         return [
@@ -1282,12 +1281,13 @@ const withBetween = (choices: C7Choice[]): C7Choice[] =>
 
 export function ownChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'standing') return standingChoices(s);
-  if (s.phase === 'close') return closeChoices(s);
+  if (s.phase === 'held') return postChoices(s);
+  if (s.phase === 'street') return streetChoices(s);
+  if (s.phase === 'lift') return liftChoices();
+  if (s.phase === 'grey') return get7(s, 'grey') ? greyDoorChoices() : greyChoices();
+  if (['close', 'effects', 'night'].includes(s.phase)) return closeChoices(s);
   if (s.phase !== 'pursue') return [];
   const open = get7(s, 'pursue-open');
-  if (open === 'lift') return liftChoices();
-  if (open === 'grey') return greyChoices();
-  if (open === 'grey-door') return greyDoorChoices();
   if (open === 'rook') return rookTrade(s);
   if (open === 'rook-woman') return withBetween(rookWomanChoices(s));
   if (open === 'records') return recordsChoices(s);

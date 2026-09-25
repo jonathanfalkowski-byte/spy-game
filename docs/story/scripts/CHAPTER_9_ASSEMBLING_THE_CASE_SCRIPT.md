@@ -318,3 +318,23 @@ in her pockets so that you will not see what they are doing.
 3. The car she is tired of, waiting.
 
 Canon: Sloane as the person in the machine (docs/story/ENDGAME_RECONVERGENCE.md).
+
+## Structure after the restructuring pass (2026-09-25)
+
+Own-power:
+
+| Phase | Title | Place | Holds |
+|---|---|---|---|
+| `arrive` | The Same Wall | THE NEXT MORNING | the morning, the Straits Club |
+| `names` | The Eleven Names | EVENING · THE OLD HARBOUR | Ruth, then `arrive-begin` |
+| `table` | The Usual Table | THURSDAY · CASTELLANE (MIDDAY · THE TAILOR ON THE HILL first) | the floor, the tailor, Castellane |
+| `auction` | Lot Fourteen | EVENING · THE HARBOUR SPRING AUCTION | if the Aster piece ran |
+| `assemble` | Assembling the Case | · WHAT YOU HOLD | the hub (a short opener when she came through Castellane) |
+| `resolve` | What You Can Carry | · THE CASE | the band; the watcher's rent, the window |
+| `cafe` | The Watchers' Table | MORNING · THE CAFÉ OUTSIDE | Sloane |
+| `river` | The River Walk | MORNING · THE EMBANKMENT | the walk |
+| `counsel` | Exhibit A | AFTERNOON · ABOVE THE LOCKSMITH'S | the lawyer, then `resolve-end` |
+
+Other lanes keep arrive → assemble → resolve (the lawyer, then `resolve-end`) → complete.
+`enterResolve9` still fixes the name floor and the band on entering `resolve`, so nothing after it
+adds case weight. Choice ids are unchanged.

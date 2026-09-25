@@ -251,7 +251,7 @@ it('offers a chosen evening only with a partner she already chose, consent-gated
   expect(chapter7Choices(both).at(-1)?.label).toBe('Stay in tonight');
   for (const partner of ['julian', 'sebastian'] as const) {
     const invited = c7(both, 'evening-' + partner);
-    expect(invited.phase).toBe('close');
+    expect(invited.phase).toBe('night');
     expect(ids(invited)).toEqual([`evening-${partner}-no-sex`, `evening-${partner}-sex`, 'evening-leave']);
     expect(currentPlace(invited, 'x')).toBe(partner === 'julian' ? 'Late · Julian’s apartment' : 'Late · Harbour, after the last set');
     const agreed = c7(invited, `evening-${partner}-sex`);
@@ -338,7 +338,7 @@ it('asks what she does with what she found before the night, and offers Maya onl
   expect(ids(atClose)).toEqual(['notes-hide', 'notes-burn', 'notes-maya']);
   expect(ids(withFlags(atClose, { 'c6.maya': undefined }))).toEqual(['notes-hide', 'notes-burn']);
   const sent = c7(atClose, 'notes-maya');
-  expect([sent.phase, sent.choices['c7.notes']]).toEqual(['close', 'maya']);
+  expect([sent.phase, sent.choices['c7.notes']]).toEqual(['night', 'maya']);
   expect(text(sent)).toContain('If I stop answering, open this.');
   expect(ids(sent)).not.toContain('notes-hide');
   const nothing = c7(begin(), 'pursue-stop');
@@ -471,22 +471,25 @@ it('meets her Singapore on the bridge, and Adrian’s colleague on the night tra
 
 it('rides the lift with a man who knows her name before the hub opens', () => {
   const lift = c7(ready(standing()), 'standing-begin');
-  expect([lift.phase, lift.choices['c7.pursue-open']]).toEqual(['pursue', 'lift']);
+  // The restructuring pass: the lift and the Grey Coat are phases of their own.
+  expect(lift.phase).toBe('lift');
+  expect(currentPlace(lift, 'x')).toBe('x');
   expect(text(lift)).toContain('Good evening, Ms Vale.');
   expect(text(lift)).not.toContain('You write the ways in on the back of an envelope');
   expect(ids(lift)).toEqual(['lift-speak', 'lift-out', 'lift-stare']);
   const spoke = choose7(lift, 'lift-speak');
-  expect([spoke.choices['c7.lift'], spoke.choices['c7.pursue-open']]).toEqual(['speak', 'grey']);
+  expect([spoke.choices['c7.lift'], spoke.phase]).toEqual(['speak', 'grey']);
   expect(text(spoke)).toContain('Mind the window. It sticks.');
   // The Grey Coat: the morning after, she follows him.
   expect(text(spoke)).toContain('his shoulders dry again although the pavement is wet');
   expect(ids(spoke)).toEqual(['grey-close', 'grey-far', 'grey-ahead']);
   const close = choose7(spoke, 'grey-close');
-  expect([close.choices['c7.grey'], close.choices['c7.pursue-open']]).toEqual(['close', 'grey-door']);
+  expect([close.choices['c7.grey'], close.phase]).toEqual(['close', 'grey']);
+  expect(currentPlace(close, 'x')).toContain('Property Services');
   expect(text(close)).toContain('Black, no sugar. That is how I take it now. Adrian took milk.');
   expect(ids(close)).toEqual(['grey-ring', 'grey-watch', 'grey-home']);
   const rang = choose7(close, 'grey-ring');
-  expect([rang.choices['c7.grey-door'], rang.choices['c7.pursue-open'], rang.facts.includes('c7.pryce')]).toEqual(['ring', undefined, true]);
+  expect([rang.choices['c7.grey-door'], rang.phase, rang.facts.includes('c7.pryce')]).toEqual(['ring', 'pursue', true]);
   expect(text(rang)).toContain('Your building’s one of Mr Pryce’s.');
   expect(text(rang)).toContain('SERVICED, a date, and two initials. D.P.');
   expect(text(rang)).toContain('You write the ways in on the back of an envelope');

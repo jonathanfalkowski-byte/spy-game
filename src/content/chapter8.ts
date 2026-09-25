@@ -33,7 +33,11 @@
  * her over the river to Number 14. She rings Kemi, lets herself in, or posts the key back (c8.key = ring | in | post;
  * posting ends it). Inside, his hiding place behind the skirting board has been screwed shut and stickered SERVICED,
  * D.P. (c8.board = open | leave; a fact either way), and then the key itself (c8.spare = keep | kemi | river). Held in
- * c8.key-open (go → board → spare) in advance, before close. */
+ * c8.key-open (go → board → spare) in advance, before close.
+ * Restructuring pass (2026-09-25): each sequence is its own phase with its own title and place, its lead-in that
+ * phase's opening: cost (break-in, neighbour, money) → work (the shoot or the desk; the bank) → fireescape (Bishop) →
+ * leverage → advance (the list) → emerald (Lotte) → wake → number14 (the spare key) → close (the reporter, the night)
+ * → call (the landline) → complete. Choice ids are unchanged. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -85,9 +89,15 @@ const SENDER = 'Unknown sender';
 
 export const chapter8Definitions: Record<string, C8Scene> = {
   cost: { title: 'The Cost Bites', place: 'DAYS LATER · ON YOUR OWN', blocks: [] },
+  work: { title: 'The Working Week', place: 'WEDNESDAY · AT WORK', blocks: [] },
+  fireescape: { title: 'Bishop', place: 'SATURDAY · THE FIRE ESCAPE', blocks: [] },
   leverage: { title: 'Over the Wall', place: '· THE CHOICE', blocks: [] },
   advance: { title: 'What It Was Hiding', place: '· THE SHAPE', blocks: [] },
+  emerald: { title: 'Emerald Hill', place: 'NEXT DAY · WITH LOTTE', blocks: [] },
+  wake: { title: 'The Wake', place: '18:00 · THE ANCHOR, HARBOUR STREET', blocks: [] },
+  number14: { title: 'The Spare Key', place: 'LATE · NUMBER 14, ACROSS THE RIVER', blocks: [] },
   close: { title: 'Whose Door', place: '· THAT NIGHT', blocks: [] },
+  call: { title: 'The Landline', place: '03:10 · THE HALL', blocks: [] },
   complete: { title: 'The Next Room', place: '· LATER', blocks: [] },
 };
 export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, scene]) => ({
@@ -97,10 +107,11 @@ export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, s
 
 /** Scene-specific place lines while a road's scene is open (display only). */
 export function place8(s: GameState): string | undefined {
-  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'key-open')) return 'Late · Number 14, across the river';
-  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'wake'))
+  if (s.scene === 'chapter8' && s.phase === 'work')
+    return get8(s, 'work') ? 'Thursday · The bank' : onCampaign(s) ? 'Wednesday · The tram sheds' : 'Wednesday · Pell & Rourke';
+  if (s.scene === 'chapter8' && s.phase === 'wake' && get8(s, 'wake'))
     return get8(s, 'wake') === 'window' ? '18:00 · Outside the Anchor, Harbour Street' : '18:00 · The Anchor, Harbour Street';
-  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'lotte-meet'))
+  if (s.scene === 'chapter8' && s.phase === 'emerald' && get8(s, 'lotte-meet'))
     return get8(s, 'lotte-meet') === 'home' ? 'Next day · Lotte’s flat, the old docks' : 'Next day · A café by the river';
   if (s.scene !== 'chapter8' || s.phase !== 'leverage') return;
   return {
@@ -270,8 +281,14 @@ function hackChoices(): C8Choice[] {
 export function chapter8Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter8') return [];
   if (s.phase === 'cost') return costBlocks(s);
+  if (s.phase === 'work') return workLead(s);
+  if (s.phase === 'fireescape') return bishopLead;
   if (s.phase === 'advance') return advanceBlocks(s);
+  if (s.phase === 'emerald') return lotteLead(s);
+  if (s.phase === 'wake') return wakeLead;
+  if (s.phase === 'number14') return keyLead;
   if (s.phase === 'close') return closeBlocks(s);
+  if (s.phase === 'call') return callLead;
   if (s.phase === 'complete')
     return [p('You lie awake with it. Tomorrow you go looking for the name. Tonight you hold what it cost to get this far.')];
   return [];
@@ -584,9 +601,9 @@ function breakInChoices(s: GameState): C8Choice[] {
 
 function moneyChoices(s: GameState): C8Choice[] {
   const settle = (id: string, label: string, hint: string, apply: (x: GameState) => Block[]) =>
-    offer8('money-' + id, label, hint, 'cost', (x) => {
+    offer8('money-' + id, label, hint, 'work', (x) => {
       set8(x, 'money', id);
-      return [...apply(x), ...workLead(x)];
+      return apply(x);
     });
   const pay = (x: GameState, income: number, source: string) => {
     const before = cash(x) + income;
@@ -646,7 +663,7 @@ const bishopLead: Block[] = [
 
 function bishopChoices(): C8Choice[] {
   const catch_ = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer8('bishop-' + id, label, hint, 'cost', (x) => {
+    offer8('bishop-' + id, label, hint, 'fireescape', (x) => {
       set8(x, 'bishop', id);
       after?.(x);
       return body;
@@ -677,7 +694,7 @@ const callLead: Block[] = [
 
 function callChoices(): C8Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer8('call-' + id, label, hint, 'close', (x) => {
+    offer8('call-' + id, label, hint, 'call', (x) => {
       set8(x, 'call', id);
       after?.(x);
       return body;
@@ -706,9 +723,9 @@ function callChoices(): C8Choice[] {
 /** The night after (set pieces): a moment of her own before the chapter closes (c8.night). */
 function nightChoices(): C8Choice[] {
   const night = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('night-' + id, label, hint, 'close', (x) => {
+    offer8('night-' + id, label, hint, 'call', (x) => {
       set8(x, 'night', id);
-      return [...body, ...callLead];
+      return body;
     });
   return [
     night('watch', 'Sit up and watch the street', 'The bench, the awning, the car that shouldn’t be parked there.', [
@@ -758,7 +775,7 @@ function workLead(s: GameState): Block[] {
 function workChoices(s: GameState): C8Choice[] {
   const shoot = onCampaign(s);
   const work = (id: 'give' | 'hold', label: string, hint: string, body: Block[]) =>
-    offer8('work-' + id, label, hint, 'cost', (x) => {
+    offer8('work-' + id, label, hint, 'work', (x) => {
       set8(x, 'work', id);
       set8(x, 'work-kind', shoot ? 'shoot' : 'desk');
       return [...body, ...bankLead(x)];
@@ -816,9 +833,9 @@ function bankLead(s: GameState): Block[] {
 
 function bankChoices(): C8Choice[] {
   const bank = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('bank-' + id, label, hint, 'cost', (x) => {
+    offer8('bank-' + id, label, hint, 'fireescape', (x) => {
       set8(x, 'bank', id);
-      return [...body, ...bishopLead];
+      return body;
     });
   return [
     bank('cash', 'Take it all out in cash, today', 'Every note. Let them watch the number go to nothing.', [
@@ -871,7 +888,7 @@ function lotteChoices(s: GameState): C8Choice[] {
   const knows = lotteKnows(s);
   if (stage === 'invite') {
     const meet = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
-      offer8('lotte-' + id, label, hint, 'advance', (x) => {
+      offer8('lotte-' + id, label, hint, 'emerald', (x) => {
         set8(x, 'lotte-meet', id);
         set8(x, 'lotte-open', 'ask');
         return [...body(x), ...lottePhotos(x)];
@@ -888,7 +905,7 @@ function lotteChoices(s: GameState): C8Choice[] {
   }
   if (stage === 'ask') {
     const ask = (id: string, label: string, hint: string, body: Block[]) =>
-      offer8('lotte-' + id, label, hint, 'advance', (x) => {
+      offer8('lotte-' + id, label, hint, 'emerald', (x) => {
         set8(x, 'lotte-ask', id);
         set8(x, 'lotte-open', 'take');
         return [...body, q('Lotte', knows ? 'Take them. They’re yours.' : 'Take them. I think they’re more yours than mine.')];
@@ -912,7 +929,7 @@ function lotteChoices(s: GameState): C8Choice[] {
     ];
   }
   const take = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer8('photos-' + id, label, hint, 'advance', (x) => {
+    offer8('photos-' + id, label, hint, 'wake', (x) => {
       delete x.choices['c8.lotte-open'];
       set8(x, 'photos', id);
       set8(x, 'wake-open', 'go');
@@ -920,7 +937,6 @@ function lotteChoices(s: GameState): C8Choice[] {
       return [
         ...body,
         p('On the tram home you sit by the window and watch your reflection ride along beside you over the dark shop fronts: a face in the glass, laughing at nothing, or not laughing. In that light you cannot tell any more.'),
-        ...wakeLead,
       ];
     });
   return [
@@ -978,7 +994,7 @@ function wakeChoices(s: GameState): C8Choice[] {
   const stage = get8(s, 'wake-open');
   if (stage === 'go') {
     const go = (id: string, label: string, hint: string, body: (x: GameState) => Block[], next: 'inside' | 'toast') =>
-      offer8('wake-' + id, label, hint, 'advance', (x) => {
+      offer8('wake-' + id, label, hint, 'wake', (x) => {
         set8(x, 'wake', id);
         set8(x, 'wake-open', next);
         return body(x);
@@ -1001,7 +1017,7 @@ function wakeChoices(s: GameState): C8Choice[] {
   if (stage === 'inside') {
     const asker = get8(s, 'wake') === 'friend' ? 'Daniel' : 'A woman from Accounts';
     const answer = (id: string, label: string, hint: string, body: Block[]) =>
-      offer8('knew-' + id, label, hint, 'advance', (x) => {
+      offer8('knew-' + id, label, hint, 'wake', (x) => {
         set8(x, 'knew', id);
         set8(x, 'wake-open', 'toast');
         return [...body, ...toastInside];
@@ -1024,11 +1040,11 @@ function wakeChoices(s: GameState): C8Choice[] {
   }
   const inside = get8(s, 'wake') !== 'window';
   const toast = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('toast-' + id, label, hint, 'advance', (x) => {
+    offer8('toast-' + id, label, hint, 'number14', (x) => {
       delete x.choices['c8.wake-open'];
       set8(x, 'toast', id);
       set8(x, 'key-open', 'go');
-      return [...body, ...wakeEnd, ...keyLead];
+      return [...body, ...wakeEnd];
     });
   return [
     toast('drink', inside ? 'Drink to him' : 'Lift your hand to the glass', 'To yourself. Nobody will know.', [
@@ -1066,7 +1082,7 @@ function keyChoices(s: GameState): C8Choice[] {
   const metKemi = s.choices['c7.old-flat'] === 'ring';
   if (stage === 'go') {
     const go = (id: string, label: string, hint: string, body: Block[]) =>
-      offer8('key-' + id, label, hint, 'advance', (x) => {
+      offer8('key-' + id, label, hint, 'number14', (x) => {
         set8(x, 'key', id);
         set8(x, 'key-open', 'board');
         return [...body, ...keyInside];
@@ -1095,7 +1111,7 @@ function keyChoices(s: GameState): C8Choice[] {
   }
   if (stage === 'board') {
     const board = (id: string, label: string, hint: string, body: Block[]) =>
-      offer8('board-' + id, label, hint, 'advance', (x) => {
+      offer8('board-' + id, label, hint, 'number14', (x) => {
         set8(x, 'board', id);
         set8(x, 'key-open', 'spare');
         note8(x, 'hiding-place', HIDING_FACT, 'Evelynn, at Number 14');
@@ -1149,7 +1165,7 @@ const keyInside: Block[] = [
 /** Over the wall: what she does with Meridian's client list. */
 function listChoices(): C8Choice[] {
   return [
-    offer8('list-read', 'Read every line', 'Slowly. It is all you will get.', 'advance', (x) => {
+    offer8('list-read', 'Read every line', 'Slowly. It is all you will get.', 'emerald', (x) => {
       set8(x, 'list', 'read');
       set8(x, 'lotte-open', 'invite');
       note8(x, 'inventory', 'Meridian’s client list carries an entry set apart from the rest: VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED.', 'The list itself, read line by line');
@@ -1158,17 +1174,15 @@ function listChoices(): C8Choice[] {
         q('The client list', 'VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED'),
         t('Returned to inventory. Not killed. Not retired. Shelved, like a coat nobody was wearing, and then taken down and fitted to me.'),
         p('You read the rest of the page again, more slowly, now that you know what it is. The other entries are not names. They are codes, and cities, and dates. Three of them say RETIRED. One says only CLOSED, and you find you cannot look at that one for very long.'),
-        ...lotteLead(x),
       ];
     }),
-    offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'advance', (x) => {
+    offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'emerald', (x) => {
       set8(x, 'list', 'copied');
       set8(x, 'lotte-open', 'invite');
       return [
         p('You do not read it. You photograph it, send the photograph to an address that forwards on, and write the three lines that matter most on the inside of your wrist in eyeliner, because paper can be taken and a phone can be wiped, and skin, for a few hours, is harder to search.'),
         p('On the way home you keep your sleeve pulled down over your wrist, and your hand in your pocket, the way you would carry something warm.'),
         t('Whatever this says, I have it three times. They would have to find all three.'),
-        ...lotteLead(x),
       ];
     }),
   ];
@@ -1182,20 +1196,21 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   if (s.phase === 'cost') {
     if (!get8(s, 'breakin')) return breakInChoices(s);
     if (!get8(s, 'neighbour')) return neighbourChoices();
-    if (!get8(s, 'money')) return moneyChoices(s);
-    if (!get8(s, 'work')) return workChoices(s);
-    if (!get8(s, 'bank')) return bankChoices();
-    if (!get8(s, 'bishop')) return bishopChoices();
-    return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
+    return moneyChoices(s);
   }
+  if (s.phase === 'work') return get8(s, 'work') ? bankChoices() : workChoices(s);
+  if (s.phase === 'fireescape')
+    return get8(s, 'bishop') ? [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')] : bishopChoices();
   if (s.phase === 'leverage') return leverageChoices(s);
-  if (s.phase === 'advance')
-    return get8(s, 'lotte-open') ? lotteChoices(s) : get8(s, 'wake-open') ? wakeChoices(s) : get8(s, 'key-open') ? keyChoices(s) : listChoices();
+  if (s.phase === 'advance') return listChoices();
+  if (s.phase === 'emerald') return lotteChoices(s);
+  if (s.phase === 'wake') return wakeChoices(s);
+  if (s.phase === 'number14') return keyChoices(s);
+  if (s.phase === 'call')
+    return get8(s, 'call') ? [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')] : callChoices();
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
-    if (!get8(s, 'night')) return nightChoices();
-    if (!get8(s, 'call')) return callChoices();
-    return [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')];
+    return nightChoices();
   }
   return [];
 }

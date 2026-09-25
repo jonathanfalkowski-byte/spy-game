@@ -7,6 +7,7 @@ import { act, availableIntents, replay } from '../../src/state/reducer';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { band9, chapter9Choices, ORACLE_FEE } from '../../src/content/chapter9';
 import { resolveSceneArt } from '../../src/ui/scene-art';
+import { currentPlace } from '../../src/ui/chapter4-presentation';
 
 beforeEach(() => {
   for (const n of [6, 7, 8, 9]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
@@ -321,16 +322,18 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   const tailor = walk(noMarcusNoItem(withFlags(complete8('own-records-stop'), bare)), ['begin', 'arrive-begin']);
   expect(text(tailor)).toContain('A centimetre at the shoulder.');
   const asked = choose9(tailor, 'tailor-ask');
-  expect([asked.choices['c9.tailor'], asked.choices['c9.open'], asked.facts.includes('c9.tailor')]).toEqual(['ask', 'table', true]);
+  // The restructuring pass: the tailor and Castellane are the Usual Table phase.
+  expect([asked.choices['c9.tailor'], asked.phase, asked.facts.includes('c9.tailor')]).toEqual(['ask', 'table', true]);
+  expect(currentPlace(tailor, 'x')).toBe('Midday · The tailor on the hill');
   expect(text(asked)).toContain('You looked at her.');
 
   // Sloane comes first on the own-power road; the lawyer follows her.
   const resolved = walk(walk(hub(), ['assemble-name', 'assemble-stop']), ['rent-agent', 'window-dark', 'sloane-nothing', 'walk-adrian', 'rail-quiet']);
-  expect(resolved.phase).toBe('resolve');
+  expect(resolved.phase).toBe('counsel');
   expect(text(resolved)).toContain('Are you ready to be Exhibit A, Ms Vale?');
   expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
   const retained = choose9(resolved, 'lawyer-retain');
-  expect([retained.phase, retained.choices['c9.lawyer']]).toEqual(['resolve', 'retain']);
+  expect([retained.phase, retained.choices['c9.lawyer']]).toEqual(['counsel', 'retain']);
   expect(ids(retained)).toEqual(['resolve-end']);
   // No case weight: the band is fixed on entering resolve.
   expect(retained.choices['case.strength']).toBe(resolved.choices['case.strength']);
@@ -341,7 +344,7 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(text(morning)).toContain('Not missing. Mislaid. She always comes back. — C.');
   expect(ids(morning)).toEqual(['club-photo', 'club-ask', 'club-close']);
   const photo = choose9(morning, 'club-photo');
-  expect([photo.phase, photo.choices['c9.club'], photo.facts.includes('c9.club')]).toEqual(['arrive', 'photo', true]);
+  expect([photo.phase, photo.choices['c9.club'], photo.facts.includes('c9.club')]).toEqual(['names', 'photo', true]);
   // The Eleven Names follow the book.
   expect(ids(photo)).toEqual(['ruth-letter', 'ruth-class', 'ruth-door']);
   expect(text(choose9(morning, 'club-ask'))).toContain('She has not missed a month.');
@@ -351,7 +354,7 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(text(resolve)).not.toContain('Exhibit A');
   expect(ids(resolve)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
   const afraid = choose9(resolve, 'sloane-afraid');
-  expect([afraid.choices['c9.sloane'], afraid.phase]).toEqual(['afraid', 'resolve']);
+  expect([afraid.choices['c9.sloane'], afraid.phase]).toEqual(['afraid', 'river']);
   expect(text(afraid)).toContain('Being right about you.');
   // The River Walk comes before the lawyer.
   expect(text(afraid)).toContain('Walk with me. Not in a car. I am tired of cars.');

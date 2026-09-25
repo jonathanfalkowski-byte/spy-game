@@ -212,7 +212,7 @@ it('makes the client list a choice: reading every line finds her returned to inv
   expect(ids(atList)).toEqual(['list-read', 'list-copy']);
   const read = c8(atList, 'list-read');
   // The next day belongs to Lotte (Emerald Hill) before the night.
-  expect([read.phase, read.choices['c8.lotte-open']]).toEqual(['advance', 'invite']);
+  expect([read.phase, read.choices['c8.lotte-open']]).toEqual(['emerald', 'invite']);
   expect(text(read)).toContain('VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED');
   const copied = c8(atList, 'list-copy');
   expect(text(copied)).not.toContain('RETURNED TO INVENTORY');
@@ -244,7 +244,7 @@ it('walks the break-in room by room, and gives the night after a moment of its o
   expect(text(close)).toContain('One says only CLOSED');
   expect(close.phase).toBe('close');
   const walked = c8(close, 'night-walk');
-  expect([walked.phase, walked.choices['c8.night']]).toEqual(['close', 'walk']);
+  expect([walked.phase, walked.choices['c8.night']]).toEqual(['call', 'walk']);
   expect(text(walked)).toContain('It made me. It can see what it made.');
   expect(ids(walked)).toEqual(['call-evie', 'call-ask', 'call-down']);
   expect(c8(walked, 'close-end').phase).toBe('complete');
@@ -327,7 +327,7 @@ it('plays Emerald Hill: Lotte, nine photographs, a question and what she takes',
   expect(text(c)).toContain('She’s my employer, my landlady and my conscience, Lotte. Pick one.');
   expect(ids(c)).toEqual(['photos-all', 'photos-one', 'photos-back']);
   const all = choose8(c, 'photos-all');
-  expect([all.phase, all.choices['c8.photos'], all.choices['c8.lotte-open'], all.facts.includes('c8.photos')]).toEqual(['advance', 'all', undefined, true]);
+  expect([all.phase, all.choices['c8.photos'], all.choices['c8.lotte-open'], all.facts.includes('c8.photos')]).toEqual(['wake', 'all', undefined, true]);
   expect(text(choose8(c, 'photos-back'))).toContain('a test she did not know she was setting');
 });
 
@@ -345,7 +345,7 @@ it('plays the Wake: the notice on the tram, the Anchor, how she knew him, and th
   expect(text(close)).toContain('He never said anything, did he.');
   expect(text(close)).toContain('He fixed my reports for six years and never told anyone.');
   const spoke = choose8(close, 'toast-speak');
-  expect([spoke.phase, spoke.choices['c8.wake'], spoke.choices['c8.knew'], spoke.choices['c8.toast'], spoke.choices['c8.wake-open']]).toEqual(['advance', 'friend', 'close', 'speak', undefined]);
+  expect([spoke.phase, spoke.choices['c8.wake'], spoke.choices['c8.knew'], spoke.choices['c8.toast'], spoke.choices['c8.wake-open']]).toEqual(['number14', 'friend', 'close', 'speak', undefined]);
   expect(text(spoke)).toContain('Even my wake has a watcher.');
 
   const outside = choose8(notice, 'wake-window');
@@ -358,7 +358,8 @@ it('takes Adrian’s spare key back to Number 14, where even his hiding place ha
   const street = choose8(atList, 'toast-leave');
   expect(text(street)).toContain('It is still his key. It is not still his door.');
   expect(ids(street)).toEqual(['key-ring', 'key-in', 'key-post']);
-  expect(currentPlace(street, 'x')).toContain('Number 14');
+  // The restructuring pass: Number 14 is a phase of its own, its place the scene header's.
+  expect(street.phase).toBe('number14');
 
   const posted = choose8(street, 'key-post');
   expect([posted.phase, posted.choices['c8.key'], posted.choices['c8.key-open']]).toEqual(['close', 'post', undefined]);

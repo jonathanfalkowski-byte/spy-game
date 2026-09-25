@@ -35,7 +35,12 @@
  * Sequence (2026-09-25), "The River Walk" (own-power, resolve, after the café table, before the lawyer): Sloane comes
  * back. "Walk with me. Not in a car." What she asks her (c9.walk = box | leash | adrian), and at the rail, after
  * "do it before the first Thursday" (c9.rail = trust | warn | quiet). Sloane as the person in the machine: handed an
- * asset ORACLE had scored uncontrollable, her own leash round her own neck. Held in c9.walk-open (why → rail). */
+ * asset ORACLE had scored uncontrollable, her own leash round her own neck. Held in c9.walk-open (why → rail).
+ * Restructuring pass (2026-09-25): on the own-power road each sequence is its own phase with its own title and place,
+ * its lead-in that phase's opening: arrive (the morning, the Straits Club) → names (Ruth Adair) → table (the floor, the
+ * tailor, Castellane) → auction (if the Aster piece ran) → assemble (the hub) → resolve (the band; the watcher's rent,
+ * the window) → cafe (Sloane) → river (the walk) → counsel (the lawyer) → complete. Other lanes keep arrive → assemble
+ * → resolve (the lawyer) → complete. Choice ids are unchanged. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -121,10 +126,21 @@ export function nameRoad9(s: GameState): 'editor' | 'crossover' | 'rook' | 'publ
 
 export const chapter9Definitions: Record<string, C9Scene> = {
   arrive: { title: 'The Same Wall', place: 'THE NEXT MORNING', blocks: [] },
+  names: { title: 'The Eleven Names', place: 'EVENING · THE OLD HARBOUR', blocks: [] },
+  table: { title: 'The Usual Table', place: 'THURSDAY · CASTELLANE', blocks: [] },
+  auction: { title: 'Lot Fourteen', place: 'EVENING · THE HARBOUR SPRING AUCTION', blocks: [] },
   assemble: { title: 'Assembling the Case', place: '· WHAT YOU HOLD', blocks: [] },
   resolve: { title: 'What You Can Carry', place: '· THE CASE', blocks: [] },
+  cafe: { title: 'The Watchers’ Table', place: 'MORNING · THE CAFÉ OUTSIDE', blocks: [] },
+  river: { title: 'The River Walk', place: 'MORNING · THE EMBANKMENT', blocks: [] },
+  counsel: { title: 'Exhibit A', place: 'AFTERNOON · ABOVE THE LOCKSMITH’S', blocks: [] },
   complete: { title: 'The Room Ahead', place: '· THAT NIGHT', blocks: [] },
 };
+/** Scene-specific place lines (display only): the tailor comes before Castellane. */
+export function place9(s: GameState): string | undefined {
+  if (s.scene === 'chapter9' && s.phase === 'table' && !get9(s, 'tailor')) return 'Midday · The tailor on the hill';
+}
+
 export const chapter9Scenes = Object.entries(chapter9Definitions).map(([phase, scene]) => ({
   id: `chapter9.${phase}` as NodeId,
   ...scene,
@@ -218,11 +234,11 @@ const clubLead: Block[] = [
 
 function clubChoices(): C9Choice[] {
   const leave = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer9('club-' + id, label, hint, 'arrive', (x) => {
+    offer9('club-' + id, label, hint, 'names', (x) => {
       set9(x, 'club', id);
       set9(x, 'names-open', 'how');
       after?.(x);
-      return [...body, ...namesLead(x)];
+      return body;
     });
   return [
     leave('photo', 'Photograph the page', 'While Miss Loh pretends to look for a pen.', [
@@ -270,7 +286,7 @@ function namesChoices(s: GameState): C9Choice[] {
   const stage = get9(s, 'names-open');
   if (stage === 'how') {
     const how = (id: string, label: string, hint: string, body: Block[]) =>
-      offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+      offer9('ruth-' + id, label, hint, 'names', (x) => {
         set9(x, 'ruth-how', id);
         set9(x, 'names-open', 'ask');
         return [...body, ...ruthMeets];
@@ -294,7 +310,7 @@ function namesChoices(s: GameState): C9Choice[] {
   }
   if (stage === 'ask') {
     const ask = (id: string, label: string, hint: string, body: Block[]) =>
-      offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+      offer9('ruth-' + id, label, hint, 'names', (x) => {
         set9(x, 'ruth-ask', id);
         set9(x, 'names-open', 'end');
         note9(x, 'ruth', RUTH_FACT, 'Ruth Adair, in person');
@@ -318,7 +334,7 @@ function namesChoices(s: GameState): C9Choice[] {
     ];
   }
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+    offer9('ruth-' + id, label, hint, 'names', (x) => {
       delete x.choices['c9.names-open'];
       set9(x, 'ruth', id);
       return [
@@ -395,9 +411,9 @@ function rentChoices(s: GameState): C9Choice[] {
 
 function windowChoices(): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('window-' + id, label, hint, 'resolve', (x) => {
+    offer9('window-' + id, label, hint, 'cafe', (x) => {
       set9(x, 'window', id);
-      return [...body, ...sloaneLead(x)];
+      return body;
     });
   return [
     answer('wave', 'Turn your lamp on and wave', 'The way you would to a neighbour.', [
@@ -430,10 +446,10 @@ function sloaneLead(s: GameState): Block[] {
 
 function sloaneChoices(): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('sloane-' + id, label, hint, 'resolve', (x) => {
+    offer9('sloane-' + id, label, hint, 'river', (x) => {
       set9(x, 'sloane', id);
       set9(x, 'walk-open', 'why');
-      return [...body, ...walkLead];
+      return body;
     });
   return [
     answer('nothing', 'Tell her nothing', 'Sit down, drink her coffee, give her nothing.', [
@@ -473,7 +489,7 @@ const railLead: Block[] = [
 function walkChoices(s: GameState): C9Choice[] {
   if (get9(s, 'walk-open') === 'why') {
     const ask = (id: string, label: string, hint: string, body: Block[]) =>
-      offer9('walk-' + id, label, hint, 'resolve', (x) => {
+      offer9('walk-' + id, label, hint, 'river', (x) => {
         set9(x, 'walk', id);
         set9(x, 'walk-open', 'rail');
         return [...body, ...railLead];
@@ -499,13 +515,12 @@ function walkChoices(s: GameState): C9Choice[] {
     ];
   }
   const rail = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('rail-' + id, label, hint, 'resolve', (x) => {
+    offer9('rail-' + id, label, hint, 'counsel', (x) => {
       delete x.choices['c9.walk-open'];
       set9(x, 'rail', id);
       return [
         ...body,
         p('At the end of the embankment the car she said she was tired of is waiting with its engine running. She gets into it without looking back, the rear window goes up, and you stand at the rail with the river going past until you are cold.'),
-        ...lawyerLead,
       ];
     });
   return [
@@ -534,9 +549,9 @@ const lawyerLead: Block[] = [
   q('Nadia Brandt', 'They will want your history. Your records. Your medical file, very possibly. Are you ready to be Exhibit A, Ms Vale?'),
 ];
 
-function lawyerChoices(): C9Choice[] {
+function lawyerChoices(s: GameState): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('lawyer-' + id, label, hint, 'resolve', (x) => {
+    offer9('lawyer-' + id, label, hint, s.phase, (x) => {
       set9(x, 'lawyer', id);
       return body;
     });
@@ -588,22 +603,31 @@ function resolveBlocks(s: GameState): Block[] {
     ),
     t('Adrian would have called it a first draft. He would also have been frightened of it, and he would have been right to be.'),
   );
-  if (ownPower(s) && !get9(s, 'rent')) blocks.push(...rentLead);
-  else if (ownPower(s) && !get9(s, 'sloane')) blocks.push(...sloaneLead(s));
-  else if (!get9(s, 'lawyer')) blocks.push(...lawyerLead);
+  if (ownPower(s)) blocks.push(...rentLead);
+  else blocks.push(...lawyerLead);
   return blocks;
 }
+
+/** The floor: sorting the case, the morning the hub opens. */
+const floor9: Block[] = [
+  p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.'),
+  p('The kitchen table is too small, so you use the floor: three piles on the boards under the window, the way Adrian sorted an acquisition before he let anyone else see it. Sourced. Argued. Missing. The third pile is a single blank card.'),
+  t('A case is not what I know. It is what I can make somebody else unable to deny.'),
+];
 
 export function chapter9Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter9') return [];
   if (s.phase === 'arrive') return arriveBlocks(s);
+  if (s.phase === 'names') return namesLead(s);
+  if (s.phase === 'table') return [...floor9, ...tableMessage, ...tailorLead];
+  if (s.phase === 'auction') return auctionLead(s);
   if (s.phase === 'assemble')
-    return [
-      p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.'),
-      p('The kitchen table is too small, so you use the floor: three piles on the boards under the window, the way Adrian sorted an acquisition before he let anyone else see it. Sourced. Argued. Missing. The third pile is a single blank card.'),
-      t('A case is not what I know. It is what I can make somebody else unable to deny.'),
-      ...(get9(s, 'open') === 'tailor' ? [...tableMessage, ...tailorLead] : []),
-    ];
+    return get9(s, 'table')
+      ? [p('That night you are back on the floor with the three piles and the blank card at the end of them, the charcoal hung on the wardrobe door where you can see it.')]
+      : floor9;
+  if (s.phase === 'cafe') return sloaneLead(s);
+  if (s.phase === 'river') return walkLead;
+  if (s.phase === 'counsel') return lawyerLead;
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
     return [
@@ -776,9 +800,8 @@ const tailorLead: Block[] = [
 
 function tailorChoices(): C9Choice[] {
   const fit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer9('tailor-' + id, label, hint, 'assemble', (x) => {
+    offer9('tailor-' + id, label, hint, 'table', (x) => {
       set9(x, 'tailor', id);
-      set9(x, 'open', 'table');
       after?.(x);
       return [...body, ...tableLead];
     });
@@ -810,17 +833,13 @@ const tableLead: Block[] = [
   q('Maître d’', 'By the Laurent fund, madame. As it always was.'),
 ];
 
-function tableChoices(): C9Choice[] {
+function tableChoices(s: GameState): C9Choice[] {
+  // The auction follows only if her face (or her words) went out into the world.
+  const next = get5(s, 'published') ? 'auction' : 'assemble';
   const sit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer9('table-' + id, label, hint, 'assemble', (x) => {
+    offer9('table-' + id, label, hint, next, (x) => {
       set9(x, 'table', id);
       after?.(x);
-      // The auction follows only if her face (or her words) went out into the world.
-      if (get5(x, 'published')) {
-        set9(x, 'open', 'auction');
-        return [...body, ...auctionLead(x)];
-      }
-      delete x.choices['c9.open'];
       return body;
     });
   return [
@@ -1001,9 +1020,6 @@ function assembleChoices(s: GameState): C9Choice[] {
   const open = get9(s, 'open');
   if (open === 'witness-celeste' || open === 'witness-marcus') return witnessAfterChoices(open === 'witness-celeste' ? 'celeste' : 'marcus');
   if (open === 'name') return nameAfterChoices();
-  if (open === 'tailor') return tailorChoices();
-  if (open === 'table') return tableChoices();
-  if (open === 'auction') return auctionChoices();
   if (open === 'oracle') return oracleAfterChoices();
   if (open === 'chain') return chainAfterChoices();
   if (open === 'rook') return rookAfterChoices();
@@ -1157,22 +1173,17 @@ export function chapter9Choices(s: GameState): C9Choice[] {
     return [offer9('begin-placeholder', 'Go on to the bridge', 'This road’s middle chapters are in development.', 'arrive', (x) => (set9(x, 'entered', getKey(x, 'route.lane')!), []))];
   if (s.scene !== 'chapter9') return [];
   if (s.phase === 'arrive' && ownPower(s) && !get9(s, 'club')) return clubChoices();
-  if (s.phase === 'arrive' && get9(s, 'names-open')) return namesChoices(s);
-  if (s.phase === 'arrive')
-    return [
-      offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble', (x) => {
-        if (ownPower(x)) set9(x, 'open', 'tailor');
-        return [];
-      }),
-    ];
+  if (s.phase === 'names' && get9(s, 'names-open')) return namesChoices(s);
+  if (s.phase === 'arrive' || s.phase === 'names')
+    return [offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', ownPower(s) ? 'table' : 'assemble')];
+  if (s.phase === 'table') return get9(s, 'tailor') ? tableChoices(s) : tailorChoices();
+  if (s.phase === 'auction') return auctionChoices();
   if (s.phase === 'assemble') return assembleChoices(s);
-  if (s.phase === 'resolve') {
-    if (ownPower(s) && !get9(s, 'rent')) return rentChoices(s);
-    if (ownPower(s) && !get9(s, 'window')) return windowChoices();
-    if (ownPower(s) && !get9(s, 'sloane')) return sloaneChoices();
-    if (get9(s, 'walk-open')) return walkChoices(s);
-    return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices();
-  }
+  if (s.phase === 'resolve' && ownPower(s)) return get9(s, 'rent') ? windowChoices() : rentChoices(s);
+  if (s.phase === 'cafe') return sloaneChoices();
+  if (s.phase === 'river') return walkChoices(s);
+  if (s.phase === 'resolve' || s.phase === 'counsel')
+    return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices(s);
   return [];
 }
 

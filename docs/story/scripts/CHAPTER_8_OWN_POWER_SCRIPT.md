@@ -272,3 +272,20 @@ dark. "It is still his key. It is not still his door."
    Ringing: "You're the second this month… A man came to look at the skirting boards. Grey coat."
 3. **The key** (`c8.spare`): **spare-keep** (neutral) · **spare-kemi** ("Change the lock", or a
    note, CHANGE YOUR LOCK) · **spare-river**.
+
+## Structure after the restructuring pass (2026-09-25)
+
+| Phase | Title | Place | Holds |
+|---|---|---|---|
+| `cost` | The Cost Bites | DAYS LATER · ON YOUR OWN | the break-in, the neighbour, the money |
+| `work` | The Working Week | WEDNESDAY · AT WORK (tram sheds / Pell & Rourke; then THURSDAY · THE BANK) | the shoot or the desk; the bank |
+| `fireescape` | Bishop | SATURDAY · THE FIRE ESCAPE | Bishop, then `cost-continue` |
+| `leverage` | Over the Wall | · THE CHOICE | the roads |
+| `advance` | What It Was Hiding | · THE SHAPE | the list |
+| `emerald` | Emerald Hill | NEXT DAY · WITH LOTTE (café / her flat) | Lotte |
+| `wake` | The Wake | 18:00 · THE ANCHOR, HARBOUR STREET | the wake |
+| `number14` | The Spare Key | LATE · NUMBER 14, ACROSS THE RIVER | the key (`key-post` goes straight to `close`) |
+| `close` | Whose Door | · THAT NIGHT | the night after, the reporter, the night choice |
+| `call` | The Landline | 03:10 · THE HALL | Mrs Tan, then `close-end` |
+
+Choice ids are unchanged; `c8.meridian` is still set on entering `advance`.
