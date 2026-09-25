@@ -94,7 +94,7 @@ breaks it.** Coercion rules: [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3.
 | 12 | **Singapore** | BUILT, deepened ([design](CHAPTER_12_SINGAPORE_DESIGN.md), 2026-09-25; ~4.3–4.8k golden) | 0.7h / 7k | The prior Evelyn's trail. Who she was, how she was burned, and who helped burn her | Pressure from a distance: Celeste knows she went | A trip (or a remote investigation) to the Singapore operation's traces; the prior Evelyn's handler or sister; the emotional core: meeting the life she's wearing. Seeds that Celeste burned her |
 | 13 | **The Honeypot** | BUILT, deepened ([design](CHAPTER_13_THE_HONEYPOT_DESIGN.md), 2026-09-25; ~2.9–3.1k golden) | 0.7h / 7k | The reserved sexual-coercion beat (one of at most two). Meridian demands a honeypot on a target | **Order: seduce and compromise a named man.** Comply is off screen: the order, the choice, getting ready, the door, the aftermath. Refuse: Maya is detained (non-sexual harm). Counterplay: expose the target first, or turn him | Exploitation/recovery overlay; the drive home; the shower; what she can't say to Maya; the recovery step. A chosen refuge scene with Julian, Sebastian or Theo can sit here (heat 3, **clearly chosen**, never as a reward) |
 | 14 | **Sloane's Turn** | BUILT, deepened ([design](CHAPTER_14_SLOANES_TURN_DESIGN.md), 2026-09-25; ~2.6–2.8k golden) | 0.7h / 7k | Sloane's motive surfaces: she's on Meridian's leash too. The leverage board starts to turn | The last order; Evelynn now holds the ORACLE defect over Meridian | Sloane as ally, target, rival or the door not taken, by lane; Maya learns the truth (or enough of it) and chooses; the first time Celeste is afraid |
-| 15 | **Breaking the Leash** | NEW | 0.7h / 7k | The counterplay lands. Evelynn takes the leverage away: Maya protected, evidence secured, at a cost | The coercion ends here: by breaking it, not by obeying | The counter-operation; what it costs (an ally, money, visibility, a relationship); Celeste loses control and knows the next meeting is the last |
+| 15 | **Breaking the Leash** | DESIGNED ([design](CHAPTER_15_BREAKING_THE_LEASH_DESIGN.md), 2026-09-25; seven owner decisions open) | 0.7h / 7k | The counterplay lands. Evelynn takes the leverage away: Maya protected, evidence secured, at a cost | The coercion ends here: by breaking it, not by obeying | The counter-operation; what it costs (an ally, money, visibility, a relationship); Celeste loses control and knows the next meeting is the last |
 
 **Act III job for Act IV:** end with Evelynn holding more than anyone meant her to, and
 Celeste knowing it.
@@ -155,5 +155,8 @@ operation that reads who arrived. The endings are positions, not verdicts.
    with the content notice and the fade setting; deepened to ~2.9–3.1k). **Ch14 "Sloane's Turn" designed
    2026-09-25** ([CHAPTER_14_SLOANES_TURN_DESIGN.md](CHAPTER_14_SLOANES_TURN_DESIGN.md): Sloane's confession, the signed
    ORACLE verdict, the last order (deliver Sloane), Maya told, Celeste afraid; approved and built pass 1 the same
-   day). Then Ch15 "Breaking the Leash", and on
+   day; deepened to ~2.6–2.8k). **Ch15 "Breaking the Leash" designed 2026-09-25**
+   ([CHAPTER_15_BREAKING_THE_LEASH_DESIGN.md](CHAPTER_15_BREAKING_THE_LEASH_DESIGN.md): the Vesper archive heist, one
+   shared spine for all three roads, the holds broken, a chosen cost, the black phone; seven owner decisions open).
+   Then Act IV, and on
    through Act III and the endgame on the Celebrity route.
