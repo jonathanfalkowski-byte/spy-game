@@ -257,3 +257,18 @@ Anchor, Harbour Street. "All who knew him. That is a very short list, and I am a
 3. **Daniel's toast** from a chair ("He fixed my reports for six years and never told anyone")
    (`c8.toast`): **toast-drink** · **toast-speak** ("To the quiet ones.") · **toast-leave** (neutral).
 4. A grey coat under a dead shop's awning across Harbour Street. "Even my wake has a watcher."
+
+## Sequence: The Spare Key (2026-09-25)
+
+In `advance`, after the wake (the toast now stays in `advance`; held in `c8.key-open`: go → board →
+spare). Adrian's spare key from the jacket lining; Number 14 across the river, the yellow curtains
+dark. "It is still his key. It is not still his door."
+1. **How** (`c8.key`): **key-ring** (neutral; Kemi, on at ten: "Five minutes. Don't touch my
+   plants.") · **key-in** (the lock never changed; "This is what they did to me. Now I am doing it to
+   her.") · **key-post** (through the letterbox; ends the sequence).
+2. **Inside**: her plants, his sale sofa, the wine stain from the night the promotion went elsewhere;
+   the skirting board where he hid things, screwed shut, stickered SERVICED, D.P. (a fact).
+   (`c8.board`): **board-open** (with a nail file; hoovered clean) · **board-leave** (neutral).
+   Ringing: "You're the second this month… A man came to look at the skirting boards. Grey coat."
+3. **The key** (`c8.spare`): **spare-keep** (neutral) · **spare-kemi** ("Change the lock", or a
+   note, CHANGE YOUR LOCK) · **spare-river**.

@@ -300,3 +300,21 @@ weight). The condolence book's eleven names, worked through by two in the mornin
 
 Canon: consistent with the prior Evelyn being burned, then inventoried (docs/story/ENDGAME_RECONVERGENCE.md); her fate beyond
 that is not stated.
+
+## Sequence: The River Walk (2026-09-25)
+
+Own-power, at `resolve`, after the café table and before the lawyer (held in `c9.walk-open`: why →
+rail). Sloane comes back: "Walk with me. Not in a car. I am tired of cars." The embankment, hands
+in her pockets so that you will not see what they are doing.
+1. **What she asks** (`c9.walk`): **walk-box** ("they were going to be burned on a Tuesday… So I
+   signed the other form"; "Everything is a test. That doesn't mean it wasn't also the other
+   thing.") · **walk-leash** ("I was handed you, with a report attached that said you could not be
+   held… I signed for you anyway") · **walk-adrian** (neutral; "the only analyst who ever told me I
+   was wrong in writing… I kept the memos").
+2. **At the rail**: "Whatever you are going to do with what you have, do it before the first
+   Thursday." (`c9.rail`): **rail-trust** ("I can't… which is the most I have ever been able to do
+   for anybody") · **rail-warn** ("you will be very surprised how much nothing can cost") ·
+   **rail-quiet** (neutral; the gloves off and on; "Thank you.").
+3. The car she is tired of, waiting.
+
+Canon: Sloane as the person in the machine (docs/story/ENDGAME_RECONVERGENCE.md).

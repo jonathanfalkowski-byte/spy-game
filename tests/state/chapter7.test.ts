@@ -27,7 +27,7 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
+const settle7 = ['post-ask', 'bundle-leave', 'daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 8 && !ids(x).includes(id); i++) {
@@ -306,7 +306,8 @@ it('runs the famous morning as scenes: the watcher, Odile’s offer, then the le
   expect(choose(followed, 'campaign-refuse').choices['own.campaign']).toBeUndefined();
   const studied = choose(taken, 'card-study');
   expect(text(studied)).toContain('a release instruction');
-  expect(ids(studied)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
+  // The post room, then the Old Flat.
+  expect(ids(studied)).toEqual(['post-ask', 'post-charm', 'post-wait']);
   expect(ids(c7(studied, 'flat-go'))).toEqual(['evie-play', 'evie-ask', 'evie-deny']);
 });
 
@@ -417,7 +418,7 @@ it('plays the quiet edges as scenes: the morning nobody knows her face, the nigh
 
 it('walks her to Adrian’s old street after the letter: ring, watch or walk on', () => {
   const quiet = withFlags(standing(), { 'c5.published': undefined });
-  const kept = choose(quiet, 'card-keep');
+  const kept = walk(quiet, ['card-keep', 'post-ask', 'bundle-leave']);
   expect(text(kept)).toContain('K. OKAFOR');
   expect(ids(kept)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
   const rang = choose(kept, 'flat-ring');
@@ -491,4 +492,21 @@ it('rides the lift with a man who knows her name before the hub opens', () => {
   expect(text(rang)).toContain('You write the ways in on the back of an envelope');
   expect(ids(rang)).toContain('pursue-stop');
   expect(choose7(close, 'grey-home').facts).not.toContain('c7.pryce');
+});
+
+it('takes her down to the post room, where D.P. held the first Evelynn’s post for fourteen months', () => {
+  const quiet = withFlags(standing(), { 'c5.published': undefined });
+  const down = choose(quiet, 'card-keep');
+  expect(text(down)).toContain('a hand-lettered card taped to its edge: HELD');
+  expect(ids(down)).toEqual(['post-ask', 'post-charm', 'post-wait']);
+  const charmed = choose(down, 'post-charm');
+  expect([charmed.choices['c7.post'], charmed.choices['c7.post-open']]).toEqual(['charm', 'bundle']);
+  expect(text(charmed)).toContain('RELEASE ON INSTRUCTION ONLY. — Property Services, D.P.');
+  expect(ids(charmed)).toEqual(['bundle-take', 'bundle-card', 'bundle-leave']);
+  const card = choose(charmed, 'bundle-card');
+  expect([card.choices['c7.bundle'], card.choices['c7.post-open'], card.facts.includes('c7.held')]).toEqual(['card', undefined, true]);
+  expect(text(card)).toContain('He comes in on Thursdays, Mr P., from the agents.');
+  expect(ids(card)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
+  // Alone at lunchtime there is no porter to warn her.
+  expect(text(walk(down, ['post-wait', 'bundle-leave']))).not.toContain('He comes in on Thursdays');
 });

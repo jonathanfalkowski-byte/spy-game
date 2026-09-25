@@ -34,6 +34,9 @@ export const GATED_DEFAULTS = [
   'chapter7.box-now',
   'chapter7.face-down',
   'chapter7.letter-keep',
+  // Sequence, the Post Room: ask the porter; leave the bundle where it is.
+  'chapter7.post-ask',
+  'chapter7.bundle-leave',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -56,6 +59,10 @@ export const GATED_DEFAULTS = [
   'chapter8.wake-window',
   'chapter8.knew-work',
   'chapter8.toast-leave',
+  // Sequence, the Spare Key: ring Kemi's bell, leave the board, keep the key.
+  'chapter8.key-ring',
+  'chapter8.board-leave',
+  'chapter8.spare-keep',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -84,6 +91,9 @@ export const GATED_DEFAULTS = [
   'chapter9.ruth-letter',
   'chapter9.ruth-you',
   'chapter9.ruth-silent',
+  // Sequence, the River Walk: ask what he was like; stand beside her.
+  'chapter9.walk-adrian',
+  'chapter9.rail-quiet',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

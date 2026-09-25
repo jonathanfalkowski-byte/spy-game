@@ -31,7 +31,11 @@
  * worked through at the kitchen table, lead to Ruth Adair, who worked beside the first Evelynn in Singapore. How she
  * approaches her (c9.ruth-how = letter | class | door); what she asks (c9.ruth-ask = burned | c | you); Ruth's
  * question back, "Was it quick?" (c9.ruth = truth | kind | silent). Ruth knows a reissue when she sees one; the burn
- * in Jakarta is a fact. Held in c9.names-open (how → ask → end); no case weight. */
+ * in Jakarta is a fact. Held in c9.names-open (how → ask → end); no case weight.
+ * Sequence (2026-09-25), "The River Walk" (own-power, resolve, after the café table, before the lawyer): Sloane comes
+ * back. "Walk with me. Not in a car." What she asks her (c9.walk = box | leash | adrian), and at the rail, after
+ * "do it before the first Thursday" (c9.rail = trust | warn | quiet). Sloane as the person in the machine: handed an
+ * asset ORACLE had scored uncontrollable, her own leash round her own neck. Held in c9.walk-open (why → rail). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -428,7 +432,8 @@ function sloaneChoices(): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
     offer9('sloane-' + id, label, hint, 'resolve', (x) => {
       set9(x, 'sloane', id);
-      return [...body, ...lawyerLead];
+      set9(x, 'walk-open', 'why');
+      return [...body, ...walkLead];
     });
   return [
     answer('nothing', 'Tell her nothing', 'Sit down, drink her coffee, give her nothing.', [
@@ -446,7 +451,76 @@ function sloaneChoices(): C9Choice[] {
       q('You', 'What are you afraid of, Sloane?'),
       p('A long silence. A bus goes past. Somewhere across the road the bakery shutters go up.'),
       q('Sloane', 'Being right about you.'),
-      p('She stands, and leaves the money, and goes, and does not look back, and you sit with two cups going cold until you understand that it was the kindest thing she knows how to say.'),
+      p('She stands, and leaves the money, and goes.'),
+      t('It was the kindest thing she knows how to say. I think she knows that too.'),
+    ]),
+  ];
+}
+
+// ── The River Walk (sequence): Sloane, out of the car ──
+
+const walkLead: Block[] = [
+  p('She is halfway to the corner when she stops, and stands for a moment with her back to you, and turns, and comes back.'),
+  q('Sloane', 'Walk with me. Not in a car. I am tired of cars.'),
+  p('You walk east along the embankment, side by side, not quite in step, like two women from the same office who have found themselves leaving at the same time. The river is high and brown and fast. She keeps her hands in her coat pockets, and you understand after a while that it is so that you will not see what they are doing.'),
+];
+const railLead: Block[] = [
+  p('At the bend, where the embankment widens and the benches face the water, she stops at the rail and looks at the river instead of at you.'),
+  q('Sloane', 'Whatever you are going to do with what you have, do it before the first Thursday.'),
+  t('The first Thursday. Castellane. The club book. Everybody in this city seems to have the same day circled, and nobody will tell me what it is for.'),
+];
+
+function walkChoices(s: GameState): C9Choice[] {
+  if (get9(s, 'walk-open') === 'why') {
+    const ask = (id: string, label: string, hint: string, body: Block[]) =>
+      offer9('walk-' + id, label, hint, 'resolve', (x) => {
+        set9(x, 'walk', id);
+        set9(x, 'walk-open', 'rail');
+        return [...body, ...railLead];
+      });
+    return [
+      ask('box', 'Ask why she sent you his things', 'The box. The slip with her name on it.', [
+        q('You', 'Why did you send me his things?'),
+        q('Sloane', 'Because nobody else would have. Because they were going to be burned on a Tuesday in an industrial estate with the confidential waste, and I found I could not sign that. So I signed the other form.'),
+        q('You', 'Was it a test?'),
+        q('Sloane', 'Everything is a test. That doesn’t mean it wasn’t also the other thing.'),
+      ]),
+      ask('leash', 'Ask who holds her leash', 'She has warned you about leashes before.', [
+        q('You', 'Who holds yours?'),
+        q('Sloane', 'The same people who hold yours. Did you think I chose you? I was handed you, with a report attached that said you could not be held. I read it twice. I signed for you anyway, because the alternative was that they would give you to somebody who hadn’t read it.'),
+        t('In daylight, on foot, it sounds less like an excuse and more like a confession.'),
+      ]),
+      ask('adrian', 'Ask what he was like, to her', 'She read everything he ever wrote.', [
+        q('You', 'What was he like? To you.'),
+        q('Sloane', 'He was the only analyst who ever told me I was wrong in writing. Twice. He was right both times. I kept the memos.'),
+        p('She says it to the river. A gull comes down on the rail between you and looks at you both, and goes.'),
+        q('Sloane', 'I am not going to apologise to you for him. You would have to be him to accept it, and you are not. I checked.'),
+      ]),
+    ];
+  }
+  const rail = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('rail-' + id, label, hint, 'resolve', (x) => {
+      delete x.choices['c9.walk-open'];
+      set9(x, 'rail', id);
+      return [
+        ...body,
+        p('At the end of the embankment the car she said she was tired of is waiting with its engine running. She gets into it without looking back, the rear window goes up, and you stand at the rail with the river going past until you are cold.'),
+        ...lawyerLead,
+      ];
+    });
+  return [
+    rail('trust', 'Then help me', 'Say it. See what it costs her to answer.', [
+      q('You', 'Then help me.'),
+      q('Sloane', 'I can’t. That is the whole of it. I can’t, and I am telling you so, which is the most I have ever been able to do for anybody.'),
+    ]),
+    rail('warn', 'Or what?', 'Make her say the threat out loud.', [
+      q('You', 'Or what?'),
+      q('Sloane', 'Or nothing. That is the point. Or nothing, and you will be very surprised how much nothing can cost.'),
+    ]),
+    rail('quiet', 'Say nothing; stand beside her', 'Two women at a rail. Let it be that for a minute.', [
+      p('You say nothing, and stand beside her at the rail. After a while she takes her gloves off, and looks at her hands, and puts the gloves back on, one finger at a time.'),
+      q('Sloane', 'Thank you.'),
+      p('You do not ask what for.'),
     ]),
   ];
 }
@@ -1096,6 +1170,7 @@ export function chapter9Choices(s: GameState): C9Choice[] {
     if (ownPower(s) && !get9(s, 'rent')) return rentChoices(s);
     if (ownPower(s) && !get9(s, 'window')) return windowChoices();
     if (ownPower(s) && !get9(s, 'sloane')) return sloaneChoices();
+    if (get9(s, 'walk-open')) return walkChoices(s);
     return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices();
   }
   return [];

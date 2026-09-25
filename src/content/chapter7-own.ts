@@ -31,7 +31,11 @@
  * VALE, A. — RELEASED TO NOMINATED PARTY: MS E. VALE (held in c7.box-open: open → face → letter). How she opens it
  * (c7.box = now | dark | wait), his photograph (c7.face = look | down | mirror), and the resignation letter he never
  * sent, in the lining of his old jacket (c7.letter = read | keep | burn). The slip is signed V. Sloane. The jacket stays
- * in her wardrobe (Chapter 7's notes and Chapter 8's break-in use it). */
+ * in her wardrobe (Chapter 7's notes and Chapter 8's break-in use it).
+ * Sequence (2026-09-25), "The Post Room": after the letter from C., before the Old Flat. The basement shelf marked
+ * HELD, and the card that held the first Evelynn's post for fourteen months, signed "Property Services, D.P." (held
+ * in c7.post-open: ask → bundle). How she gets at it (c7.post = ask | charm | wait); what she does with the bundle
+ * (c7.bundle = take | card | leave; photographing the card is a fact). D.P. is the man from the lift. */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -129,6 +133,70 @@ const odileMeets: Block[] = [
   q('Odile Frayne', 'Fifteen hundred for a day, paid thirty days after the posters go up. More later, if they like you, and they will. They want the woman nobody can place. I want to know if you understand what that costs.'),
   t('Money, which I am short of. My face, which is already the problem. And a hundred thousand strangers a day looking up at a woman who was somebody else first.'),
 ];
+
+// ── The Post Room (sequence): the shelf marked HELD ──
+
+const postLead: Block[] = [
+  p('Before you go out, you go down to the post room. You want to see the shelf where somebody’s letter waited fourteen months for you.'),
+  p('The post room is in the basement behind the bins: a long table, a franking machine, a wall of pigeonholes with flat numbers on them, and a young porter called Tomasz with headphones round his neck, who stands up so fast when you come in that his chair goes over.'),
+  p('At the end of the wall of pigeonholes there is a deeper shelf with a hand-lettered card taped to its edge: HELD.'),
+];
+const postCard: Block[] = [
+  p('The card is old and typed, its corners soft with handling.'),
+  q('The card', 'HOLD ALL ITEMS — MS E. VALE — UNTIL ADVISED. RELEASE ON INSTRUCTION ONLY. — Property Services, D.P.'),
+  p('It is dated fourteen months ago. Stapled under it is a second slip, new and white, dated last Tuesday: RELEASE. The same initials.'),
+  p('Behind the card, on the shelf, there is more: a bundle of envelopes held by a perished elastic band that breaks when you touch it. Bank statements. A dentist. A magazine in a plastic sleeve. All to Ms E. Vale, and all fourteen months old or older.'),
+  t('D.P. Somebody held her life on a shelf in my basement for fourteen months, and then decided to let me have it one letter at a time.'),
+];
+
+function postChoices(s: GameState): C7Choice[] {
+  if (get7(s, 'post-open') === 'ask') {
+    const get = (id: string, label: string, hint: string, body: Block[]) =>
+      offer7('post-' + id, label, hint, 'standing', (x) => {
+        set7(x, 'post', id);
+        set7(x, 'post-open', 'bundle');
+        return [...body, ...postCard];
+      });
+    return [
+      get('ask', 'Ask him who told them to hold it', 'Straight. He is a porter; he will have a card for it.', [
+        q('You', 'Who asked you to keep my post?'),
+        q('Tomasz', 'Not me, Ms Vale. Before my time. It’ll be on the card. Everything held has a card.'),
+        p('He pulls a shoebox from under the HELD shelf, walks his fingers through it, and hands you one without reading it, the way you would hand somebody their own coat.'),
+      ]),
+      get('charm', 'Make him want to help', 'Ask about the headphones. Listen to the answer.', [
+        p('You sit on the edge of the table and ask about his headphones, and what he is listening to, and listen to the answer, and by the time you ask about the shelf he would show you the building’s wiring if you wanted it.'),
+        q('Tomasz', 'Held stuff’s all got cards. Here. Yours is the oldest in the box. I always wondered who you were.'),
+      ]),
+      get('wait', 'Come back when he’s on his break', 'Nobody locks anything down here.', [
+        p('You thank him and go, and come back at one, when his chair is empty and the headphones are lying on the table, playing something tinny to nobody. There is a shoebox of cards under the HELD shelf. It is not locked. Nothing down here is.'),
+      ]),
+    ];
+  }
+  const porter = get7(s, 'post') !== 'wait';
+  const bundle = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('bundle-' + id, label, hint, 'standing', (x) => {
+      delete x.choices['c7.post-open'];
+      set7(x, 'bundle', id);
+      after?.(x);
+      return [
+        ...body,
+        ...(porter ? [q('Tomasz', 'He comes in on Thursdays, Mr P., from the agents. Checks the shelf. He’ll know if anything’s gone. He always knows.')] : []),
+        ...oldFlatLead,
+      ];
+    });
+  return [
+    bundle('take', 'Take the whole bundle', 'It is addressed to you. Sign for it.', [
+      p('You take all of it, and sign the release book in her name, with your signature, which is by now also hers.'),
+      t('Her post. My hand. The building will say that I collected it.'),
+    ]),
+    bundle('card', 'Photograph the card, and leave the rest', 'Evidence, not souvenirs.', [
+      p('You photograph the card and both slips, three times, and put everything back exactly as it was, the two halves of the elastic band laid across the bundle as if it had perished on its own.'),
+    ], (x) => note7(x, 'held', 'The first Evelynn’s post was held in the building’s basement for fourteen months on a card signed “Property Services, D.P.”, and released last Tuesday on the same initials.', 'The HELD card in the post room, photographed')),
+    bundle('leave', 'Leave it all where it is', 'Whoever holds her post is waiting to see what you do.', [
+      p('You leave it. Whoever holds her post is waiting to see what you will do with it. You would rather they waited.'),
+    ]),
+  ];
+}
 
 // ── The Old Flat (new scene): after the letter, the street where Adrian lived ──
 
@@ -284,6 +352,7 @@ function standingChoices(s: GameState): C7Choice[] {
         ];
       }),
     ];
+  if (get7(s, 'post-open')) return postChoices(s);
   if (get7(s, 'card') && !get7(s, 'old-flat')) return oldFlatChoices();
   if (get7(s, 'old-flat') && !get7(s, 'lotte')) return evieChoices();
   if (!get7(s, 'card'))
@@ -321,8 +390,16 @@ function standingChoices(s: GameState): C7Choice[] {
   ];
 }
 
-/** Every answer to the letter leads into the afternoon walk (the Old Flat). */
-const withOldFlat = (choices: C7Choice[]): C7Choice[] => choices.map((c) => ({ ...c, apply: (x) => [...(c.apply?.(x) ?? []), ...oldFlatLead] }));
+/** Every answer to the letter leads down to the post room (then the afternoon walk, the Old Flat). */
+const withOldFlat = (choices: C7Choice[]): C7Choice[] =>
+  choices.map((c) => ({
+    ...c,
+    apply: (x) => {
+      const body = c.apply?.(x) ?? [];
+      set7(x, 'post-open', 'ask');
+      return [...body, ...postLead];
+    },
+  }));
 
 const quietMorning = [
   p('Nobody on the street knows your face. The Aster pictures never ran, and some mornings that feels like a door you didn’t walk through. Other mornings it feels like the only reason you can still buy coffee without anyone watching you drink it.'),

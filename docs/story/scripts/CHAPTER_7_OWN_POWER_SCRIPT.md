@@ -226,3 +226,19 @@ RELEASED TO NOMINATED PARTY: MS E. VALE.
 4. The release slip: AUTHORISED, V. Sloane, Executive Intelligence. "Either it is a test… or it is
    the only apology she knows how to make." The jacket goes in her wardrobe; the notes and Chapter
    8's break-in use its lining.
+
+## Sequence: The Post Room (2026-09-25)
+
+In `standing`, after the letter from C. (every card answer leads down to it) and before the Old
+Flat (held in `c7.post-open`: ask → bundle). The basement post room, Tomasz the porter, and a deeper
+shelf marked HELD.
+1. **How she gets at it** (`c7.post`): **post-ask** (neutral; "Everything held has a card") ·
+   **post-charm** (the headphones; "Yours is the oldest in the box") · **post-wait** (his lunch
+   break; nothing down here is locked).
+2. **The card**: HOLD ALL ITEMS — MS E. VALE — UNTIL ADVISED. RELEASE ON INSTRUCTION ONLY. —
+   Property Services, D.P. Dated fourteen months ago; a RELEASE slip from last Tuesday, same
+   initials; the first Evelynn's bundle of post. (`c7.bundle`): **bundle-take** (she signs for it in
+   her name) · **bundle-card** (photographed; a fact) · **bundle-leave** (neutral).
+3. With the porter there: "He comes in on Thursdays, Mr P., from the agents… He always knows."
+
+D.P. is Mr Pryce, the man from the lift: the initials arrive before the man does.

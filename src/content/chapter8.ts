@@ -28,7 +28,12 @@
  * tonight. She goes in as a stranger or as a friend, or stands at the window (c8.wake = stranger | friend | window);
  * inside, somebody asks how she knew him (c8.knew = close | work | nothing); then Daniel's toast (c8.toast = drink |
  * speak | leave). Maya drinks from his chipped mug if she is back. A grey coat across the street. Held in c8.wake-open
- * (go → inside → toast) in advance, before close. */
+ * (go → inside → toast) in advance, before close.
+ * Sequence (2026-09-25), "The Spare Key": after the wake, Adrian's spare key (from the jacket lining, Chapter 7) takes
+ * her over the river to Number 14. She rings Kemi, lets herself in, or posts the key back (c8.key = ring | in | post;
+ * posting ends it). Inside, his hiding place behind the skirting board has been screwed shut and stickered SERVICED,
+ * D.P. (c8.board = open | leave; a fact either way), and then the key itself (c8.spare = keep | kemi | river). Held in
+ * c8.key-open (go → board → spare) in advance, before close. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -92,6 +97,7 @@ export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, s
 
 /** Scene-specific place lines while a road's scene is open (display only). */
 export function place8(s: GameState): string | undefined {
+  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'key-open')) return 'Late · Number 14, across the river';
   if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'wake'))
     return get8(s, 'wake') === 'window' ? '18:00 · Outside the Anchor, Harbour Street' : '18:00 · The Anchor, Harbour Street';
   if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'lotte-meet'))
@@ -1018,10 +1024,11 @@ function wakeChoices(s: GameState): C8Choice[] {
   }
   const inside = get8(s, 'wake') !== 'window';
   const toast = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('toast-' + id, label, hint, 'close', (x) => {
+    offer8('toast-' + id, label, hint, 'advance', (x) => {
       delete x.choices['c8.wake-open'];
       set8(x, 'toast', id);
-      return [...body, ...wakeEnd];
+      set8(x, 'key-open', 'go');
+      return [...body, ...wakeEnd, ...keyLead];
     });
   return [
     toast('drink', inside ? 'Drink to him' : 'Lift your hand to the glass', 'To yourself. Nobody will know.', [
@@ -1044,6 +1051,100 @@ function wakeChoices(s: GameState): C8Choice[] {
     ]),
   ];
 }
+
+// ── The Spare Key (sequence): Number 14, once more ──
+
+const keyLead: Block[] = [
+  p('The key has been in your coat pocket since the night of the box: his spare, on a split ring with a plastic fob from a hardware shop. After the Anchor you find that your feet have taken you over the river, the way they did once before, to his street.'),
+  p('Number 14. The launderette is shut. The yellow curtains upstairs are dark: whoever lives there now works nights, or is out, or is asleep.'),
+  t('It is still his key. It is not still his door.'),
+];
+const HIDING_FACT = 'Adrian’s old hiding place behind the skirting board at Number 14 has been emptied and screwed shut, with a sticker: SERVICED, D.P.';
+
+function keyChoices(s: GameState): C8Choice[] {
+  const stage = get8(s, 'key-open');
+  const metKemi = s.choices['c7.old-flat'] === 'ring';
+  if (stage === 'go') {
+    const go = (id: string, label: string, hint: string, body: Block[]) =>
+      offer8('key-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'key', id);
+        set8(x, 'key-open', 'board');
+        return [...body, ...keyInside];
+      });
+    return [
+      go('ring', 'Ring her bell and ask', 'Five minutes. Tell her the truth, or most of it.', [
+        p('You ring. After a long time there are feet on the stairs — the fourth one creaks, and she steps over it — and the door opens on a woman in scrubs with her coat half on.'),
+        q('Kemi Okafor', metKemi ? 'You again. The quiet one’s friend.' : 'Sorry — can I help you?'),
+        q('You', 'I used to know the man who lived here. I have his key. I wondered if I could see it, once. Five minutes.'),
+        p('She looks at the key in your hand for a long time, and then at you.'),
+        q('Kemi Okafor', 'I’m on at ten. Five minutes. Don’t touch my plants.'),
+      ]),
+      go('in', 'Let yourself in', 'Her window is dark. His key still turns.', [
+        p('The key turns as if it had never been away. Nobody has changed the lock. Nobody has needed to. You climb the stairs in the dark, step over the fourth one without thinking, and stand in the doorway of a flat that is somebody else’s now, with your heart going.'),
+        t('This is what they did to me. Now I am doing it to her.'),
+      ]),
+      offer8('key-post', 'Post it through his letterbox', 'Give it back. Close one door yourself.', 'close', (x) => {
+        delete x.choices['c8.key-open'];
+        set8(x, 'key', 'post');
+        return [
+          p('You push the key through the letterbox and hear it land on the mat on the other side, a small sound in an empty hall. Then you walk back over the river without looking round.'),
+          t('It was his to keep and mine to give back. One door I have closed myself.'),
+        ];
+      }),
+    ];
+  }
+  if (stage === 'board') {
+    const board = (id: string, label: string, hint: string, body: Block[]) =>
+      offer8('board-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'board', id);
+        set8(x, 'key-open', 'spare');
+        note8(x, 'hiding-place', HIDING_FACT, 'Evelynn, at Number 14');
+        return [
+          ...body,
+          ...(get8(x, 'key') === 'ring'
+            ? [q('Kemi Okafor', 'You’re the second this month, you know. A man came to look at the skirting boards. From the agents, he said. Grey coat. Didn’t take his shoes off.')]
+            : [p('On the way down you step over the fourth stair again, and close the street door so softly it does not click, and stand on the pavement shaking.')]),
+        ];
+      });
+    return [
+      board('open', 'Unscrew it', 'With the nail file from your bag. Badly. In the dark.', [
+        p('You do it with the nail file from your bag, badly, in the dark, with your hands not quite steady. Behind the board is the gap he knew by heart, and in it there is nothing. Not dust. Not a receipt. Somebody has hoovered it.'),
+        t('They did not just take his things. They took the place he kept them.'),
+      ]),
+      board('leave', 'Leave it', 'Whatever was there has gone. The sticker is the message.', [
+        p('You put your fingers on the two screws and do not turn them. Whatever was there has gone. Whoever took it wanted the next person who looked to find the sticker, and understand.'),
+      ]),
+    ];
+  }
+  const ringing = get8(s, 'key') === 'ring';
+  const spare = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('spare-' + id, label, hint, 'close', (x) => {
+      delete x.choices['c8.key-open'];
+      set8(x, 'spare', id);
+      return body;
+    });
+  return [
+    spare('keep', 'Keep the key', 'It opens nothing of yours. Keep it anyway.', [
+      p('You put it back in your pocket. It opens nothing that is yours any more. You keep it anyway.'),
+    ]),
+    spare('kemi', ringing ? 'Give Kemi the key' : 'Leave the key on her table', 'And tell her to change the lock.', ringing
+      ? [
+          p('You hand her the key.'),
+          q('You', 'Change the lock. Tell the agents you lost yours. Don’t tell them why.'),
+          p('She looks at you, and at the key, and nods slowly, the way people nod when they have just understood that they live somewhere other than they thought.'),
+        ]
+      : [p('You leave it on her kitchen table beside the plants, with a note in capitals: CHANGE YOUR LOCK. Unsigned.')]),
+    spare('river', 'Drop it in the river', 'From the old bridge. Nobody’s door, now.', [
+      p('On the old bridge you take it out and hold it over the water for a long time, and let it go. It makes no sound at all.'),
+    ]),
+  ];
+}
+const keyInside: Block[] = [
+  p('It is smaller than you remember. Everything is. Her plants on every surface, her scrubs drying on the radiator, a yellow throw over the sofa he bought in a sale and hated. The carpet still has the dark patch by the kitchen door where he dropped a bottle of red the night the promotion went to somebody else.'),
+  p('In the bedroom, behind the door, is the skirting board with the loose end, where he kept cash, his passport and the things he did not want anybody to find.'),
+  p('It is not loose any more. It has been fixed, neatly, with two fresh screws, still bright, and a small white sticker on the wood: SERVICED, a date, two initials. D.P.'),
+  t('Even his hiding place has been serviced.'),
+];
 
 /** Over the wall: what she does with Meridian's client list. */
 function listChoices(): C8Choice[] {
@@ -1088,7 +1189,8 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
   }
   if (s.phase === 'leverage') return leverageChoices(s);
-  if (s.phase === 'advance') return get8(s, 'lotte-open') ? lotteChoices(s) : get8(s, 'wake-open') ? wakeChoices(s) : listChoices();
+  if (s.phase === 'advance')
+    return get8(s, 'lotte-open') ? lotteChoices(s) : get8(s, 'wake-open') ? wakeChoices(s) : get8(s, 'key-open') ? keyChoices(s) : listChoices();
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
     if (!get8(s, 'night')) return nightChoices();
