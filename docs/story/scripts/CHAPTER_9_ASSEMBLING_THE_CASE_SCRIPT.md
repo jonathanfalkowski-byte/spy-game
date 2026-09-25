@@ -264,3 +264,18 @@ Own-power only:
   you." `c9.sloane`: **sloane-nothing** (neutral; "Then shop carefully.") · **sloane-page** ("never
   show it to anyone at a table on a street again. Including me.") · **sloane-afraid** ("Being right
   about you.").
+
+## Sequence: The Watcher's Rent (2026-09-25)
+
+Own-power, at `resolve`, before Sloane (the band is already fixed; no case weight). Chapter 8's
+binoculars across the gap; a TO LET board that has been lying for months. "A watcher is an expense."
+1. **How she finds the payer** (`c9.rent`; every way is a fact, `c9.watcher-rent`): **rent-agent**
+   (neutral; "Long let, corporate. Paid a year in advance… L.S.F. Facilities.") · **rent-post** (the
+   envelope at the slot: c/o LAURENT SOVEREIGN FUND) · **rent-knock** (the man from the lift, or Mr
+   Pryce if she rang at Property Services in Chapter 7: "The same people who pay yours… if you've any
+   sense, stop looking.").
+2. **L.S.F.**, looked up in four minutes: the fund's facilities company. "Not Meridian. Not the
+   board. Her… This part is personal."
+3. **The window that evening** (`c9.window`): **window-wave** · **window-sign** (lipstick on a
+   cereal box: TELL HER I SAID GOOD MORNING) · **window-dark** (neutral).
+4. In the morning, Sloane at the watchers' table.

@@ -19,7 +19,11 @@
  * her face is public, a Sunday Courier reporter at her door the night after the list (c8.hack = line | meridian | door).
  * New scenes, round 3 (2026-09-24): Bishop on the fire escape (cost, after the bank: binoculars in the flat opposite;
  * c8.bishop = stare | photo | cat), and the landline at 3 a.m. (close, after the night: Mrs Tan from Emerald Hill,
- * the flat emptied by men in white gloves; asking brings the tall lady who took the white orchid; c8.call). */
+ * the flat emptied by men in white gloves; asking brings the tall lady who took the white orchid; c8.call).
+ * Sequence (2026-09-25), "Emerald Hill": the day after the list, Lotte (Chapter 7's c7.lotte; if she was denied on the
+ * bridge, a card under the door) brings nine photographs of the first Evelynn. Where they meet (c8.lotte-meet = cafe |
+ * home), what she asks (c8.lotte-ask = work | c | last), what she takes (c8.photos = all | one | back; all is a fact).
+ * Held in c8.lotte-open (invite → ask → take) in advance, before close. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -83,6 +87,8 @@ export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, s
 
 /** Scene-specific place lines while a road's scene is open (display only). */
 export function place8(s: GameState): string | undefined {
+  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'lotte-meet'))
+    return get8(s, 'lotte-meet') === 'home' ? 'Next day · Lotte’s flat, the old docks' : 'Next day · A café by the river';
   if (s.scene !== 'chapter8' || s.phase !== 'leverage') return;
   return {
     audience: '21:00 · The Harbour winter gala',
@@ -819,25 +825,128 @@ function bankChoices(): C8Choice[] {
   ];
 }
 
+// ── Emerald Hill (sequence): Lotte and nine photographs ──
+
+/** Lotte believes she is Evie unless Chapter 7 denied it on the bridge. */
+const lotteKnows = (s: GameState) => ['play', 'ask'].includes(s.choices['c7.lotte'] ?? '');
+
+function lotteLead(s: GameState): Block[] {
+  return lotteKnows(s)
+    ? [
+        p('In the morning there is a message from the number you saved on a bridge: “Found something of yours. Photographs, from Emerald Hill. You never took anything when you left. Coffee? — L.”'),
+        t('Photographs of her. Of me. I do not know which I am more afraid of.'),
+      ]
+    : [
+        p('In the morning there is an envelope under your door, hand-delivered, no stamp. Inside is a card: “I’m sorry about the bridge. I don’t need you to tell me who you are. I have some photographs that were hers, and I think you should have them more than I should. — Lotte.” And a number.'),
+        t('She did not believe me on the bridge. She still doesn’t. She has decided it doesn’t matter.'),
+      ];
+}
+
+function lottePhotos(s: GameState): Block[] {
+  const knows = lotteKnows(s);
+  return [
+    p('There are nine prints, square, the colours gone warm the way photographs do in heat. You lay them out on the table one at a time, and she lets you, and does not talk.'),
+    p('A balcony at night, the city lit below it, and a woman laughing with her head thrown back and a glass held out to somebody outside the frame. It is your face. It is almost your face. The laugh is not yours; you have never laughed like that, with your whole throat, as if nothing could ever be taken from you.'),
+    p('The same woman asleep on a green sofa, one arm flung over her eyes, her head on a cushion with a crease across it like a scar. The same woman at a long table among twenty people, beside a man with silver coming in at his temples who is looking at her and not at the camera: Marcus, younger. And one more of the balcony, not laughing now, leaning in to talk to somebody tall whose face is turned away from the lens, whose hair is cropped close, whose hand rests on the back of her neck.'),
+    t('Every photograph of her has somebody just outside it. In the last one, they are only just inside.'),
+    q('Lotte', knows ? 'You were so happy there. So happy and so tired. Ask me anything. I kept all of it.' : 'She was so happy there. So happy and so tired. Ask me anything. Somebody should know it besides me.'),
+  ];
+}
+
+function lotteChoices(s: GameState): C8Choice[] {
+  const stage = get8(s, 'lotte-open');
+  const knows = lotteKnows(s);
+  if (stage === 'invite') {
+    const meet = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
+      offer8('lotte-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'lotte-meet', id);
+        set8(x, 'lotte-open', 'ask');
+        return [...body(x), ...lottePhotos(x)];
+      });
+    return [
+      meet('cafe', 'Meet her at the café by the river', 'Somewhere public. Somewhere you can leave.', () => [
+        p('The café by the river has tables outside under heaters, and Lotte is at one already, in sunglasses although it is overcast, with a brown envelope under her hand as if it might blow away.'),
+      ]),
+      meet('home', 'Go to her flat', 'Somewhere private. Somewhere she is at home.', () => [
+        p('Lotte’s flat is at the top of a converted warehouse in the old docks, all brick and plants and a view of cranes. There are orchids on every windowsill. She sees you look at them.'),
+        q('Lotte', knows ? 'You got me into them. I never forgave you.' : 'She got me into them. I never forgave her.'),
+      ]),
+    ];
+  }
+  if (stage === 'ask') {
+    const ask = (id: string, label: string, hint: string, body: Block[]) =>
+      offer8('lotte-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'lotte-ask', id);
+        set8(x, 'lotte-open', 'take');
+        return [...body, q('Lotte', knows ? 'Take them. They’re yours.' : 'Take them. I think they’re more yours than mine.')];
+      });
+    return [
+      ask('work', 'Ask what she did', knows ? 'Carefully. As if you had forgotten.' : 'What she did, out there.', [
+        q('Lotte', 'Something with a fund. Risk, she said. She used to say she was paid to know what people would do before they did it, and that she was never wrong, and that it was the loneliest job in the world.'),
+        t('Paid to predict people. Somebody built a machine that predicted me. I wonder whether she ever met it.'),
+      ]),
+      ask('c', 'Ask who C. was', 'The looping hand. The balcony. The one just outside every frame.', [
+        q('Lotte', 'I never knew her name. Evie called her C., as if it were a whole name. Tall. Never let anybody photograph her. She’d come to the flat at two in the morning with food from the hawker stalls, and they’d sit out on the balcony until it got light, talking so low nobody could hear.'),
+        q('Lotte', 'I asked once if they were together. Evie laughed and said, “She’s my employer, my landlady and my conscience, Lotte. Pick one.”'),
+        t('Employer. Landlady. Conscience. Somebody still pays for my flat. I would like very much to know whether it is the same somebody.'),
+      ]),
+      ask('last', 'Ask when she last saw her', 'The last night on Emerald Hill.', [
+        q('Lotte', 'The night before she went. She came up at two in the morning and gave me her keys, to water the orchids, and said she’d be back for breakfast.'),
+        p('Lotte turns her coffee cup round and round on its saucer.'),
+        q('Lotte', 'She wasn’t. The next week men came and emptied the flat. Mrs Tan downstairs kept most of the orchids. I kept one.'),
+        t('Back for breakfast. Everybody who loved her is still waiting for breakfast.'),
+      ]),
+    ];
+  }
+  const take = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer8('photos-' + id, label, hint, 'close', (x) => {
+      delete x.choices['c8.lotte-open'];
+      set8(x, 'photos', id);
+      after?.(x);
+      return [
+        ...body,
+        p('On the tram home you sit by the window and watch your reflection ride along beside you over the dark shop fronts: a face in the glass, laughing at nothing, or not laughing. In that light you cannot tell any more.'),
+      ];
+    });
+  return [
+    take('all', 'Take them all', 'Nine photographs of a life you are wearing.', [
+      p('You put all nine back in the envelope and the envelope inside your coat, against your ribs, and thank her, and she hugs you at the door the way she did on the bridge, hard, smelling of oranges.'),
+    ], (x) => note8(x, 'photos', 'Lotte gave Evelynn nine photographs from Emerald Hill: the first Evelynn laughing on a balcony, asleep on a green sofa, at a dinner beside a younger Marcus, and leaning in to a tall woman with cropped hair whose face is turned from the lens.', 'Lotte’s photographs, taken by Evelynn')),
+    take('one', 'Take only the balcony', 'The laugh. Leave her the rest.', [
+      p('You take the one from the balcony, the laugh, and slide the other eight back across the table to her.'),
+      q('Lotte', 'That one. Of course that one.'),
+      p('At the door she holds your face in both hands for a second, looking at it, and lets go.'),
+    ]),
+    take('back', 'Give them back', 'They were hers, and then Lotte’s. Never yours.', [
+      q('You', knows ? 'Keep them, Lotte. They’re better with you.' : 'They were hers, and then they were yours. They were never mine.'),
+      p('She looks at you for a long moment and puts the envelope back in her bag, and something in her face settles, as if you had passed a test she did not know she was setting.'),
+    ]),
+  ];
+}
+
 /** Over the wall: what she does with Meridian's client list. */
 function listChoices(): C8Choice[] {
   return [
-    offer8('list-read', 'Read every line', 'Slowly. It is all you will get.', 'close', (x) => {
+    offer8('list-read', 'Read every line', 'Slowly. It is all you will get.', 'advance', (x) => {
       set8(x, 'list', 'read');
+      set8(x, 'lotte-open', 'invite');
       note8(x, 'inventory', 'Meridian’s client list carries an entry set apart from the rest: VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED.', 'The list itself, read line by line');
       return [
         p('You read it the way Adrian read an acquisition: every line, every footnote, every code. Most of it is a catalogue of things that should not be for sale. Near the bottom, set apart by a single blank line, is an entry that stops your breath.'),
         q('The client list', 'VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED'),
         t('Returned to inventory. Not killed. Not retired. Shelved, like a coat nobody was wearing, and then taken down and fitted to me.'),
         p('You read the rest of the page again, more slowly, now that you know what it is. The other entries are not names. They are codes, and cities, and dates. Three of them say RETIRED. One says only CLOSED, and you find you cannot look at that one for very long.'),
+        ...lotteLead(x),
       ];
     }),
-    offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'close', (x) => {
+    offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'advance', (x) => {
       set8(x, 'list', 'copied');
+      set8(x, 'lotte-open', 'invite');
       return [
         p('You do not read it. You photograph it, send the photograph to an address that forwards on, and write the three lines that matter most on the inside of your wrist in eyeliner, because paper can be taken and a phone can be wiped, and skin, for a few hours, is harder to search.'),
         p('On the way home you keep your sleeve pulled down over your wrist, and your hand in your pocket, the way you would carry something warm.'),
         t('Whatever this says, I have it three times. They would have to find all three.'),
+        ...lotteLead(x),
       ];
     }),
   ];
@@ -858,7 +967,7 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
   }
   if (s.phase === 'leverage') return leverageChoices(s);
-  if (s.phase === 'advance') return listChoices();
+  if (s.phase === 'advance') return get8(s, 'lotte-open') ? lotteChoices(s) : listChoices();
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
     if (!get8(s, 'night')) return nightChoices();

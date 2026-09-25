@@ -189,3 +189,22 @@ Adrian's official status stays open ("went away", "wasn't coming back"): nobody 
   (neutral).
 - The tram now comes at the end of the close (a restless late ride out and back), just before its
   choice.
+
+## Sequence: The Grey Coat (2026-09-25)
+
+After the lift (held in `c7.pursue-open`: lift → grey → grey-door), before the envelope of ways in.
+The next morning the man from the lift is on the bench by the bakery, shoulders dry on a wet day; at
+half past eight she follows him across the river.
+1. **How she follows** (`c7.grey`): **grey-close** (he knows by the second corner and leaves her a
+   coffee, "Black, no sugar": "Adrian took milk") · **grey-far** (neutral; windows and a bus; she
+   finds him by the only dry coat at the market) · **grey-ahead** (the return address on her tenancy
+   letters; he nods at her through the café window). All end at a green door in a mews behind the
+   old customs house: PROPERTY SERVICES.
+2. **At the door** (`c7.grey-door`): **grey-ring** (a tenant with a sticking window; "Your
+   building's one of Mr Pryce's"; the owner's office wants him to do all the maintenance on her flat
+   personally; her key hook is empty; a fact) · **grey-watch** (he comes out with a tool bag and a key on a
+   red tag, heading for her building) · **grey-home** (neutral; the long way, not home until dark).
+3. **That evening**: the window slides up without a sound. Fresh screws, and a sticker: SERVICED, a
+   date, D.P. "They fixed my window. It is the most frightening thing anyone has ever done for me."
+
+Chapter 9's watcher's rent finds the same man.

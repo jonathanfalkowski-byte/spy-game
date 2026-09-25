@@ -21,7 +21,12 @@
  * Nadia Brandt, "Are you ready to be Exhibit A?"; c9.lawyer = retain | exhibit | thank). Neither adds case weight.
  * New scenes, round 3 (2026-09-24), own-power: the Straits Club (arrive: a lapsed subscription, a condolence book, and
  * C.'s entry in green ink, "Not missing. Mislaid."; c9.club = photo | ask | close), and Sloane at the café table
- * (resolve, before the lawyer: "it will not want to be found by you"; c9.sloane = nothing | page | afraid). */
+ * (resolve, before the lawyer: "it will not want to be found by you"; c9.sloane = nothing | page | afraid).
+ * Sequence (2026-09-25), "The Watcher's Rent" (own-power, resolve, before Sloane; the band is already fixed): who pays
+ * for the flat with the binoculars (Chapter 8's fire escape). The letting agent, the post boxes, or a knock on the door,
+ * where the man from the lift answers (c9.rent = agent | post | knock); every way finds L.S.F. Facilities, care of
+ * the Laurent Sovereign Fund (a fact). Then the window that evening (c9.window = wave | sign | dark), and in the
+ * morning Sloane at the watchers' table. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -227,6 +232,79 @@ function clubChoices(): C9Choice[] {
   ];
 }
 
+// ── The Watcher's Rent (sequence): who pays for the flat with the binoculars ──
+
+const rentLead: Block[] = [
+  p('That evening you do something you have been putting off since the fire escape. You stand at your own window with the lights off and look across the gap at the flat one floor up, where the blind is half down and the table is in the window.'),
+  p('There is a board fixed to the railings of the building opposite, the kind letting agents leave up for years: TO LET, a number, a name. The flat above it has not been to let for months. Somebody is paying for it.'),
+  t('A watcher is an expense. Somebody signs for it every month. Adrian would have gone looking for the invoice.'),
+];
+const rentFound = (s: GameState): Block[] => [
+  p('L.S.F. You look it up anyway, at the kitchen table in the dark, and it takes four minutes: a facilities company, wholly owned by the Laurent Sovereign Fund, that rents flats and cars and keeps people in them.'),
+  t(`She pays a man to sit in a window and look at mine. Not Meridian. Not the board. Her. The fund that keeps a table for two${get9(s, 'auction') ? ', and bought my picture' : ''}, and signs condolence books in green ink. This part is personal.`),
+  p('Across the gap the blind goes up an inch. The table lamp comes on. He is at the window, and the binoculars are in his hands.'),
+];
+const RENT_FACT = 'The flat opposite Evelynn’s, where a man keeps binoculars on her window, is let to L.S.F. Facilities Ltd, a company wholly owned by the Laurent Sovereign Fund.';
+
+function rentChoices(s: GameState): C9Choice[] {
+  const pryce = s.choices['c7.grey-door'] === 'ring';
+  const find = (id: string, label: string, hint: string, body: Block[], source: string) =>
+    offer9('rent-' + id, label, hint, 'resolve', (x) => {
+      set9(x, 'rent', id);
+      note9(x, 'watcher-rent', RENT_FACT, source);
+      return [...body, ...rentFound(x)];
+    });
+  return [
+    find('agent', 'Ring the letting agent as a would-be tenant', 'Ask for that flat. Be disappointed. Ask who has it.', [
+      q('Letting agent', 'The second-floor flat? I’m afraid that one’s taken, madam. Long let, corporate. Paid a year in advance.'),
+      q('You', 'Which corporation? I like to know who my neighbours are.'),
+      p('A pause, and keys, and the small sigh of somebody deciding it does no harm.'),
+      q('Letting agent', 'L.S.F. Facilities. They take several of ours. Lovely clients. Never any trouble.'),
+    ], 'The letting agent, on the telephone'),
+    find('post', 'Read the post boxes in the lobby', 'Every flat gets post. Even that one.', [
+      p('The street door opposite is on the latch, the way street doors are when too many people have keys. The post boxes are brass, numbered, most of them with a name on a card. The one for the second floor has no name, only a printed label, and the corner of an envelope showing at the slot.'),
+      p('You ease it up with a fingernail far enough to read: L.S.F. FACILITIES LTD. And under it, smaller, the part you have been expecting all day without letting yourself expect it: c/o LAURENT SOVEREIGN FUND.'),
+    ], 'The post boxes in the building opposite'),
+    find('knock', 'Go up and knock', 'Ask the man himself.', [
+      p('You climb two flights of stairs that smell of somebody else’s dinner and knock. After a long time the door opens on the chain.'),
+      p(
+        pryce
+          ? 'It is Mr Pryce: the man from the lift, D.P. of the sticker on your window frame. Shirtsleeves, reading glasses, the grey coat on a hook behind him. On the table in the window, the binoculars, resting on a folded newspaper exactly as they were.'
+          : 'It is the man from the lift. Shirtsleeves, reading glasses, the grey coat on a hook behind him. On the table in the window, the binoculars, resting on a folded newspaper exactly as they were.',
+      ),
+      q('Man from the lift', 'Ms Vale. I’m not supposed to have visitors.'),
+      q('You', 'Who pays your rent?'),
+      p('He looks at you over the chain for a long time. He looks, you think, very tired.'),
+      q('Man from the lift', 'The same people who pay yours. I watch the building. I’m paid to see that nobody bothers you. That’s all it is.'),
+      q('Man from the lift', 'L.S.F. Facilities. Look it up. And then, if you’ve any sense, stop looking.'),
+      p('He closes the door gently, the way you close a door on somebody sleeping.'),
+    ], 'The man in the flat opposite, at his own door'),
+  ];
+}
+
+function windowChoices(): C9Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('window-' + id, label, hint, 'resolve', (x) => {
+      set9(x, 'window', id);
+      return [...body, ...sloaneLead(x)];
+    });
+  return [
+    answer('wave', 'Turn your lamp on and wave', 'The way you would to a neighbour.', [
+      p('You turn your own lamp on, so that he can see you properly, and lift a hand, the way you would to a neighbour. After a long moment the binoculars come down. He does not wave back. But he stays where he is, in the light, as if he has been told that he may be seen now.'),
+      t('Good. Let her hear that I waved.'),
+    ]),
+    answer('sign', 'Write her a message in the window', 'Lipstick on cardboard. Capitals.', [
+      p('You write it on the back of a cereal box in lipstick, in capitals, and prop it against the glass under the lamp: TELL HER I SAID GOOD MORNING.'),
+      p('The binoculars stay up for a long time. Then the blind comes all the way down, the lamp goes off, and the window is only a window.'),
+      t('She will have it by breakfast. I want her to.'),
+    ]),
+    answer('dark', 'Turn every light off and sit in the dark', 'Let him watch an empty room.', [
+      p('You turn every light in the flat off and sit on the floor under the window, where he cannot see you, and listen to the building for an hour.'),
+      t('Let him watch an empty room. Let him write down that she went dark. Let her wonder what I did in it.'),
+    ]),
+  ];
+}
+
 // ── Sloane at the café table (new scene, round 3) ──
 
 function sloaneLead(s: GameState): Block[] {
@@ -329,7 +407,8 @@ function resolveBlocks(s: GameState): Block[] {
     ),
     t('Adrian would have called it a first draft. He would also have been frightened of it, and he would have been right to be.'),
   );
-  if (ownPower(s) && !get9(s, 'sloane')) blocks.push(...sloaneLead(s));
+  if (ownPower(s) && !get9(s, 'rent')) blocks.push(...rentLead);
+  else if (ownPower(s) && !get9(s, 'sloane')) blocks.push(...sloaneLead(s));
   else if (!get9(s, 'lawyer')) blocks.push(...lawyerLead);
   return blocks;
 }
@@ -906,6 +985,8 @@ export function chapter9Choices(s: GameState): C9Choice[] {
     ];
   if (s.phase === 'assemble') return assembleChoices(s);
   if (s.phase === 'resolve') {
+    if (ownPower(s) && !get9(s, 'rent')) return rentChoices(s);
+    if (ownPower(s) && !get9(s, 'window')) return windowChoices();
     if (ownPower(s) && !get9(s, 'sloane')) return sloaneChoices();
     return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices();
   }

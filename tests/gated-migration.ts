@@ -27,6 +27,9 @@ export const GATED_DEFAULTS = [
   // Round 3: get out at the next floor; put the letter away.
   'chapter7.lift-out',
   'chapter7.fan-away',
+  // Sequence, the Grey Coat: keep a street back; go home the long way.
+  'chapter7.grey-far',
+  'chapter7.grey-home',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -41,6 +44,10 @@ export const GATED_DEFAULTS = [
   // Round 3: get the cat inside and say nothing; put the telephone down.
   'chapter8.bishop-cat',
   'chapter8.call-down',
+  // Sequence, Emerald Hill: the café, when she last saw her, give the photographs back.
+  'chapter8.lotte-cafe',
+  'chapter8.lotte-last',
+  'chapter8.photos-back',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -62,6 +69,9 @@ export const GATED_DEFAULTS = [
   // Round 3: close the condolence book; tell Sloane nothing.
   'chapter9.club-close',
   'chapter9.sloane-nothing',
+  // Sequence, the Watcher's Rent: ring the letting agent; sit in the dark.
+  'chapter9.rent-agent',
+  'chapter9.window-dark',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

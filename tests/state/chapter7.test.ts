@@ -27,7 +27,7 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['daniel-quiet', 'lift-out', 'fan-away'];
+const settle7 = ['daniel-quiet', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 3 && !ids(x).includes(id); i++) {
@@ -47,7 +47,7 @@ const ready = (s: GameState) => {
   return s;
 };
 /** Into the hub: the lift plays first, on its neutral pick. */
-const begin = () => choose7(c7(ready(standing()), 'standing-begin'), 'lift-out');
+const begin = () => walk(c7(ready(standing()), 'standing-begin'), ['lift-out', 'grey-far', 'grey-home']);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
   for (const [k, v] of Object.entries(flags)) if (v === undefined) delete x.choices[k];
@@ -462,8 +462,20 @@ it('rides the lift with a man who knows her name before the hub opens', () => {
   expect(text(lift)).not.toContain('You write the ways in on the back of an envelope');
   expect(ids(lift)).toEqual(['lift-speak', 'lift-out', 'lift-stare']);
   const spoke = choose7(lift, 'lift-speak');
-  expect([spoke.choices['c7.lift'], spoke.choices['c7.pursue-open']]).toEqual(['speak', undefined]);
+  expect([spoke.choices['c7.lift'], spoke.choices['c7.pursue-open']]).toEqual(['speak', 'grey']);
   expect(text(spoke)).toContain('Mind the window. It sticks.');
-  expect(text(spoke)).toContain('You write the ways in on the back of an envelope');
-  expect(ids(spoke)).toContain('pursue-stop');
+  // The Grey Coat: the morning after, she follows him.
+  expect(text(spoke)).toContain('his shoulders dry again although the pavement is wet');
+  expect(ids(spoke)).toEqual(['grey-close', 'grey-far', 'grey-ahead']);
+  const close = choose7(spoke, 'grey-close');
+  expect([close.choices['c7.grey'], close.choices['c7.pursue-open']]).toEqual(['close', 'grey-door']);
+  expect(text(close)).toContain('Black, no sugar. That is how I take it now. Adrian took milk.');
+  expect(ids(close)).toEqual(['grey-ring', 'grey-watch', 'grey-home']);
+  const rang = choose7(close, 'grey-ring');
+  expect([rang.choices['c7.grey-door'], rang.choices['c7.pursue-open'], rang.facts.includes('c7.pryce')]).toEqual(['ring', undefined, true]);
+  expect(text(rang)).toContain('Your building’s one of Mr Pryce’s.');
+  expect(text(rang)).toContain('SERVICED, a date, and two initials. D.P.');
+  expect(text(rang)).toContain('You write the ways in on the back of an envelope');
+  expect(ids(rang)).toContain('pursue-stop');
+  expect(choose7(close, 'grey-home').facts).not.toContain('c7.pryce');
 });

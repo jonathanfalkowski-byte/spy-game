@@ -224,3 +224,20 @@ Neutral picks: work-hold, bank-leave.
   `c8.call`: **call-evie** ("They flower every spring. I tell them you're coming.") · **call-ask** (a
   tall, elegant lady sat alone in the flat all afternoon, then directed the men, and kept the white
   orchid; a fact) · **call-down** (neutral; in the morning, no dial tone).
+
+## Sequence: Emerald Hill (2026-09-25)
+
+The day after the list (the list choices now stay in `advance`; held in `c8.lotte-open`: invite →
+ask → take; `close` follows). Lotte believes she is Evie if Chapter 7's `c7.lotte` is play or ask;
+otherwise a card under the door: "I don't need you to tell me who you are."
+1. **Where** (`c8.lotte-meet`): **lotte-cafe** (neutral; the river, heaters, sunglasses on an
+   overcast day) · **lotte-home** (the old docks; orchids on every sill; "You got me into them").
+2. **Nine photographs**: the balcony laugh ("you have never laughed like that"), asleep on a green
+   sofa with a crease like a scar (Chapter 10's sofa), a long table beside a younger Marcus, and one
+   leaning in to a tall woman with cropped hair whose face is turned from the lens.
+3. **The question** (`c8.lotte-ask`): **lotte-work** ("paid to know what people would do before
+   they did it") · **lotte-c** ("She's my employer, my landlady and my conscience, Lotte. Pick one.")
+   · **lotte-last** (neutral; keys at two in the morning, back for breakfast; Mrs Tan kept the
+   orchids, which sets up the 3 a.m. call).
+4. **What she takes** (`c8.photos`): **photos-all** (a fact) · **photos-one** (the balcony) ·
+   **photos-back** (neutral). The tram home, her reflection laughing or not laughing.

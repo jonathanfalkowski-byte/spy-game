@@ -21,7 +21,12 @@
  * with Daniel, who worked across the corridor from Adrian and does not know her (c7.daniel = ask | tie | quiet).
  * New scenes, round 3 (2026-09-24): the lift, as the hub opens (a man with dry shoulders who knows her name and her
  * sticking window; c7.lift = speak | out | stare), and, if Chapter 5 published, a letter from Amy, nineteen, who
- * started again somewhere nobody knew her (c7.fan = answer | keep | away). */
+ * started again somewhere nobody knew her (c7.fan = answer | keep | away).
+ * Sequence (2026-09-25), "The Grey Coat": after the lift, the next morning, she follows the man from the lift across
+ * the river to a green door marked PROPERTY SERVICES (c7.grey = close | far | ahead), then rings, watches or goes home
+ * (c7.grey-door = ring | watch | home; ringing learns Mr Pryce's name and sees her empty key hook, a fact). That
+ * evening her sticking window has been fixed, initialled D.P. Held in c7.pursue-open (grey → grey-door). Chapter 9's
+ * watcher's rent follows the same man. */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -52,6 +57,8 @@ export function place7(s: GameState): string | undefined {
   if (s.phase === 'pursue' && open)
     return {
       lift: '19:00 · Your building · The lift',
+      grey: 'Morning · Following the grey coat',
+      'grey-door': 'Late morning · Property Services, behind the old customs house',
       records: '23:10 · Municipal registry · Night desk',
       'records-dark': '23:45 · Municipal registry · The stacks',
       maya: '21:00 · The Lantern',
@@ -423,9 +430,9 @@ const liftLead: Block[] = [
 function liftChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
     offer7('lift-' + id, label, hint, 'pursue', (x) => {
-      delete x.choices['c7.pursue-open'];
+      set7(x, 'pursue-open', 'grey');
       set7(x, 'lift', id);
-      return [...body, ...waysIn7(x)];
+      return [...body, ...greyLead];
     });
   return [
     ride('speak', 'Ask him which floor', 'Make him say something he did not plan to.', [
@@ -442,6 +449,76 @@ function liftChoices(): C7Choice[] {
       p('You turn and look at him. Not at the numbers: at him, the way Sloane looks at a report she does not believe. It takes him until the seventh floor. When at last he meets your eyes something in his face goes still and careful, the way a man’s face goes when the dog he was told was tame turns out not to be.'),
       p('He gets out at eight without a word.'),
       t('Somebody told him I would be frightened. Somebody was wrong, for about four floors.'),
+    ]),
+  ];
+}
+
+// ── The Grey Coat (sequence): following the man from the lift ──
+
+const greyLead: Block[] = [
+  p('In the morning he is on the bench across the road by the bakery: the same grey coat, a newspaper he is not reading, his shoulders dry again although the pavement is wet. He does not look up at your window. He does not need to.'),
+  p('At half past eight he folds the paper, tucks it under his arm and walks away toward the river, not hurrying, the way a man walks who has somewhere to be and knows he will be let in when he gets there.'),
+  t('Somebody told him my window sticks. I would like to know who, and what else they told him.'),
+];
+const greyDoor: Block[] = [
+  p('The plate is polished, and the door is the green of an old bank. There is a bell, a camera above the bell, and a ground-floor window with the blind down.'),
+];
+const windowFixed: Block[] = [
+  p('That evening, when you go to open the window its usual inch, it slides up under your hand without a sound.'),
+  p('Somebody has been in and fixed it. There are fresh screws in the hinge, still bright, and on the frame, very neatly, a small white sticker: SERVICED, a date, and two initials. D.P.'),
+  t('They fixed my window. It is the most frightening thing anyone has ever done for me.'),
+];
+
+function greyChoices(): C7Choice[] {
+  const tail = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('grey-' + id, label, hint, 'pursue', (x) => {
+      set7(x, 'grey', id);
+      set7(x, 'pursue-open', 'grey-door');
+      return [...body, ...greyDoor];
+    });
+  return [
+    tail('close', 'Stay close behind him', 'Let him know. See what he does with it.', [
+      p('You come down in your coat, fall in thirty yards behind him and do not bother to hide it. He knows by the second corner. He does not speed up. At the café by the tram stop he goes in, orders at the counter, comes out with one coffee, and leaves a second on the counter by the door with the lid on.'),
+      q('Girl at the counter', 'He said it was for the lady behind him. Black, no sugar.'),
+      t('Black, no sugar. That is how I take it now. Adrian took milk.'),
+      p('You leave the coffee where it is. You follow him over the old bridge to a narrow mews behind the customs house, where he lets himself in through a green door with a brass plate that says only PROPERTY SERVICES.'),
+    ]),
+    tail('far', 'Keep a street back', 'Windows, reflections, a bus between you.', [
+      p('You give him a street and use the shop windows, the way Sloane’s people taught you without meaning to: a bus between you, then a queue, then the long mirror of a department store. You lose him once, in the crush by the fish stalls at the market, and find him again by his coat, the only dry one among the wet.'),
+      p('He crosses the river by the old bridge and turns into a narrow mews behind the customs house, and lets himself in through a green door with a brass plate that says only PROPERTY SERVICES.'),
+      t('He never looked back. Either he is very good, or he did not think he needed to.'),
+    ]),
+    tail('ahead', 'Get there before him', 'Your tenancy letters came from somewhere. Guess, and be waiting.', [
+      p('You do not follow him at all. You go back upstairs and find the letters that came with the flat, the service charges and the welcome pack, and the return address on every one of them is the same: a mews behind the old customs house, across the river.'),
+      p('You take a taxi, and you are sitting in the window of the café at the end of the mews with a coffee going cold when he turns the corner twenty minutes later, on foot. He stops at a green door with a brass plate that says only PROPERTY SERVICES and lets himself in with his own key. Just before he does, he glances down the mews at the café window, at you, and nods, as if you had arranged to meet.'),
+    ]),
+  ];
+}
+
+function greyDoorChoices(): C7Choice[] {
+  const door = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('grey-' + id, label, hint, 'pursue', (x) => {
+      delete x.choices['c7.pursue-open'];
+      set7(x, 'grey-door', id);
+      after?.(x);
+      return [...body, ...windowFixed, ...waysIn7(x)];
+    });
+  return [
+    door('ring', 'Ring, and complain about your window', 'A tenant with a grievance. Nobody questions a grievance.', [
+      p('You ring. A young man at a desk lets you in to a front office with a kettle, a calendar from a plumbing supplier, and a steel key cabinet on the wall with its door ajar.'),
+      q('You', 'My window sticks. I’d like somebody to look at it.'),
+      p('He types in your address and reads the screen, and his face changes very slightly, the way a clerk’s face changes when a name on the screen has a note beside it.'),
+      q('Clerk', 'Ah. Yes. Your building’s one of Mr Pryce’s. The owner’s office likes all the maintenance on those flats done by him personally. I’ll let him know.'),
+      p('Behind him, in the key cabinet, on a hook with your flat’s number on a red tag, there is no key.'),
+      t('Mr Pryce. The owner’s office. And a hook with my number on it and nothing hanging from it.'),
+    ], (x) => note7(x, 'pryce', 'Property Services, behind a green door in a mews by the old customs house, manages Evelynn’s building. The owner’s office has all maintenance on her flat done personally by a Mr Pryce, the man from the lift. Her flat’s key hook was empty.', 'The Property Services front office')),
+    door('watch', 'Wait across the mews and watch the door', 'Whoever goes in and out of there is your landlord’s hands.', [
+      p('You wait in the café at the end of the mews for two hours, through three coffees you do not drink. Two men in overalls go in. A woman with a clipboard comes out. Nobody else.'),
+      p('At eleven the green door opens and he comes out with a small tool bag and a key on a red tag, and walks back toward the river: toward your side of the river, toward your building.'),
+      t('He is going to my flat, with a key and a bag of tools. I could go home and meet him there. I find I do not want to be in a small room with that man.'),
+    ]),
+    door('home', 'Go home the long way', 'You know where he works. That is enough for today.', [
+      p('You walk home the long way, past everything and nothing, and do not go in until it is dark, because you find you do not want to be in the flat today, and do not want to know why.'),
     ]),
   ];
 }
@@ -1038,6 +1115,8 @@ export function ownChoices7(s: GameState): C7Choice[] {
   if (s.phase !== 'pursue') return [];
   const open = get7(s, 'pursue-open');
   if (open === 'lift') return liftChoices();
+  if (open === 'grey') return greyChoices();
+  if (open === 'grey-door') return greyDoorChoices();
   if (open === 'rook') return rookTrade(s);
   if (open === 'rook-woman') return withBetween(rookWomanChoices(s));
   if (open === 'records') return recordsChoices(s);

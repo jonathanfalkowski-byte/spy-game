@@ -23,7 +23,7 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 4 && !(id && ids(x).includes(id)); i++) {
@@ -325,7 +325,7 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   expect(text(asked)).toContain('You looked at her.');
 
   // Sloane comes first on the own-power road; the lawyer follows her.
-  const resolved = choose9(walk(hub(), ['assemble-name', 'assemble-stop']), 'sloane-nothing');
+  const resolved = walk(walk(hub(), ['assemble-name', 'assemble-stop']), ['rent-agent', 'window-dark', 'sloane-nothing']);
   expect(resolved.phase).toBe('resolve');
   expect(text(resolved)).toContain('Are you ready to be Exhibit A, Ms Vale?');
   expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
@@ -345,7 +345,7 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(ids(photo)).toEqual(['arrive-begin']);
   expect(text(choose9(morning, 'club-ask'))).toContain('She has not missed a month.');
 
-  const resolve = walk(hub(), ['assemble-name', 'assemble-stop']);
+  const resolve = walk(hub(), ['assemble-name', 'assemble-stop', 'rent-agent', 'window-dark']);
   expect(text(resolve)).toContain('it will not want to be found by you');
   expect(text(resolve)).not.toContain('Exhibit A');
   expect(ids(resolve)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
@@ -358,4 +358,24 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   // Other lanes: no club, no Sloane; straight to the lawyer.
   const outside = walk(complete7('outside-placeholder'), ['begin-placeholder']);
   expect(ids(outside)).toEqual(['arrive-begin']);
+});
+
+it('follows the watcher’s rent to the Laurent fund, then the window, then Sloane at his table', () => {
+  const resolve = walk(hub(), ['assemble-name', 'assemble-stop']);
+  expect(text(resolve)).toContain('A watcher is an expense.');
+  expect(text(resolve)).not.toContain('it will not want to be found by you');
+  expect(ids(resolve)).toEqual(['rent-agent', 'rent-post', 'rent-knock']);
+  const post = choose9(resolve, 'rent-post');
+  expect(text(post)).toContain('c/o LAURENT SOVEREIGN FUND');
+  expect([post.choices['c9.rent'], post.facts.includes('c9.watcher-rent')]).toEqual(['post', true]);
+  expect(ids(post)).toEqual(['window-wave', 'window-sign', 'window-dark']);
+  // The knock: the man from the lift, named if she rang at Property Services in Chapter 7.
+  expect(text(choose9(resolve, 'rent-knock'))).toContain('It is the man from the lift.');
+  expect(text(choose9(withFlags(resolve, { 'c7.grey-door': 'ring' }), 'rent-knock'))).toContain('It is Mr Pryce');
+  const sign = choose9(post, 'window-sign');
+  expect(text(sign)).toContain('TELL HER I SAID GOOD MORNING');
+  expect(text(sign)).toContain('where the watchers usually sit');
+  expect(ids(sign)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
+  // No case weight: the band was fixed on entering resolve.
+  expect(sign.choices['case.strength']).toBe(resolve.choices['case.strength']);
 });
