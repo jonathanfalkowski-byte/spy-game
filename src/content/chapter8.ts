@@ -9,7 +9,11 @@
  * inventory), and the night after answers both.
  * Set pieces (2026-09-24): the break-in is walked room by room, every road's scene and its choice are played through,
  * the list arrives as a page, and the night after has a moment of its own (c8.night: watch the street, walk to
- * Meridian's brass plate, or sleep). */
+ * Meridian's brass plate, or sleep).
+ * New scenes (2026-09-24), in cost after the money: the work (Odile's shoot if she took the campaign, else a
+ * freelance reading at a small firm; c8.work = give | hold, c8.work-kind = shoot | desk), where Laurent's money is
+ * glimpsed for the first time; then the bank, where her account turns out to sit under a corporate relationship she
+ * never opened (c8.bank = cash | new | leave). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -487,7 +491,7 @@ function moneyChoices(s: GameState): C8Choice[] {
   const settle = (id: string, label: string, hint: string, apply: (x: GameState) => Block[]) =>
     offer8('money-' + id, label, hint, 'cost', (x) => {
       set8(x, 'money', id);
-      return apply(x);
+      return [...apply(x), ...workLead(x)];
     });
   const pay = (x: GameState, income: number, source: string) => {
     const before = cash(x) + income;
@@ -560,6 +564,118 @@ function nightChoices(): C8Choice[] {
   ];
 }
 
+// ── New scenes: the work, then the bank ──
+
+const onCampaign = (s: GameState) => ['taken', 'terms'].includes(getKey(s, 'own.campaign') ?? '');
+const backImage = (s: GameState) => !!get5(s, 'published') && get5(s, 'image-use') !== 'none' && get5(s, 'concept') === 'provocative';
+
+function workLead(s: GameState): Block[] {
+  if (onCampaign(s))
+    return [
+      p('The shoot is on Wednesday, in the old tram sheds by the canal, which somebody has painted white inside and filled with more light than a building should hold. There are twenty people there for you: lights, hair, a man whose only job appears to be the wind machine. Odile sits on a folding chair by the door in her black suit, not watching the camera, watching everyone who is watching you.'),
+      p('The photographer is called Lior, young and polite and very good, and after an hour he stops talking to you and starts talking to the light. You find you know how to stand for him. You find you know which way to turn your chin before he asks. You do not know how you know.'),
+      p('At the back, out of the light, by the door the crew uses, there is a tall woman in a camel coat with her hair cropped close to her head. She does not come forward. She watches for ten minutes, the way you would watch a horse you were thinking of buying, and then she is gone.'),
+      q('Creative director', 'The fund’s guest. Madame Laurent’s office. They’re the money behind the house. The money likes to see what it’s buying.'),
+      t('Laurent. The woman at the Glass House who said I had disappeared before breakfast. Her money is paying for my face.'),
+      q('Creative director', getKey(s, 'own.campaign') === 'terms'
+        ? 'Just one frame with the face. For the files. Nobody will ever use it.'
+        : backImage(s)
+          ? 'One more, from the back. The famous back. They’ll pay for the extra day.'
+          : 'One more, without the jacket. They’ll pay for the extra day.'),
+    ];
+  return [
+    p('On Wednesday you go looking for work of the only kind you are sure you can do. A small firm in the old insurance district, Pell & Rourke, takes freelance readers for due diligence: people who will read a thousand pages of somebody else’s acquisition and find the one that lies.'),
+    p('Ines Pell sees you herself, in a room with a view of a wall, and puts a file in front of you and a clock beside it.'),
+    q('Ines Pell', 'Twenty minutes. Tell me what’s wrong with it.'),
+    p('It takes you eight. A subsidiary’s lease, signed on behalf of the company by a director who had resigned from its board three weeks earlier. Adrian found the same trick in the same place four years ago, in a deal nobody here has heard of. You put your finger on the signature and look up.'),
+    p('Ines Pell looks at the signature, and at you, and at the clock, for a long time.'),
+    q('Ines Pell', 'Our biggest client is a fund on the river. They like discretion and they like people who see things. Where did you train?'),
+  ];
+}
+
+function workChoices(s: GameState): C8Choice[] {
+  const shoot = onCampaign(s);
+  const work = (id: 'give' | 'hold', label: string, hint: string, body: Block[]) =>
+    offer8('work-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'work', id);
+      set8(x, 'work-kind', shoot ? 'shoot' : 'desk');
+      return [...body, ...bankLead(x)];
+    });
+  if (shoot) {
+    const terms = getKey(s, 'own.campaign') === 'terms';
+    return [
+      work('give', terms ? 'Give them one frame of your face' : 'Give them the extra frame', 'Your light, your angle, and you say when it stops.', [
+        q('You', 'One. My light. And I say when we’re done.'),
+        p('Lior moves the lamp where you point and does not argue. It takes four minutes. You look at nothing and nobody, and you think about the woman in the camel coat the whole time, and when you say “done” the whole shed hears it and nobody asks for another.'),
+        p('Odile, by the door, writes something in a small black book and puts it away.'),
+        t('I gave them something they did not pay for. I chose to. I would like to remember which of those two things was the point.'),
+      ]),
+      work('hold', 'Hold to the terms', 'That wasn’t the brief. It doesn’t become the brief because the money is watching.', [
+        q('You', 'That wasn’t the brief.'),
+        p('The creative director looks at Odile. Odile does not look up from her chair.'),
+        q('Odile Frayne', 'You heard her. That wasn’t the brief.'),
+        p('They wrap at six. On the way out Odile walks you to the canal and lights a cigarette she does not smoke, only holds.'),
+        q('Odile Frayne', 'That woman’s office will ring me tomorrow, darling. They always do, after a no. It makes them curious.'),
+      ]),
+    ];
+  }
+  return [
+    work('give', 'Give her a history', 'The one on your passport. Singapore, a family office, discretion.', [
+      q('You', 'Singapore. A family office. I can’t say whose.'),
+      p('It comes out smooth, whole, with the right pause before “whose”. It is not your history. It is the one the passport tells, and it fits your mouth better than you would like.'),
+      q('Ines Pell', 'They never can. Files come by courier. We pay at thirty days, badly.'),
+      t('I lied for the legend, fluently, to get the one job Adrian could have done. I am not sure who I was protecting.'),
+    ]),
+    work('hold', 'Let the work answer', '“Does it matter?” The signature is still under your finger.', [
+      q('You', 'Does it matter?'),
+      p('Ines Pell looks at the signature under your finger one more time. Then she closes the file.'),
+      q('Ines Pell', 'Not to me. It will to somebody, one day. Files come by courier. We pay at thirty days, badly.'),
+      t('Adrian’s work, in my hands, under my name. The only thing about me that nobody made.'),
+    ]),
+  ];
+}
+
+function bankLead(s: GameState): Block[] {
+  const records = !!getKey(s, 'own.piece.records');
+  return [
+    p('On Thursday your card is declined at the café on the corner, for a coffee, in front of a queue. It works the second time. By the time you are home there is a message from your bank asking you to come in, at your convenience, today.'),
+    p('The branch manager is a soft-spoken man with a cardigan under his jacket who apologises four times before he says anything. There has been a routine review of the account’s arrangements. Nothing is wrong. It is only that your account, madam, is not strictly an account. It is a sub-account, under a corporate relationship, and the relationship has asked to be notified of unusual activity.'),
+    q('You', 'What relationship?'),
+    p(
+      records
+        ? 'He turns his screen a little toward you, as if by accident. The parent account is held by a registered agent in a building of brass plates: the same agent that stands in front of Meridian Holdings.'
+        : 'He turns his screen a little toward you, as if by accident. The parent account is held by a registered agent you have never heard of, in a building of brass plates.',
+    ),
+    q('Branch manager', 'You didn’t open it yourself, then. I did wonder. It came to us fully formed, like —'),
+    p('He stops, and apologises a fifth time, and does not say like what.'),
+    t('Every coffee I have bought with that card, somebody has watched me buy.'),
+  ];
+}
+
+function bankChoices(): C8Choice[] {
+  const bank = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('bank-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'bank', id);
+      return body;
+    });
+  return [
+    bank('cash', 'Take it all out in cash, today', 'Every note. Let them watch the number go to nothing.', [
+      p('You take it all out, over the counter, in notes, while the manager counts it twice and apologises a sixth time. It fits in an envelope. Your whole independence fits in one envelope.'),
+      p('At home you divide it into three: the lining of the old jacket, the flour jar, the back of the drawer with the passport.'),
+      t('Now they can’t watch me spend it. Now anybody who comes through that door can take it.'),
+    ]),
+    bank('new', 'Open an account of your own, somewhere else', 'A building society across the river, in your name. The first thing in this life you signed for yourself.', [
+      p('You walk across the river to a building society with a queue of pensioners and a girl behind the glass who has never read Aster. You open an account in the name on your passport, and sign the card with the signature you have practised, and move everything into it while you wait.'),
+      p('It is the first document in this life that you have signed for yourself.'),
+      t('On a passport they issued, in a name they chose. It is still the first.'),
+    ]),
+    bank('leave', 'Leave it where it is', 'Let them watch. It will tell you when they move.', [
+      p('You thank the manager and leave everything exactly where it is. On the way out you buy a coffee with the card, and it works, and you drink it on the step of the bank in full view of the cameras.'),
+      t('Let them watch it. The day they freeze it, I will know they have decided something. It is a tripwire. I just have to be standing on it.'),
+    ]),
+  ];
+}
+
 /** Over the wall: what she does with Meridian's client list. */
 function listChoices(): C8Choice[] {
   return [
@@ -592,6 +708,8 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   if (s.phase === 'cost') {
     if (!get8(s, 'breakin')) return breakInChoices(s);
     if (!get8(s, 'money')) return moneyChoices(s);
+    if (!get8(s, 'work')) return workChoices(s);
+    if (!get8(s, 'bank')) return bankChoices();
     return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
   }
   if (s.phase === 'leverage') return leverageChoices(s);

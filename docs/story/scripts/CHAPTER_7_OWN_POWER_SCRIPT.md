@@ -150,3 +150,18 @@ the card, the envelope of ways in with its prices in pencil, the sender's voice 
 name, the day between the doors (the errands, the cameras that do not point at the road), a close
 with nothing or with one thread, and the night alone (the omelette, the make-up coming off in
 layers, the two bells).
+
+## New scene: the Old Flat (2026-09-24)
+
+In `standing`, after the letter (every card answer leads into it), before the hub. She walks
+without deciding to to Adrian's old street across the river: the launderette, number 14's green
+door, yellow curtains in his window, and K. OKAFOR on masking tape over his name. `c7.old-flat`:
+- **flat-ring** · the new tenant, Kemi Okafor, a night nurse; "the quiet one"; Adrian's post,
+  including Axiom's letter that his personal effects "have now been collected in full". She never
+  collected anything (a fact, `c7.old-flat`, for later chapters to answer).
+- **flat-watch** · the launderette woman on the wall: he carried her baskets every Saturday for a
+  year; a van took everything in an afternoon; "You're the first."
+- **flat-go** (neutral pick) · the river path he ran every morning; the regular with the turned-out
+  left foot who nodded to Adrian for six years and does not nod to her.
+
+Adrian's official status stays open ("went away", "wasn't coming back"): nobody says he died.

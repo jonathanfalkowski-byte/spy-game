@@ -292,7 +292,8 @@ it('runs the famous morning as scenes: the watcher, Odile’s offer, then the le
   expect(choose(followed, 'campaign-refuse').choices['own.campaign']).toBeUndefined();
   const studied = choose(taken, 'card-study');
   expect(text(studied)).toContain('a release instruction');
-  expect(ids(studied)).toEqual(['standing-begin']);
+  expect(ids(studied)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
+  expect(ids(c7(studied, 'flat-go'))).toEqual(['standing-begin']);
 });
 
 it('gives the quiet morning the letter straight away, and no watcher or offer', () => {
@@ -398,4 +399,18 @@ it('plays the quiet edges as scenes: the morning nobody knows her face, the nigh
   const night = c7(atClose, 'close-end');
   expect(text(night)).toContain('a face nobody gave her permission to have');
   expect(text(night)).toContain('You fall asleep between them.');
+});
+
+it('walks her to Adrian’s old street after the letter: ring, watch or walk on', () => {
+  const quiet = withFlags(standing(), { 'c5.published': undefined });
+  const kept = choose(quiet, 'card-keep');
+  expect(text(kept)).toContain('K. OKAFOR');
+  expect(ids(kept)).toEqual(['flat-ring', 'flat-watch', 'flat-go']);
+  const rang = choose(kept, 'flat-ring');
+  expect(rang.choices['c7.old-flat']).toBe('ring');
+  expect(text(rang)).toContain('his personal effects have now been collected in full');
+  expect(rang.facts).toContain('c7.old-flat');
+  expect(text(choose(kept, 'flat-watch'))).toContain('You’re the first.');
+  expect(choose(kept, 'flat-go').facts).not.toContain('c7.old-flat');
+  expect(ids(rang)).toEqual(['standing-begin']);
 });

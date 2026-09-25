@@ -23,11 +23,17 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep'];
-const c9 = (s: GameState, id: string) => {
-  const pending = ids(s).find((x) => settle9.includes(x));
-  return choose9(pending && !ids(s).includes(id) ? choose9(s, pending) : s, id);
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave'];
+const settled = (s: GameState, id?: string) => {
+  let x = s;
+  for (let i = 0; i < 4 && !(id && ids(x).includes(id)); i++) {
+    const pending = ids(x).find((y) => settle9.includes(y));
+    if (!pending) break;
+    x = choose9(x, pending);
+  }
+  return x;
 };
+const c9 = (s: GameState, id: string) => choose9(settled(s, id), id);
 const walk = (s: GameState, path: string[]) => path.reduce(c9, s);
 const complete7 = (name: string) => replay(golden7.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const complete8 = (name: string) => replay(golden8.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
@@ -52,7 +58,8 @@ const noMarcusNoItem = (s: GameState) => {
 };
 const hub = (flags: Record<string, string | undefined> = {}) => {
   const base = withFlags(complete8('own-records-stop'), { ...bare, ...flags });
-  return walk(noMarcusNoItem(base), ['begin', 'arrive-begin']);
+  // The new scenes before the hub (the Usual Table, the auction) settle on their neutral picks.
+  return settled(walk(noMarcusNoItem(base), ['begin', 'arrive-begin']));
 };
 
 it('opens after an own-power Chapter 8 ending, or through the placeholder for other lanes, and stays closed in production', () => {
@@ -279,4 +286,30 @@ it('ends the day on the floor, the seventh name, and the orchid carried in', () 
   expect(text(done)).toContain('And the seventh name surfaces');
   expect(text(done)).toContain('The stairwell door is still swinging');
   expect(text(done)).toContain('as if it were a guest');
+});
+
+it('sets the Usual Table before the hub, and the auction if the Aster piece ran', () => {
+  const base = withFlags(complete8('own-records-stop'), { ...bare, 'c5.published': undefined });
+  const table = walk(noMarcusNoItem(base), ['begin', 'arrive-begin']);
+  expect(text(table)).toContain('By the Laurent fund, madame. As it always was.');
+  expect(ids(table)).toEqual(['table-sit', 'table-ask', 'table-cancel']);
+  const asked = choose9(table, 'table-ask');
+  expect([asked.choices['c9.table'], asked.choices['c9.open']]).toEqual(['ask', undefined]);
+  expect(asked.facts).toContain('c9.table');
+  expect(ids(asked)).toContain('assemble-name');
+  expect(text(choose9(table, 'table-cancel'))).toContain('Only in your honour.');
+
+  const famous = walk(noMarcusNoItem(withFlags(complete8('own-records-stop'), { ...bare, 'c5.published': 'yes', 'c5.concept': 'provocative', 'c5.image-use': undefined })), ['begin', 'arrive-begin', 'table-sit']);
+  expect(text(famous)).toContain('Lot fourteen is you: a signed print of the Aster portrait: the famous back.');
+  expect(text(famous)).toContain('For the Laurent Sovereign Fund');
+  expect(ids(famous)).toEqual(['auction-thank', 'auction-ask', 'auction-leave']);
+  const thanked = choose9(famous, 'auction-thank');
+  expect([thanked.choices['c9.auction'], thanked.choices['c9.open']]).toEqual(['thank', undefined]);
+  expect(text(thanked)).toContain('the back of a woman’s head');
+  // No case weight from either scene.
+  expect(Object.keys(thanked.choices).filter((k) => k.startsWith('c9.took.'))).toEqual([]);
+
+  // Other lanes reach the hub straight from arrive.
+  const outside = walk(complete7('outside-placeholder'), ['begin-placeholder', 'arrive-begin']);
+  expect(ids(outside)).not.toContain('table-sit');
 });

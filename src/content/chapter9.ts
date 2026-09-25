@@ -11,7 +11,11 @@
  * weight: the ORACLE page (score yourself / close the file), the chain (split it / keep it together), the sender's
  * last page (ask who they are / call it square), the reporter (her name / a source), Maya before her shift
  * (are you in danger?), the borrowed door (tell them / keep it). The morning, the floor, the name and the orchid
- * at midnight play as scenes too. */
+ * at midnight play as scenes too.
+ * New scenes (2026-09-24), own-power, before the hub opens (held in c9.open): the Usual Table (Castellane keeps a
+ * standing Thursday table for two in her name, settled by the Laurent fund; c9.table = sit | ask | cancel), then,
+ * if the Aster piece ran, the Harbour auction where the Laurent fund buys Lot 14, which is her (c9.auction). Neither
+ * adds case weight; both put Celeste in the room before the name. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -218,6 +222,7 @@ export function chapter9Blocks(s: GameState): Block[] {
       p('You spread it all out and sort it: what is sourced, what is only argued, and the one name you still have to reach.'),
       p('The kitchen table is too small, so you use the floor: three piles on the boards under the window, the way Adrian sorted an acquisition before he let anyone else see it. Sourced. Argued. Missing. The third pile is a single blank card.'),
       t('A case is not what I know. It is what I can make somebody else unable to deny.'),
+      ...(get9(s, 'open') === 'table' ? tableLead : []),
     ];
   if (s.phase === 'resolve') return resolveBlocks(s);
   if (s.phase === 'complete')
@@ -370,6 +375,94 @@ function nameAfterChoices(): C9Choice[] {
   ];
 }
 
+// ── New scenes: the Usual Table, then the auction (before the hub; no case weight) ──
+
+const tableLead: Block[] = [
+  p('At noon your phone lights with a message from a number you don’t know, in the courteous grammar of expensive places: “Castellane is delighted to confirm your table for two this Thursday, as always. We have missed you, Madame Vale.”'),
+  p('You have never been to Castellane. You know of it: a long low room on the river with white cloths and no prices on the menu, where people go to be seen not being seen.'),
+  t('As always.'),
+  p('You go on Thursday at one, dressed for it: the charcoal, the heels, hair up and pinned, the face finished twice. The maître d’ is an old man with a white moustache who sees you at the door and stops, and for a moment his whole face is open, like a door somebody forgot to shut.'),
+  q('Maître d’', 'Madame. Madame Vale. Welcome back.'),
+  p('He takes you, without asking, to a table in the corner window, half hidden by a pillar, with the river on one side and the whole room on the other. Two places are laid. He pulls out the chair with its back to the wall for you, the one that sees the door, and leaves the other empty.'),
+  q('Maître d’', 'The sole, madame? No sauce. And the Chablis you never finish.'),
+  p('The booking is standing, he says, when you ask, as if it were the most natural thing in the world. The first Thursday of every month, for two. It has never once been cancelled. The account is settled quarterly. He lowers his voice.'),
+  q('Maître d’', 'By the Laurent fund, madame. As it always was.'),
+];
+
+function tableChoices(): C9Choice[] {
+  const sit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer9('table-' + id, label, hint, 'assemble', (x) => {
+      set9(x, 'table', id);
+      after?.(x);
+      // The auction follows only if her face (or her words) went out into the world.
+      if (get5(x, 'published')) {
+        set9(x, 'open', 'auction');
+        return [...body, ...auctionLead(x)];
+      }
+      delete x.choices['c9.open'];
+      return body;
+    });
+  return [
+    sit('sit', 'Sit, and eat what she ate', 'Let the room watch her come back.', [
+      p('You sit. The sole comes, no sauce, and it is exactly what you would have ordered, which frightens you more than anything he has said. You eat all of it. You leave the Chablis a third full, because that, it seems, is what you do.'),
+      p('Across the room two women you have never seen raise their glasses to you, very slightly. You raise yours back. You have no idea who they are. They know exactly who you are, or who they think you are.'),
+      t('Fourteen months of Thursdays, and the table was kept. Somebody wanted her to be able to come back and find her chair still warm.'),
+    ]),
+    sit('ask', 'Ask who sat across from you', 'The other chair has been empty a long time.', [
+      q('You', 'The other chair. Who used to sit there?'),
+      p('He looks at you with something like pity, as if you had asked him your own mother’s name.'),
+      q('Maître d’', 'Madame Laurent, of course. Every first Thursday, for years. Since the spring she has come alone. She sits where you are sitting, and orders for you both, and sends the second plate back untouched.'),
+      p('He pauses, and straightens a fork that was already straight.'),
+      q('Maître d’', 'She will be so glad.'),
+      t('She has been having lunch with an empty chair for fourteen months. Now the chair has somebody in it again, and the man who pours the wine is going to tell her so.'),
+    ], (x) => note9(x, 'table', 'Castellane keeps a standing table for two, the first Thursday of every month, settled quarterly by the Laurent fund. Celeste Laurent kept it through the fourteen months the first Evelynn was gone, eating alone.', 'Castellane’s maître d’')),
+    sit('cancel', 'Cancel the booking', 'End it. It isn’t yours.', [
+      q('You', 'I’d like to cancel the standing booking.'),
+      p('For the first time his moustache moves in something that is not quite a smile.'),
+      q('Maître d’', 'I’m afraid it is not yours to cancel, madame. It was never in your name. Only in your honour.'),
+      p('He pours the Chablis anyway. You leave it untouched and walk out past a room of people pretending not to watch you, and on the pavement you find that your hands are cold.'),
+    ]),
+  ];
+}
+
+function auctionLead(s: GameState): Block[] {
+  const lot =
+    get5(s, 'image-use') === 'none'
+      ? 'the proof pages of the Aster piece, with your corrections down the margin in your own hand'
+      : get5(s, 'concept') === 'provocative'
+        ? 'a signed print of the Aster portrait: the famous back'
+        : 'a signed print of the Aster portrait';
+  return [
+    p('That evening is the Harbour spring auction for the children’s library fund, and you are in it. Aster donated the lot weeks ago, before any of this, and you said yes and forgot. Three hundred people on gilt chairs, a string trio, an auctioneer with a voice like a well-kept lawn.'),
+    p(`Lot fourteen is you: ${lot}. They put it on an easel under a light, and three hundred people look from it to you in the third row, and back.`),
+    p('It opens at two hundred. Four paddles, then two: a man by the window who deals in photographs, and a young woman at the telephone table at the side, bidding for somebody who is not in the room. At three thousand the man by the window shakes his head. At three thousand five hundred the gavel comes down.'),
+    p('The young woman on the telephone says, very clearly, “For the Laurent Sovereign Fund,” and the whole room turns to look at the back.'),
+    p('Celeste is standing at the back, out of the light, where the photographers are not: tall, in grey silk, her hair cropped close to her head, a glass in her hand she has not drunk from. She lifts it to you, very slightly, across three hundred people.'),
+    p('Then she starts toward you, unhurried, the way she crossed the room at the Glass House.'),
+    q('Celeste', 'I simply had to have it, darling. It will hang in my hall, where I can see it every morning.'),
+  ];
+}
+
+function auctionChoices(): C9Choice[] {
+  return [
+    moment9('auction-thank', 'Thank her', 'Graciously, in front of everyone. Give the room its picture.', 'auction', () => [
+      q('You', 'How generous. The children will be so grateful.'),
+      q('Celeste', 'The children. Yes.'),
+      p('She kisses you on both cheeks, amused, and keeps her face turned from the cameras while she does it, so that the photograph in the morning will be of you, and of the back of a woman’s head.'),
+      t('Even her kindness is arranged for the light.'),
+    ]),
+    moment9('auction-ask', 'Ask her why', '“Why this, Celeste?”', 'auction', () => [
+      q('You', 'Why?'),
+      q('Celeste', 'Because it’s a very good likeness, darling. Of someone.'),
+      p('She touches your wrist, briefly, with cool fingers, and is gone into the crowd before you can ask her of whom.'),
+    ]),
+    moment9('auction-leave', 'Leave before she reaches you', 'Let her buy the picture. Not the woman.', 'auction', () => [
+      p('You are through the side door before she has crossed half the room. In the service corridor a waiter flattens himself against the wall to let you pass, and behind you, through the door, you hear her laugh once, delighted, as if you had done exactly what she hoped.'),
+      t('Let her have the picture. If she wants the rest of me, she will have to ask.'),
+    ]),
+  ];
+}
+
 /** A hub move's own moment: it closes c9.open, records its pick, and adds no case weight. */
 function moment9(id: string, label: string, hint: string, key: string, body: (x: GameState) => Block[]): C9Choice {
   return offer9(id, label, hint, 'assemble', (x) => {
@@ -487,6 +580,8 @@ function assembleChoices(s: GameState): C9Choice[] {
   const open = get9(s, 'open');
   if (open === 'witness-celeste' || open === 'witness-marcus') return witnessAfterChoices(open === 'witness-celeste' ? 'celeste' : 'marcus');
   if (open === 'name') return nameAfterChoices();
+  if (open === 'table') return tableChoices();
+  if (open === 'auction') return auctionChoices();
   if (open === 'oracle') return oracleAfterChoices();
   if (open === 'chain') return chainAfterChoices();
   if (open === 'rook') return rookAfterChoices();
@@ -639,7 +734,13 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.scene === 'chapter7' && s.phase === 'complete' && getKey(s, 'route.lane') && !ownPower(s))
     return [offer9('begin-placeholder', 'Go on to the bridge', 'This road’s middle chapters are in development.', 'arrive', (x) => (set9(x, 'entered', getKey(x, 'route.lane')!), []))];
   if (s.scene !== 'chapter9') return [];
-  if (s.phase === 'arrive') return [offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble')];
+  if (s.phase === 'arrive')
+    return [
+      offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble', (x) => {
+        if (ownPower(x)) set9(x, 'open', 'table');
+        return [];
+      }),
+    ];
   if (s.phase === 'assemble') return assembleChoices(s);
   if (s.phase === 'resolve') return [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')];
   return [];

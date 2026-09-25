@@ -182,3 +182,24 @@ The wording lives in `src/content/chapter8.ts`. Played as scenes:
   dog walker) · **night-walk** (Meridian's brass plate, and the camera that turns to her) ·
   **night-sleep** (the dress hung the wrong way, on purpose). Neutral pick for the goldens:
   night-sleep.
+
+## New scenes: the work and the bank (2026-09-24)
+
+In `cost`, after the money and before `cost-continue`:
+
+- **The work** (`c8.work = give | hold`, `c8.work-kind`). With the campaign (`own.campaign = taken
+  | terms`): Odile's shoot in the tram sheds; Lior the photographer; a tall woman in a camel coat
+  with cropped hair at the back, "Madame Laurent's office. The money likes to see what it's
+  buying." The ask: one frame of the face (terms), the famous back (the provocative portrait), or
+  without the jacket. **work-give** (her light, her stop) / **work-hold** (Odile backs her; "It
+  makes them curious", which sets up Laurent's call in Chapter 10). Without it: a due-diligence
+  reading at Pell & Rourke; she finds the resigned director's signature in eight minutes; "Our
+  biggest client is a fund on the river." **work-give** (the passport's Singapore history) /
+  **work-hold** ("Does it matter?").
+- **The bank** (`c8.bank`): the card declined in the café queue; the manager in the cardigan; her
+  account is a sub-account under a corporate relationship she never opened (Meridian's agent, if
+  she found the records). **bank-cash** (one envelope, split three ways at home) · **bank-new** (a
+  building society across the river: the first thing she signed for herself) · **bank-leave**
+  (a tripwire). Money is unchanged.
+
+Neutral picks: work-hold, bank-leave.

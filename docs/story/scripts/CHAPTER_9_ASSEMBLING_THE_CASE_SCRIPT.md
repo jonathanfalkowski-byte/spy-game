@@ -220,3 +220,23 @@ still swinging; she carries it in and sits across from it, as if it were a guest
 
 Neutral picks for the goldens (`tests/gated-migration.ts`): oracle-close, chain-one, rook-square,
 clara-source, maya-fine, door-keep.
+
+## New scenes: the Usual Table and the auction (2026-09-24)
+
+Own-power only, before the hub (held in `c9.open`; no case weight; Celeste in the room before the
+name):
+
+- **The Usual Table** (`c9.table`): Castellane confirms "your table for two this Thursday, as
+  always". A standing booking, first Thursdays, for two, never cancelled, settled quarterly "by the
+  Laurent fund, madame. As it always was." (It sets up Chapter 10's first Thursday.) **table-sit**
+  (the sole, no sauce; the Chablis a third full) · **table-ask** (Madame Laurent, alone since the
+  spring, ordering for both and sending the second plate back; a fact) · **table-cancel** ("It was
+  never in your name. Only in your honour.").
+- **The auction** (only if the Aster piece ran; `c9.auction`): the Harbour spring auction for the
+  children's library; Lot 14 is her (the print, the famous back, or the proof pages in her hand);
+  bought "For the Laurent Sovereign Fund"; Celeste at the back out of the light: "It will hang in
+  my hall." **auction-thank** (she keeps her face from the cameras: tomorrow's photograph is of the
+  back of a woman's head) · **auction-ask** ("A very good likeness. Of someone.") ·
+  **auction-leave** (her laugh through the door).
+
+Neutral picks: table-sit, auction-leave.

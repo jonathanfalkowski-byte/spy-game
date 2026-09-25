@@ -12,7 +12,10 @@
  * Chapter 8's break-in answers (c7.notes).
  * Set pieces (2026-09-24): the quiet morning, Odile at the Carlisle, every answer to the watcher, the campaign and the
  * card, the envelope of ways in, the sender's price, the day between, a close with nothing or one thread, and the
- * night alone are written as scenes. Prose only: no new choices or flags. */
+ * night alone are written as scenes. Prose only: no new choices or flags.
+ * New scene (2026-09-24): the Old Flat. After the letter, she walks without deciding to to Adrian's old street
+ * (someone else's name on his buzzer) and rings, watches, or walks on (c7.old-flat). Ringing brings Adrian's post
+ * and a letter saying his personal effects were collected; she never collected anything (a note Chapter 8 can read). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -108,6 +111,54 @@ const odileMeets: Block[] = [
   t('Money, which I am short of. My face, which is already the problem. And a hundred thousand strangers a day looking up at a woman who was somebody else first.'),
 ];
 
+// ── The Old Flat (new scene): after the letter, the street where Adrian lived ──
+
+const oldFlatLead: Block[] = [
+  p('In the afternoon you find you have walked, without deciding to, to the street where Adrian lived.'),
+  p('It is twenty minutes from your door and on the other side of the river, which is to say a hundred miles: a terrace of flat-fronted brick with bins in the front gardens, a launderette on the corner that still has the handwritten sign about the broken dryer, and number 14 with its green door. His door. His window on the second floor, hung now with new curtains, yellow ones, the colour of something you would buy to cheer yourself up.'),
+  p('The buzzer panel has four names. His is gone. In its place, in fresh biro on a strip of masking tape: K. OKAFOR.'),
+  t('Eleven years he lived behind that door. It took them a month to put somebody else there. It took them about the same to put me behind this face.'),
+  p('A woman comes out of the launderette with a basket on her hip and looks at you — the coat, the heels, the hair up — the way this street looks at anybody from the other side of the river.'),
+];
+
+function oldFlatChoices(): C7Choice[] {
+  const visit = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer7('flat-' + id, label, hint, 'standing', (x) => {
+      set7(x, 'old-flat', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    visit('ring', 'Ring the bell', 'Meet whoever lives in his rooms now.', [
+      p('You press the button with the masking tape on it before you can think about it. A long pause, then feet on the stairs you know by heart: the fourth one creaks, and whoever is coming down knows to step over it already.'),
+      p('The woman who opens the door is thirty, in scrubs under a cardigan, with the grey face of somebody who works nights and has just been woken. She looks at you for a long second, and you watch her decide whether she knows you.'),
+      q('Kemi Okafor', 'If you’re selling something, I’m asleep.'),
+      q('You', 'I’m sorry. I used to know the man who lived here before you.'),
+      p('Something in her face changes. Not softer. More careful.'),
+      q('Kemi Okafor', 'The quiet one. Everyone round here says that, “the quiet one”. I never met him. The agent said he’d gone away and wasn’t coming back, and a van came and cleared it all in an afternoon before I moved in.'),
+      p('She hesitates, then reaches behind the door and comes back with a bundle held together by an elastic band.'),
+      q('Kemi Okafor', 'His post still comes. I keep meaning to send it back and there’s nowhere to send it. You might as well have it. You look like you’ve got somewhere to put things.'),
+      p('On the walk home you go through it under the streetlights. A dentist’s reminder. A gym that would like him back. And a letter on Axiom’s own paper, from a department you never had to deal with, regretting to inform the addressee that his personal effects have now been collected in full, and thanking him for his years of service.'),
+      t('Collected. By whom? I never collected anything. Somebody went through his drawers, his coats, his letters, and signed for him. Somebody signed for me.'),
+    ], (x) => note7(x, 'old-flat', 'Axiom wrote to Adrian Vale’s old address that his personal effects had been collected in full. Evelynn collected nothing.', 'Adrian’s post, handed over by the new tenant')),
+    visit('watch', 'Watch the window from across the road', 'Don’t go in. Just look.', [
+      p('You sit on the low wall by the launderette, in the smell of warm soap, and watch his window. After a while the yellow curtain moves and a young woman in scrubs waters a plant on the sill. He never kept a plant. He said they were a commitment.'),
+      p('The woman with the basket comes and sits on the other end of the wall to light a cigarette, and offers you one, and you shake your head.'),
+      q('Woman from the launderette', 'You waiting for someone?'),
+      q('You', 'I used to know someone who lived there.'),
+      q('Woman from the launderette', 'Fourteen? The quiet one. He carried my baskets to the car when my back went, every Saturday for a year, and never once said more than good morning. Went away, they said. Van came and took the lot in an afternoon. No goodbye, no forwarding. Nobody asked after him, after.'),
+      p('She smokes for a while, looking where you are looking.'),
+      q('Woman from the launderette', 'You’re the first.'),
+      t('The first. Eleven years on this street, and I am the only person who has come looking for him, and I cannot tell her who I am.'),
+    ]),
+    visit('go', 'Walk on before anyone sees you', 'He isn’t here. Neither are you.', [
+      p('You walk on, past his door, past the launderette, down to the river path where he ran every morning before work, badly, in a grey sweatshirt with a hole in the cuff.'),
+      p('The bench at the second bridge is where he used to stop to pretend he was stretching. A runner goes past, one of the regulars: you know his gait, the left foot that turns out a little. He nodded to Adrian every morning for six years. He does not nod to you. Why would he?'),
+      t('Nobody here knows me. That was the point. I didn’t know it would feel like this.'),
+    ]),
+  ];
+}
+
 function standingChoices(s: GameState): C7Choice[] {
   const famous = !!get5(s, 'published');
   if (famous && !get7(s, 'watcher')) {
@@ -174,8 +225,9 @@ function standingChoices(s: GameState): C7Choice[] {
         ];
       }),
     ];
+  if (get7(s, 'card') && !get7(s, 'old-flat')) return oldFlatChoices();
   if (!get7(s, 'card'))
-    return [
+    return withOldFlat([
       offer7('card-keep', 'Keep it', 'It’s hers. It is also the only thing anyone ever sent her that you can hold.', 'standing', (x) => {
         set7(x, 'card', 'kept');
         return [
@@ -200,9 +252,12 @@ function standingChoices(s: GameState): C7Choice[] {
           t('Whoever C. is, they are waiting for someone who is not coming. I will not be the thing that walks in and sits down in her chair.'),
         ];
       }),
-    ];
+    ]);
   return [offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue')];
 }
+
+/** Every answer to the letter leads into the afternoon walk (the Old Flat). */
+const withOldFlat = (choices: C7Choice[]): C7Choice[] => choices.map((c) => ({ ...c, apply: (x) => [...(c.apply?.(x) ?? []), ...oldFlatLead] }));
 
 const quietMorning = [
   p('Nobody on the street knows your face. The Aster pictures never ran, and some mornings that feels like a door you didn’t walk through. Other mornings it feels like the only reason you can still buy coffee without anyone watching you drink it.'),

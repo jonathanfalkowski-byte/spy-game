@@ -19,11 +19,16 @@ export const GATED_DEFAULTS = [
   'chapter7.photo-let',
   'chapter7.woman-river',
   'chapter7.notes-hide',
+  // New scene, the Old Flat: walk on.
+  'chapter7.flat-go',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
   // Chapter 8 set pieces: sleep, the night after.
   'chapter8.night-sleep',
+  // New scenes: let the work answer, leave the account where it is.
+  'chapter8.work-hold',
+  'chapter8.bank-leave',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -36,6 +41,9 @@ export const GATED_DEFAULTS = [
   'chapter9.clara-source',
   'chapter9.maya-fine',
   'chapter9.door-keep',
+  // New scenes: sit at the usual table, leave the auction before she reaches you.
+  'chapter9.table-sit',
+  'chapter9.auction-leave',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

@@ -15,10 +15,21 @@ afterEach(() => vi.unstubAllEnvs());
 
 const ids = (s: GameState) => chapter8Choices(s).map((c) => c.id.replace(/^chapter8\./, ''));
 const text = (s: GameState) => s.history.flatMap((h) => h.blocks.map((b) => b.text)).join('\n');
-const c8 = (s: GameState, id: string) => {
+const choose8 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER8_CHOOSE', id: 'chapter8.' + id });
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
   return next;
+};
+/** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
+const settle8 = ['work-hold', 'bank-leave'];
+const c8 = (s: GameState, id: string) => {
+  let x = s;
+  for (let i = 0; i < 4 && !ids(x).includes(id); i++) {
+    const pending = ids(x).find((y) => settle8.includes(y));
+    if (!pending) break;
+    x = choose8(x, pending);
+  }
+  return choose8(x, id);
 };
 const walk = (s: GameState, path: string[]) => path.reduce(c8, s);
 /** Take a road's own scene choice (the first one) to go over the wall. */
@@ -186,7 +197,7 @@ it('plays the break-in and the week’s money before the wall, each with a real 
   expect([sold.choices['c8.money'], sold.choices['own.cash']]).toEqual(['sell', '450']);
   expect(text(sold)).toContain('She had beautiful taste');
   expect(c8(locked, 'money-owing').choices['own.cash']).toBe('140');
-  expect(ids(c8(locked, 'money-owing'))).toEqual(['cost-continue']);
+  expect(ids(c8(locked, 'money-owing'))).toEqual(['work-give', 'work-hold']);
   const reported = c8(home, 'breakin-report');
   expect(text(reported)).toContain('Meridian’s agent, the company that exists to have no face');
   const advance = c8(withFlags(home, { 'own.campaign': 'taken' }), 'breakin-trap');
@@ -235,4 +246,26 @@ it('walks the break-in room by room, and gives the night after a moment of its o
   expect(text(walked)).toContain('It made me. It can see what it made.');
   expect(ids(walked)).toEqual(['close-end']);
   expect(c8(walked, 'close-end').phase).toBe('complete');
+});
+
+it('plays the working week: the shoot where Laurent’s money watches, or the desk; then the bank', () => {
+  const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
+  const desk = walk(home, ['breakin-report', 'money-owing']);
+  expect(text(desk)).toContain('Pell & Rourke');
+  expect(text(desk)).toContain('Our biggest client is a fund on the river.');
+  const held = choose8(desk, 'work-hold');
+  expect([held.choices['c8.work'], held.choices['c8.work-kind']]).toEqual(['hold', 'desk']);
+  expect(text(held)).toContain('It is a sub-account, under a corporate relationship');
+  expect(text(held)).toContain('the same agent that stands in front of Meridian Holdings');
+  expect(ids(held)).toEqual(['bank-cash', 'bank-new', 'bank-leave']);
+  const cash = choose8(held, 'bank-cash');
+  expect([cash.choices['c8.bank'], cash.choices['own.cash']]).toEqual(['cash', held.choices['own.cash']]);
+  expect(ids(cash)).toEqual(['cost-continue']);
+
+  const shoot = walk(c8(withFlags(complete7('own-records-stop'), { ...clean, 'own.campaign': 'terms' }), 'begin'), ['breakin-report', 'money-owing']);
+  expect(text(shoot)).toContain('Madame Laurent’s office.');
+  expect(text(shoot)).toContain('Just one frame with the face.');
+  const gave = choose8(shoot, 'work-give');
+  expect(gave.choices['c8.work-kind']).toBe('shoot');
+  expect(text(choose8(shoot, 'work-hold'))).toContain('It makes them curious.');
 });
