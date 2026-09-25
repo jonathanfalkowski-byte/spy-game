@@ -23,7 +23,7 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 4 && !(id && ids(x).includes(id)); i++) {
@@ -324,7 +324,8 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   expect([asked.choices['c9.tailor'], asked.choices['c9.open'], asked.facts.includes('c9.tailor')]).toEqual(['ask', 'table', true]);
   expect(text(asked)).toContain('You looked at her.');
 
-  const resolved = walk(hub(), ['assemble-name', 'assemble-stop']);
+  // Sloane comes first on the own-power road; the lawyer follows her.
+  const resolved = choose9(walk(hub(), ['assemble-name', 'assemble-stop']), 'sloane-nothing');
   expect(resolved.phase).toBe('resolve');
   expect(text(resolved)).toContain('Are you ready to be Exhibit A, Ms Vale?');
   expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
@@ -333,4 +334,28 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   expect(ids(retained)).toEqual(['resolve-end']);
   // No case weight: the band is fixed on entering resolve.
   expect(retained.choices['case.strength']).toBe(resolved.choices['case.strength']);
+});
+
+it('opens the Straits Club book before the floor, and sits Sloane down before the lawyer', () => {
+  const morning = c9(withFlags(complete8('own-records-stop'), bare), 'begin');
+  expect(text(morning)).toContain('Not missing. Mislaid. She always comes back. — C.');
+  expect(ids(morning)).toEqual(['club-photo', 'club-ask', 'club-close']);
+  const photo = choose9(morning, 'club-photo');
+  expect([photo.phase, photo.choices['c9.club'], photo.facts.includes('c9.club')]).toEqual(['arrive', 'photo', true]);
+  expect(ids(photo)).toEqual(['arrive-begin']);
+  expect(text(choose9(morning, 'club-ask'))).toContain('She has not missed a month.');
+
+  const resolve = walk(hub(), ['assemble-name', 'assemble-stop']);
+  expect(text(resolve)).toContain('it will not want to be found by you');
+  expect(text(resolve)).not.toContain('Exhibit A');
+  expect(ids(resolve)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
+  const afraid = choose9(resolve, 'sloane-afraid');
+  expect([afraid.choices['c9.sloane'], afraid.phase]).toEqual(['afraid', 'resolve']);
+  expect(text(afraid)).toContain('Being right about you.');
+  expect(text(afraid)).toContain('Are you ready to be Exhibit A, Ms Vale?');
+  expect(ids(afraid)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
+
+  // Other lanes: no club, no Sloane; straight to the lawyer.
+  const outside = walk(complete7('outside-placeholder'), ['begin-placeholder']);
+  expect(ids(outside)).toEqual(['arrive-begin']);
 });

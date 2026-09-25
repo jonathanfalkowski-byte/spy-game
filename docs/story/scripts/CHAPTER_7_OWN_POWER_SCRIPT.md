@@ -175,3 +175,17 @@ Adrian's official status stays open ("went away", "wasn't coming back"): nobody 
   from Adrian for six years, in a terrible tie; they gave Adrian's desk away today. `c7.daniel`:
   **daniel-ask** ("You always think there'll be another Friday") · **daniel-tie** ("That tie doesn't
   suit you": Adrian's line; Daniel nearly sees him) · **daniel-quiet** (neutral; the chewed lid).
+
+## New scenes, round 3 (2026-09-24)
+
+- **The lift** (the hub opens on it; `standing-begin` sets `c7.pursue-open = lift`, and the envelope
+  of ways in follows it): at seven, a man in a grey coat with dry shoulders, no button pressed,
+  "Good evening, Ms Vale." `c7.lift`: **lift-speak** ("Mind the window. It sticks.": it does, and she
+  told nobody) · **lift-out** (neutral; the stairs, and the lift already open on her floor) ·
+  **lift-stare** (he gets out at eight).
+- **A letter from Amy** (`close`, after the tram, only if Chapter 5 published): nineteen, started
+  again somewhere nobody knew her; "you looked like somebody who had started again too and made it
+  look like a choice." `c7.fan`: **fan-answer** · **fan-keep** (in the mirror frame) · **fan-away**
+  (neutral).
+- The tram now comes at the end of the close (a restless late ride out and back), just before its
+  choice.

@@ -251,3 +251,16 @@ Neutral picks: table-sit, auction-leave.
   Nadia Brandt, seventy, above a locksmith's: "Are you ready to be Exhibit A, Ms Vale?" `c9.lawyer`:
   **lawyer-retain** ("when you are ready, and not a day before") · **lawyer-exhibit** ("evidence I
   chose") · **lawyer-thank** (neutral).
+
+## New scenes, round 3 (2026-09-24)
+
+Own-power only:
+- **The Straits Club** (`arrive`, before `arrive-begin`): a lapsed subscription; Miss Loh ("We were
+  told you were missing"); the condolence book, and C.'s entry in green ink: "Not missing. Mislaid.
+  She always comes back." `c9.club`: **club-photo** (a fact) · **club-ask** (a lady, every first
+  Thursday before her lunch, who has not missed a month) · **club-close** (neutral).
+- **Sloane at the café table** (`resolve`, before the lawyer): two coffees, the watchers' table, a
+  grey thread in her hair; "Whatever you have found at the top, it will not want to be found by
+  you." `c9.sloane`: **sloane-nothing** (neutral; "Then shop carefully.") · **sloane-page** ("never
+  show it to anyone at a table on a street again. Including me.") · **sloane-afraid** ("Being right
+  about you.").

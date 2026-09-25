@@ -16,7 +16,10 @@
  * never opened (c8.bank = cash | new | leave).
  * New scenes, round 2 (2026-09-24): after the break-in, Mrs Kowalczyk across the landing says "your friend" let herself
  * in with a key (c8.neighbour = ask | warn | thank; asking gets a tall woman with close-cropped hair, a fact); and, if
- * her face is public, a Sunday Courier reporter at her door the night after the list (c8.hack = line | meridian | door). */
+ * her face is public, a Sunday Courier reporter at her door the night after the list (c8.hack = line | meridian | door).
+ * New scenes, round 3 (2026-09-24): Bishop on the fire escape (cost, after the bank: binoculars in the flat opposite;
+ * c8.bishop = stare | photo | cat), and the landline at 3 a.m. (close, after the night: Mrs Tan from Emerald Hill,
+ * the flat emptied by men in white gloves; asking brings the tall lady who took the white orchid; c8.call). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -213,7 +216,7 @@ function closeBlocks(s: GameState): Block[] {
 
 const hackComes = (s: GameState) => !!get5(s, 'published') && !get8(s, 'hack');
 const hackLead: Block[] = [
-  p('At nine there is a man on your doorstep with a notebook, which nobody carries any more, and the smile of somebody who has been told no by better people than you.'),
+  p('Late as it is, there is a knock: a man on your doorstep with a notebook, which nobody carries any more, and the smile of somebody who has been told no by better people than you.'),
   q('Rafe Collis', 'Rafe Collis, the Sunday Courier. We’re running something this weekend about women who appear from nowhere. Beautiful ones. No school, no family, no dentist, and then suddenly on the side of a bus. You’re in it either way. I thought you’d like to give me your side.'),
 ];
 
@@ -614,12 +617,79 @@ function moneyChoices(s: GameState): C8Choice[] {
   ];
 }
 
+// ── Bishop on the fire escape (new scene, round 3) ──
+
+const bishopLead: Block[] = [
+  p('On Saturday afternoon there is a knock, and Mrs Kowalczyk is on the landing in her slippers, distraught. Bishop is out. Not in the corridor: out, through her kitchen window onto the fire escape, and he is sitting on the iron landing one floor up, washing his face, and she cannot manage the steps any more.'),
+  p('You go out through her kitchen window in your stockinged feet. The iron is cold and wet. Bishop watches you come with contempt. You get a hand on him on the landing below the roof, and you are crouched there with an armful of furious cat when you look across the gap between the buildings and see the binoculars.'),
+  p('The flat opposite, one floor above yours, has its blind half down. Under the blind, at a table in the window, a man sits with a pair of binoculars resting on a folded newspaper, the way you would rest a cup. They are pointed at your window. He is not using them now. He is looking at you, crouched on a fire escape holding a cat, and he has not yet decided what to do with his face.'),
+];
+
+function bishopChoices(): C8Choice[] {
+  const catch_ = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer8('bishop-' + id, label, hint, 'cost', (x) => {
+      set8(x, 'bishop', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    catch_('stare', 'Look straight back at him', 'Let him know you know.', [
+      p('You look straight back. Five seconds. Ten. Then he reaches up without hurrying and pulls the blind the rest of the way down.'),
+      t('Now we both know. That is worth something. I am not sure yet to whom.'),
+    ]),
+    catch_('photo', 'Photograph him', 'One-handed, with a cat trying to climb your face.', [
+      p('You get the phone out one-handed, with Bishop trying to climb your face, and take three frames before the blind comes down. The best is soft, but it will do: a man, a window, a pair of binoculars on a newspaper, and the number on the street door below.'),
+      t('A face and an address. Somebody pays his rent. I can find out who.'),
+    ], (x) => note8(x, 'binoculars', 'A man in the flat opposite, one floor above Evelynn’s, keeps binoculars trained on her window. She photographed him and the building’s street number.', 'Evelynn’s photographs from the fire escape')),
+    catch_('cat', 'Get the cat inside and say nothing', 'Let him wonder whether you saw.', [
+      p('You look away as if you had seen nothing, and climb back in through Mrs Kowalczyk’s window with the cat, and let her fuss, and drink the tea she makes you, and say nothing at all about the window across the way.'),
+      t('He saw me see him. Let him wonder whether I did.'),
+    ]),
+  ];
+}
+
+// ── The landline at 3 a.m. (new scene, round 3) ──
+
+const callLead: Block[] = [
+  p('At ten past three the landline rings.'),
+  p('You did not know the flat had a landline until the week you moved in, when you found the handset in a drawer: cream-coloured, heavy, no number on it. It has never rung. It rings eleven times while you stand in the dark hall looking at it. On the twelfth you pick it up.'),
+  q('Woman on the line', 'Evie? Evie, is that you? It’s Mrs Tan. From the building on Emerald Hill. I found this number in the book at the front desk. Your flat — they came and emptied it. Men in white gloves. They said you weren’t coming back. I kept your orchids. I didn’t know who else to tell.'),
+];
+
+function callChoices(): C8Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer8('call-' + id, label, hint, 'close', (x) => {
+      set8(x, 'call', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    answer('evie', 'Be Evie for her', 'She kept the orchids. Let her have somebody to tell.', [
+      q('You', 'Mrs Tan. Thank you. Keep the orchids.'),
+      q('Mrs Tan', 'You sound tired. You sound — different. Are you eating?'),
+      q('You', 'I’m eating.'),
+      q('Mrs Tan', 'Good. Come back and see them. They flower every spring. I tell them you’re coming.'),
+      p('The line goes quiet, and then dead, and you stand in the dark hall holding a cream telephone with your eyes stinging, for a woman you have never met, about a flat you have never seen.'),
+    ]),
+    answer('ask', 'Ask her when they came', 'Carefully. She is the only witness who has called you.', [
+      q('You', 'When did they come, Mrs Tan?'),
+      q('Mrs Tan', 'In the spring. The week after you went. A lady came first, a tall lady, very elegant, and sat in your flat all afternoon by herself with the door shut. Then the men came, and she stood in the doorway and told them what to take.'),
+      p('A pause, long-distance, full of other people’s static.'),
+      q('Mrs Tan', 'She took one orchid for herself. The white one. I thought you wouldn’t mind.'),
+      t('A white orchid. She sat alone in her flat for an afternoon, and then she had it emptied, and she kept the flower.'),
+    ], (x) => note8(x, 'emerald-hill', 'Mrs Tan, a neighbour on Emerald Hill, says the first Evelynn’s Singapore flat was emptied in the spring by men in white gloves, directed by a tall, elegant woman who kept a white orchid.', 'Mrs Tan, on the landline at 3 a.m.')),
+    answer('down', 'Put it down', 'Her grief is not yours to answer.', [
+      p('You put the handset down very gently, as if it might break, and stand with your hand on it in the dark. It does not ring again. In the morning, when you pick it up, there is no dial tone at all.'),
+    ]),
+  ];
+}
+
 /** The night after (set pieces): a moment of her own before the chapter closes (c8.night). */
 function nightChoices(): C8Choice[] {
   const night = (id: string, label: string, hint: string, body: Block[]) =>
     offer8('night-' + id, label, hint, 'close', (x) => {
       set8(x, 'night', id);
-      return body;
+      return [...body, ...callLead];
     });
   return [
     night('watch', 'Sit up and watch the street', 'The bench, the awning, the car that shouldn’t be parked there.', [
@@ -632,7 +702,7 @@ function nightChoices(): C8Choice[] {
       t('Let it look. It made me. It can see what it made.'),
     ]),
     night('sleep', 'Sleep', 'For once. It will all still be there.', [
-      p('You take your make-up off properly, and hang the dress up facing the wrong way, on purpose, and get into bed and sleep for nine hours without dreaming, which is the most defiant thing you have done all week.'),
+      p('You take your make-up off properly, and hang the dress up facing the wrong way, on purpose, and get into bed and sleep without dreaming, which is the most defiant thing you have done all week, until the telephone.'),
     ]),
   ];
 }
@@ -729,7 +799,7 @@ function bankChoices(): C8Choice[] {
   const bank = (id: string, label: string, hint: string, body: Block[]) =>
     offer8('bank-' + id, label, hint, 'cost', (x) => {
       set8(x, 'bank', id);
-      return body;
+      return [...body, ...bishopLead];
     });
   return [
     bank('cash', 'Take it all out in cash, today', 'Every note. Let them watch the number go to nothing.', [
@@ -784,13 +854,16 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     if (!get8(s, 'money')) return moneyChoices(s);
     if (!get8(s, 'work')) return workChoices(s);
     if (!get8(s, 'bank')) return bankChoices();
+    if (!get8(s, 'bishop')) return bishopChoices();
     return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
   }
   if (s.phase === 'leverage') return leverageChoices(s);
   if (s.phase === 'advance') return listChoices();
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
-    return get8(s, 'night') ? [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')] : nightChoices();
+    if (!get8(s, 'night')) return nightChoices();
+    if (!get8(s, 'call')) return callChoices();
+    return [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')];
   }
   return [];
 }

@@ -213,3 +213,14 @@ Neutral picks: work-hold, bank-leave.
 - **The Sunday reporter** (`close`, before the night, only if Chapter 5 published): Rafe Collis of
   the Sunday Courier, "women who appear from nowhere". `c8.hack`: **hack-line** ("I just didn't bring
   it with me") · **hack-meridian** (point him at Meridian) · **hack-door** (neutral).
+
+## New scenes, round 3 (2026-09-24)
+
+- **Bishop on the fire escape** (`cost`, after the bank): the neighbour's cat; from the iron landing,
+  binoculars on a folded newspaper in the flat opposite, pointed at her window. `c8.bishop`:
+  **bishop-stare** · **bishop-photo** (a face and a street number; a fact) · **bishop-cat** (neutral).
+- **The landline at 3 a.m.** (`close`, after the night choice; the reporter now knocks "late as it
+  is"): Mrs Tan from Emerald Hill, who kept Evie's orchids; the flat emptied by men in white gloves.
+  `c8.call`: **call-evie** ("They flower every spring. I tell them you're coming.") · **call-ask** (a
+  tall, elegant lady sat alone in the flat all afternoon, then directed the men, and kept the white
+  orchid; a fact) · **call-down** (neutral; in the morning, no dial tone).

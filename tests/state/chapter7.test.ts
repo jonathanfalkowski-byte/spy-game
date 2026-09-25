@@ -27,7 +27,7 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['daniel-quiet'];
+const settle7 = ['daniel-quiet', 'lift-out', 'fan-away'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 3 && !ids(x).includes(id); i++) {
@@ -46,7 +46,8 @@ const ready = (s: GameState) => {
   while (!ids(s).includes('standing-begin')) s = c7(s, ids(s).find((id) => GATED_DEFAULTS.includes('chapter7.' + id))!);
   return s;
 };
-const begin = () => c7(ready(standing()), 'standing-begin');
+/** Into the hub: the lift plays first, on its neutral pick. */
+const begin = () => choose7(c7(ready(standing()), 'standing-begin'), 'lift-out');
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
   for (const [k, v] of Object.entries(flags)) if (v === undefined) delete x.choices[k];
@@ -159,6 +160,7 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
   s = c7(s, ids(s).includes('pursue-rook') ? 'pursue-rook' : 'pursue-stop');
   if (s.phase === 'pursue') s = walk(s, ['rook-trade-debt', 'woman-river']);
   s = c7(s, 'daniel-quiet');
+  if (ids(s).includes('fan-away')) s = c7(s, 'fan-away');
   if (ids(s).includes('notes-hide')) s = c7(s, 'notes-hide');
   s = c7(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter7.complete');
@@ -330,7 +332,7 @@ it('lets staying in remember the letter', () => {
 });
 
 it('asks what she does with what she found before the night, and offers Maya only if Maya is back', () => {
-  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'daniel-quiet']);
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'daniel-quiet', 'fan-away']);
   expect(atClose.choices['c7.finding']).toBe('lead');
   expect(ids(atClose)).toEqual(['notes-hide', 'notes-burn', 'notes-maya']);
   expect(ids(withFlags(atClose, { 'c6.maya': undefined }))).toEqual(['notes-hide', 'notes-burn']);
@@ -444,6 +446,24 @@ it('meets her Singapore on the bridge, and Adrian’s colleague on the night tra
   const tie = choose7(atClose, 'daniel-tie');
   expect(tie.choices['c7.daniel']).toBe('tie');
   expect(text(tie)).toContain('Someone used to say that to me. Exactly that.');
-  expect(ids(tie)).toContain('notes-hide');
+  // Then, with her face public, a letter from Amy.
+  expect(text(tie)).toContain('I just wanted you to know it helped. — Amy, Flat 3');
+  expect(ids(tie)).toEqual(['fan-answer', 'fan-keep', 'fan-away']);
+  const answered = choose7(tie, 'fan-answer');
+  expect(answered.choices['c7.fan']).toBe('answer');
+  expect(ids(answered)).toContain('notes-hide');
   expect(text(choose7(atClose, 'daniel-ask'))).toContain('You always think there’ll be another Friday.');
+});
+
+it('rides the lift with a man who knows her name before the hub opens', () => {
+  const lift = c7(ready(standing()), 'standing-begin');
+  expect([lift.phase, lift.choices['c7.pursue-open']]).toEqual(['pursue', 'lift']);
+  expect(text(lift)).toContain('Good evening, Ms Vale.');
+  expect(text(lift)).not.toContain('You write the ways in on the back of an envelope');
+  expect(ids(lift)).toEqual(['lift-speak', 'lift-out', 'lift-stare']);
+  const spoke = choose7(lift, 'lift-speak');
+  expect([spoke.choices['c7.lift'], spoke.choices['c7.pursue-open']]).toEqual(['speak', undefined]);
+  expect(text(spoke)).toContain('Mind the window. It sticks.');
+  expect(text(spoke)).toContain('You write the ways in on the back of an envelope');
+  expect(ids(spoke)).toContain('pursue-stop');
 });

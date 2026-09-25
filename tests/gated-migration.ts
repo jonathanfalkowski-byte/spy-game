@@ -24,6 +24,9 @@ export const GATED_DEFAULTS = [
   // Round 2: tell Lotte she has the wrong woman; let Daniel be.
   'chapter7.evie-deny',
   'chapter7.daniel-quiet',
+  // Round 3: get out at the next floor; put the letter away.
+  'chapter7.lift-out',
+  'chapter7.fan-away',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -35,6 +38,9 @@ export const GATED_DEFAULTS = [
   // Round 2: thank the neighbour and say nothing; close the door on the reporter.
   'chapter8.neighbour-thank',
   'chapter8.hack-door',
+  // Round 3: get the cat inside and say nothing; put the telephone down.
+  'chapter8.bishop-cat',
+  'chapter8.call-down',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -53,6 +59,9 @@ export const GATED_DEFAULTS = [
   // Round 2: take the charcoal as it is; thank the lawyer and keep it yourself.
   'chapter9.tailor-leave',
   'chapter9.lawyer-thank',
+  // Round 3: close the condolence book; tell Sloane nothing.
+  'chapter9.club-close',
+  'chapter9.sloane-nothing',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

@@ -18,13 +18,17 @@
  * adds case weight; both put Celeste in the room before the name.
  * New scenes, round 2 (2026-09-24): the tailor (own-power, before Castellane: the man who made her charcoal finds his
  * chalk mark and a centimetre's difference; c9.tailor = alter | ask | leave), and the lawyer (every road, at resolve:
- * Nadia Brandt, "Are you ready to be Exhibit A?"; c9.lawyer = retain | exhibit | thank). Neither adds case weight. */
+ * Nadia Brandt, "Are you ready to be Exhibit A?"; c9.lawyer = retain | exhibit | thank). Neither adds case weight.
+ * New scenes, round 3 (2026-09-24), own-power: the Straits Club (arrive: a lapsed subscription, a condolence book, and
+ * C.'s entry in green ink, "Not missing. Mislaid."; c9.club = photo | ask | close), and Sloane at the café table
+ * (resolve, before the lawyer: "it will not want to be found by you"; c9.sloane = nothing | page | afraid). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
 import { get6 } from './chapter6-model';
 import { canCompare6 } from './chapter6-proof';
 import { getKey, setKey } from './chapter7-model';
+import { sloaneDoubts } from './sloane-standing';
 
 export type C9Scene = { title: string; place: string; blocks: Block[] };
 export type C9Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -181,6 +185,84 @@ function arriveBlocks(s: GameState): Block[] {
     p('And the authorization to reuse her legend — the real woman who lived it before you were fitted into it — was signed at Meridian’s board.'),
     p('You make coffee and drink it at the window. The bench across the road is empty. The bakery shutters go up at seven, the way they always do, and the girl who opens them looks up at your window, the way she has started to, and then away.'),
     t('I have the shape. What I do not have is a case — something sourced, something that holds when an institution tries to make it disappear — and I do not have the name. Before I decide anything, I find out who, and I build something I can carry into the room.'),
+    ...(ownPower(s) && !get9(s, 'club') ? clubLead : []),
+  ];
+}
+
+// ── The Straits Club (new scene, round 3) ──
+
+const clubLead: Block[] = [
+  p('The first envelope in the morning post is thick and cream and addressed to Ms E. Vale in a secretary’s round hand: the Straits Club, regretting that her subscription has lapsed, and hoping very much that she will call in at her convenience to renew.'),
+  p('You have walked past the Straits Club a hundred times: a white stucco house on the square behind the cathedral, with a brass bell and a flag nobody can name. You go at eight, when it opens, in the charcoal.'),
+  p('The secretary is a small, precise woman called Miss Loh, who looks up from her desk and puts her pen down very carefully, as if it might go off.'),
+  q('Miss Loh', 'Ms Vale. We — you’ll forgive me. We were told you were missing.'),
+  p('She recovers beautifully. She takes your renewal. And then, because she is kind, or because she has been waiting a long time to do it, she brings out the book.'),
+  p('It is a condolence book, leather, with a ribbon. On the first page, in the secretary’s round hand: For Ms E. Vale, member, missing since the spring. Our thoughts are with her friends. Under it, eleven entries from people whose names mean nothing to you, and one near the bottom in green ink, in a confident, looping hand.'),
+  q('The book', 'Not missing. Mislaid. She always comes back. — C.'),
+  t('She wrote it in a book of condolences. She would not let anybody else grieve her.'),
+];
+
+function clubChoices(): C9Choice[] {
+  const leave = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer9('club-' + id, label, hint, 'arrive', (x) => {
+      set9(x, 'club', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    leave('photo', 'Photograph the page', 'While Miss Loh pretends to look for a pen.', [
+      p('You photograph it while Miss Loh pretends to look for a pen: the round hand, the eleven names, the green ink.'),
+      t('Eleven people wanted her back. One of them knew she was coming.'),
+    ], (x) => note9(x, 'club', 'The Straits Club kept a condolence book for the first Evelynn, missing since the spring. One entry, in green ink in C.’s looping hand, refuses to grieve: “Not missing. Mislaid. She always comes back.”', 'The Straits Club condolence book, photographed')),
+    leave('ask', 'Ask Miss Loh who else came asking', 'Somebody reads a book like this more than once.', [
+      q('You', 'Has anybody else asked after me?'),
+      q('Miss Loh', 'Only one. A lady, every month, on the first Thursday, before her lunch. She reads the book, and has a glass of water, and goes. She has not missed a month.'),
+      t('The first Thursday. Before her lunch. The table for two, and the glass of water, and the book. She has built a whole religion out of a woman who is sitting in front of me wearing my face.'),
+    ]),
+    leave('close', 'Close the book', 'Leave the dead their book.', [
+      p('You close the book on its ribbon and slide it back across the desk. Miss Loh takes it without a word and puts it away in a drawer that she locks.'),
+      q('Miss Loh', 'Welcome back, Ms Vale.'),
+      t('Everybody in this city is so pleased to see her. I am the only one who knows she isn’t here.'),
+    ]),
+  ];
+}
+
+// ── Sloane at the café table (new scene, round 3) ──
+
+function sloaneLead(s: GameState): Block[] {
+  return [
+    p('In the morning Sloane is sitting at the café table outside your building, the one under the awning where the watchers usually sit, with two coffees in front of her and her coat still buttoned. She does not wave. She waits until you have seen her, and then pushes the second cup an inch toward the empty chair.'),
+    q('Sloane', 'You have been busy. I would like to know how busy.'),
+    p('She looks older in daylight than she does in her car. There is a grey thread in her hair you have not noticed before, and her hands around the cup are very still, the way hands are when somebody is making them be still.'),
+    ...(sloaneDoubts(s) ? [q('Sloane', 'And before you answer: no guesses. Not with me. Not any more.')] : []),
+    q('Sloane', 'Whatever you have found at the top, it will not want to be found by you. It did not want to be found by me.'),
+  ];
+}
+
+function sloaneChoices(): C9Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('sloane-' + id, label, hint, 'resolve', (x) => {
+      set9(x, 'sloane', id);
+      return [...body, ...lawyerLead];
+    });
+  return [
+    answer('nothing', 'Tell her nothing', 'Sit down, drink her coffee, give her nothing.', [
+      p('You sit down and drink her coffee.'),
+      q('You', 'I’ve been shopping.'),
+      p('Sloane almost smiles. She finishes her own cup, stands, puts a coin on the table for both, and buttons a coat that is already buttoned.'),
+      q('Sloane', 'Then shop carefully.'),
+    ]),
+    answer('page', 'Show her one page', 'The least dangerous one. Watch her read it.', [
+      p('You take one page out of the envelope, the least dangerous one, and lay it on the table between the cups. Sloane reads it without touching it. Her face does nothing at all. Then she turns it face down with one finger.'),
+      q('Sloane', 'Put that away. And never show it to anyone at a table on a street again. Including me.'),
+      t('She was frightened for me. Or of what I had. For a second it was impossible to tell the difference, and I think that is the truth about Sloane.'),
+    ]),
+    answer('afraid', 'Ask her what she is afraid of', 'She has never answered a direct question. Ask one anyway.', [
+      q('You', 'What are you afraid of, Sloane?'),
+      p('A long silence. A bus goes past. Somewhere across the road the bakery shutters go up.'),
+      q('Sloane', 'Being right about you.'),
+      p('She stands, and leaves the money, and goes, and does not look back, and you sit with two cups going cold until you understand that it was the kindest thing she knows how to say.'),
+    ]),
   ];
 }
 
@@ -247,7 +329,8 @@ function resolveBlocks(s: GameState): Block[] {
     ),
     t('Adrian would have called it a first draft. He would also have been frightened of it, and he would have been right to be.'),
   );
-  if (!get9(s, 'lawyer')) blocks.push(...lawyerLead);
+  if (ownPower(s) && !get9(s, 'sloane')) blocks.push(...sloaneLead(s));
+  else if (!get9(s, 'lawyer')) blocks.push(...lawyerLead);
   return blocks;
 }
 
@@ -813,6 +896,7 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.scene === 'chapter7' && s.phase === 'complete' && getKey(s, 'route.lane') && !ownPower(s))
     return [offer9('begin-placeholder', 'Go on to the bridge', 'This road’s middle chapters are in development.', 'arrive', (x) => (set9(x, 'entered', getKey(x, 'route.lane')!), []))];
   if (s.scene !== 'chapter9') return [];
+  if (s.phase === 'arrive' && ownPower(s) && !get9(s, 'club')) return clubChoices();
   if (s.phase === 'arrive')
     return [
       offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble', (x) => {
@@ -821,8 +905,10 @@ export function chapter9Choices(s: GameState): C9Choice[] {
       }),
     ];
   if (s.phase === 'assemble') return assembleChoices(s);
-  if (s.phase === 'resolve')
+  if (s.phase === 'resolve') {
+    if (ownPower(s) && !get9(s, 'sloane')) return sloaneChoices();
     return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices();
+  }
   return [];
 }
 

@@ -21,7 +21,7 @@ const choose8 = (s: GameState, id: string) => {
   return next;
 };
 /** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
-const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'hack-door'];
+const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'bishop-cat', 'hack-door', 'call-down'];
 const c8 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 4 && !ids(x).includes(id); i++) {
@@ -245,7 +245,7 @@ it('walks the break-in room by room, and gives the night after a moment of its o
   const walked = c8(close, 'night-walk');
   expect([walked.phase, walked.choices['c8.night']]).toEqual(['close', 'walk']);
   expect(text(walked)).toContain('It made me. It can see what it made.');
-  expect(ids(walked)).toEqual(['close-end']);
+  expect(ids(walked)).toEqual(['call-evie', 'call-ask', 'call-down']);
   expect(c8(walked, 'close-end').phase).toBe('complete');
 });
 
@@ -261,7 +261,7 @@ it('plays the working week: the shoot where Laurent’s money watches, or the de
   expect(ids(held)).toEqual(['bank-cash', 'bank-new', 'bank-leave']);
   const cash = choose8(held, 'bank-cash');
   expect([cash.choices['c8.bank'], cash.choices['own.cash']]).toEqual(['cash', held.choices['own.cash']]);
-  expect(ids(cash)).toEqual(['cost-continue']);
+  expect(ids(cash)).toEqual(['bishop-stare', 'bishop-photo', 'bishop-cat']);
 
   const shoot = walk(c8(withFlags(complete7('own-records-stop'), { ...clean, 'own.campaign': 'terms' }), 'begin'), ['breakin-report', 'money-owing']);
   expect(text(shoot)).toContain('Madame Laurent’s office.');
@@ -289,4 +289,22 @@ it('has the neighbour meet her friend with a key, and a reporter at the door if 
   const set = choose8(famous, 'hack-meridian');
   expect([set.phase, set.choices['c8.hack']]).toEqual(['close', 'meridian']);
   expect(ids(set)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
+});
+
+it('sends her after Bishop onto the fire escape, and answers the landline at three', () => {
+  const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
+  const escape = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave']);
+  expect(text(escape)).toContain('and see the binoculars');
+  expect(ids(escape)).toEqual(['bishop-stare', 'bishop-photo', 'bishop-cat']);
+  const photo = choose8(escape, 'bishop-photo');
+  expect([photo.choices['c8.bishop'], photo.facts.includes('c8.binoculars')]).toEqual(['photo', true]);
+  expect(ids(photo)).toEqual(['cost-continue']);
+
+  const night = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'night-sleep']);
+  expect(text(night)).toContain('It’s Mrs Tan. From the building on Emerald Hill.');
+  expect(ids(night)).toEqual(['call-evie', 'call-ask', 'call-down']);
+  const asked = choose8(night, 'call-ask');
+  expect([asked.choices['c8.call'], asked.facts.includes('c8.emerald-hill')]).toEqual(['ask', true]);
+  expect(text(asked)).toContain('She took one orchid for herself. The white one.');
+  expect(ids(asked)).toEqual(['close-end']);
 });

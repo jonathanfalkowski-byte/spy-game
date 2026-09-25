@@ -18,7 +18,10 @@
  * and a letter saying his personal effects were collected; she never collected anything (a note Chapter 8 can read).
  * New scenes, round 2 (2026-09-24): on the bridge home, Lotte from Emerald Hill knows her as "Evie" (c7.lotte = played |
  * ask | deny; asking remembers "you and C." on a Singapore balcony); and, entering close, the night tram past Axiom
- * with Daniel, who worked across the corridor from Adrian and does not know her (c7.daniel = ask | tie | quiet). */
+ * with Daniel, who worked across the corridor from Adrian and does not know her (c7.daniel = ask | tie | quiet).
+ * New scenes, round 3 (2026-09-24): the lift, as the hub opens (a man with dry shoulders who knows her name and her
+ * sticking window; c7.lift = speak | out | stare), and, if Chapter 5 published, a letter from Amy, nineteen, who
+ * started again somewhere nobody knew her (c7.fan = answer | keep | away). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -48,6 +51,7 @@ export function place7(s: GameState): string | undefined {
   const open = get7(s, 'pursue-open');
   if (s.phase === 'pursue' && open)
     return {
+      lift: '19:00 · Your building · The lift',
       records: '23:10 · Municipal registry · Night desk',
       'records-dark': '23:45 · Municipal registry · The stacks',
       maya: '21:00 · The Lantern',
@@ -297,7 +301,12 @@ function standingChoices(s: GameState): C7Choice[] {
         ];
       }),
     ]);
-  return [offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue')];
+  return [
+    offer7('standing-begin', 'Start pulling the thread', 'No clearance, no cover. Your tools only.', 'pursue', (x) => {
+      set7(x, 'pursue-open', 'lift');
+      return [];
+    }),
+  ];
 }
 
 /** Every answer to the letter leads into the afternoon walk (the Old Flat). */
@@ -343,20 +352,11 @@ export function ownBlocks7(s: GameState): Block[] {
       ),
       ...(get5(s, 'published') ? [] : letterArrives),
     ];
-  if (s.phase === 'pursue')
-    return [
-      p(
-        `You write the ways in on the back of an envelope, the way Adrian used to lay out a case: the paper trail, the people who might tell you something, the voices that trade in secrets${
-          get5(s, 'published') ? ', and your own name, which opens doors and draws eyes' : ''
-        }. You can walk through two of them before somebody notices you walking.`,
-      ),
-      p('You sit with the envelope under the lamp and look at it for a long time. Each way in has a price written next to it in pencil, and the prices are not all in money. Some of them are in people.'),
-      t('Adrian would have picked the cheapest door and felt clever about it. I am learning that the cheapest door is the one somebody else pays for.'),
-    ];
+  // The lift plays first when the hub opens; the envelope of ways in follows it.
+  if (s.phase === 'pursue') return get7(s, 'pursue-open') === 'lift' ? liftLead : waysIn7(s);
   if (s.phase === 'close') {
     const finding = get7(s, 'finding');
     return [
-      ...(get7(s, 'daniel') ? [] : tramLead(s)),
       ...(finding === 'shape'
         ? [
             p(
@@ -388,13 +388,97 @@ export function ownBlocks7(s: GameState): Block[] {
         ].join(' '),
       ),
       t('Standing alone is slower, and it costs, and it is beginning to be seen. It is also, so far, working — and it is entirely mine.'),
+      // The night tram comes last, just before its choice.
+      ...(get7(s, 'daniel') ? [] : tramLead(s)),
     ];
   }
   return [];
 }
 
+/** The envelope of ways in: the hub's opening (after the lift, when the lift plays). */
+function waysIn7(s: GameState): Block[] {
+  return [
+    p(
+      `You write the ways in on the back of an envelope, the way Adrian used to lay out a case: the paper trail, the people who might tell you something, the voices that trade in secrets${
+        get5(s, 'published') ? ', and your own name, which opens doors and draws eyes' : ''
+      }. You can walk through two of them before somebody notices you walking.`,
+    ),
+    p('You sit with the envelope under the lamp and look at it for a long time. Each way in has a price written next to it in pencil, and the prices are not all in money. Some of them are in people.'),
+    t('Adrian would have picked the cheapest door and felt clever about it. I am learning that the cheapest door is the one somebody else pays for.'),
+  ];
+}
+
 /** A piece; the second one ends the search (the budget is two). */
 const afterPiece = (s: GameState) => (pieces7(s) + 1 >= 2 ? 'close' : 'pursue');
+
+// ── The lift (new scene, round 3) ──
+
+const liftLead: Block[] = [
+  p('You come home at seven with the shopping, and the lift is waiting on the ground floor with its doors open, which it never is.'),
+  p('A man steps in after you: fifty, grey coat, no shopping, no umbrella, though it has rained all afternoon and his shoulders are dry. He does not press a button. The doors close. You press nine, and he watches you press it.'),
+  q('Man in the lift', 'Good evening, Ms Vale.'),
+  p('The lift climbs. Four. Five. He stands with his hands folded in front of him, the way men stand at funerals, and looks at the numbers, not at you.'),
+];
+
+function liftChoices(): C7Choice[] {
+  const ride = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('lift-' + id, label, hint, 'pursue', (x) => {
+      delete x.choices['c7.pursue-open'];
+      set7(x, 'lift', id);
+      return [...body, ...waysIn7(x)];
+    });
+  return [
+    ride('speak', 'Ask him which floor', 'Make him say something he did not plan to.', [
+      q('You', 'Which floor?'),
+      q('Man in the lift', 'This one is fine.'),
+      p('At nine the doors open on your corridor. You step out. He does not. As the doors close he says, pleasantly, “Mind the window. It sticks.”'),
+      t('My window sticks. I have told nobody that it sticks.'),
+    ]),
+    ride('out', 'Get out at the next floor', 'Take the stairs. Don’t let him see your door.', [
+      p('At six you step out onto a corridor you have never stood in, walk to the fire stairs without looking back, and climb the last three floors with your heart going like a bird against glass. When you reach nine, the lift is standing open on your floor, empty, its light humming.'),
+      t('He got there first. He wanted me to know he could.'),
+    ]),
+    ride('stare', 'Look at him until he looks back', 'You are not the thing he was told to expect.', [
+      p('You turn and look at him. Not at the numbers: at him, the way Sloane looks at a report she does not believe. It takes him until the seventh floor. When at last he meets your eyes something in his face goes still and careful, the way a man’s face goes when the dog he was told was tame turns out not to be.'),
+      p('He gets out at eight without a word.'),
+      t('Somebody told him I would be frightened. Somebody was wrong, for about four floors.'),
+    ]),
+  ];
+}
+
+// ── A letter from Amy (new scene, round 3): only if the Aster piece ran ──
+
+function fanLead(s: GameState): Block[] {
+  if (!get5(s, 'published') || get7(s, 'fan')) return [];
+  const saw = publicImage7(s) === 'words' ? 'I read what you said in Aster three times and copied out the last paragraph and put it on the fridge' : 'I cut your picture out of Aster and put it on the fridge';
+  return [
+    p('When you get back, among the bills on the mat, there is a letter Aster has forwarded in a bigger envelope, addressed in a careful, unjoined hand to Evelynn Vale, care of the magazine.'),
+    q('The letter', `Dear Ms Vale, I am nineteen. Last year I had to start again somewhere nobody knew me, for reasons I won’t put in a letter. ${saw} in my new flat, because you looked like somebody who had started again too and made it look like a choice. I don’t know if that’s true. I don’t need to know. I just wanted you to know it helped. — Amy, Flat 3`),
+    t('Somebody who had started again and made it look like a choice. She saw that from a magazine. It took Sloane’s people months to see less.'),
+  ];
+}
+
+function fanChoices(): C7Choice[] {
+  const keep = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('fan-' + id, label, hint, 'close', (x) => {
+      set7(x, 'fan', id);
+      return body;
+    });
+  return [
+    keep('answer', 'Write back', 'By hand. Honestly.', [
+      p('You write back that night, by hand, on the good paper, a page and a half. You tell her it is true, and that it is also not a choice, most days, and that both of those can be true at once. You do not sign it with a flourish. You sign it the way you would sign a letter to a friend.'),
+      t('The first letter I have written in this name that is entirely honest.'),
+    ]),
+    keep('keep', 'Tuck it into the mirror', 'Where you will see it every morning while you put the face on.', [
+      p('You tuck it into the frame of the mirror, where you will see it every morning while you put the face on.'),
+      t('Somebody needs her to be real. Fine. Then some mornings I will be.'),
+    ]),
+    keep('away', 'Put it away', 'You cannot carry a stranger’s hope this week.', [
+      p('You put it in the drawer with the passport and close the drawer, and sit for a while with your hand flat on it.'),
+      t('I cannot carry a stranger’s hope as well. Not this week.'),
+    ]),
+  ];
+}
 
 // ── The records office ──
 
@@ -815,7 +899,7 @@ function notesChoices(s: GameState): C7Choice[] {
 function tramLead(s: GameState): Block[] {
   const famous = !!get5(s, 'published');
   return [
-    p('You take the night tram home, the slow one that goes the long way round past Axiom Tower. At the Axiom stop a man gets on with his tie pulled loose and his lanyard still round his neck, and sits down opposite you, and you know him before he has finished sitting down.'),
+    p('Later, too restless to sleep, you go out again and ride the night tram for no reason at all, the slow one that goes the long way round past Axiom Tower and back. At the Axiom stop a man gets on with his tie pulled loose and his lanyard still round his neck, and sits down opposite you, and you know him before he has finished sitting down.'),
     p('Daniel. Adrian worked across the corridor from Daniel for six years: Daniel who ate the same sandwich every day, who said “per my last email” out loud, who cried once at a leaving do and blamed the wine. He has started wearing a tie. It is a terrible tie.'),
     p(
       famous
@@ -832,7 +916,7 @@ function danielChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
     offer7('daniel-' + id, label, hint, 'close', (x) => {
       set7(x, 'daniel', id);
-      return body;
+      return [...body, ...fanLead(x)];
     });
   return [
     ride('ask', 'Ask him about the man', 'Let him talk about Adrian. You will have to sit still for it.', [
@@ -858,6 +942,7 @@ function danielChoices(): C7Choice[] {
 function closeChoices(s: GameState): C7Choice[] {
   if (get7(s, 'evening-open')) return eveningChoices(s);
   if (!get7(s, 'daniel')) return danielChoices();
+  if (get5(s, 'published') && !get7(s, 'fan')) return fanChoices();
   if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
   const partners = eveningPartners7(s);
   const c: C7Choice[] = [];
@@ -952,6 +1037,7 @@ export function ownChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'close') return closeChoices(s);
   if (s.phase !== 'pursue') return [];
   const open = get7(s, 'pursue-open');
+  if (open === 'lift') return liftChoices();
   if (open === 'rook') return rookTrade(s);
   if (open === 'rook-woman') return withBetween(rookWomanChoices(s));
   if (open === 'records') return recordsChoices(s);
