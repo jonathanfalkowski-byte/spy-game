@@ -6,7 +6,10 @@
  * route.lane. No intimacy in this chapter beyond a line from a partner she already chose.
  * Deepening pass 2 (2026-09-24): the cost is played (the break-in: lock / trap / report; the week's money: pay /
  * sell the gown / Odile's advance / let it run), the client list is a choice (reading it finds VALE, E. returned to
- * inventory), and the night after answers both. */
+ * inventory), and the night after answers both.
+ * Set pieces (2026-09-24): the break-in is walked room by room, every road's scene and its choice are played through,
+ * the list arrives as a page, and the night after has a moment of its own (c8.night: watch the street, walk to
+ * Meridian's brass plate, or sleep). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -107,8 +110,10 @@ function costBlocks(s: GameState): Block[] {
   const partner = get7(s, 'evening-outcome')?.startsWith('intimate') ? get7(s, 'evening') : undefined;
   return [
     p('You come home late and stop in the doorway. Nothing is missing. The papers are on the table where you left them, squared to the edge now, the way you never square anything. The window you always leave an inch open is shut. The room smells, very faintly, of a cigarette nobody in this building smokes.'),
+    p('You go through the flat room by room with every light on, the way you would walk a building you were about to buy. The bathroom: your things where you left them, the toothbrush in its glass. The bedroom: the bed made the way you made it, badly. The wardrobe: the dresses on their hangers, every one of them facing the same way. You never hang them all facing the same way.'),
     ...notesAfterBreakIn8(s),
     t('Someone wanted me to know they could. That is worse than someone wanting me not to know.'),
+    p('You sit down on the edge of the bed in your coat and do not take it off for a long time.'),
     p(frame),
     ...(partner === 'julian'
       ? [p('Julian sends one line after midnight: “Still thinking about the window.” You read it three times and don’t answer, and not answering is its own answer.')]
@@ -147,6 +152,8 @@ function advanceBlocks(s: GameState): Block[] {
   const allyPaid = getKey(s, 'own.alliance.rook') === 'spent' || getKey(s, 'own.alliance.editor') === 'spent';
   return [
     p(`${roadLine[get8(s, 'entered') ?? 'dig']} On the other side of the wall the shape is waiting, and it is bigger than you feared and smaller than you hoped. Meridian Holdings is not Helix. It is not Axiom. It is a private concern that builds operations — identities, legends, whole manufactured people — and sells them to whoever can pay. Project Eve is a product. Axiom is a client. Sloane is a client’s officer.`),
+    p('You read the words product and client three times each, the way you would test a floorboard before you put your weight on it.'),
+    p('Then the list itself. It comes as these things always come in the end: a single page, plain type, no letterhead, the kind of document a company keeps precisely because it can never show it to anyone.'),
     p('And the client list does not stop at Axiom. Halfway down the page, in the same plain type, is Helix.'),
     t('I was never Axiom’s asset, or Sloane’s. I am Meridian’s product, sold on. Whoever authorized reusing her authorized it as a vendor reusing stock. And the company that paid me to review its acquisitions buys from the same vendor. That is the coldest thing I have learned yet, and I learned it myself.'),
     p(
@@ -339,64 +346,78 @@ function sceneChoices(open: string): C8Choice[] {
         done('gala-dance', 'Dance with Keel and let him talk', 'Charm, and let him feel clever. You will be photographed in his arms.', 'gala', 'dance', [
           p('He dances well and knows it. You let him lead, and you let him talk, which is what men like Keel want more than anything, and somewhere in the second waltz he tells you, as a joke, that he sits on a board that meets in a place where nobody can subpoena the minutes. He names the town. He names the company. He does not notice he has done it.'),
           p('A flash from the balcony. Tomorrow there will be a photograph of you in his arms, and the caption will say something about a new romance. Let it.'),
+          p('When the music stops he kisses your hand, which nobody has done since you became somebody whose hand gets kissed, and tells you he will call. You smile the Glass House smile. You are already writing down the name of the town in your head, over and over, so it cannot fall out.'),
         ]),
         done('gala-carpet', 'Ask it on the red carpet', 'Put the question to the cameras. Loud, public, impossible to take back.', 'gala', 'carpet', [
           p('On the way out, a dozen lenses and a woman from a morning show with a microphone. You stop. You look straight down the barrel of the nearest camera and ask, pleasantly, whether anyone in the room tonight could tell you who owns Meridian Holdings, since nobody seems able to. Behind you, you hear Keel’s glass go down on a tray a little too hard.'),
           p('By the time you are home the clip has been watched forty thousand times. By the morning a closed company has three reporters asking for comment, and one of its directors has stopped answering his phone.'),
+          p('At two in the morning your own phone lights with a message from a number you don’t know: a photograph of the red carpet, taken from the balcony, with a circle drawn round your face in red. No words. None needed.'),
         ]),
       ];
     case 'rook':
       return [
         done('debt-true', 'Tell the sender exactly what you saw', 'Pay the debt honestly. The sender will trust you further.', 'rook-report', 'true', [
           p('You give it straight: the aide, the time, the door, the rain. The page arrives within the hour, one sheet of Meridian’s offshore board, and a line under it: “Straight dealing. I remember that.”'),
+          t('Whoever that aide was running to, I have just handed them to a stranger. I tell myself the stranger already knew. I don’t believe it.'),
         ]),
         done('debt-false', 'Give the sender a different name', 'Protect whoever that aide was running to. If they check, they will know you lied.', 'rook-report', 'false', [
           p('You give them a different floor, a different woman, a different time. The page still arrives, one sheet of Meridian’s offshore board. There is no line under it this time. You tell yourself that means nothing.'),
+          t('I lied to the only source who has never lied to me. For a woman I saw for four seconds crossing a lobby in the rain. I would do it again, and I don’t know why.'),
         ]),
       ];
     case 'editor':
       return [
         done('press-run', 'Let her print what she finds', 'The story runs. Meridian is named in public, and so is the fact that you started it.', 'press', 'run', [
           p('“Print it,” you say. Clara nods once, as if you had passed a test, and goes to work. The piece runs in the next issue under her name, careful and sourced, and yours is nowhere in it. It does not need to be. Anyone who matters will know where the question came from.'),
+          p('The editor sends you the first copy off the press by courier, still smelling of ink, with a note in the margin in her tidy hand: “You owe me nothing now. I find I mind that.”'),
         ]),
         done('press-hold', 'Ask her to hold it', 'Keep the finding private for now. Clara will not wait forever.', 'press', 'hold', [
           p('“Not yet,” you say. Clara looks at you for a long moment and then puts the folder in her bag. “I’ll hold it,” she says, “until I can’t.” It is the most honest promise anyone has made you in weeks.'),
+          t('Until she can’t. Somewhere there is a date on that, and I don’t know it, and neither does she.'),
         ]),
       ];
     case 'maya':
       return [
         done('maya-away', 'Tell her to stay away from you for a while', 'Keep her out of range. It will hurt you both.', 'own.maya-distance', 'away', [
           p('“Stop meeting me,” you say. “For a while. Until this is over.” She stares at you across the steam. Then she nods, and pays for both bowls before you can stop her, and leaves first, the way you asked, without looking back. You sit there until the noodles go cold.'),
+          t('I did the right thing. It feels exactly like the other thing.'),
         ]),
         done('maya-close', 'Let her stay close', 'She chose this. Trust her to know the risk.', 'own.maya-distance', 'close', [
           p('“I’m not going to tell you to stay away,” you say. “You’d ignore me anyway.” She laughs, properly, for the first time tonight. “Same counter,” she says. “Same seat. I’ll keep facing the door.”'),
+          t('She is braver than I am. She always was. She just never had anything to be brave about, until me.'),
         ]),
       ];
     case 'executive':
       return [
         done('room-photo', 'Photograph the page', 'Proof you can keep. If the guard sees the phone, Julian pays for it.', 'room', 'photo', [
           p('You lift the phone and take the page in two frames while the torch sweeps closer. Julian opens the door himself before the guard can, blocks it with his shoulders, and says something easy and bored about a late meeting. The guard apologises. When the corridor is empty again, Julian lets out a breath and looks at the phone in your hand, and says nothing at all.'),
+          p('In the lift on the way down he stands on the far side of the car with his hands in his pockets, watching the numbers. At the ground floor, as the doors open, he says, to the doors: “Next time, tell me first.” It is not a reproach. It is an invitation, and you both know it.'),
         ]),
         done('room-read', 'Only read it, and keep his hands clean', 'Memorise what you can. Nothing on the phone, nothing to find.', 'room', 'read', [
           p('You read the page twice, fast, and put it back exactly as it hung. When the guard’s torch finds the glass, there is nothing to see but a Helix director and a woman in a good coat, standing a little too close together in an empty room. The guard apologises and moves on. Julian does not step back right away.'),
+          p('Neither do you. For the length of a breath the room is very quiet, and the city is very bright below it, and the counterparty’s name is going round and round in your head like a coin in a funnel, and his hand is not quite touching yours.'),
         ]),
       ];
     case 'institutional':
       return [
         done('car-ask', 'Ask her why she really took this on', 'Sloane has never answered a direct question. Ask one.', 'sloane', 'asked', [
           p('“Why did you sign it?” you ask. “You knew it wouldn’t hold me.” Sloane is quiet for so long you think she will not answer. Then: “Because the alternative was someone worse holding you. I thought I could at least be the one who let go.” She turns the tablet face down again. It is the first thing she has told you that you almost believe.'),
+          p('The car stops outside your building. She does not look at you as you get out. As the door closes you hear her tell the driver, in a voice you have never heard her use, to take the long way.'),
         ]),
         done('car-watch', 'Say nothing; watch her hands', 'Let her talk, or not. Learn from what she can’t control.', 'sloane', 'watched', [
           p('You say nothing. The car turns along the river. Sloane talks about access and cover and what you will owe, and her voice never changes, but her thumb keeps moving along the edge of the tablet, over and over, the whole way. When the car stops outside your building, you understand that she is afraid, and that it is not of you.'),
+          t('Sloane, afraid. I have spent weeks being afraid of her. It never occurred to me to wonder who she was afraid of.'),
         ]),
       ];
     default:
       return [
         done('dig-watch', 'Find out who he is', 'Watch what he pulls and follow him out. Riskier, and you learn who else is looking.', 'dig-rival', 'seen', [
           p('You wait until he prints, and read the header on his page as he folds it: a law firm whose name you have seen on the letterhead of Meridian’s registered agent. Meridian is checking who else has been reading its filings. When he leaves, he looks at you for exactly one second too long.'),
+          p('You follow him as far as the lobby. He buttons his good coat at the door, turns his collar up against the rain, and, without looking back, lifts one hand, as if to say goodnight to someone he knows is there.'),
         ]),
         done('dig-leave', 'Take what you have and go', 'Leave before he looks up. Safe, and you never learn who he was.', 'dig-rival', 'unseen', [
           p('You gather your printouts and leave by the side door before he looks up. Outside, the city is empty and wet and yours. You have what you came for, a day later than you wanted, paid for in coins.'),
+          t('I will never know who he was. That is either the safest thing I have done this month, or the thing I will regret. I will find out which.'),
         ]),
       ];
   }
@@ -440,15 +461,18 @@ function breakInChoices(s: GameState): C8Choice[] {
             ? 'You think of the filings: Meridian Holdings, behind the building and everything in it. Of course they have a key. They have all the keys.'
             : 'You think of everyone who could have a key to a flat that was furnished for you before you ever arrived, and stop, because the list is too long.',
         ),
+        p('She fits the new cylinder in eleven minutes and gives you three keys on a ring. On her way out she looks at your door, and the corridor, and you, and says the only unprofessional thing she says all night.'),
+        q('Locksmith', 'Get a chain as well, love. Keys are for people who ask first.'),
         t('Sixty dollars to make them use a different door. It is still worth it.'),
       ];
     }),
     deal('trap', 'Set a trap and say nothing', 'Talc on the floor, a hair across the wardrobe. You’ll know if they come back.', () => [
       p('You do it the way a novel would tell you to, and feel foolish doing it: a hair laid across the wardrobe door, a breath of talc on the boards inside the threshold, the old Axiom phone propped on the bookshelf recording the room to nobody.'),
       t('If they come back, I want them to find the flat exactly as they left it. And I want to know they came.'),
+      p('You lie awake afterwards listening to the building: the lift, the pipes, a door two floors down. Every sound is a key in a lock. None of them is yours.'),
     ]),
     deal('report', 'Report it to the building', 'Make it official, and see who answers.', () => [
-      p('The night concierge writes it down with great care and no expression. In the morning there is a letter under your door on heavy cream paper from the managing agents: they have reviewed the entry logs, there has been no unauthorised access to your apartment, and they trust this reassures you.'),
+      p('The night concierge writes it down with great care and no expression, in a ledger with a green cloth spine, and turns the ledger round for you to sign. The line above yours, from three weeks ago, is a complaint about a dog. In the morning there is a letter under your door on heavy cream paper from the managing agents: they have reviewed the entry logs, there has been no unauthorised access to your apartment, and they trust this reassures you.'),
       p(
         records
           ? 'The letterhead’s registered address is the one you photographed at the registry: Meridian’s agent, the company that exists to have no face.'
@@ -479,12 +503,16 @@ function moneyChoices(s: GameState): C8Choice[] {
   return [
     settle('pay', 'Pay it', `$${WEEK_COST}. Clean, and thinner.`, (x) => {
       pay(x, 0, '');
-      return [p('You pay it all on Friday morning at the bank machine with your coat collar up, and watch the number get smaller. It is a very ordinary kind of fear. You find you prefer it to the other kind.')];
+      return [
+        p('You pay it all on Friday morning at the bank machine with your coat collar up, and watch the number get smaller. It is a very ordinary kind of fear. You find you prefer it to the other kind.'),
+        p('The man behind you in the queue is reading the paper. Your face is on page nine. He does not look up from it long enough to notice that it is standing in front of him, taking out money like anybody else.'),
+      ];
     }),
     settle('sell', 'Sell the evening gown', `Someone will pay $${GOWN_PRICE} for it. It was hers first.`, (x) => {
       pay(x, GOWN_PRICE, 'the evening gown');
       return [
         p('The dress agency on the hill takes one look at the gown and stops pretending to be casual. Four hundred, cash. The woman behind the counter holds it up against the window light and says, “She had beautiful taste,” and does not say who she means.'),
+        p('You walk home down the hill with the money in an envelope inside your coat, past the window of the shop, where by the time you look back they have already put the gown on a mannequin with no face.'),
         t('I am selling her off a piece at a time to pay for looking for her. There is probably a word for that. I would rather not know it.'),
       ];
     }),
@@ -503,7 +531,31 @@ function moneyChoices(s: GameState): C8Choice[] {
       : []),
     settle('owing', 'Let it run a week', 'Nothing now. It will still be there.', () => [
       p('You put the invoices in a drawer and close it, and the closing sounds exactly like a decision.'),
+      p('The phone company sends a polite reminder on Tuesday and a less polite one on Thursday. You read both standing at the counter, eating toast, and feel almost nothing, which frightens you more than the letters do.'),
       t('A week. In a week I will either have the name, or I will be looking for work.'),
+    ]),
+  ];
+}
+
+/** The night after (set pieces): a moment of her own before the chapter closes (c8.night). */
+function nightChoices(): C8Choice[] {
+  const night = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('night-' + id, label, hint, 'close', (x) => {
+      set8(x, 'night', id);
+      return body;
+    });
+  return [
+    night('watch', 'Sit up and watch the street', 'The bench, the awning, the car that shouldn’t be parked there.', [
+      p('You sit at the window with the lights off and the list in your lap, and watch. At one a car parks where cars are not allowed to park, and nobody gets out of it. At two it leaves. At three a man walks a dog that does not want to be walked, looks up at your window once, and moves on.'),
+      t('Everyone in this city has a reason to be awake. I just don’t know any of theirs.'),
+    ]),
+    night('walk', 'Walk to Meridian’s registered address', 'A brass plate in a building of brass plates. Look at it. Let it look back.', [
+      p('Meridian’s registered address is twenty minutes on foot, in a street of grey stone where every door carries thirty brass plates and none of the windows are lit. You find it on the fourth plate down, smaller than the others, and polished brighter.'),
+      p('You stand in front of it in the rain for a long time. Nobody comes. A camera over the door turns, very slowly, until it is looking at you, and stops.'),
+      t('Let it look. It made me. It can see what it made.'),
+    ]),
+    night('sleep', 'Sleep', 'For once. It will all still be there.', [
+      p('You take your make-up off properly, and hang the dress up facing the wrong way, on purpose, and get into bed and sleep for nine hours without dreaming, which is the most defiant thing you have done all week.'),
     ]),
   ];
 }
@@ -518,12 +570,14 @@ function listChoices(): C8Choice[] {
         p('You read it the way Adrian read an acquisition: every line, every footnote, every code. Most of it is a catalogue of things that should not be for sale. Near the bottom, set apart by a single blank line, is an entry that stops your breath.'),
         q('The client list', 'VALE, E. · SINGAPORE · RETURNED TO INVENTORY · REISSUED'),
         t('Returned to inventory. Not killed. Not retired. Shelved, like a coat nobody was wearing, and then taken down and fitted to me.'),
+        p('You read the rest of the page again, more slowly, now that you know what it is. The other entries are not names. They are codes, and cities, and dates. Three of them say RETIRED. One says only CLOSED, and you find you cannot look at that one for very long.'),
       ];
     }),
     offer8('list-copy', 'Copy it three ways and go', 'Get it out before anyone knows it’s gone.', 'close', (x) => {
       set8(x, 'list', 'copied');
       return [
         p('You do not read it. You photograph it, send the photograph to an address that forwards on, and write the three lines that matter most on the inside of your wrist in eyeliner, because paper can be taken and a phone can be wiped, and skin, for a few hours, is harder to search.'),
+        p('On the way home you keep your sleeve pulled down over your wrist, and your hand in your pocket, the way you would carry something warm.'),
         t('Whatever this says, I have it three times. They would have to find all three.'),
       ];
     }),
@@ -542,7 +596,8 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   }
   if (s.phase === 'leverage') return leverageChoices(s);
   if (s.phase === 'advance') return listChoices();
-  if (s.phase === 'close') return [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')];
+  if (s.phase === 'close')
+    return get8(s, 'night') ? [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')] : nightChoices();
   return [];
 }
 

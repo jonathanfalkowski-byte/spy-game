@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 206,
+      "events": 207,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "788cbe3c6ae50d9e0d260a1473b23c1abfc1960a34c1fcc8b366b98f942bca99",
+      "saveSha256": "4f24d54759c0307b1a982c344bdc4b034f0e7b283c605f08c2608bdc1abbbb39",
       "ledger": [
         {
           "sequence": 1,
@@ -1644,19 +1644,27 @@
           "sequence": 206,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 205
+          }
+        },
+        {
+          "sequence": 207,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 206
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 223,
+      "events": 224,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "2fe077624e11ca821b219694e4f27d89e1e3a7d77ca1e3479ba118d2fe87a9ab",
+      "saveSha256": "f1d05fcd726e4031bcd10d393d5dde7c402490ad351be658ccf11cbc9f1066b8",
       "ledger": [
         {
           "sequence": 1,
@@ -3428,19 +3436,27 @@
           "sequence": 223,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 222
+          }
+        },
+        {
+          "sequence": 224,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 223
           }
         }
       ]
     },
     {
       "name": "own-maya-nothing",
-      "events": 211,
+      "events": 212,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "04733a0b002faa91fd6ab8c8381034a1cdf94edb356468d993f7116c382c98ac",
+      "saveSha256": "93d7adc5f20c48ea82573ce4bc36c047de28fcc2a99e15e300bbc39366cf3429",
       "ledger": [
         {
           "sequence": 1,
@@ -5116,8 +5132,16 @@
           "sequence": 211,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 210
+          }
+        },
+        {
+          "sequence": 212,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 211
           }
         }
       ]

@@ -114,7 +114,8 @@ it('plays a real own-power Chapter 8 to complete, and the save authenticates', (
   s = walk(s, ['leverage-rook', 'debt-true', 'list-read']);
   expect(text(s)).toContain('The next room is the one with the name in it');
   expect(text(s)).not.toContain('Except I did not stand entirely alone this time');
-  s = c8(s, 'close-end');
+  expect(ids(s)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
+  s = walk(s, ['night-sleep', 'close-end']);
   expect(`${s.scene}.${s.phase}`).toBe('chapter8.complete');
   expect(chapter8Choices(s)).toEqual([]);
   expect(text(s)).toContain('Tomorrow you go looking for the name.');
@@ -220,4 +221,18 @@ it('lets Theo send the morning-after line only if she chose his night', () => {
   const night = { 'c7.evening': 'theo', 'c7.evening-outcome': 'intimate-sex' };
   expect(text(c8(withFlags(complete7('own-records-stop'), night), 'begin'))).toContain('The pad was blank, by the way.');
   expect(text(c8(withFlags(complete7('own-records-stop'), { ...night, 'c7.evening-outcome': 'declined' }), 'begin'))).not.toContain('The pad was blank');
+});
+
+it('walks the break-in room by room, and gives the night after a moment of its own', () => {
+  const home = c8(complete7('own-records-stop'), 'begin');
+  expect(text(home)).toContain('every one of them facing the same way');
+  expect(text(c8(home, 'breakin-locks'))).toContain('Keys are for people who ask first.');
+  const close = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read']);
+  expect(text(close)).toContain('One says only CLOSED');
+  expect(close.phase).toBe('close');
+  const walked = c8(close, 'night-walk');
+  expect([walked.phase, walked.choices['c8.night']]).toEqual(['close', 'walk']);
+  expect(text(walked)).toContain('It made me. It can see what it made.');
+  expect(ids(walked)).toEqual(['close-end']);
+  expect(c8(walked, 'close-end').phase).toBe('complete');
 });

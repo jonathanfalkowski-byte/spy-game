@@ -161,3 +161,24 @@ Leave `deriveRoute6` unchanged for now; store `own.crossover` cleanly; add its w
 
 ### 7. Art — approved
 Environment masters as you mapped: cost = day apartment; leverage = phone (Sloane message / rook call) or day apartment; advance/close/complete = night apartment. The executive road's Helix room is on EVE Art's gap list; advance keeps the apartment until that master is bound.
+
+## Set pieces (2026-09-24)
+
+The wording lives in `src/content/chapter8.ts`. Played as scenes:
+
+- **The break-in**, walked room by room (every dress facing the same way; she sits on the bed in
+  her coat). Each answer plays through: the locksmith ("Keys are for people who ask first."), the
+  trap and the sounds of the building, the concierge's green ledger.
+- **The money**: the bank-machine queue with her face on page nine; the gown on a faceless
+  mannequin; the phone company's two letters.
+- **Every road's choice** carries on past its decision: Keel kissing her hand and the town's name
+  repeated so it cannot fall out; the red circle round her face at 2 a.m.; what the sender's
+  honest or false report cost her; the editor's first copy off the press, or Clara's "until I
+  can't"; Maya kept close or sent away; Julian in the lift ("Next time, tell me first.") or the
+  breath in the empty room; Sloane's long way home, or her thumb on the tablet; the man at the
+  registry lifting a hand goodnight.
+- **The list** arrives as a single page; read, it also holds RETIRED three times and one CLOSED.
+- **The night after** (`c8.night`, a moment before `close-end`): **night-watch** (the car, the
+  dog walker) · **night-walk** (Meridian's brass plate, and the camera that turns to her) ·
+  **night-sleep** (the dress hung the wrong way, on purpose). Neutral pick for the goldens:
+  night-sleep.

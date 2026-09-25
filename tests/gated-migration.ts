@@ -22,6 +22,8 @@ export const GATED_DEFAULTS = [
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
+  // Chapter 8 set pieces: sleep, the night after.
+  'chapter8.night-sleep',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
