@@ -208,3 +208,21 @@ half past eight she follows him across the river.
    date, D.P. "They fixed my window. It is the most frightening thing anyone has ever done for me."
 
 Chapter 9's watcher's rent finds the same man.
+
+## Sequence: His Things (2026-09-25)
+
+In `close`, after the night tram and before Amy's letter and the notes (held in `c7.box-open`: open
+→ face → letter). The night concierge has signed for Axiom's courier: PERSONAL EFFECTS — VALE, A. —
+RELEASED TO NOMINATED PARTY: MS E. VALE.
+1. **How she opens it** (`c7.box`): **box-now** (neutral; on her knees with the big knife) ·
+   **box-dark** (curtains, the phone in the bread bin) · **box-wait** (she gives up at three).
+2. **The contents**: the running watch stopped at twenty to seven, the sweatshirt with the hole, the
+   reading glasses, the paperback two-thirds read; a leaving-do photograph. His face. (`c7.face`):
+   **face-look** ("Goodbye, then.") · **face-down** (neutral) · **face-mirror** ("They kept the
+   tiredness. I suppose it was load-bearing.").
+3. **The jacket**, navy, shiny at the elbows; in the lining the spare key and a sealed envelope,
+   "Re: Resignation." (`c7.letter`): **letter-read** ("what I am like when nobody is scoring me") ·
+   **letter-keep** (neutral) · **letter-burn**.
+4. The release slip: AUTHORISED, V. Sloane, Executive Intelligence. "Either it is a test… or it is
+   the only apology she knows how to make." The jacket goes in her wardrobe; the notes and Chapter
+   8's break-in use its lining.

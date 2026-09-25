@@ -23,10 +23,10 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark', 'ruth-letter', 'ruth-you', 'ruth-silent'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
-  for (let i = 0; i < 4 && !(id && ids(x).includes(id)); i++) {
+  for (let i = 0; i < 10 && !(id && ids(x).includes(id)); i++) {
     const pending = ids(x).find((y) => settle9.includes(y));
     if (!pending) break;
     x = choose9(x, pending);
@@ -342,7 +342,8 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(ids(morning)).toEqual(['club-photo', 'club-ask', 'club-close']);
   const photo = choose9(morning, 'club-photo');
   expect([photo.phase, photo.choices['c9.club'], photo.facts.includes('c9.club')]).toEqual(['arrive', 'photo', true]);
-  expect(ids(photo)).toEqual(['arrive-begin']);
+  // The Eleven Names follow the book.
+  expect(ids(photo)).toEqual(['ruth-letter', 'ruth-class', 'ruth-door']);
   expect(text(choose9(morning, 'club-ask'))).toContain('She has not missed a month.');
 
   const resolve = walk(hub(), ['assemble-name', 'assemble-stop', 'rent-agent', 'window-dark']);
@@ -378,4 +379,24 @@ it('follows the watcher’s rent to the Laurent fund, then the window, then Sloa
   expect(ids(sign)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
   // No case weight: the band was fixed on entering resolve.
   expect(sign.choices['case.strength']).toBe(resolve.choices['case.strength']);
+});
+
+it('works the eleven names to Ruth Adair, who knows a reissue when she sees one', () => {
+  const morning = c9(withFlags(complete8('own-records-stop'), bare), 'begin');
+  const names = choose9(morning, 'club-close');
+  expect(text(names)).toContain('Come home, E. — R. Adair.');
+  const cls = choose9(names, 'ruth-class');
+  expect(text(cls)).toContain('You can come down now. You always did sit at the back.');
+  expect(text(cls)).toContain('Better than the last one I saw.');
+  expect(ids(cls)).toEqual(['ruth-burned', 'ruth-c', 'ruth-you']);
+  const burned = choose9(cls, 'ruth-burned');
+  expect(text(burned)).toContain('it hardly matters who lit it, when the house was insured');
+  expect(burned.facts).toContain('c9.ruth');
+  expect(text(burned)).toContain('Was it quick?');
+  expect(ids(burned)).toEqual(['ruth-truth', 'ruth-kind', 'ruth-silent']);
+  const told = choose9(burned, 'ruth-truth');
+  expect([told.choices['c9.ruth-how'], told.choices['c9.ruth-ask'], told.choices['c9.ruth'], told.choices['c9.names-open']]).toEqual(['class', 'burned', 'truth', undefined]);
+  expect(ids(told)).toEqual(['arrive-begin']);
+  // No case weight.
+  expect(Object.keys(told.choices).filter((k) => k.startsWith('c9.took.'))).toEqual([]);
 });

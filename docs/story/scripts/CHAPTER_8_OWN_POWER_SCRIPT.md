@@ -241,3 +241,19 @@ otherwise a card under the door: "I don't need you to tell me who you are."
    orchids, which sets up the 3 a.m. call).
 4. **What she takes** (`c8.photos`): **photos-all** (a fact) · **photos-one** (the balcony) ·
    **photos-back** (neutral). The tram home, her reflection laughing or not laughing.
+
+## Sequence: The Wake (2026-09-25)
+
+In `advance`, after Emerald Hill (Lotte's last beat now stays in `advance`; held in `c8.wake-open`:
+go → inside → toast). On the tram home, the evening paper: drinks in Adrian's memory tonight at the
+Anchor, Harbour Street. "All who knew him. That is a very short list, and I am at the top of it."
+1. **How she goes** (`c8.wake`): **wake-stranger** (the end of the bar) · **wake-friend** (she tells
+   Daniel she was a friend of his) · **wake-window** (neutral; outside, collar up; skips to the toast).
+2. **The Anchor**: forty people from Axiom, the laminated photograph by the till, "call me Rob",
+   Priya alone by the fruit machine; Maya in her coat drinking red wine from his chipped mug (if she
+   is back; she lifts it to Evelynn if she knows), or "Maya couldn't face it". Then the question
+   (`c8.knew`): **knew-close** ("He never said anything, did he.") · **knew-work** (neutral) ·
+   **knew-nothing** ("Nobody should drink to an empty room.").
+3. **Daniel's toast** from a chair ("He fixed my reports for six years and never told anyone")
+   (`c8.toast`): **toast-drink** · **toast-speak** ("To the quiet ones.") · **toast-leave** (neutral).
+4. A grey coat under a dead shop's awning across Harbour Street. "Even my wake has a watcher."

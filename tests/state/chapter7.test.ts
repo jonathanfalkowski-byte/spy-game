@@ -27,10 +27,10 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['daniel-quiet', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
+const settle7 = ['daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
-  for (let i = 0; i < 3 && !ids(x).includes(id); i++) {
+  for (let i = 0; i < 8 && !ids(x).includes(id); i++) {
     const pending = ids(x).find((y) => settle7.includes(y));
     if (!pending) break;
     x = choose7(x, pending);
@@ -159,7 +159,7 @@ it('plays a real own-power chapter to complete, and the save authenticates', () 
   let s = walk(begin(), ['pursue-records', 'records-pay', 'dark-wait']);
   s = c7(s, ids(s).includes('pursue-rook') ? 'pursue-rook' : 'pursue-stop');
   if (s.phase === 'pursue') s = walk(s, ['rook-trade-debt', 'woman-river']);
-  s = c7(s, 'daniel-quiet');
+  s = walk(s, ['daniel-quiet', 'box-now', 'face-down', 'letter-keep']);
   if (ids(s).includes('fan-away')) s = c7(s, 'fan-away');
   if (ids(s).includes('notes-hide')) s = c7(s, 'notes-hide');
   s = c7(s, 'close-end');
@@ -446,10 +446,23 @@ it('meets her Singapore on the bridge, and Adrian’s colleague on the night tra
   const tie = choose7(atClose, 'daniel-tie');
   expect(tie.choices['c7.daniel']).toBe('tie');
   expect(text(tie)).toContain('Someone used to say that to me. Exactly that.');
+  // His Things: Adrian's effects, by courier.
+  expect(text(tie)).toContain('RELEASED TO NOMINATED PARTY: MS E. VALE');
+  expect(ids(tie)).toEqual(['box-now', 'box-dark', 'box-wait']);
+  const opened = choose7(tie, 'box-dark');
+  expect([opened.choices['c7.box'], opened.choices['c7.box-open']]).toEqual(['dark', 'face']);
+  expect(text(opened)).toContain('Him. My face, before.');
+  const mirror = choose7(opened, 'face-mirror');
+  expect(text(mirror)).toContain('Re: Resignation.');
+  expect(ids(mirror)).toEqual(['letter-read', 'letter-keep', 'letter-burn']);
+  const read = choose7(mirror, 'letter-read');
+  expect([read.choices['c7.face'], read.choices['c7.letter'], read.choices['c7.box-open']]).toEqual(['mirror', 'read', undefined]);
+  expect(text(read)).toContain('what I am like when nobody is scoring me');
+  expect(text(read)).toContain('V. Sloane. Executive Intelligence.');
   // Then, with her face public, a letter from Amy.
-  expect(text(tie)).toContain('I just wanted you to know it helped. — Amy, Flat 3');
-  expect(ids(tie)).toEqual(['fan-answer', 'fan-keep', 'fan-away']);
-  const answered = choose7(tie, 'fan-answer');
+  expect(text(read)).toContain('I just wanted you to know it helped. — Amy, Flat 3');
+  expect(ids(read)).toEqual(['fan-answer', 'fan-keep', 'fan-away']);
+  const answered = choose7(read, 'fan-answer');
   expect(answered.choices['c7.fan']).toBe('answer');
   expect(ids(answered)).toContain('notes-hide');
   expect(text(choose7(atClose, 'daniel-ask'))).toContain('You always think there’ll be another Friday.');

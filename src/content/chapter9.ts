@@ -26,7 +26,12 @@
  * for the flat with the binoculars (Chapter 8's fire escape). The letting agent, the post boxes, or a knock on the door,
  * where the man from the lift answers (c9.rent = agent | post | knock); every way finds L.S.F. Facilities, care of
  * the Laurent Sovereign Fund (a fact). Then the window that evening (c9.window = wave | sign | dark), and in the
- * morning Sloane at the watchers' table. */
+ * morning Sloane at the watchers' table.
+ * Sequence (2026-09-25), "The Eleven Names" (own-power, arrive, after the club): the condolence book's eleven names,
+ * worked through at the kitchen table, lead to Ruth Adair, who worked beside the first Evelynn in Singapore. How she
+ * approaches her (c9.ruth-how = letter | class | door); what she asks (c9.ruth-ask = burned | c | you); Ruth's
+ * question back, "Was it quick?" (c9.ruth = truth | kind | silent). Ruth knows a reissue when she sees one; the burn
+ * in Jakarta is a fact. Held in c9.names-open (how → ask → end); no case weight. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -211,8 +216,9 @@ function clubChoices(): C9Choice[] {
   const leave = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
     offer9('club-' + id, label, hint, 'arrive', (x) => {
       set9(x, 'club', id);
+      set9(x, 'names-open', 'how');
       after?.(x);
-      return body;
+      return [...body, ...namesLead(x)];
     });
   return [
     leave('photo', 'Photograph the page', 'While Miss Loh pretends to look for a pen.', [
@@ -228,6 +234,107 @@ function clubChoices(): C9Choice[] {
       p('You close the book on its ribbon and slide it back across the desk. Miss Loh takes it without a word and puts it away in a drawer that she locks.'),
       q('Miss Loh', 'Welcome back, Ms Vale.'),
       t('Everybody in this city is so pleased to see her. I am the only one who knows she isn’t here.'),
+    ]),
+  ];
+}
+
+// ── The Eleven Names (sequence): the condolence book, and Ruth Adair ──
+
+function namesLead(s: GameState): Block[] {
+  return [
+    p(
+      get9(s, 'club') === 'photo'
+        ? 'That night you work through the eleven names from the photograph, at the kitchen table, the way Adrian worked through a list of directors.'
+        : 'You wrote the eleven names down on the steps outside the club from memory, the way Adrian memorised filings, and that night you work through them at the kitchen table.',
+    ),
+    p('It takes until two. A retired judge. Two men in shipping who have since died of the same kind of lunch. A dentist. A former consul and his wife, who signed together. Four club members who seem to sign everything anybody puts in front of them. And one entry near the top, in a small upright hand: Come home, E. — R. Adair.'),
+    p('Ruth Adair is in the telephone book, which surprises you, and teaches Mandarin two evenings a week at the adult college by the old harbour, which does not.'),
+  ];
+}
+const ruthMeets: Block[] = [
+  p('Ruth Adair is somewhere near seventy, small and straight-backed, her grey hair cut short and practical, with the kind of stillness you have only ever seen in people who were trained to have it. She looks at your face for a long time, from very close, the way the tailor did.'),
+  q('Ruth Adair', 'You’re not her. You’re very good. Better than the last one I saw. But you’re not her. She stood with her weight on the left foot, after Jakarta. You stand straight.'),
+  t('Better than the last one she saw. There was a last one.'),
+  q('Ruth Adair', 'Ask. I have one conversation in me about E., and I have been saving it. You may as well have it.'),
+];
+const ruthAsks: Block[] = [
+  q('Ruth Adair', 'Now you tell me something. When they did it to you, whatever they did. Was it quick?'),
+];
+const RUTH_FACT = 'Ruth Adair, who worked beside the first Evelynn in Singapore, says she was burned in Jakarta (her name given to the wrong people) and cut loose, and that “they kept the shape”. Ruth knew Evelynn at once for a reissue.';
+
+function namesChoices(s: GameState): C9Choice[] {
+  const stage = get9(s, 'names-open');
+  if (stage === 'how') {
+    const how = (id: string, label: string, hint: string, body: Block[]) =>
+      offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+        set9(x, 'ruth-how', id);
+        set9(x, 'names-open', 'ask');
+        return [...body, ...ruthMeets];
+      });
+    return [
+      how('letter', 'Write to her', 'Three careful lines and an initial.', [
+        p('You write three lines, careful, signed only with an initial: that you saw her entry in the book at the Straits Club, and would like very much to talk about E. The reply comes the next evening, by hand, under your door: a time, a bench on the harbour wall, and nothing else.'),
+        p('She is there before you, in a navy coat, feeding nothing to the gulls.'),
+      ]),
+      how('class', 'Sit at the back of her evening class', 'Nine adults learning to order tea, and you.', [
+        p('You sit at the back of her Tuesday class with a borrowed textbook, among nine adults learning to order tea and ask the way to the station. She teaches for an hour and a half without once looking at the back row.'),
+        p('When the others have gone she caps her pen and says, without looking up:'),
+        q('Ruth Adair', 'You can come down now. You always did sit at the back.'),
+        p('Then she looks up, and stops.'),
+      ]),
+      how('door', 'Knock on her door', 'No warning. See her face when she sees yours.', [
+        p('Her flat is on the third floor of a mansion block by the harbour, with a brass knocker in the shape of a hand. She opens the door, looks at you, and puts her own hand flat against the frame, as if the building had moved.'),
+        p('Then she stands aside and lets you in, into a room of books and one good rug and a window full of cranes, and puts the kettle on without asking, the way you do for somebody you have been expecting for a long time.'),
+      ]),
+    ];
+  }
+  if (stage === 'ask') {
+    const ask = (id: string, label: string, hint: string, body: Block[]) =>
+      offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+        set9(x, 'ruth-ask', id);
+        set9(x, 'names-open', 'end');
+        note9(x, 'ruth', RUTH_FACT, 'Ruth Adair, in person');
+        return [...body, ...ruthAsks];
+      });
+    return [
+      ask('burned', 'Ask what happened in Jakarta', 'The weight on the left foot.', [
+        q('Ruth Adair', 'Somebody gave her name to the wrong people. In our line that is called being burned, and it is exactly as final as it sounds. She came back with a limp, and nobody would work with her, and a burned woman is no use to anybody except as a shape. They kept the shape.'),
+        q('Ruth Adair', 'Who lit the match? Nobody knows. Everybody has a theory. Mine is that it hardly matters who lit it, when the house was insured.'),
+        t('Returned to inventory. The insurance paid out, and the insurance was me.'),
+      ]),
+      ask('c', 'Ask what C. did afterwards', 'The flat on Emerald Hill, the week after.', [
+        q('Ruth Adair', 'C. sat in her flat for an afternoon with the door shut. I know, because I lived across the landing, and I heard her not crying. Then she went back to the office and signed the papers.'),
+        q('Ruth Adair', 'She is very good at grief, C. She does it in an afternoon, and then she invoices.'),
+        t('An afternoon of not crying, and then the papers. I will remember that, the next time she is warm to me.'),
+      ]),
+      ask('you', 'Ask what she thinks you are', 'She has seen this done before.', [
+        q('Ruth Adair', 'You’re the reissue. The shape, with somebody new inside it. They’ve done it before, with less. What they have never done before, as far as I know, is put somebody inside it who asks questions.'),
+        q('Ruth Adair', 'She never asked a question in her life she didn’t already know the answer to. That was what made her good. You ask real ones. It will either save you or be the end of you, and I am too old to guess which.'),
+      ]),
+    ];
+  }
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('ruth-' + id, label, hint, 'arrive', (x) => {
+      delete x.choices['c9.names-open'];
+      set9(x, 'ruth', id);
+      return [
+        ...body,
+        q('Ruth Adair', 'Go home, whoever you are. Don’t come here again, and don’t write my name down anywhere.'),
+        p('On the way home you do not write her name down anywhere. You find you can remember everything she said without trying, the way you remember the few things in your life that were said to you and not to her.'),
+      ];
+    });
+  return [
+    answer('truth', 'Tell her no', 'She would know if you lied.', [
+      q('You', 'No.'),
+      p('She nods, slowly, as if you had confirmed a price.'),
+      q('Ruth Adair', 'No. It never is.'),
+    ]),
+    answer('kind', 'Tell her yes', 'A kind lie, for somebody who loved her.', [
+      q('You', 'Yes. Quick.'),
+      p('She looks at you for a long moment, and knows you are lying, and is grateful anyway, and does not say so.'),
+    ]),
+    answer('silent', 'Say nothing', 'Let her read it in your face.', [
+      p('You say nothing. After a while she puts her hand over yours for a moment, dry and light as paper, and takes it back.'),
     ]),
   ];
 }
@@ -976,6 +1083,7 @@ export function chapter9Choices(s: GameState): C9Choice[] {
     return [offer9('begin-placeholder', 'Go on to the bridge', 'This road’s middle chapters are in development.', 'arrive', (x) => (set9(x, 'entered', getKey(x, 'route.lane')!), []))];
   if (s.scene !== 'chapter9') return [];
   if (s.phase === 'arrive' && ownPower(s) && !get9(s, 'club')) return clubChoices();
+  if (s.phase === 'arrive' && get9(s, 'names-open')) return namesChoices(s);
   if (s.phase === 'arrive')
     return [
       offer9('arrive-begin', 'Assemble what you have', 'Every road left a different pile. Sort it into a case.', 'assemble', (x) => {

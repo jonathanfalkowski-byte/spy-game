@@ -23,7 +23,12 @@
  * Sequence (2026-09-25), "Emerald Hill": the day after the list, Lotte (Chapter 7's c7.lotte; if she was denied on the
  * bridge, a card under the door) brings nine photographs of the first Evelynn. Where they meet (c8.lotte-meet = cafe |
  * home), what she asks (c8.lotte-ask = work | c | last), what she takes (c8.photos = all | one | back; all is a fact).
- * Held in c8.lotte-open (invite → ask → take) in advance, before close. */
+ * Held in c8.lotte-open (invite → ask → take) in advance, before close.
+ * Sequence (2026-09-25), "The Wake": on the tram home from Lotte, a notice: drinks in Adrian's memory at the Anchor,
+ * tonight. She goes in as a stranger or as a friend, or stands at the window (c8.wake = stranger | friend | window);
+ * inside, somebody asks how she knew him (c8.knew = close | work | nothing); then Daniel's toast (c8.toast = drink |
+ * speak | leave). Maya drinks from his chipped mug if she is back. A grey coat across the street. Held in c8.wake-open
+ * (go → inside → toast) in advance, before close. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -87,6 +92,8 @@ export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, s
 
 /** Scene-specific place lines while a road's scene is open (display only). */
 export function place8(s: GameState): string | undefined {
+  if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'wake'))
+    return get8(s, 'wake') === 'window' ? '18:00 · Outside the Anchor, Harbour Street' : '18:00 · The Anchor, Harbour Street';
   if (s.scene === 'chapter8' && s.phase === 'advance' && get8(s, 'lotte-meet'))
     return get8(s, 'lotte-meet') === 'home' ? 'Next day · Lotte’s flat, the old docks' : 'Next day · A café by the river';
   if (s.scene !== 'chapter8' || s.phase !== 'leverage') return;
@@ -899,13 +906,15 @@ function lotteChoices(s: GameState): C8Choice[] {
     ];
   }
   const take = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
-    offer8('photos-' + id, label, hint, 'close', (x) => {
+    offer8('photos-' + id, label, hint, 'advance', (x) => {
       delete x.choices['c8.lotte-open'];
       set8(x, 'photos', id);
+      set8(x, 'wake-open', 'go');
       after?.(x);
       return [
         ...body,
         p('On the tram home you sit by the window and watch your reflection ride along beside you over the dark shop fronts: a face in the glass, laughing at nothing, or not laughing. In that light you cannot tell any more.'),
+        ...wakeLead,
       ];
     });
   return [
@@ -920,6 +929,118 @@ function lotteChoices(s: GameState): C8Choice[] {
     take('back', 'Give them back', 'They were hers, and then Lotte’s. Never yours.', [
       q('You', knows ? 'Keep them, Lotte. They’re better with you.' : 'They were hers, and then they were yours. They were never mine.'),
       p('She looks at you for a long moment and puts the envelope back in her bag, and something in her face settles, as if you had passed a test she did not know she was setting.'),
+    ]),
+  ];
+}
+
+// ── The Wake (sequence): drinks in Adrian's memory ──
+
+const wakeLead: Block[] = [
+  p('On the seat beside you somebody has left the evening paper, folded open at the notices. You would not have read it. Your eye falls on your own name, the old one, in small capitals.'),
+  q('The notice', 'VALE, Adrian. Colleagues and friends will raise a glass in his memory tonight at the Anchor, Harbour Street, from six. All who knew him welcome.'),
+  t('All who knew him. That is a very short list, and I am at the top of it.'),
+];
+
+function wakeRoom(s: GameState, asker: string): Block[] {
+  const maya = get6(s, 'maya') === 'restored';
+  const knows = get6(s, 'maya-knows') === 'in-person';
+  return [
+    p('The Anchor is a long brown room with a carpet that has seen things. Forty people, maybe, from Axiom, standing the way office people stand when they are not in the office: too close to the bar, not close enough to each other.'),
+    p('Daniel has organised it; you can tell, because there is a laminated photograph of Adrian propped against the till and a bowl of crisps nobody has touched. The new Compliance director is asking people to call him Rob. Priya, who got the promotion, stands on her own by the fruit machine with a white wine she is not drinking, looking as if she would like to say something to somebody and cannot decide who.'),
+    ...(maya
+      ? [
+          p('Maya is in the corner with her coat still on, drinking red wine out of a chipped mug. His mug. She has brought it from home.'),
+          p(knows ? 'She sees you. Her face does something complicated, and then she lifts the mug to you across the room, very slightly.' : 'She looks at you twice, the way she did at the counter, and then away.'),
+        ]
+      : [p('Somebody says Maya couldn’t face it. Somebody else says that isn’t like Maya at all.')]),
+    q(asker, asker === 'Daniel' ? 'Sorry — how did you know him?' : 'Were you a friend of his? Sorry. I don’t think I know you.'),
+  ];
+}
+const toastInside: Block[] = [
+  p('At seven Daniel climbs onto a chair, which takes two attempts, and taps a glass with a crisp packet, which does not work, and then just starts talking.'),
+  q('Daniel', 'Adrian never once said the thing he was thinking, and he was always right. He fixed my reports for six years and never told anyone. I never thanked him. So. To Adrian.'),
+];
+const toastWindow: Block[] = [
+  p('Through the glass you watch Daniel climb onto a chair, which takes two attempts, and start to talk. You cannot hear him. You can see forty people go quiet and lift their glasses, and you can see, in the dark window, your own reflection standing in the middle of them.'),
+];
+const wakeEnd: Block[] = [
+  p('Across Harbour Street, under the awning of a shop that closed years ago, a man in a grey coat is not looking at the pub. He does not look at you either, as you pass. He does not need to.'),
+  t('Even my wake has a watcher.'),
+];
+
+function wakeChoices(s: GameState): C8Choice[] {
+  const stage = get8(s, 'wake-open');
+  if (stage === 'go') {
+    const go = (id: string, label: string, hint: string, body: (x: GameState) => Block[], next: 'inside' | 'toast') =>
+      offer8('wake-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'wake', id);
+        set8(x, 'wake-open', next);
+        return body(x);
+      });
+    return [
+      go('stranger', 'Go in, as a stranger', 'Stand at the bar. Be nobody.', (x) => [
+        p('You go in and stand at the end of the bar with a glass of something, a woman nobody knows, at a wake nobody would think to look for her at.'),
+        ...wakeRoom(x, 'A woman from Accounts'),
+      ], 'inside'),
+      go('friend', 'Go in, as a friend of his', 'Say it. It is the truest lie you have.', (x) => [
+        p('You go in and find Daniel by the till and tell him you were a friend of Adrian’s. He looks at you, and then at the photograph, and then at you, and shakes your hand for slightly too long.'),
+        ...wakeRoom(x, 'Daniel'),
+      ], 'inside'),
+      go('window', 'Stand outside at the window', 'Close enough to see. Not close enough to be asked.', () => [
+        p('You stand across the pavement from the window, in the dark, with your collar up. It is a long brown room full of people from Axiom, too close to the bar and not close enough to each other, and a laminated photograph of a tired man propped against the till.'),
+        ...toastWindow,
+      ], 'toast'),
+    ];
+  }
+  if (stage === 'inside') {
+    const asker = get8(s, 'wake') === 'friend' ? 'Daniel' : 'A woman from Accounts';
+    const answer = (id: string, label: string, hint: string, body: Block[]) =>
+      offer8('knew-' + id, label, hint, 'advance', (x) => {
+        set8(x, 'knew', id);
+        set8(x, 'wake-open', 'toast');
+        return [...body, ...toastInside];
+      });
+    return [
+      answer('close', 'Say you knew him better than anyone here', 'True. Say it anyway.', [
+        q('You', 'Better than anyone here, I think.'),
+        p(asker === 'Daniel' ? 'Daniel looks at you for a long moment with a line between his eyebrows.' : 'A small, awkward silence opens round you, and Daniel, coming past with a tray, stops and looks at you over it with a line between his eyebrows.'),
+        q('Daniel', 'He never said. He never said anything, did he.'),
+      ]),
+      answer('work', 'Say you knew him through work', 'A little. Everyone did.', [
+        q('You', 'Through work. A little.'),
+        q(asker, 'That’s how everyone knew him. A little.'),
+      ]),
+      answer('nothing', 'Say you didn’t know him at all', 'You saw the notice. Nobody should drink to an empty room.', [
+        q('You', 'I didn’t. I saw the notice. Nobody should drink to an empty room.'),
+        q(asker, 'That’s the nicest thing anybody’s said tonight.'),
+      ]),
+    ];
+  }
+  const inside = get8(s, 'wake') !== 'window';
+  const toast = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('toast-' + id, label, hint, 'close', (x) => {
+      delete x.choices['c8.wake-open'];
+      set8(x, 'toast', id);
+      return [...body, ...wakeEnd];
+    });
+  return [
+    toast('drink', inside ? 'Drink to him' : 'Lift your hand to the glass', 'To yourself. Nobody will know.', [
+      p(
+        inside
+          ? 'You lift your glass with the rest of them and drink to yourself, and it goes down like cold water, and nobody in the room knows.'
+          : 'You lift your hand to the glass, very slightly, as if there were a drink in it.',
+      ),
+    ]),
+    toast('speak', inside ? 'Say something' : 'Say it to the glass', '“To the quiet ones.”', [
+      q('You', 'To the quiet ones.'),
+      p(
+        inside
+          ? 'It goes round the room — to the quiet ones, to the quiet ones — and Daniel looks at you from his chair with his glass in the air, frowning, as if he were trying to remember a word.'
+          : 'You say it to the glass, to nobody, and your breath fogs the window over his photograph, and clears.',
+      ),
+    ]),
+    toast('leave', 'Leave before the glasses come down', 'Before anyone asks your name.', [
+      p('You go before the glasses come down, out along Harbour Street, fast, as if somebody might call your name. Nobody does. Nobody here knows it.'),
     ]),
   ];
 }
@@ -967,7 +1088,7 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return [offer8('cost-continue', 'Look for a way over the wall', 'Every way costs something.', 'leverage')];
   }
   if (s.phase === 'leverage') return leverageChoices(s);
-  if (s.phase === 'advance') return get8(s, 'lotte-open') ? lotteChoices(s) : listChoices();
+  if (s.phase === 'advance') return get8(s, 'lotte-open') ? lotteChoices(s) : get8(s, 'wake-open') ? wakeChoices(s) : listChoices();
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
     if (!get8(s, 'night')) return nightChoices();

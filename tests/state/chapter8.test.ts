@@ -21,10 +21,10 @@ const choose8 = (s: GameState, id: string) => {
   return next;
 };
 /** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
-const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'hack-door', 'call-down'];
+const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave', 'hack-door', 'call-down'];
 const c8 = (s: GameState, id: string) => {
   let x = s;
-  for (let i = 0; i < 4 && !ids(x).includes(id); i++) {
+  for (let i = 0; i < 10 && !ids(x).includes(id); i++) {
     const pending = ids(x).find((y) => settle8.includes(y));
     if (!pending) break;
     x = choose8(x, pending);
@@ -122,7 +122,7 @@ it('keeps the hard way open at any budget: the dig costs $120 or is recorded unp
 it('plays a real own-power Chapter 8 to complete, and the save authenticates', () => {
   let s = walk(complete7('pivot-own-rook-debt'), ['begin', 'breakin-report', 'money-owing', 'cost-continue']);
   expect(ids(s)).toContain('leverage-rook');
-  s = walk(s, ['leverage-rook', 'debt-true', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  s = walk(s, ['leverage-rook', 'debt-true', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(text(s)).toContain('The next room is the one with the name in it');
   expect(text(s)).not.toContain('Except I did not stand entirely alone this time');
   expect(ids(s)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
@@ -139,7 +139,7 @@ it('plays a real own-power Chapter 8 to complete, and the save authenticates', (
 it('lets her borrow Julian’s door once, remembered as a crossover without changing her road', () => {
   const julian = { 'c4.audit-paid': '900', 'c4.julian-kept': 'yes', 'c3.helix-window': 'offered', 'c4.method': undefined, 'c4.personal-withdrawn': undefined };
   expect(ids(leverage(julian))).toContain('leverage-executive');
-  const s = walk(leverage(julian), ['leverage-executive', 'room-read', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const s = walk(leverage(julian), ['leverage-executive', 'room-read', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect([s.choices['own.crossover'], s.choices['c8.entered'], s.choices['route.lane']]).toEqual(['executive', 'executive', 'own-power']);
   expect(text(s)).toContain('someone opened a door for you');
   expect(text(s)).toContain('Except I did not stand entirely alone this time, and I know it.');
@@ -220,13 +220,13 @@ it('makes the client list a choice: reading every line finds her returned to inv
 });
 
 it('answers the break-in on the night after: the trap shows who came back', () => {
-  const trapped = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-trap', 'money-owing', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const trapped = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-trap', 'money-owing', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(text(trapped)).toContain('one print: narrow, a good shoe, a woman’s size, pointing in');
   expect(text(trapped)).toContain('The invoices are still in the drawer.');
 });
 
 it('remembers the sold gown on the night after', () => {
-  const sold = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-report', 'money-sell', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-copy', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const sold = walk(c8(withFlags(complete7('own-records-stop'), clean), 'begin'), ['breakin-report', 'money-sell', 'cost-continue', 'leverage-refuse-cross', 'dig-leave', 'list-copy', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(text(sold)).toContain('There is a gap in the wardrobe where the gown hung.');
 });
 
@@ -240,7 +240,7 @@ it('walks the break-in room by room, and gives the night after a moment of its o
   const home = c8(complete7('own-records-stop'), 'begin');
   expect(text(home)).toContain('every one of them facing the same way');
   expect(text(c8(home, 'breakin-locks'))).toContain('Keys are for people who ask first.');
-  const close = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const close = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(text(close)).toContain('One says only CLOSED');
   expect(close.phase).toBe('close');
   const walked = c8(close, 'night-walk');
@@ -282,9 +282,9 @@ it('has the neighbour meet her friend with a key, and a reporter at the door if 
   expect(text(asked)).toContain('Hair very short, like a boy’s');
   expect(text(asked)).toContain('The week comes to $90');
 
-  const quiet = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const quiet = walk(leverage(), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(ids(quiet)).toEqual(['night-watch', 'night-walk', 'night-sleep']);
-  const famous = walk(leverage({ 'c5.published': 'yes' }), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back']);
+  const famous = walk(leverage({ 'c5.published': 'yes' }), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave']);
   expect(text(famous)).toContain('Rafe Collis, the Sunday Courier.');
   expect(ids(famous)).toEqual(['hack-line', 'hack-meridian', 'hack-door']);
   const set = choose8(famous, 'hack-meridian');
@@ -327,6 +327,28 @@ it('plays Emerald Hill: Lotte, nine photographs, a question and what she takes',
   expect(text(c)).toContain('She’s my employer, my landlady and my conscience, Lotte. Pick one.');
   expect(ids(c)).toEqual(['photos-all', 'photos-one', 'photos-back']);
   const all = choose8(c, 'photos-all');
-  expect([all.phase, all.choices['c8.photos'], all.choices['c8.lotte-open'], all.facts.includes('c8.photos')]).toEqual(['close', 'all', undefined, true]);
+  expect([all.phase, all.choices['c8.photos'], all.choices['c8.lotte-open'], all.facts.includes('c8.photos')]).toEqual(['advance', 'all', undefined, true]);
   expect(text(choose8(c, 'photos-back'))).toContain('a test she did not know she was setting');
+});
+
+it('plays the Wake: the notice on the tram, the Anchor, how she knew him, and the toast', () => {
+  const atList = walk(leverage({ 'c6.maya': 'restored', 'c6.maya-knows': 'in-person' }), ['leverage-refuse-cross', 'dig-leave', 'list-read', 'lotte-cafe', 'lotte-last']);
+  const notice = choose8(atList, 'photos-one');
+  expect(text(notice)).toContain('VALE, Adrian. Colleagues and friends will raise a glass in his memory tonight');
+  expect(ids(notice)).toEqual(['wake-stranger', 'wake-friend', 'wake-window']);
+  const friend = choose8(notice, 'wake-friend');
+  expect(currentPlace(friend, 'x')).toContain('The Anchor');
+  expect(text(friend)).toContain('drinking red wine out of a chipped mug. His mug.');
+  expect(text(friend)).toContain('she lifts the mug to you across the room');
+  expect(ids(friend)).toEqual(['knew-close', 'knew-work', 'knew-nothing']);
+  const close = choose8(friend, 'knew-close');
+  expect(text(close)).toContain('He never said anything, did he.');
+  expect(text(close)).toContain('He fixed my reports for six years and never told anyone.');
+  const spoke = choose8(close, 'toast-speak');
+  expect([spoke.phase, spoke.choices['c8.wake'], spoke.choices['c8.knew'], spoke.choices['c8.toast'], spoke.choices['c8.wake-open']]).toEqual(['close', 'friend', 'close', 'speak', undefined]);
+  expect(text(spoke)).toContain('Even my wake has a watcher.');
+
+  const outside = choose8(notice, 'wake-window');
+  expect(ids(outside)).toEqual(['toast-drink', 'toast-speak', 'toast-leave']);
+  expect(text(choose8(outside, 'toast-speak'))).toContain('your breath fogs the window over his photograph');
 });

@@ -26,7 +26,12 @@
  * the river to a green door marked PROPERTY SERVICES (c7.grey = close | far | ahead), then rings, watches or goes home
  * (c7.grey-door = ring | watch | home; ringing learns Mr Pryce's name and sees her empty key hook, a fact). That
  * evening her sticking window has been fixed, initialled D.P. Held in c7.pursue-open (grey → grey-door). Chapter 9's
- * watcher's rent follows the same man. */
+ * watcher's rent follows the same man.
+ * Sequence (2026-09-25), "His Things": back from the night tram, Axiom's courier has left a box, PERSONAL EFFECTS —
+ * VALE, A. — RELEASED TO NOMINATED PARTY: MS E. VALE (held in c7.box-open: open → face → letter). How she opens it
+ * (c7.box = now | dark | wait), his photograph (c7.face = look | down | mirror), and the resignation letter he never
+ * sent, in the lining of his old jacket (c7.letter = read | keep | burn). The slip is signed V. Sloane. The jacket stays
+ * in her wardrobe (Chapter 7's notes and Chapter 8's break-in use it). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -523,13 +528,100 @@ function greyDoorChoices(): C7Choice[] {
   ];
 }
 
+// ── His Things (sequence): Adrian's effects, by courier ──
+
+const boxLead: Block[] = [
+  p('When you get back, the night concierge stands up behind his desk, which he never does, and brings out a long flat box that has been waiting for you since the afternoon. Axiom’s own courier, he says. He had to sign for it.'),
+  p('The label is typed. PERSONAL EFFECTS — VALE, A. — RELEASED TO NOMINATED PARTY: MS E. VALE.'),
+  t('They have sent me his things. The dead man’s things, to the woman they made out of him, with a label, by courier, and somebody signed for them downstairs.'),
+];
+const boxContents: Block[] = [
+  p('It is not much. Nine years of a person fits in a box a courier can carry. A running watch, stopped at twenty to seven. A grey sweatshirt with a hole in the cuff. His reading glasses, folded. A paperback with a train ticket for a bookmark, two-thirds of the way through; you remember the book, and you never did find out how it ended.'),
+  p('And a photograph in a cheap frame, face down, as if whoever packed it had not wanted to look at it either.'),
+  p('You turn it over. A leaving do, years ago: Maya laughing with a glass, Daniel blurred and weeping in the background, and in the middle a tall, tired man in a bad jumper, half-smiling at the camera the way he always did, as if he had been caught at something.'),
+  t('Him. My face, before. I have not seen it since the clinic.'),
+];
+const boxJacket: Block[] = [
+  p('Under everything, folded in tissue as if it mattered, is his old jacket: the navy one, gone shiny at the elbows, that he wore to every meeting for five years. In the lining, where he always kept them, there is a spare key to a flat that is not his any more, and an envelope, sealed, in his own handwriting, that he never sent.'),
+  q('The envelope', 'To: Human Resources, Axiom. Re: Resignation.'),
+];
+const boxSlip: Block[] = [
+  p('At the very bottom of the box, under the tissue, is the release slip: a carbon copy, with a signature on the line marked AUTHORISED. V. Sloane. Executive Intelligence.'),
+  t('Sloane sent me his things. Either it is a test, to see whether I cry the way he would have, or it is the only apology she knows how to make. I cannot tell yet which.'),
+  p('You hang the jacket in your wardrobe, at the end, behind the dresses, where it looks like something a woman might keep of a man.'),
+];
+
+function boxChoices(s: GameState): C7Choice[] {
+  const stage = get7(s, 'box-open');
+  if (stage === 'open') {
+    const open = (id: string, label: string, hint: string, body: Block[]) =>
+      offer7('box-' + id, label, hint, 'close', (x) => {
+        set7(x, 'box', id);
+        set7(x, 'box-open', 'face');
+        return [...body, ...boxContents];
+      });
+    return [
+      open('now', 'Open it on the kitchen floor, now', 'Still in your coat. With the big knife.', [
+        p('You do it on your knees on the kitchen floor with the big knife, still in your coat.'),
+      ]),
+      open('dark', 'Draw every curtain first', 'Somebody watches this window. Not tonight.', [
+        p('You draw every curtain, turn off every light but the one over the cooker, and put your phone in the bread bin, and feel foolish, and do it anyway. Then you open it by the cooker light, the way you would open something that might go off.'),
+      ]),
+      open('wait', 'Leave it until morning', 'You will not sleep. Try anyway.', [
+        p('You put it in the hall and go to bed and lie looking at the ceiling, and at three you give up, and open it on the hall floor in your nightdress by the light from the landing.'),
+      ]),
+    ];
+  }
+  if (stage === 'face') {
+    const face = (id: string, label: string, hint: string, body: Block[]) =>
+      offer7('face-' + id, label, hint, 'close', (x) => {
+        set7(x, 'face', id);
+        set7(x, 'box-open', 'letter');
+        return [...body, ...boxJacket];
+      });
+    return [
+      face('look', 'Look at him properly', 'For as long as it takes.', [
+        p('You make yourself look. The ears that stuck out. The eyebrows he never did anything about. The mouth, which was kind, and which he mostly kept shut. You look until the face stops being yours and becomes only somebody you used to know very well.'),
+        t('Goodbye, then. I don’t think I ever said it.'),
+      ]),
+      face('down', 'Turn it face down again', 'Not tonight.', [
+        p('You turn it face down on the floor, gently, and leave your hand on the back of the frame for a long time.'),
+        t('Not tonight. He has waited this long. He can wait.'),
+      ]),
+      face('mirror', 'Hold it up beside the mirror', 'His face and yours, side by side.', [
+        p('You take it into the bathroom and hold it up beside the mirror, his face and yours, side by side under the bad light. There is nothing of him in you. There is nothing of you in him. Except the eyes, perhaps, when you are tired. Perhaps only the tiredness.'),
+        t('They kept the tiredness. I suppose it was load-bearing.'),
+      ]),
+    ];
+  }
+  const letter = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('letter-' + id, label, hint, 'close', (x) => {
+      delete x.choices['c7.box-open'];
+      set7(x, 'letter', id);
+      return [...body, ...boxSlip, ...fanLead(x)];
+    });
+  return [
+    letter('read', 'Read it', 'He never let anyone. You were him.', [
+      q('The letter', '…I have been here nine years, and I have been good at it, and I have begun to feel that being good at it is the only thing anybody here has ever measured. Before it is too late, I would like to find out what I am like when nobody is scoring me.'),
+      t('Nobody is scoring me now. That is not true. Everybody is. But not on his terms, and not on theirs. On mine, a little.'),
+    ]),
+    letter('keep', 'Keep it sealed', 'His to send or not. Leave him one decision.', [
+      p('You put it back in the lining unopened. It was his to send or not to send, and he chose not to. You find you want to leave him one decision nobody took off him.'),
+    ]),
+    letter('burn', 'Burn it', 'He never sent it. Now nobody can.', [
+      p('You hold it over the sink and put the lighter to the corner and watch his handwriting go brown, and then go.'),
+      t('He never sent it. Now nobody can. That was the last thing that was only his.'),
+    ]),
+  ];
+}
+
 // ── A letter from Amy (new scene, round 3): only if the Aster piece ran ──
 
 function fanLead(s: GameState): Block[] {
   if (!get5(s, 'published') || get7(s, 'fan')) return [];
   const saw = publicImage7(s) === 'words' ? 'I read what you said in Aster three times and copied out the last paragraph and put it on the fridge' : 'I cut your picture out of Aster and put it on the fridge';
   return [
-    p('When you get back, among the bills on the mat, there is a letter Aster has forwarded in a bigger envelope, addressed in a careful, unjoined hand to Evelynn Vale, care of the magazine.'),
+    p('Among the post the concierge handed you with the box there is a letter Aster has forwarded in a bigger envelope, addressed in a careful, unjoined hand to Evelynn Vale, care of the magazine.'),
     q('The letter', `Dear Ms Vale, I am nineteen. Last year I had to start again somewhere nobody knew me, for reasons I won’t put in a letter. ${saw} in my new flat, because you looked like somebody who had started again too and made it look like a choice. I don’t know if that’s true. I don’t need to know. I just wanted you to know it helped. — Amy, Flat 3`),
     t('Somebody who had started again and made it look like a choice. She saw that from a magazine. It took Sloane’s people months to see less.'),
   ];
@@ -993,7 +1085,8 @@ function danielChoices(): C7Choice[] {
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
     offer7('daniel-' + id, label, hint, 'close', (x) => {
       set7(x, 'daniel', id);
-      return [...body, ...fanLead(x)];
+      set7(x, 'box-open', 'open');
+      return [...body, ...boxLead];
     });
   return [
     ride('ask', 'Ask him about the man', 'Let him talk about Adrian. You will have to sit still for it.', [
@@ -1019,6 +1112,7 @@ function danielChoices(): C7Choice[] {
 function closeChoices(s: GameState): C7Choice[] {
   if (get7(s, 'evening-open')) return eveningChoices(s);
   if (!get7(s, 'daniel')) return danielChoices();
+  if (get7(s, 'box-open')) return boxChoices(s);
   if (get5(s, 'published') && !get7(s, 'fan')) return fanChoices();
   if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
   const partners = eveningPartners7(s);

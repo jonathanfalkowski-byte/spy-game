@@ -279,3 +279,24 @@ binoculars across the gap; a TO LET board that has been lying for months. "A wat
 3. **The window that evening** (`c9.window`): **window-wave** · **window-sign** (lipstick on a
    cereal box: TELL HER I SAID GOOD MORNING) · **window-dark** (neutral).
 4. In the morning, Sloane at the watchers' table.
+
+## Sequence: The Eleven Names (2026-09-25)
+
+Own-power, in `arrive`, after the Straits Club (held in `c9.names-open`: how → ask → end; no case
+weight). The condolence book's eleven names, worked through by two in the morning, come down to one:
+"Come home, E. — R. Adair," who teaches Mandarin two evenings a week by the old harbour.
+1. **How she approaches** (`c9.ruth-how`): **ruth-letter** (neutral; a bench on the harbour wall) ·
+   **ruth-class** ("You can come down now. You always did sit at the back.") · **ruth-door** (the
+   kettle, as for somebody long expected).
+2. **Ruth**, near seventy, trained stillness: "You're not her… Better than the last one I saw. She
+   stood with her weight on the left foot, after Jakarta." (`c9.ruth-ask`; a fact either way):
+   **ruth-burned** (burned in Jakarta, cut loose, "They kept the shape"; "it hardly matters who lit
+   it, when the house was insured") · **ruth-c** (C. sat in the flat an afternoon "not crying", then
+   signed the papers: "She does it in an afternoon, and then she invoices.") · **ruth-you** (neutral;
+   "You're the reissue… You ask real ones.").
+3. **Ruth's question**, "Was it quick?" (`c9.ruth`): **ruth-truth** ("No. It never is.") ·
+   **ruth-kind** (a kind lie she is grateful for) · **ruth-silent** (neutral). "Don't write my name
+   down anywhere."
+
+Canon: consistent with the prior Evelyn being burned, then inventoried (docs/story/ENDGAME_RECONVERGENCE.md); her fate beyond
+that is not stated.

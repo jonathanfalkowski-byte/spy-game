@@ -30,6 +30,10 @@ export const GATED_DEFAULTS = [
   // Sequence, the Grey Coat: keep a street back; go home the long way.
   'chapter7.grey-far',
   'chapter7.grey-home',
+  // Sequence, His Things: open it now, turn the photograph face down, keep the letter sealed.
+  'chapter7.box-now',
+  'chapter7.face-down',
+  'chapter7.letter-keep',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',
@@ -48,6 +52,10 @@ export const GATED_DEFAULTS = [
   'chapter8.lotte-cafe',
   'chapter8.lotte-last',
   'chapter8.photos-back',
+  // Sequence, the Wake: stand at the window; leave before the glasses come down (and, if inside, 'through work').
+  'chapter8.wake-window',
+  'chapter8.knew-work',
+  'chapter8.toast-leave',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
@@ -72,6 +80,10 @@ export const GATED_DEFAULTS = [
   // Sequence, the Watcher's Rent: ring the letting agent; sit in the dark.
   'chapter9.rent-agent',
   'chapter9.window-dark',
+  // Sequence, the Eleven Names: write to Ruth; ask what she thinks you are; say nothing.
+  'chapter9.ruth-letter',
+  'chapter9.ruth-you',
+  'chapter9.ruth-silent',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',
