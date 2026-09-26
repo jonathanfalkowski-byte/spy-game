@@ -15,7 +15,11 @@
  * the only difficult one"); the week becomes two moves either side of Celeste's box (c13.box = keep | return | cut: the
  * dress for Thursday, which the comply path then wears or doesn't; c13.week2 / c13.told2, neutral week-rest); a vigil
  * at the police station on the refusal night (c13.vigil = no | silent: "It isn't too late. The car's outside."); the
- * counterplay ops at greater length; and Friday. The comply lead-in is not lengthened. */
+ * counterplay ops at greater length; and Friday. The comply lead-in is not lengthened.
+ * Second deepening pass (2026-09-26): the three hours before Celeste's midnight on the Wednesday, which every path
+ * passes through (c13.eve = look | maya | sit: the Claremont from across the Strand, with a lamp being tested in 1109;
+ * Maya on the phone, doing her tax return; or the table), and Friday afternoon before the knock (c13.friday = walk |
+ * nora | sleep: out into the bright day and yellow tulips; Nora from Singapore, "the florists"; or sleep). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -349,19 +353,61 @@ function weekChoices(s: GameState): C13Choice[] {
 
 function answerBlocks(s: GameState): Block[] {
   return [
+    p('Wednesday, nine o’clock. Three hours until her midnight.'),
+    p('The flat is too quiet. The fridge hums. The black phone lies on the kitchen table where you put it on Monday, face up, patient, and every time a car goes by, the light from its headlamps runs across the ceiling and down the wall and over the cards, like somebody reading them.'),
+    t('Three hours. I can spend them any way I like. It is the only thing about tonight she hasn’t priced.'),
+  ];
+}
+
+function midnight13(s: GameState): Block[] {
+  return [
     p(
       get12(s, 'nora') === 'go'
         ? 'Wednesday, a minute to midnight. The kitchen table, the black phone with its one contact, and beside it the card with Nell’s name on it, which you took down off the wall to look at. You have no photograph of her. You have a name, and her sister barefoot in a hot road, and that will have to do.'
         : 'Wednesday, a minute to midnight. The kitchen table, the black phone with its one contact, and beside it, because you took it off the wall to look at, Nora’s photograph of Nell on the harbour wall, laughing, in flat shoes.',
     ),
-    p('You have been sitting here since ten. You have written three messages and deleted them. One was long, and explained everything, and would have made her laugh. One was a single word. One was Nell’s name, and nothing else, and your thumb stayed over it for a long time.'),
+    p('Since ten you have written three messages and deleted them. One was long, and explained everything, and would have made her laugh. One was a single word. One was Nell’s name, and nothing else, and your thumb stayed over it for a long time.'),
     p('Outside, a bus goes by, lit and empty. In the flat across the gap, the one that watches yours, a light goes on and off again, as if somebody over there were waiting up too.'),
     p('You pick the phone up. The screen lights your face from below, the way a torch does in a ghost story.'),
     t('She was placed. Nell was placed, eight years, and when she tried to stop being placed, they put her in the harbour. Whatever I type now, I am typing it with her sitting across the table.'),
   ];
 }
 
+/** The three hours before midnight (second deepening pass): the Claremont, Maya, or the table. */
+function eveChoices(s: GameState): C13Choice[] {
+  const e = (id: string, label: string, hint: string, body: Block[]) =>
+    offer13('eve-' + id, label, hint, 'answer', (x) => {
+      set13(x, 'eve', id);
+      return [...body, ...midnight13(x)];
+    });
+  return [
+    e('look', 'Go and look at the Claremont', 'From across the street. Just once, before you decide.', [
+      p('You take the bus to the Strand with your hood up and stand in a shop doorway across from the Claremont, among the smokers from the pub next door, and look up.'),
+      p('Eleven floors of lit and unlit windows, like a crossword half done. You count along the eleventh from the corner, the way the floor plan in the file had it: one, two, three, four. The fourth is lit. As you watch, the lamp in it goes off, and on again, and off, and on, and somebody’s shape crosses the window, adjusting something, and stands back to look.'),
+      t('They are lighting the room. They are lighting it for me, the way you light a stage.'),
+      p('In the lobby, through the revolving doors, a man in a dark suit is sitting in an armchair with a phone he is not looking at. He looks up, once, straight across the street at your doorway, and down again. You do not run. You finish a cigarette you have not lit, and walk to the bus stop at an ordinary pace, and your knees do not start shaking until the bus is over the bridge.'),
+    ]),
+    ...(mayaBack(s)
+      ? [
+          e('maya', 'Ring Maya', 'Don’t tell her anything. Just hear her voice.', [
+            p('She answers on the first ring, eating something.'),
+            q('Maya', 'I’m doing my tax return. Save me. Tell me something scandalous.'),
+            p('You don’t. You let her tell you about the tax return instead, and a man at Axiom who microwaves fish, and her mother’s new boyfriend, who is called Keith and is a very good dancer, and you laugh in the right places, and hold the phone so hard your hand aches.'),
+            q('Maya', 'You all right? You sound like you’re standing on a ledge.'),
+            q('You', 'I’m standing in my kitchen.'),
+            q('Maya', 'Same thing, with you. Go to bed. Love you.'),
+            t('If I say no, they take her. If I say yes, they take me. And she is doing her tax return, and Keith can dance.'),
+          ]),
+        ]
+      : []),
+    e('sit', 'Sit at the table', 'Three hours. Stay with it.', [
+      p('You sit down at the kitchen table at nine and do not get up again.'),
+    ]),
+  ];
+}
+
 function answerChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'eve')) return eveChoices(s);
   const say = (id: 'comply' | 'refuse' | 'counter', label: string, hint: string, body: Block[], after: (x: GameState) => void) =>
     offer13('order-' + id, label, hint, 'thursday', (x) => {
       after(x);
@@ -790,9 +836,53 @@ function morningBlocks(s: GameState): Block[] {
   ];
 }
 
+/** Friday afternoon (second deepening pass), before the knock. */
+function fridayChoices(s: GameState): C13Choice[] {
+  const answer = get13(s, 'answer');
+  const f = (id: string, label: string, hint: string, body: Block[]) =>
+    offer13('friday-' + id, label, hint, 'complete', (x) => {
+      set13(x, 'friday', id);
+      return body;
+    });
+  return [
+    f('walk', 'Go out into it', 'The bright day. Walk until you are tired.', [
+      p(answer === 'complied' ? 'You go out because the flat still has the night in it, and you cannot be in the same room as that any more.' : 'You go out because the day is too bright to waste on her.'),
+      ...(famous(s)
+        ? [
+            p('On the Embankment you pass a bus shelter with your own face in it, twice life size, looking out over the traffic as if nothing in the world could touch her. A girl of about fifteen with a school bag is standing under it, looking from the poster to you and back.'),
+            q('The girl', 'Are you her?'),
+            q('You', 'Most days.'),
+            p('She asks for a photograph, and you take it with her, the two of you squinting into the sun under your own enormous face, and she looks at it on her phone and then at you.'),
+            q('The girl', 'You look like someone who gets away with things.'),
+            q('You', 'I’m working on it.'),
+          ]
+        : [
+            p('You walk along the river as far as Blackfriars and back, among tourists and runners and a man playing the saxophone badly and happily under the bridge, and nobody looks at you at all, and it is the best hour you have had in a week.'),
+          ]),
+      p('At the flower stall outside Embankment station you buy a bunch of yellow tulips, the cheapest ones, because they are the least like anything Celeste would ever send, and carry them home upside down like a torch.'),
+    ]),
+    ...(getKey(s, 'act3.ally.nora') === 'in'
+      ? [
+          f('nora', 'Ring Nora in Singapore', 'It is nearly midnight there. She said any time.', [
+            p('Nora answers on the balcony. You can hear the traffic on the expressway, and the frogs, and Sam asleep in the next room through an open door.'),
+            q('Nora', 'Nell used to ring me on Fridays. After. She never said after what. I used to think it was a man.'),
+            p('You tell her, not all of it, enough. She is quiet for a long time.'),
+            q('Nora', 'She had a name for them. The people she worked for. The florists. Because afterwards, always, there were flowers. She kept every card that came with them, in a biscuit tin. I still have it. I have never been able to open it.'),
+            q('Nora', 'If you want it, it’s yours. I think she would rather it was in the hands of somebody who was going to use it.'),
+            t('The florists. Nell said you’d bring flowers. She was telling me who they were, all along.'),
+          ]),
+        ]
+      : []),
+    f('sleep', 'Sleep', 'You have not slept since Tuesday.', [
+      p('You lie down on top of the covers at two in the afternoon, meaning only to rest your eyes, and sleep, for the first time since Tuesday, without dreaming, until the light in the room has gone orange and then grey.'),
+    ]),
+  ];
+}
+
 function morningChoices(s: GameState): C13Choice[] {
+  if (get13(s, 'reply')) return fridayChoices(s);
   const reply = (id: string, label: string, hint: string, body: Block[]) =>
-    offer13('reply-' + id, label, hint, 'complete', (x) => {
+    offer13('reply-' + id, label, hint, 'morning', (x) => {
       set13(x, 'reply', id);
       setKey(x, 'act3.sloane-came', 'yes');
       return body;

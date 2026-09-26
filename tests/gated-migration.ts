@@ -149,6 +149,9 @@ export const GATED_DEFAULTS = [
   'chapter13.box-keep',
   'chapter13.week-rest',
   'chapter13.vigil-silent',
+  // Chapter 13 second pass: sit at the table; sleep.
+  'chapter13.eve-sit',
+  'chapter13.friday-sleep',
   // Chapter 14 deepening: ask Sloane nothing; leave Maya to think; say nothing on the stairs.
   'chapter14.ask-none',
   'chapter14.maya-leave',

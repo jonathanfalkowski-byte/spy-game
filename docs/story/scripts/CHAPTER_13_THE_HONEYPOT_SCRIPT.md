@@ -130,8 +130,24 @@ The comply lead-in was **not** lengthened. Everything else was:
   inquiry (countered).
 - **The knock:** the spyhole; Sloane smaller than she was across a desk.
 
+## Second deepening pass (2026-09-26)
+
+Two shared moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`). The comply lead-in is still unchanged.
+
+- **Three hours before her midnight** (`answer`, before the order choices; Wednesday now opens at nine) (`c13.eve`),
+  each leading into the existing minute-to-midnight scene: **eve-look** (the Claremont from a doorway across the
+  Strand; the fourth window on the eleventh floor, a lamp tested on and off; a man in the lobby who looks up once) ·
+  **eve-maya** (only if Maya is back: her tax return, the man who microwaves fish, Keith who can dance; "You sound
+  like you're standing on a ledge") · **eve-sit** (neutral).
+- **Friday afternoon** (`morning`, after the reply to Celeste, before the knock) (`c13.friday`): **friday-walk** (out
+  into the bright day; if famous, a girl under her own bus-shelter poster: "You look like someone who gets away with
+  things"; yellow tulips, the least like anything Celeste would send; on the comply road she goes out because "the
+  flat still has the night in it") · **friday-nora** (if Nora is an ally: Nell's name for them, *the florists*, and a
+  biscuit tin of flower cards Nora has never opened) · **friday-sleep** (neutral).
+
 ## Size (honest)
 
-Pass 1: ~1.8–2.3k words on the golden paths. After the deepening pass: **~2.9–3.1k on the golden (quiet) paths**,
-more when the new moments are played engaged, against the 7k budget. Still the leanest Act III chapter. The
-remaining room is in the counterplay ops and in the week's second move; the comply lead-in stays as it is.
+Pass 1: ~1.8–2.3k words on the golden paths. After the first deepening pass, ~2.9–3.1k. After the second:
+**~3.0–3.25k on the golden (quiet) paths**, and ~250–400 more when both new moments are played engaged, against the
+7k budget. The comply lead-in stays as it is. What is left to deepen is in the counterplay ops and the week's second
+move.

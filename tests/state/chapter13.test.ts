@@ -33,7 +33,18 @@ const c13 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c13, s);
+/** The second pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['eve-sit', 'friday-sleep'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c13(y, n);
+    }
+    return c13(y, id);
+  }, s);
 const complete12 = (name: string) => replay(golden12.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -44,8 +55,8 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 /** The kind-tenant Chapter 12 ending, with no allies told and nothing to prove, adjusted per case. */
 const bare = { 'act3.ally.iris': undefined, 'act3.ally.theo': undefined, 'act3.ally.julian': undefined, 'c12.statement': undefined, 'c11.catalogue': 'leave', 'case.strength': 'thin', 'c12.bed': 'mirror' };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete12('kind-tenant'), { ...bare, ...flags });
-const toAnswer = (s: GameState, week = 'week-alone', box = 'box-keep', week2 = 'week-rest') => walk(s, ['begin', 'brief-silent', week, box, week2]);
-const prefer = ['brief-silent', 'week-alone', 'box-keep', 'week-rest', 'door-away', 'vigil-silent', 'station-wait', 'maya-quiet', 'after-home', 'recover-alone', 'reply-none'];
+const toAnswer = (s: GameState, week = 'week-alone', box = 'box-keep', week2 = 'week-rest') => walk(s, ['begin', 'brief-silent', week, box, week2, 'eve-sit']);
+const prefer = ['brief-silent', 'week-alone', 'box-keep', 'week-rest', 'eve-sit', 'door-away', 'vigil-silent', 'station-wait', 'maya-quiet', 'after-home', 'recover-alone', 'reply-none', 'friday-sleep'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c13(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -215,13 +226,39 @@ it('answers Celeste on Friday, and ends on Sloane at the door', () => {
   expect(text(morning)).toContain('Your friend’s file has gone back in my drawer.');
   expect(text(walk(toAnswer(start(), 'week-alone', 'box-cut'), ['order-comply', 'door-away', 'recover-alone']))).toContain('You cut up my dress, I hear.');
   expect(ids(morning)).toEqual(['reply-none', 'reply-nell']);
-  const nell = c13(morning, 'reply-nell');
-  expect(nell.phase).toBe('complete');
-  expect(nell.choices['act3.sloane-came']).toBe('yes');
-  expect(text(nell)).toContain('Nell said you’d bring flowers.');
+  const replied = c13(morning, 'reply-nell');
+  expect([replied.phase, replied.choices['act3.sloane-came']]).toEqual(['morning', 'yes']);
+  expect(text(replied)).toContain('Nell said you’d bring flowers.');
+  // Friday afternoon, before the knock.
+  expect(ids(replied)).toEqual(['friday-walk', 'friday-sleep']);
+  const nell = c13(replied, 'friday-sleep');
+  expect([nell.phase, nell.choices['c13.friday']]).toEqual(['complete', 'sleep']);
   expect(text(nell)).toContain('I didn’t know they did this.');
   expect(text(nell)).toContain('a copy of Thursday’s recording, for the file');
   expect(leverageBoard(nell).held[0].wants).toBe('Owen Marsh, on camera, in suite 1109 at the Claremont');
+});
+
+it('gives three hours before midnight, and a Friday afternoon', () => {
+  const eve = walk(start(), ['begin', 'brief-silent', 'week-alone', 'box-keep', 'week-rest']);
+  expect(eve.phase).toBe('answer');
+  expect(text(eve)).toContain('Three hours until her midnight.');
+  expect(ids(eve)).toEqual(['eve-look', 'eve-maya', 'eve-sit']);
+  expect(ids(walk(start({ 'c6.maya': undefined }), ['begin', 'brief-silent', 'week-alone', 'box-keep', 'week-rest']))).toEqual(['eve-look', 'eve-sit']);
+  const looked = c13(eve, 'eve-look');
+  expect([looked.phase, looked.choices['c13.eve']]).toEqual(['answer', 'look']);
+  expect(text(looked)).toContain('They are lighting the room.');
+  expect(text(looked)).toContain('Since ten you have written three messages');
+  expect(ids(looked)).toContain('order-comply');
+  expect(text(c13(eve, 'eve-maya'))).toContain('Keith can dance');
+  const friday = walk(toAnswer(start({ 'act3.ally.nora': 'in', 'c5.published': 'yes' })), ['order-comply', 'door-away', 'recover-alone', 'reply-none']);
+  expect(ids(friday)).toEqual(['friday-walk', 'friday-nora', 'friday-sleep']);
+  const nora = c13(friday, 'friday-nora');
+  expect(nora.phase).toBe('complete');
+  expect(text(nora)).toContain('The florists.');
+  const walked = c13(friday, 'friday-walk');
+  expect(text(walked)).toContain('the flat still has the night in it');
+  expect(text(walked)).toContain('You look like someone who gets away with things.');
+  expect(walked.history.slice(-3).flatMap((h) => h.blocks.map((b) => b.text)).join(' ')).not.toMatch(SEXUAL);
 });
 
 it('fades the comply lead-in to one line for readers who ask, and changes nothing else', () => {
