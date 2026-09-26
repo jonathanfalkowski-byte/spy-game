@@ -9,7 +9,12 @@
  * (end.switch = armed | handed | disarmed); the people resolved, and who she goes home to (end.with); who she is now
  * (end.name = adrian | evelyn | new, none punished, the transformation not revisited); a year later, with an optional
  * chosen night (heat 3 at most, consent in character, fades); and the last card on a wall that is hers. The last
- * chapter of the route: nothing is offered after `complete`. */
+ * chapter of the route: nothing is offered after `complete`.
+ * Deepening pass (2026-09-26): three moments, each with a neutral pick for the goldens. The Vesper at noon on the
+ * Friday (end.walk = past | look | in: the window holds a painting again; or the brass plate with her number, taken
+ * home); the phone call about her face (end.fame = yes | no | later: a campaign in her own name, or the face put
+ * away); and the shoebox, before the last card (end.kept = nell | maya | none: the one card she keeps out). More of
+ * every scene. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { getKey, setKey } from './chapter7-model';
@@ -77,6 +82,7 @@ function morningBlocks(s: GameState): Block[] {
   const a = aim(s);
   const sloane = getKey(s, 'act4.sloane');
   return [
+    p('You wake at six out of habit, and lie there, and realise that there is nothing you have to do today. Nobody to lie to. Nothing to steal. No phone that will light. The ceiling, the traffic, your own breathing. It takes you a long time to believe it.'),
     p('Friday comes up the way Fridays do, which is the first surprise. Buses. A man hosing down the pavement outside the café. The sky doing nothing in particular. You lie in bed and listen to it for a long time, the ordinary noise of a city that does not know yet, or does not care, what happened in a long room on the embankment last night.'),
     ...(b === 'resigned'
       ? a === 'expose'
@@ -104,9 +110,37 @@ function morningBlocks(s: GameState): Block[] {
   ];
 }
 
+/** Noon on the Friday (deepening pass): the Vesper, walked past, looked at, or gone into. */
+function walkChoices(s: GameState): C18Choice[] {
+  const walk = (id: string, label: string, hint: string, body: Block[]) =>
+    offer18('walk-' + id, label, hint, 'position', (x) => {
+      setKey(x, 'end.walk', id);
+      return body;
+    });
+  return [
+    walk('past', 'Walk past without looking', 'It is only a building now.', [
+      p('At noon your feet take you along the embankment, the way they always did, past the black-glass front with no name on the door. You do not look. You walk past it the way you would walk past a house you used to live in, and it is only when you are at the bridge that you realise you did not even slow down.'),
+    ]),
+    walk('look', 'Stop at the window', 'For the first time since you knew it, the window is not empty.', [
+      p('At noon you stop on the embankment in front of the black-glass front, and look at the window, which has been empty since the first Thursday.'),
+      p(
+        c(s, 'c9.auction')
+          ? 'It is not empty. There is a painting in it again, lit from above, alone: the Aster portrait. You, laughing, in the green. Under it, on a small card in green ink: Not for sale.'
+          : 'It is not empty. There is a painting in it again, lit from above, alone: a harbour at night, the lights of ships on black water, and a low wall with nobody on it. Under it, on a small card in green ink: Not for sale.',
+      ),
+      t('She hung it on her way out. The last thing she did in that building was put something in the window for me to find. Of course it was.'),
+    ]),
+    walk('in', 'Go in', 'The door is open. Nobody is there to open it for you.', [
+      p('The door is propped open with a fire extinguisher. Inside, the long room is full of men in overalls, and the empty frames are coming down off the walls one by one and going into crates, and nobody asks who you are.'),
+      p('Under the frame at the far end, the one over the fireplace, the small brass plate with a number on it: yours. You borrow a screwdriver from a man who is eating a sandwich, and take it off the wall, both screws, and put it in your pocket, and give him back his screwdriver, and he says, “Souvenir?” and you say, “Something like that.”'),
+    ]),
+  ];
+}
+
 function morningChoices(s: GameState): C18Choice[] {
+  if (getKey(s, 'end.morning')) return walkChoices(s);
   const m = (id: string, label: string, hint: string, body: Block[]) =>
-    offer18('morning-' + id, label, hint, 'position', (x) => {
+    offer18('morning-' + id, label, hint, 'morning', (x) => {
       setKey(x, 'end.morning', id);
       return body;
     });
@@ -180,6 +214,7 @@ function positionBlocks(s: GameState): Block[] {
     ],
   };
   return [
+    p('The week after, the world does what it does after something happens to it: it has opinions for four days and then finds something else to have opinions about. You watch it happen from your kitchen window and find you do not mind in the least.'),
     p('The week after, you do what Adrian always did after a hearing: you sit at the kitchen table and write down what you now hold, and what it cost, and what you are going to do with it.'),
     ...byAim[a],
     ...(c(s, 'c15.cost') === 'money' ? [p('You are, for most of that year, very nearly broke. You find that you do not mind as much as Adrian would have.')] : []),
@@ -188,10 +223,35 @@ function positionBlocks(s: GameState): Block[] {
   ];
 }
 
+/** The phone call about her face (deepening pass): a campaign in her own name, the face put away, or not yet. */
+function fameChoices(s: GameState): C18Choice[] {
+  const caller = getKey(s, 'own.campaign') ? 'Odile' : 'A woman from an agency who has been trying to reach you for a month';
+  const fame = (id: string, label: string, hint: string, body: Block[]) =>
+    offer18('fame-' + id, label, hint, 'people', (x) => {
+      setKey(x, 'end.fame', id);
+      return body;
+    });
+  return [
+    fame('yes', 'Say yes, in your own name', 'A campaign. Your face, your terms, your fee, nobody’s collection.', [
+      p(`${caller === 'Odile' ? 'Odile rings' : caller + ' rings'} on the Thursday: a campaign, the biggest yet, for a house that has never used a face before. They want yours. They want it, they say, because of everything.`),
+      p('You say yes. On your own terms: your name on the contract, your fee paid to you in thirty days and not a day more, and a clause, in your own words, that the photographs are never sold on to anybody for any purpose. The lawyer reads it twice and says he has never seen a clause like it. You tell him he will now.'),
+      t('They made me a face so that they could sell it. I am going to sell it myself, once, to the highest bidder, and keep every penny.'),
+    ]),
+    fame('no', 'Put the face away', 'No more posters. No more lights. Let it be yours.', [
+      p(`${caller === 'Odile' ? 'Odile rings' : caller + ' rings'} on the Thursday with an offer so large that you ask her to say it twice. You say no. Not now, not later, not for anyone. You say it kindly, and put the phone down, and sit at the kitchen table for a while, and feel lighter than you have in a year.`),
+      p('Within a month the poster at the bus stop outside is papered over with an advertisement for car insurance. You stand in front of it one morning, in the rain, and laugh.'),
+    ]),
+    fame('later', 'Not yet', 'Let it ring. Decide some other year.', [
+      p(`${caller === 'Odile' ? 'Odile rings' : caller + ' rings'} on the Thursday, and you let it ring. And on the Friday. On the Saturday you send one line: Not yet. Ask me next year. It is the first time in your life you have ever told the world to wait.`),
+    ]),
+  ];
+}
+
 function positionChoices(s: GameState): C18Choice[] {
+  if (getKey(s, 'end.switch')) return fameChoices(s);
   const keeper = keeper18(s);
   const sw = (id: string, label: string, hint: string, body: Block[], to?: string) =>
-    offer18('switch-' + id, label, hint, 'people', (x) => {
+    offer18('switch-' + id, label, hint, 'position', (x) => {
       setKey(x, 'end.switch', id);
       if (to) setKey(x, 'end.switch-to', to);
       setKey(x, 'end.position', aim(x) + ':' + terms(x));
@@ -216,7 +276,10 @@ function positionChoices(s: GameState): C18Choice[] {
 // ── The People ──
 
 function peopleBlocks(s: GameState): Block[] {
-  const out: Block[] = [p('That month, the people. One at a time, the way you took the cards down off the wall.')];
+  const out: Block[] = [
+    p('That month, the people. One at a time, the way you took the cards down off the wall.'),
+    p('You find you want to see every one of them, and tell them one true thing each, and you find, one by one, that most of them already knew it, and were waiting, with a patience you do not think you have earned, for you to say it.'),
+  ];
   const maya = getKey(s, 'act3.maya-choice');
   out.push(
     p(
@@ -294,8 +357,31 @@ function nameBlocks(s: GameState): Block[] {
     p(getKey(s, 'act3.home') === 'lost' && aim(s) !== 'out' ? 'A new flat, with a wall that is yours, that nobody else has ever pinned anything to.' : 'The wall, the last time.'),
     p('You take every card down. Celeste’s. Nell’s. 1109. The board. Maya’s, with KNOWS on it in her small capitals, if she wrote it. The black phone’s. Page seven, the actual page, torn along the spine. One by one, into a shoebox, with the lid on, and the shoebox on the top shelf of the wardrobe, next to a pair of flat shoes worn down at the left heel.'),
     p('The wall is bare. A few pinholes. The paint a little paler where the cards were.'),
+    p('You sit on the floor with the shoebox on your knees for a long time before you put the lid on.'),
     p('There is one card left in your hand. Blank. The last one. You sit down at the kitchen table with a pen, and look at it for a long time.'),
     t('Eight months ago a man called Adrian Vale went into a building and came out as a woman called Evelyn, who had belonged to somebody else, and before that to somebody else. Every name I have had was given to me. The last card is the only one I get to write myself.'),
+  ];
+}
+
+/** The shoebox (deepening pass): the one card she keeps out. */
+function keptChoices(s: GameState): C18Choice[] {
+  const keep = (id: string, label: string, hint: string, body: Block[]) =>
+    offer18('keep-' + id, label, hint, 'name', (x) => {
+      setKey(x, 'end.kept', id);
+      return body;
+    });
+  return [
+    ...(getKey(s, 'act3.nell') === 'known'
+      ? [
+          keep('nell', 'Keep Nell’s card out', 'Eleanor Linden. In your purse, where you will see it.', [
+            p('Before the lid goes on you take one card back out: ELEANOR LINDEN, in your capitals, written the week you came back from Singapore. You put it in your purse, behind your bank card, where you will see it every time you pay for a coffee.'),
+          ]),
+        ]
+      : []),
+    keep('maya', 'Keep Maya’s card out', 'The one with her handwriting on it, if she wrote.', [
+      p('Before the lid goes on you take Maya’s card back out, the one with her name on it in your hand, ' + (getKey(s, 'act3.maya-choice') === 'stay' ? 'and KNOWS under it in her small capitals' : 'and nothing else') + ', and stick it to the fridge with a magnet shaped like a lemon that she gave you as a joke.'),
+    ]),
+    keep('none', 'Keep nothing out', 'All of it in the box. All of it done.', [p('You keep nothing out. All of it in the box, the lid on, the box on the shelf. Done.')]),
   ];
 }
 
@@ -338,6 +424,9 @@ function laterBlocks(s: GameState): Block[] {
     ),
     p('A friend of Iris’s sends you, by post, without comment, Meridian’s new catalogue: The Spring Collection. You turn to page seven. There is no page seven. The numbering goes six, eight. Somebody at the printer’s has had to be told, very carefully, to leave it out.'),
     ...(b === 'resigned' ? [p('A postcard from Lisbon every year, on the first Thursday of spring. Green ink. Never a word. Just the initial.')] : []),
+    ...(getKey(s, 'end.walk') === 'in' ? [p('On the windowsill, propped against the glass, a small brass plate with a number on it, going slightly green at the screws.')] : []),
+    ...(getKey(s, 'end.fame') === 'yes' ? [p('Your face is on the side of a bus going past in the rain: your own campaign, your own name under it. You watch it go by and think, That one I sold myself.')] : getKey(s, 'end.fame') === 'no' ? [p('Nobody on the street looks at you twice any more. You have come to love it the way you once loved being looked at.')] : []),
+    p('Some evenings you still take the long way home along the river, past the bench, past the rail, past the lamp-post, and stand for a minute where a man in a coat too big for him once waited for a car. You do not feel sorry for him. You would like, if you could, to tell him that it turned out all right. Not well. All right. Which is better than well, and lasts longer.'),
     t('What I hold, a year on: my name, my key, my evenings. Nobody’s leverage. Not even mine.'),
   ];
 }
@@ -415,6 +504,7 @@ function completeBlocks(s: GameState): Block[] {
   const name = getKey(s, 'end.name');
   return [
     p('The last card, pinned to a wall that is yours, in your own hand. Nothing else on the wall. Nothing else needs to be.'),
+    p('You stand back from it, the way you stood back from the first wall, eight months and a lifetime ago, when it was one card and a question mark. You look at it for a long time. Then you turn off the lamp and go to bed, and sleep, and do not dream about anything at all.'),
     t(
       name === 'adrian'
         ? 'My name is Adrian Vale. I was a product once. Now I’m the only one who knows what I’m worth.'
@@ -447,7 +537,7 @@ export function chapter18Choices(s: GameState): C18Choice[] {
   if (s.phase === 'morning') return morningChoices(s);
   if (s.phase === 'position') return positionChoices(s);
   if (s.phase === 'people') return peopleChoices(s);
-  if (s.phase === 'name') return nameChoices();
+  if (s.phase === 'name') return getKey(s, 'end.kept') ? nameChoices() : keptChoices(s);
   if (s.phase === 'later') return laterChoices(s);
   return [];
 }

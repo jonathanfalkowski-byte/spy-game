@@ -153,6 +153,10 @@ export const GATED_DEFAULTS = [
   'chapter14.ask-none',
   'chapter14.maya-leave',
   'chapter14.stairs-silent',
+  // Chapter 18 deepening: walk past the Vesper; not yet; keep nothing out.
+  'chapter18.walk-past',
+  'chapter18.fame-later',
+  'chapter18.keep-none',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

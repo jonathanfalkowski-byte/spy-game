@@ -75,8 +75,26 @@ the Celebrity route."
   `tests/fixtures/rev19-chapter18-golden.json` (expose-armed, terms-handed, nell-disarmed; capture with
   `EVE_CAPTURE_CH18=1 npx vitest run tests/tools/capture-chapter18-golden.test.ts`).
 
+## Deepening pass (2026-09-26)
+
+Three moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and more of every scene:
+
+- **The Vesper at noon** (`morning`, after the morning choice) (`end.walk`): **walk-past** (neutral) · **walk-look**
+  (the window holds a painting again, "Not for sale": the Aster portrait if Celeste bought it, else a harbour at
+  night) · **walk-in** (the frames coming down; the brass plate with her number, taken home: "Souvenir?").
+- **The phone call about her face** (`position`, after the switch) (`end.fame`): **fame-yes** (a campaign in her own
+  name, with a clause that the photographs are never sold on) · **fame-no** (the poster papered over with car
+  insurance) · **fame-later** (neutral; "Not yet. Ask me next year.").
+- **The shoebox** (`name`, before the last card) (`end.kept`): **keep-nell** (if `act3.nell`: in her purse, behind the
+  bank card) · **keep-maya** (on the fridge under a lemon magnet) · **keep-none** (neutral).
+- More prose: waking at six with nothing to do; the world's four days of opinions; everyone already knowing the one
+  true thing; the shoebox on her knees; the brass plate on the windowsill a year on, the bus with her own campaign on
+  it, or nobody looking twice; the lamp-post where Adrian waited ("It turned out all right. Not well. All right."); the
+  last lamp off.
+
 ## Size (honest)
 
-Pass 1: **~1.2–1.3k words on the golden paths** against the 5k budget. A full Celebrity playthrough, Chapters 3–18
+Pass 1: ~1.2–1.3k words on the golden paths. After the deepening pass: **~1.7–1.8k on the golden (quiet) paths**,
+more when the new moments are played engaged, against the 5k budget. A full Celebrity playthrough, Chapters 3–18
 as the transcript tool counts them, now reads about **45–47k words**. The route is complete and playable end to end;
 Acts III and IV are lean throughout, and are where deepening passes will pay most.

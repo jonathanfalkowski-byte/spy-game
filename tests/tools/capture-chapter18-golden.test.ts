@@ -18,7 +18,7 @@ const routes: [string, string, string[]][] = [
   ['terms-handed', 'terms-celeste', ['morning-sleep', 'switch-handed', 'with-alone', 'name-adrian', 'later-quiet']],
   ['nell-disarmed', 'nell-silent', ['morning-papers', 'switch-disarmed', 'with-alone', 'name-new', 'later-quiet']],
 ];
-const prefer = ['begin', 'morning-papers', 'switch-armed', 'with-alone', 'name-evelyn', 'later-quiet'];
+const prefer = ['begin', 'morning-papers', 'walk-past', 'switch-armed', 'fame-later', 'with-alone', 'keep-none', 'name-evelyn', 'later-quiet'];
 
 function play(from: GameState, picks: string[]): GameState {
   let s = from;

@@ -9,7 +9,7 @@ and §8 (doctrine), [BEAT_MAP.md](BEAT_MAP.md) (Act IV: "Maya, Julian, Sebastian
 [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
 Status: **approved (owner, 2026-09-26: all seven decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_18_THE_POSITION_SCRIPT.md](scripts/CHAPTER_18_THE_POSITION_SCRIPT.md), code: `src/content/chapter18.ts`.
-~1.2–1.3k words on the golden paths. Gated like Chapters 6–17 (`VITE_EVE_CHAPTER18`, content revision
+~1.2–1.3k words on the golden paths at pass 1; deepened 2026-09-26 to ~1.7–1.8k. Gated like Chapters 6–17 (`VITE_EVE_CHAPTER18`, content revision
 ≥ 19), entered from an own-power `chapter17.complete`. **The last chapter of the Celebrity route.**
 
 ---

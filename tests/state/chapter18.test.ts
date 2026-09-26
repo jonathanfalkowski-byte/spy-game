@@ -29,7 +29,7 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 const start = (flags: Record<string, string | undefined> = {}, from = 'expose-room') => withFlags(complete17(from), flags);
 /** Nobody to go home to but herself, and Maya far away. */
 const solo = { 'c4.mutual-interest': undefined, 'c7.evening': undefined, 'c5.intimacy': undefined, 'act3.ally.marsh': undefined, 'act3.ally.theo': undefined, 'c7.theo': undefined, 'c7.exit': undefined, 'c6.maya': 'strained', 'act3.maya-choice': 'away' };
-const prefer = ['morning-papers', 'switch-armed', 'with-alone', 'name-evelyn', 'later-quiet'];
+const prefer = ['morning-papers', 'walk-past', 'switch-armed', 'fame-later', 'with-alone', 'keep-none', 'name-evelyn', 'later-quiet'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c18(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -56,10 +56,16 @@ it('reads the morning after from the board, with Celeste’s last word and Sloan
   expect(ch18(c18(start({ 'act4.board': 'closed' }), 'begin'))).toContain('From Celeste, nothing.');
   expect(ids(front)).toEqual(mayaClose18(front) ? ['morning-papers', 'morning-sleep', 'morning-maya'] : ['morning-papers', 'morning-sleep']);
   expect(ids(c18(start(solo), 'begin'))).toEqual(['morning-papers', 'morning-sleep']);
+  const noon = c18(c18(start({ ...solo, 'c9.auction': 'thank' }), 'begin'), 'morning-papers');
+  expect([noon.phase, ids(noon)]).toEqual(['morning', ['walk-past', 'walk-look', 'walk-in']]);
+  expect(ch18(c18(noon, 'walk-look'))).toContain('the Aster portrait');
+  const plate = c18(noon, 'walk-in');
+  expect([plate.phase, plate.choices['end.walk']]).toEqual(['position', 'in']);
+  expect(ch18(plate)).toContain('Souvenir?');
 });
 
 it('turns the aim into a position, scaled by the terms, and hands her the switch', () => {
-  const to = (flags: Record<string, string | undefined>) => walk(start({ ...solo, ...flags }), ['begin', 'morning-sleep']);
+  const to = (flags: Record<string, string | undefined>) => walk(start({ ...solo, ...flags }), ['begin', 'morning-sleep', 'walk-past']);
   expect(ch18(to({ 'act4.aim': 'expose', 'act4.terms': 'full' }))).toContain('famous is the one thing you can’t sell twice');
   expect(ch18(to({ 'act4.aim': 'expose', 'act4.terms': 'none' }))).toContain('You publish anyway.');
   expect(ch18(to({ 'act4.aim': 'terms', 'act4.terms': 'partial' }))).toContain('Half of it in writing');
@@ -72,13 +78,19 @@ it('turns the aim into a position, scaled by the terms, and hands her the switch
   expect(ids(sw)).toEqual(['switch-armed', 'switch-handed', 'switch-disarmed']);
   expect(chapter18Choices(sw)[1].label).toBe('Hand it to Nora');
   const handed = c18(sw, 'switch-handed');
-  expect([handed.phase, handed.choices['end.switch'], handed.choices['end.switch-to'], handed.choices['end.position']]).toEqual(['people', 'handed', 'nora', 'terms:full']);
+  expect([handed.phase, handed.choices['end.switch'], handed.choices['end.switch-to'], handed.choices['end.position']]).toEqual(['position', 'handed', 'nora', 'terms:full']);
+  // The phone call about her face.
+  expect(ids(handed)).toEqual(['fame-yes', 'fame-no', 'fame-later']);
+  const own = c18(handed, 'fame-yes');
+  expect([own.phase, own.choices['end.fame']]).toEqual(['people', 'yes']);
+  expect(ch18(own)).toContain('the photographs are never sold on to anybody');
+  expect(ch18(c18(handed, 'fame-no'))).toContain('advertisement for car insurance');
   expect(ch18(c18(sw, 'switch-disarmed'))).toContain('You burn them in the kitchen sink');
   expect(leverageBoard(handed).holds.map((a) => a.id)).toContain('switch-final');
 });
 
 it('resolves the people, and lets her choose who she goes home to, or nobody', () => {
-  const people = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined, 'act3.ally.marsh': 'in', 'act3.maya-choice': 'stay', 'c8.pryce': 'chain', 'act3.ally.iris': 'in' }), ['begin', 'morning-sleep', 'switch-armed']);
+  const people = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined, 'act3.ally.marsh': 'in', 'act3.maya-choice': 'stay', 'c8.pryce': 'chain', 'act3.ally.iris': 'in' }), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later']);
   expect(ch18(people)).toContain('Maya gets the head-of-section job.');
   expect(ch18(people)).toContain('a pair of flat shoes, size five');
   expect(ch18(people)).toContain('He turns the heating up.');
@@ -87,17 +99,20 @@ it('resolves the people, and lets her choose who she goes home to, or nobody', (
   expect(ids(people)).toEqual([...partners18(people).map((p) => 'with-' + p), 'with-maya', 'with-alone']);
   expect(ch18(c18(people, 'with-marsh'))).toContain('No mirrors. I checked again. Toast?');
   // The relationship spent in Chapter 15 is not there to go home to.
-  const spent = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined, 'c15.cost': 'relationship', 'c15.cost-who': 'julian' }), ['begin', 'morning-sleep', 'switch-armed']);
+  const spent = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined, 'c15.cost': 'relationship', 'c15.cost-who': 'julian' }), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later']);
   expect(ids(spent)).not.toContain('with-julian');
   expect(ch18(spent)).toContain('I spent them on purpose, to make the rest hold.');
-  const alone = c18(walk(start(solo), ['begin', 'morning-sleep', 'switch-armed']), 'with-alone');
+  const alone = c18(walk(start(solo), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later']), 'with-alone');
   expect([alone.phase, alone.choices['end.with']]).toEqual(['name', 'alone']);
 });
 
 it('asks who she is now, and punishes none of the answers', () => {
-  const name = walk(start(solo), ['begin', 'morning-sleep', 'switch-armed', 'with-alone']);
+  const name = walk(start(solo), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later', 'with-alone', 'keep-none']);
   expect(ch18(name)).toContain('There is one card left in your hand.');
   expect(ids(name)).toEqual(['name-adrian', 'name-evelyn', 'name-new']);
+  const box = walk(start(solo), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later', 'with-alone']);
+  expect(ids(box)).toEqual(['keep-nell', 'keep-maya', 'keep-none']);
+  expect(ch18(c18(box, 'keep-nell'))).toContain('behind your bank card');
   for (const [id, line] of [
     ['name-adrian', 'My name is Adrian Vale. I was a product once.'],
     ['name-evelyn', 'My name is Evelyn Vale. They built her to be sold. I bought her back.'],
@@ -112,7 +127,7 @@ it('asks who she is now, and punishes none of the answers', () => {
 });
 
 it('keeps the year-later night chosen, consented and stoppable', () => {
-  const later = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined }), ['begin', 'morning-sleep', 'switch-armed', 'with-julian', 'name-evelyn']);
+  const later = walk(start({ 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined }), ['begin', 'morning-sleep', 'walk-past', 'switch-armed', 'fame-later', 'with-julian', 'keep-none', 'name-evelyn']);
   expect(ch18(later)).toContain('There is no page seven. The numbering goes six, eight.');
   expect(ids(later)).toEqual(['later-julian', 'later-quiet']);
   const invited = c18(later, 'later-julian');
@@ -124,7 +139,7 @@ it('keeps the year-later night chosen, consented and stoppable', () => {
   const stayed = c18(chose, 'later-close');
   expect([stayed.phase, stayed.choices['end.later']]).toEqual(['complete', 'close']);
   expect(ch18(stayed)).toContain('The scene fades.');
-  const maya = walk(start({ ...solo, 'c6.maya': 'restored', 'act3.maya-choice': 'stay' }), ['begin', 'morning-maya', 'switch-armed', 'with-maya', 'name-new']);
+  const maya = walk(start({ ...solo, 'c6.maya': 'restored', 'act3.maya-choice': 'stay' }), ['begin', 'morning-maya', 'walk-past', 'switch-armed', 'fame-later', 'with-maya', 'keep-none', 'name-new']);
   expect(ids(maya)).toEqual(['later-maya', 'later-quiet']);
   expect(ch18(c18(maya, 'later-maya'))).toContain('magic tricks at parties');
 });
@@ -141,6 +156,7 @@ it('reaches the end from every option in every scene', () => {
     ['morning-papers', 'switch-disarmed', 'with-marsh', 'name-new', 'later-marsh', 'later-no-sex', 'later-close'],
     ['morning-sleep', 'switch-armed', 'with-julian', 'name-evelyn', 'later-julian', 'later-goodnight'],
     ['with-alone', 'later-quiet'],
+    ['walk-look', 'fame-yes', 'keep-nell'], ['walk-in', 'fame-no', 'keep-maya'],
   ];
   for (const wants of every) {
     const end = drive(wants);
