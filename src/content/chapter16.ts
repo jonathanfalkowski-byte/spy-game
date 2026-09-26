@@ -8,7 +8,11 @@
  * (act4.aim = expose | terms | nell | out), which Chapter 18 turns into her position; who comes (up to two inside, one
  * outside, or nobody: the free-agent core can still walk in, it only costs more); the order of the cards and one held
  * back; getting dressed as armour (a chosen moment at heat 1–2 at most); and an arrival that reacts to her exposure.
- * One shared spine: the choices change what she carries and who stands beside her, not which scenes she reads. */
+ * One shared spine: the choices change what she carries and who stands beside her, not which scenes she reads.
+ * Deepening pass (2026-09-26): each crew member's scene at greater length; a rehearsal after the cards are ordered
+ * (act4.rehearse = mirror | aloud | none: saying it to the mirror, or to whoever is there, or not at all); and a moment
+ * on the embankment before the door (act4.walk = bench | rail | on: one minute on the bench from the first Thursday,
+ * Adrian's old Axiom pass dropped off the rail, or walking on). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -171,6 +175,7 @@ function dawnChoices(): C16Choice[] {
 
 function aimBlocks(): Block[] {
   return [
+    p('You make fresh coffee, because the first cup went cold on the floor among the cards, and drink this one standing at the window, and watch the street wake up: the milk float going back the other way, a woman in a nurse’s uniform coming home from a night shift, a man opening the shutter of the newsagent’s with a pole.'),
     p('Six o’clock. The kitchen table, the case in its rubber band, and the question Adrian never let himself ask before a hearing, because the answer was always somebody else’s: what do I want to walk out of that room with?'),
     p('Not what is fair. Nothing is going to be fair. Not what she deserves; you have stopped keeping that list. What you want. What you will still want on Friday morning, and next year, and when you are old, if you get to be old.'),
     p('Adrian used to say, to the junior analysts, that the most dangerous person in any hearing is the one who does not know what they want. They talk too long. They take the first offer. They win the argument and lose the case. He was right about that, if about very little else.'),
@@ -220,14 +225,21 @@ const personLine: Record<Person, [string, string, Block[]]> = {
   sloane: ['Sloane', 'Axiom’s officer of record. The verdict is hers too.', [
     p('Sloane is ironing a white shirt in her kitchen when you ring, a shirt she has not worn since the day she was put on leave, and she does not stop ironing while you ask.'),
     q('Sloane', 'Of course I’m coming. I have been waiting a year to stand in a room with those people and say my own name. Six o’clock. I’ll wear the good shoes.'),
+    p('A pause, the iron hissing, the sound of a woman deciding to say one more thing than she means to.'),
+    q('Sloane', 'For what it’s worth. When I read ORACLE’s numbers, the first time, I thought: that is a person who will not stay where she is put. I was frightened of you before I ever met you. I still am. I would rather be frightened of you from your side of the table.'),
   ]],
   nora: ['Nora', 'Nell’s sister. She asked to be in the room.', [
     p('Nora is at arrivals at eleven, off the overnight flight from Singapore, with one small bag and Nell’s photograph in her handbag in a plastic sleeve, the way you would carry a passport.'),
     q('Nora', 'I said I wanted to be in the room. I meant it. I’m not going to say anything. I’m just going to be there, with her face, so that the woman who rang me on a Sunday morning has to look at both of us.'),
+    p('In the taxi from the airport she holds your hand without seeming to notice she is doing it, and looks out at London in the rain, and says once, to the window, “She’d have loved this. She loved rain. She said it was the only weather that minded its own business.”'),
   ]],
   marsh: ['Owen', 'The Markets Authority, in a cycling jacket.', [
     p('Owen arrives at your door at ten with a banker’s box of files under one arm and his bicycle clips still on, and a tie he has plainly borrowed.'),
     q('Owen Marsh', 'I have a warrant for nothing and a mandate for less. I also have eleven years of knowing exactly which questions make people like that stop smiling. I’ll sit at the end and take notes. They hate it when someone takes notes.'),
+    p('He looks at the case on your table, in its rubber band, and then at you, and for a moment he is not a regulator at all, only a tired man in a borrowed tie who did amateur dramatics at university.'),
+    q('Owen Marsh', 'You know you don’t have to do this. You could post it. All of it. Tonight. Let the rest of us do the room.'),
+    q('You', 'I know. I want them to see my face when they read it.'),
+    q('Owen Marsh', 'Yes. I thought you might.'),
   ]],
   maya: ['Maya', 'She stayed. She meant it.', [
     p('Maya comes round with two coffees, the way she used to come across from the compliance wing, and puts one in your hand and sits on the arm of the sofa.'),
@@ -317,7 +329,37 @@ function tableBlocks(s: GameState): Block[] {
   ];
 }
 
+/** A rehearsal (deepening pass): to the mirror, aloud to whoever is there, or not at all. */
+function rehearseChoices(s: GameState): C16Choice[] {
+  const inside = (getKey(s, 'act4.inside') ?? '').split(',').filter((x) => x && x !== 'none');
+  const who = inside.length ? { sloane: 'Sloane', nora: 'Nora', marsh: 'Owen', maya: 'Maya', iris: 'Iris', julian: 'Julian' }[inside[0] as 'sloane'] : undefined;
+  const r = (id: string, label: string, hint: string, body: Block[]) =>
+    offer16('rehearse-' + id, label, hint, 'dress', (x) => {
+      setKey(x, 'act4.rehearse', id);
+      return body;
+    });
+  return [
+    r('mirror', 'Say it to the mirror', 'Once, all the way through, the way Adrian did in the car.', [
+      p('You stand in front of the wardrobe mirror in your dressing gown and say it, all of it, from the first card to the last, to the woman in the glass, the way Adrian used to rehearse in the car park before a hearing with the engine off.'),
+      p('Halfway through, she stops you. Not in words: in the face. You watch yourself say “priced in” and see what it does to your mouth, and you take it out, and say it again without it, and it is better.'),
+      t('She was always the better barrister. I only had to let her talk.'),
+    ]),
+    ...(who
+      ? [
+          r('aloud', `Say it aloud to ${who}`, 'Let someone who will be in the room hear it first.', [
+            p(`You say it to ${who}, at the kitchen table, over coffee, from the first card to the last. ${who} does not interrupt once. At the end there is a long silence.`),
+            q(who === 'Owen' ? 'Owen Marsh' : who === 'Julian' ? 'Julian Mercer' : who, 'Don’t change a word. Except the bit about the chair. Say that slower. You’ll want to watch her face.'),
+          ]),
+        ]
+      : []),
+    r('none', 'Don’t rehearse', 'You know it. Rehearsing would only make it sound rehearsed.', [
+      p('You don’t rehearse. You know it the way you know the stairs in the dark. Rehearsing would only make it sound like something you had practised, and it is not that. It is the only true thing you will say in that building.'),
+    ]),
+  ];
+}
+
 function tableChoices(s: GameState): C16Choice[] {
+  if (getKey(s, 'act4.held')) return rehearseChoices(s);
   const has = items16(s);
   const first = getKey(s, 'act4.first') as Item | undefined;
   const label: Record<Item, [string, string]> = {
@@ -339,14 +381,14 @@ function tableChoices(s: GameState): C16Choice[] {
   const rest = has.filter((i) => i !== first);
   if (!rest.length)
     return [
-      offer16('held-none', 'Keep nothing back', 'There is nothing else. You are the rest of the case.', 'dress', (x) => {
+      offer16('held-none', 'Keep nothing back', 'There is nothing else. You are the rest of the case.', 'table', (x) => {
         setKey(x, 'act4.held', 'none');
         return [t('Nothing in my pocket but my hands. Then my hands will have to do.')];
       }),
     ];
   return rest
     .map((i) =>
-      offer16('held-' + i, `Keep back: ${label[i][0]}`, 'In your pocket, for the moment she thinks she has won.', 'dress', (x) => {
+      offer16('held-' + i, `Keep back: ${label[i][0]}`, 'In your pocket, for the moment she thinks she has won.', 'table', (x) => {
         setKey(x, 'act4.held', i);
         return [p(`You take ${itemName[i]} out of the pile and put it somewhere nobody will look: the inside pocket of your coat, against your ribs. You will feel it there all evening, like a second heartbeat.`)];
       }),
@@ -428,7 +470,29 @@ function arriveBlocks(s: GameState): Block[] {
   ];
 }
 
+/** On the embankment (deepening pass): the bench, the rail, or walking on. */
+function walkChoices(): C16Choice[] {
+  const w = (id: string, label: string, hint: string, body: Block[]) =>
+    offer16('walk-' + id, label, hint, 'arrive', (x) => {
+      setKey(x, 'act4.walk', id);
+      return body;
+    });
+  return [
+    w('bench', 'Sit on the bench, one minute', 'Where you sat with your shoes in your hand after the first Thursday.', [
+      p('You sit on the bench for one minute exactly, by the watch on your wrist, where you sat after the first Thursday with your shoes in your hand and your stockings ruined. The wood is wet. You do not care. A gull lands on the rail, looks at you, decides you are not food, and leaves.'),
+      t('One minute. The last one that belongs to nobody but me before the room.'),
+    ]),
+    w('rail', 'Drop something off the rail', 'Adrian’s old Axiom pass has been in your coat pocket for eight months.', [
+      p('At the rail where the envelope went into the water on the first Thursday, you take out of your coat pocket something that has been in it for eight months without your ever quite deciding to keep it: Adrian’s Axiom pass. His photograph. His name. The magnetic strip worn pale by eleven years of doors.'),
+      p('You hold it over the water for a moment. Then you let it go, and it turns once in the air, catching the light, and is gone into the river without a sound.'),
+      t('He opened a lot of doors with that. Tonight I open one without it.'),
+    ]),
+    w('on', 'Walk on', 'Don’t stop. Stopping is for afterwards.', [p('You don’t stop. Stopping is for afterwards. You walk on, at the same pace, the heels even on the wet stone, and the Vesper gets bigger in front of you one lamp-post at a time.')]),
+  ];
+}
+
 function arriveChoices(s: GameState): C16Choice[] {
+  if (!getKey(s, 'act4.walk')) return walkChoices();
   const seen = public16(s);
   const arrive = (id: string, label: string, hint: string, body: Block[]) =>
     offer16('arrive-' + id, label, hint, 'complete', (x) => {
@@ -453,8 +517,8 @@ function arriveChoices(s: GameState): C16Choice[] {
         ]
       : [p('The alley, the service door, the hook where the keys hang. Nobody on the stair. Nobody anywhere. You go up the back way one last time, the way the staff go, and come out into the long room through the door the waiters use, and that is how they first see you: coming out of the wall.')]),
     arrive('car', 'The car she sent', 'Arrive as her guest. The one thing she won’t expect you to use.', [
-      p(c(s, 'c8.pryce') ? 'At half past five the car is at your kerb. Mr Pryce holds the door, and says, “Ms Laurent’s compliments,” and then, very quietly, as you get in, “And mine.”' : 'At half past five the car is at your kerb, as it has been every first Thursday. The driver holds the door and says Ms Laurent’s compliments.'),
-      p('You ride along the river in her car, on her leather, with her white orchid in the bud vase by the window, and when it draws up at the Vesper you get out of it the way a guest does, unhurried, and let the driver close the door behind you. She sent it so that you would arrive as hers. You arrive in it as nobody’s.'),
+      p(c(s, 'c8.pryce') ? 'The car she sent has kept pace with you along the embankment since the bridge. It stops. Mr Pryce holds the door, and says, “Ms Laurent’s compliments,” and then, very quietly, as you get in, “And mine.”' : 'The car she sent has kept pace with you along the embankment since the bridge, as it has every first Thursday. It stops. The driver holds the door and says Ms Laurent’s compliments.'),
+      p('You ride the last two hundred yards in her car, on her leather, with her white orchid in the bud vase by the window, and when it draws up at the Vesper you get out of it the way a guest does, unhurried, and let the driver close the door behind you. She sent it so that you would arrive as hers. You arrive in it as nobody’s.'),
     ]),
   ];
 }

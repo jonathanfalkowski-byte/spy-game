@@ -19,7 +19,18 @@ const c16 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c16, s);
+/** The deepening pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['rehearse-none', 'walk-on'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c16(y, n);
+    }
+    return c16(y, id);
+  }, s);
 const complete15 = (name: string) => replay(golden15.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -56,7 +67,7 @@ const bare = {
   'c6.oracle-seen': undefined,
   'c8.pryce': undefined,
 };
-const prefer = ['case-set', 'aim-terms', 'inside-none', 'inside-done', 'outside-switch', 'first-page', 'held-none', 'wear-green', 'dress-alone', 'arrive-front'];
+const prefer = ['case-set', 'aim-terms', 'inside-none', 'inside-done', 'outside-switch', 'first-page', 'held-none', 'rehearse-none', 'wear-green', 'dress-alone', 'walk-on', 'arrive-front'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c16(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -102,6 +113,7 @@ it('brings up to two inside and one outside, from who is still standing, or nobo
   expect(ids(s0)).toEqual(['inside-sloane', 'inside-nora', 'inside-marsh', 'inside-maya', 'inside-iris', 'inside-julian', 'inside-none']);
   const one = c16(s0, 'inside-nora');
   expect(text(one)).toContain('Nell’s photograph in her handbag');
+  expect(text(one)).toContain('the only weather that minded its own business');
   expect(ids(one)).toEqual(['inside-sloane', 'inside-marsh', 'inside-maya', 'inside-iris', 'inside-julian', 'inside-done']);
   const two = c16(one, 'inside-sloane');
   expect([two.choices['act4.inside'], two.choices['act4.inside-done']]).toEqual(['nora,sloane', 'yes']);
@@ -124,15 +136,22 @@ it('puts the cards in order, and keeps one back', () => {
   expect(first.choices['act4.first']).toBe('verdict');
   expect(ids(first)).toEqual(has.filter((i) => i !== 'verdict').map((i) => 'held-' + i));
   const held = c16(first, 'held-cards');
-  expect([held.phase, held.choices['act4.held']]).toEqual(['dress', 'cards']);
+  expect([held.phase, held.choices['act4.held']]).toEqual(['table', 'cards']);
   expect(text(held)).toContain('like a second heartbeat');
+  expect(ids(held)).toEqual(['rehearse-mirror', 'rehearse-none']);
+  const mirror = c16(held, 'rehearse-mirror');
+  expect([mirror.phase, mirror.choices['act4.rehearse']]).toEqual(['dress', 'mirror']);
+  expect(text(mirror)).toContain('She was always the better barrister.');
+  const aloud = walk(start({ 'act3.ally.marsh': 'in' }), ['begin', 'case-set', 'aim-expose', 'inside-marsh', 'inside-done', 'outside-switch', 'first-verdict', 'held-cards']);
+  expect(ids(aloud)).toEqual(['rehearse-mirror', 'rehearse-aloud', 'rehearse-none']);
+  expect(text(c16(aloud, 'rehearse-aloud'))).toContain('Say that slower.');
   expect(items16(start(bare))).toEqual(['page']);
 });
 
 it('dresses her as armour, with a quiet chosen moment if she wants one', () => {
   const partner = { 'c4.mutual-interest': 'yes', 'c10.betrayed': undefined, 'act3.maya-choice': 'stay' };
   const dress = walk(start(partner), ['begin', 'case-set', 'aim-terms', 'inside-none', 'outside-switch', 'first-page']);
-  const wear = c16(dress, ids(dress)[0]);
+  const wear = c16(c16(dress, ids(dress)[0]), 'rehearse-none');
   expect(ids(wear)).toEqual(['wear-green', 'wear-black', 'wear-grey']);
   const black = c16(wear, 'wear-black');
   expect(text(black)).toContain('Black. How brave.');
@@ -145,21 +164,27 @@ it('dresses her as armour, with a quiet chosen moment if she wants one', () => {
   expect(text(c16(black, 'dress-maya'))).toContain('Go and take a building apart.');
   // A relationship spent in Chapter 15 is not at the mirror.
   const spent = walk(start({ ...partner, 'c15.cost': 'relationship', 'c15.cost-who': 'julian' }), ['begin', 'case-set', 'aim-terms', 'inside-none', 'outside-switch', 'first-page']);
-  expect(ids(c16(c16(spent, ids(spent)[0]), 'wear-green'))).not.toContain('dress-julian');
+  expect(ids(c16(c16(c16(spent, ids(spent)[0]), 'rehearse-none'), 'wear-green'))).not.toContain('dress-julian');
 });
 
 it('reacts to her exposure at the Vesper, and the doorman wishes her luck', () => {
   const to = (flags: Record<string, string | undefined>) => walk(start({ ...bare, ...flags }), ['begin', 'case-set', 'aim-terms', 'inside-none', 'outside-switch', 'first-page', 'held-none', 'wear-green', 'dress-alone']);
   const publicEyes = to({ 'c5.published': 'yes' });
   expect(text(publicEyes)).toContain('They have seen you coming.');
-  const quiet = c16(publicEyes, 'arrive-quiet');
+  expect(ids(publicEyes)).toEqual(['walk-bench', 'walk-rail', 'walk-on']);
+  const rail = c16(publicEyes, 'walk-rail');
+  expect([rail.phase, rail.choices['act4.walk']]).toEqual(['arrive', 'rail']);
+  expect(text(rail)).toContain('Adrian’s Axiom pass');
+  const quiet = walk(publicEyes, ['arrive-quiet']);
   expect([quiet.choices['act4.arrive'], quiet.choices['act4.seen']]).toEqual(['quiet', 'yes']);
   expect(text(quiet)).toContain('two men on the service stair');
   expect(text(quiet)).toContain('Good luck, Ms Vale.');
   const privately = to({ 'c5.published': undefined, 'act3.exposed': undefined, 'c15.cost': 'money' });
   expect(text(privately)).toContain('The embankment is empty.');
-  expect(c16(privately, 'arrive-front').choices['act4.seen']).toBe('no');
-  expect(text(c16(to({ 'c8.pryce': 'chain' }), 'arrive-car'))).toContain('“And mine.”');
+  expect(walk(privately, ['arrive-front']).choices['act4.seen']).toBe('no');
+  const car = walk(to({ 'c8.pryce': 'chain' }), ['arrive-car']);
+  expect(text(car)).toContain('“And mine.”');
+  expect(text(car)).toContain('kept pace with you along the embankment');
 });
 
 it('ends in the long room, with Celeste standing, even for the free-agent core alone', () => {
@@ -185,6 +210,7 @@ it('reaches the end from every option in every scene', () => {
     ['aim-out', 'inside-marsh', 'inside-done', 'outside-pryce', 'first-ashby', 'held-adrian', 'wear-black', 'dress-maya', 'arrive-car'],
     ['aim-nell', 'inside-iris', 'inside-maya', 'outside-switch', 'first-phone', 'held-nell', 'wear-green', 'dress-alone', 'arrive-front'],
     ['aim-terms', 'inside-julian', 'inside-done', 'first-adrian', 'held-ashby'],
+    ['inside-marsh', 'inside-done', 'rehearse-aloud', 'walk-bench'], ['rehearse-mirror', 'walk-rail'],
   ];
   for (const wants of every) {
     const end = drive(wants);

@@ -76,8 +76,23 @@ Celeste stands. *She stood up when I came in. She has never once stood up for me
   `tests/fixtures/rev19-chapter16-golden.json` (expose-front, terms-car, nell-quiet; capture with
   `EVE_CAPTURE_CH16=1 npx vitest run tests/tools/capture-chapter16-golden.test.ts`).
 
+## Deepening pass (2026-09-26)
+
+Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and the crew at greater length:
+
+- **A rehearsal** (`table`, after the held card) (`act4.rehearse`): **rehearse-mirror** (the woman in the glass takes
+  "priced in" out: "She was always the better barrister") · **rehearse-aloud** (if anyone is coming inside: to the first
+  of them, "Say that slower. You'll want to watch her face.") · **rehearse-none** (neutral).
+- **On the embankment** (`arrive`, before the way in) (`act4.walk`): **walk-bench** (one minute on the bench from the
+  first Thursday) · **walk-rail** (Adrian's Axiom pass dropped into the river: "Tonight I open one without it") ·
+  **walk-on** (neutral). Celeste's car now keeps pace along the embankment rather than waiting at the kerb.
+- The crew at greater length: Sloane, frightened of her "before I ever met you"; Nora on rain, "the only weather that
+  minded its own business"; Owen offering to "do the room" for her. More of the dawn (the second coffee, the street
+  waking).
+
 ## Size (honest)
 
-Pass 1: **~2.1k words on the golden paths** against the 7k budget. Every scene, choice and entry-contract read is
+Pass 1: ~2.1k words on the golden paths. After the deepening pass: **~2.2–2.4k on the golden (quiet) paths**, more
+engaged, against the 7k budget. Every scene, choice and entry-contract read is
 in; the prose is lean. A deepening pass would give each crew member a longer scene, the table a rehearsal, and the
 walk along the embankment more of the city.
