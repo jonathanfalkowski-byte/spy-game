@@ -12,7 +12,12 @@
  * wall carries Pryce, the rent, the HELD card, the photographs, Kessler and the lawyer, and not Ruth; the black phone
  * knows how the wall was kept; Maya saw her at the wake; Daniel remembers the tie; the first Thursday gathers
  * Castellane, the club and Sloane's warning; the dress is paid the way she left the bank; Kessler comes back at the end.
- * The refusal's cost is still only Maya's clearance. */
+ * The refusal's cost is still only Maya's clearance.
+ * Second deepening pass (2026-09-26): the black phone's first minute, before the answer (c10.phone = reply | courier |
+ * drawer: "It is my only hobby"; down four flights in her stockings after the courier, to a car whose window goes up,
+ * and "Do put some shoes on, darling"; or the drawer), and the mirror once the dress is chosen, before the evening
+ * (c10.mirror = turn | maya | no: what they will see on Thursday, seen first; a photograph to Maya, "WHO IS SHE"; or
+ * the mirror left facing the wall). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -1223,9 +1228,44 @@ const jobs: Record<Target10, Record<Answer, Job>> = {
   },
 };
 
+/** The black phone's first minute (second deepening pass), before she answers. */
+function phoneChoices(s: GameState): C10Choice[] {
+  const ph = (id: string, label: string, hint: string, body: Block[]) =>
+    offer10('phone-' + id, label, hint, 'order', (x) => {
+      set10(x, 'phone', id);
+      return body;
+    });
+  return [
+    ph('reply', 'Ask her how she knows Maya’s name', 'The first thing you have ever typed to her.', [
+      q('You · to C.', 'How do you know her name?'),
+      p('The answer comes before you have put the phone down, as if it had been written in advance and was only waiting for you to ask.'),
+      q('C.', 'I know everybody’s name, darling. It is my only hobby.'),
+      p('Then, a moment later:'),
+      q('C.', 'Yours I have known longest of all.'),
+      t('Which one? She wants me to ask. I am not going to ask.'),
+    ]),
+    ph('courier', 'Go after the courier', 'Down the stairs, now, the way you are.', [
+      p('You are out of the door before you have decided anything, down four flights in your stockings, two steps at a time, past the concierge with his phone still in his hand, out into the street and the cold.'),
+      p('The bicycle is already a red light turning the corner at the end of the road. You will never catch it. You stand on the wet pavement breathing hard, and then you see the car.'),
+      p(
+        c(s, 'c8.pryce')
+          ? 'A black car at the kerb opposite, engine running, lights off: Mr Pryce’s car. Its rear window is down an inch. As you look at it, it slides up, without hurry, and the car stays exactly where it is.'
+          : 'A black car at the kerb opposite, engine running, lights off. Its rear window is down an inch. As you look at it, it slides up, without hurry, and the car stays exactly where it is.',
+      ),
+      p('You go back in. The concierge does not look at your feet. By the time you reach your own door the phone in your hand is lit again.'),
+      q('C.', 'Do put some shoes on, darling. You’ll catch your death.'),
+      t('She was in the car. Or she was not, and somebody told her in the time it took me to climb four flights. I don’t know which is worse.'),
+    ]),
+    ph('drawer', 'Put it in the drawer', 'Look at it from across the room for a while.', [
+      p('You put the phone in the kitchen drawer with the takeaway menus and shut the drawer, and stand looking at the drawer. It lights through the gap, twice, a thin white line on the floor, and then stops.'),
+    ]),
+  ];
+}
+
 function orderChoices(s: GameState): C10Choice[] {
   const target = target10(s);
   const open = get10(s, 'job') as Answer | undefined;
+  if (!open && !get10(s, 'phone')) return phoneChoices(s);
   if (open) {
     const job = jobs[target][open];
     // The second moment, where the set piece has one; the answer was already settled by the first.
@@ -1596,6 +1636,40 @@ function greenChoices(s: GameState, next: string): C10Choice[] {
   ];
 }
 
+/** The mirror (second deepening pass): the dress on, before the evening. */
+function mirrorChoices(s: GameState, next: string): C10Choice[] {
+  const dress = get10(s, 'green') === 'black' ? 'the black' : 'the green';
+  const m = (id: string, label: string, hint: string, body: Block[]) =>
+    offer10('mirror-' + id, label, hint, next, (x) => {
+      set10(x, 'mirror', id);
+      return body;
+    });
+  return [
+    m('turn', 'Turn the mirror round', 'See what they will see on Thursday. See it first.', [
+      p(`You put ${dress} on, alone, with the lamp on, and turn the mirror back round from the wall for the first time since you built it, and lean it against the end of the bed.`),
+      p('The woman in it looks back at you for a long time. The bare shoulders. The long line of the back where the zip stops. The mouth, which is doing something you did not tell it to. You turn, and look over your shoulder at her, the way you would look at somebody across a room you meant to cross.'),
+      p('Responds well to attention, they will write about her. They will be right. You let yourself look, and like it, and do not apologise to anybody for liking it.'),
+      t('Before any of them sees her, I have. That part is mine. They can buy the rest of the evening. They can’t buy that.'),
+    ]),
+    ...(mayaBack(s)
+      ? [
+          m('maya', 'Send Maya a photograph', 'One picture. No explanation.', [
+            p(`You put ${dress} on and take one photograph in the dark window, with the city behind you, and send it to Maya with no words at all.`),
+            p('The answers arrive in a burst, the way Maya’s answers do, faster than anybody can type.'),
+            q('Maya · message', 'WHO IS SHE'),
+            q('Maya · message', 'where are you going'),
+            q('Maya · message', 'no. don’t tell me. I don’t want to know and I want to know everything.'),
+            q('Maya · message', 'wear the gold earrings. and don’t let anybody buy you a drink you didn’t choose.'),
+            t('Don’t let anybody buy you a drink you didn’t choose. She has no idea. She has no idea, and she is exactly right.'),
+          ]),
+        ]
+      : []),
+    m('no', 'Leave the mirror to the wall', 'Hang it up. Thursday can wait.', [
+      p(`You hang ${dress} on the outside of the wardrobe door, over the wall, and leave the mirror where it is, facing the other way. Thursday can look at you. You do not have to look at Thursday yet.`),
+    ]),
+  ];
+}
+
 function invitationChoices(s: GameState): C10Choice[] {
   const open = get10(s, 'evening-open');
   if (open) {
@@ -1652,7 +1726,8 @@ function invitationChoices(s: GameState): C10Choice[] {
         ];
       }),
     ];
-  if (!get10(s, 'green')) return greenChoices(s, partners.length ? 'invitation' : 'complete');
+  if (!get10(s, 'green')) return greenChoices(s, 'invitation');
+  if (!get10(s, 'mirror')) return mirrorChoices(s, partners.length ? 'invitation' : 'complete');
   const name: Record<Partner10, string> = { julian: 'Julian', theo: 'Theo', sebastian: 'Sebastian' };
   return [
     ...partners.map((partner) =>

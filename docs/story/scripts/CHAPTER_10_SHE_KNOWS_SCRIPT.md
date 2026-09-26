@@ -271,3 +271,26 @@ Maya's clearance.
 | The close | `c9.kessler = follow` | "Anna Kessler had one season… I intend to have a great deal more than a season." |
 
 Golden paths: Chapter 10 now ~4.9–5.1k words.
+
+## Second deepening pass (2026-09-26)
+
+Two moments every path passes through, each with a neutral pick for the goldens (`GATED_DEFAULTS`):
+
+- **The black phone's first minute** (`order`, after Celeste's two messages, before the answer) (`c10.phone`):
+  - **phone-reply**: "How do you know her name?" / "I know everybody's name, darling. It is my only hobby." / "Yours I
+    have known longest of all."
+  - **phone-courier**: down four flights in her stockings after the bicycle. A black car at the kerb (Mr Pryce's, if
+    he is known) closes its window. Then "Do put some shoes on, darling. You'll catch your death."
+  - **phone-drawer** (neutral).
+- **The mirror** (`invitation`, after the dress is chosen, before the evening or the close) (`c10.mirror`):
+  - **mirror-turn**: the mirror turned back from the wall for the first time. She sees what they will see on
+    Thursday, first, and likes it: "They can't buy that."
+  - **mirror-maya** (if Maya is back): one photograph, no words, and Maya's burst: "WHO IS SHE", "wear the gold
+    earrings. and don't let anybody buy you a drink you didn't choose."
+  - **mirror-no** (neutral).
+
+The capture tool's preferred path now matches the goldens again (door-stay, job-ignore / job-withhold / car-silent,
+green-black), so a recapture reproduces them byte for byte.
+
+After this pass: **~5.0–5.2k words on the golden (quiet) paths**, and ~250–350 more when played engaged, against
+the 7k budget.

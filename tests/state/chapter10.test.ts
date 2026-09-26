@@ -20,7 +20,18 @@ const c10 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c10, s);
+/** The second pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['phone-drawer', 'mirror-no'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c10(y, n);
+    }
+    return c10(y, id);
+  }, s);
 const complete9 = (name: string) => replay(golden9.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -36,7 +47,7 @@ const plain = {
 };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete9('records-name-thin'), { ...plain, ...flags });
 /** Through breakfast, the calls and the wall to the order. */
-const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build', 'wall-close']);
+const toOrder = (s: GameState) => walk(s, ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build', 'wall-close', 'phone-drawer']);
 /** An answer to the order, played through its moments (the first choice offered at each). */
 const answer = (order: GameState, id: string) => {
   let s = c10(order, id);
@@ -165,7 +176,7 @@ it.each(cases)('plays the %s order through every answer, each with its own cost'
     const next = c10(s, ids(s)[0]);
     expect(next.phase).toBe('invitation');
     expect(text(next)).toContain('The first Thursday. The Vesper Gallery, eight o’clock.');
-    const dressed = walk(next, ['invite-accept', 'green-black']);
+    const dressed = walk(next, ['invite-accept', 'green-black', 'mirror-no']);
     const done = dressed.phase === 'invitation' ? c10(dressed, 'close-end') : dressed;
     expect(done.phase).toBe('complete');
     expect(text(done)).toContain('That, at least, is something to push against.');
@@ -177,7 +188,7 @@ it('plays a real Chapter 10 on an untouched save, and the save authenticates', (
   s = c10(s, ids(s)[0]);
   s = walk(s, ['door-face', 'wall-build', 'wall-open', 'order-refuse', 'job-answer']);
   s = c10(s, ids(s)[0]);
-  s = walk(s, ['invite-wait', 'green-buy']);
+  s = walk(s, ['invite-wait', 'green-buy', 'mirror-no']);
   if (s.phase === 'invitation') s = c10(s, 'close-end');
   expect(`${s.scene}.${s.phase}`).toBe('chapter10.complete');
   expect(chapter10Choices(s)).toEqual([]);
@@ -198,7 +209,7 @@ it('lets her tell Maya as much as Maya can carry after a refusal', () => {
 
 it('offers a chosen evening only with a partner she did not betray, consent-gated, and it fades', () => {
   const theo = { 'c7.exit': 'theo' };
-  const countered = walk(toOrder(start(theo)), ['order-counter', 'job-name', 'bay-kiss', 'reply-silence', 'invite-accept', 'green-black']);
+  const countered = walk(toOrder(start(theo)), ['order-counter', 'job-name', 'bay-kiss', 'reply-silence', 'invite-accept', 'green-black', 'mirror-no']);
   expect(eveningPartners10(countered)).toEqual(['theo']);
   expect(ids(countered)).toEqual(['evening-theo', 'close-end']);
   const invited = c10(countered, 'evening-theo');
@@ -215,7 +226,7 @@ it('offers a chosen evening only with a partner she did not betray, consent-gate
   // Betrayed this chapter: no evening with him.
   const complied = walk(toOrder(start(theo)), ['order-comply', 'job-hide', 'seen-no', 'wall-move']);
   expect(eveningPartners10(complied)).toEqual([]);
-  expect(walk(complied, ['invite-accept', 'green-black']).phase).toBe('complete');
+  expect(walk(complied, ['invite-accept', 'green-black', 'mirror-no']).phase).toBe('complete');
 });
 
 it('keeps the leverage board current with the answer', () => {
@@ -384,7 +395,7 @@ it('plays Maya’s refusal scene at the counter, and the aftermath of every answ
 
   const countered = answer(toOrder(start(close)), 'order-counter');
   expect(text(countered)).toContain('like a lover you do not trust');
-  const done = walk(c10(countered, 'reply-silence'), ['invite-accept', 'green-black']);
+  const done = walk(c10(countered, 'reply-silence'), ['invite-accept', 'green-black', 'mirror-no']);
   expect(text(done)).toContain('They are all so like you.');
   expect(text(done)).toContain('You could live in an inch.');
 });
@@ -428,9 +439,29 @@ it('lets Maya, Daniel, the first Thursday, the bank and the last one come back',
   const invited = c10(refused, 'maya-part');
   expect(text(invited)).toContain('Her whole day, and she has put me at the end of it.');
   expect(text(invited)).toContain('Do it before the first Thursday, Sloane said');
-  const dressed = walk(invited, ['invite-accept', 'green-buy']);
+  const dressed = walk(invited, ['invite-accept', 'green-buy', 'mirror-no']);
   expect(text(dressed)).toContain('somebody is watching you buy a dress');
-  const lastOne = walk(c10(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'), ids(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'))[0]), ['invite-accept', 'green-black']);
+  const lastOne = walk(c10(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'), ids(answer(toOrder(start({ 'c9.kessler': 'follow' })), 'order-refuse'))[0]), ['invite-accept', 'green-black', 'mirror-no']);
   const done = lastOne.phase === 'invitation' ? c10(lastOne, 'close-end') : lastOne;
   expect(text(done)).toContain('Anna Kessler had one season.');
+});
+
+it('gives the black phone a first minute, and the dress a mirror', () => {
+  const order = walk(start(), ['begin', 'breakfast-go', 'menu-let', 'open-silent', 'ask-happened', 'dream-true', 'adrian-composed', 'call-sloane', 'door-stay', 'wall-build', 'wall-close']);
+  expect(order.phase).toBe('order');
+  expect(ids(order)).toEqual(['phone-reply', 'phone-courier', 'phone-drawer']);
+  const asked = c10(order, 'phone-reply');
+  expect([asked.phase, asked.choices['c10.phone']]).toEqual(['order', 'reply']);
+  expect(text(asked)).toContain('It is my only hobby.');
+  expect(ids(asked)[0]).toMatch(/^order-/);
+  const ran = c10(withFlags(order, { 'c8.pryce': 'chain' }), 'phone-courier');
+  expect(text(ran)).toContain('Mr Pryce’s car');
+  expect(text(ran)).toContain('Do put some shoes on, darling.');
+  const dressed = answer(c10(order, 'phone-drawer'), 'order-refuse');
+  const invited = walk(c10(dressed, ids(dressed)[0]), ['invite-accept', 'green-black']);
+  expect(ids(invited)).toContain('mirror-turn');
+  const turned = c10(invited, 'mirror-turn');
+  expect(turned.choices['c10.mirror']).toBe('turn');
+  expect(text(turned)).toContain('You put the black on, alone, with the lamp on');
+  expect(text(turned)).toContain('They can’t buy that.');
 });

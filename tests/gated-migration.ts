@@ -135,6 +135,9 @@ export const GATED_DEFAULTS = [
   'chapter10.doorman-none',
   // The remaining scenes as set pieces: close the wardrobe door on the wall.
   'chapter10.wall-close',
+  // Chapter 10 second pass: the drawer; the mirror left to the wall.
+  'chapter10.phone-drawer',
+  'chapter10.mirror-no',
   // Chapter 11 deepening: say nothing to Celeste; behind the curtain.
   'chapter11.look-silent',
   'chapter11.hide-curtain',
