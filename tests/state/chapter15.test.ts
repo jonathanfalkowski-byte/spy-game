@@ -19,7 +19,18 @@ const c15 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c15, s);
+/** The deepening pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['table-quiet', 'stairs-still'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c15(y, n);
+    }
+    return c15(y, id);
+  }, s);
 const complete14 = (name: string) => replay(golden14.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -31,8 +42,8 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 const roads = { countered: 'counter-hold', complied: 'comply-hear', refused: 'refuse-shut' } as const;
 const bare = { 'act3.ally.iris': undefined, 'c8.pryce': undefined, 'act3.maya-choice': 'witness' };
 const start = (road: keyof typeof roads, flags: Record<string, string | undefined> = {}) => withFlags(complete14(roads[road]), { ...bare, ...flags });
-const toArchive = (s: GameState) => walk(s, ['begin', 'crew-alone', 'way-window', 'snag-talk']);
-const prefer = ['crew-alone', 'crew-done', 'way-window', 'snag-talk', 'took-nell', 'cost-money', 'phone-keep', 'night-alone'];
+const toArchive = (s: GameState) => walk(s, ['begin', 'crew-alone', 'way-window', 'snag-talk', 'stairs-still']);
+const prefer = ['crew-alone', 'crew-done', 'table-quiet', 'way-window', 'snag-talk', 'stairs-still', 'took-nell', 'cost-money', 'phone-keep', 'night-alone'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c15(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -75,8 +86,16 @@ it('frames the crew by the road in, and asks one or two people', () => {
 
 it('gates the way in by the crew: the window alone, the cover only with someone outside', () => {
   const alone = walk(start('countered'), ['begin', 'crew-alone']);
-  expect(ids(alone)).toEqual(['way-window']);
-  const crew = walk(start('countered', { 'act3.ally.iris': 'in', 'c8.pryce': 'chain' }), ['begin', 'crew-iris', 'crew-pryce']);
+  // The crew at the table first.
+  expect(ids(alone)).toEqual(['table-toast', 'table-rules', 'table-quiet']);
+  expect(text(c15(alone, 'table-toast'))).toContain('the laugh sounds like somebody you would like to know');
+  expect(ids(c15(alone, 'table-quiet'))).toEqual(['way-window']);
+  const table = walk(start('countered', { 'act3.ally.iris': 'in', 'c8.pryce': 'chain' }), ['begin', 'crew-iris', 'crew-pryce']);
+  const toast = c15(table, 'table-toast');
+  expect([toast.phase, toast.choices['c15.table']]).toEqual(['plan', 'toast']);
+  expect(text(toast)).toContain('To the service stair.');
+  expect(text(c15(table, 'table-rules'))).toContain('the most loyal thing anyone has ever done for you');
+  const crew = c15(table, 'table-quiet');
   expect(ids(crew)).toEqual(['way-iris', 'way-pryce', 'way-window', 'way-invited']);
   const invited = c15(crew, 'way-invited');
   expect(text(invited)).toContain('How very grown-up of you. Midnight, then.');
@@ -100,6 +119,12 @@ it('runs the heist with one snag, and every snag reaches the archive', () => {
 });
 
 it('takes Maya’s file and page seven always, and one thing more', () => {
+  const beforeStairs = walk(start('countered'), ['begin', 'crew-alone', 'way-window', 'snag-talk']);
+  expect(text(beforeStairs)).toContain('And then, below, on the stairs: a sound.');
+  expect(ids(beforeStairs)).toEqual(['stairs-still', 'stairs-face', 'stairs-lamp']);
+  const faced = c15(beforeStairs, 'stairs-face');
+  expect([faced.phase, faced.choices['c15.stairs']]).toEqual(['archive', 'face']);
+  expect(text(faced)).toContain('I was never up here');
   const archive = toArchive(start('countered'));
   expect(text(archive)).toContain('I keep everything, darling. She does.');
   expect(text(archive)).toContain('tear your own page out of The Autumn Collection');

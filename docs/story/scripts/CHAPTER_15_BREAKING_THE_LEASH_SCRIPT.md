@@ -81,9 +81,24 @@ Every card moved to her side, one by one; one left on Celeste's: THE BOARD MEETS
 - Tests: `tests/state/chapter15.test.ts`; goldens `tests/fixtures/rev19-chapter15-golden.json` (countered-iris,
   complied-sloane, refused-alone; capture with `EVE_CAPTURE_CH15=1 npx vitest run tests/tools/capture-chapter15-golden.test.ts`).
 
+## Deepening pass (2026-09-26)
+
+Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and more of the heist:
+
+- **The crew at the table** (`plan`, before the way in) (`c15.table`): **table-toast** (a terrible bottle from the back
+  of the cupboard, a tumbler, a mug, an egg cup; a toast from each of the crew; alone, a toast to the wall) ·
+  **table-rules** ("If anyone is caught, the others walk") · **table-quiet** (neutral).
+- **A sound on the stairs** (`archive`, after Maya's file and page seven, before the one thing more) (`c15.stairs`):
+  **stairs-still** (neutral; lamp off, counting) · **stairs-face** (the young man with the laptop, the archive's
+  cataloguer, working late: "I was never up here"; in Chapter 17 his nod at the end of the board is now explicitly
+  him) · **stairs-lamp** (the lamp swung at the door).
+- More prose: the sleepless Wednesday before the heist; the wall, before the black phone, with more on her side of
+  it than Celeste's for the first time.
+
 ## Size (honest)
 
-Pass 1: **~2.3k words on the golden paths** against the 7k budget. The shared spine worked (the three roads read
+Pass 1: ~2.3k words on the golden paths. After the deepening pass: **~2.5–2.6k on the golden (quiet) paths**, more
+engaged, against the 7k budget. The shared spine worked (the three roads read
 almost the same length, and most of the heist on each), but each scene is still lean. A deepening pass should give
 the heist a second beat inside the archive (a sound on the stairs, the safe), a scene for the crew at the table, and
 Thursday morning before the board.

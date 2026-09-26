@@ -448,7 +448,11 @@ function voteBlocks(s: GameState): Block[] {
             p('Celeste keeps her seat. She knows it will not last; you can see her knowing it. But tonight, in this room, with what you brought, they can still pretend.'),
             t('Thin. I knew it would be thin. I walked in alone with almost nothing, and I walk out with everything I walked in with, and the switch, and the street, and the slow road. They have not beaten me. They have only not lost yet.'),
           ]),
-    p('Then they file out, the six of them, past the empty frames, not looking at each other. The young man with the laptop is the last to go, and at the door he stops, and looks back at you, and nods, once, as if to somebody on the same side.'),
+    p(
+      c(s, 'c15.stairs') === 'face'
+        ? 'Then they file out, the six of them, past the empty frames, not looking at each other. The young man with the laptop is the last to go, and at the door he stops, and looks back at you, and nods, once: the man on the archive stairs at three in the morning, who was never up there.'
+        : 'Then they file out, the six of them, past the empty frames, not looking at each other. The young man with the laptop is the last to go, and at the door he stops, and looks back at you, and nods, once, as if to somebody on the same side.',
+    ),
     p('And then there are two of you in the long room, under twenty gilt frames of nothing.'),
     p('The long room is very quiet. Somebody has left the lamp on over the lectern. The rain has stopped against the black glass, and you can hear the river, which you have never once heard from in here, going by outside at the foot of the embankment.'),
     p('Celeste comes down the length of the table. She stops an arm’s length away. She looks at you for a long time, the way she looked at you across a breakfast table eight months ago: appraising the fit. And then, for the first time, not.'),

@@ -9,7 +9,10 @@
  * are broken one by one (Maya cleared; Adrian's name taken back or defused with Benton; a dead man's switch); she
  * chooses a cost Act IV remembers (c15.cost = ally | visibility | money | relationship); and the black phone ends with
  * her first message on it, "No more orders". No order, no coercion: it ends by breaking it. The optional chosen
- * evening is heat 3, consent-gated, and fades. */
+ * evening is heat 3, consent-gated, and fades.
+ * Deepening pass (2026-09-26): the crew at the table before the way in (c15.table = toast | rules | quiet); a sound on
+ * the stairs in the archive, before the one thing more (c15.stairs = still | face | lamp: the young man with the laptop,
+ * working late, who will nod to her at the end of the board); and more of the heist and the week after. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -231,7 +234,44 @@ function planBlocks(s: GameState): Block[] {
   ];
 }
 
+/** The crew at the table (deepening pass), before the way in. */
+function tableChoices(s: GameState): C15Choice[] {
+  const crew = ['iris', 'sloane', 'maya', 'pryce'].filter((w) => onCrew(s, w));
+  const t15 = (id: string, label: string, hint: string, body: Block[]) =>
+    offer15('table-' + id, label, hint, 'plan', (x) => {
+      set15(x, 'table', id);
+      return body;
+    });
+  return [
+    t15(
+      'toast',
+      crew.length ? 'Raise a glass' : 'Raise a glass to the wall',
+      crew.length ? 'To a crime. The first one any of you has ever planned.' : 'To the cards. They have kept you company.',
+      crew.length
+        ? [
+            p('You find a bottle nobody remembers buying at the back of the cupboard and pour it into whatever glasses there are: a tumbler, a mug, an egg cup.'),
+            ...(onCrew(s, 'iris') ? [q('Iris', 'To the service stair. Every great house has one, and nobody ever looks at it.')] : []),
+            ...(onCrew(s, 'pryce') ? [q('Pryce', 'To the front door. I’ve held it open for other people for eleven years.')] : []),
+            ...(onCrew(s, 'maya') ? [q('Maya', 'To audits. May every building get the one it deserves.')] : []),
+            ...(onCrew(s, 'sloane') ? [q('Sloane', 'To the officer of record. May she finally be on the right one.')] : []),
+            p('You drink. It is terrible. Everybody laughs, and for a moment round the table it is not a plan at all but a party, the first one you have ever given that nobody was placed at.'),
+          ]
+        : [
+            p('You pour yourself a glass of something from the back of the cupboard and raise it to the wall, to every card on it, to every name, and drink. It is terrible. You laugh out loud in the empty kitchen, and the laugh sounds like somebody you would like to know.'),
+          ],
+    ),
+    t15('rules', 'Lay down the rules', 'If anyone is caught, the others walk. No heroics.', [
+      q('You', crew.length ? 'Rules. If anyone is caught, the others walk. Nobody comes back for anybody. Nobody says anybody else’s name, ever. If it goes wrong, it went wrong for me alone.' : 'Rules. If I am caught, I say nothing. I walk out, or I am carried out, and either way I don’t give her one name. Not one.'),
+      ...(crew.length ? [p('Nobody argues. You watch each of them agree to leave you behind, and understand it is the most loyal thing anyone has ever done for you.')] : []),
+    ]),
+    t15('quiet', 'Say nothing, and go over it once more', 'The plan, one last time, in silence.', [
+      p('Nobody says anything clever. You go over it once more, all of it, in silence, the wall and the hours and the doors, until everyone knows it the way they know their own stairs in the dark.'),
+    ]),
+  ];
+}
+
 function planChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'table')) return tableChoices(s);
   const way = (id: string, label: string, hint: string, body: Block[]) =>
     offer15('way-' + id, label, hint, 'vesper', (x) => {
       set15(x, 'way', id);
@@ -276,6 +316,7 @@ function vesperBlocks(s: GameState): Block[] {
   const way = get15(s, 'way');
   const crew = ['iris', 'sloane', 'maya', 'pryce'].filter((w) => onCrew(s, w));
   return [
+    p('You do not sleep on Wednesday. You lie on top of the covers in the dark with your clothes laid out on the chair like a second person, and listen to the building settle, and at one you get up and make tea you do not drink, and at half past one you start to dress.'),
     p('You dress for it the way you would for any job: dark, close, nothing that catches the light. The heels you can run in, which have been down a fire escape and a service stair and have earned their keep. Your hair up and pinned hard. In the mirror a woman who looks exactly like what she is about to be: a thief, in her own showroom.'),
     p(
       way === 'invited'
@@ -393,10 +434,38 @@ function archiveBlocks(s: GameState): Block[] {
     p('And at the very back of page seven’s drawer, in its own folder, the people round the person: MAYA REYES. The forged emails, in drafts, with the tracked changes still on: somebody practising Maya’s phrases, Maya’s sign-off, getting her voice right over three weeks. The name of the man who wrote them is on every draft, because Meridian keeps everything, even that.'),
     p('You take Maya’s folder. You take page seven: you go out to the lectern in the dark and tear your own page out of The Autumn Collection, slowly, along the spine, the way you would take a splinter out of a child’s hand, and fold it into your pocket.'),
     t('There is time for one thing more. Only one. The clock in my head says so, and I have learned to believe it.'),
+    p('And then, below, on the stairs: a sound.'),
+  ];
+}
+
+/** A sound on the stairs (deepening pass), before the one thing more. */
+function stairsChoices(): C15Choice[] {
+  const st = (id: string, label: string, hint: string, body: Block[]) =>
+    offer15('stairs-' + id, label, hint, 'archive', (x) => {
+      set15(x, 'stairs', id);
+      return body;
+    });
+  return [
+    st('still', 'Lamp off. Don’t move.', 'Stand in the dark between the cabinets and wait.', [
+      p('You turn off the lamp and stand in the dark between two cabinets with your back against cold steel and your hand over your own mouth.'),
+      p('Footsteps on the stairs. A torch beam under the panelling, a line of light across the floor. It stops. It stays. You count, the way Adrian counted floors in a lift: eleven, twelve, thirteen. Then it moves on, and the footsteps go back down, and you breathe out for what feels like the first time in a minute.'),
+    ]),
+    st('face', 'Face whoever it is', 'Lamp on. Let them see you.', [
+      p('You leave the lamp on and turn round and wait, and the panelling opens, and it is not a guard. It is a young man with very good hair and a laptop under his arm, in shirtsleeves at three in the morning, who has plainly come up to fetch something and plainly never expected to find anybody here.'),
+      p('He looks at you. He looks at the open drawers, and the torn catalogue, and the folder under your arm. You watch him recognise your face from page seven.'),
+      q('The young man', 'I catalogue them. That’s my job. Four years. I’ve never once met one.'),
+      p('He stands there a long time. Then he takes one step back, out of the doorway, and says, very quietly, “I was never up here,” and goes back down the stairs, and you hear him not running.'),
+      t('Somebody in this building has been reading the pages. I wonder what it has cost him.'),
+    ]),
+    st('lamp', 'Turn the lamp on the door', 'Blind them, and be gone behind it.', [
+      p('You swing the desk lamp round on its arm so that it points straight at the panelling, and when it opens, whoever it is walks into a wall of white light and throws up an arm, and says “Jesus,” and you are already past them, flat against the wall of the stairwell in the dark, and they never see anything but the lamp.'),
+      p('By the time they have found the switch, you are back inside, and they have decided it was the timer, and gone.'),
+    ]),
   ];
 }
 
 function archiveChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'stairs')) return stairsChoices();
   const took = (id: string, label: string, hint: string, body: Block[], after: (x: GameState) => void) =>
     offer15('took-' + id, label, hint, 'leash', (x) => {
       set15(x, 'took', id);
@@ -562,6 +631,7 @@ function leashChoices(s: GameState): C15Choice[] {
 function phoneBlocks(): Block[] {
   return [
     p('Wednesday night. The eve of the board.'),
+    p('A week of lists, ticked. The flat is very quiet. The wall has more on your side of it than hers, for the first time since you pinned the first card up. You stand in front of it for a long time with your arms folded, the way Adrian used to stand in front of a finished filing, not reading it, only looking at the shape of it.'),
     p('The black phone on the kitchen table, with its one contact, where it has sat every night since the breakfast, lighting when it chose and never once when you did. You pick it up. For the first time since it arrived, you write the first message.'),
     q('You · to C.', 'No more orders.'),
     p('Nothing, for a long time. The kitchen clock. The rain. A bus going by, lit and empty. Then three dots, and nothing, and three dots again.'),

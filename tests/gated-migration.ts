@@ -164,6 +164,9 @@ export const GATED_DEFAULTS = [
   // Chapter 16 deepening: don't rehearse; walk on.
   'chapter16.rehearse-none',
   'chapter16.walk-on',
+  // Chapter 15 deepening: go over it once more; lamp off, don't move.
+  'chapter15.table-quiet',
+  'chapter15.stairs-still',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
