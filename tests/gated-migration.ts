@@ -167,6 +167,8 @@ export const GATED_DEFAULTS = [
   // Chapter 15 deepening: go over it once more; lamp off, don't move.
   'chapter15.table-quiet',
   'chapter15.stairs-still',
+  // Chapter 14 second pass: stand at the wall.
+  'chapter14.night-wall',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

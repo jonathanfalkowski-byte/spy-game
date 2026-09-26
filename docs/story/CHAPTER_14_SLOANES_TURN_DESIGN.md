@@ -8,7 +8,7 @@ handed a product her vendor had already scored uncontrollable; on the own-power 
 [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md) (thrilling, erotic, fun).
 Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_14_SLOANES_TURN_SCRIPT.md](scripts/CHAPTER_14_SLOANES_TURN_SCRIPT.md), code: `src/content/chapter14.ts`.
-~2.0–2.3k words on the golden paths at pass 1; deepened 2026-09-25 to ~2.6–2.8k. Gated like Chapters 6–13 (`VITE_EVE_CHAPTER14`, content revision
+~2.0–2.3k words on the golden paths at pass 1; deepened 2026-09-25 to ~2.6–2.8k, and again 2026-09-26 to ~2.7–3.0k (the hour before midnight). Gated like Chapters 6–13 (`VITE_EVE_CHAPTER14`, content revision
 ≥ 19), entered from an own-power `chapter13.complete`.
 
 ---

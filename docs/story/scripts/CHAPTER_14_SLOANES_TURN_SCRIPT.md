@@ -110,9 +110,24 @@ Three moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and 
   thing?" in the taxi; Celeste and Sloane at the lectern ("That's why it was never in my desk"); the SLOANE card
   answered after the handover; counting what she has in the hotel; the arithmetic of the month.
 
+## Second deepening pass (2026-09-26)
+
+The shared scene every path passes through: **the hour before midnight** (`answer`, before the order choices; Saturday
+now opens at eleven, "I gave myself until midnight") (`c14.night`), each ending "At midnight you sit down at the
+kitchen table":
+
+- **night-walk**: down to the river. If Pryce is known, he is on the bench with a flask ("I thought I'd do it from
+  somewhere you could see me, tonight") and tells her how the landing fire escape opens (lift the bar, then push),
+  which sets up Sunday's escape. Otherwise, a fox on the embankment ("Nobody's business").
+- **night-sloane** (only if Sloane is in the flat): she was never asleep. The fourth of March in full: her objection
+  sent at a quarter to five, the reply at nine, "Noted. Priced in. Proceed.", kept on her fridge for a year.
+- **night-wall** (neutral): the wall, the way Adrian looked at a finished filing; SLOANE with a question mark.
+
+Also: the black phone lighting on Saturday morning, at more length.
+
 ## Size (honest)
 
-Pass 1: ~2.0–2.3k words on the golden paths. After the deepening pass: **~2.6–2.8k on the golden (quiet) paths**,
-more when the new moments are played engaged, against the 7k budget. The branch structure keeps any one path at
-roughly a third of what is written; the next lift would be a shared scene all paths pass through (a Saturday
-night set piece before the answer).
+Pass 1: ~2.0–2.3k words on the golden paths. After the first deepening pass, ~2.6–2.8k. After the second:
+**~2.7–3.0k on the golden (quiet) paths**, and ~150–250 more when the midnight hour is played engaged (the river
+with Pryce, or Sloane), against the 7k budget. The branch structure keeps any one path at about a third of what is
+written. The quiet pick is short by design, so most of the gain shows up only on engaged paths.

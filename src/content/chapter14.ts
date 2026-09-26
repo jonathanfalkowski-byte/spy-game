@@ -12,7 +12,10 @@
  * Deepening pass (2026-09-25): one question to Sloane before the door choice (c14.ask = why | adrian | nell | none:
  * "the trap is the lever"; "I didn't ask"); a moment with Maya after what she is told (c14.mayamove = dinner | wall |
  * leave); on the comply path the taxi (copy | clean) is split from the stairs (c14.stairs = sorry | silent) before the
- * reading room; and more of Saturday, midnight, Sunday and the nights after. */
+ * reading room; and more of Saturday, midnight, Sunday and the nights after.
+ * Second deepening pass (2026-09-26): the hour before midnight on the Saturday, which every path passes through
+ * (c14.night = walk | sloane | wall: the river and Mr Pryce on the bench, or a fox; Sloane awake on the sofa and the
+ * fourth of March; or the wall), and the Saturday and Sunday openings at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -248,7 +251,7 @@ function orderBlocks(s: GameState): Block[] {
         ? 'Saturday comes up grey. Sloane is asleep on the sofa under the blanket with one arm over her eyes, and the kettle is too loud, and you stand in the kitchen with the black phone in your hand before it has even lit, because you know it is going to.'
         : 'Saturday comes up grey. You have not slept. You stand in the kitchen with the black phone in your hand before it has even lit, because you know it is going to.',
     ),
-    p('It lights.'),
+    p('It lights, the way it has lit every morning that mattered since the breakfast: a small square of white on the table, patient, like a dog that has learned exactly when you wake.'),
     ...(sloaneHere(s)
       ? [
           p('Sloane is awake before you have finished reading, folding the blanket into a perfect square, and she comes and stands at your shoulder with her coffee and reads the screen without asking, because she is Sloane, and some things do not change in a night.'),
@@ -432,18 +435,62 @@ function answerBlocks(s: GameState): Block[] {
   return [
     p(
       sloaneHere(s)
-        ? 'Saturday, midnight. Sloane is asleep on the sofa again, properly this time, on her side, with her shoes off, like somebody who has decided to trust the room. The signed verdict is on the kitchen table under the fruit bowl.'
+        ? 'Saturday, eleven at night. Sloane is asleep on the sofa again, properly this time, on her side, with her shoes off, like somebody who has decided to trust the room. The signed verdict is on the kitchen table under the fruit bowl.'
         : get14(s, 'file') === 'yes'
-          ? 'Saturday, midnight. The signed verdict is on the kitchen table under the fruit bowl.'
-          : 'Saturday, midnight. The kitchen table is bare. Whatever Sloane carried, she carried away with her.',
+          ? 'Saturday, eleven at night. The signed verdict is on the kitchen table under the fruit bowl.'
+          : 'Saturday, eleven at night. The kitchen table is bare. Whatever Sloane carried, she carried away with her.',
     ),
     p('The black phone, with its one contact. The wall, with all of them. Maya’s card, if she wrote on it, with KNOWS in her small capitals. Nell’s. 1109. The newest card at the top, still with nothing on it.'),
     p('You make tea you do not drink. You stand at the window. In the flat across the gap the light is on, and for once you are glad of it: somebody else awake in the world, even if they are paid to be.'),
     t('She wants me to hand her the one person in London who can hurt her, and the one piece of paper that proves why. And if I don’t, she spends Adrian.'),
+    t('I gave myself until midnight. An hour. What do I do with the last hour before I decide who I am?'),
+  ];
+}
+
+const atMidnight = p('At midnight you sit down at the kitchen table, and pick up the black phone, and the screen lights your face from below.');
+
+/** The hour before midnight (second deepening pass): the river, Sloane, or the wall. */
+function nightChoices(s: GameState): C14Choice[] {
+  const n = (id: string, label: string, hint: string, body: Block[]) =>
+    offer14('night-' + id, label, hint, 'answer', (x) => {
+      set14(x, 'night', id);
+      return [...body, atMidnight];
+    });
+  return [
+    n('walk', 'Walk down to the river', 'An hour of cold air. Nobody’s room.', [
+      p('You put your coat on over your jumper and go down the four flights and out, and walk to the river, and stand at the rail in the dark with the water going by black and fast and full of the city’s lights, shaking.'),
+      ...(pryceKnown(s)
+        ? [
+            p('On the bench behind you, when you turn round, Mr Pryce, in a raincoat, with a flask. He does not pretend it is an accident.'),
+            q('Pryce', 'I’m meant to watch you. I thought I’d do it from somewhere you could see me, tonight.'),
+            p('He pours tea from the flask into its lid and holds it out, and you take it, and sit down beside him, and neither of you says anything for a while.'),
+            q('Pryce', 'Whatever you tell her. Sunday. If you need a way out of that building of yours in a hurry, the fire escape on the landing opens if you lift the bar first and then push. Nobody knows that but me and the man who painted it.'),
+            t('The one who drives. Telling me which way the door opens.'),
+          ]
+        : [
+            p('A fox comes along the embankment in no hurry, looks at you, decides you are nobody’s business, and goes on its way. You watch it all the way to the bridge. It does not look back once.'),
+            t('Nobody’s business. That is the whole of what I want. It turns out to be the hardest thing in the world to be.'),
+          ]),
+    ]),
+    ...(sloaneHere(s)
+      ? [
+          n('sloane', 'Wake Sloane', 'She isn’t asleep. She hasn’t been all evening.', [
+            p('You sit on the arm of the sofa. Sloane opens her eyes at once, the way people do who have been lying with them shut for an hour, waiting.'),
+            q('You', 'Tell me about the fourth of March.'),
+            p('She sits up, and pulls the blanket round her shoulders, and tells you: a Monday, a grey office, the file on her desk with ORACLE’s numbers clipped to the front, and her objection typed in forty minutes and sent at a quarter to five, so that it would be the last thing on somebody’s desk that day. The reply, at nine the next morning: Noted. Priced in. Proceed.'),
+            q('Sloane', 'I kept the reply. I have kept it on my fridge for a year. My cleaner thinks it’s a shopping list.'),
+            t('The two of us, awake at the same hour for the same reason. I did not expect that either.'),
+          ]),
+        ]
+      : []),
+    n('wall', 'Stand at the wall', 'Look at all of it, one more time.', [
+      p('You stand at the wall with your arms folded and look at it, all of it, the way Adrian used to stand in front of a finished filing: not reading, only looking at the shape of it. Celeste’s side, heavier. Yours, filling. And in the middle, a card that says SLOANE, with a question mark under it that you have not answered yet.'),
+    ]),
   ];
 }
 
 function answerChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'night')) return nightChoices(s);
   const say = (id: 'comply' | 'refuse' | 'counter', label: string, hint: string, body: Block[], answer: string) =>
     offer14('order-' + id, label, hint, 'sunday', (x) => {
       set14(x, 'answer', answer);

@@ -40,8 +40,8 @@ const bare = {
   'own.crossover': undefined,
 };
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete13('comply-alone'), { ...bare, ...flags });
-const toAnswer = (s: GameState, sloane = 'sloane-hear', said = 'said-enough') => walk(s, ['begin', 'ask-none', sloane, 'tell-now', said, 'maya-leave']);
-const prefer = ['ask-none', 'sloane-hear', 'tell-now', 'said-enough', 'maya-leave', 'comply-clean', 'stairs-silent', 'escape-fire', 'after-alone'];
+const toAnswer = (s: GameState, sloane = 'sloane-hear', said = 'said-enough') => walk(s, ['begin', 'ask-none', sloane, 'tell-now', said, 'maya-leave', 'night-wall']);
+const prefer = ['ask-none', 'sloane-hear', 'tell-now', 'said-enough', 'maya-leave', 'night-wall', 'comply-clean', 'stairs-silent', 'escape-fire', 'after-alone'];
 const finish = (s: GameState) => {
   let x = s;
   for (let i = 0; i < 20 && ids(x).length; i++) x = c14(x, prefer.find((p) => ids(x).includes(p)) ?? ids(x)[0]);
@@ -119,6 +119,22 @@ it('tells Maya, and lets her choose for herself', () => {
   const wall = c14(all, 'maya-wall');
   expect([wall.phase, wall.choices['c14.mayamove']]).toEqual(['answer', 'wall']);
   expect(text(wall)).toContain('There. Now it’s accurate.');
+});
+
+it('gives the hour before midnight: the river, Sloane awake, or the wall', () => {
+  const hour = (s: GameState, sloane = 'sloane-hear') => walk(s, ['begin', 'ask-none', sloane, 'tell-now', 'said-enough', 'maya-leave']);
+  const withSloane = hour(start());
+  expect(withSloane.phase).toBe('answer');
+  expect(text(withSloane)).toContain('I gave myself until midnight.');
+  expect(ids(withSloane)).toEqual(['night-walk', 'night-sloane', 'night-wall']);
+  expect(ids(hour(start(), 'sloane-shut'))).toEqual(['night-walk', 'night-wall']);
+  const woke = c14(withSloane, 'night-sloane');
+  expect([woke.phase, woke.choices['c14.night']]).toEqual(['answer', 'sloane']);
+  expect(text(woke)).toContain('Noted. Priced in. Proceed.');
+  expect(text(woke)).toContain('At midnight you sit down at the kitchen table');
+  expect(ids(woke)).toEqual(['order-comply', 'order-refuse']);
+  expect(text(c14(hour(start({ 'c8.pryce': 'chain' })), 'night-walk'))).toContain('lift the bar first and then push');
+  expect(text(c14(hour(start({ 'c8.pryce': undefined })), 'night-walk'))).toContain('A fox comes along the embankment');
 });
 
 it('offers counterplay only with the verdict and one more thing', () => {
@@ -206,7 +222,7 @@ it('reaches the end from every option in every scene', () => {
   };
   const every = [
     ['ask-why'], ['ask-adrian'], ['ask-nell'], ['maya-dinner'], ['maya-wall'], ['order-comply', 'comply-copy', 'stairs-sorry'],
-    ['sloane-hold'], ['sloane-shut', 'order-counter', 'lay-case'], ['sloane-take', 'order-counter', 'lay-nora'],
+    ['night-walk'], ['night-sloane'], ['sloane-hold'], ['sloane-shut', 'order-counter', 'lay-case'], ['sloane-take', 'order-counter', 'lay-nora'],
     ['tell-later', 'said-all'], ['said-go'], ['order-comply', 'comply-copy'], ['order-refuse', 'escape-front', 'evening-marsh', 'evening-leave'],
     ['order-counter', 'lay-card'], ['order-counter', 'lay-broadcast'], ['order-counter', 'lay-ashby', 'evening-julian', 'evening-julian-no-sex', 'evening-stay'],
   ];
