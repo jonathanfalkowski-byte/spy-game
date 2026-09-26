@@ -247,6 +247,14 @@ const byNode: Record<string, Key> = {
   'chapter15.leash': 'officeDusk',
   'chapter15.phone': 'apartmentNight',
   'chapter15.complete': 'apartmentNight',
+  // Chapter 16 (stand-ins until EVE Art's frames: cards on a floor at dawn, a clasp in a mirror, the embankment, the board table).
+  'chapter16.dawn': 'apartmentNight',
+  'chapter16.aim': 'apartmentDay',
+  'chapter16.crew': 'apartmentDay',
+  'chapter16.table': 'asterProof',
+  'chapter16.dress': 'wardrobe',
+  'chapter16.arrive': 'glassLobby',
+  'chapter16.complete': 'harbourRoom',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

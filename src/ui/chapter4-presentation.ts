@@ -11,6 +11,7 @@ import { place12 } from '../content/chapter12';
 import { place13 } from '../content/chapter13';
 import { place14 } from '../content/chapter14';
 import { place15 } from '../content/chapter15';
+import { place16 } from '../content/chapter16';
 /** Journal records remain in the authenticated history; this is display only. */
 export function conversationHistory(s: GameState) {
   const records = new Set(
@@ -40,6 +41,7 @@ export function currentPlace(s: GameState, fallback: string) {
   if (s.scene === 'chapter13') return place13(s) ?? fallback;
   if (s.scene === 'chapter14') return place14(s) ?? fallback;
   if (s.scene === 'chapter15') return place15(s) ?? fallback;
+  if (s.scene === 'chapter16') return place16(s) ?? fallback;
   if (s.scene === 'chapter6' && s.phase === 'friction' && s.choices['c6.counter-arranged'])
     return '22:00 · THE COUNTER NEAR COMPLIANCE';
   if (s.scene === 'chapter5') {

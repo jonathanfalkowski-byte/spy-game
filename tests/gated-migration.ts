@@ -10,6 +10,7 @@ import { chapter12Choices } from '../src/content/chapter12';
 import { chapter13Choices } from '../src/content/chapter13';
 import { chapter14Choices } from '../src/content/chapter14';
 import { chapter15Choices } from '../src/content/chapter15';
+import { chapter16Choices } from '../src/content/chapter16';
 
 /**
  * Neutral picks for beats added to the gated chapters after their goldens were captured (Chapter 7
@@ -191,8 +192,8 @@ export function migrateGated(ledger: GameEvent[], revision: number): GameEvent[]
 }
 
 function fillDefault(s: GameState): GameState | undefined {
-  const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s), ...chapter10Choices(s), ...chapter11Choices(s), ...chapter12Choices(s), ...chapter13Choices(s), ...chapter14Choices(s), ...chapter15Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
+  const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s), ...chapter10Choices(s), ...chapter11Choices(s), ...chapter12Choices(s), ...chapter13Choices(s), ...chapter14Choices(s), ...chapter15Choices(s), ...chapter16Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
   if (!fill) return undefined;
-  const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE', chapter10: 'CHAPTER10_CHOOSE', chapter11: 'CHAPTER11_CHOOSE', chapter12: 'CHAPTER12_CHOOSE', chapter13: 'CHAPTER13_CHOOSE', chapter14: 'CHAPTER14_CHOOSE', chapter15: 'CHAPTER15_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
+  const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE', chapter10: 'CHAPTER10_CHOOSE', chapter11: 'CHAPTER11_CHOOSE', chapter12: 'CHAPTER12_CHOOSE', chapter13: 'CHAPTER13_CHOOSE', chapter14: 'CHAPTER14_CHOOSE', chapter15: 'CHAPTER15_CHOOSE', chapter16: 'CHAPTER16_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
   return act(s, { type, id: fill.id } as Intent);
 }

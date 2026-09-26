@@ -5,7 +5,9 @@
 Design authority: [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) §5 (the entry contract: reconverge logistics,
 not biography), §7 (`approach` → `confront` → `position`) and §8 (doctrine), [BEAT_MAP.md](BEAT_MAP.md) (Act IV),
 [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–15 (`VITE_EVE_CHAPTER16`, content revision
+Status: **approved (owner, 2026-09-25: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_16_THE_APPROACH_SCRIPT.md](scripts/CHAPTER_16_THE_APPROACH_SCRIPT.md), code: `src/content/chapter16.ts`.
+~2.1k words on the golden paths. Gated like Chapters 6–15 (`VITE_EVE_CHAPTER16`, content revision
 ≥ 19), entered from `chapter15.complete` on the own-power road (other lanes enter from their own Act III ends,
 later).
 

@@ -130,6 +130,13 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
   if (c(s, 'act3.cards') === 'taken') holds.push({ id: 'cards', label: 'The 1109 safe: years of placements on Meridian’s own camera', source: 'The archive at the Vesper' });
   if (c(s, 'act3.nell-order') === 'taken') holds.push({ id: 'nell-order', label: 'The order that burned Nell in Jakarta, signed C.', source: 'Nell’s drawer in the archive' });
   if (c(s, 'act3.switch') === 'set') holds.push({ id: 'switch', label: 'The dead man’s switch: three copies of everything, with three people', source: 'The week after the archive' });
+  if (c(s, 'act4.aim'))
+    holds.push({
+      id: 'aim',
+      label: ({ expose: 'What you want: the truth, in public', terms: 'What you want: terms nobody can revoke', nell: 'What you want: Nell’s name, said out loud', out: 'What you want: a clean way out' } as Record<string, string>)[c(s, 'act4.aim') as string] ?? 'What you want',
+      source: 'Thursday morning, the kitchen table',
+    });
+  if (c(s, 'act4.inside') && c(s, 'act4.inside') !== 'none') holds.push({ id: 'crew', label: 'In the room with you: ' + (c(s, 'act4.inside') as string).split(',').join(', '), source: 'Thursday morning' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };

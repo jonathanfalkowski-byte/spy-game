@@ -24,6 +24,7 @@ import { chapter12Blocks, chapter12Scenes } from './chapter12';
 import { chapter13Blocks, chapter13Scenes } from './chapter13';
 import { chapter14Blocks, chapter14Scenes } from './chapter14';
 import { chapter15Blocks, chapter15Scenes } from './chapter15';
+import { chapter16Blocks, chapter16Scenes } from './chapter16';
 import { chapter4Blocks, chapter4Scenes } from './chapter4';
 import { chapter3Blocks, chapter3Scenes } from './chapter3';
 import { isCurrentAuthoringRevision } from './revision';
@@ -69,6 +70,7 @@ export const scenes = SceneSchema.array().parse([
   ...chapter13Scenes,
   ...chapter14Scenes,
   ...chapter15Scenes,
+  ...chapter16Scenes,
   {
     id: 'apartment.bond',
     title: 'Promotion day',
@@ -331,6 +333,7 @@ export function sceneBlocks(state: GameState): Block[] {
   if (state.scene === 'chapter13') return chapter13Blocks(state);
   if (state.scene === 'chapter14') return chapter14Blocks(state);
   if (state.scene === 'chapter15') return chapter15Blocks(state);
+  if (state.scene === 'chapter16') return chapter16Blocks(state);
   if (state.scene === 'chapter4') return chapter4Blocks(state);
   if (state.scene === 'chapter3') return chapter3Blocks(state);
   if (state.scene === 'mission')
