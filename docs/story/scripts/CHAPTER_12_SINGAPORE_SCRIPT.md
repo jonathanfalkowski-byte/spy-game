@@ -144,8 +144,29 @@ Four moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), and t
   (neutral). The photograph at the gate follows.
 - At the harbour: Maya answers from a bus in the rain if she is back (`c6.maya = restored`).
 
+## Second deepening pass (2026-09-26)
+
+Two moments every path passes through, each with a neutral pick for the goldens (`GATED_DEFAULTS`):
+
+- **The tail out of the Marlowe** (`straits`, after Ashby, before Nora; Ashby's story now ends with a man in a white
+  shirt thirty yards back, at one in the morning) (`c12.tail`):
+  - **tail-lose**: Chinatown's back doors, the night market, a temple courtyard, a hawker kitchen; "Lost her, lost
+    her, I lost her".
+  - **tail-face**: a young man from a security agency with a notebook. She writes the next line, "01:20. Walked
+    home. Was not frightened." He wrote for the first one too: "She took my pen."
+  - **tail-ignore** (neutral): a taxi, and a wave he returns before he can stop himself.
+- **The last morning** (`night`, after the night's ending; every ending of the night now sets `c12.dawn`, and the
+  place reads "Morning · The last day") (`c12.last`):
+  - **last-goh** (only if she found Mr Goh's stall): she closes the tab under the column of Cs with "CLOSED. N.
+    LINDEN."; "Nell. Her name Nell?"; he gives her the cinnamon tin.
+  - **last-tan**: a jasmine cutting in a yoghurt pot, "Not an orchid", and "Next time you come, you come as you".
+  - **last-straight** (neutral).
+
+  Back in London, the tin or the jasmine appears beside Celeste's orchid.
+
 ## Size (honest)
 
-Pass 1: ~3.7–4.1k words on the golden paths. After the deepening pass: **~4.3–4.8k on the golden (quiet)
-paths**, roughly 500 more when the new moments are played engaged, against the 7k budget. Next lift, if wanted:
-the campaign path's night shoot at the harbour, and Ashby and Nora at greater length.
+Pass 1: ~3.7–4.1k words on the golden paths. After the first deepening pass, ~4.3–4.8k. After the second:
+**~4.5–5.0k on the golden (quiet) paths**, and ~300–450 more when the new moments are played engaged, against the
+7k budget. Next lift, if wanted: the campaign path's night shoot at the harbour, and Ashby and Nora at greater
+length.

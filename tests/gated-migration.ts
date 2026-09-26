@@ -145,6 +145,9 @@ export const GATED_DEFAULTS = [
   'chapter12.bed-mirror',
   'chapter12.bar-cool',
   'chapter12.boy-nora',
+  // Chapter 12 second pass: let him follow; straight to Changi.
+  'chapter12.tail-ignore',
+  'chapter12.last-straight',
   // Chapter 13 deepening: hang the dress; rest; don't look at him.
   'chapter13.box-keep',
   'chapter13.week-rest',

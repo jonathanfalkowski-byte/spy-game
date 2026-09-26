@@ -14,7 +14,13 @@
  * the bedroom at number 9 after the search (c12.bed = lie | drawer | mirror: Celeste's scent on the pillow; Nell's
  * unsent note, "Not even for her"; her lipstick); Kit Harlow at the Punkah Bar before Ashby (c12.bar = flirt | truth |
  * cool: "Only her. The tall one", and a boat); and Nora's son, Sam, after the kitchen (c12.boy = hold | friend |
- * nora). */
+ * nora).
+ * Second deepening pass (2026-09-26): two moments every path passes through. A tail out of the Marlowe at one in the
+ * morning (c12.tail = lose | face | ignore: Chinatown's back doors, which her feet know; a young man from an agency
+ * with a notebook, who wrote for the first one too; or a wave from a taxi). And the last morning before the flight,
+ * after the night (c12.last = goh | tan | straight: closing Mr Goh's tab in Nell's name and taking the cinnamon tin;
+ * Mrs Tan's jasmine cutting in a yoghurt pot, "not an orchid"; or straight to Changi). The night's endings now set
+ * c12.dawn and the morning follows. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -96,6 +102,7 @@ export const pressReady12 = (s: GameState) =>
 export function place12(s: GameState): string | undefined {
   if (s.scene !== 'chapter12') return;
   if (s.phase === 'departure' && !get12(s, 'cover')) return '03:00 · The kitchen table, London';
+  if (s.phase === 'night' && get12(s, 'dawn')) return 'Morning · The last day';
   const evening = get12(s, 'evening-open');
   if (s.phase === 'night' && evening)
     return evening.startsWith('julian') ? 'Late · A suite on the Straits' : evening.startsWith('theo') ? 'Late · The crew hotel, Marina' : 'Late · After the concert';
@@ -594,16 +601,55 @@ const ashbyStory = (s: GameState): Block[] => [
   p('He finishes the glass, and does not order another, which you think is the only compliment he has paid anybody in a year.'),
 ];
 
+const tailSeen: Block[] = [
+  p('It is after one when you come down the Marlowe’s front steps into the heat. The doorman whistles up a taxi and you wave it away. You want to walk. You want the air on your arms, even this air.'),
+  p('By the second corner you know. A man in a white shirt, with a lanyard tucked into his pocket, thirty yards back: stopping when you stop, reading his phone when you look in a shop window, crossing when you cross. He is not good at it. He is not trying very hard to be. He wants you to know.'),
+  t('Ashby drinks in the same bar every night because nobody told him to stop. Somebody is making sure nobody tells him to start talking, either.'),
+];
+
+/** The tail out of the Marlowe (second deepening pass). */
+function tailChoices(): C12Choice[] {
+  const tail = (id: string, label: string, hint: string, body: Block[]) =>
+    offer12('tail-' + id, label, hint, 'sister', (x) => {
+      set12(x, 'tail', id);
+      return body;
+    });
+  return [
+    tail('lose', 'Lose him', 'Chinatown at one in the morning. Your feet know it better than he does.', [
+      p('You turn left without meaning to, and then right, and your feet take over.'),
+      p('Down a lane of shuttered shophouses where the night market is packing up, between trestles of dried squid and plastic toys, under strings of red lanterns being unhooked one by one. Through the courtyard of a temple, where joss sticks are still smoking in a brass urn as big as a bath and an old man asleep on a bench opens one eye at you. Through the back of a hawker centre with its shutters half down, between steel counters still warm, past a woman scrubbing a wok who does not even look up, and out through a kitchen door onto a street you have never seen.'),
+      p('You stand in a doorway in the dark with your back against a shutter, breathing, and thirty seconds later he goes past the end of the street at a run, with his phone to his ear, saying “Lost her, lost her, I lost her,” in the voice of a man whose evening has just got very much worse.'),
+      t('Every back door in Chinatown. Eight years of leaving places without being seen, and her feet kept all of it for me.'),
+    ]),
+    tail('face', 'Turn round and walk up to him', 'Make him do it to your face.', [
+      p('You stop, and turn, and walk straight back down the pavement towards him, not fast, and he freezes like a boy caught in an orchard.'),
+      p('He is twenty-five at most, in a white shirt that his mother ironed. On the lanyard, when you pull it gently out of his pocket, is the name of a security agency and a photograph in which he is trying to look older.'),
+      q('The young man', 'Please, ma’am. I only write where you go. For the agency. Nine till three. I don’t know who for. Please don’t make a complaint.'),
+      p('You hold out your hand, and after a moment he gives you the notebook. His handwriting is careful and round: 21:40, Marlowe, front entrance. 23:05, Punkah Bar. 23:20, spoke to man at bar (not target). 23:35, spoke to target.'),
+      p('You take his pen, and write the next line for him:'),
+      q('The notebook', '01:20. Walked home. Was not frightened.'),
+      p('He reads it, and something in his face gives way.'),
+      q('The young man', 'The lady before you. I wrote for her also, my first month. She did this. Same thing. She took my pen.'),
+      q('The young man', 'She was kind to me. She bought me a coffee. The next week they said stop writing, she has gone away.'),
+      t('He was her tail too. She bought him a coffee. Two sugars and cinnamon, I would bet my life on it.'),
+    ]),
+    tail('ignore', 'Let him follow', 'Take a taxi after all. Let him write it down.', [
+      p('You flag a taxi after all. Through the back window, as it pulls away, you see him under a street lamp writing something in a little notebook, carefully, like a boy doing his homework. You give him a small wave. He waves back before he can stop himself.'),
+    ]),
+  ];
+}
+
 function straitsChoices(s: GameState): C12Choice[] {
   if (!get12(s, 'bar')) return barChoices();
+  if (get12(s, 'ashby')) return tailChoices();
   const talk = (id: string, label: string, hint: string, body: Block[], record: boolean) =>
-    offer12('ashby-' + id, label, hint, 'sister', (x) => {
+    offer12('ashby-' + id, label, hint, 'straits', (x) => {
       set12(x, 'ashby', id);
       if (record) {
         set12(x, 'statement', 'recorded');
         note12(x, 'statement', 'Colin Ashby, Meridian’s Singapore station head for nine years, on the record: the first Evelyn was burned in Jakarta on an order that “came down from upstairs, from a friend of hers”, because she wanted out; somebody sent white orchids to her hospital bed every day.', 'Ashby, recorded on your phone at the Punkah Bar');
       } else note12(x, 'ashby', 'Colin Ashby says the order to burn the first Evelyn in Jakarta “came down from upstairs, from a friend of hers”, because she wanted out; somebody sent white orchids to her hospital bed every day.', 'Ashby, at the Punkah Bar, off the record');
-      return [...body, ...ashbyStory(x)];
+      return [...body, ...ashbyStory(x), ...tailSeen];
     });
   return [
     talk('evie', 'Sit down as her', 'Let him talk to a ghost. He has been waiting to.', [
@@ -865,7 +911,44 @@ const stay12: Record<Partner12, Record<'no-sex' | 'sex', Block[]>> = {
   },
 };
 
+/** The last morning (second deepening pass), before the flight. */
+function lastChoices(s: GameState): C12Choice[] {
+  const last = (id: string, label: string, hint: string, body: Block[]) =>
+    offer12('last-' + id, label, hint, 'complete', (x) => {
+      set12(x, 'last', id);
+      return body;
+    });
+  return [
+    ...(get12(s, 'first') === 'hawker'
+      ? [
+          last('goh', 'Close Mr Goh’s tab', 'Her coffee has been paid for long enough.', [
+            p('The hawker centre at seven, the shutters going up, the charcoal smoke. Mr Goh sees you and reaches for the tin before you have reached the counter.'),
+            q('You', 'Mr Goh. I want to close the tab. Please. Nobody pays it any more.'),
+            p('He looks at you for a long time over the tin jugs. Then he takes the exercise book from beside the till, and turns it round, and hands you his pen: a column of dates, and beside every one of them the same initial.'),
+            p('You draw a line under the last C., and under the line you write, in capitals: CLOSED. N. LINDEN.'),
+            p('Mr Goh puts on his glasses to read it. He reads it twice.'),
+            q('Mr Goh', 'Nell. Her name Nell? Eight years I call her Evie. She never say.'),
+            p('He makes you a coffee, thick and sweet, and will not take your money, and when you go he pushes the small dented tin across the counter into your hand, and closes your fingers over it.'),
+            q('Mr Goh', 'Take. Nobody else touch.'),
+          ]),
+        ]
+      : []),
+    last('tan', 'Say goodbye to Mrs Tan', 'She has watched too many people leave that landing without a word.', [
+      p('Mrs Tan is watering the orchids with the teapot. She puts it down when she sees your face, and goes to the kitchen, and comes back with a yoghurt pot full of earth and a small green cutting in it.'),
+      q('Mrs Tan', 'Jasmine. Not an orchid. She never liked orchids. You also, I think.'),
+      q('You', 'They won’t let me take it through customs.'),
+      q('Mrs Tan', 'So you try. She would try.'),
+      p('At the door she takes both your hands, the way she did on the first day, and holds them, and looks up at you.'),
+      q('Mrs Tan', 'Next time you come, you come as you. Whoever that is. I make the noodles anyway.'),
+    ]),
+    last('straight', 'Go straight to Changi', 'Before the city can say anything else to you.', [
+      p('You go straight to the airport in the grey light, with your sunglasses on and your bag on your knee, and do not look back at the towers once. You are getting good at that. You are not sure it is a good thing to be good at.'),
+    ]),
+  ];
+}
+
 function nightChoices(s: GameState): C12Choice[] {
+  if (get12(s, 'dawn')) return lastChoices(s);
   if (!get12(s, 'harbour')) return harbourChoices();
   const partner = companion(s);
   const open = get12(s, 'evening-open');
@@ -881,8 +964,9 @@ function nightChoices(s: GameState): C12Choice[] {
       return [
         scope('no-sex', 'Stay, but not sex tonight', 'Kissing, touch, undressing, and stopping where you choose.'),
         scope('sex', 'Stay the night with him', 'Your stated choice. Either of you can stop at any time. The scene fades.'),
-        offer12('evening-leave', 'Say goodnight and go back alone', 'Leaving is complete and respected.', 'complete', (x) => {
+        offer12('evening-leave', 'Say goodnight and go back alone', 'Leaving is complete and respected.', 'night', (x) => {
           delete x.choices['c12.evening-open'];
+          set12(x, 'dawn');
           set12(x, 'evening-outcome', 'declined');
           return [p('You say goodnight and mean it, and go back to your own hotel alone, and it is exactly what you wanted.')];
         }),
@@ -890,13 +974,15 @@ function nightChoices(s: GameState): C12Choice[] {
     }
     const scope = get12(s, 'evening-scope') as 'no-sex' | 'sex';
     return [
-      offer12('evening-stop', 'Stop here', 'Honoured immediately, without argument.', 'complete', (x) => {
+      offer12('evening-stop', 'Stop here', 'Honoured immediately, without argument.', 'night', (x) => {
         delete x.choices['c12.evening-open'];
+        set12(x, 'dawn');
         set12(x, 'evening-outcome', 'withdrawn');
         return [p('You put a hand flat on his chest and he stops at once.'), p('He puts you in a taxi and does not ask to come with you, and you are more grateful for that than for anything else today.')];
       }),
-      offer12('evening-stay', 'Stay', 'Continue within what you chose.', 'complete', (x) => {
+      offer12('evening-stay', 'Stay', 'Continue within what you chose.', 'night', (x) => {
         delete x.choices['c12.evening-open'];
+        set12(x, 'dawn');
         set12(x, 'evening-outcome', 'intimate-' + scope);
         return [...stay12[partner][scope], p('In a city that remembers somebody else’s body, you chose what to do with your own.')];
       }),
@@ -912,9 +998,12 @@ function nightChoices(s: GameState): C12Choice[] {
           }),
         ]
       : []),
-    offer12('night-alone', 'Go up to the roof alone', 'Chapter 12 ends here.', 'complete', () => [
-      p('The hotel roof has a pool lit from underneath, empty at this hour, the water perfectly still and blue and warm as a bath. You sit on the edge with your feet in it and your shoes beside you, and look at the city that thinks it knows you, until the sky over the ships goes grey.'),
-    ]),
+    offer12('night-alone', 'Go up to the roof alone', 'The last night. Nobody’s but yours.', 'night', (x) => {
+      set12(x, 'dawn');
+      return [
+        p('The hotel roof has a pool lit from underneath, empty at this hour, the water perfectly still and blue and warm as a bath. You sit on the edge with your feet in it and your shoes beside you, and look at the city that thinks it knows you, until the sky over the ships goes grey.'),
+      ];
+    }),
   ];
 }
 
@@ -939,6 +1028,11 @@ function completeBlocks(s: GameState): Block[] {
       : singapore === 'everything'
         ? [p('On the kitchen table at home, when you let yourself in, is a single white orchid in a pot, and a card: “Nine, darling. Do count them properly next time. C.”')]
         : [p('On the kitchen table at home, when you let yourself in, is a single white orchid in a pot, and no card at all.')]),
+    ...(get12(s, 'last') === 'goh'
+      ? [p('You put Mr Goh’s dented tin beside it on the table. Cinnamon. Nobody else touch.')]
+      : get12(s, 'last') === 'tan'
+        ? [p('The jasmine made it through customs in your coat pocket, wrapped in a hotel shower cap. You put it on the windowsill, where the orchid will never be.')]
+        : []),
     p(c(s, 'c8.neighbour') ? 'You put the orchid outside on the landing for Mrs Kowalczyk, who will keep it alive.' : 'You put the orchid outside on the landing for whoever wants it. Somebody will. Somebody always keeps them alive.'),
     p('Then you take a new card from the drawer, and write on it in capitals, and pin it to the wall beside the date, where you will see the two of them together every morning.'),
     ...(get12(s, 'nora') !== 'go' ? [p('Beside it you pin Nora’s photograph: Nell on the harbour wall, laughing, in flat shoes.')] : []),

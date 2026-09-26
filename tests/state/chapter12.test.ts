@@ -20,7 +20,18 @@ const c12 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c12, s);
+/** The second pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['tail-ignore', 'last-straight'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c12(y, n);
+    }
+    return c12(y, id);
+  }, s);
 const complete11 = (name: string) => replay(golden11.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -34,7 +45,7 @@ const toHill = (s: GameState) => walk(s, ['begin', 'cover-quiet', 'first-sleep']
 const toFlat = (s: GameState) => walk(toHill(s), ['tan-listen']);
 const toStraits = (s: GameState, search = 'search-desk', caught = 'caught-hide') => walk(toFlat(s), [search, 'bed-mirror', caught]);
 const toNight = (s: GameState, nora = 'nora-kind') => walk(toStraits(s), ['bar-cool', 'ashby-evie', nora, ...(nora === 'nora-go' ? [] : ['boy-nora'])]);
-const prefer = ['cover-quiet', 'first-sleep', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'nora-kind', 'boy-nora', 'harbour-quiet', 'night-alone'];
+const prefer = ['cover-quiet', 'first-sleep', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'tail-ignore', 'nora-kind', 'boy-nora', 'harbour-quiet', 'night-alone', 'last-straight'];
 /** Neutral picks to the end of the chapter. */
 const finish = (s: GameState) => {
   let x = s;
@@ -152,7 +163,15 @@ it('brings every road to the Marlowe, and lets Ashby say "a friend of hers"', ()
   const bare = { 'c11.catalogue': 'leave', 'c8.list': undefined };
   expect(ids(c12(toStraits(start(bare), 'search-desk', 'caught-evie'), 'bar-cool'))).toEqual(['ashby-evie', 'ashby-truth']);
   const pressed = c12(past, 'ashby-press');
-  expect([pressed.phase, pressed.choices['c12.statement']]).toEqual(['sister', 'recorded']);
+  expect([pressed.phase, pressed.choices['c12.statement']]).toEqual(['straits', 'recorded']);
+  // The tail out of the Marlowe, before Nora.
+  expect(text(pressed)).toContain('By the second corner you know.');
+  expect(ids(pressed)).toEqual(['tail-lose', 'tail-face', 'tail-ignore']);
+  expect(text(c12(pressed, 'tail-lose'))).toContain('Lost her, lost her, I lost her');
+  const faced = c12(pressed, 'tail-face');
+  expect([faced.phase, faced.choices['c12.tail']]).toEqual(['sister', 'face']);
+  expect(text(faced)).toContain('01:20. Walked home. Was not frightened.');
+  expect(text(faced)).toContain('She took my pen.'); 
   expect(text(pressed)).toContain('My name is Colin Ashby.');
   expect(text(pressed)).toContain('It came down from upstairs. From a friend of hers.');
   expect(text(pressed)).toContain('White orchids. She hated orchids.');
@@ -162,7 +181,7 @@ it('brings every road to the Marlowe, and lets Ashby say "a friend of hers"', ()
 });
 
 it('puts her at Nora’s door, and every answer carries the seed', () => {
-  const door = walk(toStraits(start()), ['bar-cool', 'ashby-evie']);
+  const door = walk(toStraits(start()), ['bar-cool', 'ashby-evie', 'tail-ignore']);
   expect(text(door)).toContain('Nell?');
   expect(ids(door)).toEqual(['nora-truth', 'nora-kind', 'nora-go']);
   for (const id of ['nora-truth', 'nora-kind', 'nora-go']) {
@@ -198,9 +217,20 @@ it('sends Maya from London to the harbour, and ends alone unless a man came', ()
   const coffee = c12(night, 'harbour-coffee');
   expect(text(coffee)).toContain('The black was always her friend’s. Tonight it’s mine.');
   expect(ids(coffee)).toEqual(['night-alone']);
-  const done = c12(coffee, 'night-alone');
-  expect(done.phase).toBe('complete');
+  const dawn = c12(coffee, 'night-alone');
+  expect([dawn.phase, dawn.choices['c12.dawn']]).toEqual(['night', 'yes']);
+  expect(currentPlace(dawn, 'x')).toBe('Morning · The last day');
+  // The last morning: Mr Goh's tab only if she found it.
+  expect(ids(dawn)).toEqual(['last-tan', 'last-straight']);
+  const done = c12(dawn, 'last-tan');
+  expect([done.phase, done.choices['c12.last']]).toEqual(['complete', 'tan']);
+  expect(text(done)).toContain('Jasmine. Not an orchid.');
+  expect(text(done)).toContain('wrapped in a hotel shower cap');
   expect(text(done)).not.toMatch(/undress|draws? him down/);
+  const goh = walk(start(), ['begin', 'cover-quiet', 'first-hawker', 'tan-listen', 'search-desk', 'bed-mirror', 'caught-hide', 'bar-cool', 'ashby-evie', 'nora-kind', 'boy-nora', 'harbour-quiet', 'night-alone', 'last-goh']);
+  expect(goh.phase).toBe('complete');
+  expect(text(goh)).toContain('CLOSED. N. LINDEN.');
+  expect(text(goh)).toContain('You put Mr Goh’s dented tin beside it on the table.');
 });
 
 it('keeps the Singapore evening chosen, consented and stoppable', () => {
@@ -214,7 +244,8 @@ it('keeps the Singapore evening chosen, consented and stoppable', () => {
   expect(chose.facts).toContain('c12.evening-consent');
   expect(ids(chose)).toEqual(['evening-stop', 'evening-stay']);
   const stopped = c12(chose, 'evening-stop');
-  expect([stopped.phase, stopped.choices['c12.evening-outcome']]).toEqual(['complete', 'withdrawn']);
+  expect([stopped.phase, stopped.choices['c12.evening-outcome']]).toEqual(['night', 'withdrawn']);
+  expect(ids(stopped)).toEqual(['last-tan', 'last-straight']);
   const stayed = c12(chose, 'evening-stay');
   expect(stayed.choices['c12.evening-outcome']).toBe('intimate-sex');
   expect(text(stayed)).toContain('The scene fades.');
