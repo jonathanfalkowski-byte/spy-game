@@ -255,6 +255,14 @@ const byNode: Record<string, Key> = {
   'chapter16.dress': 'wardrobe',
   'chapter16.arrive': 'glassLobby',
   'chapter16.complete': 'harbourRoom',
+  // Chapter 17 (stand-ins until EVE Art's frames: the board table under the empty frames, three signatures, an orchid in a jug).
+  'chapter17.opening': 'harbourRoom',
+  'chapter17.defect': 'asterProof',
+  'chapter17.sloane': 'harbourRoom',
+  'chapter17.turn': 'harbourRoom',
+  'chapter17.nell': 'harbourRoom',
+  'chapter17.vote': 'harbourRoom',
+  'chapter17.complete': 'rooftop',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

@@ -10,6 +10,7 @@ import { chapter13Scenes } from '../../src/content/chapter13';
 import { chapter14Scenes } from '../../src/content/chapter14';
 import { chapter15Scenes } from '../../src/content/chapter15';
 import { chapter16Scenes } from '../../src/content/chapter16';
+import { chapter17Scenes } from '../../src/content/chapter17';
 import {chapter4Scenes} from '../../src/content/chapter4';
 import { nextSceneDefinitions } from '../../src/content/chapter3-next';
 import { missionChoices } from '../../src/content/mission';
@@ -53,7 +54,7 @@ it('validates legacy nodes reach their existing endpoints; revisions 14 through 
       }
     }
   }
-  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length-chapter5Scenes.length-chapter6Scenes.length-chapter7Scenes.length-chapter8Scenes.length-chapter9Scenes.length-chapter10Scenes.length-chapter11Scenes.length-chapter12Scenes.length-chapter13Scenes.length-chapter14Scenes.length-chapter15Scenes.length-chapter16Scenes.length);
+  expect(reachable.size).toBe(scenes.length-Object.keys(nextSceneDefinitions).length-chapter4Scenes.length-chapter5Scenes.length-chapter6Scenes.length-chapter7Scenes.length-chapter8Scenes.length-chapter9Scenes.length-chapter10Scenes.length-chapter11Scenes.length-chapter12Scenes.length-chapter13Scenes.length-chapter14Scenes.length-chapter15Scenes.length-chapter16Scenes.length-chapter17Scenes.length);
 });
 for (const promotion of ['professional', 'angry', 'joke', 'quiet'])
   for (const benton of ['obey', 'push', 'promotion'])

@@ -260,7 +260,7 @@ function choiceLabelAsNotice(blocks: Block[], node?: string): Block[] {
 /** A sourced record (note7/note8/note9: a summary notice and its "Source:" line) belongs to the journal.
  * In Chapters 7–9 it would otherwise sit above the scene it summarises and spoil it. Money moving stays. */
 const journalRecord = (blocks: Block[], node?: string) =>
-  /^chapter([789]|1[0-6])\./.test(node ?? '') &&
+  /^chapter([789]|1[0-7])\./.test(node ?? '') &&
   blocks.length === 2 &&
   blocks.every((b) => b.kind === 'notice') &&
   blocks[1].text.startsWith('Source: ') &&
@@ -345,7 +345,7 @@ const livingAsEvelynClinic = new Set([
 export function thoughtLabel(node?: string): string {
   const [scene, phase] = (node ?? '').split('.');
   const living =
-    ['mission', 'chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14', 'chapter15', 'chapter16'].includes(scene) ||
+    ['mission', 'chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14', 'chapter15', 'chapter16', 'chapter17'].includes(scene) ||
     (scene === 'clinic' && livingAsEvelynClinic.has(phase));
   return living ? 'Private thought' : 'Adrian · private thought';
 }

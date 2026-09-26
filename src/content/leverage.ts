@@ -137,6 +137,8 @@ export function leverageBoard(s: GameState): { held: LeverageEntry[]; holds: Lev
       source: 'Thursday morning, the kitchen table',
     });
   if (c(s, 'act4.inside') && c(s, 'act4.inside') !== 'none') holds.push({ id: 'crew', label: 'In the room with you: ' + (c(s, 'act4.inside') as string).split(',').join(', '), source: 'Thursday morning' });
+  if (c(s, 'act4.terms') === 'full' || c(s, 'act4.terms') === 'partial')
+    holds.push({ id: 'undertaking', label: c(s, 'act4.terms') === 'full' ? 'The board’s undertaking, in fountain pen, on the back of the verdict' : 'Part of what you asked for, in writing; the rest held by the switch', source: 'The Meridian board, Thursday' });
   if (c(s, 'c10.kept-copy')) holds.push({ id: 'kept-copy', label: 'A photograph of every page you handed her', source: 'Under the Lindqvist awning, in the rain' });
   if (c(s, 'c10.poison')) holds.push({ id: 'poison', label: 'A poisoned detail, waiting to show you who she passes your notes to', source: 'The notes you rewrote' });
   return { held, holds };
