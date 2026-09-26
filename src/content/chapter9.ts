@@ -46,7 +46,11 @@
  * Anna Kessler, "the woman nobody can place", one season six years ago with a tall woman with cropped hair at her
  * shoulder; whether she follows the name forward (c9.kessler = follow | stop); if she does, a sailing accident two
  * years later, "She had no family" (a fact), and what she does then (c9.last = case | screen | leave). Kessler's fate
- * is left open (RETIRED or CLOSED) — an invention for the owner's review. No case weight. */
+ * is left open (RETIRED or CLOSED) — an invention for the owner's review. No case weight.
+ * Second deepening pass (2026-09-26), own-power only, no case weight: the watchers' chair, as Sloane walks away from
+ * the café table (c9.chair = look | note | stay: her own window seen from their side; two sugars and cinnamon on a
+ * napkin under the saucer), and the locksmith below Nadia Brandt's, after the lawyer (c9.lock = change | learn | pass:
+ * a new cylinder and only two keys; a clear plastic padlock and "light hands"). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -451,9 +455,33 @@ function sloaneLead(s: GameState): Block[] {
   ];
 }
 
+/** The watchers' chair (second deepening pass): the seconds after Sloane gets up. */
+function chairChoices(): C9Choice[] {
+  const ch = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('chair-' + id, label, hint, 'river', (x) => {
+      set9(x, 'chair', id);
+      return body;
+    });
+  return [
+    ch('look', 'Sit in the watchers’ chair', 'Their chair. Look up at your own window.', [
+      p('You move round the table into the chair Sloane has left, the one the watchers sit in, still warm, and look up.'),
+      p('There it is: your window, third floor, the curtain you never draw, the corner of the bed, the lamp you leave on. From down here it is a small lit box with a woman’s life in it, and anybody on this chair could read it like a page.'),
+      t('So this is what I look like from here. I have been living in a shop window and calling it a flat.'),
+    ]),
+    ch('note', 'Leave the watchers a note', 'Under the saucer, for whoever sits here next.', [
+      p('You take a paper napkin and the pen from your bag, and write on it in capitals, and fold it once, and put it under the saucer of the watchers’ cup, where the next one will find it.'),
+      q('The napkin', 'TWO SUGARS AND CINNAMON. SINCE YOU’RE WRITING THINGS DOWN. — E.'),
+      t('Let them put that in a report. Let somebody at the top of it read it over breakfast.'),
+    ]),
+    ch('stay', 'Stay where you are', 'Finish her coffee.', [
+      p('You stay where you are and finish her coffee, which is black, and too strong, and exactly how you would have guessed she took it.'),
+    ]),
+  ];
+}
+
 function sloaneChoices(): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer9('sloane-' + id, label, hint, 'river', (x) => {
+    offer9('sloane-' + id, label, hint, 'cafe', (x) => {
       set9(x, 'sloane', id);
       set9(x, 'walk-open', 'why');
       return body;
@@ -627,11 +655,47 @@ const lawyerLead: Block[] = [
   q('Nadia Brandt', 'They will want your history. Your records. Your medical file, very possibly. Are you ready to be Exhibit A, Ms Vale?'),
 ];
 
+const lockLead: Block[] = [
+  p('The locksmith’s at the bottom of the stairs is a narrow room lined with blanks on hooks, a thousand keys waiting to be somebody’s. The locksmith is a small bald man in a cardigan, filing something at the bench in the window. He looks up as you pass: at your face, and then, with a good deal more interest, at your hands.'),
+  q('The locksmith', 'Nadia’s friends get the first one free. Whatever the first one is.'),
+];
+
+/** The locksmith (second deepening pass): own-power, after the lawyer. */
+function lockChoices(): C9Choice[] {
+  const lk = (id: string, label: string, hint: string, body: Block[]) =>
+    offer9('lock-' + id, label, hint, 'counsel', (x) => {
+      set9(x, 'lock', id);
+      return body;
+    });
+  return [
+    lk('change', 'Ask him to change your lock', 'Tonight. Somebody has been letting themselves in.', [
+      q('You', 'Somebody has a key to my flat who shouldn’t. I’d like them not to, by tonight.'),
+      p('He does not ask who. He comes at six with a canvas bag, takes your front door lock out in four minutes, looks at the old cylinder under the landing light, and whistles through his teeth.'),
+      q('The locksmith', 'Somebody’s had this out before me. Recently. Nice clean job. Not a burglar. Burglars are never this tidy.'),
+      p('He puts in a new one and gives you two keys on a ring, and watches you put both of them in your own pocket.'),
+      q('The locksmith', 'Two. There’s no copy of that anywhere but your coat, and I don’t keep the card. Nobody gets in now unless you open the door.'),
+      t('Let’s see how long that lasts. Let’s see who they send when it does.'),
+    ]),
+    lk('learn', 'Ask him to teach you', 'Twenty minutes, a practice lock, and his patience.', [
+      q('You', 'Could you teach me? How it’s done?'),
+      p('He looks at you for a long moment over his half-moon glasses, and then reaches under the bench and puts a padlock made of clear plastic in front of you, so that you can see every pin inside it, and two thin steel picks.'),
+      q('The locksmith', 'Tension first. Light. Lighter than that. You’re not opening it. You’re asking it.'),
+      p('It takes you eleven minutes. When the shackle drops open he nods once, as if you had passed something he does not give many people the chance to sit.'),
+      q('The locksmith', 'Light hands. Patient. Most people force it. You listen.'),
+      p('He lets you keep the picks. “For practice,” he says, and goes back to his filing.'),
+      t('Adrian could never have done that. His hands were always in a hurry. Mine, it turns out, can wait.'),
+    ]),
+    lk('pass', 'Thank him, and go on up to the street', 'Not today.', [
+      p('You thank him, and he nods, and goes back to his filing, and you go on up into the street.'),
+    ]),
+  ];
+}
+
 function lawyerChoices(s: GameState): C9Choice[] {
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
     offer9('lawyer-' + id, label, hint, s.phase, (x) => {
       set9(x, 'lawyer', id);
-      return body;
+      return s.phase === 'counsel' ? [...body, ...lockLead] : body;
     });
   return [
     answer('retain', 'Ask her to act for you', 'When it comes to it. She will want to know you mean it.', [
@@ -1259,9 +1323,10 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.phase === 'auction') return auctionChoices();
   if (s.phase === 'assemble') return assembleChoices(s);
   if (s.phase === 'resolve' && ownPower(s)) return get9(s, 'rent') ? windowChoices() : rentChoices(s);
-  if (s.phase === 'cafe') return sloaneChoices();
+  if (s.phase === 'cafe') return get9(s, 'sloane') ? chairChoices() : sloaneChoices();
   if (s.phase === 'river') return walkChoices(s);
   if (s.phase === 'archive') return archiveChoices(s);
+  if (s.phase === 'counsel' && get9(s, 'lawyer') && !get9(s, 'lock')) return lockChoices();
   if (s.phase === 'resolve' || s.phase === 'counsel')
     return get9(s, 'lawyer') ? [offer9('resolve-end', 'Carry it into the next room', 'Chapter 9 ends here.', 'complete')] : lawyerChoices(s);
   return [];

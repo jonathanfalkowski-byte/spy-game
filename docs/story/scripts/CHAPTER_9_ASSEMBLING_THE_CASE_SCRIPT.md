@@ -357,3 +357,25 @@ river and the lawyer. Ruth's "better than the last one I saw", followed to the l
 **For the owner's review:** Anna Kessler is an invention. She is an earlier reissue, which the canon
 allows (Meridian sells lived-in legends; Ruth has seen "the last one"). Her fate is deliberately
 open: RETIRED or CLOSED, with no body recovered. Say if she should change or go.
+
+## Second deepening pass (2026-09-26)
+
+Both moments are on the own-power road only; the other lanes' bridge is unchanged. Neither adds case weight. Each
+has a neutral pick for the goldens (`GATED_DEFAULTS`):
+
+- **The watchers' chair** (`cafe`, after Sloane's answer, in the seconds before she turns back for the river walk)
+  (`c9.chair`):
+  - **chair-look**: her own window from the watchers' side. "I have been living in a shop window and calling it a
+    flat."
+  - **chair-note**: a napkin under the saucer: "TWO SUGARS AND CINNAMON. SINCE YOU'RE WRITING THINGS DOWN. — E."
+  - **chair-stay** (neutral).
+- **The locksmith** (`counsel`, after the lawyer; the shop at the bottom of Nadia Brandt's stairs: "Nadia's friends
+  get the first one free") (`c9.lock`):
+  - **lock-change**: a new cylinder by six. The old one "had out before me. Recently … Not a burglar." Only two
+    keys. (Chapter 10's black phone still knows Mr Pryce has been in, which makes it worse.)
+  - **lock-learn**: a clear plastic padlock and two picks; eleven minutes; "Light hands. Patient. Most people force
+    it. You listen." She keeps the picks.
+  - **lock-pass** (neutral).
+
+After this pass the own-power golden paths read **~4.2–5.1k words** (from ~4.0–5.0k), and ~200–300 more engaged,
+against the 8k budget.

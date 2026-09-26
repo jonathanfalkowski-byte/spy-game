@@ -111,6 +111,9 @@ export const GATED_DEFAULTS = [
   // Sequence, the Last One: look for faces; stop there.
   'chapter9.fiche-faces',
   'chapter9.kessler-stop',
+  // Chapter 9 second pass: stay where you are; thank the locksmith.
+  'chapter9.chair-stay',
+  'chapter9.lock-pass',
   // Chapter 10 pass 2: ask what happened to her, stay in, the first lie, let the phone ring, keep the name
   // back, hand over the only copy, move the date.
   'chapter10.ask-happened',

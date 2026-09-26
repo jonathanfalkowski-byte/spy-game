@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "records-name-thin",
-      "events": 258,
+      "events": 260,
       "strength": "thin",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "4ccd560dfebd407594319212886fcebf06eb07f9909922abbc885f0101a6164c",
+      "saveSha256": "5387d7cec4b6c9c255a1aa79cb3fb9196c4451ece7bcd1e6e7fce955d3d5200e",
       "ledger": [
         {
           "sequence": 1,
@@ -2020,7 +2020,7 @@
           "sequence": 253,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.walk-adrian",
+            "id": "chapter9.chair-stay",
             "expectedRevision": 252
           }
         },
@@ -2028,7 +2028,7 @@
           "sequence": 254,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.rail-quiet",
+            "id": "chapter9.walk-adrian",
             "expectedRevision": 253
           }
         },
@@ -2036,7 +2036,7 @@
           "sequence": 255,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.fiche-faces",
+            "id": "chapter9.rail-quiet",
             "expectedRevision": 254
           }
         },
@@ -2044,7 +2044,7 @@
           "sequence": 256,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.kessler-stop",
+            "id": "chapter9.fiche-faces",
             "expectedRevision": 255
           }
         },
@@ -2052,7 +2052,7 @@
           "sequence": 257,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.lawyer-thank",
+            "id": "chapter9.kessler-stop",
             "expectedRevision": 256
           }
         },
@@ -2060,19 +2060,35 @@
           "sequence": 258,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.lawyer-thank",
             "expectedRevision": 257
+          }
+        },
+        {
+          "sequence": 259,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.lock-pass",
+            "expectedRevision": 258
+          }
+        },
+        {
+          "sequence": 260,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 259
           }
         }
       ]
     },
     {
       "name": "records-stop-floor",
-      "events": 256,
+      "events": 258,
       "strength": "thin",
       "nameRoad": "floor",
       "entered": "own-power",
-      "saveSha256": "cc123495d1547df88a57c3ffb25fff179a7ac1b0c8f949b5c1b3113b97f089fd",
+      "saveSha256": "747dfcbed3c093e87f9d2f53a6e36013dc79e78811406006c8eee3cd2eae0237",
       "ledger": [
         {
           "sequence": 1,
@@ -4068,7 +4084,7 @@
           "sequence": 251,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.walk-adrian",
+            "id": "chapter9.chair-stay",
             "expectedRevision": 250
           }
         },
@@ -4076,7 +4092,7 @@
           "sequence": 252,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.rail-quiet",
+            "id": "chapter9.walk-adrian",
             "expectedRevision": 251
           }
         },
@@ -4084,7 +4100,7 @@
           "sequence": 253,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.fiche-faces",
+            "id": "chapter9.rail-quiet",
             "expectedRevision": 252
           }
         },
@@ -4092,7 +4108,7 @@
           "sequence": 254,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.kessler-stop",
+            "id": "chapter9.fiche-faces",
             "expectedRevision": 253
           }
         },
@@ -4100,7 +4116,7 @@
           "sequence": 255,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.lawyer-thank",
+            "id": "chapter9.kessler-stop",
             "expectedRevision": 254
           }
         },
@@ -4108,19 +4124,35 @@
           "sequence": 256,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.lawyer-thank",
             "expectedRevision": 255
+          }
+        },
+        {
+          "sequence": 257,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.lock-pass",
+            "expectedRevision": 256
+          }
+        },
+        {
+          "sequence": 258,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 257
           }
         }
       ]
     },
     {
       "name": "rook-all",
-      "events": 280,
+      "events": 282,
       "strength": "strong",
       "nameRoad": "rook",
       "entered": "own-power",
-      "saveSha256": "28161e36bfafee0c3a740f2598558f90c0e1903dc8c919a6f345deef15df24ce",
+      "saveSha256": "16af2846e5841b6a1c05d2f2d9ac2507049e5d4a75362d9bb8396471cb0a766f",
       "ledger": [
         {
           "sequence": 1,
@@ -6308,7 +6340,7 @@
           "sequence": 275,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.walk-adrian",
+            "id": "chapter9.chair-stay",
             "expectedRevision": 274
           }
         },
@@ -6316,7 +6348,7 @@
           "sequence": 276,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.rail-quiet",
+            "id": "chapter9.walk-adrian",
             "expectedRevision": 275
           }
         },
@@ -6324,7 +6356,7 @@
           "sequence": 277,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.fiche-faces",
+            "id": "chapter9.rail-quiet",
             "expectedRevision": 276
           }
         },
@@ -6332,7 +6364,7 @@
           "sequence": 278,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.kessler-stop",
+            "id": "chapter9.fiche-faces",
             "expectedRevision": 277
           }
         },
@@ -6340,7 +6372,7 @@
           "sequence": 279,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.lawyer-thank",
+            "id": "chapter9.kessler-stop",
             "expectedRevision": 278
           }
         },
@@ -6348,19 +6380,35 @@
           "sequence": 280,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.lawyer-thank",
             "expectedRevision": 279
+          }
+        },
+        {
+          "sequence": 281,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.lock-pass",
+            "expectedRevision": 280
+          }
+        },
+        {
+          "sequence": 282,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 281
           }
         }
       ]
     },
     {
       "name": "maya-all",
-      "events": 269,
+      "events": 271,
       "strength": "strong",
       "nameRoad": "public",
       "entered": "own-power",
-      "saveSha256": "5c7d229791e346cf8e97b6e901a489275838a9fa85a284397aca60ba3072e000",
+      "saveSha256": "53744f896fb2650db480385d3ddebd781ab6fe9b895fcebe410b305a22efe6de",
       "ledger": [
         {
           "sequence": 1,
@@ -8460,7 +8508,7 @@
           "sequence": 264,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.walk-adrian",
+            "id": "chapter9.chair-stay",
             "expectedRevision": 263
           }
         },
@@ -8468,7 +8516,7 @@
           "sequence": 265,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.rail-quiet",
+            "id": "chapter9.walk-adrian",
             "expectedRevision": 264
           }
         },
@@ -8476,7 +8524,7 @@
           "sequence": 266,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.fiche-faces",
+            "id": "chapter9.rail-quiet",
             "expectedRevision": 265
           }
         },
@@ -8484,7 +8532,7 @@
           "sequence": 267,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.kessler-stop",
+            "id": "chapter9.fiche-faces",
             "expectedRevision": 266
           }
         },
@@ -8492,7 +8540,7 @@
           "sequence": 268,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.lawyer-thank",
+            "id": "chapter9.kessler-stop",
             "expectedRevision": 267
           }
         },
@@ -8500,8 +8548,24 @@
           "sequence": 269,
           "action": {
             "type": "CHAPTER9_CHOOSE",
-            "id": "chapter9.resolve-end",
+            "id": "chapter9.lawyer-thank",
             "expectedRevision": 268
+          }
+        },
+        {
+          "sequence": 270,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.lock-pass",
+            "expectedRevision": 269
+          }
+        },
+        {
+          "sequence": 271,
+          "action": {
+            "type": "CHAPTER9_CHOOSE",
+            "id": "chapter9.resolve-end",
+            "expectedRevision": 270
           }
         }
       ]

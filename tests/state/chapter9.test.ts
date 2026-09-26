@@ -24,7 +24,7 @@ const choose9 = (s: GameState, id: string) => {
   return next;
 };
 /** The second beats (witness, name, and every set piece's moment) settle on their neutral pick when a walk asks for a hub move instead. */
-const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark', 'ruth-letter', 'ruth-you', 'ruth-silent', 'walk-adrian', 'rail-quiet', 'fiche-faces', 'kessler-stop'];
+const settle9 = ['terrace-leave', 'marcus-deflect', 'name-dark', 'oracle-close', 'chain-one', 'rook-square', 'clara-source', 'maya-fine', 'door-keep', 'table-sit', 'auction-leave', 'tailor-leave', 'lawyer-thank', 'club-close', 'sloane-nothing', 'rent-agent', 'window-dark', 'ruth-letter', 'ruth-you', 'ruth-silent', 'walk-adrian', 'rail-quiet', 'fiche-faces', 'kessler-stop', 'chair-stay', 'lock-pass'];
 const settled = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 10 && !(id && ids(x).includes(id)); i++) {
@@ -334,7 +334,14 @@ it('fits the charcoal before Castellane, and sends the case past a lawyer before
   expect(ids(resolved)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
   const retained = choose9(resolved, 'lawyer-retain');
   expect([retained.phase, retained.choices['c9.lawyer']]).toEqual(['counsel', 'retain']);
-  expect(ids(retained)).toEqual(['resolve-end']);
+  // The locksmith at the bottom of the stairs, then the end.
+  expect(text(retained)).toContain('Nadia’s friends get the first one free.');
+  expect(ids(retained)).toEqual(['lock-change', 'lock-learn', 'lock-pass']);
+  const learned = choose9(retained, 'lock-learn');
+  expect([learned.phase, learned.choices['c9.lock']]).toEqual(['counsel', 'learn']);
+  expect(text(learned)).toContain('Light hands. Patient.');
+  expect(ids(learned)).toEqual(['resolve-end']);
+  expect(text(choose9(retained, 'lock-change'))).toContain('Somebody’s had this out before me.');
   // No case weight: the band is fixed on entering resolve.
   expect(retained.choices['case.strength']).toBe(resolved.choices['case.strength']);
 });
@@ -354,12 +361,18 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(text(resolve)).not.toContain('Exhibit A');
   expect(ids(resolve)).toEqual(['sloane-nothing', 'sloane-page', 'sloane-afraid']);
   const afraid = choose9(resolve, 'sloane-afraid');
-  expect([afraid.choices['c9.sloane'], afraid.phase]).toEqual(['afraid', 'river']);
+  expect([afraid.choices['c9.sloane'], afraid.phase]).toEqual(['afraid', 'cafe']);
   expect(text(afraid)).toContain('Being right about you.');
+  // The watchers' chair, as she walks away.
+  expect(ids(afraid)).toEqual(['chair-look', 'chair-note', 'chair-stay']);
+  expect(text(choose9(afraid, 'chair-look'))).toContain('I have been living in a shop window');
+  const noted = choose9(afraid, 'chair-note');
+  expect([noted.phase, noted.choices['c9.chair']]).toEqual(['river', 'note']);
+  expect(text(noted)).toContain('TWO SUGARS AND CINNAMON.');
   // The River Walk comes before the lawyer.
-  expect(text(afraid)).toContain('Walk with me. Not in a car. I am tired of cars.');
-  expect(ids(afraid)).toEqual(['walk-box', 'walk-leash', 'walk-adrian']);
-  const box = choose9(afraid, 'walk-box');
+  expect(text(noted)).toContain('Walk with me. Not in a car. I am tired of cars.');
+  expect(ids(noted)).toEqual(['walk-box', 'walk-leash', 'walk-adrian']);
+  const box = choose9(noted, 'walk-box');
   expect(text(box)).toContain('So I signed the other form.');
   expect(text(box)).toContain('do it before the first Thursday');
   expect(ids(box)).toEqual(['rail-trust', 'rail-warn', 'rail-quiet']);
