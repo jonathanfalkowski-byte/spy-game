@@ -31,6 +31,8 @@ import { Chapter16work } from './Chapter16work';
 import { chapter16Scenes } from '../content/chapter16';
 import { Chapter17work } from './Chapter17work';
 import { chapter17Scenes } from '../content/chapter17';
+import { Chapter18work } from './Chapter18work';
+import { chapter18Scenes } from '../content/chapter18';
 import { FadeCoercionContext } from './reader-context';
 import { LeverageBoard } from './LeverageBoard';
 import { leverageBoardOpen } from '../content/leverage';
@@ -214,6 +216,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         'chapter15',
         'chapter16',
         'chapter17',
+        'chapter18',
         'file',
         'security',
         'sloane',
@@ -256,6 +259,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       'chapter15',
       'chapter16',
       'chapter17',
+      'chapter18',
       'file',
       'security',
       'sloane',
@@ -327,6 +331,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           ? 'Glass House / 03'
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
+            : state.scene === 'chapter18'
+              ? 'Chapter 18 / The Position'
             : state.scene === 'chapter17'
               ? 'Chapter 17 / The Room'
             : state.scene === 'chapter16'
@@ -368,6 +374,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           'Above the city.'
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
+        ) : state.scene === 'chapter18' ? (
+          'The Position.'
         ) : state.scene === 'chapter17' ? (
           'The Room.'
         ) : state.scene === 'chapter16' ? (
@@ -418,6 +426,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             ).map((s, i) => ['mission' + i, s.label])
           : state.scene === 'clinic'
             ? clinicSections.map((s, i) => ['clinic' + i, s.label])
+            : state.scene === 'chapter18'
+              ? chapter18Scenes.map((s) => [s.id, s.title])
             : state.scene === 'chapter17'
               ? chapter17Scenes.map((s) => [s.id, s.title])
             : state.scene === 'chapter16'
@@ -486,7 +496,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             key={id}
             aria-current={
               state.scene === id ||
-              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14', 'chapter15', 'chapter16', 'chapter17'].includes(state.scene) && id === node) ||
+              (['chapter3', 'chapter4', 'chapter5', 'chapter6', 'chapter7', 'chapter8', 'chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13', 'chapter14', 'chapter15', 'chapter16', 'chapter17', 'chapter18'].includes(state.scene) && id === node) ||
               (state.scene === 'mission' &&
                 id ===
                   'mission' +
@@ -559,7 +569,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter17' ? 'THE ROOM' : state.scene === 'chapter16' ? 'THE APPROACH' : state.scene === 'chapter15' ? 'BREAKING THE LEASH' : state.scene === 'chapter14' ? 'SLOANE’S TURN' : state.scene === 'chapter13' ? 'THE HONEYPOT' : state.scene === 'chapter12' ? 'SINGAPORE' : state.scene === 'chapter11' ? 'THE ASSET' : state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter18' ? 'THE POSITION' : state.scene === 'chapter17' ? 'THE ROOM' : state.scene === 'chapter16' ? 'THE APPROACH' : state.scene === 'chapter15' ? 'BREAKING THE LEASH' : state.scene === 'chapter14' ? 'SLOANE’S TURN' : state.scene === 'chapter13' ? 'THE HONEYPOT' : state.scene === 'chapter12' ? 'SINGAPORE' : state.scene === 'chapter11' ? 'THE ASSET' : state.scene === 'chapter10' ? 'SHE KNOWS' : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? 'THE COST BITES' : state.scene === 'chapter7' ? 'THE ROAD YOU CHOOSE' : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -720,6 +730,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                     'chapter15',
                     'chapter16',
                     'chapter17',
+                    'chapter18',
                     'file',
                     'security',
                     'sloane',
@@ -844,6 +855,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                   {!readingScene && <Chapter15work state={state} send={send} />}
                   {!readingScene && <Chapter16work state={state} send={send} />}
                   {!readingScene && <Chapter17work state={state} send={send} />}
+                  {!readingScene && <Chapter18work state={state} send={send} />}
                   <Clinicwork state={state} send={send} />
                   {!(assessment.status === 'required' && assessment.flow === 'mission') && (
                     <Missionwork state={state} send={send} />
@@ -1024,6 +1036,8 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : 'GLASS HOUSE'
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
+                        : state.scene === 'chapter18'
+                          ? 'Chapter 18 / The Position'
                         : state.scene === 'chapter17'
                           ? 'Chapter 17 / The Room'
                         : state.scene === 'chapter16'

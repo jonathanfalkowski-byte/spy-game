@@ -12,6 +12,7 @@ import { chapter14Choices, applyChapter14Choice } from '../content/chapter14';
 import { chapter15Choices, applyChapter15Choice } from '../content/chapter15';
 import { chapter16Choices, applyChapter16Choice } from '../content/chapter16';
 import { chapter17Choices, applyChapter17Choice } from '../content/chapter17';
+import { chapter18Choices, applyChapter18Choice } from '../content/chapter18';
 import { chapter4Choices, applyChapter4Choice } from '../content/chapter4';
 import { nextChoices, applyNextChoice } from '../content/chapter3-next';
 import { eveningChoices, eveningScenes } from '../content/chapter3-evening';
@@ -214,6 +215,8 @@ export function reducer(state: GameState, input: unknown): GameState {
       return applyChapter16Choice(state, action.id);
     case 'CHAPTER17_CHOOSE':
       return applyChapter17Choice(state, action.id);
+    case 'CHAPTER18_CHOOSE':
+      return applyChapter18Choice(state, action.id);
     case 'MISSION_CHOOSE':
       if (!applyMissionChoice(state, s, action.id)) return state;
       break;
@@ -526,6 +529,7 @@ function storyIntents(s: GameState): Intent[] {
   intents.push(...chapter15Choices(s).map((c) => ({ type: 'CHAPTER15_CHOOSE' as const, id: c.id })));
   intents.push(...chapter16Choices(s).map((c) => ({ type: 'CHAPTER16_CHOOSE' as const, id: c.id })));
   intents.push(...chapter17Choices(s).map((c) => ({ type: 'CHAPTER17_CHOOSE' as const, id: c.id })));
+  intents.push(...chapter18Choices(s).map((c) => ({ type: 'CHAPTER18_CHOOSE' as const, id: c.id })));
   if (s.scene === 'mission' && s.phase === 'complete' && s.day.outcome === 'accepted' && s.mission.outcome === 'complete' && s.clinic.outcome === 'departed') intents.push({ type: 'CONTINUE_CHAPTER3' });
   if (nodeOf(s) === 'chapter3.complete') intents.push({type:'CONTINUE_CHAPTER3_SCENE2'});
   if (canContinue(s)) intents.push({ type: 'CONTINUE' });

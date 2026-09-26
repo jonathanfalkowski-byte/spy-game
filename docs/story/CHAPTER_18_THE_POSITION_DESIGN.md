@@ -7,7 +7,9 @@ can revoke; audience as shield; Adrian ends beholden to no door"; every position
 and §8 (doctrine), [BEAT_MAP.md](BEAT_MAP.md) (Act IV: "Maya, Julian, Sebastian or Theo resolved. An epilogue beat
 (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new"), [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md),
 [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
-Status: **draft for owner decisions (§10)**. Gated like Chapters 6–17 (`VITE_EVE_CHAPTER18`, content revision
+Status: **approved (owner, 2026-09-26: all seven decisions as recommended) and built, pass 1** — script:
+[scripts/CHAPTER_18_THE_POSITION_SCRIPT.md](scripts/CHAPTER_18_THE_POSITION_SCRIPT.md), code: `src/content/chapter18.ts`.
+~1.2–1.3k words on the golden paths. Gated like Chapters 6–17 (`VITE_EVE_CHAPTER18`, content revision
 ≥ 19), entered from an own-power `chapter17.complete`. **The last chapter of the Celebrity route.**
 
 ---

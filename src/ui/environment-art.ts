@@ -263,6 +263,13 @@ const byNode: Record<string, Key> = {
   'chapter17.nell': 'harbourRoom',
   'chapter17.vote': 'harbourRoom',
   'chapter17.complete': 'rooftop',
+  // Chapter 18 (stand-ins until EVE Art's frames: a newspaper, three envelopes and a match, a harbour wall, a window, one card).
+  'chapter18.morning': 'apartmentDay',
+  'chapter18.position': 'apartmentDay',
+  'chapter18.people': 'noodleCounter',
+  'chapter18.name': 'apartmentNight',
+  'chapter18.later': 'rooftop',
+  'chapter18.complete': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

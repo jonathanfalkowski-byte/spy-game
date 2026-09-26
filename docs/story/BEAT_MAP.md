@@ -110,7 +110,7 @@ operation that reads who arrived. The endings are positions, not verdicts.
 |---|---|---|---|---|
 | 16 | **The Approach** | BUILT pass 1 ([design](CHAPTER_16_THE_APPROACH_DESIGN.md), 2026-09-26; ~2.1k golden) | 0.7h / 7k | Plan the last operation from the case (Ch9) and what Act III left. Choose who comes, what to bring, what to risk. The operation reacts to exposure |
 | 17 | **The Room** | BUILT pass 1 ([design](CHAPTER_17_THE_ROOM_DESIGN.md), 2026-09-26; ~1.9–2.0k golden) | 0.8h / 8k | The confrontation with Celeste. Sloane's motive resolves. The ORACLE defect laid on the table. Meridian wounded, not toppled |
-| 18 | **The Position** | DESIGNED ([design](CHAPTER_18_THE_POSITION_DESIGN.md), 2026-09-26; seven owner decisions open) | 0.5h / 5k | The endings: what Evelynn now knows, holds and can do, by lane and overlay. Maya, Julian, Sebastian or Theo resolved. An epilogue beat (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new |
+| 18 | **The Position** | BUILT pass 1 ([design](CHAPTER_18_THE_POSITION_DESIGN.md), 2026-09-26; ~1.2–1.3k golden) | 0.5h / 5k | The endings: what Evelynn now knows, holds and can do, by lane and overlay. Maya, Julian, Sebastian or Theo resolved. An epilogue beat (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new |
 
 ---
 
@@ -165,5 +165,7 @@ operation that reads who arrived. The endings are positions, not verdicts.
    one room, one hour: the defect, Sloane, the offer and the held card, Nell's name, the board's decision scaled by
    the case; approved and built pass 1 the same day). **Ch18 "The Position" designed 2026-09-26**
    ([CHAPTER_18_THE_POSITION_DESIGN.md](CHAPTER_18_THE_POSITION_DESIGN.md): the morning after, the aim as a life,
-   the switch, the people, a name, a year later; seven decisions open). Then on
+   the switch, the people, a name, a year later; approved and built pass 1 the same day). **The Celebrity route is
+   playable end to end** (about 45–47k words on one path, Chapters 3–18). Then deepening passes, the other routes
+   (Predator next), and art. Then on
    through Act III and the endgame on the Celebrity route.
