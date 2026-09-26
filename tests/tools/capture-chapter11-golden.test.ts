@@ -18,7 +18,7 @@ const routes: [string, string, string][] = [
   ['comply-quiet', 'comply-workroom', 'order-comply'],
   ['counter-surprised', 'counter-workroom', 'order-counter'],
 ];
-const prefer = ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-out', 'up-stairs', 'cat-leave', 'hide-curtain', 'walk-quiet', 'way-walk', 'after-home'];
+const prefer = ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-out', 'up-stairs', 'gap-pass', 'cat-leave', 'hide-curtain', 'terrace-river', 'walk-quiet', 'way-walk', 'after-home'];
 
 function play(from: GameState, answer: string): GameState {
   let s = from;

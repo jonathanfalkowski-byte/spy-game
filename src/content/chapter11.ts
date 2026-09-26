@@ -12,7 +12,11 @@
  * looked at?" in the viewing (c11.looked = yes | turn | silent), and two board members in the corridor upstairs
  * (c11.hide = curtain | brazen | down), and the last minutes with Iris before the cloakroom (c11.walk = name | laugh |
  * quiet; she was Helen, before), and the way home (c11.way = car | walk: Mr Pryce at the bridge). Maya's Monday and
- * Iris's word move to the close, after the night. */
+ * Iris's word move to the close, after the night.
+ * Second deepening pass (2026-09-26): the board-room door an inch open upstairs, before the reading room (c11.gap =
+ * look | listen | pass: Deverell, Soames and the signet ring, and Soames looking straight at the gap and saying
+ * nothing; or her price, going up while she listens), and a beat with Celeste on the terrace before the answer
+ * (c11.terrace = ask | glass | river: the man in Lisbon's last words; her glass, taken and drunk from). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -357,6 +361,10 @@ const corridor: Block[] = [
   q('Celeste (through the door)', 'Tonight. Halvorsen has had four good years and he is beginning to trust her, which is always the moment. I thought the new one might like to learn how it is done.'),
   p('Somebody laughs. Somebody pours something. A chair creaks as a man leans back in it, pleased with the evening.'),
   t('The defect. ORACLE’s verdict, that I could not be held. She is selling it as a feature. And Maya is a handle.'),
+  p('The door stands an inch open on the light. The reading room is the next door along. Nobody is in the corridor but you.'),
+];
+
+const readingRoom: Block[] = [
   p('The second door is the reading room. It smells of beeswax and old paper. There is a chair nobody sits in, a window over the river with the curtains open, and a lectern under one lamp like an altar, with one book on it, bound in dark green leather. The Autumn Collection.'),
   p('Every page is a person. A photograph, initials, a line of type. A woman in Lisbon, placed eight years. A man in a harbour town you have never heard of, available. A young man who cannot be twenty-five, in preparation. You stop turning pages there for a moment, and then you make yourself go on.'),
   p('Page seven: the Aster photograph, the one they printed, and under it, in the same plain type as the client list:'),
@@ -368,8 +376,38 @@ const corridor: Block[] = [
   t('Available from the first Thursday of next month. She has put a date on me. And Iris is ending.'),
 ];
 
+/** The board-room door (second deepening pass), before the reading room. */
+function gapChoices(): C11Choice[] {
+  const gap = (id: string, label: string, hint: string, body: Block[]) =>
+    offer11('gap-' + id, label, hint, 'upstairs', (x) => {
+      set11(x, 'gap', id);
+      return [...body, ...readingRoom];
+    });
+  return [
+    gap('look', 'Put your eye to the gap', 'See who she is talking to.', [
+      p('You stand to one side of the door, the way you learned to stand beside a filing cabinet you were not meant to be reading, and look through the inch of light.'),
+      p('A long table, dark wood, a green-shaded lamp at each place. Six people. At the head of it a man with white hair and a fountain pen, closed as a ledger, who has not written anything down. Beside him a woman with glasses on a chain, reading a paper in front of her with the stillness of somebody who reads everything twice. A heavy man turning a signet ring round and round on his little finger. A young man at the far end with a laptop, typing the minutes. And at the window, with her back to all of them, looking out at the river, Celeste.'),
+      p('The woman with the glasses looks up. Not at Celeste. At the door. Straight at the inch of light, and the eye in it.'),
+      p('She holds it for a long second. Then she looks down at her paper again, and turns the page, and says nothing at all.'),
+      t('She saw me. She said nothing. I don’t know her name, and I am going to remember her face for the rest of my life.'),
+    ]),
+    gap('listen', 'Stay one minute more', 'What else do they say about you, when you are not in the room?', [
+      p('You stay where you are, against the wall beside the door, with your empty glass held very still so that the ice will not knock.'),
+      q('A man’s voice (through the door)', 'The Gulf fund have asked about her already. The usual terms. Two, the first year, and a retainer.'),
+      q('Celeste (through the door)', 'Four. And not to the Gulf. She would be wasted on the Gulf. I have somebody much better in mind, somebody with a regulator in his way.'),
+      q('A woman’s voice (through the door)', 'You are very fond of this one, Celeste.'),
+      q('Celeste (through the door)', 'I am fond of all of them, Marguerite. That is the whole secret of the business.'),
+      t('I have a price. It doubled while I was standing here listening. And she has already chosen who I am for.'),
+    ]),
+    gap('pass', 'Walk past it', 'Don’t slow down. The reading room.', [
+      p('You walk past the door without slowing, the way you would walk past an open door in a hotel, and do not look in.'),
+    ]),
+  ];
+}
+
 function upstairsChoices(s: GameState): C11Choice[] {
   if (get11(s, 'catalogue')) return hideChoices();
+  if (get11(s, 'up') && !get11(s, 'gap')) return gapChoices();
   if (!get11(s, 'up')) {
     const climb = (id: string, label: string, hint: string, body: Block[]) =>
       offer11('up-' + id, label, hint, 'upstairs', (x) => {
@@ -480,7 +518,36 @@ function orderBlocks(s: GameState): Block[] {
   ];
 }
 
+/** On the terrace with Celeste (second deepening pass), before the answer. */
+function terraceChoices(): C11Choice[] {
+  const beat = (id: string, label: string, hint: string, body: Block[]) =>
+    offer11('terrace-' + id, label, hint, 'order', (x) => {
+      set11(x, 'terrace', id);
+      return body;
+    });
+  return [
+    beat('ask', 'Ask what the man in Lisbon said', 'The last thing. She said she remembers all of it.', [
+      q('You', 'The man in Lisbon. What was the last thing he said to you?'),
+      p('Celeste does not answer at once. She watches the tour boat go under the bridge, and its music go with it.'),
+      q('Celeste', 'He said, “You look lovely in green.” He was being taken out of a restaurant by two policemen at the time. He meant it. That was the dreadful thing about him. He always meant it.'),
+      q('Celeste', 'I have worn it ever since. People think it is a signature. It is a tombstone, darling. Mine are always very well dressed.'),
+      t('And she dressed me in it for tonight.'),
+    ]),
+    beat('glass', 'Take her glass', 'Out of her hand. Drink from it. See what she does.', [
+      p('You take the glass out of her fingers, not asking, and drink from it where her mouth has been, slowly, looking at her over the rim, and hand it back to her.'),
+      p('For a moment, the first moment in two months, Celeste Laurent does not know what to do with her face. Then she laughs, low and genuinely delighted, and puts her fingertips very lightly under your chin, and turns your face to the lights across the river as if to see it better.'),
+      q('Celeste', 'Careful, darling. That is exactly how it started with her.'),
+      p('She takes her hand away. Your skin keeps the cold of her fingers for a long time after.'),
+      t('With Nell. It started like that with Nell. I wanted to frighten her, and I have only told her I am paying attention.'),
+    ]),
+    beat('river', 'Look at the river', 'Say nothing. Let her wait for once.', [
+      p('You say nothing. You look at the river, and let her wait for your answer the way she has made you wait for everything.'),
+    ]),
+  ];
+}
+
 function orderChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'terrace')) return terraceChoices();
   const answer = (id: 'comply' | 'refuse' | 'counter', label: string, hint: string) =>
     offer11('order-' + id, label, hint, 'ending', (x) => {
       const prior = mayaPrior(x);

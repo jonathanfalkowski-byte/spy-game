@@ -7,7 +7,7 @@ Design authority: [BEAT_MAP.md](BEAT_MAP.md) (Act III), [CONTENT_DIRECTION.md](C
 (canon), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md) (the test: thrilling, erotic, fun).
 Status: **approved (owner, 2026-09-25: all six decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_11_THE_ASSET_SCRIPT.md](scripts/CHAPTER_11_THE_ASSET_SCRIPT.md), code: `src/content/chapter11.ts`.
-Gated like Chapters 6–10 (`VITE_EVE_CHAPTER11`, content revision ≥ 19). Deepened 2026-09-25: ~3.5–3.6k words on the golden paths, ~3.8–4k engaged.
+Gated like Chapters 6–10 (`VITE_EVE_CHAPTER11`, content revision ≥ 19). Deepened 2026-09-25: ~3.5–3.6k words on the golden paths, ~3.8–4k engaged; deepened again 2026-09-26 (the board-room door, the terrace): ~3.6–3.7k golden, ~4.1–4.4k engaged.
 
 ---
 

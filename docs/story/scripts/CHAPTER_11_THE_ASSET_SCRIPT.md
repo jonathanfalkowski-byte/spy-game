@@ -124,8 +124,28 @@ four moments, each with a neutral pick for the goldens:
   **way-walk** (neutral). Celeste's word at midnight follows; Maya's Monday and Iris's word move to
   the close.
 
+## Second deepening pass (2026-09-26)
+
+Two moments every path passes through, each with a neutral pick for the goldens (`GATED_DEFAULTS`):
+
+- **The board-room door** (`upstairs`, after the voices through the door, before the reading room; the corridor
+  now pauses at "The door stands an inch open") (`c11.gap`):
+  - **gap-look**: the board through an inch of light: the white-haired man with the fountain pen, the woman with
+    glasses on a chain, the signet ring, the young man typing the minutes, Celeste at the window. The woman with the
+    glasses looks straight at the gap and says nothing. This seeds Deverell, Soames and the cataloguer for Chapters
+    15 and 17.
+  - **gap-listen**: her price. "Two, the first year" becomes "Four. And not to the Gulf … somebody with a regulator
+    in his way", which seeds Chapter 13. Then "I am fond of all of them, Marguerite".
+  - **gap-pass** (neutral).
+- **On the terrace** (`order`, after Celeste's speech, before the answer) (`c11.terrace`):
+  - **terrace-ask**: the man in Lisbon's last words: "You look lovely in green … It is a tombstone, darling".
+  - **terrace-glass**: she takes Celeste's glass and drinks from it. For once Celeste does not know what to do with
+    her face; then "Careful, darling. That is exactly how it started with her."
+  - **terrace-river** (neutral).
+
 ## Size (honest)
 
-Pass 1: ~1.7k words on the golden paths. After the deepening pass: **~3.5–3.6k on the golden
-(quiet) paths, ~3.8–4k engaged**, against the 7k budget. The remaining gap is where the next pass
-would go: a longer op upstairs and the evening.
+Pass 1: ~1.7k words on the golden paths. After the first deepening pass, ~3.5–3.6k. After the second:
+**~3.6–3.7k on the golden (quiet) paths**, and ~4.1–4.4k when played engaged, against the 7k budget. The quiet
+picks are short by design, so most of this pass's gain shows up only when the new options are chosen. What is left
+is the evening.

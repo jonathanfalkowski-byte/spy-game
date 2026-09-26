@@ -20,7 +20,18 @@ const c11 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk = (s: GameState, path: string[]) => path.reduce(c11, s);
+/** The second pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL = ['gap-pass', 'terrace-river'];
+const walk = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c11(y, n);
+    }
+    return c11(y, id);
+  }, s);
 const complete10 = (name: string) => replay(golden10.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
@@ -31,7 +42,7 @@ const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
 /** The comply-workroom Chapter 10 ending, adjusted per case. */
 const start = (flags: Record<string, string | undefined> = {}) => withFlags(complete10('comply-workroom'), flags);
 /** Into the Vesper, through the room and upstairs, to the order. */
-const toOrder = (s: GameState) => walk(s, ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-how', 'up-escort', 'cat-leave', 'hide-curtain']);
+const toOrder = (s: GameState) => walk(s, ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-how', 'up-escort', 'cat-leave', 'hide-curtain', 'terrace-river']);
 
 it('opens after an own-power Chapter 10 ending, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
@@ -76,9 +87,17 @@ it('takes her upstairs to the board and the catalogue, and records what she take
   const up = walk(start({ 'c8.pryce': 'chain' }), ['begin', 'arrive-quiet', 'room-dazzle', 'look-silent', 'iris-out']);
   expect(up.phase).toBe('upstairs');
   expect(ids(up)).toEqual(['up-stairs', 'up-escort', 'up-iris']);
-  const stairs = c11(up, 'up-stairs');
-  expect(text(stairs)).toContain('On the first landing Mr Pryce is sitting on a folding chair');
-  expect(text(stairs)).toContain('The defect, as you call it, is an asset in a public placement.');
+  const door = c11(up, 'up-stairs');
+  expect(text(door)).toContain('On the first landing Mr Pryce is sitting on a folding chair');
+  expect(text(door)).toContain('The defect, as you call it, is an asset in a public placement.');
+  // The board-room door, an inch open, before the reading room.
+  expect(ids(door)).toEqual(['gap-look', 'gap-listen', 'gap-pass']);
+  expect(text(door)).not.toContain('E. V. · Reissued');
+  const looked = c11(door, 'gap-look');
+  expect([looked.phase, looked.choices['c11.gap']]).toEqual(['upstairs', 'look']);
+  expect(text(looked)).toContain('She saw me. She said nothing.');
+  expect(text(c11(door, 'gap-listen'))).toContain('I am fond of all of them, Marguerite.');
+  const stairs = c11(door, 'gap-pass');
   expect(text(stairs)).toContain('E. V. · Reissued · Public profile · Available for placement from the first Thursday of next month.');
   expect(text(stairs)).toContain('I. M. · Four years · Ending.');
   expect(ids(stairs)).toEqual(['cat-photo', 'cat-page', 'cat-leave']);
@@ -94,7 +113,7 @@ it('takes her upstairs to the board and the catalogue, and records what she take
   expect(text(brazen)).toContain('So is everything else you’re looking for.');
   expect(text(c11(photo, 'hide-curtain'))).toContain('Page seven. Even better in person, I thought.');
   expect(leverageBoard(photo).holds.map((a) => a.id)).toContain('catalogue');
-  expect(ids(c11(up, 'up-escort'))).toEqual(['cat-photo', 'cat-page', 'cat-leave']);
+  expect(ids(walk(up, ['up-escort', 'gap-pass']))).toEqual(['cat-photo', 'cat-page', 'cat-leave']);
   expect(ids(walk(start(), ['begin', 'arrive-quiet', 'room-dazzle', 'look-silent', 'iris-how']))).not.toContain('up-iris');
   expect(text(c11(c11(stairs, 'cat-page'), 'hide-down'))).toContain('You tore out page seven.');
 });
@@ -109,6 +128,17 @@ it('gives the second order with the threat to Maya escalated, and the third way 
   const suspended = toOrder(start({ 'act3.maya-clearance': 'suspended' }));
   expect(text(suspended)).toContain('A review can become a dismissal.');
   expect(ids(toOrder(start({ 'act3.celeste-surprised': 'once' })))).toContain('order-counter');
+});
+
+it('gives a beat with Celeste on the terrace before the answer', () => {
+  const terrace = walk(start(), ['begin', 'arrive-quiet', 'room-listen', 'look-silent', 'iris-how', 'up-escort', 'gap-pass', 'cat-leave', 'hide-curtain']);
+  expect(terrace.phase).toBe('order');
+  expect(ids(terrace)).toEqual(['terrace-ask', 'terrace-glass', 'terrace-river']);
+  const asked = c11(terrace, 'terrace-ask');
+  expect([asked.phase, asked.choices['c11.terrace']]).toEqual(['order', 'ask']);
+  expect(text(asked)).toContain('You look lovely in green.');
+  expect(ids(asked)).toContain('order-comply');
+  expect(text(c11(terrace, 'terrace-glass'))).toContain('That is exactly how it started with her.');
 });
 
 it('plays every answer through the cloakroom, with its cost', () => {
