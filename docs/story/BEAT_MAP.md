@@ -109,7 +109,7 @@ operation that reads who arrived. The endings are positions, not verdicts.
 | Ch | Title | Status | Target | Job in the story |
 |---|---|---|---|---|
 | 16 | **The Approach** | BUILT pass 1 ([design](CHAPTER_16_THE_APPROACH_DESIGN.md), 2026-09-26; ~2.1k golden) | 0.7h / 7k | Plan the last operation from the case (Ch9) and what Act III left. Choose who comes, what to bring, what to risk. The operation reacts to exposure |
-| 17 | **The Room** | NEW | 0.8h / 8k | The confrontation with Celeste. Sloane's motive resolves. The ORACLE defect laid on the table. Meridian wounded, not toppled |
+| 17 | **The Room** | DESIGNED ([design](CHAPTER_17_THE_ROOM_DESIGN.md), 2026-09-26; seven owner decisions open) | 0.8h / 8k | The confrontation with Celeste. Sloane's motive resolves. The ORACLE defect laid on the table. Meridian wounded, not toppled |
 | 18 | **The Position** | NEW | 0.5h / 5k | The endings: what Evelynn now knows, holds and can do, by lane and overlay. Maya, Julian, Sebastian or Theo resolved. An epilogue beat (heat 3 at most if chosen). Who she is now: Adrian, Evelyn, or someone new |
 
 ---
@@ -161,5 +161,7 @@ operation that reads who arrived. The endings are positions, not verdicts.
    same day). **Act III is built end to end on the Celebrity route.** **Ch16 "The Approach" designed 2026-09-25**
    ([CHAPTER_16_THE_APPROACH_DESIGN.md](CHAPTER_16_THE_APPROACH_DESIGN.md): Thursday from dawn to the door; the case
    reviewed; the aim; who comes; the card held back; the arrival reacting to exposure; approved and built pass 1
-   2026-09-26). Then Ch17 "The Room", and on
+   2026-09-26). **Ch17 "The Room" designed 2026-09-26** ([CHAPTER_17_THE_ROOM_DESIGN.md](CHAPTER_17_THE_ROOM_DESIGN.md):
+   one room, one hour: the defect, Sloane, the offer and the held card, Nell's name, the board's decision scaled by
+   the case; seven decisions open). Then on
    through Act III and the endgame on the Celebrity route.
