@@ -10,7 +10,11 @@
  * (the Jakarta order hers; the car Nell would not get into; the harbour wall; the driver who did not stop; the call to
  * Nora at seven) and her name said or not (act4.nell-said); the board's decision scaled by the case (board17: Meridian
  * wounded, never toppled); and one minute alone with Celeste and a white orchid (act4.last). Nothing sexual on screen;
- * no coercion; the free-agent core, thin and alone, still gets the room, the truth and the walk out. */
+ * no coercion; the free-agent core, thin and alone, still gets the room, the truth and the walk out.
+ * Deepening pass (2026-09-26): the board members given voices (the heavy man, the woman in pearls, Deverell at length);
+ * Marguerite Soames's one question after the defect (act4.soames = yes | no | brief: "Did you choose it?"); the crew
+ * speaking in the room after the offer, or held back, or, alone, standing up (act4.crew-beat = speak | hold | stand);
+ * and a slower last minute. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { getKey, setKey } from './chapter7-model';
@@ -83,6 +87,9 @@ function openingBlocks(s: GameState): Block[] {
       wear === 'black' ? 'Black. You did dare.' : wear === 'grey' ? 'Iris’s grey. How very loyal of you.' : 'The green. You kept it. I knew you would.',
     ),
     p('Six faces turn to you. Deverell’s, closed as a ledger. Soames’s, over the top of her glasses, already reading. The heavy man with the signet ring, the woman in pearls with her empty notebook, the young man with the laptop who looks as if he would like to be anywhere else on earth.'),
+    q('The heavy man', 'Is this strictly necessary, Celeste? I have a car at seven.'),
+    q('Celeste', 'Everything I do is strictly necessary, Hugo. That is why you pay me.'),
+    p('The woman in pearls writes the date at the top of her empty page, very neatly, and underlines it, and waits.'),
     ...(inside(s).length
       ? [p(`Behind you, on the two chairs by the wall, ${inside(s).map((w) => ({ sloane: 'Sloane', nora: 'Nora', marsh: 'Owen', maya: 'Maya', iris: 'Iris', julian: 'Julian' })[w as 'sloane']).join(' and ')}. You do not look round. You can feel them there, the way you feel a wall at your back in the dark.`)]
       : [p('Behind you, nobody. The two chairs by the wall are empty. You chose that. You can feel it at your back, the way you feel a draught.')]),
@@ -158,9 +165,33 @@ function defectBlocks(s: GameState): Block[] {
   ];
 }
 
-function defectChoices(): C17Choice[] {
+/** Marguerite Soames's one question (deepening pass). */
+function soamesChoices(): C17Choice[] {
+  const answer = (id: string, label: string, hint: string, body: Block[]) =>
+    offer17('soames-' + id, label, hint, 'sloane', (x) => {
+      setKey(x, 'act4.soames', id);
+      return body;
+    });
+  return [
+    answer('yes', '“Yes. Every day.”', 'That is the part they cannot sell.', [
+      q('You', 'Yes. Every day. I chose it on the first morning and I have chosen it every morning since. That’s the part you can’t sell, Mrs Soames. You can sell the face. You can’t sell the choosing.'),
+      p('Soames looks at you for a long moment. Then she writes a single word on her pad, and turns the pad face down, and you would give a great deal to know what it was.'),
+    ]),
+    answer('no', '“No. I chose what to do with it.”', 'The choosing came after.', [
+      q('You', 'No. Nobody chooses to be sold. I chose what to do with it afterwards. That’s why I’m standing here and not sitting at the end of Mr Halvorsen’s table.'),
+      p('Soames nods, slowly, as if you had confirmed something she had read in a footnote years ago and never quite believed.'),
+    ]),
+    answer('brief', '“Read page two.”', 'Let the paper answer her.', [
+      q('You', 'Read page two, Mrs Soames. It’s all there. You signed page three.'),
+      p('She reads page two. It takes her a long time. When she looks up she does not ask anything else.'),
+    ]),
+  ];
+}
+
+function defectChoices(s: GameState): C17Choice[] {
+  if (getKey(s, 'act4.press')) return soamesChoices();
   const press = (id: string, label: string, hint: string, body: Block[]) =>
-    offer17('press-' + id, label, hint, 'sloane', (x) => {
+    offer17('press-' + id, label, hint, 'defect', (x) => {
       setKey(x, 'act4.press', id);
       return [
         ...body,
@@ -168,6 +199,8 @@ function defectChoices(): C17Choice[] {
         q('Deverell', 'Celeste. Did we know?'),
         p('Celeste looks at him for a long moment, and then, which you did not expect, she tells him the truth.'),
         q('Celeste', 'Of course we knew, Anton. You signed it. We always know. That is what we sell.'),
+        p('Nobody says anything for a while. Then Marguerite Soames takes her glasses off, and folds them, and speaks to you, for the first time, as if you were a person and not an exhibit.'),
+        q('Soames', 'Ms Vale. One question, for my own notes. The assessment says voluntary adoption: high. Did you choose it?'),
       ];
     });
   return [
@@ -267,9 +300,59 @@ const heldLands: Record<string, Block[]> = {
   ],
 };
 
-function turnChoices(): C17Choice[] {
+const crewLine: Record<string, Block[]> = {
+  sloane: [
+    p('Sloane does not stand this time. She speaks from her chair, quietly, to Deverell, as one professional to another.'),
+    q('Sloane', 'Mr Deverell, I have sat at tables like this for twenty years, and I have never once heard anybody refuse that offer. I would like it minuted.'),
+  ],
+  nora: [
+    p('Nora stands. She has Nell’s photograph in her hand in its plastic sleeve, and she does not put it on the table yet. She only holds it, facing the board, the way you would hold up a candle in a dark room, and sits down again without a word.'),
+  ],
+  marsh: [
+    p('Owen clears his throat, and every head turns, because nobody has heard him speak.'),
+    q('Owen Marsh', 'For the record, I am taking a note of every name at this table. Spelled correctly. I’m told that’s the part people like you hate.'),
+  ],
+  maya: [
+    p('Maya writes, very slowly, where the heavy man can see her doing it, a name on her pad, and underlines it twice, and looks up at him, and smiles.'),
+  ],
+  iris: [
+    p('Iris touches her earring. Once. Then, when you glance at her, she lets her eyes go to the woman in pearls, whose hands, you now see, are shaking under the table.'),
+  ],
+  julian: [
+    p('Julian, in the client’s chair, puts down his pen.'),
+    q('Julian Mercer', 'As a client of this firm, I would like to say that if Ms Vale sits down at this table, Helix will be taking its business elsewhere. And if she doesn’t, I suspect we will anyway.'),
+  ],
+};
+
+/** After the offer (deepening pass): the crew speaks, or is held back; alone, she stands. */
+function crewBeatChoices(s: GameState): C17Choice[] {
+  const crew = inside(s);
+  const beat = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
+    offer17('crew-' + id, label, hint, 'nell', (x) => {
+      setKey(x, 'act4.crew-beat', id);
+      return body(x);
+    });
+  if (!crew.length)
+    return [
+      offer17('alone-stand', 'Stand up', 'Nobody at your back. Stand anyway.', 'nell', (x) => {
+        setKey(x, 'act4.crew-beat', 'stand');
+        return [
+          p('Nobody behind you to turn to. So you stand up, and walk to the window, and stand with your back to the room and the black glass in front of you and the river beyond it, and let them look at you, the way they always have. The product. Standing with its back to them. It is the rudest thing anybody has ever done in that room.'),
+        ];
+      }),
+    ];
+  return [
+    beat('speak', 'Let them speak', 'The people who came in with you.', (x) => inside(x).flatMap((w) => crewLine[w] ?? [])),
+    beat('hold', 'Hold them back', 'A hand raised, behind you. Not yet.', () => [
+      p('You raise one hand, a little, without looking round, and behind you nobody moves. You can feel them wanting to. It is enough, for now, that the board can see them wanting to.'),
+    ]),
+  ];
+}
+
+function turnChoices(s: GameState): C17Choice[] {
+  if (getKey(s, 'act4.offer')) return crewBeatChoices(s);
   const answer = (id: string, label: string, hint: string, body: Block[]) =>
-    offer17('offer-' + id, label, hint, 'nell', (x) => {
+    offer17('offer-' + id, label, hint, 'turn', (x) => {
       setKey(x, 'act4.offer', id);
       setKey(x, 'act4.held-landed', getKey(x, 'act4.held') ?? 'none');
       return [...body, ...(heldLands[getKey(x, 'act4.held') ?? 'none'] ?? heldLands.none), p('Celeste takes her hand off the back of your chair.')];
@@ -344,6 +427,7 @@ function voteBlocks(s: GameState): Block[] {
   };
   return [
     p('Deverell stands. He is not a man who stands often; you can see that in how he does it. He does not look at Celeste.'),
+    q('Deverell', 'I have sat on this board for thirty-one years. I have signed a great many things. I have never, until tonight, had one of them read aloud to me by the thing it was signed about.'),
     q('Deverell', 'This board will be seen to have acted. Tonight. I move that we do so.'),
     ...(board === 'resigned'
       ? [
@@ -366,8 +450,10 @@ function voteBlocks(s: GameState): Block[] {
           ]),
     p('Then they file out, the six of them, past the empty frames, not looking at each other. The young man with the laptop is the last to go, and at the door he stops, and looks back at you, and nods, once, as if to somebody on the same side.'),
     p('And then there are two of you in the long room, under twenty gilt frames of nothing.'),
+    p('The long room is very quiet. Somebody has left the lamp on over the lectern. The rain has stopped against the black glass, and you can hear the river, which you have never once heard from in here, going by outside at the foot of the embankment.'),
     p('Celeste comes down the length of the table. She stops an arm’s length away. She looks at you for a long time, the way she looked at you across a breakfast table eight months ago: appraising the fit. And then, for the first time, not.'),
     q('Celeste', 'Tell me one thing, and then you can go. Did you ever like being her?'),
+    p('She waits. She has always been good at waiting. For once, so are you.'),
     p('She holds out the white orchid.'),
   ];
 }
@@ -404,6 +490,7 @@ function completeBlocks(s: GameState): Block[] {
   const out = getKey(s, 'act4.outside');
   return [
     p('You walk out down the long room, past the frames, past the chairs by the wall. ' + (inside(s).length ? 'The people who came in with you get up and come with you, without a word.' : 'Nobody gets up to come with you, because nobody came, and you find you do not mind.')),
+    p('At the top of the stairs you stop, and look back, once. Celeste is standing where you left her, alone at the far end of the long room under the empty frames, with the lamp behind her, very straight. She does not wave. Neither do you.'),
     p('The doorman is not at the door. For the first time since the first Thursday, nobody is there to open it before you touch it.'),
     p(
       out === 'theo'
@@ -438,9 +525,9 @@ export function chapter17Choices(s: GameState): C17Choice[] {
     return [offer17('begin', 'The room', 'Six people, one hour, and Celeste standing.', 'opening')];
   if (s.scene !== 'chapter17') return [];
   if (s.phase === 'opening') return openingChoices();
-  if (s.phase === 'defect') return defectChoices();
+  if (s.phase === 'defect') return defectChoices(s);
   if (s.phase === 'sloane') return sloaneChoices();
-  if (s.phase === 'turn') return turnChoices();
+  if (s.phase === 'turn') return turnChoices(s);
   if (s.phase === 'nell') return nellChoices(s);
   if (s.phase === 'vote') return voteChoices();
   return [];

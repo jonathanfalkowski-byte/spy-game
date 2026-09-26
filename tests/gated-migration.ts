@@ -157,6 +157,10 @@ export const GATED_DEFAULTS = [
   'chapter18.walk-past',
   'chapter18.fame-later',
   'chapter18.keep-none',
+  // Chapter 17 deepening: let the paper answer Soames; hold the crew back; alone, stand.
+  'chapter17.soames-brief',
+  'chapter17.crew-hold',
+  'chapter17.alone-stand',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

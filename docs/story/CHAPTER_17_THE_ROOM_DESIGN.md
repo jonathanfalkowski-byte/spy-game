@@ -8,7 +8,7 @@ toppled; Celeste and Sloane end as people in the machine, not defeated bosses), 
 [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md), [CAMPAIGN_PACING_PLAN.md](CAMPAIGN_PACING_PLAN.md).
 Status: **approved (owner, 2026-09-26: all seven decisions as recommended) and built, pass 1** — script:
 [scripts/CHAPTER_17_THE_ROOM_SCRIPT.md](scripts/CHAPTER_17_THE_ROOM_SCRIPT.md), code: `src/content/chapter17.ts`.
-~1.9–2.0k words on the golden paths. Gated like Chapters 6–16 (`VITE_EVE_CHAPTER17`, content revision
+~1.9–2.0k words on the golden paths at pass 1; deepened 2026-09-26 to ~2.2–2.4k. Gated like Chapters 6–16 (`VITE_EVE_CHAPTER17`, content revision
 ≥ 19), entered from an own-power `chapter16.complete`.
 
 ---

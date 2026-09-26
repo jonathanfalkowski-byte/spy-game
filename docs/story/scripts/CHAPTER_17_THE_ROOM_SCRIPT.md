@@ -77,8 +77,25 @@ out of the Vesper by the front door, and nobody opened it for me. I opened it my
   `tests/fixtures/rev19-chapter17-golden.json` (expose-room, terms-celeste, nell-silent; capture with
   `EVE_CAPTURE_CH17=1 npx vitest run tests/tools/capture-chapter17-golden.test.ts`).
 
+## Deepening pass (2026-09-26)
+
+Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`), the board given voices, and a slower end:
+
+- **Soames's one question** (`defect`, after the press) (`act4.soames`): "Did you choose it?" **soames-yes** ("You can
+  sell the face. You can't sell the choosing.") · **soames-no** ("Nobody chooses to be sold. I chose what to do with it
+  afterwards.") · **soames-brief** (neutral; "Read page two … You signed page three.").
+- **The crew, after the offer** (`turn`, after the held card lands) (`act4.crew-beat`): **crew-speak** (each one in the
+  room in turn: Sloane asking for her refusal to be minuted, Nora holding up Nell's photograph, Owen noting every name
+  "spelled correctly", Maya underlining one, Iris's earring and the woman in pearls' shaking hands, Julian taking Helix's
+  business elsewhere) · **crew-hold** (neutral; a hand raised) · or, alone, **alone-stand** (neutral; her back to the
+  room at the window: "the rudest thing anybody has ever done in that room").
+- The board given voices: the heavy man (Hugo) with a car at seven, the woman in pearls underlining the date, Deverell's
+  thirty-one years. The last minute slowed: the lamp over the lectern, the river heard from inside for the first time,
+  the waiting; and one look back from the top of the stairs.
+
 ## Size (honest)
 
-Pass 1: **~1.9–2.0k words on the golden paths** against the 8k budget. Every beat, and every reading of what she
+Pass 1: ~1.9–2.0k words on the golden paths. After the deepening pass: **~2.2–2.4k on the golden (quiet) paths**, more
+engaged (the crew speaking, Soames answered), against the 8k budget. Every beat, and every reading of what she
 brought, is in; the scenes are lean. A deepening pass should give the board members voices (Soames and Deverell above
 all), let the crew speak in the room, and slow the one minute alone.
