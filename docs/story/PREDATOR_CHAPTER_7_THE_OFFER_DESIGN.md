@@ -10,7 +10,9 @@
   sexually coerces anyone);
 - [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) §8 (doctrine).
 
-**Status: DESIGN for owner approval.** Nothing is built. It would be gated like the other unreleased chapters and
+**Status: APPROVED (owner, 2026-09-27: all seven decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_7_SCRIPT.md](scripts/PREDATOR_CHAPTER_7_SCRIPT.md); code: `src/content/chapter7-predator.ts`. ~1.8–2.2k words
+on one path at pass 1. The rest of this paragraph is the original plan: It would be gated like the other unreleased chapters and
 entered from the Chapter 7 confirm beat when the road chosen is `predator`. That road reaches the in-development
 ending today.
 

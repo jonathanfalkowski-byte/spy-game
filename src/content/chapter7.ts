@@ -8,6 +8,7 @@ import { type C7Scene, type C7Choice, chapter7Playable, get7, getKey, note7, off
 import { cash5 } from './chapter5-model';
 import { deriveRoute6, type RouteLane6 } from './chapter6-counterpower';
 import { ownBlocks7, ownChoices7, enterClose7 } from './chapter7-own';
+import { predatorBlocks7, predatorChoices7, predatorPhase7 } from './chapter7-predator';
 
 export const chapter7Definitions: Record<string, C7Scene> = {
   confirm: { title: 'The Road You Choose', place: 'ONE WEEK LATER', blocks: [] },
@@ -22,6 +23,13 @@ export const chapter7Definitions: Record<string, C7Scene> = {
   close: { title: 'The First Edge', place: '· WHAT YOU FOUND', blocks: [] },
   effects: { title: 'His Things', place: 'NIGHT · THE KITCHEN FLOOR', blocks: [] },
   night: { title: 'Tonight', place: 'LATE · YOUR FLAT', blocks: [] },
+  // The Predator road (2026-09-27): The Offer.
+  summons: { title: 'The Car', place: '08:30 · THE KERB', blocks: [] },
+  office: { title: 'The Offer', place: '09:00 · HELIX, THE THIRTY-EIGHTH FLOOR', blocks: [] },
+  terms: { title: 'Additional Terms', place: '10:15 · MARCUS CHEN’S DESK', blocks: [] },
+  corridor: { title: 'The Corridor', place: '11:00 · THE EXECUTIVE FLOOR', blocks: [] },
+  floor: { title: 'Special Projects', place: 'AFTERNOON · THE THIRTY-SIXTH FLOOR', blocks: [] },
+  evening: { title: 'Tonight', place: '19:00 · YOUR FLAT', blocks: [] },
   complete: { title: 'Where It Points', place: '· THAT NIGHT', blocks: [] },
 };
 export const chapter7Scenes = Object.entries(chapter7Definitions).map(([phase, scene]) => ({
@@ -75,10 +83,10 @@ function choose(x: GameState, lane: RouteLane6, entry: 'built' | 'partial' | 'un
   setKey(x, 'route.entry', entry);
   setKey(x, 'route.overlay', (deriveRoute6(x)?.overlay ?? []).join(','));
   set7(x, 'suggested', suggested7(x));
-  if (lane === 'own-power') setKey(x, 'own.cash', String(Math.max(0, cash5(x))));
+  if (lane === 'own-power' || lane === 'predator') setKey(x, 'own.cash', String(Math.max(0, cash5(x))));
   note7(x, 'route', `Evelynn chose the ${lane} road (${entry}). The suggestion was ${suggested7(x)}.`, 'Explicit player choice at the Chapter 7 confirm beat');
 }
-const nextFor = (lane: RouteLane6) => (lane === 'own-power' ? 'standing' : 'complete');
+const nextFor = (lane: RouteLane6) => (lane === 'own-power' ? 'standing' : lane === 'predator' ? 'summons' : 'complete');
 
 function confirmChoices(s: GameState): C7Choice[] {
   const suggested = suggested7(s);
@@ -131,6 +139,7 @@ export function chapter7Blocks(s: GameState): Block[] {
       p(mirror[suggested7(s)]),
       p('That is where you have been going. The question is only whether you meant it, and whether you still do.'),
     ];
+  if (predatorPhase7(s)) return predatorBlocks7(s);
   if (s.phase === 'complete' && getKey(s, 'route.lane') !== 'own-power')
     return [p(`[Chapter 7 · ${getKey(s, 'route.lane')} route — in development]`)];
   return ownBlocks7(s);
@@ -142,6 +151,7 @@ export function chapter7Choices(s: GameState): C7Choice[] {
     return [offer7('begin', 'Go on', 'A week later. Decide how you mean to continue.', 'confirm')];
   if (s.scene !== 'chapter7') return [];
   if (s.phase === 'confirm') return confirmChoices(s);
+  if (predatorPhase7(s)) return predatorChoices7(s);
   return ownChoices7(s);
 }
 

@@ -174,6 +174,13 @@ const byNode: Record<string, Key> = {
   'chapter7.effects': 'apartmentNight',
   'chapter7.night': 'apartmentNight',
   'chapter7.complete': 'apartmentNight',
+  // The Predator road: Marcus's car, his floor, and her own office two floors down.
+  'chapter7.summons': 'car',
+  'chapter7.office': 'helixSuite',
+  'chapter7.terms': 'helixSuite',
+  'chapter7.corridor': 'helixReception',
+  'chapter7.floor': 'helixWorkroom',
+  'chapter7.evening': 'apartmentNight',
   // Chapter 8 (the Helix room on the executive road is on EVE Art's gap list; advance keeps the apartment).
   'chapter8.cost': 'apartmentDay',
   'chapter8.work': 'shoppingStreet',

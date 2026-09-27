@@ -54,6 +54,6 @@ it('offers the Predator road at Chapter 7, beside Executive and Outside, with Ce
   expect(text(confirm)).toContain('the person who keeps the ledger runs the building');
   expect(ids7(confirm)).toEqual(['route-confirm', 'route-pivot-executive', 'route-pivot-outside', 'route-break']);
   const kept = c7(confirm, 'route-confirm');
-  expect([kept.phase, kept.choices['route.lane']]).toEqual(['complete', 'predator']);
-  expect(text(kept)).toContain('predator route — in development');
+  // The Predator road now opens on The Offer (PREDATOR_CHAPTER_7_THE_OFFER_DESIGN.md).
+  expect([kept.phase, kept.choices['route.lane']]).toEqual(['summons', 'predator']);
 });
