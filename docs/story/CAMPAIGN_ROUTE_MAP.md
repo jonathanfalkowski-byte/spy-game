@@ -135,6 +135,6 @@ what it cost.
    unchanged ([CONTENT_DIRECTION.md](CONTENT_DIRECTION.md)): heat 3, fades, and she never
    sexually coerces anyone; her weapons are secrets, leverage and charm. Built second, after
    Celebrity, reusing the shared Act III scaffolding (~6–7h unique rather than ~10h). Route
-   design doc and the `deriveRoute6` lane split come with that build. **Routes are now five:
+   design: [PREDATOR_ROUTE_DESIGN.md](PREDATOR_ROUTE_DESIGN.md), approved 2026-09-27; the `deriveRoute6` lane split is built (lane id `predator`). **Routes are now five:
    Institutional, Outside, Executive, Predator, Celebrity.**
 

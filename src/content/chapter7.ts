@@ -31,23 +31,37 @@ export const chapter7Scenes = Object.entries(chapter7Definitions).map(([phase, s
 
 // ── The confirm-or-redirect beat ──
 
-/** Adjacency ring: own-power ↔ executive ↔ institutional ↔ outside ↔ own-power. */
-const ring: readonly RouteLane6[] = ['own-power', 'executive', 'institutional', 'outside'];
-export const adjacent7 = (lane: RouteLane6): RouteLane6[] => {
-  const i = ring.indexOf(lane);
-  return [ring[(i + 3) % 4], ring[(i + 1) % 4]];
+/** Adjacency: the original ring (own-power ↔ executive ↔ institutional ↔ outside ↔ own-power) is unchanged; Predator
+ * (2026-09-27) sits beside Executive, its light twin, and Outside, the other trade in secrets. Its opposite is
+ * own-power: the Celebrity road is the mirror it darkens. */
+const adjacency: Record<RouteLane6, RouteLane6[]> = {
+  'own-power': ['outside', 'executive'],
+  executive: ['own-power', 'institutional', 'predator'],
+  institutional: ['executive', 'outside'],
+  outside: ['institutional', 'own-power'],
+  predator: ['executive', 'outside'],
 };
-export const opposite7 = (lane: RouteLane6): RouteLane6 => ring[(ring.indexOf(lane) + 2) % 4];
+const opposites: Record<RouteLane6, RouteLane6> = {
+  'own-power': 'institutional',
+  executive: 'outside',
+  institutional: 'own-power',
+  outside: 'executive',
+  predator: 'own-power',
+};
+export const adjacent7 = (lane: RouteLane6): RouteLane6[] => adjacency[lane];
+export const opposite7 = (lane: RouteLane6): RouteLane6 => opposites[lane];
 const descriptor: Record<RouteLane6, string> = {
   'own-power': 'the public life you built, a face and an audience that answer to no one but you',
   institutional: 'the machine you already know from the inside',
   executive: 'the rooms that open when the right person walks you in',
   outside: 'the ones who trade in what the institutions bury',
+  predator: 'the company you could take from the inside, one secret at a time',
 };
 const mirror: Record<RouteLane6, string> = {
   institutional: 'Look at the last weeks honestly. You stayed inside the machine — you told Sloane what you were doing, you kept the apartment and the cover, you learned to hold a position from within the walls rather than outside them. It is not weakness. It is a place to stand, and you know its corridors now.',
   outside: 'Look honestly. You went to the one source no institution authored, spent your own knowledge to test it, and came away holding a truth the people in charge would rather you did not have. You have been becoming someone who trades in what others hide.',
   executive: 'Look honestly. You have been building access — the room, the dinners, the man who opens doors and means it, terms written where they favour you. You have learned that proximity to power, held on your own wording, is itself a kind of power.',
+  predator: 'Look honestly. You kept what Marcus wrote about you instead of correcting it. You took the room and wanted more of it, knowingly, on your own wording. You have learned that everybody in a building owes somebody something, and that the person who keeps the ledger runs the building.',
   'own-power': 'Look honestly. You kept your own evidence, spoke in your own name, and took only the help you could walk away from. Your name is out in the world now, on your own terms. You have been building a base that is small and slow and entirely yours.',
 };
 export const suggested7 = (s: GameState): RouteLane6 =>

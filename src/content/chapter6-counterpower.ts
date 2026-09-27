@@ -10,7 +10,9 @@ import { get4, get5 } from './chapter5-model';
 import { sloaneDoubts } from './sloane-standing';
 import { type C6Choice, type ExitArrangement6, endPosition6, get6, note6, offer6, set6 } from './chapter6-model';
 
-export const routeLanes6 = ['institutional', 'outside', 'executive', 'own-power'] as const;
+/** Predator (owner, 2026-09-27; docs/story/PREDATOR_ROUTE_DESIGN.md) is carved out of Executive: Helix taken from the
+ * inside with leverage, secrets and charm. Executive stays the Julian lane (trust, care, intimacy). */
+export const routeLanes6 = ['institutional', 'outside', 'executive', 'own-power', 'predator'] as const;
 export type RouteLane6 = (typeof routeLanes6)[number];
 
 const arrangement = (s: GameState) => (get6(s, 'exit-arrangement') ?? 'self-funded') as ExitArrangement6;
@@ -83,7 +85,7 @@ export const enforceableTerm6 = (s: GameState) =>
   ['accept', 'narrow', 'backup'].includes(get5(s, 'terms') ?? '') && !!get5(s, 'obligation-provider');
 
 export type RouteTotals6 = Record<RouteLane6, number>;
-const priority6: readonly RouteLane6[] = ['own-power', 'institutional', 'executive', 'outside'];
+const priority6: readonly RouteLane6[] = ['own-power', 'institutional', 'executive', 'outside', 'predator'];
 
 /** The Chapter 6 end action's lane (weight 3); resolve-protect is lane-neutral. */
 function primaryLane6(s: GameState): RouteLane6 | undefined {
@@ -91,7 +93,12 @@ function primaryLane6(s: GameState): RouteLane6 | undefined {
   if (action === 'resolve-challenge') return 'institutional';
   if (action === 'resolve-trade-expose' || action === 'resolve-trade-give') return 'outside';
   if (action === 'resolve-break' || action === 'resolve-hold') return 'own-power';
-  if (action === 'resolve-enforce') return armLane(arrangement(s));
+  // Holding Julian's room to its terms while knowingly taking more of it is the Predator's opening move, unless the ask
+  // was met with a shrinking yes (narrowed, redirected): that sequence is the kept overlay's, and stays Executive.
+  if (action === 'resolve-enforce')
+    return arrangement(s) === 'julian-workroom' && get6(s, 'exit-prep') === 'deepened' && !['narrowed', 'redirected'].includes(get6(s, 'expectation-response') ?? '')
+      ? 'predator'
+      : armLane(arrangement(s));
   return undefined;
 }
 
@@ -99,7 +106,7 @@ function primaryLane6(s: GameState): RouteLane6 | undefined {
  * state. Nothing is stored as a score; Chapter 7's confirm beat is where the lane is actually chosen. */
 export function deriveRoute6(s: GameState): { lane: RouteLane6; totals: RouteTotals6; overlay: string[] } | undefined {
   if (!get6(s, 'resolve-action')) return undefined;
-  const totals: RouteTotals6 = { institutional: 0, outside: 0, executive: 0, 'own-power': 0 };
+  const totals: RouteTotals6 = { institutional: 0, outside: 0, executive: 0, 'own-power': 0, predator: 0 };
   const primary = primaryLane6(s);
   if (primary) totals[primary] += 3;
   const service = get5(s, 'service');
@@ -120,6 +127,9 @@ export function deriveRoute6(s: GameState): { lane: RouteLane6; totals: RouteTot
   if (get6(s, 'photo-custody') === 'phone' || get6(s, 'counter-arranged') === 'monitored') totals.institutional += 1;
   // Revision 20: Sloane does not back an officer who guessed at the Glass House.
   if (sloaneDoubts(s)) totals.institutional -= 1;
+  // Predator seeds: a lever kept rather than corrected, and every favour treated as a transaction.
+  if (c3('memo') === 'retain') totals.predator += 2;
+  if (get6(s, 'expectation-response') === 'negotiated') totals.predator += 1;
   // Outside seeds.
   if (get6(s, 'rook-proof') === 'supported') totals.outside += 2;
   if (get6(s, 'oracle-seen') === 'yes') totals.outside += 1;
@@ -133,7 +143,8 @@ export function deriveRoute6(s: GameState): { lane: RouteLane6; totals: RouteTot
     service === 'julian' &&
     get6(s, 'exit-prep') === 'deepened' &&
     ['narrowed', 'negotiated', 'redirected'].includes(get6(s, 'expectation-response') ?? '');
-  return { lane, totals, overlay: kept ? ['kept'] : [] };
+  // A Predator who deepens the room is spending it, not depending on it: no kept overlay on that lane.
+  return { lane, totals, overlay: kept && lane !== 'predator' ? ['kept'] : [] };
 }
 
 const provider: Record<ExitArrangement6, string> = {
@@ -323,5 +334,6 @@ const closing: Record<RouteLane6, string> = {
   institutional: 'You go home on the monitored phone, the way you always have, except that the line runs both ways now. Sloane knows you know. Whatever comes next, you are inside it as a person with a position, not a package with a location.',
   outside: 'The proof is loose in the world and the sender is still a voice without a face. You have chosen to act on a truth you cannot fully source. It is a risk. It is also the first move you made that no institution authored.',
   executive: 'The arrangement holds, on your terms, in writing. You have decided access is worth keeping when you are the one holding the wording. It is still there in the morning — the room, the page, the door that opens — and whoever offered it now knows exactly where your line is.',
+  predator: 'The arrangement holds, and you are the one holding it. Helix is a building full of people who owe each other things, and tonight you started keeping the ledger. Nobody there knows it yet. That is the point.',
   'own-power': 'Nothing important is holding the other end of you. Whatever you still use, you could put down tomorrow. It is quieter than the other lives on offer, and slower, and entirely yours. You will find out what that is worth.',
 };

@@ -1,8 +1,7 @@
 # The Predator route: design (for owner approval)
 
-**Status: DESIGN, not built.** Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7:
-"built second, after Celebrity, reusing the shared Act III scaffolding, ~6–7h unique"). Nothing here changes code,
-saves or canon until the owner approves the decisions in §8.
+**Status: APPROVED (owner, 2026-09-27: all six decisions as recommended).** The lane split (§3) is **built**: the other chapters
+each get their own design doc before build. Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
 
 ## 1. The route in one paragraph
 
@@ -29,13 +28,19 @@ asks what that does to her. The test the owner set for every scene applies: **th
 Today the tally has four lanes. Predator is carved out of **Executive**. Executive remains the Julian lane:
 access through trust, care and intimacy.
 
+**As built (2026-09-27, `deriveRoute6`):**
+
 | Seed | Weight | Why |
 |---|---|---|
-| Ch3 `marcusLeverage`: she **kept or traded** Marcus's "willingness" note instead of correcting it | +2 | She saw a lever and held it |
-| Ch2b Glass House item captured by Evelyn (`mission.capture.owner = Evelyn`) and not handed to Sloane | +1 | She keeps what she takes |
-| Ch4 `interest`: she kept it about the work; `outside`: kept it about the review | +1 | Cold where Executive is warm |
-| Ch6 end action **enforce** on the Julian workroom **with** `exit-prep = deepened` | +3 (primary) | Access she holds by its terms, and wants more of |
+| Ch3 `c3.memo = retain`: she **kept** Marcus's "willingness" note instead of correcting it | +2 | She saw a lever and held it |
 | Ch6 `expectation-response = negotiated` | +1 | Treats every favour as a transaction |
+| Ch6 end action **enforce** on the Julian workroom **with** `exit-prep = deepened`, when the noon ask was **not** met with a shrinking yes (narrowed or redirected: that sequence is the Kept overlay's and stays Executive) | +3 (primary) | Access she holds by its terms, and wants more of |
+
+The Glass House capture and the Ch4 seeds in the first draft were left out. The capture already seeds Celebrity,
+and Ch4 records no flag that cleanly says "cold". Ties go to the other lanes first (Predator is last in the tie
+order). No existing golden changes lane: their Predator totals top out at 2. A Predator lane never carries the
+`kept` overlay; she is spending the room, not depending on it. Chapter 7 adjacency: Predator sits beside Executive
+and Outside, and its opposite is Celebrity. The original four-lane ring is unchanged.
 
 These are ties-broken the way the tally already works. **Executive keeps** Julian romance seeds, `warmed` in the
 Ch6 Julian beat, and `kept`-overlay causes. Chapter 7's confirm beat offers Predator like any lane, and the player can
