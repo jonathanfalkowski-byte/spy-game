@@ -1,4 +1,4 @@
-# Chapters 4 and 5 deepening (2026-09-26)
+# Chapters 3, 4 and 5 deepening (2026-09-26)
 
 Chapter 5 is released content (revision 19 saves, and revision 20 for new games), so this pass is **presentation only**. It lives in
 `src/content/revision20-editorial.ts` (`DEEPEN5`), like the rest of the revision-20 editorial pass:
@@ -55,3 +55,24 @@ never sees Julian where he is not.
 | complete | The card in daylight, "a key to a door nobody else has". "Every piece of it has my name on." |
 
 Size at revision 20: **~1.5–1.8k words on the golden routes** (from ~1.0k), against the 6k budget.
+
+## Chapter 3 (`DEEPEN3`, presentation only, revision 20)
+
+Chapter 3 already carries many revision-20 swaps, so these additions run in a **second pass over the swapped output**
+and anchor on the line the reader actually sees. Checked on all 8 Chapter 1–5 routes (the institutional records-room
+line on the one route that goes there), once each, and on no revision-19 transcript.
+
+| Node | Added |
+|---|---|
+| home | The car home remembered, "like a film of somebody else’s life"; the party still on her skin, a woman in green touching her arm. |
+| mayaTalk | Maya's kettle, the same one that shrieked through ten years of Adrian's late calls. |
+| rest | The make-up off, a layer at a time. "Underneath is still her." |
+| nightComplete | Rain, grey light, a few seconds of being nobody, then remembering whose body it is. |
+| voss | Consultation 3, two doors down from the room she woke up in; her hands shaking, then stopping. |
+| executive | The Helix lobby, the second look slower than the first. "Nobody in this lobby knows which of those is true." |
+| truths | The papers under the lamp "like a hand of cards somebody has dealt you face up". |
+| calendar | "Four people who want six o’clock, and not one of them wants the same thing from it." |
+| institutional | The windowless records room, everything squared to the table's edge. |
+| departure | The lift mirror on the way out. "I had better decide who she is." |
+
+Size at revision 20: **~2.4–2.8k words on the golden routes** (from ~1.9–2.2k), against the 6k budget.

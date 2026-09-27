@@ -707,6 +707,85 @@ const DEEPEN4: Record<string, Swap[]> = {
 };
 for (const [node, rules] of Object.entries(DEEPEN4)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
 
+/**
+ * Chapter 3 deepening (2026-09-26): presentation only, on the same terms as DEEPEN4 and DEEPEN5. Chapter 3 already
+ * carries many revision-20 swaps, so these run in a second pass over the swapped output and anchor on the line the
+ * reader actually sees. The day after the Glass House gets its texture: the car home with the party still on her
+ * skin, Maya's kettle, the make-up coming off, the dawn, Consultation 3 again, the Helix lobby, the afternoon
+ * papers, four people who want six o'clock, and the lift mirror on the way out.
+ */
+const DEEPEN3: Record<string, Swap[]> = {
+  'chapter3.home': [
+    [
+      'The driver asks for your residential address',
+      keep(p('The whole way home the car moved through wet streets with the heater ticking, and you sat very straight in the back seat, the way the dress needs you to, and watched the city go by in the rain like a film of somebody else’s life. Your feet ache in the heels. The party is still on your skin: the quartet, the smell of lilies, Marcus Chen watching you cross the room, a woman in green touching your arm as if she had the right.')),
+    ],
+  ],
+  'chapter3.mayaTalk': [
+    [
+      'The connection settles.',
+      keep(p('Behind her, faint, a radio and a kettle: the same kettle, you realise, that shrieked through every late call Adrian ever made to her about an audit. Ten years of that kettle. You close your eyes and listen to it boil.')),
+    ],
+  ],
+  'chapter3.rest': [
+    [
+      'You make something simple to eat',
+      keep(
+        p('In the bathroom you take the reception make-up off with cotton pads, slowly, a layer at a time, to see what is underneath. The eyes come off, and the mouth, and the careful shadow along the cheekbones. Underneath is still her.'),
+        t('Last night a room full of people looked at this face and saw somebody they knew. Tonight I am the only one looking, and I still don’t.'),
+      ),
+    ],
+  ],
+  'chapter3.nightComplete': [
+    [
+      'You wake before the building becomes busy.',
+      keep(p('Rain on the window, grey light, the radiator knocking itself awake. For a few seconds, before you open your eyes, you are nobody in particular. Then you move, and the body answers, and you remember whose it is.')),
+    ],
+  ],
+  'chapter3.voss': [
+    [
+      'Voss meets you alone in Consultation 3.',
+      keep(p('It is two doors down from the room you woke up in, and built to the same pattern: the same pale blinds, the same box of tissues angled on the desk for people who are about to be told something, the same faint smell of hand gel and coffee. You sit in the patient’s chair with your knees together and your bag on your lap, and it takes you a moment to understand that your hands are shaking, and another to make them stop.')),
+    ],
+  ],
+  'chapter3.executive': [
+    [
+      'You travel to Helix and give reception the appointment reference.',
+      keep(
+        p('Helix’s lobby is three storeys of glass and pale stone, with a living wall of ferns that somebody mists by hand and a security desk that looks like a sculpture. People cross it fast, with lanyards and coffee. Two of them look at you, and then look again, the second look slower than the first.'),
+        t('Yesterday I was a file on Sloane’s desk. Today a group COO has cleared forty-five minutes for my opinion. Nobody in this lobby knows which of those is true, and neither, quite, do I.'),
+      ),
+    ],
+  ],
+  'chapter3.truths': [
+    [
+      'Back at the apartment, you set out the records you brought home.',
+      keep(p('The afternoon has gone dark early. You work at the table with the lamp on and your shoes off and your hair coming down, and the papers in their neat piles look, in that light, like a hand of cards somebody has dealt you face up.')),
+    ],
+  ],
+  'chapter3.calendar': [
+    [
+      'Everyone wants the same half hour.',
+      keep(t('Sloane. A stranger. Maya. A man who pays for judgment. Four people who want six o’clock, and not one of them wants the same thing from it.')),
+    ],
+  ],
+  'chapter3.institutional': [
+    [
+      'You confirm the records appointment, travel to the clinic and check in.',
+      keep(p('The records room is in the clinic basement, windowless and cold, with a strip light that ticks. Voss has laid everything out on the table in a row before you arrive, squared to the edge, the way people lay things out when they intend to be scrupulous about who touches what.')),
+    ],
+  ],
+  'chapter3.departure': [
+    [
+      'You take your keys. The lift opens;',
+      keep(
+        p('The lift has a mirror on its back wall. You meet her in it on the way down: coat buttoned, hair up, the face you took off last night put back on, the phone in your pocket warm against your hip.'),
+        t('Whoever is waiting at six o’clock, she is the one they are going to meet. I had better decide who she is.'),
+      ),
+    ],
+  ],
+};
+
 /** Julian's evening: the no-sex scene gets its own aftermath. Decided before the swaps, which rewrite
  * the scope line the decision reads. */
 function handoffAftermath(blocks: Block[], node: string): Block[] {
@@ -762,5 +841,7 @@ export function revision20Blocks(blocks: Block[], node?: string): Block[] {
   const texted = blocks.map((b) => ({ ...b, text: renderRevision20Text(canon(b.text), node) }));
   const rules = BLOCKS[node];
   const prepared = sloaneOnHelixRoom(rehearsalRepeat(handoffAftermath(texted, node), node), node);
-  return (rules ? swap(prepared, rules) : prepared).filter((b) => !hiddenNotice20(b, node));
+  const swapped = rules ? swap(prepared, rules) : prepared;
+  const deepened = DEEPEN3[node] ? swap(swapped, DEEPEN3[node]) : swapped;
+  return deepened.filter((b) => !hiddenNotice20(b, node));
 }
