@@ -8,7 +8,11 @@
  * Friday drinks with Marcus ("So. What have you found?"); Julian's Ch7 stance comes due; a chosen evening (heat 3,
  * consent-gated, fades); the first Meridian name, L.S.F. Advisory (the Laurent Sovereign Fund), on every path. The
  * counsel's secret is an affair: using it is non-sexual blackmail and hurts innocent people, and sparing her is written
- * as the stronger move. Local helpers mirror chapter8.ts (c8.* keys, chapter8.* ids) to avoid a circular import. */
+ * as the stronger move. Local helpers mirror chapter8.ts (c8.* keys, chapter8.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): the Thursday night after the hub closes (c8.p-night = pryce | maya | home: Pryce drives
+ * her home in the rain, "It's the fund he's afraid of, Ms Vale. Not you. Not yet."; Maya, if she is back, "Keep one
+ * thing that isn't a lever. Keep me."), the price of every lever coming back to her before Friday (the victims and
+ * the spared, each in a line), and Friday drinks at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -205,14 +209,52 @@ const clockLines = (s: GameState): Block[] =>
         t('Somebody noticed me pulling. Two levers, and the floor has started watching the watcher. Good. Now I know who else is on the stairs.'),
       ];
 
+/** Thursday night (deepening pass), after the hub closes and before Friday drinks. */
+function nightChoices(s: GameState): C8Choice[] {
+  const n = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('night-' + id, label, hint, 'friday', (x) => {
+      set8(x, 'p-night', id);
+      return body;
+    });
+  return [
+    n('pryce', 'Let Mr Pryce drive you home', 'Marcus is in Zurich. The car is going your way.', [
+      p('Marcus is in Zurich until the morning, and the long black car is idling by the lift on level B2 at nine at night, with nobody in the back. Mr Pryce gets out and opens the rear door without a word, as if you had booked him, and perhaps, in some ledger somewhere, you have.'),
+      p('The rain is heavy on the embankment. The wipers go. For a long time neither of you says anything, and then, at the lights by the bridge, without looking in the mirror:'),
+      q('Pryce', 'Mr Chen keeps a copy of everything, Ms Vale. Every letter. Every favour. It’s in a safe in his flat, behind a painting of a horse he doesn’t like.'),
+      q('You', 'Why are you telling me?'),
+      q('Pryce', 'Because the fund keeps a copy of his copy. It’s the fund he’s afraid of. Not you. Not yet.'),
+      p('He drops you at your door and waits until your light goes on, the way he always does, whoever he is driving for.'),
+      t('Not yet. A driver who is lent out by a fund has just told me what the fund thinks of me. I should be frightened. I find I am flattered.'),
+    ]),
+    ...(key(s, 'c6.maya') === 'restored'
+      ? [
+          n('maya', 'Answer Maya', 'She has been trying to ring you for three days.', [
+            p('Maya rings at ten, for the fourth time in three days, and this time you answer.'),
+            q('Maya', 'Helix? Marcus Chen? Evelynn, you hated men like him. Adrian used to do an impression of him at the Christmas party. The hand on the shoulder. The laugh that arrives late.'),
+            q('You', 'I still do. That’s why I’m there.'),
+            p('A long silence on the line, the kind Maya uses in interviews when she wants the other person to fill it. You don’t.'),
+            q('Maya', 'All right. Then do me one favour. Keep one thing in your life that isn’t a lever. Keep me. I don’t want to be on anybody’s page.'),
+            t('She knows about the page. She doesn’t know about the page. She knows me.'),
+            q('You', 'You’re not on the page, Maya. You’re the reason there is one.'),
+          ]),
+        ]
+      : []),
+    n('home', 'Go home', 'Friday is tomorrow.', [
+      p('You go home, and eat standing up at the counter, and go to bed early, which is its own kind of strategy.'),
+    ]),
+  ];
+}
+
 function hubChoices(s: GameState): C8Choice[] {
+  if (get8(s, 'p-hubdone')) return nightChoices(s);
   const open = get8(s, 'p-open') as Lever | undefined;
   if (open) {
     const free = open === 'archive' && clause(s, 'access');
     const counted = pulls(s) + (free ? 0 : 1);
     return (['use', 'hold', 'spare'] as Deal[]).map((deal) => {
       const [label, hint, body] = deals[open][deal];
-      return offer(`${open}-${deal}`, label, hint, counted >= 2 ? 'friday' : 'hub', (x) => {
+      return offer(`${open}-${deal}`, label, hint, 'hub', (x) => {
+        if (counted >= 2) set8(x, 'p-hubdone');
         delete x.choices['c8.p-open'];
         setKey(x, 'pred.lever8.' + open, deal);
         set8(x, 'p-pulls', String(counted));
@@ -235,9 +277,9 @@ function hubChoices(s: GameState): C8Choice[] {
     ),
     ...(pulls(s) >= 1
       ? [
-          offer('hub-stop', 'Leave the rest alone', 'One lever is enough for three weeks. Friday is coming.', 'friday', () => [
+          offer('hub-stop', 'Leave the rest alone', 'One lever is enough for three weeks. Friday is coming.', 'hub', (x) => (set8(x, 'p-hubdone'), [
             p('You leave the rest alone. One lever in three weeks is patience, not weakness. The page headed OWES still has names on it with question marks after them. They will keep.'),
-          ]),
+          ])),
         ]
       : []),
   ];
@@ -245,10 +287,38 @@ function hubChoices(s: GameState): C8Choice[] {
 
 // ── Friday drinks ──
 
+/** What each lever cost, and whom (deepening pass): the echoes before Friday. */
+const priceLines: Record<Lever, Partial<Record<Deal, string>>> = {
+  hollis: {
+    use: 'On Wednesday a bunch of white roses arrives on the thirty-sixth floor from Mrs Hollis, with a card: Anthony says you’ve been so kind to him. You put them in the window, where he can see them from the lift.',
+    spare: 'On Thursday Hollis comes in with a brochure for a cottage in Norfolk under his arm, and winks at you across the floor, and misses his lift on purpose to tell you about the garden.',
+  },
+  counsel: {
+    use: 'On Thursday you share a lift with Ines Varga. She holds the door for you and says good morning and does not look at you once, all the way up, and you find that you are the one looking at the floor.',
+    spare: 'Ines Varga’s door is open now whenever you pass it. On Thursday there is a coffee on your desk when you arrive, the way you take it, with no note.',
+  },
+  archive: {
+    use: 'Graham Harland rings your office twice on Wednesday from a garden centre in Surrey, bewildered, asking what Harland Strategic is and why his brother-in-law has stopped returning his calls. You let your assistant take a message both times.',
+    spare: 'Benton’s name is in the Axiom newsletter on Thursday: “stepping back for family reasons”. Somebody at Sloane’s end has found the same line you left alone. Good.',
+  },
+  press: {
+    use: 'On Thursday your face goes up in the Helix lobby, twelve feet high, over the words THE NEW HELIX, and the floor applauds when you walk past it, and you are not sure whose it is any more.',
+    spare: 'On Thursday the mood board in Communications has a blank space in the middle of it where your photograph was, and Dominic Ashe has drawn a small, careful question mark in it.',
+  },
+};
+
 function fridayBlocks(s: GameState): Block[] {
+  const echoes = (['hollis', 'counsel', 'archive', 'press'] as Lever[])
+    .map((l) => priceLines[l][key(s, 'pred.lever8.' + l) as Deal])
+    .filter((line): line is string => !!line)
+    .map((line) => p(line));
   return [
+    ...echoes,
+    ...(echoes.length ? [t('Every lever has a person on the other end. I knew that. I did not know that they would keep turning up at the lifts.')] : []),
     p('Friday at seven Marcus takes you up to the bar at the top of the building, which is not on any floor plan and has one barman, eleven stools, and the whole city on three sides. He orders two whiskies without asking what you drink, and gets it right.'),
     p('He sits with his back to the view, which is a thing you have noticed powerful men do, and looks at you over the glass for a long moment, the way he looked at you at the Glass House, and in his office, and every morning since across the floor.'),
+    p('He has taken off his tie, and his watch, and put them side by side on the bar, the way another man might put down a gun, and he is drinking faster than you have seen him drink. Somewhere below you in the building the cleaners have started on the thirty-eighth floor, and you can hear, very faintly, a vacuum cleaner going round his office, round his desk, round his chair.'),
+    q('Marcus Chen', 'I came up from nothing, you know. Everybody in this building thinks I was born in a good suit. I bought the suit with the first company I ever took apart. I kept one of its chairs. It’s the one you sit in when you come to my office.'),
     q('Marcus Chen', 'Three weeks. Half the floor has started lowering its voice when you walk past. Hollis has aged a year. Legal is being unusually helpful to everybody. I’ve been having a wonderful time watching.'),
     q('Marcus Chen', 'So. What have you found?'),
     ...(key(s, 'pred.lsf') ? [] : [t('I have not found the money yet. I have a feeling he is about to tell me where it is, because he cannot help himself.')]),

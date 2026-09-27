@@ -22,7 +22,18 @@ const step = (type: 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE', prefix: string, list:
 };
 const c7 = step('CHAPTER7_CHOOSE', 'chapter7.', ids7);
 const c8 = step('CHAPTER8_CHOOSE', 'chapter8.', ids);
-const walk8 = (s: GameState, path: string[]) => path.reduce(c8, s);
+/** The deepening pass's Thursday night stands in front of Friday: take its neutral pick when it is in the way. */
+const NEUTRAL8 = ['night-home'];
+const walk8 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL8.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c8(y, n);
+    }
+    return c8(y, id);
+  }, s);
 /** A real save (the maximal-julian golden) played through Chapter 6 into Predator, and through Chapter 7. */
 const atFloor = (ch7: string[] = ['car-quiet', 'view-sit', 'want-money', 'clause-exit', 'clause-access', 'clause-report', 'julian-truth', 'lever-read', 'visit-busy', 'offer-evening-alone'], flags: Record<string, string> = {}) => {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
@@ -69,13 +80,24 @@ it('offers four levers (the press only with a public face), each use / hold / sp
   expect(text(spared)).toContain('And not because you could make me.');
   expect(spared.phase).toBe('hub');
   const second = c8(c8(spared, 'pull-hollis'), 'hollis-use');
-  expect([second.phase, second.choices['pred.hollis']]).toEqual(['friday', 'owned']);
+  expect([second.phase, second.choices['pred.hollis']]).toEqual(['hub', 'owned']);
   // The report clause: only Marcus notices.
   expect(text(second)).toContain('Two in a fortnight. Most people take a year.');
+  // Thursday night (deepening pass), then Friday, where the price of each lever comes back.
+  expect(ids(second)).toEqual(['night-pryce', 'night-home']);
+  const pryce = c8(second, 'night-pryce');
+  expect([pryce.phase, pryce.choices['c8.p-night']]).toEqual(['friday', 'pryce']);
+  expect(text(pryce)).toContain('It’s the fund he’s afraid of. Not you. Not yet.');
+  expect(text(pryce)).toContain('from Mrs Hollis, with a card');
+  expect(text(pryce)).toContain('there is a coffee on your desk when you arrive');
+  expect(text(pryce)).toContain('It’s the one you sit in when you come to my office.');
+  const maya = walk8(atFloor(undefined, { 'c6.maya': 'restored' }), ['begin-predator', 'weeks-begin', 'pull-counsel', 'counsel-hold', 'hub-stop']);
+  expect(ids(maya)).toEqual(['night-pryce', 'night-maya', 'night-home']);
+  expect(text(c8(maya, 'night-maya'))).toContain('Keep one thing in your life that isn’t a lever. Keep me.');
 });
 
 it('turns Friday drinks, names the fund on every path, and lets the exit clause walk', () => {
-  const noLever = walk8(atFloor(), ['begin-predator', 'weeks-begin', 'pull-counsel', 'counsel-hold', 'hub-stop']);
+  const noLever = walk8(atFloor(), ['begin-predator', 'weeks-begin', 'pull-counsel', 'counsel-hold', 'hub-stop', 'night-home']);
   expect(noLever.phase).toBe('friday');
   expect(text(noLever)).toContain('So. What have you found?');
   expect(ids(noLever)).toEqual(['friday-tell', 'friday-lie', 'friday-trade', 'friday-walk']);

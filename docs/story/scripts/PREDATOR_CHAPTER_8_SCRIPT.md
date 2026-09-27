@@ -33,6 +33,27 @@ deserves it, and each lever has a spare.
 - the consent flow and the ending;
 - a real save that replays and authenticates.
 
-**Size (honest):** pass 1 runs **~1.2k quiet, ~1.4k clean, ~1.8k ruthless** against the ~4–4.5k design target. It is
-the leanest first pass so far; the hub carries the chapter. A deepening pass would give the levers second beats (a
-visit from each victim), give Friday drinks more of Marcus, and add a Maya beat.
+## Deepening pass (2026-09-27)
+
+- **Thursday night** (`hub`, after the hub closes on the second pull or on hub-stop, before Friday) (`c8.p-night`):
+  - **night-pryce**: Marcus is in Zurich, and Pryce drives her home in the rain. Marcus keeps a copy of everything
+    in a safe behind a painting of a horse he doesn't like, and "the fund keeps a copy of his copy. It's the fund
+    he's afraid of. Not you. Not yet."
+  - **night-maya** (only if Maya is back): "Keep one thing in your life that isn't a lever. Keep me." / "You're not
+    on the page, Maya. You're the reason there is one."
+  - **night-home** (neutral).
+- **The price** (the opening of Friday): every lever she pulled comes back in a line, used or spared:
+  - Mrs Hollis's white roses, or the cottage in Norfolk;
+  - Varga in the lift not looking at her, or a coffee on her desk with no note;
+  - Graham Harland ringing from a garden centre, or Benton "stepping back for family reasons";
+  - her face twelve feet high in the lobby, or a question mark on a mood board.
+
+  "Every lever has a person on the other end … they would keep turning up at the lifts."
+- **Friday drinks at greater length:**
+  - Marcus's tie and watch laid on the bar like a gun, drinking faster;
+  - the cleaners vacuuming round his desk far below;
+  - the first company he took apart, and its chair, which is the one she sits in.
+
+**Size (honest):** pass 1 ran ~1.2k quiet, ~1.4k clean and ~1.8k ruthless. After the deepening pass: **~1.3k quiet,
+~1.8k clean, ~2.2k ruthless**, against the ~4–4.5k target. The quiet path stays thin by design, because holding
+levers is quiet. The next lift is a scene per victim (a visit, not a line), and Marcus's safe as a setup for Ch14.
