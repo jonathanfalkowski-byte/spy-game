@@ -500,7 +500,7 @@ const BLOCKS: Record<string, Swap[]> = {
 };
 
 /**
- * Chapter 5 deepening (2026-09-26): presentation only, like everything in this file. Chapter 5 is released
+ * Chapter 5 deepening (2026-09-26; Chapter 4 follows below, on the same terms): presentation only, like everything in this file. Chapter 5 is released
  * content, so a new choice would change revision-20 replay; instead the week gets its texture here: the quiet
  * flat, the shop window, the invitation card, dressing as a sentence, Harbour at dusk, being paid to be looked at,
  * the old names in the threads, the rooftop card, coming home, and the night. Each is appended after a line every
@@ -602,6 +602,110 @@ const DEEPEN5: Record<string, Swap[]> = {
   ],
 };
 for (const [node, rules] of Object.entries(DEEPEN5)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
+
+/**
+ * Chapter 4 deepening (2026-09-26): presentation only, on the same terms as DEEPEN5. The first job under her own
+ * name gets its texture: the river at dusk with Julian's voice in her ear, the first morning with a pass of her own,
+ * Adrian's kind of work done as her, the Helix room, the question of intent, a look across a finished report, the
+ * café, Sloane's silence, and the card she keeps.
+ */
+const DEEPEN4: Record<string, Swap[]> = {
+  'chapter4.entry': [
+    [
+      'At the foot of the building steps, the river wind catches your coat.',
+      keep(
+        p('Dusk on the embankment: the water the colour of pewter, the lamps coming on one by one along the far bank, a tour boat going under the bridge with its windows lit and nobody on deck. The wind pulls at your hair and you let it.'),
+        p('Julian’s voice in your ear is low and unhurried, a man used to being listened to. He does not ask how you are. He asks what you think, and waits for the answer as if it might be worth something.'),
+        t('Nobody has waited for Adrian’s answer like that in years. It turns out I like being waited for.'),
+      ),
+    ],
+  ],
+  'chapter4.consequences': [
+    [
+      'You stop at a bench above the river and open the remaining threads.',
+      keep(p('The bench is cold through your coat. Below you the river goes by fast and dark and full of the city’s lights, and a gull stands on the rail a yard away and watches your screen as if it had an opinion.')),
+    ],
+  ],
+  'chapter4.resource': [
+    [
+      'You return home, eat and sleep. Next morning,',
+      keep(
+        p('You sleep better than you have since the clinic, and wake before the alarm with the odd, light feeling of a day that has a shape. The records room is in the basement of the old town hall: green lamps, long tables, a radiator that knocks like somebody wanting to be let in, and the smell of paper that has been kept a long time by people who cared about keeping it.'),
+      ),
+    ],
+  ],
+  'chapter4.assignment': [
+    [
+      'You find PA-17 in the municipal index',
+      keep(t('A leak, a price, a printer. Adrian did a hundred of these, and never once with his own name at the top of the page. This one is going to have mine.')),
+    ],
+  ],
+  'chapter4.room': [
+    [
+      'At Helix, the coordinator checks your signature',
+      keep(p('The Helix review room is on the fourteenth floor: glass on two sides, the river below like a sheet of steel, a table long enough for a board meeting and a single bottle of water on it that nobody has opened. It is very quiet. Somewhere behind the glass wall a printer starts up, and stops, as if it had thought better of it.')),
+    ],
+  ],
+  'chapter4.assessment': [
+    [
+      'You arrange the pages under three headings',
+      keep(t('What left, and how, I can prove. Who meant it to happen, I can only suspect. Adrian would have filled that white space with a guess to look thorough. I am going to leave it white.')),
+    ],
+    [
+      (b) => b.kind === 'speech' && b.speaker === 'Julian Mercer' && b.text.startsWith('The export list explains how it reached the printer.'),
+      keep(
+        p('He reads the last page without hurrying, and puts it down, and looks at you across the table: not at the report, at you, for a moment longer than a client looks at a consultant.'),
+        t('He is not looking at the work any more. I notice that I noticed. I notice that I don’t mind.'),
+      ),
+    ],
+  ],
+  'chapter4.outside': [
+    [
+      'With the payment receipt in your folder, you walk with Julian to the hotel café',
+      keep(p('The hotel café at three in the afternoon is dark wood and low lamps and nearly empty, a pianist nobody asked for playing quietly to the pot plants. You catch yourself in the mirror behind the bar as you sit down: a woman in charcoal with a folder under her arm, across a small table from a man who is paying attention, looking as if she belonged here.')),
+    ],
+  ],
+  'chapter4.favor': [
+    [
+      'The papers no longer fit comfortably',
+      keep(t('A place of my own until five. It is a small thing to be offered. It is the first thing anybody has offered me that was not also a test, and I am not yet sure that this one isn’t.')),
+    ],
+  ],
+  'chapter4.notice': [
+    [
+      'You check the phone before opening the next file.',
+      keep(t('Sloane says nothing. Sloane always says something. Her silence has a weight to it, like a hand resting on the back of a chair you are sitting in.')),
+    ],
+  ],
+  'chapter4.power': [
+    [
+      'After lunch, you return to the Helix case desk.',
+      keep(p('The coordinator is younger than you expected, with bitten nails and a lanyard she keeps turning over in her fingers, the way people do when they are about to be asked for something they are not sure they are allowed to give.')),
+    ],
+  ],
+  'chapter4.intimacy': [
+    [
+      'You finish the afternoon’s notes and return home.',
+      keep(p('You eat at the table with the window open and the city noise coming in: a siren a long way off, a couple arguing happily in the street, somebody practising scales on a piano across the courtyard and getting the same one wrong. It is an ordinary evening. You find that you are enjoying it enormously.')),
+    ],
+  ],
+  'chapter4.privateAccess': [
+    [
+      'After a night at home, you reach the records desk',
+      keep(p('The clerk nods to you this morning as if you were a regular. You are, it turns out. Two days is all it takes, in a place like this, to become somebody the clerk nods to.')),
+    ],
+  ],
+  'chapter4.complete': [
+    [
+      'You check the receipt against the packet',
+      keep(
+        p('On the town hall steps you stop and take the card out again and look at it in the daylight: your new name, your own signature, no employer’s countersignature, an opening time printed on the back. It is a small piece of plastic. You hold it the way you would hold a key to a door nobody else has.'),
+        t('Nine hundred dollars, a pass and a room until five. Not a life yet. But it is the first week of one, and every piece of it has my name on.'),
+      ),
+    ],
+  ],
+};
+for (const [node, rules] of Object.entries(DEEPEN4)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
 
 /** Julian's evening: the no-sex scene gets its own aftermath. Decided before the swaps, which rewrite
  * the scope line the decision reads. */
