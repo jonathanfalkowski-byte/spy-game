@@ -18,6 +18,7 @@ import { paragraph as p, speech as q, thought as t, type Block, type NodeId } fr
 import { get5 } from './chapter5-model';
 import { getKey, setKey } from './chapter7-model';
 import { eveningPartners14 } from './chapter14';
+import { beginPredator15, isPredator15, placePredator15, predatorBlocks15, predatorChoices15, predatorPhase15 } from './chapter15-predator';
 
 export type C15Scene = { title: string; place: string; blocks: Block[] };
 export type C15Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -59,6 +60,14 @@ export const chapter15Definitions: Record<string, C15Scene> = {
   leash: { title: 'Breaking the Leash', place: 'THE WEEK AFTER', blocks: [] },
   phone: { title: 'The Black Phone', place: 'WEDNESDAY · NIGHT', blocks: [] },
   complete: { title: 'Act III', place: 'THE WALL', blocks: [] },
+  // The Predator road (2026-09-27): The Key.
+  gift: { title: 'The Key', place: 'THE VESPER · THE READING ROOM', blocks: [] },
+  people: { title: 'The Crew', place: 'TWO NIGHTS LATER · THE FLAT', blocks: [] },
+  hour: { title: 'A Courtesy', place: 'THE VESPER ARCHIVE', blocks: [] },
+  drawers: { title: 'Everything', place: 'THE ARCHIVE, ONE LAMP', blocks: [] },
+  week: { title: 'Breaking the Leash', place: 'THE WEEK AFTER', blocks: [] },
+  line: { title: 'No More Help', place: 'WEDNESDAY · NIGHT', blocks: [] },
+  ledger: { title: 'Act III', place: 'THE WARDROBE DOOR', blocks: [] },
 };
 export const chapter15Scenes = Object.entries(chapter15Definitions).map(([phase, scene]) => ({
   id: `chapter15.${phase}` as NodeId,
@@ -94,6 +103,7 @@ export function switchHolders15(s: GameState): string[] {
 /** Scene-specific place lines (display only). */
 export function place15(s: GameState): string | undefined {
   if (s.scene !== 'chapter15') return;
+  if (isPredator15(s)) return placePredator15(s);
   if (s.phase === 'crew' && road(s) === 'refused') return marshAlly(s) ? 'THE WEEK AFTER · A FLAT IN KENNINGTON' : 'THE WEEK AFTER · A HOTEL, UNDER ANOTHER NAME';
   if (s.phase === 'crew' && road(s) !== 'refused') return 'THE WEEK AFTER · THE FLAT';
   if (s.phase === 'vesper' && get15(s, 'way') === 'invited') return 'WEDNESDAY · 23:30 · THE VESPER';
@@ -776,6 +786,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function chapter15Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter15') return [];
+  if (predatorPhase15(s)) return predatorBlocks15(s);
   if (s.phase === 'crew') return crewBlocks(s);
   if (s.phase === 'plan') return planBlocks(s);
   if (s.phase === 'vesper') return vesperBlocks(s);
@@ -790,7 +801,10 @@ export function chapter15Choices(s: GameState): C15Choice[] {
   if (!chapter15Playable(s)) return [];
   if (s.scene === 'chapter14' && s.phase === 'complete' && ownPower(s))
     return [offer15('begin', 'The last month', 'Four weeks until the board. Take it all back.', 'crew')];
+  // The Predator road (The Key) comes from its Chapter 14 (Marcus Falls).
+  if (s.scene === 'chapter14' && s.phase === 'ledger' && isPredator15(s)) return [beginPredator15()];
   if (s.scene !== 'chapter15') return [];
+  if (predatorPhase15(s)) return predatorChoices15(s);
   if (s.phase === 'crew') return crewChoices(s);
   if (s.phase === 'plan') return planChoices(s);
   if (s.phase === 'vesper') return snagChoices(s);

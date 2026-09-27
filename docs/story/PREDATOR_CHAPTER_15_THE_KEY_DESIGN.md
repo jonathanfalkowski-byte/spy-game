@@ -25,7 +25,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). No sexual coercion (the reserved beat was Ch13). The evening is
   chosen, heat 3, consent-gated, and fades.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_15_SCRIPT.md](scripts/PREDATOR_CHAPTER_15_SCRIPT.md); code: `src/content/chapter15-predator.ts`.
+It runs ~1.1–1.2k words on a quiet path, and more on the ally roads.
 
 ---
 

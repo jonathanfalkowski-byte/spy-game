@@ -2,8 +2,8 @@
 
 **Status: APPROVED (owner, 2026-09-27: all six decisions as recommended).** The lane split (§3) is **built**: the other chapters
 each get their own design doc before build. Built so far, and continuous: Ch7 (The Offer), Ch8 (The Floor), Ch9 (shared),
-Ch10 (Let Me Help), Ch11 (The Catalogue), Ch12 (The Counterparty), Ch13 (The Mirror) and Ch14 (Marcus Falls). Still
-to come: the Act IV variants (Ch15–18). Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
+Ch10 (Let Me Help), Ch11 (The Catalogue), Ch12 (The Counterparty), Ch13 (The Mirror), Ch14 (Marcus Falls) and Ch15
+(The Key). Still to come: the Act IV variants (Ch16–18). Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
 
 ## 1. The route in one paragraph
 

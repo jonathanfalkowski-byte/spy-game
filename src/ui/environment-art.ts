@@ -301,6 +301,14 @@ const byNode: Record<string, Key> = {
   'chapter15.leash': 'officeDusk',
   'chapter15.phone': 'apartmentNight',
   'chapter15.complete': 'apartmentNight',
+  // The Predator road: The Key (the shared Vesper archive, from the client side).
+  'chapter15.gift': 'reviewRoom',
+  'chapter15.people': 'apartmentNight',
+  'chapter15.hour': 'serviceGallery',
+  'chapter15.drawers': 'serviceGallery',
+  'chapter15.week': 'apartmentDay',
+  'chapter15.line': 'apartmentNight',
+  'chapter15.ledger': 'apartmentNight',
   // Chapter 16 (stand-ins until EVE Art's frames: cards on a floor at dawn, a clasp in a mirror, the embankment, the board table).
   'chapter16.dawn': 'apartmentNight',
   'chapter16.aim': 'apartmentDay',
