@@ -42,6 +42,8 @@ export const isPredator13 = (s: GameState) => key(s, 'route.lane') === 'predator
 export const predatorPhase13 = (s: GameState) => isPredator13(s) && (PREDATOR_PHASES13 as readonly string[]).includes(s.phase);
 const mirror = (s: GameState) => get13(s, 'p-mirror') as 'complied' | 'refused' | 'turned' | 'freed' | undefined;
 const cash = (s: GameState) => Number(key(s, 'own.cash') ?? 0);
+/** Chapter 11's counter was the first time Celeste was surprised; without it, this is the first. */
+const tally13 = (s: GameState) => (key(s, 'pred.celeste-count') ? 'Twice now, darling. I have started keeping count too.' : 'Once now, darling. I have started keeping count.');
 /** What she has built that a counter can spend (design §4). */
 export function counterSpend13(s: GameState): string | undefined {
   if (key(s, 'pred.hollis') === 'owned') return 'hollis';
@@ -73,14 +75,18 @@ export function beginPredator13(): C13Choice {
   ]);
 }
 
-function readingBlocks(): Block[] {
+function readingBlocks(s: GameState): Block[] {
   return [
     p('The reading room at the Vesper smells of beeswax and old paper. The curtains are open on the river. On the lectern under the one lamp, the green leather catalogue is open, and Celeste Laurent is standing beside it in green, with her reading glasses on a chain, as if she had been waiting for you for years and had not minded.'),
     q('Celeste', 'Darling. Marcus tells me you are the best thing that has ever happened to his floor. He is frightened of you. It is the first interesting thing he has been in a decade.'),
     p('She turns the catalogue toward you. A new page. A woman of twenty-nine with dark hair cut very short and a mouth that has learned not to move: D. · Eighteen months · Available.'),
     q('Celeste', 'Mr Halvorsen has a problem. His name is Owen Marsh, and he is the only man in London who has read all of the inquiry into Mr Halvorsen’s fund. Thursday, the Claremont, the eleventh floor. The room is 1109. There is a mirror.'),
     q('Celeste', 'I would like you to run it. Book the room, brief the girl, sit behind the glass. You do not have to do anything you would not do for Marcus on a Tuesday. I thought the new one might like to learn how it is done.'),
-    t('The new one. She said that about Iris, the night she ended her. She is saying it to me across a catalogue, with a woman’s face on the page between us, and she is smiling.'),
+    t(
+      key(s, 'pred.iris') === 'kept'
+        ? 'The new one. She said that to me on the terrace at the Vesper, the night she tried to end Iris. She is saying it to me across a catalogue, with a woman’s face on the page between us, and she is smiling.'
+        : 'The new one. She said that about Iris, the night she ended her. She is saying it to me across a catalogue, with a woman’s face on the page between us, and she is smiling.',
+    ),
   ];
 }
 
@@ -360,8 +366,8 @@ function fridayBlocks(s: GameState): Block[] {
       : m === 'refused'
         ? [q('C.', 'It went perfectly well without you, darling. I thought you should know. Marcus has been told why the Stuttgart deal is going to somebody else.'), p('At noon the chair of the board’s audit committee asks for your calendar again, and this time Marcus does not stop him.')]
         : m === 'turned'
-          ? [q('C.', 'Six hours of a girl asleep. Six hours. Mr Halvorsen is not delighted.'), q('C.', 'Twice now, darling. I have started keeping count too.'), p('At eleven a message on your private phone, from a number you do not have: “Thank you. When you need the Markets Authority, ring me. — O.M.”')]
-          : [q('C.', 'The girl has gone missing. So careless of somebody. I don’t suppose you would know anything about it.'), q('C.', 'Twice now, darling. I have started keeping count too.')]),
+          ? [q('C.', 'Six hours of a girl asleep. Six hours. Mr Halvorsen is not delighted.'), q('C.', tally13(s)), p('At eleven a message on your private phone, from a number you do not have: “Thank you. When you need the Markets Authority, ring me. — O.M.”')]
+          : [q('C.', 'The girl has gone missing. So careless of somebody. I don’t suppose you would know anything about it.'), q('C.', tally13(s))]),
     t(
       m === 'complied'
         ? 'Available. They will place her again. They will ask me to run it again. And I will have to decide again, and I know now how easy the first time was.'
@@ -393,7 +399,7 @@ function completeBlocks(s: GameState): Block[] {
 }
 
 export function predatorBlocks13(s: GameState): Block[] {
-  if (s.phase === 'reading') return readingBlocks();
+  if (s.phase === 'reading') return readingBlocks(s);
   if (s.phase === 'delphine') return delphineBlocks();
   if (s.phase === 'midnight') return midnightBlocks();
   if (s.phase === 'monitor') return monitorBlocks(s);

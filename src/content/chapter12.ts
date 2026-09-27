@@ -22,7 +22,8 @@
  * Mrs Tan's jasmine cutting in a yoghurt pot, "not an orchid"; or straight to Changi). The night's endings now set
  * c12.dawn and the morning follows.
  * The Predator road (2026-09-27): The Counterparty (Geneva), in chapter12-predator.ts, entered temporarily from a
- * Predator `chapter9.complete` until the Predator Chapters 10–11 exist. */
+ * Predator `chapter9.complete` until the Predator Chapters 10–11 existed; since 2026-09-27 it comes from the Predator
+ * `chapter11.ledger` (The Catalogue). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -1071,8 +1072,8 @@ export function chapter12Choices(s: GameState): C12Choice[] {
   if (!chapter12Playable(s)) return [];
   if (s.scene === 'chapter11' && s.phase === 'complete' && ownPower(s))
     return [offer12('begin', 'Singapore', 'Three weeks until the first Thursday. Go and find her.', 'departure')];
-  // Temporary entry (design decision 7): the Predator road comes from its Chapter 9 until its Chapters 10–11 exist.
-  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator12(s)) return [beginPredator12()];
+  // The Predator road comes from its Chapter 11 (The Catalogue); the temporary entry from Chapter 9 moved there.
+  if (s.scene === 'chapter11' && s.phase === 'ledger' && isPredator12(s)) return [beginPredator12()];
   if (s.scene !== 'chapter12') return [];
   if (predatorPhase12(s)) return predatorChoices12(s);
   if (s.phase === 'departure') return departureChoices(s);

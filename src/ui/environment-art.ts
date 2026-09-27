@@ -228,6 +228,15 @@ const byNode: Record<string, Key> = {
   'chapter11.ending': 'serviceGallery',
   'chapter11.after': 'apartmentNight',
   'chapter11.complete': 'apartmentNight',
+  // The Predator road: The Catalogue (the shared Vesper set, from the client side).
+  'chapter11.dress': 'apartmentNight',
+  'chapter11.longroom': 'harbourRoom',
+  'chapter11.book': 'privateDinner',
+  'chapter11.powder': 'serviceGallery',
+  'chapter11.terrace': 'rooftop',
+  'chapter11.cloak': 'serviceGallery',
+  'chapter11.late': 'car',
+  'chapter11.ledger': 'apartmentNight',
   // Chapter 12 (stand-ins until EVE Art's Singapore frames: Changi, Emerald Hill, number 9, the Punkah Bar, the harbour).
   'chapter12.departure': 'apartmentNight',
   'chapter12.emerald': 'shoppingStreet',

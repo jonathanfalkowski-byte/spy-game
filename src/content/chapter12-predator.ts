@@ -7,9 +7,9 @@
  * Helix's next deal; or the cleaners' lift at five, always open) gives the list: nine accounts paying nine kept
  * legend sites, one of them her own flat, every standing order signed C.; Eleanor Linden's account closed eight days
  * after the harbour, its balance to Nora Linden. An account of her own (take / decline / take and move). An optional
- * chosen evening with Lucien (heat 3, consent-gated, fades), never the price of anything. Nora by phone. Temporary
- * entry: from a Predator `chapter9.complete` until the Predator Chapters 10–11 exist; Chapter 13 now enters from
- * `chapter12.ledger`. Local helpers mirror chapter12.ts (c12.* keys, chapter12.* ids) to avoid a circular import.
+ * chosen evening with Lucien (heat 3, consent-gated, fades), never the price of anything. Nora by phone. Entry: from
+ * the Predator `chapter11.ledger` (The Catalogue; until 2026-09-27, temporarily from `chapter9.complete`); Chapter 13
+ * enters from `chapter12.ledger`. Local helpers mirror chapter12.ts (c12.* keys, chapter12.* ids) to avoid a circular import.
  * Deepening pass (2026-09-27): the afternoon before the take, which every road passes through (c12.p-afternoon =
  * watch | marcus | lake: a jeweller on the Rue du Rhône who greets her as Mademoiselle Vale and gives her Nell's watch,
  * uncollected for fourteen months, "For N., from N."; Marcus on the phone about what she did with 14.3; or the lake),

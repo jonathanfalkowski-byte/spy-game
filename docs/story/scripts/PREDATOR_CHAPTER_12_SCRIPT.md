@@ -6,8 +6,8 @@ Design: [../PREDATOR_CHAPTER_12_THE_COUNTERPARTY_DESIGN.md](../PREDATOR_CHAPTER_
 - **Code:** `src/content/chapter12-predator.ts`, wired through `src/content/chapter12.ts` (phases, place lines,
   blocks, choices), with titles in `src/ui/App.tsx` and masters in `src/ui/environment-art.ts`.
 - **Gate:** `VITE_EVE_CHAPTER12`.
-- **Temporary entry:** `chapter12.begin-predator` ("Follow the money") from a Predator `chapter9.complete`, until the
-  Predator Chapters 10–11 exist.
+- **Entry:** `chapter12.begin-predator` ("Follow the money") from the Predator `chapter11.ledger` (The Catalogue).
+  Until 2026-09-27 it came from `chapter9.complete`; that temporary entry now belongs to Chapter 11.
 - **End:** its own phase, `ledger`.
 - **Chapter 13's entry moved here:** `chapter13.begin-predator` ("The winter") is now offered from
   `chapter12.ledger`, not from `chapter9.complete`.

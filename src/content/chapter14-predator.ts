@@ -99,7 +99,9 @@ function dawnBlocks(s: GameState): Block[] {
         ? 'Celeste told me I have a gift. I am going to use it on the man she was going to give me to.'
         : m === 'refused'
           ? 'I said no to her once, and it cost me Stuttgart. It is time somebody paid me back.'
-          : 'Twice now, she said. She has started keeping count. Let her count this.',
+          : key(s, 'pred.celeste-count')
+            ? 'Twice now, she said. She has started keeping count. Let her count this.'
+            : 'Once now, she said. She has started keeping count. Let her count this.',
     ),
     t('He hired me to be frightening. It is only fair that he should be the first to find out how much.'),
   ];
@@ -371,6 +373,7 @@ function lastBlocks(s: GameState): Block[] {
           : []),
     p('He looks round the office, at the glass and the river and the desk, the way a man looks at a house he has sold, fixing it.'),
     ...(key(s, 'pred.morel') === 'trade' ? [q('Marcus Chen', 'And Rotterdam’s follow-on went to Morel’s own house. I noticed. I thought it was Lucien being clever. It was you, of course. It’s always you, this year.')] : []),
+    ...(key(s, 'pred.transfer') ? [q('Marcus Chen', 'I bought you. Page forty. At client request. I’d do it again. You were worth every penny, and you’ve cost me all of them.')] : []),
     q('Marcus Chen', 'She’ll do this to you, you know. Celeste. Not this year. In three, or five. She will find somebody who wants your desk the way you wanted mine, and she will give them your letters, and they will stand where you are standing, and you will sit where I am sitting.'),
     p('He waits, as if there were a question you ought to ask before he goes on.'),
   ];

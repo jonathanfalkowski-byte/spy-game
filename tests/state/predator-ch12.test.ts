@@ -8,11 +8,11 @@ import { chapter13Choices } from '../../src/content/chapter13';
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
 
 beforeEach(() => {
-  for (const n of [6, 7, 8, 9, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 11, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER12_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER11_CHOOSE' | 'CHAPTER12_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -35,7 +35,7 @@ const walk12 = (s: GameState, path: string[]) =>
 const cash = (s: GameState) => Number(s.choices['own.cash'] ?? 0);
 
 /** A real save (the maximal-julian golden) through Chapter 6, the Predator Chapters 7 and 8, and the Chapter 9 bridge,
- * to Chapter 12's temporary entry. */
+ * and the Predator Chapter 11 (The Catalogue, on its quiet picks), to Chapter 12's entry. */
 function toBridge9(ch8: string[] = ['pull-hollis', 'hollis-use', 'pull-counsel', 'counsel-spare']) {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
   s = c6(s, ids6(s).includes('expect-negotiate') ? 'expect-negotiate' : 'expect-clarify');
@@ -50,12 +50,15 @@ function toBridge9(ch8: string[] = ['pull-hollis', 'hollis-use', 'pull-counsel',
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
+  // The Catalogue (Predator Chapter 11), on its quiet picks.
+  for (const id of ['begin-predator', 'dress-own', 'room-listen', 'page-read', 'iris-nothing', 'order-refuse', 'cloak-wait', 'car-keep', 'late-alone'])
+    s = choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
   return s;
 }
 
-it('enters from the Predator Chapter 9, and Chapter 13 now waits for Geneva', () => {
+it('enters from the Predator Chapter 11, and Chapter 13 waits for Geneva', () => {
   const s = toBridge9();
-  expect(`${s.scene}.${s.phase}`).toBe('chapter9.complete');
+  expect(`${s.scene}.${s.phase}`).toBe('chapter11.ledger');
   expect(ids(s)).toEqual(['begin-predator']);
   expect(chapter13Choices(s)).toEqual([]);
   const geneva = c12(s, 'begin-predator');

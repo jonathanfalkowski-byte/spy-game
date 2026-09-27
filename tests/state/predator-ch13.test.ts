@@ -8,11 +8,11 @@ import { P_COMPLY_OPENING13, P_FADED_LEAD13 } from '../../src/content/chapter13-
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
 
 beforeEach(() => {
-  for (const n of [6, 7, 8, 9, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 11, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER13_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER11_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER13_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -50,6 +50,9 @@ function toMirror(ch8: string[] = ['pull-hollis', 'hollis-hold', 'pull-counsel',
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
+  // The Catalogue (Predator Chapter 11), on its quiet picks.
+  for (const id of ['begin-predator', 'dress-own', 'room-listen', 'page-read', 'iris-nothing', 'order-refuse', 'cloak-wait', 'car-keep', 'late-alone'])
+    s = choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
   // Geneva (Predator Chapter 12), on its quiet picks.
   for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-lake', 'list-close', 'account-decline', 'lake-alone', 'call-none', 'dawn-sleep'])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
@@ -126,6 +129,8 @@ it('turns Marsh or frees Ana, spending what she built, and authenticates', () =>
   expect([turned.choices['pred.spent'], turned.choices['pred.ally.marsh']]).toEqual(['hollis', 'in']);
   expect(text(turned)).toContain('On the monitor all night there is only a woman asleep in a lamp-lit room.');
   expect(text(turned)).toContain('Thank you. When you need the Markets Authority, ring me. — O.M.');
+  // Chapter 11 was refused on this save: this is the first time Celeste has been surprised.
+  expect(text(turned)).toContain('Once now, darling. I have started keeping count.');
   const before = Number(at.choices['own.cash'] ?? 0);
   const freed = walk13(at, ['mirror-free', 'free-name', 'late-on', 'friday-end']);
   expect(freed.choices['pred.delphine']).toBe('free');
