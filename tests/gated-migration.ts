@@ -194,6 +194,9 @@ export const GATED_DEFAULTS = [
   // Chapter 6 deepening: jeans and the plain coat; stay at the table.
   'chapter6.dress-plain',
   'chapter6.late-sit',
+  // Chapter 6 second pass: look away from the handwriting; decide now.
+  'chapter6.hand-away',
+  'chapter6.before-now',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */

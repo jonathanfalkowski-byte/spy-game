@@ -378,5 +378,5 @@ and more of the morning, the ask and the late count:
   the workroom door, the editor's too-careful message, Sloane ringing, "She never rings") and "like a man holding
   your coat". The exit opens at the kitchen table with the back of an envelope.
 
-After this pass: **~1.0–2.0k words on the golden paths** (from ~0.7–1.7k), against the 9k budget. Chapter 6 is still
-by far the leanest chapter. The next lift is the proof and counterpower movements, which carry most of its weight.
+After this pass: ~1.0–2.0k words on the golden paths (from ~0.7–1.7k). After the second pass (proof and counterpower;
+see CHAPTER_6_PROOF_SCRIPT.md): **~1.1–2.1k**, against the 9k budget. Chapter 6 is still by far the leanest chapter.

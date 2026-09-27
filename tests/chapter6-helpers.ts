@@ -13,7 +13,7 @@ const choose6 = (s: GameState, id: string) => {
   return next;
 };
 /** The deepening pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
-export const NEUTRAL6 = ['dress-plain', 'late-sit'];
+export const NEUTRAL6 = ['dress-plain', 'late-sit', 'hand-away', 'before-now'];
 export const settle6 = (s: GameState, id?: string) => {
   let x = s;
   for (let i = 0; i < 3 && !(id && ids(x).includes(id)); i++) {

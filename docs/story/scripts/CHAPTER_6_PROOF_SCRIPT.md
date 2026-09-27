@@ -9,7 +9,7 @@ thought. Second person, present tense, curly quotes. Route-agnostic: this plays 
 on every route. Wording final unless marked *(alt)*.
 
 The concrete details this script fixes (design's job, per the plan):
-- **The leaf:** a single courier-log page from Operation Meridian, dated the night of **14 March**, recording a handoff logged at **02:40** to a courier by the initial **"R."**, with a margin note in the prior Evelyn's own hand: *"missed the Marikina breakfast for this. C. will sulk."*
+- **The leaf:** a single courier-log page from Operation Meridian, dated the night of **14 March**, recording a handoff logged at **02:40** to a courier by the initial **"R."**, with a margin note in the prior Evelyn's own hand: *"missed the Katong breakfast for this. C. will sulk."*
 - **Celeste's one confirmable fact:** that the prior Evelyn **vanished the whole of that night and never came to a breakfast Celeste had planned** — "You disappeared before breakfast" is the same memory, now dated.
 - **The authentication:** the leaf's 02:40 handoff explains the disappearance; Celeste confirms the disappearance without knowing the leaf exists; Rook, to pass, must name the breakfast before Evelynn reveals it.
 
@@ -37,7 +37,7 @@ Choices:
 
 > p: It is a single page, scanned clean: a courier log, ruled by hand, one night's entries in a column. Operation names you do not know. A date — 14 March, a year before your assignment. One line is circled: a handoff logged at 02:40, received by a courier entered only as "R."
 >
-> p: And in the margin, in a small, fast hand, a note that was never meant to be evidence: *"missed the Marikina breakfast for this. C. will sulk."*
+> p: And in the margin, in a small, fast hand, a note that was never meant to be evidence: *"missed the Katong breakfast for this. C. will sulk."*
 >
 > t: You have seen the Blackglass package. Age 31, Singapore location history, ninety-nine point nine seven percent compatibility. A specification. A thing they built and handed to you.
 >
@@ -78,7 +78,7 @@ The engine offers **comparison** only if the player holds a Glass House item
 >
 > q(You): The page says she missed a breakfast. Whose. Tell me the name before I tell you, or the page is paper.
 >
-> *(pass):* q(Unknown sender): The Marikina breakfast. Celeste Laurent's table. Evelyn was expected and did not come; she was making the 02:40 handoff instead, and she never explained it. Ask your friend. She has been sulking about it for a year.
+> *(pass):* q(Unknown sender): The Katong breakfast. Celeste Laurent's table. Evelyn was expected and did not come; she was making the 02:40 handoff instead, and she never explained it. Ask your friend. She has been sulking about it for a year.
 >
 > p: You did not give the sender Celeste's name, or the breakfast, or the sulk. The sender gave them to you. Whoever is holding that page was in Singapore that night, inside the identity you are wearing now.
 >
@@ -103,7 +103,7 @@ firsthand social scope and no more.
 
 > p: You reach Celeste on the fund's line. You do not mention a courier log, or Axiom, or a sender. You ask her, lightly, about Singapore — about a breakfast.
 >
-> q(Celeste): The Marikina one. God, yes. I planned it for a week and she simply wasn't there. No message, no apology, and then she breezed back two days later as if I'd imagined the whole thing. I adored her and I could have killed her.
+> q(Celeste): The Katong one. God, yes. I planned it for a week and she simply wasn't there. No message, no apology, and then she breezed back two days later as if I'd imagined the whole thing. I adored her and I could have killed her.
 >
 > p: She is talking about a woman she knew. Warmly. To your face. She has no idea she is describing you, or the person who came before you, or that a page exists with that exact morning written in its margin.
 >
@@ -158,6 +158,25 @@ to `counterpower`.
 - **P2a (predict pass/fail):** passes by default; **fails only if Evelynn earlier misled the sender** (`c3 misdirect-rook` or the equivalent record) — the sender won't spend the truth on someone who lied to it. Thematically right. Approved.
 - **P2b (never heard Celeste):** gate `verify-predict` on the `mission.celeste-greeting` record (she must have heard the breakfast line to withhold it). If she has **no** Glass House item, **no** `c3.verified-date`, and **no** `celeste-greeting`, only `verify-refuse` is offered → `untested` → own-hand. Approved (the skeptic/own-hand ending is a valid strong outcome).
 - **P3 (celeste-press data model):** `celeste-press` adds a `npcs.celeste` **belief** ("Evelynn pressed about the Singapore breakfast like a lawyer") plus a `note6` marking it as Celeste's limit, not a fact; `celeste-let-be` records the one confirmed fact as a `note6` fact. Approved.
-- **P4 (Rook's demonstrated knowledge):** on a prediction pass, append to `npcs.rook.known`: "the Marikina breakfast, Celeste Laurent's table, the 02:40 handoff"; Evelynn's question is sent with send-style sourcing. Approved.
+- **P4 (Rook's demonstrated knowledge):** on a prediction pass, append to `npcs.rook.known`: "the Katong breakfast, Celeste Laurent's table, the 02:40 handoff"; Evelynn's question is sent with send-style sourcing. Approved.
 - **P5 (one flow):** every route has sender contact from Chapter 3, so use one flow for all; no empty-Rook branch. Approved.
 - **P6 (structure):** the whole proof runs inside the `proof` phase, step-unlocked like the salon; `decline`/`broken`/`untested` go straight to `counterpower`; the photograph adds the Sloane-visible entry. Approved.
+
+## Second deepening pass (2026-09-26)
+
+Route-neutral. Nothing downstream reads it, including `deriveRoute6`; a test pins that the route tally is identical
+either way. Each moment has a neutral pick for the goldens:
+
+- **The night it comes**: the proof now opens in bed, lamp off, rain, "The phone buzzes once against the cotton."
+- **The handwriting** (`proof`, after custody, before the test; only if she opened the page) (`c6.hand`):
+  - **hand-trace**: she copies the margin note on an envelope, and her own hand is no longer Adrian's square
+    upright one. It is somewhere in between, and moving: "I did not know it was going somewhere."
+  - **hand-aloud**: the sentence said aloud in her voice fits too well: "her sentences sound like me".
+  - **hand-away** (neutral).
+- **The hour before she decides** (`counterpower`, before "Decide what to do with it") (`c6.before`):
+  - **before-cards**: every option on an index card on the bedroom floor: "I should do this on a wall." This seeds
+    the Chapter 10 wall.
+  - **before-glass**: a second glass on the windowsill for R., the woman in the margin; a moth in it in the morning.
+  - **before-now** (neutral).
+- **Continuity fix**: the sender's pass line and two notes still said "Marikina" (a Manila district, flagged in the
+  2026-09-24 playthrough review). They now say **Katong**, matching the page and Celeste.

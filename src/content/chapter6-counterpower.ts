@@ -1,6 +1,9 @@
 /** Chapter 6 movement 6 — counterpower, resolve and the route branch. Wording and flags:
  * docs/story/scripts/CHAPTER_6_COUNTERPOWER_SCRIPT.md (with its build resolutions).
- * One primary end action per playthrough; route.lane is derived, re-derivable and sourced. */
+ * One primary end action per playthrough; route.lane is derived, re-derivable and sourced.
+ * Second deepening pass (2026-09-26): the hour before she decides (c6.before = cards | glass | now: every option on a
+ * card on the floor, the first time she lays a shape out like that; a glass poured for the woman in the margin). It
+ * is read by nothing downstream, including deriveRoute6. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4, get5 } from './chapter5-model';
@@ -195,7 +198,30 @@ function resolve6(
   note6(x, 'route', `Route signal: ${route.lane}.`, `Suggested by the weighted route tally (${action} on the ${a} arrangement plus Chapter 3–6 seeds); Chapter 7 confirms or redirects it`);
 }
 
+/** The hour before she decides (second deepening pass). */
+function beforeChoices(): C6Choice[] {
+  const b = (id: string, label: string, hint: string, body: Block[]) =>
+    offer6('before-' + id, label, hint, 'counterpower', (x) => {
+      set6(x, 'before', id);
+      return body;
+    });
+  return [
+    b('cards', 'Lay it all out on the floor', 'Every option on its own card. Look at the shape.', [
+      p('You take the pack of index cards from the drawer and write every choice you have on one of its own, in capitals, the way Adrian used to write the things he wanted to read at three in the morning, and lay them out on the bedroom floor in a row: what you could do, who it would cost, who would know.'),
+      p('Then you sit on the end of the bed with your elbows on your knees and look at them for a long time. Laid out like that, the night stops being a fog and becomes a shape, and a shape has edges, and edges are places you can take hold.'),
+      t('I should do this more often. I should do this on a wall.'),
+    ]),
+    b('glass', 'Pour a glass for the woman in the margin', 'She missed a breakfast for this. Somebody should drink to her.', [
+      p('You pour two glasses of the wine that came with the flat and put one on the windowsill, by itself, where the street lamp catches it, and hold the other.'),
+      q('You', 'To R., whoever you were. To the breakfast. To you.'),
+      p('You drink yours slowly, standing at the window in the dark. The other glass stays full on the sill all night, and in the morning there is a moth in it, which you decide to take as a kind of answer.'),
+    ]),
+    b('now', 'Decide now', 'Don’t wait for a better hour.', [p('You decide not to wait for a better hour. There isn’t one.')]),
+  ];
+}
+
 export function resolveChoices6(s: GameState): C6Choice[] {
+  if (s.phase === 'counterpower' && !get6(s, 'before')) return beforeChoices();
   if (s.phase === 'counterpower')
     return [offer6('counterpower-decide', 'Decide what to do with it', 'Choose one action. It sets your course.', 'resolve')];
   if (s.phase !== 'resolve' || get6(s, 'resolve-action')) return [];

@@ -18,7 +18,7 @@ const c6 = (s: GameState, id: string) => {
   // The deepening pass's moments: take the neutral pick when one stands in the way.
   for (let i = 0; i < 3; i++) {
     const offered = chapter6Choices(x).map((c) => c.id.replace(/^chapter6\./, ''));
-    const n = offered.includes(id) ? undefined : ['dress-plain', 'late-sit'].find((d) => offered.includes(d));
+    const n = offered.includes(id) ? undefined : ['dress-plain', 'late-sit', 'hand-away', 'before-now'].find((d) => offered.includes(d));
     if (!n) break;
     x = act(x, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + n });
   }

@@ -1,6 +1,10 @@
 /** Chapter 6 movement 5 — proof, not confession. Wording and flags:
  * docs/story/scripts/CHAPTER_6_PROOF_SCRIPT.md (with its build resolutions). The whole proof runs
- * inside the `proof` phase, step-unlocked; decline, broken and untested go straight to counterpower. */
+ * inside the `proof` phase, step-unlocked; decline, broken and untested go straight to counterpower.
+ * Second deepening pass (2026-09-26), route-neutral, read by nothing downstream (not the route tally): the night the
+ * page comes, at greater length, and the handwriting in the margin, after custody and before the test (c6.hand =
+ * trace | aloud | away: her own hand copying the sentence and drifting toward the margin's; the words said aloud in
+ * a voice they fit). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { type C6Choice, get6, note6, offer6, set6 } from './chapter6-model';
@@ -8,6 +12,7 @@ import { type C6Choice, get6, note6, offer6, set6 } from './chapter6-model';
 const SENDER = 'Unknown sender';
 
 export const proofEntry6: Block[] = [
+  p('The next night, late. You are in bed with the lamp off and the phone face down on the pillow beside you, the way you have slept every night since the file, and outside it has been raining long enough that you have stopped hearing it. The phone buzzes once against the cotton.'),
   p('The message comes on the unknown-number thread, slipping past the Axiom filter the way the others did. No name, no header, only a line and an attachment held back behind it.'),
   q(SENDER, 'You keep asking who I am. I will do better than answer. I will show you where you come from. One page. You decide what it is worth.'),
   p('The attachment waits. You have learned what a claim is worth, and what a photograph is worth, and what “trust me” is worth. This is none of those yet.'),
@@ -45,6 +50,30 @@ export const predictionPasses6 = (s: GameState) => !s.choices['c3.misdirect-rook
 
 function rookLearns(x: GameState, key: string, source: string) {
   optionalNpc(x, 'rook')?.known.push({ key, source, event: x.revision });
+}
+
+/** The handwriting in the margin (second deepening pass), before she tests the page. */
+function handChoices(): C6Choice[] {
+  const h = (id: string, label: string, hint: string, body: Block[]) =>
+    offer6('hand-' + id, label, hint, 'proof', (x) => {
+      set6(x, 'hand', id);
+      return body;
+    });
+  return [
+    h('trace', 'Copy the margin note in your own hand', 'On the back of an envelope. See what your hand does.', [
+      p('You find an envelope and a pen on the bedside table and copy the sentence out, slowly, the way you would copy a signature you meant to check: missed the Katong breakfast for this. C. will sulk.'),
+      p('Then you look at the two of them side by side, and your skin goes cold. Adrian wrote small and square and upright, all his life, like a man filling in a form. The hand on the envelope leans. The C is a loop, not a hook. It is not her hand. It is not his, either. It is somewhere in between, and moving.'),
+      t('I have not written anything by hand since the clinic. I did not know my handwriting had changed. I did not know it was going somewhere.'),
+    ]),
+    h('aloud', 'Say it out loud', 'In the dark. In this voice.', [
+      p('You say it out loud, to the dark bedroom, in the voice you have now: missed the Katong breakfast for this. C. will sulk.'),
+      p('It fits. That is the terrible part. The rhythm of it, the little dry lift at the end, the way the sulk is fond and not cross. It sits in your mouth as if it had been waiting there. You have never said anything in Adrian’s voice that fitted this well.'),
+      t('It is not that I sound like her. It is that her sentences sound like me.'),
+    ]),
+    h('away', 'Look away from it', 'Enough, for a moment.', [
+      p('You put the phone face down on the pillow for a moment and look at the ceiling, and breathe, and then turn it back over.'),
+    ]),
+  ];
 }
 
 export function proofChoices6(s: GameState): C6Choice[] {
@@ -86,6 +115,7 @@ export function proofChoices6(s: GameState): C6Choice[] {
         },
       ),
     ];
+  if (!get6(s, 'hand')) return handChoices();
   if (!proof) {
     const c: C6Choice[] = [];
     if (canCompare6(s))
@@ -122,11 +152,11 @@ export function proofChoices6(s: GameState): C6Choice[] {
             ];
           }
           set6(x, 'rook-proof', 'supported');
-          rookLearns(x, 'The Marikina breakfast, Celeste Laurent’s table, the 02:40 handoff.', 'Demonstrated by the sender before Evelynn revealed it');
-          note6(x, 'rook-proof', 'The sender named the Marikina breakfast and Celeste Laurent’s table before Evelynn revealed either.', 'Passed prediction test');
+          rookLearns(x, 'The Katong breakfast, Celeste Laurent’s table, the 02:40 handoff.', 'Demonstrated by the sender before Evelynn revealed it');
+          note6(x, 'rook-proof', 'The sender named the Katong breakfast and Celeste Laurent’s table before Evelynn revealed either.', 'Passed prediction test');
           return [
             ...ask,
-            q(SENDER, 'The Marikina breakfast. Celeste Laurent’s table. Evelyn was expected and did not come; she was making the 02:40 handoff instead, and she never explained it. Ask your friend. She has been sulking about it for a year.'),
+            q(SENDER, 'The Katong breakfast. Celeste Laurent’s table. Evelyn was expected and did not come; she was making the 02:40 handoff instead, and she never explained it. Ask your friend. She has been sulking about it for a year.'),
             p('You did not give the sender Celeste’s name, or the breakfast, or the sulk. The sender gave them to you. Whoever is holding that page was in Singapore that night, inside the identity you are wearing now.'),
             ...celesteCall,
           ];
@@ -149,7 +179,7 @@ export function proofChoices6(s: GameState): C6Choice[] {
     return [
       offer6('celeste-let-be', 'Thank her and change the subject', 'Take the confirmation; leave her the version she loves.', 'proof', (x) => {
         set6(x, 'celeste', 'let-be');
-        note6(x, 'celeste-breakfast', 'Celeste confirms Evelyn vanished the night before the Marikina breakfast and never explained.', 'Celeste on the fund’s line; firsthand social memory only');
+        note6(x, 'celeste-breakfast', 'Celeste confirms Evelyn vanished the night before the Katong breakfast and never explained.', 'Celeste on the fund’s line; firsthand social memory only');
         return [p('You let her keep the friend she remembers. You have what you needed, and she keeps what she has.'), ...oracle];
       }),
       offer6('celeste-press', 'Push her for more', 'She does not have more, and pushing costs.', 'proof', (x) => {

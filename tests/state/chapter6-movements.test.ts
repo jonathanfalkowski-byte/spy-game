@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { optionalNpc, type GameState } from '../../src/state/schema';
 import { replay } from '../../src/state/reducer';
-import { c6, complete19, ids, text, toProof, walk, type Setup } from '../chapter6-helpers';
+import { c6, complete19, ids, settle6, text, toProof, walk, type Setup } from '../chapter6-helpers';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter6Choices } from '../../src/content/chapter6';
 import { get6 } from '../../src/content/chapter6-model';
@@ -13,7 +13,8 @@ afterEach(() => vi.unstubAllEnvs());
 
 const atProof = (opts: Setup & { exposed?: boolean } = {}) =>
   toProof(opts, opts.exposed ? ['counter-monitored', 'counter-none', 'counter-ask-none', 'counter-restored'] : ['counter-skip']);
-const opened = (s: GameState, photo = false) => walk(s, ['proof-open', photo ? 'proof-photo' : 'proof-view']);
+/** Opened and held, past the handwriting (the second deepening pass's neutral pick). */
+const opened = (s: GameState, photo = false) => settle6(walk(s, ['proof-open', photo ? 'proof-photo' : 'proof-view']));
 
 it('opens the proof with the sender’s message and lets her decline straight to counterpower', () => {
   const s = atProof();
@@ -50,7 +51,7 @@ it('supports the leaf by comparison and by a passed prediction, recording what t
   expect(ids(compared)).toEqual(['celeste-let-be', 'celeste-press']);
   const predicted = c6(opened(atProof({ greeting: true })), 'verify-predict');
   expect([get6(predicted, 'rook-proof'), get6(predicted, 'verify-method')]).toEqual(['supported', 'prediction']);
-  expect(optionalNpc(predicted, 'rook')?.known.map((k) => k.key)).toContain('The Marikina breakfast, Celeste Laurent’s table, the 02:40 handoff.');
+  expect(optionalNpc(predicted, 'rook')?.known.map((k) => k.key)).toContain('The Katong breakfast, Celeste Laurent’s table, the 02:40 handoff.');
   expect(text(predicted)).toContain('The Katong one. God, yes.');
 });
 
@@ -58,8 +59,8 @@ it('breaks the prediction if she misled the sender, skipping Celeste and ORACLE'
   const failed = c6(opened(atProof({ greeting: true, misdirect: true })), 'verify-predict');
   expect([failed.phase, get6(failed, 'rook-proof'), get6(failed, 'verify-method')]).toEqual(['counterpower', 'broken', 'prediction']);
   expect(text(failed)).toContain('I do not have every name a year on.');
-  expect(text(failed)).not.toContain('The Marikina one');
-  expect(optionalNpc(failed, 'rook')?.known.map((k) => k.key)).not.toContain('The Marikina breakfast, Celeste Laurent’s table, the 02:40 handoff.');
+  expect(text(failed)).not.toContain('The Katong one');
+  expect(optionalNpc(failed, 'rook')?.known.map((k) => k.key)).not.toContain('The Katong breakfast, Celeste Laurent’s table, the 02:40 handoff.');
 });
 
 it('keeps Celeste to her one fact: pressing adds her wariness, not information', () => {
@@ -133,4 +134,27 @@ it('plays a real revision-19 save through the proof and an ending, and the save 
   expect(`${s.scene}.${s.phase}`).toBe('chapter6.complete');
   expect(replay(s.ledger, 19)).toEqual(s);
   expect(decodeSave(encodeSave(s))).toEqual(s);
+});
+
+it('lets the handwriting land before the test, and gives her an hour before she decides', () => {
+  const s = atProof();
+  expect(text(s)).toContain('The phone buzzes once against the cotton.');
+  const held = walk(s, ['proof-open', 'proof-view']);
+  expect(ids(held)).toEqual(['hand-trace', 'hand-aloud', 'hand-away']);
+  const traced = c6(held, 'hand-trace');
+  expect([traced.phase, get6(traced, 'hand')]).toEqual(['proof', 'trace']);
+  expect(text(traced)).toContain('I did not know it was going somewhere.');
+  expect(ids(traced)).toEqual(['verify-refuse']);
+  expect(text(c6(held, 'hand-aloud'))).toContain('her sentences sound like me');
+  const counter = c6(traced, 'verify-refuse');
+  expect(ids(counter)).toEqual(['before-cards', 'before-glass', 'before-now']);
+  const cards = c6(counter, 'before-cards');
+  expect([cards.phase, get6(cards, 'before')]).toEqual(['counterpower', 'cards']);
+  expect(text(cards)).toContain('I should do this on a wall.');
+  expect(ids(cards)).toEqual(['counterpower-decide']);
+  expect(text(c6(counter, 'before-glass'))).toContain('To R., whoever you were.');
+  // Neither moment moves the route tally.
+  const a = walk(cards, ['counterpower-decide', 'resolve-hold']);
+  const b = walk(c6(counter, 'before-now'), ['counterpower-decide', 'resolve-hold']);
+  expect(deriveRoute6(a)).toEqual(deriveRoute6(b));
 });
