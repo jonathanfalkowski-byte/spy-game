@@ -9,7 +9,11 @@
  * Marsh or frees Delphine, each spending something she built. The comply lead-in can be faded by the reader
  * (fadeCoercion13 recognises it by P_COMPLY_OPENING13). Temporary entry: from a Predator `chapter9.complete` with a
  * short bridge ("The winter") until the Predator Chapters 10–12 exist. Local helpers mirror chapter13.ts (c13.* keys,
- * chapter13.* ids) to avoid a circular import. */
+ * chapter13.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): the week between Delphine and midnight (c13.p-week = marcus | julian | maya | alone:
+ * Marcus knows, and says "do it well, or don't do it", because Celeste is testing her for his desk; Julian, the one
+ * person who tells her no; Maya, the voice she does not call); Delphine and each road's Thursday at greater length;
+ * and, after the comply night, a recovery step (her real name in a sealed envelope, for the day it can be used). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -105,13 +109,55 @@ function delphineBlocks(): Block[] {
   return [
     p('Meridian keeps a flat for her in a mansion block behind the station: two rooms, beige, a sofa nobody chose, a kettle that works. She opens the door before you knock. In person she is smaller than the photograph and much more tired, in a grey jumper with the sleeves pulled over her hands, twenty-nine, eighteen months into somebody else’s name.'),
     q('Delphine', 'You’re the new one. They said you’d come. Do you want tea? I make very good tea. It’s the only thing in this flat that’s mine.'),
+    p('The flat has one personal thing in it that you can see: a postcard of a hospital in Leeds, stuck to the fridge with a magnet shaped like a lemon. She sees you see it, and does not take it down.'),
     p('She makes it, and it is very good, and you sit at a table in a room that belongs to nobody, and look at each other like two people at a funeral who have realised they are wearing the same dress.'),
+  ];
+}
+
+/** The week (deepening pass): between Delphine and midnight. */
+function weekChoices(s: GameState): C13Choice[] {
+  const w = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('week-' + id, label, hint, 'midnight', (x) => {
+      set13(x, 'p-week', id);
+      return body;
+    });
+  return [
+    w('marcus', 'Let Marcus find you', 'He will know already. He always knows.', [
+      p('On Tuesday Marcus stops at your door on his way past and, for once, comes in, and shuts it, and sits on the edge of your desk with his hands in his pockets.'),
+      q('Marcus Chen', 'She’s asked you to run one. Don’t look surprised; she asked me once, eleven years ago. I did it. I have a very good chair because I did it.'),
+      q('Marcus Chen', 'She isn’t testing whether you can. She knows you can. She’s testing whether you’re the kind who does. Because that’s the kind she gives my desk to, when she’s finished with me.'),
+      p('He gets up, and at the door he says, without turning round:'),
+      q('Marcus Chen', 'Do it well, or don’t do it. The ones who do it badly are the ones she keeps.'),
+      t('He has just told me she is going to replace him with me. He has told me how. And he has told me he was in my chair once, eleven years ago, and said yes.'),
+    ]),
+    ...(key(s, 'pred.julian') === 'ally' || key(s, 'pred.julian8') === 'take'
+      ? [
+          w('julian', 'Tell Julian', 'The one person who will tell you no.', [
+            p('You tell Julian on Wednesday, at a table at the back of a restaurant he chose because nobody from Helix eats there, not all of it, enough.'),
+            p('He listens without interrupting, and when you have finished he takes his glasses off, and puts them on the table between you, and looks at you with nothing between you at all.'),
+            q('Julian Mercer', 'No. That’s my advice, and it’s the only advice I have. No. You came here to take a company, not to become the thing that owns it. Don’t.'),
+            t('The one person in London who will tell me no without wanting something for it. I did not know how much I needed to hear it said out loud.'),
+          ]),
+        ]
+      : []),
+    ...(key(s, 'c6.maya') === 'restored'
+      ? [
+          w('maya', 'Nearly call Maya', 'The voice you do not call.', [
+            p('On Wednesday night you type Maya’s name into the phone and look at it for eleven minutes. You write: Can I ask you something, and it’s about a job. You write: If you knew somebody was going to be hurt and you could stop it by losing something. You delete both.'),
+            p('You write: Thinking of you. She answers inside a minute: a photograph of her cat asleep on a spreadsheet. You look at it for a long time.'),
+            t('I cannot ask her. If I ask her, she will tell me, and then I will have to be the person she thinks I am.'),
+          ]),
+        ]
+      : []),
+    w('alone', 'Keep it to yourself', 'The week goes by.', [
+      p('The week goes by. You keep it to yourself, the way Adrian kept everything, and go to work, and come home, and look at the file every night until you could draw the floor plan of the eleventh floor of the Claremont from memory.'),
+    ]),
   ];
 }
 
 function delphineChoices(): C13Choice[] {
   const d = (id: string, label: string, hint: string, body: Block[]) =>
-    offer('delphine-' + id, label, hint, 'midnight', (x) => {
+    offer('delphine-' + id, label, hint, 'delphine', (x) => {
       set13(x, 'p-delphine', id);
       return body;
     });
@@ -190,6 +236,7 @@ function monitorBlocks(s: GameState): Block[] {
       p(P_COMPLY_OPENING13),
       p('Four screens: the bar, the lift, the corridor, and the room itself, lit low, the lamps exactly where you told the housekeeper to put them. A chair. A switch on the desk under a plastic cover, marked FEED. A headset you do not put on.'),
       p('At nine Owen Marsh comes into the bar with his cycling clips in his jacket pocket and a paperback he will not read, and sits on the end stool, and orders his one whisky. At ten past, Delphine sits two stools along, in the dress you chose for her from the rail at the flat because it was the one she hated least.'),
+      p('The room behind the glass is lit for the camera, and you lit it. You told the housekeeper where the lamps should go on Tuesday, and she did exactly what you said, and did not ask why, and you did not tell her.'),
       p('She is very good. You watch her be very good for two hours, on a screen, with the sound off, and find that you are counting, the way Adrian counted floors in a lift when he was frightened.'),
       p('At a quarter past eleven, on the lift screen, two people stand side by side and watch the numbers. On the eleventh floor the doors open.'),
       p(P_DOOR13),
@@ -197,6 +244,7 @@ function monitorBlocks(s: GameState): Block[] {
   if (m === 'refused')
     return [
       p('Thursday night you are at home, not at the Claremont. Somebody else is in the cupboard behind the mirror tonight: a man Meridian keeps for this, who has never once asked a woman her name.'),
+      p('At nine you know Marsh will be sitting down at the end of the bar with his one whisky. At ten past, somebody will sit two stools along. You look at the clock on the cooker every few minutes and hate it for being accurate.'),
       p('You sit on the kitchen floor with your back against the cupboards and the black phone face down beside you, and think about a man with a bicycle and a woman with a very good cup of tea, and do nothing, because you chose to do nothing, and it is the hardest thing you have done since the clinic.'),
     ];
   if (m === 'turned')
@@ -206,10 +254,13 @@ function monitorBlocks(s: GameState): Block[] {
       p('He looks at you for a long time. He does not reach for his coat.'),
       q('Owen Marsh', 'Why are you telling me?'),
       q('You', 'Because I was asked to run it, and I find I don’t want to be the kind of person who does.'),
+      p('He does not ask whether you are lying. He asks for the room number, and the name of the client, and the date the inquiry opened, and writes nothing down, the way good investigators never do in front of the person they are talking to.'),
+      q('Owen Marsh', 'Then we give them nothing. Not a staged anything. Nothing at all. I have a daughter who would never forgive me for being on anybody’s tape, even a fake one.'),
       p('At eleven, as agreed, he finishes his whisky and puts on his cycling clips and leaves by the front door, alone, in full view of every camera in the lobby. Upstairs, Delphine lets herself into 1109, alone, and takes her shoes off, and lies down on top of the covers, and sleeps. On the monitor all night there is only a woman asleep in a lamp-lit room.'),
     ];
   return [
     p('Thursday at twenty past nine you are on the platform at the station behind the mansion block, in your coat, with an envelope. Ana comes down the steps with one bag and her own coat, not Delphine’s, and her hair under a hat.'),
+    p('She is early, and so are you, and for ten minutes you stand side by side on the platform like two women waiting for the same late train, not talking, watching the board.'),
     p('In the envelope: a ticket to a coast town nobody can place, a room in a guest house under a name that is neither of hers, and what the fund paid you to sign in the first place, in notes.'),
     q('Ana', 'They’ll know it was you.'),
     q('You', 'They’ll suspect it was me. That isn’t the same thing, in my line of work.'),
@@ -300,7 +351,12 @@ function fridayBlocks(s: GameState): Block[] {
     p('Friday comes up bright, which feels like an insult.'),
     p('The black phone lights at eight.'),
     ...(m === 'complied'
-      ? [q('C.', 'Beautifully run, darling. Mr Halvorsen is delighted. Mr Marsh’s inquiry will be quietly closed by Monday. You have a gift.'), p('At eleven the girl’s page in the green catalogue has a new line under it, you are told, in the same plain type: Available.')]
+      ? [
+          q('C.', 'Beautifully run, darling. Mr Halvorsen is delighted. Mr Marsh’s inquiry will be quietly closed by Monday. You have a gift.'),
+          p('At eleven the girl’s page in the green catalogue has a new line under it, you are told, in the same plain type: Available.'),
+          p('At noon you do the only thing you can think of that is not nothing. You write her real name on a card, the one she gave you or the one you will find, and the date, and the room, and Halvorsen’s name, and Celeste’s, and put the card in an envelope, and seal it, and write on the front: FOR THE DAY IT CAN BE USED. It goes into the lining of Adrian’s old jacket, with everything else that matters.'),
+          t('It is not a recovery. It is a receipt. One day I am going to hand it back to her with interest.'),
+        ]
       : m === 'refused'
         ? [q('C.', 'It went perfectly well without you, darling. I thought you should know. Marcus has been told why the Stuttgart deal is going to somebody else.'), p('At noon the chair of the board’s audit committee asks for your calendar again, and this time Marcus does not stop him.')]
         : m === 'turned'
@@ -349,7 +405,7 @@ export function predatorBlocks13(s: GameState): Block[] {
 
 export function predatorChoices13(s: GameState): C13Choice[] {
   if (s.phase === 'reading') return readingChoices();
-  if (s.phase === 'delphine') return delphineChoices();
+  if (s.phase === 'delphine') return get13(s, 'p-delphine') ? weekChoices(s) : delphineChoices();
   if (s.phase === 'midnight') return midnightChoices(s);
   if (s.phase === 'monitor') return monitorChoices(s);
   if (s.phase === 'late') return lateChoices(s);

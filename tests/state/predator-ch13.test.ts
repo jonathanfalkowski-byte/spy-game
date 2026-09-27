@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter13Choices(s).map((c) => c.id.replace(/^chapter13\./, ''));
 const c13 = (s: GameState, id: string) => choose(s, 'CHAPTER13_CHOOSE', 'chapter13.' + id);
-const walk13 = (s: GameState, path: string[]) => path.reduce(c13, s);
+/** The deepening pass's week stands between Delphine and midnight: take its neutral pick when it is in the way. */
+const NEUTRAL13 = ['week-alone'];
+const walk13 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL13.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c13(y, n);
+    }
+    return c13(y, id);
+  }, s);
 
 /** A real save (the maximal-julian golden) played through Chapter 6 into Predator, Chapters 7 and 8, and the Chapter 9
  * bridge, to Chapter 13's temporary entry. `ch8` picks the levers (the counter needs something built). */
@@ -63,11 +74,18 @@ it('lets her meet Delphine, and ask her name or whether she wants it, never lean
   expect(text(del)).toContain('twenty-nine, eighteen months into somebody else’s name');
   expect(ids(del)).toEqual(['delphine-name', 'delphine-want', 'delphine-work']);
   expect(text(c13(del, 'delphine-name'))).toContain('They have my mother’s house.');
-  const mid = c13(del, 'delphine-want');
-  expect(text(mid)).toContain('No. But I will.');
+  const week = c13(del, 'delphine-want');
+  expect(text(week)).toContain('No. But I will.');
+  expect(text(week)).toContain('a postcard of a hospital in Leeds');
+  // The week between Delphine and midnight (deepening pass): Julian is offered as an ally from Ch7.
+  expect(ids(week)).toEqual(['week-marcus', 'week-julian', 'week-alone']);
+  expect(text(c13(week, 'week-marcus'))).toContain('The ones who do it badly are the ones she keeps.');
+  expect(text(c13(week, 'week-julian'))).toContain('You came here to take a company, not to become the thing that owns it.');
+  expect(ids(walk13(toMirror(undefined, { 'c6.maya': 'restored' }), ['begin-predator', 'reading-page', 'delphine-work']))).toContain('week-maya');
+  const mid = c13(week, 'week-alone');
   // Nothing built to spend: comply or refuse only. There is never an option to pressure her.
   expect(ids(mid)).toEqual(['mirror-comply', 'mirror-refuse']);
-  expect(ids(walk13(toMirror(['pull-hollis', 'hollis-use', 'pull-counsel', 'counsel-hold']), ['begin-predator', 'reading-silent', 'delphine-work']))).toEqual(['mirror-comply', 'mirror-refuse', 'mirror-turn', 'mirror-free']);
+  expect(ids(walk13(toMirror(['pull-hollis', 'hollis-use', 'pull-counsel', 'counsel-hold']), ['begin-predator', 'reading-silent', 'delphine-work', 'week-alone']))).toEqual(['mirror-comply', 'mirror-refuse', 'mirror-turn', 'mirror-free']);
 });
 
 it('runs it by the book on comply, cuts at the door, shows nothing, and fades on request', () => {
@@ -85,6 +103,8 @@ it('runs it by the book on comply, cuts at the door, shows nothing, and fades on
   expect(`${done.scene}.${done.phase}`).toBe('chapter13.ledger');
   expect(text(done)).toContain('DELPHINE (ANA). THURSDAY. 1109. I SENT HER.');
   expect(text(done)).toContain('Beautifully run, darling.');
+  // The recovery step after the comply night (deepening pass).
+  expect(text(done)).toContain('FOR THE DAY IT CAN BE USED');
   const SEXUAL = /\b(undress\w*|naked|nude|breasts?|thighs?|kiss\w*|moan\w*|sex\w*|nipples?|arous\w*|lust\w*|orgasm\w*)\b/i;
   expect(done.history.filter((h) => h.node.startsWith('chapter13.')).flatMap((h) => h.blocks.map((b) => b.text)).join(' ')).not.toMatch(SEXUAL);
 });

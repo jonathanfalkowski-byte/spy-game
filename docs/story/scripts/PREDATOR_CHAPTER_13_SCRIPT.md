@@ -32,8 +32,26 @@ Phases: `reading → delphine → midnight → monitor → late → friday → l
 **Tests:** `tests/state/predator-ch13.test.ts`: the entry from a real save through Ch6–9; Delphine; comply with the
 cut and the fade; refusal; the two counters. The freed path replays and authenticates.
 
-**Size (honest):** pass 1 is **~0.9–1.1k words on one path** against the ~4.5k target, the leanest first pass on the
-route. The scene structure is complete and the prose is spare. The next lift:
-- the week between the brief and midnight (Delphine at greater length; Marcus's view);
-- the operator's evening at greater length on each road;
-- the aftermath's recovery step.
+## Deepening pass (2026-09-27)
+
+- **The week** (`delphine`, after her choice, before midnight) (`c13.p-week`):
+  - **week-marcus**: he was asked once, eleven years ago, and said yes ("I have a very good chair because I did
+    it"). She is testing whether Evelynn is the kind who does, "because that's the kind she gives my desk to".
+    "Do it well, or don't do it. The ones who do it badly are the ones she keeps."
+  - **week-julian** (if he is an ally, or took his help in Ch8): "No … You came here to take a company, not to
+    become the thing that owns it."
+  - **week-maya** (if Maya is back): the drafts she deletes, and a photograph of a cat asleep on a spreadsheet.
+  - **week-alone** (neutral).
+- **More of Delphine:** the postcard of a hospital in Leeds on the fridge. This pays off on the free road: "I was a
+  nurse."
+- **Thursday at greater length on each road:**
+  - comply: she lit the room herself, through the housekeeper;
+  - refuse: the cooker clock;
+  - turn: Marsh wants nothing staged at all, for his daughter's sake;
+  - free: ten minutes side by side on the platform.
+- **The recovery step (comply):** Ana's name, the room, Halvorsen and Celeste, sealed in an envelope marked FOR THE
+  DAY IT CAN BE USED, in the lining of Adrian's jacket. "It is not a recovery. It is a receipt."
+
+**Size (honest):** pass 1 ran ~0.9–1.1k. After the deepening pass: **~1.0k refuse, ~1.2k free, ~1.3k comply (quiet)
+and ~1.5k comply (engaged)**, against the ~4.5k target. Still the leanest chapter on the route. The next lift would be
+a second scene with Delphine before Thursday, and the Friday at greater length on every road.
