@@ -15,7 +15,9 @@
 - Celeste finances Marcus's acquisitions (mission.ts).
 - L.S.F. is the Laurent Sovereign Fund.
 
-**Status: DESIGN for owner approval.** Nothing is built. It would be gated like the other unreleased chapters and
+**Status: APPROVED (owner, 2026-09-27: all seven decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_8_SCRIPT.md](scripts/PREDATOR_CHAPTER_8_SCRIPT.md); code: `src/content/chapter8-predator.ts`.
+It runs ~1.2–1.8k words on one path at pass 1. The original plan follows: It would be gated like the other unreleased chapters and
 entered from a Predator `chapter7.complete`. Chapter 8 then hands on to the shared Chapter 9 bridge in place of the
 placeholder jump.
 

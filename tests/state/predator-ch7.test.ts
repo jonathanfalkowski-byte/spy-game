@@ -138,6 +138,9 @@ it('ends on a ledger and hands on to the shared Chapter 9 bridge', () => {
   expect(text(done)).toContain('Then we will see whose desk it is.');
   expect(text(done)).not.toContain('in development');
   expect(chapter7Choices(done)).toEqual([]);
+  // With Chapter 8 enabled the road goes on to The Floor; without it, straight to the bridge.
+  expect(chapter9Choices(done)).toEqual([]);
+  vi.stubEnv('VITE_EVE_CHAPTER8', '');
   expect(chapter9Choices(done).map((c) => c.id)).toEqual(['chapter9.begin-placeholder']);
   // Every Chapter 7 move is on the ledger as a CHAPTER7_CHOOSE (the test's Chapter 5 base is hand-shaped, so the
   // save authentication is covered by the golden-route replay tests, not here).

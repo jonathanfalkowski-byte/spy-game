@@ -194,6 +194,12 @@ const byNode: Record<string, Key> = {
   'chapter8.close': 'apartmentNight',
   'chapter8.call': 'phone',
   'chapter8.complete': 'apartmentNight',
+  // The Predator road: three weeks on the Helix floors.
+  'chapter8.weeks': 'helixWorkroom',
+  'chapter8.hub': 'helixWorkroom',
+  'chapter8.friday': 'helixSuite',
+  'chapter8.julian': 'helixReception',
+  'chapter8.evening': 'helixWorkroom',
   // Chapter 9 (the shared bridge).
   'chapter9.arrive': 'apartmentDay',
   'chapter9.names': 'shoppingStreet',
