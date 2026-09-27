@@ -499,6 +499,110 @@ const BLOCKS: Record<string, Swap[]> = {
   ],
 };
 
+/**
+ * Chapter 5 deepening (2026-09-26): presentation only, like everything in this file. Chapter 5 is released
+ * content, so a new choice would change revision-20 replay; instead the week gets its texture here: the quiet
+ * flat, the shop window, the invitation card, dressing as a sentence, Harbour at dusk, being paid to be looked at,
+ * the old names in the threads, the rooftop card, coming home, and the night. Each is appended after a line every
+ * route already shows. Revision-19 saves never reach it; no ledger, history or save changes.
+ */
+const DEEPEN5: Record<string, Swap[]> = {
+  'chapter5.home': [
+    [
+      'You take the permitted packet home from the records desk.',
+      keep(
+        p('The flat is very quiet at this hour. Grey light comes in through the blinds and lies across the floor in bars, and the building makes its small settling noises: the pipes, the lift, somebody’s radio two floors down, playing to nobody.'),
+        t('A week ago I would have filled a silence like this with work. I am learning to leave it empty and see what comes in.'),
+      ),
+    ],
+  ],
+  'chapter5.spend': [
+    [
+      'You walk to the shopping street and slow at a window',
+      keep(
+        p('It is the first time since the clinic that you have walked down a street with money of your own and nowhere you have to be. In the window glass a tall woman in charcoal is looking at the blouse exactly the way you are looking at it. For a second neither of you is sure which one of you wants it.'),
+      ),
+    ],
+  ],
+  'chapter5.echo': [
+    [
+      'The municipal reader bulletin includes',
+      keep(t('A woman who repairs old clocks. I would like to be photographed for what I do, not for what I look like. I am not sure yet which of those they would see.')),
+    ],
+  ],
+  'chapter5.invitation': [
+    [
+      'Tomorrow, six thirty.',
+      keep(p('The card is heavy and cream and smells faintly of the printer’s ink. You turn it over twice. In eleven years nobody invited Adrian Vale to anything that was not a leaving drink.')),
+    ],
+  ],
+  'chapter5.presentation': [
+    [
+      'There is time to decide how you want to enter the room.',
+      keep(
+        p('You stand in front of the open wardrobe in your slip for a long time. Dressing took Adrian four minutes: the grey suit, the blue shirt, the tie Maya said was sad. Now it is a decision, and the decision is a sentence, and everyone in the room is going to read it before you have said a word.'),
+        t('What do I want them to read?'),
+      ),
+    ],
+  ],
+  'chapter5.room': [
+    [
+      'You leave home and arrive at Harbour for 18:30.',
+      keep(
+        p('Harbour at dusk: the long room lit low, the river black beyond the glass, forty people with drinks talking just loudly enough not to hear each other. Heads turn when you come in. Not all of them. Enough. You feel it go through the room like a draught under a door, and you let it.'),
+        t('Adrian could walk into a room like this and out again without one person knowing he had been there. I am never going to be able to do that again. I am not sure I want to.'),
+      ),
+    ],
+  ],
+  'chapter5.offer': [
+    [
+      'The next morning you open Aster’s brief over coffee.',
+      keep(t('Somebody wants to pay me to be looked at. That is not the strange part. The strange part is how much I want to say yes.')),
+    ],
+  ],
+  'chapter5.infrastructure': [
+    [
+      'By three, you are at home.',
+      keep(p('Papers on the table, papers on the chair, a cup balanced on the only clear corner. It is the kind of mess Adrian used to make at the end of an audit, and you look at it with a small, private affection, as if it were a thing the two of you still had in common.')),
+    ],
+  ],
+  'chapter5.people': [
+    [
+      'You make tea, then open the familiar threads.',
+      keep(p('Outside the rain has come back. The names in the threads are the names Adrian had, in the order he left them, and every one of them belongs to somebody who knew him and does not know you. You hold the phone for a long time before you type anything.')),
+    ],
+  ],
+  'chapter5.want': [
+    [
+      'The guest card you collected at Harbour',
+      keep(
+        p('You prop the card against the lamp: low chairs, a small stage, the last light over the water. This week you have wanted a great many things because you were told to, or because they were useful. Nobody has told you anything about this one.'),
+        t('Not what is useful tonight. Not what is safe. What do I want?'),
+      ),
+    ],
+  ],
+  'chapter5.return': [
+    [
+      'You make your own way back to the apartment.',
+      keep(p('The flat smells of the morning’s coffee and the rain on your coat. You stand in the hall for a moment without turning the light on and let the evening settle on you: every choice this week your own, and every one of them written down somewhere, by somebody.')),
+    ],
+    [
+      'By half past ten, you are still at home',
+      keep(p('The flat is warm and very still, and the rain has stopped. You did not go anywhere tonight, and nothing came for you, and you find that you do not mind at all. Staying in was a choice too. It is the first evening in a long time that has been nobody’s but yours.')),
+    ],
+  ],
+  'chapter5.complete': [
+    [
+      'For tonight, you leave it that way.',
+      keep(
+        p('You undress slowly in the lamplight and hang the clothes you chose on the outside of the wardrobe door, where you will see them in the morning. In the dark the building ticks and settles. Somewhere across the city a report with your name on it is being read by somebody you have never met.'),
+        t('A week ago I was a file. Tonight I am a woman who chose her own dress, her own work and her own evening. It is not freedom yet. It is the first draft of it.'),
+      ),
+    ],
+  ],
+};
+for (const [node, rules] of Object.entries(DEEPEN5)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
+
 /** Julian's evening: the no-sex scene gets its own aftermath. Decided before the swaps, which rewrite
  * the scope line the decision reads. */
 function handoffAftermath(blocks: Block[], node: string): Block[] {
