@@ -15,7 +15,8 @@
  * reading room; and more of Saturday, midnight, Sunday and the nights after.
  * Second deepening pass (2026-09-26): the hour before midnight on the Saturday, which every path passes through
  * (c14.night = walk | sloane | wall: the river and Mr Pryce on the bench, or a fox; Sloane awake on the sofa and the
- * fourth of March; or the wall), and the Saturday and Sunday openings at greater length. */
+ * fourth of March; or the wall), and the Saturday and Sunday openings at greater length.
+ * The Predator road (2026-09-27): Marcus Falls, in chapter14-predator.ts, entered from the Predator `chapter13.ledger`. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -23,6 +24,7 @@ import { getKey, setKey } from './chapter7-model';
 import { eveningPartners11 } from './chapter11';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { sloaneDoubts } from './sloane-standing';
+import { beginPredator14, isPredator14, placePredator14, predatorBlocks14, predatorChoices14, predatorPhase14 } from './chapter14-predator';
 
 export type C14Scene = { title: string; place: string; blocks: Block[] };
 export type C14Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -64,6 +66,15 @@ export const chapter14Definitions: Record<string, C14Scene> = {
   sunday: { title: 'The Vesper, Sunday', place: 'SUNDAY · 18:00 · THE VESPER', blocks: [] },
   after: { title: 'Afterwards', place: 'SUNDAY NIGHT', blocks: [] },
   complete: { title: 'The Board', place: '· LATER', blocks: [] },
+  // The Predator road (2026-09-27): Marcus Falls.
+  dawn: { title: 'Every Card', place: '05:00 · THE WARDROBE DOOR', blocks: [] },
+  case: { title: 'Three Ways', place: 'MORNING · YOUR OFFICE, THE THIRTY-SIXTH FLOOR', blocks: [] },
+  safe: { title: 'The Horse', place: '01:00 · MARCUS’S FLAT, ABOVE THE RIVER', blocks: [] },
+  room: { title: 'Marcus Falls', place: 'THE NEXT DAY', blocks: [] },
+  last: { title: 'His Last Move', place: 'AFTERWARDS · HIS OFFICE', blocks: [] },
+  desk: { title: 'The Desk', place: 'THE NEXT MORNING · THE THIRTY-EIGHTH FLOOR', blocks: [] },
+  evening: { title: 'The Evening', place: 'NIGHT', blocks: [] },
+  ledger: { title: 'The Board', place: 'MIDNIGHT · THE WARDROBE DOOR', blocks: [] },
 };
 export const chapter14Scenes = Object.entries(chapter14Definitions).map(([phase, scene]) => ({
   id: `chapter14.${phase}` as NodeId,
@@ -109,6 +120,7 @@ export function eveningPartners14(s: GameState): Partner14[] {
 /** Scene-specific place lines (display only). */
 export function place14(s: GameState): string | undefined {
   if (s.scene !== 'chapter14') return;
+  if (isPredator14(s)) return placePredator14(s);
   if (s.phase === 'maya' && get14(s, 'tell') === 'later') return 'SATURDAY NIGHT · YOUR DOORSTEP';
   if (s.phase === 'sunday' && get14(s, 'answer') === 'refused') return 'SUNDAY · 19:00 · HOME, AND THE FIRE ESCAPE';
   if (s.phase === 'after' && get14(s, 'answer') === 'refused' && !get14(s, 'evening-open')) return 'SUNDAY NIGHT · A HOTEL, UNDER ANOTHER NAME';
@@ -876,6 +888,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function chapter14Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter14') return [];
+  if (predatorPhase14(s)) return predatorBlocks14(s);
   if (s.phase === 'door') return doorBlocks(s);
   if (s.phase === 'order') return orderBlocks(s);
   if (s.phase === 'maya') return mayaBlocks(s);
@@ -890,7 +903,9 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (!chapter14Playable(s)) return [];
   if (s.scene === 'chapter13' && s.phase === 'complete' && ownPower(s))
     return [offer14('begin', 'Let her in', 'Sloane, on your landing, asking.', 'door')];
+  if (s.scene === 'chapter13' && s.phase === 'ledger' && isPredator14(s)) return [beginPredator14()];
   if (s.scene !== 'chapter14') return [];
+  if (predatorPhase14(s)) return predatorChoices14(s);
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'order') return orderChoices();
   if (s.phase === 'maya') return get14(s, 'said') ? mayaMoveChoices(s) : mayaChoices(s);

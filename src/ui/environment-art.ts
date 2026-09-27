@@ -260,6 +260,15 @@ const byNode: Record<string, Key> = {
   'chapter14.sunday': 'reviewRoom',
   'chapter14.after': 'rooftop',
   'chapter14.complete': 'apartmentNight',
+  // The Predator road: Marcus Falls.
+  'chapter14.dawn': 'apartmentNight',
+  'chapter14.case': 'helixWorkroom',
+  'chapter14.safe': 'apartmentNight',
+  'chapter14.room': 'helixSuite',
+  'chapter14.last': 'helixSuite',
+  'chapter14.desk': 'helixSuite',
+  'chapter14.evening': 'apartmentNight',
+  'chapter14.ledger': 'apartmentNight',
   // Chapter 15 (stand-ins until EVE Art's frames: the wall on a wardrobe door, the Vesper at 2 a.m., the archive, the bridge).
   'chapter15.crew': 'apartmentNight',
   'chapter15.plan': 'apartmentDay',

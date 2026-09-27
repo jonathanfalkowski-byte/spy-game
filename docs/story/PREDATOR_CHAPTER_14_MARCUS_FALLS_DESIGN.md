@@ -11,7 +11,14 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). Her weapons are secrets, leverage and charm. She never sexually
   coerces anyone; the fall is financial, professional and public, never sexual.
 
-**Status: DESIGN for owner approval.** Nothing is built. It is entered from `chapter13.ledger`.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_14_SCRIPT.md](scripts/PREDATOR_CHAPTER_14_SCRIPT.md); code: `src/content/chapter14-predator.ts`.
+It is entered from `chapter13.ledger`, and runs ~1.1–1.7k words on one path at pass 1.
+
+**Two refinements made in the build:**
+- Varga's hand counts whether the counsel lever was used or spared. Either way, Legal is hers.
+- The audit committee's chair is a fourth possible hand, given by the fund's schedule from the archive. This makes
+  the board way reachable against a rival Julian (three hands) without the safe, which comes after the choice.
 
 ---
 
