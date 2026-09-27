@@ -708,6 +708,69 @@ const DEEPEN4: Record<string, Swap[]> = {
 for (const [node, rules] of Object.entries(DEEPEN4)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
 
 /**
+ * Chapter 2 deepening (2026-09-26): presentation only, in the same second pass as DEEPEN3. Sublevel 17 is already
+ * the fullest early chapter; this adds the beat map's two asks and a little texture. Maya: the message she almost
+ * sends from recovery. Alone: the dressing room, the first minutes nobody is watching, quiet and unglamorous. The
+ * clinic stays clinical: nothing here is sexualized.
+ */
+const DEEPEN2: Record<string, Swap[]> = {
+  'clinic.travel': [
+    [
+      'Downstairs, you join the morning transit queue.',
+      keep(t('The last time I will stand in this queue as the man they see. Nobody here knows it. I am not sure that I know it either.')),
+    ],
+  ],
+  'clinic.reception': [
+    [
+      'The elevator opens onto white stone',
+      keep(t('Somebody has spent a great deal of money making this place feel as if nothing is about to happen.')),
+    ],
+  ],
+  'clinic.exam': [
+    [
+      'The chair adjusts beneath you',
+      keep(p('The room is kept cool. Somewhere behind the wall a pump hums one low note, and stops, and starts again. You count its cycles, to have something to count.')),
+    ],
+  ],
+  'clinic.rest': [
+    [
+      'The morning is measured in practical repetitions',
+      keep(p('Reading aloud is the hardest. The only thing on the tray is a gardening magazine, open at a page about pruning roses in autumn, and your new voice keeps catching on the long words, and the nurse keeps nodding as though roses were the most interesting subject in the world. By the third time through you have stopped hearing the voice and started hearing the roses.')),
+    ],
+  ],
+  'clinic.recoveryReply': [
+    [
+      'You lock the phone without sending anything.',
+      keep(
+        p('You had typed it first. Maya, it’s me. I’m all right. They changed. You looked at that last word for a long time, and at the cursor after it, blinking, waiting for the rest of the sentence. Then you held your thumb on the delete key and watched the letters go backwards one at a time until the box was empty again.'),
+        t('One more word and she would have known. One more word, on a phone Sloane reads. I will tell her. Not like this.'),
+      ),
+    ],
+  ],
+  'clinic.makeup': [
+    [
+      'You close the dressing-room door.',
+      keep(
+        p('Your hands are slower than they should be at the small fastenings. A zip you would once have managed without thinking takes three attempts, and a button defeats you entirely until you stop trying to do it the old way. Nobody sees. It is the first time since the chair that nobody has been watching you, and you notice that you are breathing differently, lower and slower, as if some part of you had been holding its breath all day.'),
+        t('Not a revelation. Just a small room, a door that shuts, and a body that is mine to be clumsy in for ten minutes. I had not known how much I needed that.'),
+      ),
+    ],
+  ],
+  'clinic.departure': [
+    [
+      'The air outside is cool and damp.',
+      keep(t('This morning I walked in as Adrian. The air does not know the difference. I find that I am grateful to it.')),
+    ],
+  ],
+  'clinic.complete': [
+    [
+      'The car moves on.',
+      keep(p('You check the reflection in the dark window once more: the collar, the line of the jaw, the eyes that are still yours. Somewhere ahead, in a building made of glass, a room full of strangers is waiting to decide who you are. For the length of one red light, you let yourself be curious about that, and not only afraid.')),
+    ],
+  ],
+};
+
+/**
  * Chapter 3 deepening (2026-09-26): presentation only, on the same terms as DEEPEN4 and DEEPEN5. Chapter 3 already
  * carries many revision-20 swaps, so these run in a second pass over the swapped output and anchor on the line the
  * reader actually sees. The day after the Glass House gets its texture: the car home with the party still on her
@@ -842,6 +905,7 @@ export function revision20Blocks(blocks: Block[], node?: string): Block[] {
   const rules = BLOCKS[node];
   const prepared = sloaneOnHelixRoom(rehearsalRepeat(handoffAftermath(texted, node), node), node);
   const swapped = rules ? swap(prepared, rules) : prepared;
-  const deepened = DEEPEN3[node] ? swap(swapped, DEEPEN3[node]) : swapped;
+  const after = [...(DEEPEN3[node] ?? []), ...(DEEPEN2[node] ?? [])];
+  const deepened = after.length ? swap(swapped, after) : swapped;
   return deepened.filter((b) => !hiddenNotice20(b, node));
 }

@@ -1,4 +1,4 @@
-# Chapters 3, 4 and 5 deepening (2026-09-26)
+# Chapters 2–5 deepening (2026-09-26)
 
 Chapter 5 is released content (revision 19 saves, and revision 20 for new games), so this pass is **presentation only**. It lives in
 `src/content/revision20-editorial.ts` (`DEEPEN5`), like the rest of the revision-20 editorial pass:
@@ -76,3 +76,22 @@ line on the one route that goes there), once each, and on no revision-19 transcr
 | departure | The lift mirror on the way out. "I had better decide who she is." |
 
 Size at revision 20: **~2.4–2.8k words on the golden routes** (from ~1.9–2.2k), against the 6k budget.
+
+## Chapter 2, Sublevel 17 (`DEEPEN2`, presentation only, revision 20, the same second pass as Chapter 3)
+
+This was already the fullest early chapter. The pass adds the beat map's two asks and a little texture, and the
+clinic stays clinical: nothing here is sexualized. Every golden route takes the same clinic path; each line appears
+once on all 8, and on no revision-19 transcript.
+
+| Node | Added |
+|---|---|
+| travel | "The last time I will stand in this queue as the man they see." |
+| reception | "Somebody has spent a great deal of money making this place feel as if nothing is about to happen." |
+| exam | The cool room, a pump humming one low note; counting its cycles. |
+| rest | Reading aloud from a gardening magazine about pruning roses, until she stops hearing the voice and hears the roses. |
+| recoveryReply (not sending) | **The almost-tell** (beat map ask): "Maya, it's me. I'm all right. They changed." Deleted a letter at a time. "I will tell her. Not like this." |
+| makeup | **Alone** (beat map ask): the dressing room, slow hands at small fastenings, the first minutes nobody is watching, breathing lower. Quiet and unglamorous. |
+| departure | "This morning I walked in as Adrian. The air does not know the difference." |
+| complete | The reflection at a red light; curious about the Glass House, "and not only afraid". |
+
+Size at revision 20: **~5.1k words on the golden routes** (from ~4.6k), against the 12k budget shared with 2b.
