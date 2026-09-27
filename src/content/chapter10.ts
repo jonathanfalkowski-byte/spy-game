@@ -26,6 +26,7 @@ import { getKey, setKey } from './chapter7-model';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { sloaneDoubts } from './sloane-standing';
 import { wallLines } from './leverage';
+import { beginPredator10, isPredator10, placePredator10, predatorBlocks10, predatorChoices10, predatorPhase10 } from './chapter10-predator';
 
 export type C10Scene = { title: string; place: string; blocks: Block[] };
 export type C10Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -67,6 +68,13 @@ export const chapter10Definitions: Record<string, C10Scene> = {
   answer: { title: 'What It Cost', place: 'THE NEXT MORNING', blocks: [] },
   invitation: { title: 'The First Thursday', place: 'EVENING · THE ORCHID', blocks: [] },
   complete: { title: 'Something to Push Against', place: '· LATER', blocks: [] },
+  // The Predator road (2026-09-27): Let Me Help.
+  ask: { title: 'She Asked Me to Ask', place: 'MONDAY · MARCUS’S DOORWAY', blocks: [] },
+  table: { title: 'She Knows', place: 'WEDNESDAY · BREAKFAST', blocks: [] },
+  offer: { title: 'Let Me Help', place: 'THE COFFEE', blocks: [] },
+  floor: { title: 'Old Money, New Blood', place: 'NOON · THE THIRTY-SIXTH FLOOR', blocks: [] },
+  evening: { title: 'The Evening', place: 'NIGHT', blocks: [] },
+  ledger: { title: 'The Top of the Door', place: 'MIDNIGHT · THE WARDROBE DOOR', blocks: [] },
 };
 export const chapter10Scenes = Object.entries(chapter10Definitions).map(([phase, scene]) => ({
   id: `chapter10.${phase}` as NodeId,
@@ -104,6 +112,7 @@ export const counterReady10 = (s: GameState, target = target10(s)) =>
 /** Scene-specific place lines (display only). */
 export function place10(s: GameState): string | undefined {
   if (s.scene !== 'chapter10') return;
+  if (isPredator10(s)) return placePredator10(s);
   if (s.phase === 'breakfast') {
     const b = get10(s, 'breakfast');
     return b === 'went' ? '07:00 · THE LINDQVIST' : b === 'ambushed' ? '09:10 · THE BAKERY ON YOUR STREET' : 'DAWN · APARTMENT';
@@ -1745,6 +1754,7 @@ function invitationChoices(s: GameState): C10Choice[] {
 
 export function chapter10Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter10') return [];
+  if (predatorPhase10(s)) return predatorBlocks10(s);
   if (s.phase === 'breakfast') return dawnBlocks();
   if (s.phase === 'claimed')
     return [
@@ -1801,7 +1811,10 @@ export function chapter10Choices(s: GameState): C10Choice[] {
   if (!chapter10Playable(s)) return [];
   if (s.scene === 'chapter9' && s.phase === 'complete' && ownPower(s))
     return [offer10('begin', 'Answer the orchid', 'Morning. She is expecting you.', 'breakfast')];
+  // The Predator road (Let Me Help) comes from its Chapter 9 bridge.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator10(s)) return [beginPredator10()];
   if (s.scene !== 'chapter10') return [];
+  if (predatorPhase10(s)) return predatorChoices10(s);
   if (s.phase === 'breakfast') return breakfastChoices(s);
   if (s.phase === 'claimed') return claimedChoices(s);
   if (s.phase === 'wall') return wallChoices(s);

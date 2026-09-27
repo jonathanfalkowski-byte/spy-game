@@ -6,8 +6,8 @@ Design: [../PREDATOR_CHAPTER_11_THE_CATALOGUE_DESIGN.md](../PREDATOR_CHAPTER_11_
 - **Code:** `src/content/chapter11-predator.ts`, wired through `src/content/chapter11.ts` (phases, place lines,
   blocks, choices), with titles in `src/ui/App.tsx` and masters in `src/ui/environment-art.ts`.
 - **Gate:** `VITE_EVE_CHAPTER11`.
-- **Temporary entry:** `chapter11.begin-predator` ("The first Thursday") from a Predator `chapter9.complete`, until
-  the Predator Chapter 10 exists.
+- **Entry:** `chapter11.begin-predator` ("The first Thursday") from the Predator `chapter10.ledger` (Let Me Help).
+  Until 2026-09-27 it came from `chapter9.complete`.
 - **End:** its own phase, `ledger`.
 - **Chapter 12's entry moved here:** `chapter12.begin-predator` ("Follow the money") is now offered from
   `chapter11.ledger`. The road runs 9 → 11 → 12 → 13 → 14.

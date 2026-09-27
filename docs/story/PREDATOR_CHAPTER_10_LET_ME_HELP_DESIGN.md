@@ -25,7 +25,10 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) §3. The pressure is non-sexual. Nothing sexual is on screen that is not
   chosen.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_10_SCRIPT.md](scripts/PREDATOR_CHAPTER_10_SCRIPT.md); code: `src/content/chapter10-predator.ts`.
+It runs ~1.2–1.4k words on one path. Chapter 11 now enters from `chapter10.ledger`, and the Predator road runs
+without gaps from Chapter 7 to Chapter 14.
 
 ---
 

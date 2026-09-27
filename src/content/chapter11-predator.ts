@@ -8,8 +8,8 @@
  * how it is done"): comply / refuse / counter (warn Iris, or turn it on Halvorsen); a counter is the first time
  * Celeste is surprised (pred.celeste-count). The threat is non-sexual and lands on Helix and her standing. What she
  * does with Marcus now she knows; a chosen dance and an optional chosen evening (heat 3, consent-gated, fades).
- * Temporary entry: from a Predator `chapter9.complete` until the Predator Chapter 10 exists; Chapter 12 now enters
- * from `chapter11.ledger`. Local helpers mirror chapter11.ts (c11.* keys, chapter11.* ids) to avoid a circular import.
+ * Entry: from the Predator `chapter10.ledger` (Let Me Help; until 2026-09-27, temporarily from `chapter9.complete`);
+ * Chapter 12 enters from `chapter11.ledger`. Local helpers mirror chapter11.ts (c11.* keys, chapter11.* ids) to avoid a circular import.
  * Deepening pass (2026-09-27): a second beat in the long room, which every path passes through (c11.p-guest = gulf |
  * julian | celeste | none: the quiet man from the Gulf fund, "You are not on my list"; Julian by the empty frames;
  * a turn of the room on Celeste's arm, "He always asks for exactly what he wants"; or an empty frame), and the back
@@ -76,8 +76,9 @@ export function placePredator11(s: GameState): string | undefined {
 // ── The entry, and getting ready ──
 
 export function beginPredator11(): C11Choice {
-  return offer('begin-predator', 'The first Thursday', 'The Vesper, on Marcus’s arm. Black tie.', 'dress', () => [
+  return offer('begin-predator', 'The first Thursday', 'The Vesper, on Marcus’s arm. Black tie.', 'dress', (x) => [
     p('The first Thursday of December. A card on your desk on the Monday, in Marcus’s large hand, clipped to a stiff white invitation with no name on it but a gallery’s: The Vesper. Eight o’clock. Black tie. Come as my guest. You’ll be the best thing in the room. That’s rather the point.'),
+    ...(key(x, 'pred.marcus10') === 'told' ? [p('Under it, smaller, in the same hand: She’ll be there. Of course she will. Come anyway.')] : key(x, 'pred.marcus10') === 'deflected' ? [p('Under it, smaller, in the same hand: I asked her again. She told me to ask you again.')] : []),
     t('The Vesper. The gallery with no name on its door, where Celeste Laurent receives her clients. And I am going as one of them.'),
   ]);
 }
@@ -117,7 +118,7 @@ function longroomBlocks(s: GameState): Block[] {
     p('The Vesper has no name on its door and no painting in its window tonight. Inside, the long room is hung with empty frames, each one lit as if it held something, and between them the guests stand with their glasses, and after a minute you understand that the guests are the exhibition.'),
     p('The frames are gilt and very old and very good, and each has a small brass plate beneath it, engraved, as if for a title. You read one on the way past. It says nothing but a date, and a number.'),
     p('Celeste Laurent receives at the far end in green, tall and entirely made of edges, and holds out both hands to Marcus, and then to you, and does not let go of yours quite as soon as she lets go of his.'),
-    q('Celeste', 'Marcus, darling. And your acquisition. How well she wears it.'),
+    q('Celeste', key(s, 'pred.celeste10') === 'declined' ? 'Marcus, darling. And your acquisition. How well she wears her independence.' : 'Marcus, darling. And your acquisition. How well she wears it.'),
     ...(clause(s, 'private') ? [p('A young man with a camera asks whether he might. You tell him your face is your own, in writing, and he goes away as if he had been told something about the weather.')] : []),
     p('A shipping man called Halvorsen, silver-haired, with the tan of a man who owns the sea he tans on, takes your hand, and keeps it, and asks you with a buyer’s frankness the question every client in this room asks every other: '),
     q('Halvorsen', 'And which one are you here for?'),

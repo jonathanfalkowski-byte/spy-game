@@ -220,6 +220,13 @@ const byNode: Record<string, Key> = {
   'chapter10.answer': 'apartmentDay',
   'chapter10.invitation': 'apartmentNight',
   'chapter10.complete': 'apartmentNight',
+  // The Predator road: Let Me Help (the Lindqvist from the shared spine, and the Helix floor).
+  'chapter10.ask': 'helixWorkroom',
+  'chapter10.table': 'privateDinner',
+  'chapter10.offer': 'privateDinner',
+  'chapter10.floor': 'helixWorkroom',
+  'chapter10.evening': 'apartmentNight',
+  'chapter10.ledger': 'apartmentNight',
   // Chapter 11 (stand-ins until EVE Art's Vesper frames: the black-glass front, the empty frames, the catalogue).
   'chapter11.arrival': 'glassLobby',
   'chapter11.viewing': 'harbourRoom',

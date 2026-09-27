@@ -950,8 +950,8 @@ export function chapter11Choices(s: GameState): C11Choice[] {
   if (!chapter11Playable(s)) return [];
   if (s.scene === 'chapter10' && s.phase === 'complete' && ownPower(s))
     return [offer11('begin', 'The first Thursday', 'The Vesper Gallery, eight o’clock. Wear the green.', 'arrival')];
-  // Temporary entry (Predator Ch11 design decision 7): the Predator road comes from its Chapter 9 until its Chapter 10 exists.
-  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator11(s)) return [beginPredator11()];
+  // The Predator road comes from its Chapter 10 (Let Me Help); the temporary entry from Chapter 9 is gone.
+  if (s.scene === 'chapter10' && s.phase === 'ledger' && isPredator11(s)) return [beginPredator11()];
   if (s.scene !== 'chapter11') return [];
   if (predatorPhase11(s)) return predatorChoices11(s);
   if (s.phase === 'arrival') return arrivalChoices(s);
