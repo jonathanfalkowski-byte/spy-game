@@ -244,6 +244,14 @@ const byNode: Record<string, Key> = {
   'chapter13.after': 'car',
   'chapter13.morning': 'apartmentDay',
   'chapter13.complete': 'apartmentNight',
+  // The Predator road: The Mirror.
+  'chapter13.reading': 'reviewRoom',
+  'chapter13.delphine': 'apartmentDay',
+  'chapter13.midnight': 'apartmentNight',
+  'chapter13.monitor': 'harbourRoom',
+  'chapter13.late': 'apartmentNight',
+  'chapter13.friday': 'apartmentDay',
+  'chapter13.ledger': 'apartmentNight',
   // Chapter 14 (stand-ins until EVE Art's frames: Sloane under the wall, Maya's kitchen, the reading room, the fire escape).
   'chapter14.door': 'apartmentNight',
   'chapter14.order': 'apartmentDay',

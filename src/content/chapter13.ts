@@ -26,6 +26,7 @@ import { get5 } from './chapter5-model';
 import { getKey, setKey } from './chapter7-model';
 import { get11, eveningPartners11 } from './chapter11';
 import { get12 } from './chapter12';
+import { beginPredator13, fadePredator13, isPredator13, P_COMPLY_OPENING13, predatorBlocks13, predatorChoices13, predatorPhase13 } from './chapter13-predator';
 
 export type C13Scene = { title: string; place: string; blocks: Block[] };
 export type C13Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -67,6 +68,14 @@ export const chapter13Definitions: Record<string, C13Scene> = {
   after: { title: 'Afterwards', place: '2 A.M.', blocks: [] },
   morning: { title: 'Friday', place: 'FRIDAY · MORNING', blocks: [] },
   complete: { title: 'A Knock', place: 'EVENING · THE LANDING', blocks: [] },
+  // The Predator road (2026-09-27): The Mirror.
+  reading: { title: 'The New One', place: '11:00 · THE VESPER, READING ROOM', blocks: [] },
+  delphine: { title: 'Delphine', place: 'AFTERNOON · A FLAT BEHIND THE STATION', blocks: [] },
+  midnight: { title: 'The Answer', place: 'WEDNESDAY · MIDNIGHT', blocks: [] },
+  monitor: { title: 'Behind the Mirror', place: 'THURSDAY · 21:00', blocks: [] },
+  late: { title: 'Afterwards', place: '2 A.M.', blocks: [] },
+  friday: { title: 'Friday', place: 'FRIDAY · MORNING', blocks: [] },
+  ledger: { title: 'The Ledger', place: 'LATE · THE WARDROBE DOOR', blocks: [] },
 };
 export const chapter13Scenes = Object.entries(chapter13Definitions).map(([phase, scene]) => ({
   id: `chapter13.${phase}` as NodeId,
@@ -85,6 +94,7 @@ export const FADED_LEAD13 =
 /** Presentation only: with the reader's fade on, the comply lead-in (getting ready, the car, the bar, the lift) becomes
  * one line; the corridor, the door and the choice stay. The save and the ledger are never touched. */
 export function fadeCoercion13(blocks: Block[]): Block[] {
+  if (blocks[0]?.text === P_COMPLY_OPENING13) return fadePredator13(blocks);
   if (blocks[0]?.text !== COMPLY_OPENING13) return blocks;
   const door = blocks.findIndex((b) => b.text.startsWith(CORRIDOR13));
   return [{ kind: 'notice', text: FADED_LEAD13 }, ...(door >= 0 ? blocks.slice(door) : [])];
@@ -937,6 +947,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function chapter13Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter13') return [];
+  if (predatorPhase13(s)) return predatorBlocks13(s);
   if (s.phase === 'brief') return briefBlocks(s);
   if (s.phase === 'week') return weekBlocks();
   if (s.phase === 'answer') return answerBlocks(s);
@@ -951,7 +962,10 @@ export function chapter13Choices(s: GameState): C13Choice[] {
   if (!chapter13Playable(s)) return [];
   if (s.scene === 'chapter12' && s.phase === 'complete' && ownPower(s))
     return [offer13('begin', 'The placement', 'The first Thursday. Content notice: sexual coercion (implied, never shown), blackmail.', 'brief')];
+  // Temporary entry (design decision 7): the Predator road comes from its Chapter 9 until its Chapters 10–12 exist.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator13(s)) return [beginPredator13()];
   if (s.scene !== 'chapter13') return [];
+  if (predatorPhase13(s)) return predatorChoices13(s);
   if (s.phase === 'brief') return briefChoices();
   if (s.phase === 'week') return weekChoices(s);
   if (s.phase === 'answer') return answerChoices(s);

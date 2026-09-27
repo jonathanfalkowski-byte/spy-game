@@ -12,7 +12,9 @@
 **Canon it mirrors:** Celebrity Ch13, "The Honeypot": Owen Marsh (deputy director of enforcement at the Markets
 Authority, the inquiry into Halvorsen's fund); suite 1109 at the Claremont; the camera behind the mirror.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_13_SCRIPT.md](scripts/PREDATOR_CHAPTER_13_SCRIPT.md); code: `src/content/chapter13-predator.ts`.
+It runs ~0.9–1.1k words on one path at pass 1.
 
 ---
 
