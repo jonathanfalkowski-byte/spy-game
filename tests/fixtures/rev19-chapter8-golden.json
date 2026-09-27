@@ -4,11 +4,11 @@
   "routes": [
     {
       "name": "own-records-stop",
-      "events": 237,
+      "events": 239,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "f2d764a0fa9f203f22a7a0f8632bd287eb1426e17d41a6383a7a3b32b5e43e3e",
+      "saveSha256": "ffc7f1a55951c8d7f807354a1bf0a9bfac765ef2a8b431fe0b9dd78e97007e25",
       "ledger": [
         {
           "sequence": 1,
@@ -1764,7 +1764,7 @@
           "sequence": 221,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.cupboard-leave",
             "expectedRevision": 220
           }
         },
@@ -1772,7 +1772,7 @@
           "sequence": 222,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 221
           }
         },
@@ -1780,7 +1780,7 @@
           "sequence": 223,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 222
           }
         },
@@ -1788,7 +1788,7 @@
           "sequence": 224,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 223
           }
         },
@@ -1796,7 +1796,7 @@
           "sequence": 225,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 224
           }
         },
@@ -1804,7 +1804,7 @@
           "sequence": 226,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.list-read",
             "expectedRevision": 225
           }
         },
@@ -1812,7 +1812,7 @@
           "sequence": 227,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 226
           }
         },
@@ -1820,7 +1820,7 @@
           "sequence": 228,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 227
           }
         },
@@ -1828,7 +1828,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.photos-back",
             "expectedRevision": 228
           }
         },
@@ -1836,7 +1836,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.wake-window",
             "expectedRevision": 229
           }
         },
@@ -1844,7 +1844,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 230
           }
         },
@@ -1852,7 +1852,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.key-ring",
             "expectedRevision": 231
           }
         },
@@ -1860,7 +1860,7 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.board-leave",
             "expectedRevision": 232
           }
         },
@@ -1868,7 +1868,7 @@
           "sequence": 234,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.hack-door",
+            "id": "chapter8.spare-keep",
             "expectedRevision": 233
           }
         },
@@ -1876,7 +1876,7 @@
           "sequence": 235,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.hack-door",
             "expectedRevision": 234
           }
         },
@@ -1884,7 +1884,7 @@
           "sequence": 236,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 235
           }
         },
@@ -1892,19 +1892,35 @@
           "sequence": 237,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.call-down",
             "expectedRevision": 236
+          }
+        },
+        {
+          "sequence": 238,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.dawn-bed",
+            "expectedRevision": 237
+          }
+        },
+        {
+          "sequence": 239,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 238
           }
         }
       ]
     },
     {
       "name": "pivot-own-rook-debt",
-      "events": 252,
+      "events": 254,
       "road": "leverage-rook",
       "entered": "rook",
       "crossover": "none",
-      "saveSha256": "f5514e9f7af08a6c66340614298f7d1640c60ad2c27fc40e3523f09ec858f2d5",
+      "saveSha256": "e3bbe88a56002b98146c1e681ea79ae881532dd3f83ab0f533faf4c9a512618d",
       "ledger": [
         {
           "sequence": 1,
@@ -3788,7 +3804,7 @@
           "sequence": 237,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.cupboard-leave",
             "expectedRevision": 236
           }
         },
@@ -3796,7 +3812,7 @@
           "sequence": 238,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 237
           }
         },
@@ -3804,7 +3820,7 @@
           "sequence": 239,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-rook",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 238
           }
         },
@@ -3812,7 +3828,7 @@
           "sequence": 240,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.debt-true",
+            "id": "chapter8.leverage-rook",
             "expectedRevision": 239
           }
         },
@@ -3820,7 +3836,7 @@
           "sequence": 241,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.debt-true",
             "expectedRevision": 240
           }
         },
@@ -3828,7 +3844,7 @@
           "sequence": 242,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.list-read",
             "expectedRevision": 241
           }
         },
@@ -3836,7 +3852,7 @@
           "sequence": 243,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 242
           }
         },
@@ -3844,7 +3860,7 @@
           "sequence": 244,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 243
           }
         },
@@ -3852,7 +3868,7 @@
           "sequence": 245,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.photos-back",
             "expectedRevision": 244
           }
         },
@@ -3860,7 +3876,7 @@
           "sequence": 246,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.wake-window",
             "expectedRevision": 245
           }
         },
@@ -3868,7 +3884,7 @@
           "sequence": 247,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 246
           }
         },
@@ -3876,7 +3892,7 @@
           "sequence": 248,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.key-ring",
             "expectedRevision": 247
           }
         },
@@ -3884,7 +3900,7 @@
           "sequence": 249,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.board-leave",
             "expectedRevision": 248
           }
         },
@@ -3892,7 +3908,7 @@
           "sequence": 250,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.spare-keep",
             "expectedRevision": 249
           }
         },
@@ -3900,7 +3916,7 @@
           "sequence": 251,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 250
           }
         },
@@ -3908,19 +3924,35 @@
           "sequence": 252,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.call-down",
             "expectedRevision": 251
+          }
+        },
+        {
+          "sequence": 253,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.dawn-bed",
+            "expectedRevision": 252
+          }
+        },
+        {
+          "sequence": 254,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 253
           }
         }
       ]
     },
     {
       "name": "own-maya-nothing",
-      "events": 242,
+      "events": 244,
       "road": "leverage-audience",
       "entered": "audience",
       "crossover": "none",
-      "saveSha256": "0a2585f23fe5015422d7cb244934cb21a742e46fd4404886d3c69e2ed127da22",
+      "saveSha256": "048873ce9cc7853c63fe8c86ae0d13e5d02344838038d990545261830de87b00",
       "ledger": [
         {
           "sequence": 1,
@@ -5716,7 +5748,7 @@
           "sequence": 226,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.bishop-cat",
+            "id": "chapter8.cupboard-leave",
             "expectedRevision": 225
           }
         },
@@ -5724,7 +5756,7 @@
           "sequence": 227,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.cost-continue",
+            "id": "chapter8.bishop-cat",
             "expectedRevision": 226
           }
         },
@@ -5732,7 +5764,7 @@
           "sequence": 228,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.leverage-audience",
+            "id": "chapter8.cost-continue",
             "expectedRevision": 227
           }
         },
@@ -5740,7 +5772,7 @@
           "sequence": 229,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.gala-carpet",
+            "id": "chapter8.leverage-audience",
             "expectedRevision": 228
           }
         },
@@ -5748,7 +5780,7 @@
           "sequence": 230,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.list-read",
+            "id": "chapter8.gala-carpet",
             "expectedRevision": 229
           }
         },
@@ -5756,7 +5788,7 @@
           "sequence": 231,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-cafe",
+            "id": "chapter8.list-read",
             "expectedRevision": 230
           }
         },
@@ -5764,7 +5796,7 @@
           "sequence": 232,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.lotte-last",
+            "id": "chapter8.lotte-cafe",
             "expectedRevision": 231
           }
         },
@@ -5772,7 +5804,7 @@
           "sequence": 233,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.photos-back",
+            "id": "chapter8.lotte-last",
             "expectedRevision": 232
           }
         },
@@ -5780,7 +5812,7 @@
           "sequence": 234,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.wake-window",
+            "id": "chapter8.photos-back",
             "expectedRevision": 233
           }
         },
@@ -5788,7 +5820,7 @@
           "sequence": 235,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.toast-leave",
+            "id": "chapter8.wake-window",
             "expectedRevision": 234
           }
         },
@@ -5796,7 +5828,7 @@
           "sequence": 236,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.key-ring",
+            "id": "chapter8.toast-leave",
             "expectedRevision": 235
           }
         },
@@ -5804,7 +5836,7 @@
           "sequence": 237,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.board-leave",
+            "id": "chapter8.key-ring",
             "expectedRevision": 236
           }
         },
@@ -5812,7 +5844,7 @@
           "sequence": 238,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.spare-keep",
+            "id": "chapter8.board-leave",
             "expectedRevision": 237
           }
         },
@@ -5820,7 +5852,7 @@
           "sequence": 239,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.hack-door",
+            "id": "chapter8.spare-keep",
             "expectedRevision": 238
           }
         },
@@ -5828,7 +5860,7 @@
           "sequence": 240,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.night-sleep",
+            "id": "chapter8.hack-door",
             "expectedRevision": 239
           }
         },
@@ -5836,7 +5868,7 @@
           "sequence": 241,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.call-down",
+            "id": "chapter8.night-sleep",
             "expectedRevision": 240
           }
         },
@@ -5844,8 +5876,24 @@
           "sequence": 242,
           "action": {
             "type": "CHAPTER8_CHOOSE",
-            "id": "chapter8.close-end",
+            "id": "chapter8.call-down",
             "expectedRevision": 241
+          }
+        },
+        {
+          "sequence": 243,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.dawn-bed",
+            "expectedRevision": 242
+          }
+        },
+        {
+          "sequence": 244,
+          "action": {
+            "type": "CHAPTER8_CHOOSE",
+            "id": "chapter8.close-end",
+            "expectedRevision": 243
           }
         }
       ]

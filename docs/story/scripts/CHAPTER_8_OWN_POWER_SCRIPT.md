@@ -305,3 +305,24 @@ fine. He knows my boiler is fine.")
 
 He names himself at the door either way: on Saturday "It is Mr Pryce" at the binoculars, and
 Chapter 9's knock names him.
+
+## Second deepening pass (2026-09-26)
+
+Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`). No new facts, and no case or cash effects.
+
+- **The boiler cupboard** (`maintenance`, after what she asks Mr Pryce, if he did not get sent away) (`c8.cupboard`):
+  - **cupboard-open**: panel off with a butter knife. No bug, nothing that shouldn't be there. But in pencil on the
+    copper pipe there is a column of Thursdays, each marked D.P., going back fourteen months to before she arrived:
+    "They kept the flat warm for her. They kept it warm until I came."
+  - **cupboard-sticker**: the SERVICED sticker put back upside down, to see whether anybody reads them.
+  - **cupboard-leave** (neutral).
+- **Dawn after the landline** (`call`, after Mrs Tan, before the close) (`c8.dawn`):
+  - **dawn-map**: Emerald Hill on her phone under the covers; walking the street-view figure up the hill to a
+    window full of orchids. "I have never been there. My feet ache as if they had." This seeds Chapter 12.
+  - **dawn-shoes** (if she kept the flat shoes from the drawer in Chapter 7): the left heel worn down, and a stride
+    that changes to fit it. "Something happened to her left leg. Her shoes remember it." This seeds Jakarta and the
+    bad leg in Chapter 12; Chapter 12's "her flat shoes are by the door where you left them" now follows on.
+  - **dawn-bed** (neutral).
+
+After this pass: **~4.0–4.2k words on the golden (quiet) paths**, ~250–350 more when played engaged, against the 7k
+budget.

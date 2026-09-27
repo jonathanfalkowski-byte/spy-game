@@ -41,7 +41,12 @@
  * Sequence (2026-09-25), "Maintenance" (its own phase, Thursday, after the bank): Mr Pryce at her door with a tool
  * bag, "to look at your boiler". She lets him in, talks through the chain, or sends him away (c8.pryce = in | chain |
  * away; away ends it); then what she asks him (c8.pryce-talk = owner | window | tea). He names himself either way, so
- * Bishop's binoculars (Saturday) and Chapter 9's knock know him. */
+ * Bishop's binoculars (Saturday) and Chapter 9's knock know him.
+ * Second deepening pass (2026-09-26): the boiler cupboard after Mr Pryce has gone (c8.cupboard = open | sticker |
+ * leave: behind the panel, in pencil on the pipe, a column of Thursdays and D.P. going back fourteen months, to before
+ * she arrived; or the sticker peeled off and put back upside down), and dawn after the landline (c8.dawn = map | shoes
+ * | bed: Emerald Hill on a phone screen at five in the morning; her flat shoes, the left heel worn down, and the stride
+ * that fits them). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5, julian5 } from './chapter5-model';
@@ -695,9 +700,10 @@ function maintChoices(s: GameState): C8Choice[] {
         ];
       }),
     ];
+  if (get8(s, 'pryce-talk')) return cupboardChoices();
   const inside = how === 'in';
   const talk = (id: string, label: string, hint: string, body: Block[]) =>
-    offer8('talk-' + id, label, hint, 'fireescape', (x) => {
+    offer8('talk-' + id, label, hint, 'maintenance', (x) => {
       set8(x, 'pryce-talk', id);
       return [
         ...body,
@@ -727,6 +733,31 @@ function maintChoices(s: GameState): C8Choice[] {
       p(inside ? 'You put the kettle on without asking and make two cups. When you hold one out to him he looks at it for a long moment, and does not take it.' : 'You make two cups and hold one out through the gap. He looks at it for a long moment, and does not take it.'),
       q('Pryce', 'Better not, Ms Vale. They ask, afterwards, whether I had anything. Thirty years of other people’s boilers. You learn not to have anything.'),
       p('For a moment he looks very tired: the way a man looks who has stood at other people’s windows for a long time and has stopped expecting to be asked in.'),
+    ]),
+  ];
+}
+
+/** The boiler cupboard (second deepening pass), once Mr Pryce has gone. */
+function cupboardChoices(): C8Choice[] {
+  const cb = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('cupboard-' + id, label, hint, 'fireescape', (x) => {
+      set8(x, 'cupboard', id);
+      return body;
+    });
+  return [
+    cb('open', 'Open the boiler cupboard', 'See what he really came to do.', [
+      p('When his footsteps have gone all the way down the stairs you open the boiler cupboard and kneel on the kitchen floor with a torch and a butter knife, and take the panel off.'),
+      p('Nothing. No wire, no little black box, nothing that should not be there. The boiler is old and clean and ticks to itself. You are almost disappointed.'),
+      p('Then the torch finds the copper pipe that runs up behind it, and on the pipe, in soft pencil, very small, a column of dates. A Thursday. The Thursday after. The Thursday after that. Each with two letters beside it: D.P.'),
+      p('You follow the column down with the torch. It goes back past the week you arrived, past the clinic, past the spring. Fourteen months of Thursdays. Somebody has been servicing this boiler every week for a woman who was not living here.'),
+      t('They kept the flat warm for her. They kept it warm until I came.'),
+    ]),
+    cb('sticker', 'Peel the sticker off', 'Put it back on upside down. See if anybody notices.', [
+      p('You peel the little white sticker off the cupboard door with your thumbnail, carefully, so that it does not tear, and stick it back on upside down: SERVICED, and his initials, standing on their heads.'),
+      t('If it is the right way up next Thursday, I will know somebody reads the stickers. If it is not, I will know nobody does. Either way I will know something.'),
+    ]),
+    cb('leave', 'Leave it', 'It is only a boiler.', [
+      p('You leave it. It is only a boiler. You make yourself a cup of tea, which is what he would not have, and drink it standing up, looking at the cupboard door.'),
     ]),
   ];
 }
@@ -795,6 +826,34 @@ function callChoices(): C8Choice[] {
     ], (x) => note8(x, 'emerald-hill', 'Mrs Tan, a neighbour on Emerald Hill, says the first Evelynn’s Singapore flat was emptied in the spring by men in white gloves, directed by a tall, elegant woman who kept a white orchid.', 'Mrs Tan, on the landline at 3 a.m.')),
     answer('down', 'Put it down', 'Her grief is not yours to answer.', [
       p('You put the handset down very gently, as if it might break, and stand with your hand on it in the dark. It does not ring again. In the morning, when you pick it up, there is no dial tone at all.'),
+    ]),
+  ];
+}
+
+/** Dawn after the landline (second deepening pass). */
+function dawnChoices(s: GameState): C8Choice[] {
+  const dw = (id: string, label: string, hint: string, body: Block[]) =>
+    offer8('dawn-' + id, label, hint, 'call', (x) => {
+      set8(x, 'dawn', id);
+      return body;
+    });
+  return [
+    dw('map', 'Look for Emerald Hill', 'On your phone, in bed, before it is light.', [
+      p('You do not go back to sleep. You lie on your side with your phone under the covers like a girl after lights out, and type Emerald Hill, and the map comes up: a short street climbing away from a shopping road, and a row of old houses painted the colours of sugared almonds.'),
+      p('You drop the little figure onto the street and walk it up the hill, frame by frame, past carved doors and green shutters, until on a first-floor landing, through an open door, you can just make out a window crowded with orchids.'),
+      t('I have never been there. My feet ache as if they had.'),
+    ]),
+    ...(s.choices['c7.robe'] === 'drawer'
+      ? [
+          dw('shoes', 'Put on her flat shoes', 'The ones from the drawer. Walk the hall in them.', [
+            p('Her flat shoes are in the drawer where you found them: black, soft, very plain, the left one worn down at the outside of the heel.'),
+            p('You put them on in the grey light and walk the length of the hall, and back, and on the third length you feel it: your stride changing to fit them, the weight going off the left foot a fraction sooner, as if favouring something. A limp so small that nobody who had not worn these shoes would ever see it.'),
+            t('Something happened to her left leg. Her shoes remember it. Now mine do.'),
+          ]),
+        ]
+      : []),
+    dw('bed', 'Go back to bed', 'It is five in the morning.', [
+      p('You go back to bed and lie looking at the ceiling until it goes from grey to white, and do not sleep, and get up at seven as if you had.'),
     ]),
   ];
 }
@@ -1287,7 +1346,7 @@ export function chapter8Choices(s: GameState): C8Choice[] {
   if (s.phase === 'wake') return wakeChoices(s);
   if (s.phase === 'number14') return keyChoices(s);
   if (s.phase === 'call')
-    return get8(s, 'call') ? [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')] : callChoices();
+    return !get8(s, 'call') ? callChoices() : !get8(s, 'dawn') ? dawnChoices(s) : [offer8('close-end', 'Carry it into the next room', 'Chapter 8 ends here.', 'complete')];
   if (s.phase === 'close') {
     if (hackComes(s)) return hackChoices();
     return nightChoices();

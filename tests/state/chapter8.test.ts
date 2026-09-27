@@ -21,7 +21,7 @@ const choose8 = (s: GameState, id: string) => {
   return next;
 };
 /** The new scenes (the work, the bank) settle on their neutral picks when a walk asks for a later move. */
-const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave', 'key-ring', 'board-leave', 'spare-keep', 'hack-door', 'call-down'];
+const settle8 = ['neighbour-thank', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner', 'bishop-cat', 'lotte-cafe', 'lotte-last', 'photos-back', 'wake-window', 'toast-leave', 'key-ring', 'board-leave', 'spare-keep', 'hack-door', 'call-down', 'cupboard-leave', 'dawn-bed'];
 const c8 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 10 && !ids(x).includes(id); i++) {
@@ -295,7 +295,7 @@ it('has the neighbour meet her friend with a key, and a reporter at the door if 
 
 it('sends her after Bishop onto the fire escape, and answers the landline at three', () => {
   const home = c8(withFlags(complete7('own-records-stop'), clean), 'begin');
-  const escape = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner']);
+  const escape = walk(home, ['breakin-report', 'neighbour-thank', 'money-owing', 'work-hold', 'bank-leave', 'pryce-chain', 'talk-owner', 'cupboard-leave']);
   expect(text(escape)).toContain('and see the binoculars');
   expect(ids(escape)).toEqual(['bishop-stare', 'bishop-photo', 'bishop-cat']);
   const photo = choose8(escape, 'bishop-photo');
@@ -308,7 +308,13 @@ it('sends her after Bishop onto the fire escape, and answers the landline at thr
   const asked = choose8(night, 'call-ask');
   expect([asked.choices['c8.call'], asked.facts.includes('c8.emerald-hill')]).toEqual(['ask', true]);
   expect(text(asked)).toContain('She took one orchid for herself. The white one.');
-  expect(ids(asked)).toEqual(['close-end']);
+  // Dawn after the landline, then the end.
+  expect(ids(asked)).toEqual(['dawn-map', 'dawn-bed']);
+  expect(text(choose8(asked, 'dawn-map'))).toContain('My feet ache as if they had.');
+  const shod = choose8(withFlags(asked, { 'c7.robe': 'drawer' }), 'dawn-shoes');
+  expect([shod.phase, shod.choices['c8.dawn']]).toEqual(['call', 'shoes']);
+  expect(text(shod)).toContain('Her shoes remember it. Now mine do.');
+  expect(ids(shod)).toEqual(['close-end']);
 });
 
 it('plays Emerald Hill: Lotte, nine photographs, a question and what she takes', () => {
@@ -390,9 +396,14 @@ it('sends Mr Pryce to service her boiler on Thursday, and she knows him at the b
   const inside = choose8(door, 'pryce-in');
   expect(ids(inside)).toEqual(['talk-owner', 'talk-window', 'talk-tea']);
   const tea = choose8(inside, 'talk-tea');
-  expect([tea.phase, tea.choices['c8.pryce'], tea.choices['c8.pryce-talk']]).toEqual(['fireescape', 'in', 'tea']);
+  expect([tea.phase, tea.choices['c8.pryce'], tea.choices['c8.pryce-talk']]).toEqual(['maintenance', 'in', 'tea']);
   expect(text(tea)).toContain('You learn not to have anything.');
-  expect(text(tea)).toContain('It is Mr Pryce. He has taken off the grey coat.');
+  // The boiler cupboard, once he has gone.
+  expect(ids(tea)).toEqual(['cupboard-open', 'cupboard-sticker', 'cupboard-leave']);
+  const opened = choose8(tea, 'cupboard-open');
+  expect([opened.phase, opened.choices['c8.cupboard']]).toEqual(['fireescape', 'open']);
+  expect(text(opened)).toContain('Fourteen months of Thursdays.');
+  expect(text(opened)).toContain('It is Mr Pryce. He has taken off the grey coat.');
   const away = choose8(door, 'pryce-away');
   expect([away.phase, away.choices['c8.pryce']]).toEqual(['fireescape', 'away']);
   expect(text(away)).toContain('For as long as it is.');

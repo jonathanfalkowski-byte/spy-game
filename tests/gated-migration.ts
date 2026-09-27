@@ -77,6 +77,9 @@ export const GATED_DEFAULTS = [
   'chapter8.key-ring',
   'chapter8.board-leave',
   'chapter8.spare-keep',
+  // Chapter 8 second pass: leave the cupboard; go back to bed.
+  'chapter8.cupboard-leave',
+  'chapter8.dawn-bed',
   // Chapter 9 pass 2: thank Celeste and go, deflect Marcus, sit with the name in the dark.
   'chapter9.terrace-leave',
   'chapter9.marcus-deflect',
