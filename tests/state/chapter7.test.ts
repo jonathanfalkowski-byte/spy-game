@@ -27,7 +27,7 @@ const choose7 = (s: GameState, id: string) => {
   return next;
 };
 /** New scenes (the tram) settle on their neutral pick when a walk asks for a later move. */
-const settle7 = ['post-ask', 'bundle-leave', 'robe-gowns', 'keep-back', 'daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home'];
+const settle7 = ['post-ask', 'bundle-leave', 'robe-gowns', 'keep-back', 'daniel-quiet', 'box-now', 'face-down', 'letter-keep', 'lift-out', 'fan-away', 'grey-far', 'grey-home', 'door-in', 'alone-window'];
 const c7 = (s: GameState, id: string) => {
   let x = s;
   for (let i = 0; i < 8 && !ids(x).includes(id); i++) {
@@ -242,7 +242,7 @@ it('plays the interview: three ways to plant the question, two ways home, the sa
 
 it('offers a chosen evening only with a partner she already chose, consent-gated, and it fades', () => {
   const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
-  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide']);
+  const atClose = walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide', 'alone-window']);
   const alone = withFlags(atClose, romance);
   expect(eveningPartners7(alone)).toEqual([]);
   expect(chapter7Choices(alone).map((c) => c.label)).toEqual(['Carry it into tomorrow']);
@@ -340,6 +340,13 @@ it('asks what she does with what she found before the night, and offers Maya onl
   const sent = c7(atClose, 'notes-maya');
   expect([sent.phase, sent.choices['c7.notes']]).toEqual(['night', 'maya']);
   expect(text(sent)).toContain('If I stop answering, open this.');
+  // An hour of her own, after the notes and before the evening or the close.
+  expect(ids(sent)).toEqual(['alone-bath', 'alone-record', 'alone-window']);
+  const record = choose7(sent, 'alone-record');
+  expect([record.phase, record.choices['c7.alone']]).toEqual(['night', 'record']);
+  expect(text(record)).toContain('Singapore, a date fourteen months gone, one seat.');
+  expect(ids(record)).toContain('close-end');
+  expect(text(choose7(sent, 'alone-bath'))).toContain('it is only mine');
   expect(ids(sent)).not.toContain('notes-hide');
   const nothing = c7(begin(), 'pursue-stop');
   expect(ids(nothing)).not.toContain('notes-hide');
@@ -373,7 +380,7 @@ it('keeps Chapter 7 records in the journal, out of the reading view, except mone
 
 it('offers Theo’s evening only once she has let him in, consent-gated, and it fades', () => {
   const romance = { 'c5.sebastian-outcome': undefined, 'c5.mutual-interest': undefined, 'c4.mutual-interest': undefined, 'c5.intimacy': undefined, 'c5.want-target': undefined };
-  const atClose = withFlags(walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide']), romance);
+  const atClose = withFlags(walk(richHub(), ['pursue-records', 'records-pay', 'dark-wait', 'pursue-stop', 'notes-hide', 'alone-window']), romance);
   expect(eveningPartners7(atClose)).toEqual([]);
   for (const [flags, opening] of [
     [{ 'c7.theo': 'curious' }, 'Let me ask one of my own.'],
@@ -477,9 +484,15 @@ it('rides the lift with a man who knows her name before the hub opens', () => {
   expect(text(lift)).toContain('Good evening, Ms Vale.');
   expect(text(lift)).not.toContain('You write the ways in on the back of an envelope');
   expect(ids(lift)).toEqual(['lift-speak', 'lift-out', 'lift-stare']);
-  const spoke0 = choose7(lift, 'lift-speak');
-  expect([spoke0.choices['c7.lift'], spoke0.phase]).toEqual(['speak', 'wardrobe']);
-  expect(text(spoke0)).toContain('Mind the window. It sticks.');
+  const atDoor = choose7(lift, 'lift-speak');
+  expect([atDoor.choices['c7.lift'], atDoor.phase]).toEqual(['speak', 'lift']);
+  expect(text(atDoor)).toContain('Mind the window. It sticks.');
+  // Her own door, before the wardrobe.
+  expect(ids(atDoor)).toEqual(['door-hair', 'door-chain', 'door-in']);
+  const hair = choose7(atDoor, 'door-hair');
+  expect([hair.choices['c7.door'], hair.phase]).toEqual(['hair', 'wardrobe']);
+  expect(text(hair)).toContain('somebody has been in carefully');
+  const spoke0 = choose7(atDoor, 'door-in');
   // Her Wardrobe: that night, before the Grey Coat.
   expect(text(spoke0)).toContain('a missing woman’s wardrobe');
   expect(ids(spoke0)).toEqual(['robe-gowns', 'robe-coats', 'robe-drawer']);

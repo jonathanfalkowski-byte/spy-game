@@ -48,6 +48,9 @@ export const GATED_DEFAULTS = [
   // Sequence, Her Wardrobe: the evening dresses; put everything back.
   'chapter7.robe-gowns',
   'chapter7.keep-back',
+  // Chapter 7 second pass: let yourself in; stay at the window.
+  'chapter7.door-in',
+  'chapter7.alone-window',
   // Chapter 8 pass 2: report the break-in, let the week's bills run.
   'chapter8.breakin-report',
   'chapter8.money-owing',

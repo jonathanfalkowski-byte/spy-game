@@ -278,3 +278,23 @@ missing woman's wardrobe".
 2. **What she does** (`c7.wardrobe`): **keep-wear** (one whole second before she recognises the
    woman in the mirror) · **keep-back** (neutral; "It is her wardrobe. I only borrow it.") ·
    **keep-boxes** ("Three dresses and a coat of my own. It is a very small country.").
+
+## Second deepening pass (2026-09-26)
+
+Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`). No facts, cash or case effects.
+
+- **Her own door** (`lift`, after the man in the lift, before the wardrobe) (`c7.door`):
+  - **door-hair**: a hair laid across the gap at knee height, the way they do it in films, and again on the bedroom
+    door. "If it is still there, somebody has been in carefully."
+  - **door-chain**: the chain and the bolt for the first time, and the hall floor with her back to the door.
+  - **door-in** (neutral).
+- **An hour of her own** (`night`, after what she does with her notes, before the evening or the close)
+  (`c7.alone`):
+  - **alone-bath**: a bath in the dark in a body nobody is looking at: "For an hour, in the dark, it is only mine."
+    Sensual, not sexual; nobody else is in the scene.
+  - **alone-record**: the first Evelynn's records, one with a Singapore concert ticket for one seat in the sleeve, and
+    a barefoot dance on the kitchen tiles.
+  - **alone-window** (neutral).
+
+After this pass: **~4.5–5.1k words on the golden (quiet) paths**, ~250–350 more when played engaged, against the 8k
+budget.

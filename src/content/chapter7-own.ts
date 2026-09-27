@@ -43,7 +43,11 @@
  * Sequence (2026-09-25), "Her Wardrobe" (its own phase, between the lift and the Grey Coat): unable to sleep, she goes
  * through the first Evelynn's clothes for the first time. Where she looks (c7.robe = gowns | coats | drawer: a place card
  * in green ink, a receipt for two sugars and cinnamon, flat shoes from Jakarta worn down on the left; the last two are
- * facts), and what she does with them (c7.wardrobe = wear | back | boxes). */
+ * facts), and what she does with them (c7.wardrobe = wear | back | boxes).
+ * Second deepening pass (2026-09-26): her own door, after the man in the lift (c7.door = hair | chain | in: a hair laid
+ * across the gap, the way they do it in films; the chain, the bolt and the hall floor), and an hour of her own on the
+ * night, after the notes and before the evening (c7.alone = bath | record | window: a bath in the dark in a body nobody is
+ * looking at; the first Evelynn's records, one with a ticket in the sleeve, and a dance in the kitchen). */
 import { optionalNpc, type GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get4 } from './chapter4-model';
@@ -517,9 +521,33 @@ const liftLead: Block[] = [
   p('The lift climbs. Four. Five. He stands with his hands folded in front of him, the way men stand at funerals, and looks at the numbers, not at you.'),
 ];
 
-function liftChoices(): C7Choice[] {
+/** Her own door (second deepening pass), after the man in the lift. */
+function doorChoices(): C7Choice[] {
+  const d = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('door-' + id, label, hint, 'wardrobe', (x) => {
+      set7(x, 'door', id);
+      return body;
+    });
+  return [
+    d('hair', 'Leave a hair across the door', 'The way they do it in films. So you will know.', [
+      p('Before you go in you pull one long hair from your own head and lay it across the gap between the door and the frame, at knee height, and press the ends down with a licked fingertip, the way they do it in the films Adrian used to fall asleep in front of.'),
+      p('You feel ridiculous doing it. You do it anyway. You go in, and come out again, and do it again from the inside of the flat, on the bedroom door, while the kettle boils.'),
+      t('If it is gone when I come home, somebody has been in. If it is still there, somebody has been in carefully. Either way I will be the one who knows something, for once.'),
+    ]),
+    d('chain', 'Chain, bolt, and the floor of the hall', 'Everything that locks. Then sit with your back to it.', [
+      p('You put the chain on for the first time since you moved in, and then the bolt at the top that you had to stand on tiptoe to find, and then you sit down on the floor of the hall with your back against the door and the shopping still in its bags around you.'),
+      p('The lift hums past your floor, going up. It does not stop. After a while you get up and put the milk in the fridge, because the milk has done nothing wrong.'),
+    ]),
+    d('in', 'Let yourself in', 'Put the shopping away.', [
+      p('You let yourself in and put the shopping away and do not look at the window.'),
+    ]),
+  ];
+}
+
+function liftChoices(s: GameState): C7Choice[] {
+  if (get7(s, 'lift')) return doorChoices();
   const ride = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('lift-' + id, label, hint, 'wardrobe', (x) => {
+    offer7('lift-' + id, label, hint, 'lift', (x) => {
       set7(x, 'lift', id);
       return body;
     });
@@ -1247,11 +1275,36 @@ function danielChoices(): C7Choice[] {
   ];
 }
 
+/** An hour of her own (second deepening pass), on the night, before the notes and the evening. */
+function aloneChoices(): C7Choice[] {
+  const a = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('alone-' + id, label, hint, 'night', (x) => {
+      set7(x, 'alone', id);
+      return body;
+    });
+  return [
+    a('bath', 'Run a bath in the dark', 'No lamp. No mirror. Nobody looking.', [
+      p('You run a bath as hot as you can stand and get into it with the light off, so that the only light in the room is the street lamp through the frosted glass, and lie back until the water is at your chin.'),
+      p('For weeks this body has been something you dressed, and styled, and walked into rooms, and watched other people look at. In the dark there is nobody to look. There is only the heat, and the weight of your own arms in the water, and your own hands learning, slowly, without any hurry at all, what it is like to be the one inside it.'),
+      t('Mine. Not the camera’s, not the room’s, not hers. For an hour, in the dark, it is only mine.'),
+    ]),
+    a('record', 'Put on one of her records', 'There is a box of them under the window. You have never opened it.', [
+      p('The box under the window is full of records, old ones, soft at the corners. Hers. You go through them on your knees on the rug: jazz, mostly, and a few you have never heard of, and one in a plain white sleeve with a concert ticket tucked into it, Singapore, a date fourteen months gone, one seat.'),
+      p('You put that one on. It is a woman singing in a language you do not know, slow and low, with a piano behind her that keeps almost stopping. After a verse you find you have got up. After two you are dancing, badly, barefoot on the kitchen tiles, with your eyes shut and a glass of the wine nobody has drunk in your hand.'),
+      t('She went alone. One seat. And then she came home and played it until the corners went soft. I don’t know the words, and I know exactly what they mean.'),
+    ]),
+    a('window', 'Stay at the window', 'A little longer.', [
+      p('You stay at the window a little longer, with the lamp off, and let the street be the only thing moving.'),
+    ]),
+  ];
+}
+
 function closeChoices(s: GameState): C7Choice[] {
   if (s.phase === 'close') return get7(s, 'daniel') ? [] : danielChoices();
   if (s.phase === 'effects') return get7(s, 'box-open') ? boxChoices(s) : get5(s, 'published') && !get7(s, 'fan') ? fanChoices() : [];
   if (get7(s, 'evening-open')) return eveningChoices(s);
   if (get7(s, 'finding') !== 'none' && !get7(s, 'notes')) return notesChoices(s);
+  if (s.phase === 'night' && !get7(s, 'alone')) return aloneChoices();
   const partners = eveningPartners7(s);
   const c: C7Choice[] = [];
   if (partners.includes('julian'))
@@ -1344,7 +1397,7 @@ export function ownChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'standing') return standingChoices(s);
   if (s.phase === 'held') return postChoices(s);
   if (s.phase === 'street') return streetChoices(s);
-  if (s.phase === 'lift') return liftChoices();
+  if (s.phase === 'lift') return liftChoices(s);
   if (s.phase === 'wardrobe') return wardrobeChoices(s);
   if (s.phase === 'grey') return get7(s, 'grey') ? greyDoorChoices() : greyChoices();
   if (['close', 'effects', 'night'].includes(s.phase)) return closeChoices(s);
