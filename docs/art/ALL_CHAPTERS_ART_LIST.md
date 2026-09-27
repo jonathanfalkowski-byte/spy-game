@@ -40,6 +40,22 @@ has approved this list and a quote. It currently needs re-authorizing anyway.
 
 ## B. Location masters
 
+> **Correction (2026-09-27).** These are already **approved runtime environment masters** (noir production versions in
+> `src/ui/environment-art.ts`), not review items, wherever the rows below or in §C say "review":
+>
+> | Group | Masters |
+> |---|---|
+> | Helix | `helix-exec-suite`, `helix-small-reception`, `ch4-review-room`, the Ch4 workroom and public desk / counter |
+> | Clinic | `clinic-consultation-suite`, `clinical-records-room` |
+> | Maya's world and the city | `lantern-exterior`, `noodle-counter`, `axiom-gates`, `si-office-dusk` |
+> | Glass House | `glass-house-service-gallery`, `service-garage`, `descending-elevator` |
+> | Harbour | rooftop terrace, hotel room, room |
+> | Aster | the proof table |
+>
+> They fill the gap scenes as empty rooms today. What those scenes still need is the **people**: character layers
+> composited on the masters, which is cheaper than new rooms. The staging candidates that are genuinely awaiting
+> review are the per-scene frames in `staging/full-game/{sloane,evening,casework,clinic,mission,chapter3,chapter4,chapter5,sebastian}/`.
+
 | Master | Status | Needed views | Chapters |
 |---|---|---|---|
 | Adrian's / Evelynn's apartment | **Approved** (noir masters; pre and post Glass House ×3 outfits) | bathroom mirror (Ch1, Ch3); bedroom floor and wardrobe door (Ch6, Ch10 wall); kitchen table at night; hall and spyhole; window onto the flat across the gap | 1–18 |
