@@ -40,3 +40,37 @@ Phases: `geneva → bank → morel → vault → lake → call → ledger`
 - `predator-ch13` and `predator-ch14` now walk through Geneva on its quiet picks.
 
 **Size (honest), pass 1:** ~1.5k (night, quiet), ~1.7k (trade) and ~1.8k (ask, engaged), against the ~4.5k target.
+
+## Deepening pass (2026-09-27)
+
+- **The afternoon before the take** (`morel`, after the take is chosen, before the vault). Every road passes
+  through it (`c12.p-afternoon`):
+  - **afternoon-watch**: the Rue du Rhône. An old jeweller comes out without his coat: "Mademoiselle Vale! Your
+    watch!" Nell's gold watch, uncollected for fourteen months, is engraved For N., from N. "Much better than the
+    last time." She pays forty francs, and it fits. Sets `pred.watch = kept`.
+  - **afternoon-marcus**: Marcus on the phone, by what she signed:
+    - struck 14.3: "whether to fire you or promote you";
+    - kept a copy: "For context", the word he signed into her contract;
+    - signed as it stood: "Did you read it?"
+  - **afternoon-lake** (neutral).
+- **The dawn after the call** (`call`, after the call, before the ledger) (`c12.p-dawn`):
+  - **dawn-fountain**: the jetty, the fountain switched off, her name said out loud once.
+  - **dawn-lucien**: his note under the door, by road:
+    - ask: "the first lie I have told for a client in eleven years, and the first I have enjoyed";
+    - trade: "The piano is out of tune";
+    - night: "The camera on the first floor is mine, not theirs. It was a very dark morning on my tape."
+  - **dawn-sleep** (neutral).
+- **The watch carries through:**
+  - Lucien sees it on her wrist at the lake ("Where did you get that?");
+  - Nora, on the truth call: "Then keep it wound. She never did.";
+  - at home, it hangs on the wardrobe door by its strap, "the only thing on the door that is moving".
+- **More prose:** the three-things game at lunch (she finds his lie by the coffee); RE-ISSUE PENDING against the
+  Singapore line, and no note against London ("It has you"); working out how many months of the kettle Nell paid for.
+- **Place lines:** "Afternoon · The Rue du Rhône" and "Dawn · The Quai".
+
+The tests walk the new moments on their neutral picks (`NEUTRAL12 = afternoon-lake, dawn-sleep`); Ch13 and Ch14's
+builders take the same picks.
+
+**Size (honest) after the deepening pass:** ~1.8k (night, quiet), ~2.0k (trade) and ~2.4k (ask, engaged). The next
+lift would be the bank at greater length (Rochat, and a second clause), and a scene in the vault with Lucien after
+the list on the ask road.

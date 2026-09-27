@@ -56,7 +56,7 @@ function toLedger13(b: Build = {}) {
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
   // Geneva (Predator Chapter 12), on its quiet picks.
-  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'list-close', 'account-decline', 'lake-alone', 'call-none'])
+  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-lake', 'list-close', 'account-decline', 'lake-alone', 'call-none', 'dawn-sleep'])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
   for (const id of ['begin-predator', 'reading-silent', 'delphine-work', 'week-alone', ...(b.ch13 ?? ['mirror-refuse', 'night-wait', 'late-on']), 'friday-end'])
     s = choose(s, 'CHAPTER13_CHOOSE', 'chapter13.' + id);

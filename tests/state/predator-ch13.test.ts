@@ -51,7 +51,7 @@ function toMirror(ch8: string[] = ['pull-hollis', 'hollis-hold', 'pull-counsel',
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
   // Geneva (Predator Chapter 12), on its quiet picks.
-  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'list-close', 'account-decline', 'lake-alone', 'call-none'])
+  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-lake', 'list-close', 'account-decline', 'lake-alone', 'call-none', 'dawn-sleep'])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
   if (Object.keys(flags).length) {
     s = structuredClone(s);

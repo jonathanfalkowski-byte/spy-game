@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter12Choices(s).map((c) => c.id.replace(/^chapter12\./, ''));
 const c12 = (s: GameState, id: string) => choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
-const walk12 = (s: GameState, path: string[]) => path.reduce(c12, s);
+/** The deepening pass's moments (the afternoon, the dawn): take the neutral pick when it is in the way. */
+const NEUTRAL12 = ['afternoon-lake', 'dawn-sleep'];
+const walk12 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL12.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c12(y, n);
+    }
+    return c12(y, id);
+  }, s);
 const cash = (s: GameState) => Number(s.choices['own.cash'] ?? 0);
 
 /** A real save (the maximal-julian golden) through Chapter 6, the Predator Chapters 7 and 8, and the Chapter 9 bridge,
@@ -63,8 +74,13 @@ it('asks Lucien the truth: Nell’s last instruction, an ally, Nora, and on to t
   expect(text(morel)).toContain('The second Evelyn Vale to sit in that chair.');
   const lunch = c12(morel, 'lunch-truth');
   expect(ids(lunch)).toEqual(['take-ask', 'take-trade', 'take-night']);
-  const vault = c12(lunch, 'take-ask');
+  const afternoon = c12(lunch, 'take-ask');
+  expect([afternoon.phase, ids(afternoon)]).toEqual(['morel', ['afternoon-watch', 'afternoon-marcus', 'afternoon-lake']]);
+  const vault = c12(afternoon, 'afternoon-watch');
   expect(vault.phase).toBe('vault');
+  expect(text(vault)).toContain('For N., from N.');
+  expect(vault.choices['pred.watch']).toBe('kept');
+  expect(text(vault)).toContain('RE-ISSUE PENDING');
   expect(text(vault)).toContain('Close it. Send the rest to Nora. — E.L.');
   expect(text(vault)).toContain('a flat in London, on your own street, at your own number');
   const lake = c12(vault, 'list-nell');
@@ -78,7 +94,12 @@ it('asks Lucien the truth: Nell’s last instruction, an ally, Nora, and on to t
   const call = walk12(declined, ['lake-lucien', 'p12-lucien-sex', 'p12-stay']);
   expect(call.facts).toContain('c12.p12-evening-consent');
   expect(call.phase).toBe('call');
-  const done = c12(call, 'call-truth');
+  const dawn = c12(call, 'call-truth');
+  expect(text(dawn)).toContain('Then keep it wound. She never did.');
+  expect(ids(dawn)).toEqual(['dawn-fountain', 'dawn-lucien', 'dawn-sleep']);
+  const done = c12(dawn, 'dawn-lucien');
+  expect(text(done)).toContain('the first lie I have told for a client in eleven years');
+  expect(text(done)).toContain('pin it to the wardrobe door by its strap');
   expect(`${done.scene}.${done.phase}`).toBe('chapter12.ledger');
   expect(text(done)).toContain('She would never have walked the harbour wall.');
   expect(text(done)).toContain('ELEANOR LINDEN. NINE FLATS. C.');
@@ -98,7 +119,8 @@ it('trades Helix’s next deal for the list, keeps the card, and Lucien reports 
   const before = cash(lake);
   const kept = c12(lake, 'account-take');
   expect(cash(kept)).toBe(before + 25000);
-  const done = walk12(kept, ['lake-lucien', 'p12-lucien-no-sex', 'p12-stay', 'call-bank']);
+  const done = walk12(kept, ['lake-lucien', 'p12-lucien-no-sex', 'p12-stay', 'call-bank', 'dawn-fountain']);
+  expect(text(done)).toContain('saying her name, out loud, once, to nobody');
   expect(text(done)).toContain('Tell her friend the tall one that I spent it on my son.');
   expect(text(done)).toContain('Lucien tells me you are charming.');
   expect(text(done)).toContain('I’m so glad you kept the card.');
@@ -108,12 +130,13 @@ it('trades Helix’s next deal for the list, keeps the card, and Lucien reports 
 it('goes in with the cleaners at five, and moves the fund’s money to Zurich', () => {
   const lunch = walk12(toBridge9(['pull-archive', 'archive-hold', 'pull-hollis', 'hollis-use', 'pull-counsel', 'counsel-spare']), ['begin-predator', 'arrive-window', 'sign-copy', 'lunch-turn']);
   expect(text(lunch)).toContain('I play at night now.');
-  const vault = c12(lunch, 'take-night');
+  const vault = walk12(lunch, ['take-night', 'afternoon-marcus']);
+  expect(text(vault)).toContain('For context.');
   expect(text(vault)).toContain('The cleaners come in by the goods entrance');
   expect(text(vault)).not.toContain('E.L.');
   const lake = c12(vault, 'list-close');
   expect(ids(lake)).toEqual(['account-take', 'account-decline', 'account-move']);
-  const done = walk12(lake, ['account-move', 'lake-alone', 'call-none']);
+  const done = walk12(lake, ['account-move', 'lake-alone', 'call-none', 'dawn-sleep']);
   expect(done.choices['pred.account']).toBe('moved');
   expect(text(done)).toContain('somebody borrowed a tabard at five in the morning');
   expect(text(done)).toContain('Zurich. How very unsentimental.');

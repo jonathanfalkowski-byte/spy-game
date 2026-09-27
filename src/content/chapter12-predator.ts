@@ -9,7 +9,13 @@
  * after the harbour, its balance to Nora Linden. An account of her own (take / decline / take and move). An optional
  * chosen evening with Lucien (heat 3, consent-gated, fades), never the price of anything. Nora by phone. Temporary
  * entry: from a Predator `chapter9.complete` until the Predator Chapters 10–11 exist; Chapter 13 now enters from
- * `chapter12.ledger`. Local helpers mirror chapter12.ts (c12.* keys, chapter12.* ids) to avoid a circular import. */
+ * `chapter12.ledger`. Local helpers mirror chapter12.ts (c12.* keys, chapter12.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): the afternoon before the take, which every road passes through (c12.p-afternoon =
+ * watch | marcus | lake: a jeweller on the Rue du Rhône who greets her as Mademoiselle Vale and gives her Nell's watch,
+ * uncollected for fourteen months, "For N., from N."; Marcus on the phone about what she did with 14.3; or the lake),
+ * and the dawn after the call (c12.p-dawn = fountain | lucien | sleep: the jetty and the fountain switched off;
+ * Lucien's note under the door, by road; or two hours' sleep). Lunch, the list, the lake and the ledger at greater
+ * length; Nora hears about the watch. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -48,7 +54,9 @@ const schedule = (s: GameState) => !!key(s, 'pred.lever8.archive');
 export const canMove12 = (s: GameState) => clause(s, 'indemnity') || schedule(s);
 
 export function placePredator12(s: GameState): string | undefined {
+  if (s.phase === 'morel' && get12(s, 'p-take')) return 'Afternoon · The Rue du Rhône';
   if (s.phase === 'morel' && get12(s, 'p-lunch')) return '15:00 · The bank’s dining room, the coffee';
+  if (s.phase === 'call' && get12(s, 'p-call')) return 'Dawn · The Quai';
   if (s.phase === 'vault')
     return { ask: '20:00 · The vault, Morel & Cie', trade: '17:00 · Lucien Morel’s office', night: '05:00 · The cleaners’ lift, Morel & Cie' }[take(s) ?? 'night'];
   const evening = get12(s, 'p-evening-open');
@@ -154,6 +162,7 @@ function morelBlocks(s: GameState): Block[] {
     q('You', 'The second what?'),
     q('Lucien Morel', 'The second Evelyn Vale to sit in that chair. The first one ordered the sole, and a glass of Chasselas. She held the glass the way you are holding it, by the foot, as if it might go off.'),
     ...(get5(s, 'published') ? [q('Lucien Morel', 'I have seen your face in the newspapers, of course. And before that, on somebody else.')] : []),
+    p('For the rest of the fish you play the game properly, the two of you, the way it is played at tables like this one. He tells you three things about himself: that he has never left Switzerland for longer than a month, that he hates the fountain, and that he has never once lied to a client. You find the lie by the coffee, and tell him which one, and he laughs, for the first time, as if something had given way.'),
     ...(want === 'desk' ? [q('Lucien Morel', 'She wanted out. You don’t. You want the chair, not the cheque. I can see it from here.')] : []),
     t('He knew her. He sat across this table from the woman whose name I am wearing, and he has just told me so over a fish, as if he were remarking on the weather.'),
   ];
@@ -186,7 +195,7 @@ function lunchChoices(): C12Choice[] {
 
 function takeChoices(s: GameState): C12Choice[] {
   const k = (id: Take, label: string, hint: string, body: (x: GameState) => Block[]) =>
-    offer('take-' + id, label, hint, 'vault', (x) => {
+    offer('take-' + id, label, hint, 'morel', (x) => {
       set12(x, 'p-take', id);
       setKey(x, 'pred.morel', { ask: 'ally', trade: 'trade', night: 'unaware' }[id]);
       if (id === 'ask') setKey(x, 'pred.ally.morel', 'in');
@@ -207,6 +216,36 @@ function takeChoices(s: GameState): C12Choice[] {
       p('You thank him for lunch, and say nothing about anything, and on the way out you watch where the cleaners’ trolleys are kept, and which lift they use, and what time the night porter changes over.'),
       t('I do not need anybody to show me anything. I only need to know when the building is asleep.'),
     ]),
+  ];
+}
+
+/** The afternoon before the take (deepening pass): every road passes through it. */
+function afternoonChoices(s: GameState): C12Choice[] {
+  const a = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('afternoon-' + id, label, hint, 'vault', (x) => {
+      set12(x, 'p-afternoon', id);
+      after?.(x);
+      return body;
+    });
+  const sign = key(s, 'pred.sign');
+  return [
+    a('watch', 'Walk along the Rue du Rhône', 'The jewellers’ street. Somebody may know your face.', [
+      p('The Rue du Rhône is a street of jewellers, each window lit like a small altar, and you walk it slowly in the thin afternoon, the way a woman walks who has nowhere to be.'),
+      p('Halfway along, a door opens and an old man in a waistcoat comes out onto the pavement without his coat, into the cold, and says, delighted: “Mademoiselle Vale! Your watch! We had quite given up.”'),
+      p('Inside, from a drawer with a ticket on it dated fourteen months ago, he takes a small gold watch on a worn leather strap, cleaned, repaired, uncollected for fourteen months. You turn it over. On the back, engraved in a small plain hand: For N., from N.'),
+      q('The jeweller', 'Forty francs, for the repair. And you look very well, if I may say. Much better than the last time.'),
+      p('You pay him forty francs, and put her watch on your own wrist, and it fits.'),
+      t('Much better than the last time. She came in here with her bad leg, fourteen months ago, and left her watch to be mended, and never came back for it. She meant to. People always mean to.'),
+    ], (x) => setKey(x, 'pred.watch', 'kept')),
+    a('marcus', 'Ring Marcus', 'He will want to know what you signed.', [
+      q('Marcus Chen', 'Well?'),
+      ...(sign === 'amended'
+        ? [q('Marcus Chen', 'Rochat rang me before you’d finished your fish. You struck 14.3. Nobody strikes 14.3. I’m not sure whether to fire you or promote you.'), q('You', 'Read your own term sheets, Marcus. Then decide.')]
+        : sign === 'copied'
+          ? [q('Marcus Chen', 'Rochat tells me you asked for a copy of the whole thing. What for?'), q('You', 'For context.'), p('A silence on the line, and then his laugh, the real one.'), q('Marcus Chen', 'I signed that word into your contract myself. God help me.')]
+          : [q('Marcus Chen', 'Did you read it?'), q('You', 'Every page.'), q('Marcus Chen', 'And?'), q('You', 'And I signed it. As instructed.'), t('He did not ask what I found. He has never once wanted to know what is in the small print. That is going to be the whole of his problem.')]),
+    ]),
+    a('lake', 'Walk by the lake', 'Kill the afternoon.', [p('You walk the length of the Quai and back in the thin afternoon light, past the swans and the shut ice-cream kiosks and the fountain with nothing coming out of it, and wait for the building to be ready for you.')]),
   ];
 }
 
@@ -244,6 +283,7 @@ function vaultBlocks(s: GameState): Block[] {
           q('Lucien Morel', 'She asked me to help her disappear. She sat in that chair and asked me. I said no. I said it very politely, the way my father taught me. I have been sorry for a year.'),
         ]
       : []),
+    p('The Singapore line has a note in the margin in a clerk’s neat pencil: RE-ISSUE PENDING. The London line has no note. It does not need one. It has you.'),
     t('My flat. The wardrobe door, the kettle, the bed. Paid for by the month, by the woman who signs in green, since before they gave me the keys. I have been living inside somebody’s inventory.'),
   ];
 }
@@ -279,6 +319,7 @@ function lakeBlocks(s: GameState): Block[] {
         ? 'Lucien meets you at the hotel bar at ten, in the corner where Lyle sat, and puts a small card on the table between you, face down.'
         : 'At ten the concierge brings a small card on a silver tray: Monsieur Morel is in the bar, and would be grateful for ten minutes. He is in the corner where Lyle sat, and puts the card face down between you.',
     ),
+    ...(key(s, 'pred.watch') ? [p('He sees the watch on your wrist before he sees anything else, and for a moment the trained face is not trained at all.'), q('Lucien Morel', 'Where did you get that?'), q('You', 'The Rue du Rhône. It was ready.')] : []),
     q('Lucien Morel', 'Every client’s representative has one. It is how we say thank you. The fund seeds it, and the fund forgets about it, and one day you are grateful that it did.'),
     p('On the other side of the card, in the bank’s engraved type: a number, and nothing else. Beside it, in pencil, a figure with a great many noughts. Working capital.'),
     t(key(s, 'pred.want') === 'money' ? 'Enough money that nobody can starve me into anything again. That is what I told Marcus I wanted. Here it is, on a card, from the woman who pays my rent.' : 'This is how she keeps them. Not with a threat. With a card, and a number, and a figure in pencil you can always tell yourself you never touched.'),
@@ -383,9 +424,9 @@ function callBlocks(): Block[] {
   ];
 }
 
-function callChoices(): C12Choice[] {
+function callChoices(s: GameState): C12Choice[] {
   const c = (id: string, label: string, hint: string, value: string, body: Block[], after?: (x: GameState) => void) =>
-    offer('call-' + id, label, hint, 'ledger', (x) => {
+    offer('call-' + id, label, hint, 'call', (x) => {
       set12(x, 'p-call', id);
       setKey(x, 'pred.nora', value);
       after?.(x);
@@ -398,6 +439,7 @@ function callChoices(): C12Choice[] {
       p('A silence so long you think the line has gone. Somewhere behind it, a child asking for something, and being told to wait.'),
       q('Nora Linden', 'I don’t know who you are, and I’m not going to ask. I’ll tell you one thing, and then I’m going to put the phone down, and you’re not going to ring again.'),
       q('Nora Linden', 'She had a bad leg. From a motorbike, when she was nineteen. She would never have walked the harbour wall. Never. Remember that.'),
+      ...(key(s, 'pred.watch') ? [q('You', 'I have her watch. For N., from N. A jeweller in Geneva kept it for her.'), p('A breath on the line, the kind that has had to be taken on purpose.'), q('Nora Linden', 'Then keep it wound. She never did.')] : []),
       p('The line goes dead.'),
     ], (x) => note(x, 'p12-leg', 'Nora Linden: Nell had a bad leg from a motorbike accident at nineteen, and would never have walked the harbour wall.', 'Nora Linden, by telephone from Geneva')),
     c('bank', 'Ring her, and say you are from the bank', 'About the transfer. See what she says.', 'lied', [
@@ -411,6 +453,36 @@ function callChoices(): C12Choice[] {
   ];
 }
 
+/** The dawn after the call (deepening pass), before the flight home. */
+function dawnChoices(s: GameState): C12Choice[] {
+  const k = take(s) ?? 'night';
+  const d = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('dawn-' + id, label, hint, 'ledger', (x) => {
+      set12(x, 'p-dawn', id);
+      return body;
+    });
+  return [
+    d('fountain', 'Walk down to the fountain', 'The end of the jetty, before the city wakes.', [
+      p('At six you walk out along the stone jetty in the dark to the foot of the fountain, switched off for the winter: a steel nozzle in the black water, and a sign explaining, in four languages, how high it goes when it is allowed to.'),
+      p('You stand at the end of it, with the lake on three sides and the whole of Geneva asleep behind you, and find that you are saying her name, out loud, once, to nobody.'),
+      t('Nell. There. Somebody has said it in this city, at least once, since the bank closed her account.'),
+    ]),
+    d('lucien', 'Open the envelope under the door', 'Somebody slipped it under at four.', [
+      p('A cream envelope, the bank’s, with no name on it, slipped under the door at some point in the night. Inside, one line in a hand that has never written anything down in front of you:'),
+      q(
+        'The note',
+        k === 'ask'
+          ? 'They will ask me what you wanted. I shall tell them you were charming and asked for nothing. It will be the first lie I have told for a client in eleven years, and the first I have enjoyed. — L.'
+          : k === 'trade'
+            ? 'A pleasure doing business. The piano is out of tune. Come back one day and tell me how badly. — L.'
+            : 'The camera on the first floor is mine, not theirs. It was a very dark morning on my tape. I cannot speak for theirs. — L.',
+      ),
+      t(k === 'night' ? 'He saw me. He saw me and he said nothing. Everybody in this city is somebody’s, and he has just told me whose he would like to be.' : 'The only man in the game as good at this as I am. I would like to know which of us is going to have to find that out.'),
+    ]),
+    d('sleep', 'Sleep two hours before the flight', 'You have earned two.', [p('You sleep two hours in your clothes on top of the covers, deeply, like somebody who has put something down, and wake to the alarm and the grey and the car the bank has sent.')]),
+  ];
+}
+
 // ── The ledger ──
 
 function ledgerBlocks(s: GameState): Block[] {
@@ -418,6 +490,8 @@ function ledgerBlocks(s: GameState): Block[] {
   const intimate = get12(s, 'p-evening-outcome')?.startsWith('intimate');
   return [
     p('Home. The flat on your own street at your own number, paid for by the month, which you walk into as if for the first time, touching things: the kettle, the wardrobe door, the bed.'),
+    p('You stand in the kitchen and work out, from the ledger, how many months of the kettle she paid for, and how many of the bed, and find that you cannot stop.'),
+    ...(key(s, 'pred.watch') ? [p('You wind her watch before you do anything else, and pin it to the wardrobe door by its strap, and it hangs there over the cards, ticking, the only thing on the door that is moving.')] : []),
     p('You pin a new card above Marcus, above the fund, in capitals: ELEANOR LINDEN. NINE FLATS. C. And under it, smaller, a tenth line you never thought you would write: THIS FLAT.'),
     p('The black phone lights before you have taken your coat off.'),
     q(
@@ -449,9 +523,9 @@ export function predatorBlocks12(s: GameState): Block[] {
 export function predatorChoices12(s: GameState): C12Choice[] {
   if (s.phase === 'geneva') return genevaChoices(s);
   if (s.phase === 'bank') return bankChoices();
-  if (s.phase === 'morel') return get12(s, 'p-lunch') ? takeChoices(s) : lunchChoices();
+  if (s.phase === 'morel') return !get12(s, 'p-lunch') ? lunchChoices() : !get12(s, 'p-take') ? takeChoices(s) : afternoonChoices(s);
   if (s.phase === 'vault') return vaultChoices();
   if (s.phase === 'lake') return get12(s, 'p-account') ? eveningChoices(s) : accountChoices(s);
-  if (s.phase === 'call') return callChoices();
+  if (s.phase === 'call') return get12(s, 'p-call') ? dawnChoices(s) : callChoices(s);
   return [];
 }
