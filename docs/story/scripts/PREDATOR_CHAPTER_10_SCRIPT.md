@@ -49,3 +49,36 @@ Phases: `ask → table → offer → floor → evening → ledger`
 
 **Size (honest), pass 1:** ~1.2k (decline, quiet), ~1.2k (feed) and ~1.4k (accept, engaged), against the ~4.5k
 target.
+
+## Deepening pass (2026-09-27)
+
+- **Tuesday night** (`ask`, after her answer to Marcus, before the table). Every path passes through it
+  (`c10.p-eve`):
+  - **eve-marcus**: Marcus rings at eleven, which he never does. "Whatever it is, it will be exactly what you want.
+    That's how you'll know it's her." Celeste offered him his desk eleven years ago, "at that same table", and he
+    took it. "Goodnight, Evelynn."
+  - **eve-cards**: she takes the three cards she would least like anybody to see off the wardrobe door, into Adrian's
+    lining. Sets `pred.cards10 = hidden`. On Wednesday Celeste says: "You took three cards down on Tuesday night.
+    Which three? No, don't tell me. I shall so enjoy guessing."
+  - **eve-sleep** (neutral).
+- **The hour after the offer** (`offer`, after her answer, before the floor) (`c10.p-after`):
+  - **after-phone**: the black phone is not new. Its corners are worn in one pocket, and an N is scratched on the
+    back. Sets `pred.phoneN = seen`. **Geneva remembers it:** at the Rue du Rhône, Nell's watch ("For N., from N.")
+    brings the thought "N. Like the letter scratched into the back of the black phone."
+  - **after-men** (only at the Lindqvist, and not on the walk-out road): the two men who did not eat, a camera case,
+    two fingers to a hat that is not there. "She booked the table for it."
+  - **after-walk** (neutral): the river walk to work, or "Go to bed" on the walk-out road.
+- **More prose:**
+  - Wednesday morning now opens the table (Pryce's "Ms Laurent's compliments" moved here), and Celeste has already
+    ordered for both of them, with the two men's tea unpoured.
+  - Dominic Ashe tells the journalists she is "very private".
+  - On the ledger, the phone sits face down with the N facing her.
+  - On the walk-out road the photograph now runs **the next morning** (a timing fix).
+- **Place lines:** "Tuesday · 23:00 · The flat" and the hour after, by road.
+
+The tests walk the new moments on their neutral picks (`NEUTRAL10 = eve-sleep, after-walk`); the Ch11–14 builders
+take the same picks.
+
+**Size (honest) after the deepening pass:** ~1.4k (decline, quiet), ~1.6k (feed) and ~1.8k (accept, engaged). The
+next lift would be the breakfast itself at greater length (more of Celeste on Marcus at twenty-nine, and the prior
+tenant), and a second beat on the floor.

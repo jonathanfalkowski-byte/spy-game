@@ -236,6 +236,7 @@ function afternoonChoices(s: GameState): C12Choice[] {
       p('Inside, from a drawer with a ticket on it dated fourteen months ago, he takes a small gold watch on a worn leather strap, cleaned, repaired, uncollected for fourteen months. You turn it over. On the back, engraved in a small plain hand: For N., from N.'),
       q('The jeweller', 'Forty francs, for the repair. And you look very well, if I may say. Much better than the last time.'),
       p('You pay him forty francs, and put her watch on your own wrist, and it fits.'),
+      ...(key(s, 'pred.phoneN') ? [t('N. Like the letter scratched into the back of the black phone. She carried it before me. She scratched her name into the one thing Celeste gave her that she could not give back.')] : []),
       t('Much better than the last time. She came in here with her bad leg, fourteen months ago, and left her watch to be mended, and never came back for it. She meant to. People always mean to.'),
     ], (x) => setKey(x, 'pred.watch', 'kept')),
     a('marcus', 'Ring Marcus', 'He will want to know what you signed.', [

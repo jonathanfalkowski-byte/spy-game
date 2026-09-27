@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter10Choices(s).map((c) => c.id.replace(/^chapter10\./, ''));
 const c10 = (s: GameState, id: string) => choose(s, 'CHAPTER10_CHOOSE', 'chapter10.' + id);
-const walk10 = (s: GameState, path: string[]) => path.reduce(c10, s);
+/** The deepening pass's moments (Tuesday night, the hour after): take the neutral pick when it is in the way. */
+const NEUTRAL10 = ['eve-sleep', 'after-walk'];
+const walk10 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL10.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c10(y, n);
+    }
+    return c10(y, id);
+  }, s);
 
 type Build = { clauses?: string[]; ch8?: string[]; friday?: string };
 /** A real save (the maximal-julian golden) through Chapter 6, the Predator Chapters 7 and 8, and the Chapter 9 bridge,
@@ -56,8 +67,11 @@ it('enters from the Predator Chapter 9 through Marcus, and Chapter 11 waits for 
 });
 
 it('says yes over breakfast: the inventory, Adrian as a compliment, the phone, and on to the Vesper', () => {
-  const table = walk10(toBridge9(), ['begin-predator', 'ask-go']);
+  const eve = walk10(toBridge9(), ['begin-predator', 'ask-go']);
+  expect([eve.phase, ids(eve)]).toEqual(['ask', ['eve-marcus', 'eve-cards', 'eve-sleep']]);
+  const table = c10(eve, 'eve-cards');
   expect(text(table)).toContain('“Ms Laurent’s compliments.”');
+  expect(text(table)).toContain('You took three cards down on Tuesday night. Which three?');
   expect(text(table)).toContain('You asked Marcus for his desk. To his face.');
   expect(text(table)).toContain('Poor Anthony. You own him now, and he sends you roses.');
   expect(text(table)).toContain('You spared Ines Varga.');
@@ -74,8 +88,11 @@ it('says yes over breakfast: the inventory, Adrian as a compliment, the phone, a
   expect(text(offer)).toContain('So we can talk without Marcus listening.');
   // The report clause lets her feed Celeste nothing true.
   expect(ids(offer)).toEqual(['offer-accept', 'offer-decline', 'offer-feed']);
-  const floor = c10(offer, 'offer-accept');
-  expect([floor.choices['pred.celeste10'], floor.choices['pred.phone']]).toEqual(['accepted', 'yes']);
+  const after = c10(offer, 'offer-accept');
+  expect([after.choices['pred.celeste10'], after.choices['pred.phone']]).toEqual(['accepted', 'yes']);
+  expect(ids(after)).toEqual(['after-phone', 'after-men', 'after-walk']);
+  const floor = c10(after, 'after-men');
+  expect(text(floor)).toContain('She booked the table for it.');
   expect(text(floor)).toContain('Old money, new blood.');
   expect(text(floor)).toContain('Careful. She never has breakfast with anybody twice.');
   const evening = c10(floor, 'marcus-tell');
@@ -110,7 +127,10 @@ it('walks out on the bill, takes the phone call, and feeds her nothing true', ()
   const offer = walk10(toBridge9(), ['begin-predator', 'ask-go', 'open-case', 'adrian-leave']);
   expect(text(offer)).toContain('In its pocket, when you put your hands in it on the pavement');
   expect(text(offer)).toContain('You left me with the bill, darling.');
-  const done = walk10(offer, ['offer-feed', 'marcus-lie', 'ev-alone']);
+  const done = walk10(offer, ['offer-feed', 'after-phone', 'marcus-lie', 'ev-alone']);
+  expect(text(done)).toContain('a letter N.');
+  expect(text(done)).toContain('The next morning the City pages have the photograph');
+  expect(done.choices['pred.phoneN']).toBe('seen');
   expect(done.choices['pred.celeste10']).toBe('fed');
   // Feeding her is covert: it is not a surprise (Chapter 11's counter stays the first).
   expect(done.choices['pred.celeste-count']).toBeUndefined();

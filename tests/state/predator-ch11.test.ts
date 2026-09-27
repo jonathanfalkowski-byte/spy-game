@@ -51,7 +51,7 @@ function toBridge9(ch8: string[] = ['pull-hollis', 'hollis-use', 'pull-counsel',
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
   // Let Me Help (Predator Chapter 10), on its quiet picks.
-  for (const id of ['begin-predator', 'ask-go', 'open-flatter', 'adrian-composed', 'offer-decline', 'marcus-lie', 'ev-alone'])
+  for (const id of ['begin-predator', 'ask-go', 'eve-sleep', 'open-flatter', 'adrian-composed', 'offer-decline', 'after-walk', 'marcus-lie', 'ev-alone'])
     s = choose(s, 'CHAPTER10_CHOOSE', 'chapter10.' + id);
   return s;
 }

@@ -9,7 +9,13 @@
  * at breakfast; the City-pages photograph; Marcus's "What did she want?"; an optional chosen evening (heat 3,
  * consent-gated, fades). Entered from a Predator `chapter9.complete`; Chapter 11 enters from `chapter10.ledger`, and the
  * Predator road runs without gaps from Chapter 7 to Chapter 14. Local helpers mirror chapter10.ts (c10.* keys,
- * chapter10.* ids) to avoid a circular import. */
+ * chapter10.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): Tuesday night, before breakfast, which every path passes through (c10.p-eve = marcus |
+ * cards | sleep: Marcus rings, "Whatever it is, it'll be exactly what you want. That's how you'll know it's her"; or
+ * she takes three cards off the wardrobe door, and on Wednesday Celeste asks which three), and the hour after the
+ * offer (c10.p-after = phone | men | walk: the black phone is worn, with an N scratched on its back, which Geneva's
+ * watch remembers; the two men who did not eat, and a camera bag; or the walk). The Lindqvist, the floor and the ledger
+ * at greater length; on the walk-out road the photograph runs the next morning. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -44,6 +50,8 @@ const answer = (s: GameState) => key(s, 'pred.celeste10') as 'accepted' | 'decli
 export const canFeed10 = (s: GameState) => !!key(s, 'pred.clause.report') || ['supported', 'strong'].includes(key(s, 'case.strength') ?? '');
 
 export function placePredator10(s: GameState): string | undefined {
+  if (s.phase === 'ask' && get10(s, 'p-ask')) return 'Tuesday · 23:00 · The flat';
+  if (s.phase === 'offer' && get10(s, 'p-offer')) return left(s) ? '23:20 · The kitchen table' : office(s) ? '09:00 · Your office, the door shut' : '08:10 · The pavement outside the Lindqvist';
   if (s.phase === 'table') return office(s) ? '08:00 · Your office, the thirty-sixth floor' : '07:00 · The Lindqvist';
   if (s.phase === 'offer') return left(s) ? '23:00 · The black phone' : office(s) ? '08:40 · Your office, the coffee' : '07:50 · The Lindqvist, the coffee';
   const evening = get10(s, 'p-evening-open');
@@ -65,17 +73,42 @@ function askBlocks(): Block[] {
   ];
 }
 
+/** Tuesday night (deepening pass): every path passes through it before the table. */
+function eveChoices(): C10Choice[] {
+  const e = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('eve-' + id, label, hint, 'table', (x) => {
+      set10(x, 'p-eve', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    e('marcus', 'Answer Marcus’s call', 'He rings at eleven. He never rings.', [
+      p('At eleven on Tuesday night your phone lights with a name it has never lit with before. Marcus does not ring people. People ring Marcus.'),
+      q('Marcus Chen', 'She’ll offer you something tomorrow. I don’t know what. Whatever it is, it will be exactly what you want. That’s how you’ll know it’s her.'),
+      q('You', 'What did she offer you?'),
+      q('Marcus Chen', 'My desk. Eleven years ago. Over breakfast, at that same table. I took it before she’d finished the sentence.'),
+      p('A long pause on the line, full of the river.'),
+      q('Marcus Chen', 'Goodnight, Evelynn.'),
+      t('He has never once used my name on the telephone. He is frightened, and he rang me to say so, and he did not say so.'),
+    ]),
+    e('cards', 'Take three cards off the door', 'The three you would least like anybody to see.', [
+      p('You stand in front of the wardrobe door in your dressing gown with the light off and the street lamp coming through the blind, and take down the three cards you would least like anybody in the world to see, and put them in the lining of Adrian’s old jacket, and pin the string back so that nobody would know they had been there.'),
+      t('Just in case. You never know who has been in a room.'),
+    ], (x) => setKey(x, 'pred.cards10', 'hidden')),
+    e('sleep', 'Go to bed', 'Wednesday is early.', [p('You go to bed at ten, and lie awake until one, and then sleep as if somebody had switched you off.')]),
+  ];
+}
+
 function askChoices(s: GameState): C10Choice[] {
   const a = (id: 'go' | 'wait', label: string, hint: string, body: Block[]) =>
-    offer('ask-' + id, label, hint, 'table', (x) => {
+    offer('ask-' + id, label, hint, 'ask', (x) => {
       set10(x, 'p-ask', id);
       return body;
     });
   return [
     a('go', 'Tell him you’ll go', 'She asked. Answering is the first thing you control.', [
       q('You', 'Tell her yes.'),
-      p('Wednesday at a quarter to seven the city is still dark and wet.'),
-      ...(key(s, 'c8.p-night') === 'pryce' ? [p('The long black car is at your kerb, and Mr Pryce is holding the door. “Ms Laurent’s compliments.” He does not say whose car it is. You are beginning to understand that it has never been anybody’s but hers.')] : []),
+      p('He nods, and goes, and you hear him stop at the lifts and not press the button for a long time.'),
     ]),
     a('wait', 'Tell him you’re busy on Wednesday', 'Let her come to you. She will.', [
       q('You', 'Tell her I’m busy on Wednesday.'),
@@ -107,15 +140,20 @@ function tableBlocks(s: GameState): Block[] {
           q('Celeste', 'You were busy. I’m never busy. It’s the great luxury of my position.'),
         ]
       : [
+          p('Wednesday at a quarter to seven the city is still dark and wet.'),
+          ...(key(s, 'c8.p-night') === 'pryce' ? [p('The long black car is at your kerb, and Mr Pryce is holding the door. “Ms Laurent’s compliments.” He does not say whose car it is. You are beginning to understand that it has never been anybody’s but hers.')] : []),
           p('The Lindqvist has no sign: a black door between a bank and a jeweller, a doorman in a grey coat who opens it before you reach it, and a breakfast room on the river whose curtains are never opened. Lamps, dark wood, silver domes. One other table is occupied, by two men who do not eat.'),
           p('Celeste Laurent rises to meet you in green, tall and entirely made of edges, and kisses the air beside your cheek, and holds you away from her by both elbows to look at you, the way a woman looks at a dress she has bought and is pleased with.'),
+          p('She has already ordered for both of you: eggs, which you would have chosen, and black coffee, which you would not have admitted to wanting. The two men at the other table have one pot of tea between them and have not poured it.'),
         ]),
     q('Celeste', want === 'desk' ? 'You asked Marcus for his desk. To his face. I have been dining out on it for a month. Glorious.' : want === 'title' ? 'A name on a door. How sentimental. I like sentiment in a woman who can afford it.' : 'Money. Sensible. The only people I trust are the ones who tell me their price.'),
     ...levers.map((line) => q('Celeste', line)),
     ...(key(s, 'pred.friday') === 'tell' ? [q('Celeste', 'Marcus writes everything down, darling. And I read everything he writes.')] : []),
     q('Celeste', 'And you have been reading my letterhead. L.S.F. The Laurent Sovereign Fund. You needn’t look like that. I should have been disappointed if you hadn’t.'),
     q('Celeste', 'You keep a ledger on the back of your wardrobe door, don’t you. Cards, and pins. So did I, at your age.'),
-    t('She knows about the door. The one thing in my life I thought nobody had seen.'),
+    ...(key(s, 'pred.cards10') === 'hidden'
+      ? [q('Celeste', 'You took three cards down on Tuesday night. Which three? No, don’t tell me. I shall so enjoy guessing.'), t('Tuesday night. In my own flat, with the blind down and the light off. She was not guessing about the door. She was never guessing about anything.')]
+      : [t('She knows about the door. The one thing in my life I thought nobody had seen.')]),
   ];
 }
 
@@ -195,7 +233,7 @@ function offerBlocks(s: GameState): Block[] {
 
 function offerChoices(s: GameState): C10Choice[] {
   const o = (id: string, label: string, hint: string, value: 'accepted' | 'declined' | 'fed', body: (x: GameState) => Block[]) =>
-    offer('offer-' + id, label, hint, 'floor', (x) => {
+    offer('offer-' + id, label, hint, 'offer', (x) => {
       set10(x, 'p-offer', id);
       setKey(x, 'pred.celeste10', value);
       setKey(x, 'pred.phone', 'yes');
@@ -228,19 +266,50 @@ function offerChoices(s: GameState): C10Choice[] {
   ];
 }
 
+/** The hour after the offer (deepening pass), before the floor. */
+function afterChoices(s: GameState): C10Choice[] {
+  const a = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('after-' + id, label, hint, 'floor', (x) => {
+      set10(x, 'p-after', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    a('phone', 'Look at the black phone properly', 'In your own hands, with nobody watching.', [
+      p('You turn it over in your hands. It is not new. The corners are worn, the way a phone’s corners wear down in one particular pocket over a long time. The screen has a hairline scratch across its top, like a single grey hair.'),
+      p('On the back, scratched into the black with something small and sharp, a key perhaps, or a hairpin: a letter N.'),
+      t('Somebody carried this before me. Somebody who scratched her initial on it so that she would know it was hers. It was never hers. It is not mine.'),
+    ], (x) => setKey(x, 'pred.phoneN', 'seen')),
+    ...(!left(s) && !office(s)
+      ? [
+          a('men', 'Follow the two men who did not eat', 'They leave four minutes after she does.', [
+            p('They leave four minutes after Celeste, with their pot of tea unpoured, and you are on the pavement before them, fixing a glove. One of them carries a small leather case of the kind that holds a camera. At the corner he looks back at you and lifts two fingers to the brim of a hat he is not wearing, like a man in an old film.'),
+            t('Her own photographer, at the next table, all through breakfast. She did not claim me by accident. She booked the table for it.'),
+          ]),
+        ]
+      : []),
+    a('walk', left(s) ? 'Go to bed' : 'Walk to work along the river', left(s) ? 'It is nearly midnight.' : 'Let the morning catch up with you.', [
+      p(left(s) ? 'You put the black phone face down on the kitchen table and go to bed, and do not sleep, and hear it not ringing all night.' : 'You walk to work along the river in the thin morning, past the joggers and the gulls, with the black phone in your coat pocket, heavier than a phone has any right to be.'),
+    ]),
+  ];
+}
+
 // ── The floor ──
 
 function floorBlocks(s: GameState): Block[] {
   const j = key(s, 'pred.julian');
   return [
     p(
-      office(s)
+      left(s)
+        ? 'The next morning the City pages have the photograph: the two of you at the Lindqvist, lamplight and silver, her hand on your wrist, both of you laughing, taken a minute before you stood up and left her with the bill. It was taken from low down, from a table. The two men who did not eat.'
+        : office(s)
         ? 'By noon the City pages have the photograph. It was taken through the glass of your own office, from the floor, by somebody on it: Celeste Laurent across your desk in green, her hand on your wrist, both of you laughing at something neither of you said.'
         : 'By noon the City pages have the photograph: the two of you at the Lindqvist, lamplight and silver, her hand on your wrist, both of you laughing at something neither of you said. It was taken from low down, from a table. The two men who did not eat.',
     ),
     q('The caption', 'Old money, new blood. Celeste Laurent breakfasts with Helix’s Evelynn Vale.'),
     p('The floor looks at you differently by one o’clock. Not the way it looked at you when you pulled the levers, frightened. The way people look at a woman who has been seen with somebody they are frightened of.'),
     ...(j === 'ally' ? [p('A message from Julian, one line: Careful. She never has breakfast with anybody twice.')] : []),
+    p('Dominic Ashe from Communications stops by your door to say, with enormous care, that he has had three calls from journalists and has told all of them that you are “very private”. He says it as if it were a compliment he had only just thought of.'),
     p('At three Marcus is in your doorway with the paper folded in his hand, and this time he comes in, and shuts the door, and does not sit down.'),
     q('Marcus Chen', 'What did she want?'),
   ];
@@ -367,6 +436,7 @@ function ledgerBlocks(s: GameState): Block[] {
     p('The wardrobe door, late. Every card on it has been seen now, by somebody who admired it. You look at them for a long time, the pins and the string, the way you would look at a room somebody has been in while you were out.'),
     p('Then you write a new card, and pin it above Marcus, above L.S.F. Advisory, above everything, at the very top of the door:'),
     q('The card', a === 'accepted' ? 'CELESTE LAURENT. LET ME HELP. I SAID YES.' : a === 'fed' ? 'CELESTE LAURENT. LET ME HELP. I SAID YES. I LIED.' : 'CELESTE LAURENT. LET ME HELP. I SAID NO. SHE IS WATCHING.'),
+    ...(key(s, 'pred.phoneN') ? [p('You put the black phone on the shelf under the door, face down, so that the N is facing you.')] : []),
     p('At midnight the black phone lights, face down, and you turn it over.'),
     q('C.', a === 'declined' ? 'The first Thursday of December, darling. The Vesper. Marcus will bring you, whether or not you would like to come. He doesn’t know yet.' : 'The first Thursday of December, darling. The Vesper. Marcus will bring you. He doesn’t know yet.'),
     t('She knows who I am, and what I want, and where I keep my cards. She thinks that is the same thing as owning me. I have met people who thought that before. I have their cards on the door.'),
@@ -384,9 +454,9 @@ export function predatorBlocks10(s: GameState): Block[] {
 }
 
 export function predatorChoices10(s: GameState): C10Choice[] {
-  if (s.phase === 'ask') return askChoices(s);
+  if (s.phase === 'ask') return get10(s, 'p-ask') ? eveChoices() : askChoices(s);
   if (s.phase === 'table') return get10(s, 'p-open') ? adrianChoices() : openChoices(s);
-  if (s.phase === 'offer') return offerChoices(s);
+  if (s.phase === 'offer') return get10(s, 'p-offer') ? afterChoices(s) : offerChoices(s);
   if (s.phase === 'floor') return floorChoices(s);
   if (s.phase === 'evening') return eveningChoices(s);
   return [];

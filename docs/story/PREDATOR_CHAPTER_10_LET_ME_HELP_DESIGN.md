@@ -27,7 +27,7 @@
 
 **Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/PREDATOR_CHAPTER_10_SCRIPT.md](scripts/PREDATOR_CHAPTER_10_SCRIPT.md); code: `src/content/chapter10-predator.ts`.
-It runs ~1.2–1.4k words on one path. Chapter 11 now enters from `chapter10.ledger`, and the Predator road runs
+It ran ~1.2–1.4k words on one path at pass 1, and was deepened 2026-09-27 to ~1.4–1.8k. Chapter 11 now enters from `chapter10.ledger`, and the Predator road runs
 without gaps from Chapter 7 to Chapter 14.
 
 ---
