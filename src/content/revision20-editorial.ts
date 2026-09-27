@@ -708,6 +708,60 @@ const DEEPEN4: Record<string, Swap[]> = {
 for (const [node, rules] of Object.entries(DEEPEN4)) BLOCKS[node] = [...(BLOCKS[node] ?? []), ...rules];
 
 /**
+ * Chapter 1 deepening (2026-09-27): presentation only, in the same second pass. The beat map's two asks: one more
+ * workday beat that shows Adrian is very good at this and unseen (the work he loves and never says he loves; the
+ * report that will go upstairs under Benton's name), and Maya's friendship given room (the coffee she never has to
+ * ask about, the paper crown, the trombone). And the night before the clinic, a long look at the face he is leaving.
+ */
+const DEEPEN1: Record<string, Swap[]> = {
+  'apartment.bond': [
+    [
+      'Rain moves across the windows.',
+      keep(p('The grey suit, the blue shirt, the tie Maya says is the saddest object she has ever seen on a grown man. You dress in four minutes, the way you have every working morning for eleven years, and do not look in the mirror while you do it, because there has never been any reason to.')),
+    ],
+  ],
+  'helix.brief': [
+    [
+      'Benton wants a narrow answer. The records will decide how narrow you can honestly make it.',
+      keep(p('This is the part you love and have never said out loud that you love: the file opening, the first fast read for shape, the slower second read for the thing that does not fit. Somewhere in every file there is one line that someone hoped nobody would read twice. You have always been the one who reads it twice.')),
+    ],
+  ],
+  'helix.submitted': [
+    [
+      'The report leaves your terminal addressed to Benton only.',
+      keep(
+        p('At eleven fifty-two it goes. Upstairs, you know exactly what happens next: Benton reads the first paragraph, copies your conclusion into his own summary, takes off your name, and sends it upstairs as his, to people who will never learn your name. He has done it thirty-eight times. You have counted.'),
+        t('I am very good at this. Eleven years, and the only people who know it are the people who sign my work.'),
+      ),
+    ],
+  ],
+  'maya.promotion': [
+    [
+      'Maya Reyes crosses from compliance with two paper cups',
+      keep(
+        p('Hers is the oat-milk thing she orders to annoy the barista. Yours is black, too hot to drink, exactly right. Ten years, and she has never once had to ask.'),
+        p('Ten years of this desk and that one. The audit that nearly broke you both. The winter the archive room flooded and the two of you sat on the table with your shoes off, sorting wet boxes until two in the morning, and laughing so hard at nothing that security came up to check. The Christmas party she made you wear a paper crown and would not let you take it off until midnight.'),
+      ),
+    ],
+  ],
+  'evening.goodbye': [
+    [
+      'There are a few quieter minutes after that.',
+      keep(p('She tells you about the man in the flat below hers who plays the trombone at eleven every night, badly and with enormous feeling, and the grey cat that has started visiting her balcony as if it pays rent. You let her. For four minutes you are two people on a monitored line talking about a trombone, and it is the best four minutes of the day.')),
+    ],
+  ],
+  'evening.home': [
+    [
+      'You check the time more often than it changes.',
+      keep(
+        p('Near midnight you go into the bathroom and stand in front of the mirror, and for once you look. Properly, for a long time. The tired eyes. The jaw that needed a shave this morning and still does. The small white scar through the left eyebrow from a bicycle and a kerb when you were nine. A face you have carried all your life without ever once thinking about it.'),
+        t('I do not know how you say goodbye to a face. I look at it the way you look at a room you are leaving, to remember where everything was.'),
+      ),
+    ],
+  ],
+};
+
+/**
  * Chapter 2 deepening (2026-09-26): presentation only, in the same second pass as DEEPEN3. Sublevel 17 is already
  * the fullest early chapter; this adds the beat map's two asks and a little texture. Maya: the message she almost
  * sends from recovery. Alone: the dressing room, the first minutes nobody is watching, quiet and unglamorous. The
@@ -905,7 +959,7 @@ export function revision20Blocks(blocks: Block[], node?: string): Block[] {
   const rules = BLOCKS[node];
   const prepared = sloaneOnHelixRoom(rehearsalRepeat(handoffAftermath(texted, node), node), node);
   const swapped = rules ? swap(prepared, rules) : prepared;
-  const after = [...(DEEPEN3[node] ?? []), ...(DEEPEN2[node] ?? [])];
+  const after = [...(DEEPEN3[node] ?? []), ...(DEEPEN2[node] ?? []), ...(DEEPEN1[node] ?? [])];
   const deepened = after.length ? swap(swapped, after) : swapped;
   return deepened.filter((b) => !hiddenNotice20(b, node));
 }

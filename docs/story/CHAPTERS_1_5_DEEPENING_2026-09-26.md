@@ -1,4 +1,4 @@
-# Chapters 2–5 deepening (2026-09-26)
+# Chapters 1–5 deepening (2026-09-26/27)
 
 Chapter 5 is released content (revision 19 saves, and revision 20 for new games), so this pass is **presentation only**. It lives in
 `src/content/revision20-editorial.ts` (`DEEPEN5`), like the rest of the revision-20 editorial pass:
@@ -95,3 +95,20 @@ once on all 8, and on no revision-19 transcript.
 | complete | The reflection at a red light; curious about the Glass House, "and not only afraid". |
 
 Size at revision 20: **~5.1k words on the golden routes** (from ~4.6k), against the 12k budget shared with 2b.
+
+## Chapter 1, Promotion Day (`DEEPEN1`, presentation only, revision 20, the same second pass; 2026-09-27)
+
+This covers the beat map's two asks: one more workday beat showing Adrian is very good at this and unseen, and
+Maya's friendship given room. Every golden route plays the same Chapter 1; each line appears once on all 8, and on no
+revision-19 transcript.
+
+| Node | Added |
+|---|---|
+| apartment.bond | The four-minute dress, "the tie Maya says is the saddest object she has ever seen on a grown man". No mirror; there has never been a reason. |
+| helix.brief | **Good at it:** the part he loves and never says: "Somewhere in every file there is one line that someone hoped nobody would read twice." |
+| helix.submitted | **Unseen:** Benton will strip his name and send it upstairs as his, "thirty-eight times. You have counted." "The only people who know it are the people who sign my work." |
+| maya.promotion | **Maya:** the coffee she has never had to ask about; the flooded archive room at 2 a.m.; the paper crown until midnight. |
+| evening.goodbye | **Maya:** the trombone below her flat and the cat that visits "as if it pays rent": "the best four minutes of the day". |
+| evening.home | The night before the clinic: a long look at the face he is leaving, the scar from a bicycle and a kerb. "I look at it the way you look at a room you are leaving." |
+
+Size at revision 20: **~4.7k words** (from ~4.3k), against the 10k budget.
