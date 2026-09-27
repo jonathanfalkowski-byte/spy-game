@@ -48,3 +48,33 @@ Phases: `dress → longroom → book → powder → terrace → cloak → late �
 
 **Size (honest), pass 1:** ~1.4k (refuse, quiet), ~1.4k (turn) and ~1.7k (comply, engaged), against the ~4.5k
 target.
+
+## Deepening pass (2026-09-27)
+
+- **A second beat in the long room** (`longroom`, after how she works it, before the book). Every path passes
+  through it (`c11.p-guest`):
+  - **guest-gulf**: the quiet man from the Gulf fund. "You are not on my list, Ms Vale … When you are tired of being
+    bought, ring me. I do not buy. I rent."
+  - **guest-julian** (ally or rival): by the largest empty frame. An ally: "don't let him see your face when you
+    read it". A rival: "He's showing you off … somebody in this room noticed, and minded."
+  - **guest-celeste**: a turn of the room on Celeste's arm. "It's very well hung." "Everything here is, darling.
+    Including the guests. Marcus … always asks for exactly what he wants. It is his great charm, and it will be the
+    end of him."
+  - **guest-none** (neutral): an empty frame, "waiting for somebody to" ask what she costs.
+- **The back pages** (`book`, after her own page, before Iris) (`pred.book`):
+  - **back-first**: the front of the book, soft with handling. A woman with her haircut and her initials: E. V. ·
+    First issue. · Singapore. · WITHDRAWN (JAKARTA). Fact `c11.p11-first`. **Geneva remembers it:** at Lucien's
+    "You're the second one", she thinks "I know. I saw her page at the Vesper …"
+  - **back-clients**: the client ledger. M. CHEN · HELIX · CLIENT, ELEVEN YEARS · TRANSFERS: 3, and two earlier
+    initials marked CONCLUDED.
+  - **back-close** (neutral).
+- **More prose:** her face done twice before the wardrobe mirror; the brass plates under the empty frames (a date
+  and a number); the river from the terrace, and Marcus's late laugh through the glass. On the ledger, a third
+  pencilled card (WHO WAS SHE? / WHAT DOES CONCLUDED MEAN?).
+- **Place lines:** "Under the empty frames" and "The client room, the back pages".
+
+The tests walk the new moments on their neutral picks (`NEUTRAL11 = guest-none, back-close`), and the Ch12–14
+builders take the same picks.
+
+**Size (honest) after the deepening pass:** ~1.6k (refuse, quiet), ~1.8k (turn) and ~2.1k (comply, engaged). The
+next lift would be a longer Iris scene before the order, and the car at greater length.

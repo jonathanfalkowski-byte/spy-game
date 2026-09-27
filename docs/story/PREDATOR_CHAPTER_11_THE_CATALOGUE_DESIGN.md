@@ -23,7 +23,7 @@
 
 **Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/PREDATOR_CHAPTER_11_SCRIPT.md](scripts/PREDATOR_CHAPTER_11_SCRIPT.md); code: `src/content/chapter11-predator.ts`.
-It runs ~1.4–1.7k words on one path. Chapter 12 now enters from `chapter11.ledger`.
+It ran ~1.4–1.7k words on one path at pass 1, and was deepened 2026-09-27 to ~1.6–2.1k. Chapter 12 now enters from `chapter11.ledger`.
 
 ---
 

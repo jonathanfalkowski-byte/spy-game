@@ -51,7 +51,7 @@ function toBridge9(ch8: string[] = ['pull-hollis', 'hollis-use', 'pull-counsel',
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
   // The Catalogue (Predator Chapter 11), on its quiet picks.
-  for (const id of ['begin-predator', 'dress-own', 'room-listen', 'page-read', 'iris-nothing', 'order-refuse', 'cloak-wait', 'car-keep', 'late-alone'])
+  for (const id of ['begin-predator', 'dress-own', 'room-listen', 'guest-none', 'page-read', 'back-close', 'iris-nothing', 'order-refuse', 'cloak-wait', 'car-keep', 'late-alone'])
     s = choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
   return s;
 }

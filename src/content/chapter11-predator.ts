@@ -9,7 +9,13 @@
  * Celeste is surprised (pred.celeste-count). The threat is non-sexual and lands on Helix and her standing. What she
  * does with Marcus now she knows; a chosen dance and an optional chosen evening (heat 3, consent-gated, fades).
  * Temporary entry: from a Predator `chapter9.complete` until the Predator Chapter 10 exists; Chapter 12 now enters
- * from `chapter11.ledger`. Local helpers mirror chapter11.ts (c11.* keys, chapter11.* ids) to avoid a circular import. */
+ * from `chapter11.ledger`. Local helpers mirror chapter11.ts (c11.* keys, chapter11.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): a second beat in the long room, which every path passes through (c11.p-guest = gulf |
+ * julian | celeste | none: the quiet man from the Gulf fund, "You are not on my list"; Julian by the empty frames;
+ * a turn of the room on Celeste's arm, "He always asks for exactly what he wants"; or an empty frame), and the back
+ * pages of the catalogue after her own (pred.book = first | clients | closed: the first Evelyn's page, FIRST ISSUE ·
+ * SINGAPORE · WITHDRAWN (JAKARTA), which Geneva remembers; or Marcus's client line, TRANSFERS: 3, two of them
+ * CONCLUDED). Getting ready, the long room, the terrace and the ledger at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -56,6 +62,8 @@ export function counterSpend11(s: GameState): string | undefined {
 export const canTurn11 = (s: GameState) => key(s, 'pred.lsf') === 'wire';
 
 export function placePredator11(s: GameState): string | undefined {
+  if (s.phase === 'longroom' && get11(s, 'p-room')) return '20:40 · Under the empty frames';
+  if (s.phase === 'book' && get11(s, 'p-page')) return '21:10 · The client room, the back pages';
   if (s.phase === 'late' && get11(s, 'p-car')) {
     const evening = get11(s, 'p-evening-open');
     if (evening) return evening.startsWith('marcus') ? 'Late · Marcus’s apartment, above the river' : 'Late · Julian’s apartment, the forty-first floor';
@@ -77,6 +85,7 @@ export function beginPredator11(): C11Choice {
 function dressBlocks(s: GameState): Block[] {
   return [
     p('At noon a box arrives from a shop that does not deliver: midnight-blue silk, cut close, with a card in his hand. For the best thing in the room. — M. It fits exactly, which means somebody measured you without asking, from a photograph, or from memory.'),
+    p('You do your face twice, the way you did for the Glass House, the second time more slowly, and stand in front of the wardrobe mirror with the ledger behind you on the door, every card reflected backwards, and practise the face a client wears: interested, unhurried, owed.'),
     p('At half past seven Marcus comes to your door himself, not his driver, in black tie, with his hands in his pockets, and looks at you for one second longer than a man should look at somebody who works for him, and does not pretend he didn’t.'),
     ...(key(s, 'c8.p-night') === 'pryce' ? [p('Mr Pryce holds the car door, and does not look at either of you, and you notice that he has polished the handle.')] : []),
     t('He is taking me to Celeste’s house as his. I am going as mine. We will see which of us is right by midnight.'),
@@ -106,6 +115,7 @@ function longroomBlocks(s: GameState): Block[] {
   const j = julian(s);
   return [
     p('The Vesper has no name on its door and no painting in its window tonight. Inside, the long room is hung with empty frames, each one lit as if it held something, and between them the guests stand with their glasses, and after a minute you understand that the guests are the exhibition.'),
+    p('The frames are gilt and very old and very good, and each has a small brass plate beneath it, engraved, as if for a title. You read one on the way past. It says nothing but a date, and a number.'),
     p('Celeste Laurent receives at the far end in green, tall and entirely made of edges, and holds out both hands to Marcus, and then to you, and does not let go of yours quite as soon as she lets go of his.'),
     q('Celeste', 'Marcus, darling. And your acquisition. How well she wears it.'),
     ...(clause(s, 'private') ? [p('A young man with a camera asks whether he might. You tell him your face is your own, in writing, and he goes away as if he had been told something about the weather.')] : []),
@@ -124,7 +134,7 @@ function longroomBlocks(s: GameState): Block[] {
 
 function longroomChoices(): C11Choice[] {
   const r = (id: string, label: string, hint: string, body: Block[]) =>
-    offer('room-' + id, label, hint, 'book', (x) => {
+    offer('room-' + id, label, hint, 'longroom', (x) => {
       set11(x, 'p-room', id);
       return body;
     });
@@ -142,6 +152,49 @@ function longroomChoices(): C11Choice[] {
       q('Marcus Chen', 'Everybody in this room is looking at you, and you are looking at the door. Which one do you want?'),
       q('You', 'The one with the book behind it.'),
       p('He laughs, and turns you once, and brings you to rest by that door, as if it had been his idea.'),
+    ]),
+  ];
+}
+
+/** A second beat in the long room (deepening pass): every path passes through it. */
+function guestChoices(s: GameState): C11Choice[] {
+  const g = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('guest-' + id, label, hint, 'book', (x) => {
+      set11(x, 'p-guest', id);
+      return body;
+    });
+  const j = julian(s);
+  return [
+    g('gulf', 'Let the quiet man from the Gulf fund find you', 'He has been measuring you all evening.', [
+      p('He finds you by the fireplace, a slight man in a perfect suit who has spoken to nobody all evening and looked at everybody, and bows very slightly.'),
+      q('The man from the Gulf fund', 'You are not on my list, Ms Vale. Everyone else in this room is on somebody’s list. That is the most interesting thing I have seen all year.'),
+      p('He gives you a card with nothing on it but a telephone number, engraved.'),
+      q('The man from the Gulf fund', 'When you are tired of being bought, ring me. I do not buy. I rent, and I return things in the condition I found them.'),
+      t('Being bought. He said it as if it were already true, and as if everybody here knew it but me.'),
+    ]),
+    ...(j === 'ally' || j === 'rival'
+      ? [
+          g('julian', 'Find Julian by the empty frames', 'He has been waiting for Marcus to look away.', [
+            p('You find Julian under the emptiest frame in the room, the largest, as if he had chosen it on purpose, and stand beside him facing the room, the way people do who do not want to be seen talking.'),
+            q(
+              'Julian Mercer',
+              j === 'ally'
+                ? 'Whatever is in the room next door, don’t let him see your face when you read it. That’s all. That’s the whole of my advice.'
+                : 'He’s showing you off, you know. Like a watch. I just wanted you to know that somebody in this room noticed, and minded.',
+            ),
+            p('He finishes his drink and goes, before Marcus turns round.'),
+          ]),
+        ]
+      : []),
+    g('celeste', 'Take a turn of the room on Celeste’s arm', 'She has been waiting to offer it.', [
+      p('Celeste takes your arm as if you had always walked like this, the two of you, and turns you slowly down the long room under the empty frames, nodding to her clients as you pass, the way a woman walks a new dog she is proud of.'),
+      q('Celeste', 'Do you like it? The collection?'),
+      q('You', 'It’s very well hung.'),
+      q('Celeste', 'Everything here is, darling. Including the guests. Marcus has excellent taste, you know. He always asks for exactly what he wants. It is his great charm, and it will be the end of him.'),
+      t('He always asks for exactly what he wants. She is telling me something, and enjoying the fact that I do not know what yet.'),
+    ]),
+    g('none', 'Stand under an empty frame', 'Let the room look.', [
+      p('You stand under an empty frame with a glass, and let the room look at you as if you were the painting. Nobody asks what you cost. You find that you are waiting for somebody to.'),
     ]),
   ];
 }
@@ -168,7 +221,7 @@ function bookBlocks(s: GameState): Block[] {
 
 function bookChoices(): C11Choice[] {
   const b = (id: string, label: string, hint: string, value: string, body: Block[]) =>
-    offer('page-' + id, label, hint, 'powder', (x) => {
+    offer('page-' + id, label, hint, 'book', (x) => {
       set11(x, 'p-page', id);
       setKey(x, 'pred.transfer', value);
       note(x, 'p11-transfer', 'Meridian’s client catalogue, The Winter Collection, records Evelynn as reissued and TRANSFERRED from Axiom to Helix at the request of the client, M. Chen. Her Helix job was brokered.', 'The Vesper client room, the catalogue, page forty');
@@ -185,6 +238,32 @@ function bookChoices(): C11Choice[] {
     b('read', 'Read it twice, and remember every line', 'Take nothing. Leave nothing.', 'read', [
       p('You read it twice, every line, until you could type it out at three in the morning, and turn the page back to where the last client left it, and leave the room with your glass exactly as full as when you came in.'),
     ]),
+  ];
+}
+
+/** The back pages (deepening pass), after her own page and before Iris. */
+function backChoices(): C11Choice[] {
+  const b = (id: string, label: string, hint: string, value: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('back-' + id, label, hint, 'powder', (x) => {
+      set11(x, 'p-back', id);
+      setKey(x, 'pred.book', value);
+      after?.(x);
+      return body;
+    });
+  return [
+    b('first', 'Turn back through the older pages', 'The book is older than tonight.', 'first', [
+      p('Near the front the pages are soft with handling, and the photographs older, and the plain type a little different, as if the machine that printed them had since been replaced by a better one.'),
+      p('And one of them stops your hand before your eyes have caught up with it: a woman with dark hair cut the way yours is cut, laughing at something off the edge of the photograph, and your initials.'),
+      q('The page', 'E. V. · First issue. · Singapore. · WITHDRAWN (JAKARTA).'),
+      t('There was one before me. With my name. Withdrawn, like a product with a fault. Nobody in this room would look twice at that word. I cannot stop looking at it.'),
+    ], (x) => note(x, 'p11-first', 'Meridian’s catalogue carries an earlier page for the same initials: E. V. · first issue · Singapore · withdrawn (Jakarta). Evelynn is the second issue of the legend she wears.', 'The Vesper client room, the catalogue, the front pages')),
+    b('clients', 'Read the client ledger at the back', 'Whose book is it, really?', 'clients', [
+      p('At the back of the book, after the last person, a ledger of clients in the same plain type, a line each. You find his without looking for it.'),
+      q('The ledger', 'M. CHEN · HELIX · CLIENT, ELEVEN YEARS · TRANSFERS: 3.'),
+      p('Above yours, two other sets of initials, one from six years ago and one from three, and against each of them the same word: CONCLUDED.'),
+      t('I am the third thing he has bought from this book. I would like very much to know what happened to the first two, and what the word means, and whether he knows.'),
+    ]),
+    b('close', 'Close the book', 'You have read enough.', 'closed', [p('You close the book, gently, as if somebody were asleep in it.')]),
   ];
 }
 
@@ -228,6 +307,7 @@ function terraceBlocks(): Block[] {
     p('Inside, a folded memo in a hand that anyone would take for Iris’s: a chief of staff offering her employer’s positions to a rival, with dates. And a note, on the Vesper’s paper, in green:'),
     q('C.', 'A small favour for a client, darling. Put this in Iris’s bag before she leaves. She has done beautifully for four years, and she is ending, and Mr Halvorsen would like it to be tonight.'),
     q('Celeste', 'I thought the new one might like to learn how it is done.'),
+    p('Below you the river goes on being black and going somewhere. Behind you, through the glass, the clients are laughing at something, and Marcus’s laugh is among them, arriving late.'),
     p('She kisses the air beside your cheek, and goes back inside, and leaves you on the terrace with the envelope and the river.'),
     t('The new one. Transferred at client request. And now a favour for a client. She is showing me the whole machine, one gear at a time, to see which one I pick up.'),
   ];
@@ -463,6 +543,7 @@ function ledgerBlocks(s: GameState): Block[] {
     q('The card', a === 'complied' ? 'IRIS MOREAU. RETIRED. I PUT IT IN HER BAG.' : a === 'refused' ? 'IRIS MOREAU. ENDED. NOT BY ME. NOT SAVED BY ME EITHER.' : a === 'warned' ? 'IRIS MOREAU. OUT THROUGH THE KITCHENS.' : 'IRIS MOREAU. KEPT. HALVORSEN OWES ME.'),
     q('The card', 'E. V. TRANSFERRED: AXIOM → HELIX. AT CLIENT REQUEST (M. CHEN).' + (page === 'torn' ? ' (THE PAGE IS IN MY BAG.)' : page === 'photographed' ? ' (PHOTOGRAPHED.)' : '')),
     p('You pin the second one next to Marcus’s, touching it, so that the two cards overlap at the corner.'),
+    ...(key(s, 'pred.book') === 'first' ? [p('And a third, smaller, in pencil, pinned under your own: E. V. FIRST ISSUE. WITHDRAWN. JAKARTA. WHO WAS SHE?')] : key(s, 'pred.book') === 'clients' ? [p('And under Marcus’s name, in pencil: TRANSFERS: 3. TWO CONCLUDED. WHAT DOES CONCLUDED MEAN?')] : []),
     p('At one the black phone lights.'),
     q('C.', a === 'complied' ? 'Beautifully done, darling. Mr Halvorsen is so grateful to Helix. You see? It is only ever difficult the first time.' : a === 'refused' ? 'Mr Halvorsen is taking his ships elsewhere, darling. Marcus has been told why. I did so hope.' : 'Well. I am starting to enjoy you. I have started keeping count.'),
     ...(page === 'torn' ? [q('C.', 'And do keep the page, darling. We have copies. We always have copies.')] : []),
@@ -484,8 +565,8 @@ export function predatorBlocks11(s: GameState): Block[] {
 
 export function predatorChoices11(s: GameState): C11Choice[] {
   if (s.phase === 'dress') return dressChoices();
-  if (s.phase === 'longroom') return longroomChoices();
-  if (s.phase === 'book') return bookChoices();
+  if (s.phase === 'longroom') return get11(s, 'p-room') ? guestChoices(s) : longroomChoices();
+  if (s.phase === 'book') return get11(s, 'p-page') ? backChoices() : bookChoices();
   if (s.phase === 'powder') return powderChoices();
   if (s.phase === 'terrace') return terraceChoices(s);
   if (s.phase === 'cloak') return cloakChoices(s);

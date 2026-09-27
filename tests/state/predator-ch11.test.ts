@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter11Choices(s).map((c) => c.id.replace(/^chapter11\./, ''));
 const c11 = (s: GameState, id: string) => choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
-const walk11 = (s: GameState, path: string[]) => path.reduce(c11, s);
+/** The deepening pass's moments (the second beat, the back pages): take the neutral pick when it is in the way. */
+const NEUTRAL11 = ['guest-none', 'back-close'];
+const walk11 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL11.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c11(y, n);
+    }
+    return c11(y, id);
+  }, s);
 const cash = (s: GameState) => Number(s.choices['own.cash'] ?? 0);
 
 /** A real save (the maximal-julian golden) through Chapter 6, the Predator Chapters 7 and 8, and the Chapter 9 bridge,
@@ -56,12 +67,19 @@ it('enters from the Predator Chapter 9, and Chapter 12 now waits for the Vesper'
 it('reads her own page, burns Iris, sends Marcus the bill, and authenticates', () => {
   const room = walk11(toBridge9(), ['begin-predator', 'dress-gift']);
   expect(text(room)).toContain('Marcus, darling. And your acquisition.');
-  const book = c11(room, 'room-dance');
-  expect(text(book)).toContain('Which one do you want?');
+  const beat = c11(room, 'room-dance');
+  expect(text(beat)).toContain('Which one do you want?');
+  // The second beat (deepening pass): Julian is an ally on this save.
+  expect([beat.phase, ids(beat)]).toEqual(['longroom', ['guest-gulf', 'guest-julian', 'guest-celeste', 'guest-none']]);
+  const book = c11(beat, 'guest-celeste');
+  expect(text(book)).toContain('He always asks for exactly what he wants.');
   expect(text(book)).toContain('TRANSFERRED: AXIOM → HELIX · AT CLIENT REQUEST (M. CHEN)');
   expect(text(book)).toContain('I was a line item.');
-  const powder = c11(book, 'page-tear');
-  expect(powder.facts).toContain('c11.p11-transfer');
+  const back = c11(book, 'page-tear');
+  expect(back.facts).toContain('c11.p11-transfer');
+  expect(ids(back)).toEqual(['back-first', 'back-clients', 'back-close']);
+  const powder = c11(back, 'back-clients');
+  expect(text(powder)).toContain('M. CHEN · HELIX · CLIENT, ELEVEN YEARS · TRANSFERS: 3.');
   const terrace = c11(powder, 'iris-truth');
   expect(text(terrace)).toContain('I’m on page forty. Same book.');
   expect(text(terrace)).toContain('I thought the new one might like to learn how it is done.');
@@ -81,6 +99,7 @@ it('reads her own page, burns Iris, sends Marcus the bill, and authenticates', (
   expect(done.facts).toContain('c11.p11-evening-consent');
   expect(text(done)).toContain('IRIS MOREAU. RETIRED. I PUT IT IN HER BAG.');
   expect(text(done)).toContain('(THE PAGE IS IN MY BAG.)');
+  expect(text(done)).toContain('TRANSFERS: 3. TWO CONCLUDED.');
   expect(text(done)).toContain('We have copies. We always have copies.');
   expect(chapter12Choices(done).map((c) => c.id)).toEqual(['chapter12.begin-predator']);
   expect(replay(done.ledger, 19)).toEqual(done);
@@ -107,7 +126,10 @@ it('warns Iris out through the kitchens: the first time Celeste is surprised', (
 });
 
 it('turns the favour on Halvorsen, and Chapter 13 remembers the night she tried', () => {
-  const done = walk11(toBridge9(), ['begin-predator', 'dress-own', 'room-dazzle', 'page-read', 'iris-client', 'order-turn', 'cloak-celeste', 'car-keep', 'late-alone']);
+  const done = walk11(toBridge9(), ['begin-predator', 'dress-own', 'room-dazzle', 'guest-gulf', 'page-read', 'back-first', 'iris-client', 'order-turn', 'cloak-celeste', 'car-keep', 'late-alone']);
+  expect(text(done)).toContain('You are not on my list, Ms Vale.');
+  expect(text(done)).toContain('E. V. · First issue. · Singapore. · WITHDRAWN (JAKARTA).');
+  expect(done.facts).toContain('c11.p11-first');
   expect(text(done)).toContain('On reflection, my dear, I think I shall keep my chief of staff.');
   expect(text(done)).toContain('I wonder who could have changed it for him.');
   expect([done.choices['pred.iris'], done.choices['pred.halvorsen']]).toEqual(['kept', 'owes-her']);
@@ -117,6 +139,8 @@ it('turns the favour on Halvorsen, and Chapter 13 remembers the night she tried'
   let s = done;
   for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-lake', 'list-close', 'account-decline', 'lake-alone', 'call-none', 'dawn-sleep'])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
+  // Geneva remembers the first issue.
+  expect(text(s)).toContain('I saw her page at the Vesper, soft with handling');
   const reading = choose(s, 'CHAPTER13_CHOOSE', 'chapter13.begin-predator');
   expect(text(reading)).toContain('the night she tried to end Iris');
 });

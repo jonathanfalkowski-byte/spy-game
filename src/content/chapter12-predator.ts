@@ -161,6 +161,7 @@ function morelBlocks(s: GameState): Block[] {
     q('Lucien Morel', 'You’re the second one.'),
     q('You', 'The second what?'),
     q('Lucien Morel', 'The second Evelyn Vale to sit in that chair. The first one ordered the sole, and a glass of Chasselas. She held the glass the way you are holding it, by the foot, as if it might go off.'),
+    ...(key(s, 'pred.book') === 'first' ? [t('I know. I saw her page at the Vesper, soft with handling: first issue, Singapore, withdrawn, Jakarta. I did not know she ordered the sole.')] : []),
     ...(get5(s, 'published') ? [q('Lucien Morel', 'I have seen your face in the newspapers, of course. And before that, on somebody else.')] : []),
     p('For the rest of the fish you play the game properly, the two of you, the way it is played at tables like this one. He tells you three things about himself: that he has never left Switzerland for longer than a month, that he hates the fountain, and that he has never once lied to a client. You find the lie by the coffee, and tell him which one, and he laughs, for the first time, as if something had given way.'),
     ...(want === 'desk' ? [q('Lucien Morel', 'She wanted out. You don’t. You want the chair, not the cheque. I can see it from here.')] : []),
