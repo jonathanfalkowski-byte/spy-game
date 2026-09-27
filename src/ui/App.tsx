@@ -352,7 +352,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
               : state.scene === 'chapter9'
               ? 'Chapter 9 / Assembling the Case'
               : state.scene === 'chapter8'
-              ? 'Chapter 8 / The Cost Bites'
+              ? state.choices['route.lane'] === 'predator' ? 'Chapter 8 / The Floor' : 'Chapter 8 / The Cost Bites'
               : state.scene === 'chapter7'
               ? 'Chapter 7 / The Road You Choose'
               : state.scene === 'chapter6'
@@ -395,9 +395,9 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         ) : state.scene === 'chapter9' ? (
           'Assembling the Case.'
         ) : state.scene === 'chapter8' ? (
-          'The Cost Bites.'
+          state.choices['route.lane'] === 'predator' ? 'The Floor.' : 'The Cost Bites.'
         ) : state.scene === 'chapter7' ? (
-          state.choices['route.lane'] === 'own-power' ? 'Standing Alone.' : 'The Road You Choose.'
+          state.choices['route.lane'] === 'own-power' ? 'Standing Alone.' : state.choices['route.lane'] === 'predator' ? 'The Offer.' : 'The Road You Choose.'
         ) : state.scene === 'chapter6' ? (
           'The Cage You Choose.'
         ) : state.scene === 'chapter5' ? (
@@ -1057,7 +1057,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                           : state.scene === 'chapter9'
                           ? 'Chapter 9 / Assembling the Case'
                           : state.scene === 'chapter8'
-                          ? 'Chapter 8 / The Cost Bites'
+                          ? state.choices['route.lane'] === 'predator' ? 'Chapter 8 / The Floor' : 'Chapter 8 / The Cost Bites'
                           : state.scene === 'chapter7'
                           ? 'Chapter 7 / The Road You Choose'
                           : state.scene === 'chapter6'
