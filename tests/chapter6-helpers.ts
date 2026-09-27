@@ -7,11 +7,23 @@ import { identityDisclosure } from '../src/state/chapter3-provenance';
 
 export const ids = (s: GameState) => chapter6Choices(s).map((c) => c.id.replace(/^chapter6\./, ''));
 export const text = (s: GameState) => s.history.flatMap((h) => h.blocks.map((b) => b.text)).join('\n');
-export const c6 = (s: GameState, id: string) => {
+const choose6 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + id });
-  if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
+  if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
+/** The deepening pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+export const NEUTRAL6 = ['dress-plain', 'late-sit'];
+export const settle6 = (s: GameState, id?: string) => {
+  let x = s;
+  for (let i = 0; i < 3 && !(id && ids(x).includes(id)); i++) {
+    const n = NEUTRAL6.find((d) => ids(x).includes(d));
+    if (!n) break;
+    x = choose6(x, n);
+  }
+  return x;
+};
+export const c6 = (s: GameState, id: string) => choose6(settle6(s, id), id);
 export const walk = (s: GameState, path: string[]) => path.reduce(c6, s);
 export const complete19 = (name: string) => replay(golden.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 

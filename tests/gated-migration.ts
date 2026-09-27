@@ -1,6 +1,7 @@
 import type { GameEvent, Intent } from '../src/state/actions';
 import type { GameState } from '../src/state/schema';
 import { act, initialState } from '../src/state/reducer';
+import { chapter6Choices } from '../src/content/chapter6';
 import { chapter7Choices } from '../src/content/chapter7';
 import { chapter8Choices } from '../src/content/chapter8';
 import { chapter9Choices } from '../src/content/chapter9';
@@ -190,6 +191,9 @@ export const GATED_DEFAULTS = [
   'chapter15.stairs-still',
   // Chapter 14 second pass: stand at the wall.
   'chapter14.night-wall',
+  // Chapter 6 deepening: jeans and the plain coat; stay at the table.
+  'chapter6.dress-plain',
+  'chapter6.late-sit',
 ];
 
 /** Moves a later pass replaced outright: the old move becomes its closest new equivalent. */
@@ -231,8 +235,8 @@ export function migrateGated(ledger: GameEvent[], revision: number): GameEvent[]
 }
 
 function fillDefault(s: GameState): GameState | undefined {
-  const fill = [...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s), ...chapter10Choices(s), ...chapter11Choices(s), ...chapter12Choices(s), ...chapter13Choices(s), ...chapter14Choices(s), ...chapter15Choices(s), ...chapter16Choices(s), ...chapter17Choices(s), ...chapter18Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
+  const fill = [...chapter6Choices(s), ...chapter7Choices(s), ...chapter8Choices(s), ...chapter9Choices(s), ...chapter10Choices(s), ...chapter11Choices(s), ...chapter12Choices(s), ...chapter13Choices(s), ...chapter14Choices(s), ...chapter15Choices(s), ...chapter16Choices(s), ...chapter17Choices(s), ...chapter18Choices(s)].find((c) => GATED_DEFAULTS.includes(c.id));
   if (!fill) return undefined;
-  const type = ({ chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE', chapter10: 'CHAPTER10_CHOOSE', chapter11: 'CHAPTER11_CHOOSE', chapter12: 'CHAPTER12_CHOOSE', chapter13: 'CHAPTER13_CHOOSE', chapter14: 'CHAPTER14_CHOOSE', chapter15: 'CHAPTER15_CHOOSE', chapter16: 'CHAPTER16_CHOOSE', chapter17: 'CHAPTER17_CHOOSE', chapter18: 'CHAPTER18_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
+  const type = ({ chapter6: 'CHAPTER6_CHOOSE', chapter7: 'CHAPTER7_CHOOSE', chapter8: 'CHAPTER8_CHOOSE', chapter9: 'CHAPTER9_CHOOSE', chapter10: 'CHAPTER10_CHOOSE', chapter11: 'CHAPTER11_CHOOSE', chapter12: 'CHAPTER12_CHOOSE', chapter13: 'CHAPTER13_CHOOSE', chapter14: 'CHAPTER14_CHOOSE', chapter15: 'CHAPTER15_CHOOSE', chapter16: 'CHAPTER16_CHOOSE', chapter17: 'CHAPTER17_CHOOSE', chapter18: 'CHAPTER18_CHOOSE' } as const)[fill.id.split('.')[0] as 'chapter7'];
   return act(s, { type, id: fill.id } as Intent);
 }

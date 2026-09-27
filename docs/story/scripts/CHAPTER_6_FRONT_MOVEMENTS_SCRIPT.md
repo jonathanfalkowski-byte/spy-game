@@ -358,3 +358,25 @@ only to what actually reached the actor; none assigns a route. Each sets a small
 - The `friction` phase is a small hub: Counter first (or skip), then the unlocked beats in any order, then `friction-done` → `exit`. Each beat is one-shot.
 - `friction-sloane`'s capture clause fires only when `c6.photo-custody === 'phone'` would exist — but note the photo is captured in movement 5 (`proof`), *after* friction. So in the movement-3 timeline reference only the workspace message and the Maya meeting; drop the "Meridian page flagged" clause here (it can't have happened yet). Keep the two-option structure. *(Correction to the block above: the capture line is out of sequence — omit it in `friction`.)*
 - These set `c6.friction-*` records for flavour and the route weighting's Sloane/executive/public reads; none forces a lane.
+
+## Deepening pass (2026-09-26)
+
+Shared by every road and route-neutral. There are no flags any later chapter reads, and no money, trust or lane
+effects. Two moments, each with a neutral pick for the goldens (`GATED_DEFAULTS`, which now covers Chapter 6 too),
+and more of the morning, the ask and the late count:
+
+- **Getting dressed** (`benefit`, before the benefit response) (`c6.dress`):
+  - **dress-armour**: the fitted black, "very expensive to argue with".
+  - **dress-soft**: the ivory silk and her hair down. A morning that is kind to her: the lift held, the good cup, "you
+    have a lovely face". "I have decided that I like it."
+  - **dress-plain** (neutral): jeans and the plain coat; restful, and very slightly disappointing.
+- **The late hour** (`exit`, before the exit decision) (`c6.late`):
+  - **late-bag**: a ten-minute bag packed and pushed under the bed. "That is not the same as wanting to."
+  - **late-tower**: the long way home past Axiom Tower at midnight; a cleaner vacuuming under his old desk.
+  - **late-sit** (neutral).
+- **Prose**: the morning gains "Convenience is the softest kind of leash". The ask gains where it arrives (Julian at
+  the workroom door, the editor's too-careful message, Sloane ringing, "She never rings") and "like a man holding
+  your coat". The exit opens at the kitchen table with the back of an envelope.
+
+After this pass: **~1.0–2.0k words on the golden paths** (from ~0.7–1.7k), against the 9k budget. Chapter 6 is still
+by far the leanest chapter. The next lift is the proof and counterpower movements, which carry most of its weight.

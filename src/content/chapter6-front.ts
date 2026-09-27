@@ -1,6 +1,12 @@
 /** Chapter 6 movements 1–4 — benefit, expectation, friction (the Counter), exit. Wording and flags:
  * docs/story/scripts/CHAPTER_6_FRONT_MOVEMENTS_SCRIPT.md (with its wording fill and build decisions).
- * A benefit is not a debt: nothing here resolves the arrangement or assigns a route. */
+ * A benefit is not a debt: nothing here resolves the arrangement or assigns a route.
+ * Deepening pass (2026-09-26), shared by every road and route-neutral: the morning, the noon ask and the late count
+ * at greater length, and two moments with neutral picks. Getting dressed for the day, before the benefit response
+ * (c6.dress = armour | soft | plain: the fitted black; the silk and her hair down, and a morning that is kind to her;
+ * jeans and the plain coat). And the late hour before the exit decision (c6.late = bag | tower | sit: a bag packed
+ * under the bed; the long way home past Axiom Tower and a cleaner at his old desk; the kitchen table). No flags any
+ * later chapter reads. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get5, julian5, old } from './chapter5-model';
@@ -36,6 +42,13 @@ const request: Record<ExitArrangement6, Block> = {
   'self-funded': p('No one asks you for anything, because no one is holding a thing you need. The only expectation on you today is the one you set yourself. It is a strange, light feeling, and you notice how unused to it you are.'),
 };
 
+/** Where the ask arrives (deepening pass). */
+const askSetting: Partial<Record<ExitArrangement6, string>> = {
+  'julian-workroom': 'Julian catches you at the workroom door at noon, his coat over his arm, on his way to somewhere that has a car waiting outside it. He stops as if he had only just thought of it. He has not only just thought of it.',
+  'public-artifact': 'The editor’s message comes in at noon: long, warm and very carefully worded, the way people write when they have already decided what you are going to say.',
+  'sloane-institutional': 'Sloane rings at noon. She never rings. She speaks as if she were continuing a conversation you had not known you were having.',
+};
+
 // ── Movement 4: exit ──
 
 const cost: Record<ExitArrangement6, string> = {
@@ -54,9 +67,16 @@ export function frontBlocks6(s: GameState): Block[] {
     return [
       p('The morning is ordinary, which is the point. Whatever you built in the last weeks is simply there now, part of how the day works. You use it without thinking. Then you catch yourself thinking about it.'),
       p(inUse[arrangement(s)]),
+      p('A week since the harbour. Your body has stopped surprising you in the mornings: the weight of your hair on the back of your neck, the way a coat sits on your shoulders, the half-second in a shop window before you recognise the woman walking beside you. What still surprises you is how quickly the rest of it has become ordinary too. The key that works. The card that is accepted. The door that opens before you have finished reaching for it.'),
+      t('Convenience is the softest kind of leash. You don’t feel it until you walk to the end of it.'),
     ];
-  if (s.phase === 'expectation') return [request[arrangement(s)]];
-  if (s.phase === 'exit') return [p(cost[arrangement(s)])];
+  if (s.phase === 'expectation')
+    return [...(askSetting[arrangement(s)] ? [p(askSetting[arrangement(s)]!)] : []), request[arrangement(s)], ...(selfFunded(s) ? [] : [t('There it is. Not a demand. A request, with the benefit standing quietly behind it, like a man holding your coat.')])];
+  if (s.phase === 'exit')
+    return [
+      p('Late. The flat is quiet. You sit at the kitchen table with a pen and the back of an envelope, the way Adrian used to sit with a spreadsheet he did not trust, and do the thing nobody who is comfortable ever does: you add up what it would cost to stop.'),
+      p(cost[arrangement(s)]),
+    ];
   return [];
 }
 
@@ -373,7 +393,55 @@ function frictionHub(s: GameState): C6Choice[] {
 
 // ── Choices for movements 1, 2, 3, 4 ──
 
+/** Getting dressed for the day (deepening pass), before the benefit response. */
+function dressChoices(): C6Choice[] {
+  const d = (id: string, label: string, hint: string, body: Block[]) =>
+    offer6('dress-' + id, label, hint, 'benefit', (x) => {
+      set6(x, 'dress', id);
+      return body;
+    });
+  return [
+    d('armour', 'The fitted black', 'Heels, hair up, the face finished. Armour.', [
+      p('The fitted black, the heels you can walk fast in, your hair up and pinned hard, the face finished and then finished again. In the hall mirror a woman looks back at you who would be very expensive to argue with.'),
+      t('Whatever I walk into today will look at me before it listens to me. Let it look. Then let it listen.'),
+    ]),
+    d('soft', 'The silk, and your hair down', 'See what the day does with a softer version of you.', [
+      p('The ivory silk, open at the throat, your hair down for once, soft flat shoes. It feels like walking out without a coat.'),
+      p('The day is kind to her. A man holds the lift and does not look at his phone. The girl at the coffee place gives you the good cup, the one with the chip that they keep for regulars, without being asked. On the stairs an old woman tells you that you have a lovely face, as if informing you of the weather, and goes on down.'),
+      t('It is a kind of power too, softer, and it works on people who would have braced themselves against the other kind. I have not decided yet whether I trust it. I have decided that I like it.'),
+    ]),
+    d('plain', 'Jeans and the plain coat', 'Nobody looks. Find out what that feels like.', [
+      p('Jeans, a jumper, the plain coat. You walk out into a morning where nobody looks twice at you. It is restful. It is also, you notice with some surprise, very slightly disappointing.'),
+    ]),
+  ];
+}
+
+/** The late hour (deepening pass), before the exit decision. */
+function lateChoices(): C6Choice[] {
+  const l = (id: string, label: string, hint: string, body: Block[]) =>
+    offer6('late-' + id, label, hint, 'exit', (x) => {
+      set6(x, 'late', id);
+      return body;
+    });
+  return [
+    l('bag', 'Pack a bag', 'The one you would take if you had ten minutes.', [
+      p('You get the small bag down from the top of the wardrobe and pack it the way you would if somebody knocked and you had ten minutes: the passport in the name they gave you, whatever cash is in the flat, one change of clothes, flat shoes, a charger, a toothbrush. You zip it and push it under the bed, against the wall, where you will know it is.'),
+      t('I have never needed to leave anywhere in ten minutes. I would like to know that I could. That is not the same as wanting to.'),
+    ]),
+    l('tower', 'Walk the long way home, past Axiom Tower', 'Look up at his floor.', [
+      p('You go out for air and your feet take the long way home, the way they have started to without asking you, along the river and up past Axiom Tower. Midnight. Most of it dark. His floor lit, the way it is every night when the cleaners are in.'),
+      p('You stand across the road with your hands in your pockets and find his window without counting. Somebody is in it: a woman in a tabard, moving a vacuum cleaner slowly under a desk that used to be yours, stopping to straighten a chair, moving on.'),
+      t('Somebody is hoovering under my desk. Somebody will always be hoovering under somebody’s desk. I used to think that was the saddest thing about offices. It turns out it is the most comforting.'),
+    ]),
+    l('sit', 'Stay at the table', 'With the envelope and the numbers.', [
+      p('You stay at the table with the envelope until the numbers stop meaning anything, and then a little longer, until they start to mean something again.'),
+    ]),
+  ];
+}
+
 export function frontChoices6(s: GameState): C6Choice[] {
+  if (s.phase === 'benefit' && !get6(s, 'dress')) return dressChoices();
+  if (s.phase === 'exit' && !get6(s, 'late')) return lateChoices();
   if (s.phase === 'benefit') {
     const choose = (id: string, label: string, hint: string, value: string, line: string) =>
       offer6('benefit-' + id, label, hint, 'expectation', (x) => {

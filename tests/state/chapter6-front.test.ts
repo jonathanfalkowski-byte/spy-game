@@ -3,13 +3,14 @@ import type { GameState } from '../../src/state/schema';
 import { get6 } from '../../src/content/chapter6-model';
 import { currentPlace } from '../../src/ui/chapter4-presentation';
 import { sceneById } from '../../src/content/scenes';
-import { c6, chapter5Complete, ids, text, walk, type Setup } from '../chapter6-helpers';
+import { c6, chapter5Complete, ids, settle6, text, walk, type Setup } from '../chapter6-helpers';
 
 beforeEach(() => vi.stubEnv('VITE_EVE_CHAPTER6', '1'));
 afterEach(() => vi.unstubAllEnvs());
 
 const julian = { 'c5.service': 'julian' };
-const enter = (opts: Setup = {}) => c6(chapter5Complete(opts), 'begin');
+/** Into the morning, past getting dressed (the deepening pass's neutral pick). */
+const enter = (opts: Setup = {}) => settle6(c6(chapter5Complete(opts), 'begin'));
 const toFriction = (opts: Setup = {}) => {
   const s = c6(enter(opts), 'benefit-accept');
   return c6(s, ids(s).includes('expect-selfnote') ? 'expect-selfnote' : 'expect-clarify');
@@ -100,7 +101,7 @@ it('lets a Maya who knows take up to two topics; her own life makes her protecta
 });
 
 it('offers exit preparation by arrangement and gates putting the term on record', () => {
-  const exitFor = (opts: Setup, counter = ['counter-skip']) => walk(toFriction(opts), [...counter, 'friction-done']);
+  const exitFor = (opts: Setup, counter = ['counter-skip']) => settle6(walk(toFriction(opts), [...counter, 'friction-done']));
   expect(ids(exitFor({}))).toEqual(['exit-price', 'exit-hold']);
   expect(text(exitFor({}))).toContain('Your cost of leaving is only the leaving.');
   expect(ids(exitFor({ flags: julian }))).toEqual(['exit-price', 'exit-negotiate', 'exit-deepen', 'exit-hold']);
@@ -153,4 +154,25 @@ it('matches Sloane’s workspace line and Evelynn’s correction to what the mes
   const reply = meetingOnly.history.flatMap((h) => h.blocks).filter((b) => b.speaker === 'You').at(-1)?.text;
   expect(reply).toBe('A friend I’ve known ten years. Each is exactly what it is, and none of it is what you’re worried it might be.');
   expect(ids(c6(toFriction({ flags: { 'c5.message-sloane': 'yes' } }), 'counter-skip'))).toEqual(['friction-done']);
+});
+
+it('dresses her for the morning, and gives her a late hour before the exit', () => {
+  const morning = c6(chapter5Complete(), 'begin');
+  expect(text(morning)).toContain('Convenience is the softest kind of leash.');
+  expect(ids(morning)).toEqual(['dress-armour', 'dress-soft', 'dress-plain']);
+  const soft = c6(morning, 'dress-soft');
+  expect([soft.phase, get6(soft, 'dress')]).toEqual(['benefit', 'soft']);
+  expect(text(soft)).toContain('I have decided that I like it.');
+  expect(ids(soft)).toEqual(['benefit-who', 'benefit-accept']);
+  const ask = c6(settle6(c6(chapter5Complete({ flags: julian }), 'begin')), 'benefit-accept');
+  expect(text(ask)).toContain('He has not only just thought of it.');
+  expect(text(ask)).toContain('like a man holding your coat');
+  const late = walk(toFriction(), ['counter-skip', 'friction-done']);
+  expect(text(late)).toContain('you add up what it would cost to stop');
+  expect(ids(late)).toEqual(['late-bag', 'late-tower', 'late-sit']);
+  const tower = c6(late, 'late-tower');
+  expect([tower.phase, get6(tower, 'late')]).toEqual(['exit', 'tower']);
+  expect(text(tower)).toContain('Somebody is hoovering under my desk.');
+  expect(ids(tower)).toEqual(['exit-price', 'exit-hold']);
+  expect(text(c6(late, 'late-bag'))).toContain('That is not the same as wanting to.');
 });

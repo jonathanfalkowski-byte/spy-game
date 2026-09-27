@@ -14,8 +14,16 @@ const route = (name: string) => golden.routes.find((r) => r.name === name)!;
 const complete19 = (name: string) => replay(route(name).ledger as GameEvent[], 19);
 const walk = (s: GameState, path: string[]) => path.reduce(c6, s);
 const c6 = (s: GameState, id: string) => {
-  const next = act(s, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + id });
-  if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase);
+  let x = s;
+  // The deepening pass's moments: take the neutral pick when one stands in the way.
+  for (let i = 0; i < 3; i++) {
+    const offered = chapter6Choices(x).map((c) => c.id.replace(/^chapter6\./, ''));
+    const n = offered.includes(id) ? undefined : ['dress-plain', 'late-sit'].find((d) => offered.includes(d));
+    if (!n) break;
+    x = act(x, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + n });
+  }
+  const next = act(x, { type: 'CHAPTER6_CHOOSE', id: 'chapter6.' + id });
+  if (next === x) throw Error('Unavailable ' + id + ' at ' + x.phase);
   return next;
 };
 const withChoices = (s: GameState, choices: Record<string, string>) => {
