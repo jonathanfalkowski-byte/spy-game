@@ -7,8 +7,8 @@
  * Evelynn was. Comply runs it by the book: there is no option to pressure Delphine, and the feed is cut at the door;
  * nothing behind it is shown or described, then or later. Refuse costs Evelynn's standing, non-sexually. Counter turns
  * Marsh or frees Delphine, each spending something she built. The comply lead-in can be faded by the reader
- * (fadeCoercion13 recognises it by P_COMPLY_OPENING13). Temporary entry: from a Predator `chapter9.complete` with a
- * short bridge ("The winter") until the Predator Chapters 10–12 exist. Local helpers mirror chapter13.ts (c13.* keys,
+ * (fadeCoercion13 recognises it by P_COMPLY_OPENING13). Entry: from the Predator `chapter12.ledger` (The Counterparty),
+ * with a short bridge ("The winter"); the temporary entry from Chapter 9 moved to Chapter 12 on 2026-09-27. Local helpers mirror chapter13.ts (c13.* keys,
  * chapter13.* ids) to avoid a circular import.
  * Deepening pass (2026-09-27): the week between Delphine and midnight (c13.p-week = marcus | julian | maya | alone:
  * Marcus knows, and says "do it well, or don't do it", because Celeste is testing her for his desk; Julian, the one

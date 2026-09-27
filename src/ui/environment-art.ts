@@ -236,6 +236,14 @@ const byNode: Record<string, Key> = {
   'chapter12.sister': 'apartmentDay',
   'chapter12.night': 'rooftop',
   'chapter12.complete': 'car',
+  // The Predator road: The Counterparty (stand-ins until EVE Art's Geneva frames: the bank, the lake, the Quai).
+  'chapter12.geneva': 'hotelRoom',
+  'chapter12.bank': 'reviewRoom',
+  'chapter12.morel': 'privateDinner',
+  'chapter12.vault': 'recordsCounter',
+  'chapter12.lake': 'hotelRoom',
+  'chapter12.call': 'phone',
+  'chapter12.ledger': 'apartmentNight',
   // Chapter 13 (stand-ins until EVE Art's frames: the reading room by day, the Claremont bar, a corridor and a door, never the room).
   'chapter13.brief': 'reviewRoom',
   'chapter13.week': 'apartmentNight',

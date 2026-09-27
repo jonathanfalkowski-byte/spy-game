@@ -1,8 +1,8 @@
 # The Predator route: design (for owner approval)
 
 **Status: APPROVED (owner, 2026-09-27: all six decisions as recommended).** The lane split (§3) is **built**: the other chapters
-each get their own design doc before build. Built so far: Ch7 (The Offer), Ch8 (The Floor), Ch13 (The Mirror) and Ch14
-(Marcus Falls). Still to come: Ch10–12 and the Act IV variants. Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
+each get their own design doc before build. Built so far: Ch7 (The Offer), Ch8 (The Floor), Ch12 (The Counterparty),
+Ch13 (The Mirror) and Ch14 (Marcus Falls). Still to come: the Ch10–11 variants and the Act IV variants. Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
 
 ## 1. The route in one paragraph
 

@@ -9,11 +9,11 @@ import { boardOpen14, boardVotes14 } from '../../src/content/chapter14-predator'
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
 
 beforeEach(() => {
-  for (const n of [6, 7, 8, 9, 13, 14]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 12, 13, 14]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER13_CHOOSE' | 'CHAPTER14_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER13_CHOOSE' | 'CHAPTER14_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -37,7 +37,7 @@ const cash = (s: GameState) => Number(s.choices['own.cash'] ?? 0);
 
 type Build = { julian?: 'truth' | 'lie' | 'past'; want?: 'money' | 'title' | 'desk'; clauses?: string[]; ch8?: string[]; night?: string; ch13?: string[] };
 /** A real save (the maximal-julian golden) through Chapter 6, the Predator Chapters 7 and 8, the Chapter 9 bridge and
- * the Predator Chapter 13, to its ledger. */
+ * the Predator Chapters 12 (Geneva, quiet picks) and 13, to its ledger. */
 function toLedger13(b: Build = {}) {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
   s = c6(s, ids6(s).includes('expect-negotiate') ? 'expect-negotiate' : 'expect-clarify');
@@ -55,6 +55,9 @@ function toLedger13(b: Build = {}) {
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
+  // Geneva (Predator Chapter 12), on its quiet picks.
+  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'list-close', 'account-decline', 'lake-alone', 'call-none'])
+    s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
   for (const id of ['begin-predator', 'reading-silent', 'delphine-work', 'week-alone', ...(b.ch13 ?? ['mirror-refuse', 'night-wait', 'late-on']), 'friday-end'])
     s = choose(s, 'CHAPTER13_CHOOSE', 'chapter13.' + id);
   return s;
@@ -90,6 +93,8 @@ it('takes him by the board, pays her want, and settles an ally in the room', () 
   expect(text(room)).toContain('Every hand in the air is a lever you pulled.');
   expect(text(room)).toContain('Julian, in the Group COO’s chair, votes with you');
   expect(text(room)).toContain('None of them has ever seen your work.');
+  // Geneva's clause counts as proof (the Ch12 follow-up).
+  expect(text(room)).toContain('Every deal Marcus signed gave the fund first claim on Helix itself');
   const before = cash(room);
   const desk = walk14(room, ['room-watch', 'last-refuse']);
   expect(desk.phase).toBe('desk');

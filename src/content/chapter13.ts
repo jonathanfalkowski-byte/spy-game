@@ -962,8 +962,8 @@ export function chapter13Choices(s: GameState): C13Choice[] {
   if (!chapter13Playable(s)) return [];
   if (s.scene === 'chapter12' && s.phase === 'complete' && ownPower(s))
     return [offer13('begin', 'The placement', 'The first Thursday. Content notice: sexual coercion (implied, never shown), blackmail.', 'brief')];
-  // Temporary entry (design decision 7): the Predator road comes from its Chapter 9 until its Chapters 10–12 exist.
-  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator13(s)) return [beginPredator13()];
+  // The Predator road comes from its Chapter 12 (The Counterparty); the temporary entry from Chapter 9 moved there.
+  if (s.scene === 'chapter12' && s.phase === 'ledger' && isPredator13(s)) return [beginPredator13()];
   if (s.scene !== 'chapter13') return [];
   if (predatorPhase13(s)) return predatorChoices13(s);
   if (s.phase === 'brief') return briefChoices();

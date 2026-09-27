@@ -271,6 +271,7 @@ function roomBlocks(s: GameState): Block[] {
           ]
         : []),
       ...(votes.includes('chair') ? [p('The chair reads the fund’s financing schedule into the minutes: six years of acquisitions, every one of them part-paid by L.S.F. Advisory, and a monthly retainer to a man in Surrey who sells garden benches.')] : []),
+      ...(key(s, 'pred.geneva') ? [p('Then Legal reads page thirty-one of a term sheet from Geneva: clause 14.3, in the smallest type in the document. Every deal Marcus signed gave the fund first claim on Helix itself if it failed. Somebody at the end of the table says “Christ” very quietly, and nobody tells him off.')] : []),
       ...(safe(s) === 'letters' ? [p('Then he reads the letters. You left them on his desk at seven, in their cream envelopes. He reads them aloud, all of them, and every time he comes to the green C. at the bottom, nobody in the room looks at anybody else.')] : []),
       ...(julian(s) === 'ally'
         ? [p('Julian, in the Group COO’s chair, votes with you, and does not look at you while he does it, which is how you know it cost him something.')]
@@ -292,6 +293,7 @@ function roomBlocks(s: GameState): Block[] {
           ? 'The third paragraph is Owen Marsh, deputy director of enforcement at the Markets Authority, confirming on the record that his inquiry into the fund has been reopened, and thanking an unnamed source for her courage.'
           : 'The third paragraph says the Markets Authority has declined to comment, which in London means it has started reading.',
       ),
+      ...(key(s, 'pred.geneva') ? [p('The fourth paragraph is Geneva: a bank with no name on its door, and a clause in the smallest type in the document that gave a fund first claim on Helix itself, signed, every time, by Marcus Chen.')] : []),
       p(
         clause(s, 'private')
           ? 'Your words, your photograph, your approval on every line. Your clause, in your own capitals, in a contract he signed without reading: your face is your own. You have just spent it on him.'
@@ -368,6 +370,7 @@ function lastBlocks(s: GameState): Block[] {
           ? [q('Marcus Chen', 'You took the fund’s letters. That was brave. That was very, very stupid. She will know by lunch.')]
           : []),
     p('He looks round the office, at the glass and the river and the desk, the way a man looks at a house he has sold, fixing it.'),
+    ...(key(s, 'pred.morel') === 'trade' ? [q('Marcus Chen', 'And Rotterdam’s follow-on went to Morel’s own house. I noticed. I thought it was Lucien being clever. It was you, of course. It’s always you, this year.')] : []),
     q('Marcus Chen', 'She’ll do this to you, you know. Celeste. Not this year. In three, or five. She will find somebody who wants your desk the way you wanted mine, and she will give them your letters, and they will stand where you are standing, and you will sit where I am sitting.'),
     p('He waits, as if there were a question you ought to ask before he goes on.'),
   ];

@@ -6,8 +6,9 @@ all eight decisions as recommended).
 - **Code:** `src/content/chapter13-predator.ts`, wired through `src/content/chapter13.ts` (phases, blocks, choices,
   `fadeCoercion13`), with titles in `src/ui/App.tsx` and masters in `src/ui/environment-art.ts`.
 - **Gate:** `VITE_EVE_CHAPTER13`.
-- **Temporary entry:** `chapter13.begin-predator` ("The winter", with the content notice in its hint) from a Predator
-  `chapter9.complete`. It is removed when the Predator Chapter 12 (Geneva) lands.
+- **Entry:** `chapter13.begin-predator` ("The winter", with the content notice in its hint) from the Predator
+  `chapter12.ledger` (The Counterparty). Until 2026-09-27 it came from `chapter9.complete`; that temporary entry now
+  belongs to Chapter 12.
 - **End:** its own phase, `ledger` (the Celebrity `complete` is "A Knock"). Chapter 14 (Marcus Falls) will enter
   from `chapter13.ledger`.
 

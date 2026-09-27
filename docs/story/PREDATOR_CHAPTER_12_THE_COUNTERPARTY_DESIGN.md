@@ -19,7 +19,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). Her weapons are secrets, leverage and charm. She never sexually
   coerces anyone. The evening is chosen and never payment for anything.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_12_SCRIPT.md](scripts/PREDATOR_CHAPTER_12_SCRIPT.md); code: `src/content/chapter12-predator.ts`.
+It runs ~1.5–1.8k words on one path. Chapter 13 now enters from `chapter12.ledger`.
 
 ---
 

@@ -8,11 +8,11 @@ import { P_COMPLY_OPENING13, P_FADED_LEAD13 } from '../../src/content/chapter13-
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
 
 beforeEach(() => {
-  for (const n of [6, 7, 8, 9, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
+  for (const n of [6, 7, 8, 9, 12, 13]) vi.stubEnv(`VITE_EVE_CHAPTER${n}`, '1');
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER13_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER13_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -34,7 +34,7 @@ const walk13 = (s: GameState, path: string[]) =>
   }, s);
 
 /** A real save (the maximal-julian golden) played through Chapter 6 into Predator, Chapters 7 and 8, and the Chapter 9
- * bridge, to Chapter 13's temporary entry. `ch8` picks the levers (the counter needs something built). */
+ * bridge and the Predator Chapter 12 (Geneva, on its quiet picks), to Chapter 13's entry. `ch8` picks the levers (the counter needs something built). */
 function toMirror(ch8: string[] = ['pull-hollis', 'hollis-hold', 'pull-counsel', 'counsel-hold'], flags: Record<string, string> = {}) {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
   s = c6(s, ids6(s).includes('expect-negotiate') ? 'expect-negotiate' : 'expect-clarify');
@@ -50,6 +50,9 @@ function toMirror(ch8: string[] = ['pull-hollis', 'hollis-hold', 'pull-counsel',
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
+  // Geneva (Predator Chapter 12), on its quiet picks.
+  for (const id of ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'list-close', 'account-decline', 'lake-alone', 'call-none'])
+    s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
   if (Object.keys(flags).length) {
     s = structuredClone(s);
     Object.assign(s.choices, flags);
@@ -57,9 +60,9 @@ function toMirror(ch8: string[] = ['pull-hollis', 'hollis-hold', 'pull-counsel',
   return s;
 }
 
-it('enters from the Predator Chapter 9 through the winter, with the content notice', () => {
+it('enters from the Predator Chapter 12 through the winter, with the content notice', () => {
   const s = toMirror();
-  expect(`${s.scene}.${s.phase}`).toBe('chapter9.complete');
+  expect(`${s.scene}.${s.phase}`).toBe('chapter12.ledger');
   expect(chapter13Choices(s).map((c) => c.id)).toEqual(['chapter13.begin-predator']);
   expect(chapter13Choices(s)[0].hint).toContain('sexual coercion (implied, never shown)');
   const reading = c13(s, 'begin-predator');

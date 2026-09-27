@@ -20,12 +20,15 @@
  * with a notebook, who wrote for the first one too; or a wave from a taxi). And the last morning before the flight,
  * after the night (c12.last = goh | tan | straight: closing Mr Goh's tab in Nell's name and taking the cinnamon tin;
  * Mrs Tan's jasmine cutting in a yoghurt pot, "not an orchid"; or straight to Changi). The night's endings now set
- * c12.dawn and the morning follows. */
+ * c12.dawn and the morning follows.
+ * The Predator road (2026-09-27): The Counterparty (Geneva), in chapter12-predator.ts, entered temporarily from a
+ * Predator `chapter9.complete` until the Predator Chapters 10–11 exist. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
 import { getKey, setKey } from './chapter7-model';
 import { eveningPartners11, get11 } from './chapter11';
+import { beginPredator12, isPredator12, placePredator12, predatorBlocks12, predatorChoices12, predatorPhase12 } from './chapter12-predator';
 
 export type C12Scene = { title: string; place: string; blocks: Block[] };
 export type C12Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -67,6 +70,14 @@ export const chapter12Definitions: Record<string, C12Scene> = {
   sister: { title: 'Nora', place: 'SUNDAY · HOLLAND VILLAGE', blocks: [] },
   night: { title: 'The Heat', place: 'MIDNIGHT · THE HARBOUR', blocks: [] },
   complete: { title: 'A Name', place: 'MORNING · ARRIVALS, LONDON', blocks: [] },
+  // The Predator road (2026-09-27): The Counterparty.
+  geneva: { title: 'Geneva', place: 'JANUARY · THE QUAI, IN THE RAIN', blocks: [] },
+  bank: { title: 'No Name on the Door', place: '10:00 · MOREL & CIE, RUE DE LA CORRATERIE', blocks: [] },
+  morel: { title: 'The Second One', place: '13:00 · THE BANK’S DINING ROOM', blocks: [] },
+  vault: { title: 'The Green Ledger', place: 'MOREL & CIE', blocks: [] },
+  lake: { title: 'Working Capital', place: '22:00 · THE HOTEL BAR, OVER THE LAKE', blocks: [] },
+  call: { title: 'Holland Village', place: '02:00 · THE HOTEL ROOM', blocks: [] },
+  ledger: { title: 'This Flat', place: 'HOME · THE WARDROBE DOOR', blocks: [] },
 };
 export const chapter12Scenes = Object.entries(chapter12Definitions).map(([phase, scene]) => ({
   id: `chapter12.${phase}` as NodeId,
@@ -101,6 +112,7 @@ export const pressReady12 = (s: GameState) =>
 /** Scene-specific place lines (display only). */
 export function place12(s: GameState): string | undefined {
   if (s.scene !== 'chapter12') return;
+  if (isPredator12(s)) return placePredator12(s);
   if (s.phase === 'departure' && !get12(s, 'cover')) return '03:00 · The kitchen table, London';
   if (s.phase === 'night' && get12(s, 'dawn')) return 'Morning · The last day';
   const evening = get12(s, 'evening-open');
@@ -1044,6 +1056,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function chapter12Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter12') return [];
+  if (predatorPhase12(s)) return predatorBlocks12(s);
   if (s.phase === 'departure') return departureBlocks(s);
   if (s.phase === 'emerald') return emeraldBlocks(s);
   if (s.phase === 'flat') return flatBlocks(s);
@@ -1058,7 +1071,10 @@ export function chapter12Choices(s: GameState): C12Choice[] {
   if (!chapter12Playable(s)) return [];
   if (s.scene === 'chapter11' && s.phase === 'complete' && ownPower(s))
     return [offer12('begin', 'Singapore', 'Three weeks until the first Thursday. Go and find her.', 'departure')];
+  // Temporary entry (design decision 7): the Predator road comes from its Chapter 9 until its Chapters 10–11 exist.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator12(s)) return [beginPredator12()];
   if (s.scene !== 'chapter12') return [];
+  if (predatorPhase12(s)) return predatorChoices12(s);
   if (s.phase === 'departure') return departureChoices(s);
   if (s.phase === 'emerald') return emeraldChoices();
   if (s.phase === 'flat') return !get12(s, 'search') ? searchChoices() : !get12(s, 'bed') ? bedChoices() : caughtChoices();
