@@ -8,7 +8,12 @@
  * clauses she writes into her own contract (each a later lever), Julian in the corridor, the first lever (the
  * Chapter 1 Novagen report with Benton's name on her work and a director's early countersignature, left in her pack
  * by Marcus to see what she would do), and a chosen evening (Marcus or Julian, heat 3, consent-gated, fades), or the
- * contract alone. She never sexually coerces anyone; her weapons are secrets, leverage and charm. */
+ * contract alone. She never sexually coerces anyone; her weapons are secrets, leverage and charm.
+ * Deepening pass (2026-09-27): a beat in Marcus's office before "What do you want?" (c7.p-view = window | notes | sit:
+ * the buildings Helix owns and the man who cried; his pencil in the margin, "She will want more. Give it to her
+ * slowly."), and a second beat on her floor after the lever (c7.p-visit = charm | ink | busy: Anthony Hollis, the
+ * director whose countersignature is in the different ink, comes to welcome her; pred.hollis), with more of the
+ * morning, the floor and the evening. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get5 } from './chapter5-model';
@@ -35,6 +40,7 @@ export function placePredator7(s: GameState): string | undefined {
 function summonsBlocks(s: GameState): Block[] {
   return [
     p('A week after the room, at half past eight in the morning, a car is waiting at the kerb that you did not order: long, black, the engine running, rain beading on the roof. The driver is standing beside the rear door with an umbrella he is not using for himself.'),
+    p('You had dressed before the car came, without deciding to: the fitted black, the heels you can walk fast in, your hair up and pinned hard. You notice that now, on the pavement, and understand that some part of you knew there would be somebody to dress for.'),
     p('He is fifty or so, in a grey coat, with the patient stillness of a man who has waited outside a great many buildings. He holds out a card between two fingers, the way you would hand somebody a ticket.'),
     q('The card', 'Nine o’clock. Helix, the thirty-eighth floor. Come as you like. — M.C.'),
     q('Driver', 'Mr Chen’s compliments, Ms Vale. Pryce. I’m to take you whenever you’re ready, and to wait if you’re not.'),
@@ -98,9 +104,39 @@ function officeBlocks(s: GameState): Block[] {
     p('He opens the folder. Inside are the terms you held Julian’s workroom to, a week ago, printed out, annotated in the same small slanting pencil, with more notes in the margins than there are lines of text.'),
     q('Marcus Chen', 'You took Julian’s room and made it obey its own paperwork, and then you took more of it, on purpose, and let him watch you do it. Julian thinks that was trust. I know what it was. I would like to hire it.'),
     q('Marcus Chen', 'Special projects. Reporting to me. Access to anything I can see, which is most things. A salary you will not have to ask for twice.'),
-    p('He sits down behind the enormous desk, and puts the pen down on the folder between you, and leans back.'),
-    q('Marcus Chen', 'So. Before we talk about the paperwork. What do you want?'),
-    t('Nobody has asked me that since the clinic. Nobody has ever asked Adrian that at all. He is watching my face while I decide, and he is enjoying it.'),
+    p('He lets the offer sit on the desk between you, and goes back to the window, and waits, the way a man waits who has never once in his life been the first to speak after naming a price.'),
+  ];
+}
+
+const wantPrompt: Block[] = [
+  p('He sits down behind the enormous desk, and puts the pen down on the folder between you, and leans back.'),
+  q('Marcus Chen', 'So. Before we talk about the paperwork. What do you want?'),
+  t('Nobody has asked me that since the clinic. Nobody has ever asked Adrian that at all. He is watching my face while I decide, and he is enjoying it.'),
+];
+
+/** Before the question (deepening pass): the window, his margin notes, or the chair. */
+function viewChoices(): C7Choice[] {
+  const v = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('view-' + id, label, hint, 'office', (x) => {
+      set7(x, 'p-view', id);
+      return [...body, ...wantPrompt];
+    });
+  return [
+    v('window', 'Join him at the window', 'Stand beside him. See what he sees.', [
+      p('You get up and go and stand beside him at the glass, close enough that your sleeves almost touch, and look down at the river and the city on either side of it.'),
+      q('Marcus Chen', 'That one. With the green roof. Helix bought it from a man who built it with his father and cried in this office when he signed. I gave him a handkerchief. He kept it. That one, with the cranes, we are buying from people who do not know yet that they are selling. And that one, by the bridge, I would like very much, and cannot have, which is the only reason I still get up in the morning.'),
+      p('He says all of it without looking at you, and then, at the end, he does, sideways, as if checking whether you had flinched. You had not.'),
+      t('He is showing me his collection. He wants to know whether I want to be in it, or whether I want the key to the cabinet.'),
+    ]),
+    v('notes', 'Read his margin notes, upside down', 'He is not the only one who can.', [
+      p('You stay where you are and read the folder upside down while his back is turned: the pencil notes in the margins of your own terms, small and slanting and fast. Clever. Too clever for Julian. And against your clause about the deepening, underlined once: She will want more. Give it to her slowly.'),
+      p('When he turns round from the window, you are looking at the view, and he looks at the folder, and at you, and you watch him understand exactly what you have just done.'),
+      q('Marcus Chen', 'Upside down. Of course you can.'),
+      t('Give it to her slowly. He has a plan for my appetite. So do I.'),
+    ]),
+    v('sit', 'Sit, and let him wait', 'Two people who never speak first.', [
+      p('You sit, and cross your legs, and say nothing at all. The silence goes on long enough for a lift to arrive and leave somewhere behind the wall. In the end it is Marcus who turns round, and he is smiling.'),
+    ]),
   ];
 }
 
@@ -233,6 +269,7 @@ function floorBlocks(s: GameState): Block[] {
   return [
     p('Special projects turns out to be a corner office of your own on the thirty-sixth floor, two below Marcus: glass on two sides, a desk nobody has used, a plant somebody has watered, and a lanyard on the desk with your photograph already printed on it and a title under your name that did not exist yesterday.'),
     ...(get7(s, 'p-want') === 'title' ? [t('A name on a door. It took him four hours, not until Christmas. I would like to know who was sitting here yesterday.')] : []),
+    p('You stand in the doorway for a moment before you go in. Through the glass the whole floor is working: heads down, phones, somebody laughing too loudly at something a senior person said. Three of them look up at you. One of them looks away too fast. You file her.'),
     p('The onboarding pack is a black leather folder: policies, passwords, a map of the building that is mostly out of date, and a welcome letter from HR that uses your name three times as if to convince itself.'),
     p('And, at the back, behind the fire regulations, a file that should not be there at all.'),
     p('You know it before you have finished opening it. You wrote it. The Novagen acquisition risk note, the one Benton carried to your desk on the morning of the promotion that went to Priya. Your analysis, your conclusion, your careful paragraph about the missing renewal date. And across the top, where your name should be, in the Axiom distribution line: E. BENTON, DIRECTOR.'),
@@ -241,9 +278,42 @@ function floorBlocks(s: GameState): Block[] {
   ];
 }
 
+/** The visitor (deepening pass): the director whose countersignature is in the different ink. */
+function visitChoices(): C7Choice[] {
+  const v = (id: string, label: string, hint: string, stance: string, body: Block[]) =>
+    offer7('visit-' + id, label, hint, 'evening', (x) => {
+      set7(x, 'p-visit', id);
+      setKey(x, 'pred.hollis', stance);
+      return body;
+    });
+  return [
+    v('charm', 'Charm him', 'Let him think he is welcoming you.', 'charmed', [
+      p('You give him the smile, the Glass House one, and ask him about the photograph on his lanyard, which is of a sailing boat, and he tells you about the boat for four minutes, and then, because you have let him, about Marcus.'),
+      q('Anthony Hollis', 'He likes to test people, you know. First week. Leaves something lying about to see what they do with it. I failed mine. I’ve been here nine years anyway. Don’t take it personally.'),
+      t('He failed his. I wonder what they left lying about for him, and whether it was his own signature.'),
+    ]),
+    v('ink', 'Mention the ink, lightly', 'Watch what happens to his face.', 'warned', [
+      q('You', 'I was reading the Novagen file. Someone’s countersignature is in a different ink from the rest of the page. Isn’t that funny? As if they’d gone back and added it.'),
+      p('Anthony Hollis does not stop smiling. That is how you know. The smile simply stays on his face, exactly where it was, while the rest of him goes somewhere else entirely, and his hand on the door frame goes white at the knuckles.'),
+      q('Anthony Hollis', 'Is it? How odd. Well. Welcome to Helix.'),
+      p('He goes. He does not look back. You count to ten, and then you hear, two offices down, a door shut rather harder than doors shut on this floor.'),
+      t('That was a lever. I have just pulled it an inch to see if it moves. It moves. Now he knows I have it, which is dangerous, and he knows I am willing, which is better.'),
+    ]),
+    v('busy', 'Tell him you’re settling in', 'Polite. Busy. Let him go.', 'unaware', [
+      p('You thank him, and say you are still settling in, and he says of course, of course, and goes.'),
+    ]),
+  ];
+}
+
+const visitLead: Block[] = [
+  p('At four there is a knock on the glass. A man of sixty in a very good suit and a regimental tie, silver-haired and pink-cheeked, with the easy manners of somebody who has been welcoming people to this floor for a long time.'),
+  q('Anthony Hollis', 'Anthony Hollis. Commercial. Thought I’d say hello to the new blood. Marcus says you’re frightening. I said good, we could use some.'),
+  p('You know his initials before he has finished saying his name. You have been looking at them all afternoon, in a different ink.'),
+];
+
 function floorChoices(): C7Choice[] {
   const lever = (id: 'read' | 'copy' | 'return', label: string, hint: string, body: Block[]) =>
-    offer7('lever-' + id, label, hint, 'evening', (x) => {
+    offer7('lever-' + id, label, hint, 'floor', (x) => {
       set7(x, 'p-lever', id);
       setKey(x, 'pred.lever', id);
       note7(
@@ -254,7 +324,7 @@ function floorChoices(): C7Choice[] {
           : 'Evelynn’s first-day pack held the Chapter 1 Novagen risk note, her work under E. Benton’s name, countersigned by a Helix director eleven days before Axiom compliance cleared the deal.' + (id === 'copy' ? ' She photographed it.' : ''),
         'The black onboarding folder, Helix, 36th floor',
       );
-      return body;
+      return [...body, ...visitLead];
     });
   return [
     lever('read', 'Read it, twice', 'Every line. The one somebody hoped nobody would read twice.', [
@@ -314,6 +384,7 @@ const stay: Record<Partner, Record<'no-sex' | 'sex', Block[]>> = {
 function eveningBlocks(): Block[] {
   return [
     p('By seven you are home, with the contract on the kitchen table and Marcus’s pen beside it, and the city going dark outside the window, one lit floor at a time.'),
+    p('You kick your shoes off in the hall and stand in the kitchen in your stockings with a glass of wine you have not tasted yet, and find that your whole body is humming, the way it did at the Glass House: not fear. Something with fear inside it, like a stone in a peach.'),
     t('This morning I was a woman with a week-old decision and a car she did not order. Tonight I have a salary, an office, three knives in a contract and a crime in a folder. It has been a very productive day.'),
   ];
 }
@@ -383,6 +454,7 @@ function completeBlocks(s: GameState): Block[] {
       [
         'At the top, MARCUS CHEN, and under it what he owes you: a desk, a salary, three signed clauses.',
         lever === 'return' ? 'Under that, smaller: he planted the Novagen file, and he knows you know.' : 'Under that, smaller: a Helix director who signs early. Benton, whose name is on your work.',
+        get7(s, 'p-visit') === 'ink' ? 'Beside it, HOLLIS, and a note in capitals: KNOWS I KNOW.' : get7(s, 'p-visit') === 'charm' ? 'Beside it, HOLLIS: failed his first-week test. What was it?' : 'Beside it, a pair of initials in a different ink.',
         get7(s, 'p-julian') === 'truth' ? 'To one side, JULIAN, and a question mark you are not ready to answer.' : 'To one side, JULIAN, and nothing yet.',
       ].join(' '),
     ),
@@ -405,10 +477,10 @@ export function predatorBlocks7(s: GameState): Block[] {
 
 export function predatorChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'summons') return summonsChoices();
-  if (s.phase === 'office') return officeChoices();
+  if (s.phase === 'office') return get7(s, 'p-view') ? officeChoices() : viewChoices();
   if (s.phase === 'terms') return termsChoices(s);
   if (s.phase === 'corridor') return corridorChoices(s);
-  if (s.phase === 'floor') return floorChoices();
+  if (s.phase === 'floor') return get7(s, 'p-lever') ? visitChoices() : floorChoices();
   if (s.phase === 'evening') return eveningChoices(s);
   return [];
 }

@@ -17,7 +17,18 @@ const c7 = (s: GameState, id: string) => {
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
 };
-const walk7 = (s: GameState, path: string[]) => path.reduce(c7, s);
+/** The deepening pass's moments stand in front of later choices: take their neutral pick when one is in the way. */
+const NEUTRAL7 = ['view-sit', 'visit-busy'];
+const walk7 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL7.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c7(y, n);
+    }
+    return c7(y, id);
+  }, s);
 /** A Predator Chapter 6 ending (the Julian room held to its terms and knowingly deepened), confirmed at Chapter 7. */
 const start = (flags: Record<string, string> = {}) => {
   let s = walk(chapter5Complete({ flags: { 'c5.service': 'julian', ...flags } }), ['begin', 'benefit-accept', 'expect-negotiate', 'counter-skip', 'friction-done', 'exit-deepen', 'proof-decline']);
@@ -39,13 +50,20 @@ it('sends Marcus’s car, with Mr Pryce at the wheel, straight from the confirm 
 });
 
 it('asks what she wants, reading the Marcus note she kept', () => {
-  const office = c7(start({ 'c3.memo': 'retain' }), 'car-quiet');
-  expect(office.phase).toBe('office');
-  expect(text(office)).toContain('You put it in a drawer. I noticed.');
+  const view = c7(start({ 'c3.memo': 'retain' }), 'car-quiet');
+  expect(view.phase).toBe('office');
+  expect(text(view)).toContain('You put it in a drawer. I noticed.');
+  // The beat before the question (deepening pass).
+  expect(ids(view)).toEqual(['view-window', 'view-notes', 'view-sit']);
+  expect(text(c7(view, 'view-notes'))).toContain('She will want more. Give it to her slowly.');
+  const office = c7(view, 'view-window');
+  expect([office.phase, office.choices['c7.p-view']]).toEqual(['office', 'window']);
+  expect(text(office)).toContain('cried in this office when he signed');
   expect(text(office)).toContain('What do you want?');
   expect(ids(office)).toEqual(['want-money', 'want-title', 'want-desk']);
   expect(text(c7(start({ 'c3.memo': 'correct' }), 'car-quiet'))).toContain('Nobody corrects me in writing.');
   const desk = c7(office, 'want-desk');
+  expect(text(c7(start(), 'car-quiet'))).toContain('some part of you knew there would be somebody to dress for');
   expect([desk.phase, desk.choices['pred.want']]).toEqual(['terms', 'desk']);
   expect(text(desk)).toContain('God, I’m going to enjoy this.');
 });
@@ -82,11 +100,19 @@ it('meets Julian in the corridor, and the first lever is her own work under Bent
 
 it('keeps the evening chosen, consented and stoppable, and offers Julian only if she did not cool or lie to him', () => {
   const floor = walk7(start(), ['car-quiet', 'want-money', 'clause-exit', 'clause-access', 'clause-report']);
-  const evening = walk7(floor, ['julian-truth', 'lever-read']);
+  // The visitor after the lever (deepening pass): Anthony Hollis, in the different ink.
+  const visit = walk7(floor, ['julian-truth', 'lever-read']);
+  expect([visit.phase, ids(visit)]).toEqual(['floor', ['visit-charm', 'visit-ink', 'visit-busy']]);
+  expect(text(visit)).toContain('You have been looking at them all afternoon, in a different ink.');
+  const ink = c7(visit, 'visit-ink');
+  expect([ink.phase, ink.choices['pred.hollis']]).toEqual(['evening', 'warned']);
+  expect(text(ink)).toContain('That was a lever.');
+  expect(text(c7(visit, 'visit-charm'))).toContain('I failed mine.');
+  const evening = c7(visit, 'visit-busy');
   expect(evening.phase).toBe('evening');
   expect(ids(evening)).toEqual(['offer-evening-marcus', 'offer-evening-julian', 'offer-evening-alone']);
-  expect(ids(walk7(floor, ['julian-lie', 'lever-read']))).toEqual(['offer-evening-marcus', 'offer-evening-alone']);
-  const cooled = walk7(start({ 'c6.friction-julian': 'cooled' }), ['car-quiet', 'want-money', 'clause-exit', 'clause-access', 'clause-report', 'julian-truth', 'lever-read']);
+  expect(ids(walk7(floor, ['julian-lie', 'lever-read', 'visit-busy']))).toEqual(['offer-evening-marcus', 'offer-evening-alone']);
+  const cooled = walk7(start({ 'c6.friction-julian': 'cooled' }), ['car-quiet', 'want-money', 'clause-exit', 'clause-access', 'clause-report', 'julian-truth', 'lever-read', 'visit-busy']);
   expect(ids(cooled)).toEqual(['offer-evening-marcus', 'offer-evening-alone']);
   const invited = c7(evening, 'offer-evening-marcus');
   expect(currentPlace(invited, 'x')).toBe('Late · Marcus’s apartment, above the river');

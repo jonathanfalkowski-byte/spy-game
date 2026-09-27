@@ -32,6 +32,32 @@ before anything happens. Both evenings are consent-gated and fade at the act.
 - `tests/state/predator-lane.test.ts`: the lane.
 - No golden ledger reaches this road, so there is no migration.
 
-**Size (honest):** pass 1 is **~1.8–2.2k words on one path**, after the shared confirm beat, against the ~4.5–5k
-design target. It sits where the Celebrity chapters' first passes did. A deepening pass would give the office more of
-Marcus, the floor a second beat, and the evening more room.
+## Deepening pass (2026-09-27)
+
+Two moments, each with a neutral pick (the test walker settles them when a path asks for a later move), and more of
+the morning, the floor and the evening:
+
+- **Before "What do you want?"** (`office`) (`c7.p-view`). His offer now ends with him waiting at the window.
+  - **view-window**: the buildings Helix owns, the man who cried when he signed (Marcus gave him a handkerchief),
+    and the one by the bridge he cannot have. "He wants to know whether I want to be in it, or whether I want the
+    key to the cabinet."
+  - **view-notes**: his margin notes, read upside down: "She will want more. Give it to her slowly." He sees her
+    do it.
+  - **view-sit** (neutral).
+- **The visitor** (`floor`, after the lever) (`c7.p-visit`, `pred.hollis`). At four, **Anthony Hollis**
+  (Commercial; sixty, silver-haired, a regimental tie, a sailing boat on his lanyard) comes to welcome her. His
+  initials are the ones in the different ink.
+  - **visit-charm**: "He likes to test people … I failed mine" (charmed).
+  - **visit-ink**: she mentions the ink lightly; his smile stays exactly where it was while the rest of him leaves,
+    and a door shuts two offices down (warned).
+  - **visit-busy** (neutral; unaware).
+
+  The ledger records it: HOLLIS, KNOWS I KNOW.
+- **Prose:**
+  - she had dressed before the car came, "some part of you knew there would be somebody to dress for";
+  - the floor looking up at her, and one woman who looks away too fast;
+  - the evening's hum, "not fear. Something with fear inside it, like a stone in a peach".
+
+**Size (honest):** pass 1 was ~1.8k on the quiet path. After the deepening pass: **~2.1k on the quiet path, ~2.8k
+engaged**, after the shared confirm beat, against the ~4.5–5k design target. Still lean. The next lift is Marcus at
+greater length in the office and the evening, and a Maya beat (her message about the new job).
