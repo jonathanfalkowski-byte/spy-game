@@ -13,7 +13,7 @@
 
 **Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/PREDATOR_CHAPTER_14_SCRIPT.md](scripts/PREDATOR_CHAPTER_14_SCRIPT.md); code: `src/content/chapter14-predator.ts`.
-It is entered from `chapter13.ledger`, and runs ~1.1–1.7k words on one path at pass 1.
+It is entered from `chapter13.ledger`. It ran ~1.1–1.7k words on one path at pass 1, and was deepened 2026-09-27 to ~1.3–2.1k.
 
 **Two refinements made in the build:**
 - Varga's hand counts whether the counsel lever was used or spared. Either way, Legal is hers.

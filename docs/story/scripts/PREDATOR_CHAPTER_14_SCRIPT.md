@@ -44,5 +44,36 @@ Two are needed, or three against a rival Julian.
 - the press, with Marsh.
 
 **Size (honest), pass 1:** ~1.1k (quiet letter), ~1.2k (quiet board), ~1.4k (board with Julian's evening) and
-~1.7k (safe, letter and Marcus's evening), against the ~4.5k target. The next lift would be a deepening pass: the
-night before the fall on every road, Marcus at greater length in his last scene, and the desk day.
+~1.7k (safe, letter and Marcus's evening), against the ~4.5k target.
+
+## Deepening pass (2026-09-27)
+
+- **The night before the fall** (`case`, after the way is chosen, before the safe or the room). Every way passes
+  through it (`c14.p-eve`):
+  - **eve-dress**: tomorrow's clothes, by way. The grey suit for the board; black, high at the neck, for the front
+    page; or the dark green dress from her first day, "He will remember it … while he signs."
+  - **eve-marcus**: a last drink at the bar at the top of the building. Forty minutes about Leeds, horses, and
+    Lisbon. "You look like somebody with a secret." He does not know.
+  - **eve-maya** (if Maya is back): "Ring me after. Not the version for the page."
+  - **eve-sleep** (neutral).
+- **One question before Marcus's offer** (`last`, `c14.p-ask`); the offer follows whichever she picks:
+  - **ask-why**: "she was the first person who ever offered me the top of the stairs". It answers her Chapter 13
+    road ("I read the receipt" / "I thought you were negotiating" / "Nobody ever told me").
+  - **ask-leeds**: his mother cleaned offices at night. The first building he bought was one she cleaned. The chair
+    is the one she dusted around without ever sitting in. "She thinks I'm in insurance."
+  - **ask-none** (neutral).
+- **The desk day** (`desk`, after the mercy, before the evening) (`c14.p-day`):
+  - **day-floor**: the names on the page headed OWES, a line for each lever by its deal (Hollis, Varga, Benton or the
+    archivist, Ashe).
+  - **day-pryce**: the garage. "The same as always, Ms Vale. The fund's. I'm to drive you from Monday."
+  - **day-window** (neutral).
+- **More prose:** Adrian's jacket on the bed at dawn; Marcus's one reply to the board ("I'd like the minutes to show
+  I hired her"); the house he has sold; the gap in the ledger where his card was.
+- **Place lines:** "Evening · The night before" and "Afternoon · The thirty-eighth floor".
+
+The tests walk past the new moments on their neutral picks (`NEUTRAL14 = eve-sleep, ask-none, day-window`), and new
+assertions cover each moment.
+
+**Size (honest) after the deepening pass:** ~1.3k (quiet letter), ~1.4k (quiet board), ~2.0k (board, engaged) and
+~2.1k (safe, letter and Marcus, engaged), against the ~4.5k target. The next lift would be the room itself at greater
+length on each way, and a second beat in the evening.

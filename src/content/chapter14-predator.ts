@@ -7,7 +7,13 @@
  * the safe behind the horse, if Pryce told her in Chapter 8; Marcus's last move (a partnership against Celeste: refuse,
  * take, or laugh); what he keeps; her Chapter 7 want paid; Julian in the room; an optional chosen evening (heat 3,
  * consent-gated, fades); and Celeste's invitation to Meridian's board. The fall is financial, professional and public,
- * never sexual. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids) to avoid a circular import. */
+ * never sexual. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids) to avoid a circular import.
+ * Deepening pass (2026-09-27): the night before the fall, which every way passes through (c14.p-eve = dress | marcus |
+ * maya | sleep: the clothes for tomorrow, chosen by the way; a last drink with Marcus at the top of the building, who
+ * does not know yet; Maya, if she is back); one question before Marcus's offer (c14.p-ask = why | leeds | none: why he
+ * said yes eleven years ago; his mother, who cleaned offices like this one); and the day at the desk after the mercy
+ * (c14.p-day = floor | pryce | window: the people on the page headed OWES; Pryce in the garage, and whose car it is
+ * now). Dawn, the board and the ledger at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -61,6 +67,8 @@ export const boardOpen14 = (s: GameState) => boardVotes14(s).length >= boardNeed
 export const pressOpen14 = (s: GameState) => !!get5(s, 'published') && (key(s, 'pred.lever8.press') === 'use' || clause(s, 'private'));
 
 export function placePredator14(s: GameState): string | undefined {
+  if (s.phase === 'case' && way(s)) return 'Evening · The night before';
+  if (s.phase === 'desk' && get14(s, 'p-mercy')) return 'Afternoon · The thirty-eighth floor';
   if (s.phase === 'room')
     return { board: '08:00 · The Helix boardroom, the fortieth floor', press: '07:10 · The Helix lift', letter: '19:00 · Marcus’s office' }[way(s) ?? 'letter'];
   const evening = get14(s, 'p-evening-open');
@@ -84,6 +92,7 @@ function dawnBlocks(s: GameState): Block[] {
   return [
     p('Five in the morning. The kettle, the wardrobe door, and every card on it, in the grey light before the city gets up.'),
     p(cardsLine(s)),
+    p('In the drawer under the wardrobe is Adrian’s old jacket, and in its lining everything that matters: copies, envelopes, a photograph of your own work under somebody else’s name. You take it out and lay it on the bed like a person, and sit beside it, and drink the tea.'),
     p('You take the pins out of his card one at a time and hold it in your hand. Under his name, in three colours of ink over three months, is everything he owes, everything he has promised, and everything he has done with other people’s names.'),
     t(
       m === 'complied'
@@ -121,9 +130,52 @@ function caseBlocks(s: GameState): Block[] {
   ];
 }
 
+/** The night before the fall (deepening pass): every way passes through it. */
+function eveChoices(s: GameState): C14Choice[] {
+  const w = way(s) ?? 'letter';
+  const e = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('eve-' + id, label, hint, pryceTold(s) ? 'safe' : 'room', (x) => {
+      set14(x, 'p-eve', id);
+      return body;
+    });
+  return [
+    e('dress', 'Lay out tomorrow’s clothes', 'You always dress for the room.', [
+      p(
+        w === 'board'
+          ? 'The grey suit, the one that makes a boardroom look at the chair and not at the woman in it. The white shirt with nothing at the throat. The shoes that make a sound on a stone floor and none on a carpet. You hang them on the wardrobe door, over the ledger, so that they are the last thing you see.'
+          : w === 'press'
+            ? 'They will photograph you tomorrow, at the station, at the lift, at the door, so you choose for the photograph: black, plain, high at the neck, the kind of dress that makes a front page look like a portrait. You try it on in the dark, in front of the wardrobe mirror, and do not turn the light on to check. You know.'
+            : 'The dress you wore on your first day at Helix, the dark green one, the one he looked at for exactly one second too long across his desk. He will remember it. You want him to remember it while he signs.',
+      ),
+      t('Adrian wore the same suit for eleven years. I have learned that clothes are a sentence. Tomorrow mine says: I was always going to do this.'),
+    ]),
+    e('marcus', 'Have one last drink with him', 'The bar at the top of the building. He does not know yet.', [
+      p('At seven you go up to the bar at the top of the building, the one that is not on any floor plan, and he is there, on the stool with his back to the view, his tie off, as if he had been waiting.'),
+      q('Marcus Chen', 'Twice in one month. People will talk.'),
+      p('He orders for you without asking, and gets it right, and for forty minutes you talk about nothing: Leeds, horses, a restaurant in Lisbon he has been meaning to go back to for fifteen years. He is funny. He is always funny, when he is not afraid.'),
+      q('Marcus Chen', 'You look like somebody with a secret.'),
+      q('You', 'I’ve got lots of them. You gave me most.'),
+      p('He laughs, and finishes his drink, and at the door, leaving for the fund’s dinner, he puts his hand on your shoulder for one second, the way he did at the Glass House, and says goodnight.'),
+      t('He has no idea. For forty minutes I liked him more than I have liked anybody all year, and I did not change my mind once. I am not sure which of those frightens me more.'),
+    ]),
+    ...(key(s, 'c6.maya') === 'restored'
+      ? [
+          e('maya', 'Ring Maya', 'Not to tell her. Just to hear her.', [
+            p('You ring Maya at ten. She is watching something terrible on television and describes the whole plot to you, badly, with her mouth full, and you lie on the bed next to Adrian’s jacket and laugh until your ribs hurt.'),
+            q('Maya', 'You sound different. You sound like the night before an exam.'),
+            q('You', 'It is the night before an exam.'),
+            q('Maya', 'Then go and pass it. And ring me after. Not the version for the page. The real one.'),
+          ]),
+        ]
+      : []),
+    e('sleep', 'Go to bed early', 'Tomorrow will be long.', [p('You go to bed at ten, and to your own surprise you sleep, like somebody with nothing left to decide.')]),
+  ];
+}
+
 function caseChoices(s: GameState): C14Choice[] {
+  if (get14(s, 'p-way')) return eveChoices(s);
   const w = (id: Way, label: string, hint: string, body: (x: GameState) => Block[]) =>
-    offer('way-' + id, label, hint, pryceTold(s) ? 'safe' : 'room', (x) => {
+    offer('way-' + id, label, hint, 'case', (x) => {
       set14(x, 'p-way', id);
       setKey(x, 'pred.way', id);
       return body(x);
@@ -227,6 +279,7 @@ function roomBlocks(s: GameState): Block[] {
           : votes.includes('julian')
             ? [p('Julian votes with you. He does not look at you. He knows what you are holding, and so do you.')]
             : []),
+      p('Marcus listens to all of it without interrupting, the way he listened to you on the first day, turning a pen. When the chair asks whether he wishes to respond, he says, pleasantly: “Only that I’d like the minutes to show I hired her.”'),
       p('Marcus Chen is removed as Director of Strategic Acquisitions in eleven minutes, by a show of hands. You count them. Every hand in the air is a lever you pulled.'),
     ];
   }
@@ -314,15 +367,46 @@ function lastBlocks(s: GameState): Block[] {
         : sf === 'letters'
           ? [q('Marcus Chen', 'You took the fund’s letters. That was brave. That was very, very stupid. She will know by lunch.')]
           : []),
+    p('He looks round the office, at the glass and the river and the desk, the way a man looks at a house he has sold, fixing it.'),
     q('Marcus Chen', 'She’ll do this to you, you know. Celeste. Not this year. In three, or five. She will find somebody who wants your desk the way you wanted mine, and she will give them your letters, and they will stand where you are standing, and you will sit where I am sitting.'),
-    q('Marcus Chen', 'Or. You and me. I know where the fund keeps everything. Every letter she has ever written in that green ink. Take her, with me, instead of taking me for her.'),
-    t('He means it. He is falling, and he is still selling. I have never liked him more.'),
+    p('He waits, as if there were a question you ought to ask before he goes on.'),
+  ];
+}
+
+/** His offer, after whatever she asks (deepening pass). */
+const offerLines: Block[] = [
+  q('Marcus Chen', 'So. You and me. I know where the fund keeps everything. Every letter she has ever written in that green ink. Take her, with me, instead of taking me for her.'),
+  t('He means it. He is falling, and he is still selling. I have never liked him more.'),
+];
+
+function askChoices(s: GameState): C14Choice[] {
+  const a = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('ask-' + id, label, hint, 'last', (x) => {
+      set14(x, 'p-ask', id);
+      return [...body, ...offerLines];
+    });
+  const m = mirror(s);
+  return [
+    a('why', 'Ask him why he said yes, eleven years ago', 'When she asked him to run one.', [
+      q('You', 'Why did you say yes? When she asked you. Eleven years ago.'),
+      p('He does not pretend not to understand. That is the thing about Marcus: he never once pretended with you.'),
+      q('Marcus Chen', 'Because I’d come up from a council flat in Leeds, and she was the first person who ever offered me the top of the stairs. I said yes before she’d finished asking. I have never once been sorry, until about eight o’clock this morning.'),
+      q('Marcus Chen', m === 'complied' ? 'You said yes too. Don’t look at me like that. I read the receipt.' : m === 'refused' ? 'You said no. I heard. I didn’t believe it. I thought you were negotiating.' : 'You did something else. Twice. I didn’t know there was anything else to do. Nobody ever told me.'),
+    ]),
+    a('leeds', 'Ask him about his mother', 'The woman who cleaned offices at night.', [
+      q('You', 'Tell me about your mother.'),
+      p('It is the only question anybody has asked him in this office that he did not see coming. You watch it land.'),
+      q('Marcus Chen', 'She cleaned offices. This kind. Nights. I did my homework under the desks while she hoovered round me. The first building I ever bought was one she cleaned. I kept the chair from the office on the top floor, the man’s chair, the one she used to dust around without ever sitting in. That’s the chair you’ve been sitting in.'),
+      q('Marcus Chen', 'She’s eighty-one. She thinks I’m in insurance. She’s going to be delighted I’m coming home.'),
+    ]),
+    a('none', 'Say nothing, and let him finish', 'He always finishes.', [p('You say nothing. He smiles at that, as if you had passed something, and goes on.')]),
   ];
 }
 
 const hasLetters = (s: GameState) => safe(s) === 'letters';
 
 function lastChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'p-ask')) return askChoices(s);
   const l = (id: string, label: string, hint: string, value: string, body: Block[], after?: (x: GameState) => void) =>
     offer('last-' + id, label, hint, 'desk', (x) => {
       set14(x, 'p-last', id);
@@ -396,8 +480,9 @@ function deskChoices(s: GameState): C14Choice[] {
       ]),
     ];
   }
+  if (get14(s, 'p-mercy')) return dayChoices(s);
   const m = (id: 'none' | 'chair' | 'name', label: string, hint: string, body: (x: GameState) => Block[]) =>
-    offer('mercy-' + id, label, hint, 'evening', (x) => {
+    offer('mercy-' + id, label, hint, 'desk', (x) => {
       set14(x, 'p-mercy', id);
       setKey(x, 'pred.mercy', id);
       const w = way(x) ?? 'letter';
@@ -424,6 +509,59 @@ function deskChoices(s: GameState): C14Choice[] {
           'He keeps his name. Somewhere above the river he will read it and understand exactly what it cost you to give it to him, and that you did.',
       ),
     ]),
+  ];
+}
+
+/** The day at the desk (deepening pass), after the mercy and before the evening. */
+const floorLines: Record<string, Record<string, string>> = {
+  hollis: {
+    use: 'Anthony Hollis is in his doorway when you pass, and nods, and does not meet your eye. He has the look of a man who has been let off one hook and has just noticed another.',
+    hold: 'Anthony Hollis stops you by the lifts to say congratulations, too loudly, and then, very quietly, “Are we square?” You say you have no idea what he means. He goes away happier than he came.',
+    spare: 'On Anthony Hollis’s desk, in a frame, a photograph of a cottage in Norfolk. He has put in his notice. He winks at you across the floor.',
+  },
+  counsel: {
+    use: 'Ines Varga’s door is shut. It has been shut since the board. You find that you walk past it a little faster than the others.',
+    hold: 'Ines Varga looks up as you pass and holds your gaze for exactly as long as it takes to understand that you still have not said anything. Then she goes back to her screen.',
+    spare: 'Ines Varga comes out of her office as you pass and walks the length of the floor beside you, not saying anything, like an escort, and leaves you at your door.',
+  },
+  archive: {
+    use: 'Elias Benton’s name is in the Axiom newsletter again: “retiring, with gratitude”. There is a photograph of him with a trophy. He looks like a man who has been told where to stand.',
+    hold: 'The archivist in the records vault sends up a note, in ink: Your key card has been reactivated. For context. You keep it.',
+    spare: 'The archivist in the records vault sends up a note, in ink: Your key card has been reactivated. For context. You keep it.',
+  },
+  press: {
+    use: 'In Communications, Dominic Ashe is taking your face down from the lobby, very carefully, with a man on a ladder, and asks you whether you would like it for your wall.',
+    hold: 'In Communications there is a new mood board, and you are not on it, and Dominic Ashe lifts his coffee to you through the glass.',
+    spare: 'In Communications the small question mark is still on the mood board where your photograph was. Somebody has drawn a crown on it.',
+  },
+};
+
+function dayChoices(s: GameState): C14Choice[] {
+  const d = (id: string, label: string, hint: string, body: (x: GameState) => Block[]) =>
+    offer('day-' + id, label, hint, 'evening', (x) => {
+      set14(x, 'p-day', id);
+      return body(x);
+    });
+  return [
+    d('floor', 'Walk the floor', 'The names on the page headed OWES, one by one.', (x) => {
+      const lines = (['hollis', 'counsel', 'archive', 'press'] as const)
+        .map((l) => floorLines[l][key(x, 'pred.lever8.' + l) ?? ''])
+        .filter((line): line is string => !!line)
+        .map((line) => p(line));
+      return [
+        p('At three you walk the floor, the whole length of it, the way you did on the first day, slowly, learning it. It has learned you now.'),
+        ...lines,
+        t('Every one of them is a person, and every one of them is a line on a card. I used to think those were two different things.'),
+      ];
+    }),
+    d('pryce', 'Go down to the garage', 'The long black car. Whose is it now?', () => [
+      p('Level B2, four in the afternoon. The long black car is beside the lift doors, and Mr Pryce is polishing it, as if nothing had happened, because for him nothing has.'),
+      q('You', 'Whose car is it now, Mr Pryce?'),
+      q('Pryce', 'The same as always, Ms Vale. The fund’s. I’m to drive you from Monday, if you’d like. They asked me to ask.'),
+      p('He opens the rear door, as if you had booked him. You do not get in. Not today.'),
+      t('Lent out by a fund to a man, and now lent out by the same fund to me. The car never belonged to Marcus. I wonder what else of mine has never belonged to me.'),
+    ]),
+    d('window', 'Sit at the window', 'Let the day go past.', () => [p('You sit at the window with your shoes off and let the day go past, boat by boat, on the river he used to own the view of.')]),
   ];
 }
 
@@ -518,6 +656,7 @@ function ledgerBlocks(s: GameState): Block[] {
   return [
     ...(get14(s, 'p-evening-outcome')?.startsWith('intimate') ? [p('You get home at dawn, and do not sleep, and do not want to.')] : []),
     p('The wardrobe door. You take Marcus’s card down, and turn it over, and write on the back what he kept: ' + kept + '. Then you put it in the drawer with Adrian’s things.'),
+    p('The door looks different without him. Every other card was pinned in a ring around his, and now the ring is around nothing, and all the lines of string you ran from name to name run into the gap and stop.'),
     p('There is a space in the middle of the door now, where he was. You pin a new card in it, in capitals: MERIDIAN — THE BOARD.'),
     p('At midnight the black phone lights.'),
     q(
