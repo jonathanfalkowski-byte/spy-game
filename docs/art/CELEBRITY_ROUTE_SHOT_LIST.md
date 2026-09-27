@@ -1,5 +1,7 @@
 # Celebrity route (Chapters 7–18): art shot list
 
+> **Superseded 2026-09-27 by [ALL_CHAPTERS_ART_LIST.md](ALL_CHAPTERS_ART_LIST.md)**, which covers every chapter and the deepening additions.
+
 **Planning only.** This list generates, promotes and binds nothing. Every image still goes through the usual path:
 quote, owner approval, staging, review against the [checklist](ART_REVIEW_CHECKLIST.md), then owner promotion.
 Chapters 1–5 already have runtime art. Chapter 6 is shared by every route and already has its own list in
