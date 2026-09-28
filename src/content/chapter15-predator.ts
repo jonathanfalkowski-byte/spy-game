@@ -10,7 +10,12 @@
  * 3, consent-gated, fades). Writes the shared Act IV keys (act3.leash, act3.adrian, act3.nell-order, act3.cards,
  * act3.switch, act3.cost, act3.black-phone, act3.page, c15.maya-file) so Chapters 16–18 can be shared spines. Entered
  * from the Predator `chapter14.ledger`. Local helpers mirror chapter15.ts (c15.* keys, chapter15.* ids) to avoid a
- * circular import. */
+ * circular import.
+ * Deepening pass (2026-09-27): the night before the job, which every way passes through (c15.p-eve = plan | dress |
+ * sleep: walking it through with the crew, or alone with the salt cellar for Mrs Fenn; the clothes for a courtesy or
+ * for two in the morning), and one thing read in the archive before the one thing taken (pred.read15 = adrian | marcus |
+ * none: her assessment of Candidate 7A, "Will be grateful. Will not look back."; Marcus's drawer, "Review at
+ * forty-three"). Celeste on the key ("I have never had it copied"), the week and the ledger at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -59,6 +64,7 @@ export function crewOptions15(s: GameState): Exclude<Crew, 'alone'>[] {
 }
 
 export function placePredator15(s: GameState): string | undefined {
+  if (s.phase === 'people' && way(s)) return 'The night before · The kitchen table';
   if (s.phase === 'hour') return { hour: 'Tuesday · 10:00 · The Vesper archive', night: 'Thursday · 02:00 · The Vesper archive', copy: 'Thursday · 03:00 · The Vesper archive' }[way(s) ?? 'hour'];
   if (s.phase === 'drawers') return way(s) === 'hour' ? '10:20 · The archive, one lamp' : '03:20 · The archive, one lamp';
   const evening = get15(s, 'p-evening-open');
@@ -85,6 +91,7 @@ function giftBlocks(s: GameState): Block[] {
           ? [q('Celeste', 'Marcus tells me you laughed. I still haven’t heard it. Perhaps on Thursday.')]
           : [q('Celeste', 'Helix’s new representative. How nice to meet you properly. Poor Marcus. Personal reasons. So sudden.')]),
     p('She puts something small on the lectern between you: a brass key, old and plain, on a green silk ribbon, with a luggage tag tied to it. On the tag, in the green hand: Tuesday, 10:00.'),
+    q('Celeste', 'My father had it made for the first archive, in 1911, when the family was still a little ashamed of what it kept. I have never had it copied. I have never needed to.'),
     q('Celeste', 'Every representative who sits at my table reads their own file first. It is a courtesy. Take what’s yours, darling. Only what’s yours.'),
     ...(hasLetters(s) ? [q('Celeste', 'And my letters. You may put them back in the drawer yourself. That is rather what the key is for.')] : []),
     t('She is giving me the key to the room where she keeps everything. She is that sure of me. The only question is what I do with a woman who is that sure.'),
@@ -154,11 +161,41 @@ const crewScene: Record<Exclude<Crew, 'alone'>, [string, string, Block[]]> = {
   ]],
 };
 
+const crewName: Record<Crew, string> = { iris: 'Iris', lucien: 'Lucien', marcus: 'Marcus', marsh: 'Owen Marsh', pryce: 'Mr Pryce', julian: 'Julian', halvorsen: 'Halvorsen', alone: '' };
+
+/** The night before the job (deepening pass): every way passes through it. */
+function eveChoices(s: GameState): C15Choice[] {
+  const c = crew(s) ?? 'alone';
+  const night = way(s) !== 'hour';
+  const e = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('eve-' + id, label, hint, 'hour', (x) => {
+      set15(x, 'p-eve', id);
+      return body;
+    });
+  return [
+    e('plan', c === 'alone' ? 'Walk it through on the kitchen table' : 'Walk it through with ' + crewName[c], 'Twice. Out loud.', [
+      c === 'alone'
+        ? p('You walk it through on the kitchen table, alone, twice, out loud, with the salt cellar for Mrs Fenn and the pepper for the door and the brass key for the key, until you catch yourself doing Mrs Fenn’s voice, and stop.')
+        : p(`${crewName[c]} goes through it with you at the kitchen table, twice, with the salt cellar for Mrs Fenn and the pepper for the door, and on the second time round asks the only question that matters.`),
+      ...(c === 'alone' ? [t('And if she’s there? Then I was invited. That is the whole plan. It is a very good plan, as long as nobody counts.')] : [q(crewName[c], 'And if she’s there?'), q('You', 'Then I was invited.')]),
+    ]),
+    e('dress', night ? 'Dress for two in the morning' : 'Dress for a courtesy', 'You always dress for the room.', [
+      p(
+        night
+          ? 'Black, close, the soft boots, your hair pinned so that nothing falls into a drawer. And in the pocket, the green ribbon, because if anybody asks, you were given a key.'
+          : 'A guest’s clothes: the grey silk, pearls, flat shoes that make no sound on a steel floor, because a guest should never sound as if she is in a hurry.',
+      ),
+    ]),
+    e('sleep', 'Go to bed', 'Tomorrow is early, or late.', [p('You go to bed, and sleep, which surprises you, and dream about nothing at all.')]),
+  ];
+}
+
 function peopleChoices(s: GameState): C15Choice[] {
   const c = crew(s);
+  if (c && way(s)) return eveChoices(s);
   if (c) {
     const w = (id: Way, label: string, hint: string, body: Block[]) =>
-      offer('way-' + id, label, hint, 'hour', (x) => {
+      offer('way-' + id, label, hint, 'people', (x) => {
         set15(x, 'way', id);
         setKey(x, 'pred.way15', id);
         return body;
@@ -252,6 +289,29 @@ function drawersBlocks(s: GameState): Block[] {
   ];
 }
 
+/** One thing read before the one thing taken (deepening pass). */
+function readChoices(): C15Choice[] {
+  const r = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('read-' + id, label, hint, 'drawers', (x) => {
+      set15(x, 'p-read', id);
+      setKey(x, 'pred.read15', id);
+      return body;
+    });
+  return [
+    r('adrian', 'Read what she wrote about Adrian', 'One sheet, in green, behind the clinic’s records.', [
+      p('Behind the clinic’s records, one sheet of cream paper in the green hand, dated the spring before the Glass House. An assessment.'),
+      q('The assessment', 'Candidate 7A. Clever. Lonely. Careful with everybody but himself. Will be grateful. Will not look back.'),
+      t('Will be grateful. She was right about the first month. She has been wrong about every month since.'),
+    ]),
+    r('marcus', 'Open Marcus’s drawer', 'Page one of a much older book.', [
+      p('Marcus’s drawer is near the very front, page one of a much older catalogue, the photograph of a young man in a suit bought for a funeral.'),
+      q('The drawer', 'M. CHEN. Recruited at twenty-nine. Placed: Helix. Loyal to whoever is above him. Review at forty-three.'),
+      t('Review at forty-three. He was forty-three this spring. I was the review. She wrote me into his drawer fourteen years before she met me.'),
+    ]),
+    r('none', 'Keep to the job', 'The lamp, the clock, four minutes.', [p('You read nothing that is not on your list. The lamp, the clock, four minutes. You have always been good at lists.')]),
+  ];
+}
+
 function tookChoices(s: GameState): C15Choice[] {
   const k = (id: string, label: string, hint: string, body: Block[], after: (x: GameState) => void) =>
     offer('took-' + id, label, hint, 'week', (x) => {
@@ -307,6 +367,7 @@ function weekBlocks(s: GameState): Block[] {
   return [
     p('The week after, the holds come off one by one, fast, the way you would take pins out of a card.'),
     p('Maya’s file burns in the kitchen sink, page by page, and she never knows it existed.'),
+    p('On Monday a florist delivers a white orchid to the flat, from nobody. You leave it on the landing for the neighbours, who have always admired your flowers.'),
     ...(r === 'accepted' ? [p('Your reports on Marcus, the true ones, go to Leeds by post, with a note in your own hand: So you know what I told her. I am sorry about the bar.')] : r === 'fed' ? [p('Your reports on Marcus, the lies, you keep. Celeste underlined the best lines. One day that will be very funny.')] : []),
     ...(key(s, 'pred.account') === 'closed' ? [p(key(s, 'pred.delphine') === 'free' ? 'The account at Morel & Cie is closed by Thursday, and what was in it goes, anonymously, to a guest house in a coast town nobody can place, to a nurse who used to be called Delphine.' : 'The account at Morel & Cie is closed by Thursday, and what was in it goes, anonymously, to Holland Village, to a woman who was paid once already for her sister.')] : keptAccount(s) ? [p('The account at Morel & Cie is still open. You leave it open. You tell yourself it is evidence.')] : []),
     p('Copies of everything go to ' + h.join(', ').replace(/, ([^,]*)$/, ' and $1') + ', none of whom knows about the others, with one instruction: if I stop answering, open it.'),
@@ -469,6 +530,7 @@ function ledgerBlocks(s: GameState): Block[] {
   return [
     ...(get15(s, 'p-evening-outcome')?.startsWith('intimate') ? [p('You get home at dawn, and do not sleep, and do not want to.')] : []),
     p('The wardrobe door. One by one, every card on her side of the string comes across to yours: HOLLIS, VARGA, THE FUND, THE NINE FLATS, IRIS, DELPHINE, MARCUS’S DESK, PAGE FORTY. It takes an hour. You do it slowly, the way you would take down a room you were leaving.'),
+    p(way(s) === 'copy' ? 'The copy of the key hangs on the pin at the top of the door, on a length of red thread. The original is on her desk, where it has always been. She has never had it copied. She has never needed to.' : 'The brass key hangs on the pin at the top of the door, on its green ribbon. On Thursday you will give it back to her. On Thursday you will have finished with it.'),
     p('At the end there is one card left on her side, at the very top, where it has been since the Vesper:'),
     q('The card', 'THE BOARD MEETS. THE FIRST THURSDAY.'),
     t('She gave me the key to everything, because she was sure of me. I kept it. Thursday, she finds out what she was sure of.'),
@@ -490,7 +552,7 @@ export function predatorChoices15(s: GameState): C15Choice[] {
   if (s.phase === 'gift') return giftChoices(s);
   if (s.phase === 'people') return peopleChoices(s);
   if (s.phase === 'hour') return snagChoices();
-  if (s.phase === 'drawers') return tookChoices(s);
+  if (s.phase === 'drawers') return get15(s, 'p-read') ? tookChoices(s) : readChoices();
   if (s.phase === 'week') return costChoices(s);
   if (s.phase === 'line') return get15(s, 'phone') ? eveningChoices(s) : phoneChoices(s);
   return [];

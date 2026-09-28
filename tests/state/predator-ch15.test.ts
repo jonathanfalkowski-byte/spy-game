@@ -19,7 +19,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter15Choices(s).map((c) => c.id.replace(/^chapter15\./, ''));
 const c15 = (s: GameState, id: string) => choose(s, 'CHAPTER15_CHOOSE', 'chapter15.' + id);
-const walk15 = (s: GameState, path: string[]) => path.reduce(c15, s);
+/** The deepening pass's moments (the night before, one thing read): take the neutral pick when it is in the way. */
+const NEUTRAL15 = ['eve-sleep', 'read-none'];
+const walk15 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL15.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c15(y, n);
+    }
+    return c15(y, id);
+  }, s);
 const run = (s: GameState, n: 10 | 11 | 12 | 13 | 14, path: string[]) => path.reduce((x, id) => choose(x, `CHAPTER${n}_CHOOSE`, `chapter${n}.` + id), s);
 
 const QUIET = {
@@ -61,6 +72,7 @@ it('enters from the Predator Chapter 14 ledger: the key, as a courtesy', () => {
   expect(gift.phase).toBe('gift');
   expect(text(gift)).toContain('Helix’s new representative. How nice to meet you properly.');
   expect(text(gift)).toContain('Take what’s yours, darling. Only what’s yours.');
+  expect(text(gift)).toContain('I have never had it copied.');
   expect(ids(gift)).toEqual(['gift-thank', 'gift-ask']);
 });
 
@@ -84,7 +96,7 @@ it('copies the key with Lucien, takes Nell’s order, spends him, and writes the
   expect(text(drawers)).toContain('the copy sticks in the lock');
   expect(text(drawers)).toContain('MAYA REYES');
   expect(text(drawers)).toContain('Candidate 7A');
-  const week = c15(drawers, 'took-nell');
+  const week = walk15(drawers, ['took-nell']);
   expect([week.choices['act3.nell-order'], week.choices['act3.adrian'], week.choices['c15.maya-file'], week.choices['act3.page']]).toEqual(['taken', 'hers', 'yes', 'torn']);
   expect(week.facts).toContain('c15.p15-took');
   expect(text(week)).toContain('Lucien Morel');
@@ -110,7 +122,11 @@ it('goes alone at the hour she was given, under Mrs Fenn’s eyes, and gives bac
   expect(ids(people)).toEqual(['crew-julian', 'crew-alone']);
   const ways = c15(people, 'crew-alone');
   expect(ids(ways)).toEqual(['way-hour']);
-  const done = walk15(ways, ['way-hour', 'snag-talk', 'took-1109', 'cost-money', 'phone-river', 'ev-alone']);
+  const eve = c15(ways, 'way-hour');
+  expect([eve.phase, ids(eve)]).toEqual(['people', ['eve-plan', 'eve-dress', 'eve-sleep']]);
+  const done = walk15(eve, ['eve-plan', 'snag-talk', 'read-adrian', 'took-1109', 'cost-money', 'phone-river', 'ev-alone']);
+  expect(text(done)).toContain('until you catch yourself doing Mrs Fenn’s voice');
+  expect(text(done)).toContain('Candidate 7A. Clever. Lonely.');
   expect(text(done)).toContain('Take your time, dear. Mrs Laurent said you’d want to read.');
   expect(text(done)).toContain('the knitting needles stop');
   expect(text(done)).not.toContain('Operator: E. Vale');
@@ -136,7 +152,9 @@ it('goes in at two with Pryce on the comply road, and her own operator’s recei
 
 it('closes the Geneva account clean if she kept the card', () => {
   const s = toLedger14({ ch12: ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-lake', 'list-close', 'account-take', 'lake-alone', 'call-none', 'dawn-sleep'] });
-  const drawers = walk15(s, ['begin-predator', 'gift-thank', 'crew-alone', 'way-hour', 'snag-bold']);
+  const drawers = walk15(s, ['begin-predator', 'gift-thank', 'crew-alone', 'way-hour', 'eve-dress', 'snag-bold', 'read-marcus']);
+  expect(text(drawers)).toContain('Review at forty-three.');
+  expect(drawers.choices['pred.read15']).toBe('marcus');
   expect(ids(drawers)).toEqual(['took-nell', 'took-1109', 'took-clients', 'took-account']);
   const week = c15(drawers, 'took-account');
   expect(week.choices['pred.account']).toBe('closed');

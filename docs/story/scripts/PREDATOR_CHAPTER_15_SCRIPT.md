@@ -40,3 +40,33 @@ configurable picks:
 **Size (honest), pass 1:** ~1.1k (quiet) to ~1.2k (engaged); more on the letters and ally roads. Against the ~4.5k
 target, this is the leanest Predator first pass; a deepening pass is the obvious next step (the gift at greater
 length, a scene with the crew the night before, and the archive itself).
+
+## Deepening pass (2026-09-27)
+
+- **The night before the job** (`people`, after the way in, before the hour). Every way passes through it
+  (`c15.p-eve`):
+  - **eve-plan**: walked through twice at the kitchen table, with the salt cellar for Mrs Fenn and the pepper for
+    the door. With a crew: "And if she's there?" "Then I was invited." Alone, until she catches herself doing Mrs
+    Fenn's voice.
+  - **eve-dress**: for a courtesy (the grey silk, pearls, silent flat shoes) or for two in the morning (black, soft
+    boots, the green ribbon in the pocket "because if anybody asks, you were given a key").
+  - **eve-sleep** (neutral).
+- **One thing read before the one thing taken** (`drawers`, after the snag) (`pred.read15`):
+  - **read-adrian**: Celeste's assessment, in green, dated the spring before the Glass House. "Candidate 7A. Clever.
+    Lonely. Careful with everybody but himself. Will be grateful. Will not look back."
+  - **read-marcus**: page one of a much older catalogue. "M. CHEN. Recruited at twenty-nine. Placed: Helix. Loyal to
+    whoever is above him. Review at forty-three." "I was the review. She wrote me into his drawer fourteen years
+    before she met me."
+  - **read-none** (neutral): the lamp, the clock, four minutes.
+- **More prose:**
+  - Celeste on the key: "My father had it made for the first archive, in 1911 … I have never had it copied. I have
+    never needed to." This pays off Lucien's "Chubb, 1911" on the copy road.
+  - A white orchid from nobody, left on the landing.
+  - On the ledger, the key hangs on the top pin: the brass one on its ribbon, "On Thursday you will give it back to
+    her", or the copy on red thread.
+- **Place line:** "The night before · The kitchen table".
+
+The tests walk the new moments on their neutral picks (`NEUTRAL15 = eve-sleep, read-none`).
+
+**Size (honest) after the deepening pass:** ~1.2k (quiet) to ~1.4k (engaged), more on the ally roads. The next lift
+would be the gift scene at greater length, and a second beat in the archive (Nell's drawer read, not taken).
