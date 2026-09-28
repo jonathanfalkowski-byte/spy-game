@@ -23,7 +23,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). There is no order left, so no coercion. Intimacy is chosen and quiet
   (heat 1–2) on the morning of the board.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_16_SCRIPT.md](scripts/PREDATOR_CHAPTER_16_SCRIPT.md); code: `src/content/chapter16-predator.ts`.
+It runs ~1.0–1.1k words on one path.
 
 ---
 
