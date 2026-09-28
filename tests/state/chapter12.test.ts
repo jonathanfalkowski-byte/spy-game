@@ -55,7 +55,9 @@ const finish = (s: GameState) => {
 
 it('opens after an own-power Chapter 11 ending, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'executive' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual([]);
+  // The Executive road has its own Chapter 12 (Whose Face), entered from its own Chapter 11.
+  expect(ids(start({ 'route.lane': 'executive' }))).toEqual(['begin-executive']);
   vi.stubEnv('VITE_EVE_CHAPTER12', '');
   expect(chapter12Choices(start())).toEqual([]);
   expect(JSON.stringify(availableIntents(start()))).not.toContain('CHAPTER12');

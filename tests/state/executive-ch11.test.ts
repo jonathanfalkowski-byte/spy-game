@@ -121,6 +121,8 @@ it('signs: Iris warned, the book shown, the good pen and her hand on his shoulde
   expect(text(done)).toContain('SINGAPORE');
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
+  // With Chapter 12 switched off, the bridge to Chapter 14 starts here.
+  vi.stubEnv('VITE_EVE_CHAPTER12', '0');
   const called = choose(done, 'CHAPTER14_CHOOSE', 'chapter14.begin-executive');
   expect(text(called)).toContain('[Chapters 12–13 · executive road — in development]');
   expect(text(called)).toContain('the Vesper deal failed');
@@ -136,6 +138,8 @@ it('warns: "Not tonight, Marcus. I read things now." Celeste wonders where he le
   expect(text(done)).toContain('He’s learned to say no. I wonder where.');
   expect(text(done)).toContain('You said to ask you why in the car.');
   expect(text(done)).toContain('THE GOOD PEN: NOT TONIGHT. HE READS THINGS NOW.');
+  // With Chapter 12 switched off, the bridge to Chapter 14 starts here.
+  vi.stubEnv('VITE_EVE_CHAPTER12', '0');
   const called = choose(done, 'CHAPTER14_CHOOSE', 'chapter14.begin-executive');
   expect(text(called)).toContain('You warned me at the Vesper. I didn’t sign.');
 });

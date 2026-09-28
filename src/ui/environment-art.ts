@@ -286,6 +286,14 @@ const byNode: Record<string, Key> = {
   'chapter12.lake': 'hotelRoom',
   'chapter12.call': 'phone',
   'chapter12.ledger': 'apartmentNight',
+  // The Executive road: Whose Face (the shared Singapore set, with Julian beside her).
+  'chapter12.changi': 'apartmentNight',
+  'chapter12.tan': 'shoppingStreet',
+  'chapter12.number9': 'wardrobe',
+  'chapter12.punkah': 'harbourRoom',
+  'chapter12.nora': 'apartmentDay',
+  'chapter12.suite': 'hotelRoom',
+  'chapter12.harbour': 'rooftop',
   // Chapter 13 (stand-ins until EVE Art's frames: the reading room by day, the Claremont bar, a corridor and a door, never the room).
   'chapter13.brief': 'reviewRoom',
   'chapter13.week': 'apartmentNight',

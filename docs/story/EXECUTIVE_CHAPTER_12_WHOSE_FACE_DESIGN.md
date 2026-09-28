@@ -33,7 +33,9 @@
 - **Ch14** (built): `exec.told12` (told / not) is the key this chapter must set. On **told**, Ch14's "everything"
   does not need to include her name, and trust is +1.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_12_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_12_SCRIPT.md); code: `src/content/chapter12-executive.ts`.
+It is entered from an Executive `chapter11.complete`, hands on to the Ch14 bridge, and runs ~1.2–1.65k words on one path.
 
 ---
 

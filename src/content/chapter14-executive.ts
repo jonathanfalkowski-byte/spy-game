@@ -9,10 +9,10 @@
  * setting c14.answer (countered / refused / complied) for Ch15; Sloane collects the Ch8 debt at the board ("take my
  * file out too"); the kept ledger comes due honestly (what was Helix's follows Helix; what she paid for stays hers); a
  * chosen night (heat 3, consent-gated, fades); the card and the Vesper credentials. Julian is never a trap.
- * Until the Executive framing of Chapters 12–13 exists, it is entered from an Executive `chapter11.complete` through an
- * in-development bridge (from the last playable of Chapters 9–11 otherwise); exec.calendar is set by Chapter 10 ("A
- * Lovely Man") and exec.sign11 by Chapter 11 ("The Good Pen"); the planned keys exec.told12 and exec.told13 read their
- * defaults. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
+ * Until the Executive framing of Chapter 13 exists, it is entered from an Executive `chapter12.complete` through an
+ * in-development bridge (from the last playable of Chapters 9–12 otherwise); exec.calendar is set by Chapter 10 ("A
+ * Lovely Man"), exec.sign11 by Chapter 11 ("The Good Pen") and exec.told12 by Chapter 12 ("Whose Face"); the planned
+ * key exec.told13 reads its default. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
  * Deepening pass (2026-09-28): three moments, each with a neutral pick. Marcus in her doorway on Tuesday morning, before
  * the truth (c14.x-marcus = no | maybe | quiet: "Come and sit next to me after."); the tie on Thursday night as its own
  * moment (c14.x-tie = rehearse | kiss | go); and the box on Friday afternoon, by way (c14.x-box = word | hand | silence:
@@ -83,7 +83,9 @@ export function placeExecutive14(s: GameState): string | undefined {
 
 export function beginExecutive14(): C14Choice {
   return offer('begin-executive', 'Go on to the signature', 'This road’s Act III chapters are in development.', 'called', (x) => [
-    x.scene === 'chapter11'
+    x.scene === 'chapter12'
+      ? p('[Chapter 13 · executive road — in development] The winter comes the way it does on forty-one: fast, and then all at once. The black phone in your bag, every Friday. A placement date on a card on your wardrobe door, and a photograph of a woman on a harbour wall beside it. The clause is still there.')
+      : x.scene === 'chapter11'
       ? p('[Chapters 12–13 · executive road — in development] The months pass the way months do on forty-one: fast, and then all at once. Singapore. A winter. The black phone in your bag, every Friday. The card that says THE VESPER on your wardrobe door. The clause is still there.')
       : x.scene === 'chapter10'
       ? p('[Chapters 11–13 · executive road — in development] The months pass the way months do on forty-one: fast, and then all at once. The Vesper, the first Thursday. Singapore. A winter. The black phone in your bag, every Friday. The clause is still there.')

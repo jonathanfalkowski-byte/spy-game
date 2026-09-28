@@ -30,6 +30,7 @@ import { get5 } from './chapter5-model';
 import { getKey, setKey } from './chapter7-model';
 import { eveningPartners11, get11 } from './chapter11';
 import { beginPredator12, isPredator12, placePredator12, predatorBlocks12, predatorChoices12, predatorPhase12 } from './chapter12-predator';
+import { beginExecutive12, executiveBlocks12, executiveChoices12, executivePhase12, isExecutive12, placeExecutive12 } from './chapter12-executive';
 
 export type C12Scene = { title: string; place: string; blocks: Block[] };
 export type C12Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -79,6 +80,14 @@ export const chapter12Definitions: Record<string, C12Scene> = {
   lake: { title: 'Working Capital', place: '22:00 · THE HOTEL BAR, OVER THE LAKE', blocks: [] },
   call: { title: 'Holland Village', place: '02:00 · THE HOTEL ROOM', blocks: [] },
   ledger: { title: 'This Flat', place: 'HOME · THE WARDROBE DOOR', blocks: [] },
+  // The Executive road (2026-09-28): Whose Face.
+  changi: { title: 'Welcome Home', place: 'MONDAY · 06:10 · CHANGI', blocks: [] },
+  tan: { title: 'Mrs Tan’s Orchids', place: 'EMERALD HILL', blocks: [] },
+  number9: { title: 'Number 9', place: 'EMERALD HILL · AFTER DARK', blocks: [] },
+  punkah: { title: 'The Punkah Bar', place: 'TUESDAY NIGHT · THE MARLOWE HOTEL', blocks: [] },
+  nora: { title: 'Nora', place: 'SUNDAY · HOLLAND VILLAGE', blocks: [] },
+  suite: { title: 'Whose Face', place: 'SUNDAY NIGHT · JULIAN’S SUITE, THE STRAITS', blocks: [] },
+  harbour: { title: 'The Harbour', place: 'MIDNIGHT · THE HARBOUR', blocks: [] },
 };
 export const chapter12Scenes = Object.entries(chapter12Definitions).map(([phase, scene]) => ({
   id: `chapter12.${phase}` as NodeId,
@@ -114,6 +123,7 @@ export const pressReady12 = (s: GameState) =>
 export function place12(s: GameState): string | undefined {
   if (s.scene !== 'chapter12') return;
   if (isPredator12(s)) return placePredator12(s);
+  if (isExecutive12(s)) return placeExecutive12(s);
   if (s.phase === 'departure' && !get12(s, 'cover')) return '03:00 · The kitchen table, London';
   if (s.phase === 'night' && get12(s, 'dawn')) return 'Morning · The last day';
   const evening = get12(s, 'evening-open');
@@ -1058,6 +1068,7 @@ function completeBlocks(s: GameState): Block[] {
 export function chapter12Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter12') return [];
   if (predatorPhase12(s)) return predatorBlocks12(s);
+  if (executivePhase12(s)) return executiveBlocks12(s);
   if (s.phase === 'departure') return departureBlocks(s);
   if (s.phase === 'emerald') return emeraldBlocks(s);
   if (s.phase === 'flat') return flatBlocks(s);
@@ -1074,8 +1085,11 @@ export function chapter12Choices(s: GameState): C12Choice[] {
     return [offer12('begin', 'Singapore', 'Three weeks until the first Thursday. Go and find her.', 'departure')];
   // The Predator road comes from its Chapter 11 (The Catalogue); the temporary entry from Chapter 9 moved there.
   if (s.scene === 'chapter11' && s.phase === 'ledger' && isPredator12(s)) return [beginPredator12()];
+  // The Executive road comes from its Chapter 11 (The Good Pen).
+  if (s.scene === 'chapter11' && s.phase === 'complete' && isExecutive12(s)) return [beginExecutive12()];
   if (s.scene !== 'chapter12') return [];
   if (predatorPhase12(s)) return predatorChoices12(s);
+  if (executivePhase12(s)) return executiveChoices12(s);
   if (s.phase === 'departure') return departureChoices(s);
   if (s.phase === 'emerald') return emeraldChoices();
   if (s.phase === 'flat') return !get12(s, 'search') ? searchChoices() : !get12(s, 'bed') ? bedChoices() : caughtChoices();
