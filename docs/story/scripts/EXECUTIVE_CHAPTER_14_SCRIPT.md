@@ -32,10 +32,10 @@ truth-all or 1 for truth-order. **He knows** (`knows14`) if `exec.file = told`, 
 |---|---|---|---|
 | **called** | Monday 06:10. 14.3 is invoked on every facility he signed: the Vesper deal if `sign11 = signed`, otherwise Antwerp. What he says depends on `exec.file` / `sign11`. | **x14-to-him** · **x14-to-file** · **x14-to-window** (neutral) | `c14.x-called` |
 | **silence** | Monday night: Celeste in the car, Mr Pryce at the door. "Thank you for his calendar" if she gave it. The order is his silence; refusal means the building, the papers, and Adrian's name to Axiom. | **x14-celeste-think** · **-doubt** · **-silent** (neutral) | `c14.x-celeste` |
-| **truth** | Tuesday, his flat, his glasses on the table. | **x14-truth-all** (the order, the calendar, the Vesper pen, her name if untold; "Were you ever ordered to love me?" "No. Never. Not once."; fact `c14.x-truth`) · **x14-truth-order** · **x14-truth-none** | `exec.truth14` |
-| **ways** | Wednesday. If `exec.marcus8 = open`, Marcus's memo about the missing facility. Three sheets of paper, each explaining whether it is open. | **x14-way-enforce** (gated) · **x14-way-spend** · **x14-way-fall**. Each ends with Thursday night: she fixes his tie at the window, "Whatever happens tomorrow." | `exec.signature` (enforced / spent / fell), `c14.answer` (countered / refused / complied) |
+| **truth** | Tuesday 08:00, first (deepening): Marcus in her doorway. "Come and work for me after… I don't leave lights on for people." Then Tuesday late, his flat, his glasses on the table. | Marcus first: **x14-marcus-no** · **x14-marcus-maybe** ("Ask me again on Friday afternoon") · **x14-marcus-quiet** (neutral). Then **x14-truth-all** (the order, the calendar, the Vesper pen, her name if untold; "Were you ever ordered to love me?" "No. Never. Not once."; fact `c14.x-truth`) · **x14-truth-order** · **x14-truth-none** | `c14.x-marcus`, `exec.truth14` |
+| **ways** | Wednesday. If `exec.marcus8 = open`, Marcus's memo about the missing facility. Three sheets of paper, each explaining whether it is open. | **x14-way-enforce** (gated) · **x14-way-spend** · **x14-way-fall**. Each ends with Thursday night: she fixes his tie at the window, "Whatever happens tomorrow." Then the tie as its own moment (deepening): **x14-tie-rehearse** (until two, in Marcus's voice) · **x14-tie-kiss** (once, at the window, then home) · **x14-tie-go** (neutral) | `exec.signature` (enforced / spent / fell), `c14.answer` (countered / refused / complied), `c14.x-tie` |
 | **boardroom** | Friday 08:00, forty-four. Marcus with the fund's letter; Sloane in Axiom's chair. She collects if `exec.owes-sloane`, or asks at the same price if `exec.sloane8` was civil or deal. | **x14-sloane-accept** (`act3.sloane = allied`) / **x14-sloane-refuse**, or **x14-board-go**. Each plays the vote (below). | `exec.sloane14`, `exec.credentials`; fact `c14.x-board` |
-| **night** | The ledger comes due (below). | **x14-night-julian** (not after the fall way unless he knew why), then the scope: **x14-julian-no-sex**, **x14-julian-sex** (if Ch6 warmed things, or she stayed with him in Ch7 or Ch8), **x14-leave**; then **x14-stop** / **x14-stay** (fades). **x14-night-maya** (if she is back) · **x14-night-alone** | `c14.x-night*`; fact `c14.x-evening-consent` |
+| **night** | Friday 14:00, the box (deepening), by way: **enforce**, Marcus's box in the lift ("She'll do this to you one day"); **spend**, her own box, which Julian carries down; **fall**, his books in six boxes, with the photograph on top, still face down. | The box first: **x14-box-word** · **x14-box-hand** · **x14-box-silence** (neutral), each worded by way (the photograph stays a mystery: "It's a longer story than a box"). Then **x14-night-julian** (not after the fall way unless he knew why), then the scope: **x14-julian-no-sex**, **x14-julian-sex** (if Ch6 warmed things, or she stayed with him in Ch7 or Ch8), **x14-leave**; then **x14-stop** / **x14-stay** (fades). **x14-night-maya** (if she is back) · **x14-night-alone** | `c14.x-box`, `c14.x-night*`; fact `c14.x-evening-consent` |
 | **complete** | The card: THE SIGNATURE. HIS, STRUCK. WITH HIM. / MINE, SPENT. HE STAYS. / HIS, SILENT. I KEPT THE ROOM. A kept thought by `exec.kept`. Then THE VESPER, with HIS CREDENTIALS. HE COMES., HIS APPOINTMENT CARD., or NO WAY IN BUT MINE., plus SLOANE'S FILE TOO. | — | — |
 
 **The vote, by way:**
@@ -49,7 +49,7 @@ truth-all or 1 for truth-order. **He knows** (`knows14`) if `exec.file = told`, 
 - **Fell:** Julian resigns without contest and without looking at her. Marcus becomes interim COO. Celeste: "Nobody
   had to be unkind."
 
-**The ledger** (spend or fall; nothing moves on enforce):
+**The ledger** (spend or fall; nothing moves on enforce). Since the deepening it plays as an epilogue after the card, "The Monday after.":
 - **The flat:** if accepted, the key goes back. If paid: "It's mine. I paid for it." The lease holds.
 - **The car:** if taken, Hal drives her home one last time (spend), or is Marcus's driver now (fall).
 - **The card:** if taken, it is cancelled; the dress is hers.
@@ -68,5 +68,9 @@ truth-all or 1 for truth-order. **He knows** (`knows14`) if `exec.file = told`, 
 - **fall:** told nothing, no Julian evening, no way in but hers;
 - **the planned Ch10–13 keys:** the Vesper signature and the calendar, with the trust gate tipped by Singapore.
 
-**Size (honest), pass 1:** ~1.0k (quiet) to ~1.2k (engaged), against the ~4.5k target. It is the thinnest pass on the
-road so far, and first in line for deepening.
+**Deepening pass (2026-09-28):** three moments, each with a neutral pick (Marcus's offer, the tie, the box). The Monday
+ledger now plays after the card, so the timeline reads in order, and the kept thought reads the way. Tests use a
+`NEUTRAL14` walker (`x14-marcus-quiet`, `x14-tie-go`, `x14-box-silence`).
+
+**Size (honest):** ~1.0k (quiet) to ~1.2k (engaged) at pass 1; ~1.2k to ~1.5k after deepening, against the ~4.5k
+target. It is still the thinnest chapter on the road.

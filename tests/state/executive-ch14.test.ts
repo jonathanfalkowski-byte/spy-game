@@ -21,10 +21,21 @@ const choose = (s: GameState, kind: Kind, id: string) => {
   return next;
 };
 const ids = (s: GameState) => chapter14Choices(s).map((c) => c.id.replace(/^chapter14\./, ''));
-const c14 = (s: GameState, id: string) => {
+const once14 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER14_CHOOSE', id: 'chapter14.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (Marcus's offer, the tie, the box): take the neutral pick when it is in the way. */
+const NEUTRAL14 = ['x14-marcus-quiet', 'x14-tie-go', 'x14-box-silence'];
+const c14 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL14.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once14(y, n);
+  }
+  return once14(y, id);
 };
 const walk14 = (s: GameState, path: string[]) => path.reduce(c14, s);
 
@@ -85,7 +96,7 @@ it('enforces the term with him: everything told, the board strikes 14.3, Sloane 
   expect(text(ways)).toContain('Were you ever ordered to love me?');
   expect(text(ways)).toContain('No. Never. Not once.');
   expect(ids(ways)).toEqual(['x14-way-enforce', 'x14-way-spend', 'x14-way-fall']);
-  const board = c14(ways, 'x14-way-enforce');
+  const board = walk14(ways, ['x14-way-enforce', 'x14-tie-go']);
   expect(board.choices['c14.answer']).toBe('countered');
   expect(text(board)).toContain('you take it out of his hands and do it yourself');
   expect(ids(board)).toEqual(['x14-sloane-accept', 'x14-sloane-refuse']);
@@ -95,7 +106,7 @@ it('enforces the term with him: everything told, the board strikes 14.3, Sloane 
   expect(text(night)).toContain('Axiom was never told either.');
   expect(text(night)).toContain('We shall talk after my board meets.');
   expect(night.choices['act3.sloane']).toBe('allied');
-  expect(ids(night)).toContain('x14-night-julian');
+  expect(ids(night)).toEqual(['x14-box-word', 'x14-box-hand', 'x14-box-silence']);
   const scope = c14(night, 'x14-night-julian');
   expect(ids(scope)).toEqual(['x14-julian-no-sex', 'x14-leave']);
   const done = walk14(scope, ['x14-julian-no-sex', 'x14-stay']);
@@ -110,17 +121,18 @@ it('spends her status for him: the kept ledger comes due honestly, and Adrian’
   const ways = walk14(toBridge({ key: 'key-accept', ch8: KEPT8 }), ['begin-executive', 'x14-to-window', 'x14-celeste-doubt', 'x14-truth-order']);
   expect(ids(ways)).toEqual(['x14-way-spend', 'x14-way-fall']);
   expect(text(ways)).toContain('He doesn’t know what you know.');
-  const board = c14(ways, 'x14-way-spend');
+  const board = walk14(ways, ['x14-way-spend', 'x14-tie-go']);
   expect(ids(board)).toEqual(['x14-board-go']);
   const night = c14(board, 'x14-board-go');
   expect(night.choices['c14.answer']).toBe('refused');
   expect(text(night)).toContain('I read every one of those facilities, by right');
   expect(text(night)).toContain('with references unreserved, as your contract says');
   expect(text(night)).toContain('Axiom will have his name by Saturday.');
-  expect(text(night)).toContain('You put it in an envelope and walk it down yourself.');
-  expect(text(night)).toContain('Hal drives you home one last time');
-  expect(text(night)).toContain('The black card is cancelled on Monday.');
   const done = c14(night, 'x14-night-alone');
+  expect(text(done)).toContain('The Monday after.');
+  expect(text(done)).toContain('You put it in an envelope and walk it down yourself.');
+  expect(text(done)).toContain('Hal drives you home one last time');
+  expect(text(done)).toContain('The black card is cancelled on Monday.');
   expect(text(done)).toContain('THE SIGNATURE. MINE, SPENT. HE STAYS.');
   expect(text(done)).toContain('Now I find out which lines were mine.');
   expect(text(done)).toContain('HIS APPOINTMENT CARD.');
@@ -133,10 +145,11 @@ it('lets him fall and keeps the room: told nothing, he goes because she asked, a
   expect(text(board)).toContain('and says “All right,”');
   const night = c14(board, 'x14-board-go');
   expect(text(night)).toContain('Nobody had to be unkind.');
-  expect(text(night)).toContain('Marcus’s facilities now');
-  expect(text(night)).toContain('Hal is Marcus’s driver now.');
-  expect(ids(night)).not.toContain('x14-night-julian');
-  const done = c14(night, 'x14-night-alone');
+  const evening = c14(night, 'x14-box-silence');
+  expect(ids(evening)).not.toContain('x14-night-julian');
+  const done = c14(evening, 'x14-night-alone');
+  expect(text(done)).toContain('Marcus’s facilities now');
+  expect(text(done)).toContain('Hal is Marcus’s driver now.');
   expect(text(done)).toContain('THE SIGNATURE. HIS, SILENT. I KEPT THE ROOM.');
   expect(text(done)).toContain('THE VESPER. NO WAY IN BUT MINE.');
 });
@@ -157,4 +170,36 @@ it('reads the planned Chapter 10–13 keys: the Vesper signature, the calendar, 
   const night = walk14(told, ['x14-way-enforce', 'x14-board-go']);
   expect(text(night)).toContain('whose hand was on his shoulder at the Vesper');
   expect(text(night)).toContain('page thirty-one, photographed at twenty to midnight');
+});
+
+it('deepening: Marcus’s offer, the tie, and the box are moments of their own, each with a neutral pick', () => {
+  const truth = walk14(toBridge({ ch8: TRUSTED8 }), ['begin-executive', 'x14-to-him', 'x14-celeste-think']);
+  expect(text(truth)).toContain('Come and work for me after.');
+  expect(ids(truth)).toEqual(['x14-marcus-no', 'x14-marcus-maybe', 'x14-marcus-quiet']);
+  const flat = once14(truth, 'x14-marcus-maybe');
+  expect(text(flat)).toContain('Ask me again on Friday afternoon');
+  expect(ids(flat)).toEqual(['x14-truth-all', 'x14-truth-order', 'x14-truth-none']);
+  const tie = walk14(flat, ['x14-truth-order', 'x14-way-fall']);
+  expect(tie.phase).toBe('ways');
+  expect(ids(tie)).toEqual(['x14-tie-rehearse', 'x14-tie-kiss', 'x14-tie-go']);
+  const board = once14(tie, 'x14-tie-rehearse');
+  expect(text(board)).toContain('You know I’m not going to answer any of them tomorrow.');
+  const night = once14(board, 'x14-sloane-refuse');
+  expect(text(night)).toContain('Eleven years, and it fits in six boxes.');
+  const evening = once14(night, 'x14-box-word');
+  expect(text(evening)).toContain('It’s a longer story than a box');
+  expect(ids(evening)).toContain('x14-night-julian');
+  const done = once14(evening, 'x14-night-alone');
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: the box by way (Marcus in the lift; her own box carried down), and a kiss at the window', () => {
+  const lift = walk14(toBridge({ ch8: TRUSTED8 }), ['begin-executive', 'x14-to-file', 'x14-celeste-think', 'x14-truth-all', 'x14-way-enforce', 'x14-tie-kiss']);
+  expect(text(lift)).toContain('as if he were signing something he had read twice');
+  const marcus = once14(lift, 'x14-sloane-refuse');
+  expect(text(marcus)).toContain('She’ll do this to you one day.');
+  expect(text(once14(marcus, 'x14-box-hand'))).toContain('on his own feet');
+  const spent = walk14(toBridge({ key: 'key-accept', ch8: KEPT8 }), ['begin-executive', 'x14-to-him', 'x14-celeste-silent', 'x14-truth-none', 'x14-way-spend', 'x14-board-go']);
+  expect(text(spent)).toContain('It’s the only thing today I get to do for you.');
+  expect(text(once14(spent, 'x14-box-hand'))).toContain('like two people moving house');
 });

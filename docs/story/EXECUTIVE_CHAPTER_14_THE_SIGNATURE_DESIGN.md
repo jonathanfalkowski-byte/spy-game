@@ -27,8 +27,8 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_14_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_14_SCRIPT.md); code: `src/content/chapter14-executive.ts`.
-It is entered through the interim bridge from an Executive `chapter9.complete` (§6, decision 8), and runs ~1.0–1.2k
-words on one path.
+It is entered through the interim bridge from an Executive `chapter9.complete` (§6, decision 8). It ran ~1.0–1.2k words
+on one path at pass 1, deepened 2026-09-28 to ~1.2–1.5k with three moments: Marcus's offer, the tie, and the box.
 
 **One refinement made in the build:** telling him everything counts +2 toward trust, and the order alone +1, not the
 flat +1 in §4 below. That way honesty can open the enforce way on its own; Chapter 8's favours then decide how much

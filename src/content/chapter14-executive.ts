@@ -11,7 +11,12 @@
  * chosen night (heat 3, consent-gated, fades); the card and the Vesper credentials. Julian is never a trap.
  * Until the Executive framing of Chapters 10–13 exists, it is entered from an Executive `chapter9.complete` through an
  * in-development bridge, and the planned keys (exec.calendar, exec.sign11, exec.told12, exec.told13) read their
- * defaults. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`. */
+ * defaults. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
+ * Deepening pass (2026-09-28): three moments, each with a neutral pick. Marcus in her doorway on Tuesday morning, before
+ * the truth (c14.x-marcus = no | maybe | quiet: "Come and sit next to me after."); the tie on Thursday night as its own
+ * moment (c14.x-tie = rehearse | kiss | go); and the box on Friday afternoon, by way (c14.x-box = word | hand | silence:
+ * Marcus's box in the lift, her own box carried down by Julian, or his books with the photograph on top). The Monday
+ * ledger moves to an epilogue after the card. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -65,6 +70,10 @@ const nightOk = (s: GameState) =>
   key(s, 'c6.friction-julian') === 'warmed' || !!key(s, 'c7.x-evening-outcome')?.startsWith('intimate') || !!key(s, 'c8.x-late-outcome')?.startsWith('intimate');
 
 export function placeExecutive14(s: GameState): string | undefined {
+  if (s.phase === 'truth' && get14(s, 'x-marcus')) return 'Tuesday · late · The forty-first floor';
+  if (s.phase === 'truth') return 'Tuesday · 08:00 · Your doorway, forty-one';
+  if (s.phase === 'ways' && key(s, 'exec.signature')) return 'Thursday night · Julian’s apartment, the forty-first floor';
+  if (s.phase === 'night' && !get14(s, 'x-box')) return 'Friday · 14:00 · Forty-one';
   const open = get14(s, 'x-night-open');
   if (s.phase === 'night' && open) return open === 'maya' ? 'Late · Maya’s kitchen' : 'Late · Julian’s apartment, the forty-first floor';
 }
@@ -144,14 +153,34 @@ function silenceChoices(): C14Choice[] {
 
 // ── The truth ──
 
-function truthBlocks(): Block[] {
+function truthBlocks(s: GameState): Block[] {
   return [
-    p('Tuesday, late. His flat on the forty-first floor, the city laid out below, no dinner, two glasses nobody has touched. He has taken his glasses off and put them on the table between you, which is what he does when he wants to be seen without them.'),
-    q('Julian Mercer', 'You’ve been somewhere since last night. I can see it. You don’t have to tell me where. But if it’s about Friday, I’d rather know.'),
+    p('Tuesday morning. Marcus Chen in your doorway at eight, freshly shaved, jacket over his shoulder, as if the building already belonged to him and he was only checking the fittings.'),
+    q('Marcus Chen', key(s, 'exec.marcus8') === 'open' ? 'You took a file off his tray last spring. I never found out why. I’m not going to ask now. I’m going to make you an offer instead.' : 'Friday will go one of two ways. In one of them I’m in his chair by lunchtime. I’d like you on the right side of the glass when it happens.'),
+    q('Marcus Chen', 'Come and work for me after. Same office. Same title. The chair next to mine instead of next to his. I don’t leave lights on for people. I don’t need to. They don’t leave.'),
   ];
 }
 
+const marcusChoices = (): C14Choice[] => {
+  const m = (id: 'no' | 'maybe' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer('x14-marcus-' + id, label, hint, 'truth', (x) => {
+      set14(x, 'x-marcus', id);
+      return [...body, ...flatLead];
+    });
+  return [
+    m('no', '“No.”', 'One word. Let him hear all of it.', [q('You', 'No.'), p('He smiles as if you had said something charming in a language he is learning, and goes.')]),
+    m('maybe', '“Ask me on Friday afternoon.”', 'Keep him guessing.', [q('You', 'Ask me again on Friday afternoon, Mr Chen. We’ll both know more.'), p('He looks at you for a long moment with real appreciation, and taps the door frame twice, and goes.')]),
+    m('quiet', 'Say nothing', 'Go back to your screen.', [p('You go back to your screen without a word. After a while he goes too. You do not look up until the lift has closed.')]),
+  ];
+};
+
+const flatLead: Block[] = [
+    p('Tuesday, late. His flat on the forty-first floor, the city laid out below, no dinner, two glasses nobody has touched. He has taken his glasses off and put them on the table between you, which is what he does when he wants to be seen without them.'),
+    q('Julian Mercer', 'You’ve been somewhere since last night. I can see it. You don’t have to tell me where. But if it’s about Friday, I’d rather know.'),
+];
+
 function truthChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'x-marcus')) return marcusChoices();
   const all: Block[] = [
     p('You tell him everything. Celeste in the car. The order: his silence. ' + (gaveCalendar(s) ? 'His calendar, which you gave her. ' : '') + (signed11(s) ? 'The Vesper, the good pen, and whose hand was on his shoulder. ' : '') + (told12(s) ? '' : 'And your name: the one you were born with, and the one you are wearing, and the woman who wore it before you. ') + 'It takes an hour. He does not interrupt once.'),
     p('When you have finished he sits for a long time with his hands flat on the table.'),
@@ -204,7 +233,7 @@ function waysBlocks(s: GameState): Block[] {
 
 function waysChoices(s: GameState): C14Choice[] {
   const w = (id: 'enforced' | 'spent' | 'fell', label: string, hint: string, answer: string, body: Block[]) =>
-    offer('x14-way-' + id.replace('enforced', 'enforce').replace('spent', 'spend').replace('fell', 'fall'), label, hint, 'boardroom', (x) => {
+    offer('x14-way-' + id.replace('enforced', 'enforce').replace('spent', 'spend').replace('fell', 'fall'), label, hint, 'ways', (x) => {
       setKey(x, 'exec.signature', id);
       set14(x, 'answer', answer);
       return [
@@ -214,6 +243,7 @@ function waysChoices(s: GameState): C14Choice[] {
         q('You', 'Whatever happens tomorrow.'),
       ];
     });
+  if (way(s)) return tieChoices(s);
   return [
     ...(enforceOpen14(s)
       ? [w('enforced', 'Enforce the term, with him', 'He reads 14.3 into the minutes himself. You show whose it was.', 'countered', [p('You take the first sheet of paper across the corridor and put it on his desk, and he reads it twice, and nods.')])]
@@ -224,6 +254,24 @@ function waysChoices(s: GameState): C14Choice[] {
         ? [q('You', 'I’m going to ask you to go quietly on Friday.'), q('Julian Mercer', 'Then I’ll go quietly. It’s the first decision about Helix I’ve made with my eyes open.')]
         : [q('You', 'Go quietly on Friday. Please. Don’t fight it. Trust me.'), p('He looks at you for a long time, and does not ask why, and says “All right,” and you will hear that “all right” for years.')]),
     ]),
+  ];
+}
+
+function tieChoices(s: GameState): C14Choice[] {
+  const tc = (id: 'rehearse' | 'kiss' | 'go', label: string, hint: string, body: Block[]) =>
+    offer('x14-tie-' + id, label, hint, 'boardroom', (x) => {
+      set14(x, 'x-tie', id);
+      return body;
+    });
+  return [
+    tc('rehearse', 'Stay up and rehearse it', 'Every question they could ask. Until two.', [
+      p('You sit up until two on his sofa with your shoes off and the board papers between you, and ask him every question they could possibly ask, in Marcus’s voice, and then in the chair’s, and then in Sloane’s, until he stops flinching at any of them.'),
+      ...(way(s) === 'fell' ? [q('Julian Mercer', 'You know I’m not going to answer any of them tomorrow.'), q('You', 'I know. I wanted you to know you could have.')] : []),
+    ]),
+    tc('kiss', 'Kiss him, once, at the window', 'Only that. Then go.', [
+      p('You kiss him once, at the window, with your hands still on the knot of his tie, and he goes very still and then kisses you back, carefully, as if he were signing something he had read twice. Then you step back, and pick up your coat, and go home, and neither of you says anything, because nothing needs saying.'),
+    ]),
+    tc('go', 'Go home and sleep', 'Tomorrow needs you awake.', [p('You go home and, to your own surprise, sleep: seven hours, without dreaming, like somebody who has already made up her mind.')]),
   ];
 }
 
@@ -323,7 +371,57 @@ const scopeReply: Record<'no-sex' | 'sex', string> = {
   sex: 'Yes. And you say stop, it stops. The same for me. That was the first term and it’s still the only one.',
 };
 
+function boxBlocks(s: GameState): Block[] {
+  const w = way(s);
+  if (w === 'enforced')
+    return [
+      p('Two o’clock. Marcus Chen is in the lift when the doors open on forty-one, with a cardboard box in his arms: a pen set, a whisky glass, a framed photograph of a council block in Leeds. He looks at you, and does not look away.'),
+      q('Marcus Chen', 'She’ll do this to you one day. The same way. You know that.'),
+    ];
+  if (w === 'spent')
+    return [
+      p('Two o’clock. A cardboard box on your desk: the good pens from the drawer, Clare’s green folder, a mug. Julian comes in without knocking, for the first time ever, and picks it up before you can.'),
+      q('Julian Mercer', 'I’m carrying this down. Don’t argue. It’s the only thing today I get to do for you.'),
+    ];
+  return [
+    p('Two o’clock. His office is boxes: the books he has actually read, the good pen, and on top of the nearest box, still face down, the photograph in its silver frame.'),
+    q('Julian Mercer', 'Eleven years, and it fits in six boxes. I thought there’d be more.'),
+  ];
+}
+
+function boxChoices(s: GameState): C14Choice[] {
+  const w = way(s);
+  const b = (id: 'word' | 'hand' | 'silence', label: string, hint: string, body: Block[]) =>
+    offer('x14-box-' + id, label, hint, 'night', (x) => {
+      set14(x, 'x-box', id);
+      return [...body, p('Friday night. Forty-one empties from the lifts outward, and the rain comes back.')];
+    });
+  if (w === 'enforced')
+    return [
+      b('word', '“Maybe. But not today.”', 'Let him have the last word, nearly.', [q('You', 'Maybe. But not today, Marcus.'), p('The doors close on him smiling, and you will never be sure what the smile meant.')]),
+      b('hand', 'Hold the doors for him', 'He came up from nothing. Let him leave like somebody.', [p('You put your hand on the edge of the doors and hold them, and he steps out past you onto forty-one for the last time, and walks the whole glass hallway to the other lift, slowly, so that everybody sees him do it on his own feet.')]),
+      b('silence', 'Let the doors close', 'Nothing to say.', [p('You say nothing. The doors close. The floor numbers count down to G.')]),
+    ];
+  if (w === 'spent')
+    return [
+      b('word', '“Thank you for asking what would make it safe.”', 'Say it now. You may not get another chance.', [q('You', 'Thank you. For asking, that first morning, what would make it safe.'), q('Julian Mercer', 'You answered. That was the whole of it. You answered, and I listened.')]),
+      b('hand', 'Take one end of the box', 'Carry it down together.', [p('You take one end of the box and he takes the other, and you carry it down forty-one floors together like two people moving house, and in the lobby the security men stand up, and do not quite know why.')]),
+      b('silence', 'Let him carry it', 'Walk beside him.', [p('You let him carry it. You walk beside him to the lift, and down, and out, and he holds the door, the way he always did.')]),
+    ];
+  return [
+    b('word', 'Ask him about the photograph, one last time', 'Somebody he didn’t keep.', [
+      q('You', 'Will you tell me now? Who’s in the photograph?'),
+      ...(knewWhy(s)
+        ? [q('Julian Mercer', 'Over dinner. If you’ll have dinner with an unemployed man. It’s a longer story than a box, and I’d like to tell it sitting down.')]
+        : [q('Julian Mercer', 'Not today. One day. I seem to be running out of days on this floor.')]),
+    ]),
+    b('hand', 'Pick up the box with the photograph', 'Carry that one yourself.', [p('You pick up the box with the photograph on top and carry it to the lift yourself, and he lets you, and does not say anything, and in the lift he reaches over and puts his hand flat on the frame, just for a second, as if to keep it face down.')]),
+    b('silence', 'Help him tape the boxes', 'Say nothing. Tape.', [p('You kneel on his carpet and help him tape the boxes shut, one by one, and neither of you says a word, and it is somehow the most intimate hour of the whole three months.')]),
+  ];
+}
+
 function nightChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'x-box')) return boxChoices(s);
   const open = get14(s, 'x-night-open');
   if (open === 'julian') {
     const scope = (id: 'no-sex' | 'sex', label: string, hint: string) =>
@@ -399,9 +497,18 @@ function completeBlocks(s: GameState): Block[] {
     ...(get14(s, 'x-night-outcome')?.startsWith('intimate') ? [p('You get home at dawn with the tie in your coat pocket.')] : []),
     p('The wardrobe door. Under JULIAN MERCER, and the question in pencil, and the two columns, a new card:'),
     q('The card', { enforced: 'THE SIGNATURE. HIS, STRUCK. WITH HIM.', spent: 'THE SIGNATURE. MINE, SPENT. HE STAYS.', fell: 'THE SIGNATURE. HIS, SILENT. I KEPT THE ROOM.' }[w ?? 'fell']),
-    t(kept >= 3 ? 'I chose every line of the left-hand column. Now I find out which lines were mine.' : kept === 0 ? 'I owe nobody anything. It turns out that is also a way of being alone.' : 'Some of it was his, and it has gone back where it came from. Some of it was mine, and it is still here.'),
+    t(
+      w === 'enforced' && kept > 0
+        ? 'Everything he gave me is still where I left it. So is he. I find I do not need to count it tonight.'
+        : kept >= 3
+          ? 'I chose every line of the left-hand column. Now I find out which lines were mine.'
+          : kept === 0
+            ? 'I owe nobody anything. It turns out that is also a way of being alone.'
+            : 'Some of it was his, and it will go back where it came from. Some of it was mine, and it will still be here.',
+    ),
     p('And beside it, the next one, the one that goes somewhere:'),
     q('The card', 'THE VESPER. ' + (cred === 'julian' ? 'HIS CREDENTIALS. HE COMES.' : cred === 'card' ? 'HIS APPOINTMENT CARD. BEFORE THEY TAKE IT OFF HIM.' : 'NO WAY IN BUT MINE.') + (key(s, 'exec.sloane14') === 'accepted' ? ' SLOANE’S FILE TOO.' : '')),
+    ...(ledgerDue(s).length && w !== 'enforced' ? [p('The Monday after.'), ...ledgerDue(s)] : []),
     p('[Chapter 15 · executive road — in development]'),
   ];
 }
@@ -409,10 +516,10 @@ function completeBlocks(s: GameState): Block[] {
 export function executiveBlocks14(s: GameState): Block[] {
   if (s.phase === 'called') return calledBlocks(s);
   if (s.phase === 'silence') return silenceBlocks(s);
-  if (s.phase === 'truth') return truthBlocks();
+  if (s.phase === 'truth') return truthBlocks(s);
   if (s.phase === 'ways') return waysBlocks(s);
   if (s.phase === 'boardroom') return boardroomBlocks(s);
-  if (s.phase === 'night') return ledgerDue(s).length ? ledgerDue(s) : [p('Friday night. Forty-one empties from the lifts outward.')];
+  if (s.phase === 'night') return boxBlocks(s);
   if (s.phase === 'complete') return completeBlocks(s);
   return [];
 }
