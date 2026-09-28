@@ -10,7 +10,13 @@
  * placement date is never moved as a punishment). "What was that place?" in Hal's car, and Singapore next month; a
  * chosen night (heat 3, consent-gated, fades). Entered from an Executive `chapter10.complete`; until Executive Ch12
  * exists the road goes on through the in-development bridge to Ch14, which reads exec.sign11. Local helpers mirror
- * chapter11.ts (c11.* keys, chapter11.* ids); choice ids carry `x11-`. */
+ * chapter11.ts (c11.* keys, chapter11.* ids); choice ids carry `x11-`.
+ * Deepening pass (2026-09-28): three moments, each with a neutral pick. The dance, after the room (c11.x-dance = gulf |
+ * julian | no: the quiet man from the Gulf fund, "placements are usually for a season"; or Julian, badly, in front of
+ * every client she owns); Marcus in the corridor with the cream folder and a bet (c11.x-corridor = bet | past | quiet);
+ * and the cloakroom, where the Vesper hands her the first Evelynn's camel coat, kept fourteen months (exec.coat11 = take |
+ * ask, or her own ticket: a Singapore transit card and a receipt from a café on Emerald Hill in the pocket). The drive
+ * remembers the book ("You said later. It's later."). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -44,6 +50,8 @@ const nightOk = (s: GameState) =>
   key(s, 'c6.friction-julian') === 'warmed' || ['c7.x-evening-outcome', 'c8.x-late-outcome', 'c10.x-night-outcome'].some((k) => !!key(s, k)?.startsWith('intimate'));
 
 export function placeExecutive11(s: GameState): string | undefined {
+  if (s.phase === 'frames' && get11(s, 'x-room')) return '20:45 · The long room, the trio';
+  if (s.phase === 'pages' && key(s, 'exec.book11')) return '22:10 · The corridor behind the long room';
   if (s.phase === 'pages' && get11(s, 'x-iris')) return '21:30 · The anteroom, the lectern';
   const open = get11(s, 'x-night-open');
   if (s.phase === 'drive' && open) return open === 'maya' ? 'Late · Maya’s kitchen' : 'Late · Julian’s apartment, the forty-first floor';
@@ -89,9 +97,9 @@ function framesBlocks(s: GameState): Block[] {
 
 function framesChoices(): C11Choice[] {
   const r = (id: 'stay' | 'work' | 'watch', label: string, hint: string, body: Block[]) =>
-    offer('x11-room-' + id, label, hint, 'pages', (x) => {
+    offer('x11-room-' + id, label, hint, 'frames', (x) => {
       set11(x, 'x-room', id);
-      return body;
+      return [...body, ...danceLead];
     });
   return [
     r('stay', 'Stay beside him', 'Let them look at both of you.', [p('You stay at his side all through the champagne, your shoulder against his arm, and let them look at the two of you together, which is a different thing to look at, and they know it.')]),
@@ -99,6 +107,30 @@ function framesChoices(): C11Choice[] {
       p('You leave him with the minister’s wife and give Halvorsen twenty minutes of your full attention, and he tells you about ships, and then, lower, pleased with himself, that the autumn collection is in the anteroom tonight, “if you know where to look”.'),
     ]),
     r('watch', 'Watch him watch them', 'He has never seen a room like this.', [p('You stand a step back and watch Julian learn the room, sentence by sentence, the way he learned your terms: slowly, twice, moving his lips very slightly on the second reading.')]),
+  ];
+}
+
+const danceLead: Block[] = [
+  p('At a quarter to nine the trio in the corner starts something slow, and the quiet man from the Gulf fund, who has not had a drink all evening, appears at your elbow and asks you to dance, as if it were a small, polite transaction he had been meaning to complete.'),
+];
+
+function danceChoices(): C11Choice[] {
+  const d = (id: 'gulf' | 'julian' | 'no', label: string, hint: string, body: Block[]) =>
+    offer('x11-dance-' + id, label, hint, 'pages', (x) => {
+      set11(x, 'x-dance', id);
+      return body;
+    });
+  return [
+    d('gulf', 'Dance with him, and let him talk', 'Your lead. Step out when you have it.', [
+      p('You let him lead, for a song. He dances like a man counting money, beautifully and without pleasure, and tells you, his mouth near your ear, in the tone of a man recommending a restaurant, that placements are usually for a season, “and the good ones are extended.”'),
+      p('You step out of it at the last bar with exactly what you came for, and your skin crawling very slightly under the silk, and across the room Julian has seen the whole thing and is holding his glass much too tightly.'),
+    ]),
+    d('julian', 'Dance with Julian instead', 'In front of every client she owns.', [
+      p('You turn the Gulf man down with a smile and walk the length of the long room to Julian, and take his glass out of his hand, and put it on a plinth under an empty frame, and hold out your hand.'),
+      p('He dances badly, and without apology, and with his whole attention, in front of every client Celeste owns, and you watch them revise their prices.'),
+      q('Julian Mercer', 'I don’t know what this room is. I know I’d rather be in it with you than not.'),
+    ]),
+    d('no', '“No, thank you.”', 'A glass of water, and the edge of the room.', [p('“No, thank you.” He inclines his head, as if a price had been declined, and moves on to the minister’s wife, and you take a glass of water to the edge of the room and watch the frames.')]),
   ];
 }
 
@@ -141,9 +173,9 @@ const bookLead: Block[] = [
 
 function bookChoices(): C11Choice[] {
   const b = (id: 'show' | 'close' | 'turn', label: string, hint: string, body: Block[]) =>
-    offer('x11-book-' + id, label, hint, 'pen', (x) => {
+    offer('x11-book-' + id, label, hint, 'pages', (x) => {
       setKey(x, 'exec.book11', id);
-      return body;
+      return [...body, ...corridorLead];
     });
   return [
     b('show', 'Let him see it', 'Stand aside.', [
@@ -154,6 +186,28 @@ function bookChoices(): C11Choice[] {
     ]),
     b('close', 'Close the book', 'Before he reaches you.', [p('You close it as he reaches you. “A guest book,” you say. He believes you, because you have never given him a reason not to, and you feel exactly how much that is worth.')]),
     b('turn', 'Turn to another page', 'Let him see a stranger.', [p('You turn back three pages as he reaches you, and he looks over your shoulder at a stranger’s face, a man in his fifties, and a line of code, and does not understand what he is looking at, and you let him not understand.')]),
+  ];
+}
+
+const corridorLead: Block[] = [
+  p('At a quarter past ten, on the way to the balcony, in the corridor behind the long room: Marcus Chen, leaning on the wall with a cream folder under his arm, as if he had been waiting for a lift that never comes.'),
+  q('Marcus Chen', 'She wants you to carry this in to him. I told her you never would. I bet her a case of something I can’t pronounce.'),
+];
+
+function corridorChoices(): C11Choice[] {
+  const c = (id: 'bet' | 'past' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer('x11-corridor-' + id, label, hint, 'pen', (x) => {
+      set11(x, 'x-corridor', id);
+      return body;
+    });
+  return [
+    c('bet', '“What did she bet?”', 'Make him say it.', [
+      q('You', 'And what did she bet?'),
+      q('Marcus Chen', 'That you would. She never loses. I wanted, just once, to see her face when she did.'),
+      t('He is telling me which way to jump because he wants to watch her lose. It is the first honest thing he has ever said to me.'),
+    ]),
+    c('past', 'Walk past him', 'Close enough that he has to step aside.', [p('You walk past him close enough that he has to step aside, the way you did in the glass hallway the first day, and he does, and laughs under his breath, and hands the folder through the balcony door to somebody you cannot see.')]),
+    c('quiet', 'Say nothing', 'Keep walking.', [p('You say nothing and keep walking. You can feel him watching you all the way to the balcony door.')]),
   ];
 }
 
@@ -217,12 +271,31 @@ function signingBlocks(s: GameState): Block[] {
   ];
 }
 
+const coatLead: Block[] = [
+  p('At the cloakroom, before you can give her your ticket, the girl behind the counter looks at you, and then at her rail, and goes into the back, and comes out with a coat that is not yours: long, camel, beautifully cut, fourteen months out of fashion.'),
+  q('The cloakroom', 'We kept it for you, Miss Vale.'),
+];
+
 function signingChoices(s: GameState): C11Choice[] {
+  const after = (x: GameState) => {
+    setKey(x, 'exec.celeste11', { signed: 'pleased', warned: 'suspects', refused: 'cold' }[sign(x) ?? 'refused']);
+    if (sign(x) === 'refused') setKey(x, 'exec.cost11', 'halvorsen');
+  };
   return [
-    offer('x11-signing-go', 'Get your coat', sign(s) === 'refused' ? 'Hal is waiting. Monday is coming.' : 'Hal is waiting.', 'drive', (x) => {
-      setKey(x, 'exec.celeste11', { signed: 'pleased', warned: 'suspects', refused: 'cold' }[sign(x) ?? 'refused']);
-      if (sign(x) === 'refused') setKey(x, 'exec.cost11', 'halvorsen');
-      return [];
+    offer('x11-coat-take', 'Take the coat', 'She was a Miss Vale too.', 'drive', (x) => {
+      after(x);
+      setKey(x, 'exec.coat11', 'take');
+      note(x, 'x-coat', 'The Vesper cloakroom kept the first Evelynn’s camel coat for fourteen months. In its pocket: a Singapore transit card, and a receipt from a café on Emerald Hill, for two coffees.', 'The Vesper cloakroom');
+      return [p('You take it, and thank her, and put it on over your own dress, and it fits as if it had been cut for you, which you suppose it was. In the pocket, when you put your hands in: a Singapore transit card, and a folded receipt from a café on Emerald Hill, for two coffees.')];
+    }),
+    offer('x11-coat-ask', '“Whose is this?”', 'Make her say it.', 'drive', (x) => {
+      after(x);
+      setKey(x, 'exec.coat11', 'ask');
+      return [q('You', 'Whose is this?'), q('The cloakroom', 'Yours, Miss Vale. You left it with us. Fourteen months ago. You never came back for it.'), p('You give it back to her across the counter, very gently.'), q('You', 'Keep it for her.')];
+    }),
+    offer('x11-signing-go', 'Give her your own ticket', sign(s) === 'refused' ? 'Your own coat. Hal is waiting. Monday is coming.' : 'Your own coat. Hal is waiting.', 'drive', (x) => {
+      after(x);
+      return [p('You put your own ticket on the counter without a word. After a moment she takes the camel coat back into the dark and brings you yours.')];
     }),
   ];
 }
@@ -232,7 +305,8 @@ function signingChoices(s: GameState): C11Choice[] {
 function driveBlocks(s: GameState): Block[] {
   return [
     p('Midnight, Hal’s car, the city going by in the rain. Julian has loosened his tie and not taken it off, and is looking at his own hands.'),
-    q('Julian Mercer', sign(s) === 'warned' ? 'You said to ask you why in the car. I’m asking something else first. What was that place?' : 'What was that place?'),
+    ...(key(s, 'exec.coat11') === 'take' ? [p('He looks at the camel coat, which is not yours, and does not ask. Yet.')] : []),
+    q('Julian Mercer', key(s, 'exec.book11') === 'show' ? 'You said later. It’s later. What was that place?' : sign(s) === 'warned' ? 'You said to ask you why in the car. I’m asking something else first. What was that place?' : 'What was that place?'),
   ];
 }
 
@@ -332,15 +406,15 @@ export function executiveBlocks11(s: GameState): Block[] {
   if (s.phase === 'frames') return framesBlocks(s);
   if (s.phase === 'pages') return pagesBlocks();
   if (s.phase === 'pen') return penBlocks(s);
-  if (s.phase === 'signing') return signingBlocks(s);
+  if (s.phase === 'signing') return [...signingBlocks(s), ...coatLead];
   if (s.phase === 'drive') return driveBlocks(s);
   if (s.phase === 'complete') return completeBlocks(s);
   return [];
 }
 
 export function executiveChoices11(s: GameState): C11Choice[] {
-  if (s.phase === 'frames') return framesChoices();
-  if (s.phase === 'pages') return get11(s, 'x-iris') ? bookChoices() : irisChoices();
+  if (s.phase === 'frames') return get11(s, 'x-room') ? danceChoices() : framesChoices();
+  if (s.phase === 'pages') return !get11(s, 'x-iris') ? irisChoices() : !key(s, 'exec.book11') ? bookChoices() : corridorChoices();
   if (s.phase === 'pen') return penChoices();
   if (s.phase === 'signing') return signingChoices(s);
   if (s.phase === 'drive') return driveChoices(s);

@@ -21,10 +21,21 @@ const choose = (s: GameState, kind: Kind, id: string) => {
   return next;
 };
 const ids = (s: GameState) => chapter11Choices(s).map((c) => c.id.replace(/^chapter11\./, ''));
-const c11 = (s: GameState, id: string) => {
+const once11 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER11_CHOOSE', id: 'chapter11.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the dance, the corridor, the cloakroom): take the neutral pick when it is in the way. */
+const NEUTRAL11 = ['x11-dance-no', 'x11-corridor-quiet', 'x11-signing-go'];
+const c11 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL11.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once11(y, n);
+  }
+  return once11(y, id);
 };
 const walk11 = (s: GameState, path: string[]) => path.reduce(c11, s);
 
@@ -82,13 +93,13 @@ it('enters The Good Pen from the Executive Chapter 10: the empty frames, on his 
 });
 
 it('signs: Iris warned, the book shown, the good pen and her hand on his shoulder; it authenticates, and Ch14 remembers', () => {
-  const pages = walk11(toEleven({ ch8: TOLD8, ch10: GAVE10 }), ['begin-executive', 'x11-room-work']);
+  const pages = walk11(toEleven({ ch8: TOLD8, ch10: GAVE10 }), ['begin-executive', 'x11-room-work', 'x11-dance-no']);
   expect(text(pages)).toContain('the autumn collection is in the anteroom tonight');
   expect(ids(pages)).toEqual(['x11-iris-warn', 'x11-iris-kin', 'x11-iris-quiet']);
   const book = c11(pages, 'x11-iris-warn');
   expect(text(book)).toContain('AVAILABLE FOR PLACEMENT FROM THE FIRST THURSDAY OF NEXT MONTH');
   expect(ids(book)).toEqual(['x11-book-show', 'x11-book-close', 'x11-book-turn']);
-  const pen = c11(book, 'x11-book-show');
+  const pen = walk11(book, ['x11-book-show', 'x11-corridor-quiet']);
   expect(pen.choices['exec.book11']).toBe('show');
   expect(text(pen)).toContain('He signs what you bring him now, darling. Everybody’s noticed.');
   expect(text(pen)).toContain('He hasn’t signed anything of ours since the spring. He’ll sign this. For you.');
@@ -141,4 +152,37 @@ it('refuses: Marcus brings it, he signs it as he always has, and Halvorsen walks
 it('refuses after he stopped signing: he turns Marcus down himself', () => {
   const signing = walk11(toEleven({ ch8: TOLD8 }), ['begin-executive', 'x11-room-watch', 'x11-iris-quiet', 'x11-book-turn', 'x11-pen-refuse']);
   expect(text(signing)).toContain('Put it on my tray and I’ll read it on Monday.');
+});
+
+it('deepening: the dance, Marcus in the corridor, and the first Evelynn’s coat, each with a neutral pick', () => {
+  const dance = walk11(toEleven({ ch8: TOLD8, ch10: GAVE10 }), ['begin-executive', 'x11-room-stay']);
+  expect(dance.phase).toBe('frames');
+  expect(ids(dance)).toEqual(['x11-dance-gulf', 'x11-dance-julian', 'x11-dance-no']);
+  const pages = once11(dance, 'x11-dance-julian');
+  expect(text(pages)).toContain('you watch them revise their prices');
+  const corridor = walk11(pages, ['x11-iris-quiet', 'x11-book-show']);
+  expect(corridor.phase).toBe('pages');
+  expect(text(corridor)).toContain('I bet her a case of something I can’t pronounce.');
+  expect(ids(corridor)).toEqual(['x11-corridor-bet', 'x11-corridor-past', 'x11-corridor-quiet']);
+  const pen = once11(corridor, 'x11-corridor-bet');
+  expect(text(pen)).toContain('She never loses.');
+  const coat = once11(pen, 'x11-pen-warn');
+  expect(text(coat)).toContain('We kept it for you, Miss Vale.');
+  expect(ids(coat)).toEqual(['x11-coat-take', 'x11-coat-ask', 'x11-signing-go']);
+  const drive = once11(coat, 'x11-coat-take');
+  expect(drive.choices['exec.coat11']).toBe('take');
+  expect(drive.facts).toContain('c11.x-coat');
+  expect(text(drive)).toContain('a receipt from a café on Emerald Hill');
+  expect(text(drive)).toContain('You said later. It’s later.');
+  expect(text(drive)).toContain('He looks at the camel coat, which is not yours');
+  const done = walk11(drive, ['x11-drive-singapore', 'x11-night-alone']);
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: the Gulf man’s dance, and "Keep it for her"', () => {
+  const pages = walk11(toEleven({ ch8: KEPT8 }), ['begin-executive', 'x11-room-watch', 'x11-dance-gulf']);
+  expect(text(pages)).toContain('placements are usually for a season');
+  const drive = walk11(pages, ['x11-iris-quiet', 'x11-book-close', 'x11-corridor-past', 'x11-pen-refuse', 'x11-coat-ask']);
+  expect(text(drive)).toContain('You never came back for it.');
+  expect(text(drive)).toContain('Keep it for her.');
 });

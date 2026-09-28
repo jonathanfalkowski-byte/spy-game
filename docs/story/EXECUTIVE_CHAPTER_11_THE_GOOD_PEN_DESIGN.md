@@ -36,7 +36,8 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_11_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_11_SCRIPT.md); code: `src/content/chapter11-executive.ts`.
-It is entered from an Executive `chapter10.complete`, hands on to the Ch14 bridge, and runs ~1.0–1.2k words on one path.
+It is entered from an Executive `chapter10.complete` and hands on to the Ch14 bridge. It ran ~1.0–1.2k words on one
+path at pass 1, deepened 2026-09-28 to ~1.25–1.6k with three moments: the dance, the corridor, and the cloakroom.
 
 ---
 
