@@ -75,7 +75,7 @@ it('opens on the confirm beat with the suggested road, two pivots and a break', 
   expect(resolveSceneArt(s).art?.kind).toBe('environment');
 });
 
-it('writes route.lane and route.entry from the choice; only own-power continues', () => {
+it('writes route.lane and route.entry from the choice; the built roads continue, the rest end marked', () => {
   const confirm = c7(c7(complete6('maximal-trade'), 'begin'), 'route-confirm');
   expect([confirm.choices['route.lane'], confirm.choices['route.entry'], `${confirm.scene}.${confirm.phase}`]).toEqual(['outside', 'built', 'chapter7.complete']);
   expect(text(confirm)).toContain('[Chapter 7 · outside route — in development]');
@@ -85,7 +85,8 @@ it('writes route.lane and route.entry from the choice; only own-power continues'
   expect(ids(asked)).toEqual(['confirm-break', 'step-back']);
   expect(ids(c7(asked, 'step-back'))).toContain('route-confirm');
   const broke = c7(asked, 'confirm-break');
-  expect([broke.choices['route.lane'], broke.choices['route.entry'], broke.phase]).toEqual(['executive', 'unbuilt', 'complete']);
+  // The Executive road has its own Chapter 7 since 2026-09-28 (The Room).
+  expect([broke.choices['route.lane'], broke.choices['route.entry'], broke.phase]).toEqual(['executive', 'unbuilt', 'table']);
   for (const s of [confirm, pivot, broke]) expect(decodeSave(encodeSave(s))).toEqual(s);
 });
 

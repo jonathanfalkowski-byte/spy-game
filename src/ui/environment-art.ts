@@ -176,6 +176,13 @@ const byNode: Record<string, Key> = {
   'chapter7.complete': 'apartmentNight',
   // The Predator road: Marcus's car, his floor, and her own office two floors down.
   'chapter7.summons': 'car',
+  // The Executive road: The Room.
+  'chapter7.table': 'privateDinner',
+  'chapter7.fortyone': 'helixSuite',
+  'chapter7.contract': 'helixSuite',
+  'chapter7.hallway': 'helixReception',
+  'chapter7.key': 'helixWorkroom',
+  'chapter7.tonight': 'apartmentNight',
   'chapter7.office': 'helixSuite',
   'chapter7.terms': 'helixSuite',
   'chapter7.corridor': 'helixReception',

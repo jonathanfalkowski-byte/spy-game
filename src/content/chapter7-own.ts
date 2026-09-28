@@ -57,6 +57,7 @@ import { mayaHeardNewVoice, mayaKnowsAdaptation } from '../state/chapter3-proven
 import { get6 } from './chapter6-model';
 import { type C7Choice, get7, getKey, note7, offer7, set7, setKey } from './chapter7-model';
 import { placePredator7 } from './chapter7-predator';
+import { placeExecutive7 } from './chapter7-executive';
 
 const SENDER = 'Unknown sender';
 export const RECORDS_FEE = 40;
@@ -76,6 +77,7 @@ export function enterClose7(s: GameState) {
 export function place7(s: GameState): string | undefined {
   if (s.scene !== 'chapter7') return;
   if (getKey(s, 'route.lane') === 'predator') return placePredator7(s);
+  if (getKey(s, 'route.lane') === 'executive') return placeExecutive7(s);
   const open = get7(s, 'pursue-open');
   if (s.phase === 'pursue' && open)
     return {

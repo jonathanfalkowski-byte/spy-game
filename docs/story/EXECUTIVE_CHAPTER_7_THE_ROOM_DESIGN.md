@@ -11,8 +11,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md) (Mature 17+, heat 3, consent in character, fade at the act; partners
   are men).
 
-**Status: DESIGN for owner approval.** Nothing is built. It will be entered from the Chapter 7 confirm beat when the
-road chosen is `executive` (today that road goes straight to Chapter 7's end and the Ch9 placeholder).
+**Status: APPROVED (owner, 2026-09-28: all seven decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_7_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_7_SCRIPT.md); code: `src/content/chapter7-executive.ts`.
+It is entered from the Chapter 7 confirm beat when the road is `executive`, and runs ~1.2–1.4k words on one path.
 
 ---
 
