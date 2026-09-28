@@ -35,7 +35,9 @@
   - Adrian's name to Axiom is **Ch14's** refusal cost, so it must not be spent here;
   - Ch14's "He's a lovely man. He will never survive us." becomes a callback to this breakfast.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_10_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_10_SCRIPT.md); code: `src/content/chapter10-executive.ts`.
+It is entered from an Executive `chapter9.complete`, hands on to the Ch14 bridge, and runs ~0.95–1.2k words on one path.
 
 ---
 

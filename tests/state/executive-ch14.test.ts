@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER14_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER10_CHOOSE' | 'CHAPTER14_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -39,9 +39,10 @@ const c14 = (s: GameState, id: string) => {
 };
 const walk14 = (s: GameState, path: string[]) => path.reduce(c14, s);
 
-type Build = { terms?: string[]; key?: string; ch8: string[]; flags?: Record<string, string> };
-/** A real save (the maximal-julian golden) through Chapter 6 on the Julian workroom, Executive Chapters 7 and 8, and the
- * Chapter 9 bridge, to its end. `flags` stand in for the planned Executive Chapter 10–13 keys (not replayable). */
+type Build = { terms?: string[]; key?: string; ch8: string[]; ch10?: string[]; flags?: Record<string, string> };
+/** A real save (the maximal-julian golden) through Chapter 6 on the Julian workroom, Executive Chapters 7 and 8, the
+ * Chapter 9 bridge, and Executive Chapter 10 (by default refusing the calendar), to its end. `flags` stand in for the
+ * planned Executive Chapter 11–13 keys (not replayable). */
 function toBridge(b: Build) {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
   s = c6(s, ids6(s).includes('expect-narrow') ? 'expect-narrow' : 'expect-clarify');
@@ -67,6 +68,8 @@ function toBridge(b: Build) {
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
+  for (const id of ['begin-executive', ...(b.ch10 ?? ['x10-go', 'x10-adrian-composed', 'x10-calendar-refuse', 'x10-paper-quiet', 'x10-week-yes', 'x10-night-alone'])])
+    s = choose(s, 'CHAPTER10_CHOOSE', 'chapter10.' + id);
   if (b.flags) s = Object.assign(structuredClone(s), { choices: { ...s.choices, ...b.flags } });
   return s;
 }
@@ -76,14 +79,14 @@ const TRUSTED8 = ['x8-light-on', 'x8-fav-diary', 'x8-diary-hold', 'x8-fav-paper'
 /** Ch8: takes the car, the card and the call; cold with Sloane; keeps a copy of page thirty-one. */
 const KEPT8 = ['x8-light-off', 'x8-fav-car', 'x8-car-take', 'x8-fav-card', 'x8-card-take', 'x8-fav-fixer', 'x8-fixer-take', 'x8-sloane-cold', 'x8-file-keep', 'x8-late-alone'];
 
-it('bridges from the Executive Chapter 9 to The Signature while Chapters 10–13 are in development', () => {
+it('bridges from the Executive Chapter 10 to The Signature while Chapters 11–13 are in development', () => {
   const s = toBridge({ ch8: TRUSTED8 });
-  expect(`${s.scene}.${s.phase}`).toBe('chapter9.complete');
+  expect(`${s.scene}.${s.phase}`).toBe('chapter10.complete');
   expect(chapter10Choices(s)).toEqual([]);
   expect(ids(s)).toEqual(['begin-executive']);
   const called = c14(s, 'begin-executive');
   expect(called.phase).toBe('called');
-  expect(text(called)).toContain('[Chapters 10–13 · executive road — in development]');
+  expect(text(called)).toContain('[Chapters 11–13 · executive road — in development]');
   expect(text(called)).toContain('L.S.F. Advisory has invoked clause 14.3.');
   expect(text(called)).toContain('You told me. Months ago, on the phone at midnight');
   const silence = c14(called, 'x14-to-him');

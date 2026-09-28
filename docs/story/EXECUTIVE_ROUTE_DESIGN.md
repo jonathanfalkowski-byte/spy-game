@@ -5,8 +5,9 @@ Each chapter gets its own design doc before build, as on Predator. Built so far 
 ([EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md](EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md)), Ch8, "The Terms"
 ([EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md](EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md)), and Ch14, "The Signature"
 ([EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md](EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md)), reached for now
-through an in-development bridge from Ch9. The unique spine is complete. Next: the shared variants (Ch10–13, then
-Ch15–18), or deepening 7, 8 and 14.
+through an in-development bridge. The unique spine is complete and deepened. Shared variants: Ch10, "A Lovely Man"
+([EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md](EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md)), built pass 1; the Ch14
+bridge now starts at Ch10's end. Next: Ch11, "The Asset" (the Vesper, the signature order).
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

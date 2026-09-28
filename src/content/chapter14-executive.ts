@@ -9,9 +9,9 @@
  * setting c14.answer (countered / refused / complied) for Ch15; Sloane collects the Ch8 debt at the board ("take my
  * file out too"); the kept ledger comes due honestly (what was Helix's follows Helix; what she paid for stays hers); a
  * chosen night (heat 3, consent-gated, fades); the card and the Vesper credentials. Julian is never a trap.
- * Until the Executive framing of Chapters 10–13 exists, it is entered from an Executive `chapter9.complete` through an
- * in-development bridge, and the planned keys (exec.calendar, exec.sign11, exec.told12, exec.told13) read their
- * defaults. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
+ * Until the Executive framing of Chapters 11–13 exists, it is entered from an Executive `chapter10.complete` through an
+ * in-development bridge (from `chapter9.complete` if Chapter 10 is not playable); exec.calendar is set by Chapter 10
+ * ("A Lovely Man"), and the planned keys exec.sign11, exec.told12 and exec.told13 read their defaults. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
  * Deepening pass (2026-09-28): three moments, each with a neutral pick. Marcus in her doorway on Tuesday morning, before
  * the truth (c14.x-marcus = no | maybe | quiet: "Come and sit next to me after."); the tie on Thursday night as its own
  * moment (c14.x-tie = rehearse | kiss | go); and the box on Friday afternoon, by way (c14.x-box = word | hand | silence:
@@ -81,8 +81,10 @@ export function placeExecutive14(s: GameState): string | undefined {
 // ── The bridge (until Executive Chapters 10–13 exist) ──
 
 export function beginExecutive14(): C14Choice {
-  return offer('begin-executive', 'Go on to the signature', 'This road’s Act III chapters are in development.', 'called', () => [
-    p('[Chapters 10–13 · executive road — in development] The months pass the way months do on forty-one: fast, and then all at once. Celeste Laurent’s name, which you found at the end of the bridge, is on L.S.F. Advisory’s letterhead in very small type. Julian has signed what Marcus gave him. The clause is still there.'),
+  return offer('begin-executive', 'Go on to the signature', 'This road’s Act III chapters are in development.', 'called', (x) => [
+    x.scene === 'chapter10'
+      ? p('[Chapters 11–13 · executive road — in development] The months pass the way months do on forty-one: fast, and then all at once. The Vesper, the first Thursday. Singapore. A winter. The black phone in your bag, every Friday. The clause is still there.')
+      : p('[Chapters 10–13 · executive road — in development] The months pass the way months do on forty-one: fast, and then all at once. Celeste Laurent’s name, which you found at the end of the bridge, is on L.S.F. Advisory’s letterhead in very small type. Julian has signed what Marcus gave him. The clause is still there.'),
   ]);
 }
 
@@ -131,7 +133,7 @@ function silenceBlocks(s: GameState): Block[] {
     p('Monday night. A long car at the kerb outside Helix, engine running, Mr Pryce holding the rear door with his eyes on the middle distance. Inside, in grey cashmere, with the reading light on, Celeste Laurent.'),
     q('Celeste Laurent', 'Sit, darling. It’s cold, and this won’t take long.'),
     ...(gaveCalendar(s) ? [q('Celeste Laurent', 'Thank you for his calendar, by the way. I knew about Friday before he did.')] : []),
-    q('Celeste Laurent', 'He’s a lovely man. He will never survive us. So help him not to try. Ask him to go quietly on Friday: resign, and don’t contest. Marcus takes the chair, the fund is patient, Helix lives, and so does Julian, somewhere pleasant, with a good pension and his books.'),
+    q('Celeste Laurent', (key(s, 'exec.calendar') ? 'I told you at breakfast, darling. ' : '') + 'He’s a lovely man. He will never survive us. So help him not to try. Ask him to go quietly on Friday: resign, and don’t contest. Marcus takes the chair, the fund is patient, Helix lives, and so does Julian, somewhere pleasant, with a good pension and his books.'),
     q('Celeste Laurent', 'He’ll do it if you ask. That’s rather the point of you.'),
     q('Celeste Laurent', 'And if you don’t, I shall let the fund have the building, and the papers will have the man who signed it away, and Axiom will have Adrian Vale’s name by the weekend. I’d so much rather not. Nobody needs to be unkind.'),
     t('His calendar. His signature. Now his silence. She has never once asked me for his body. She doesn’t need it. She wants the thing he gave me for nothing.'),

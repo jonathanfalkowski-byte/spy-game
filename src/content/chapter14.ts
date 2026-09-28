@@ -914,8 +914,10 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (s.scene === 'chapter13' && s.phase === 'complete' && ownPower(s))
     return [offer14('begin', 'Let her in', 'Sloane, on your landing, asking.', 'door')];
   if (s.scene === 'chapter13' && s.phase === 'ledger' && isPredator14(s)) return [beginPredator14()];
-  // The Executive road: an in-development bridge from its Chapter 9 until its Chapters 10–13 exist.
-  if (s.scene === 'chapter9' && s.phase === 'complete' && isExecutive14(s)) return [beginExecutive14()];
+  // The Executive road: an in-development bridge from its Chapter 10 until its Chapters 11–13 exist (from Chapter 9
+  // if Chapter 10 is not playable).
+  if (s.phase === 'complete' && isExecutive14(s) && (s.scene === 'chapter10' || (s.scene === 'chapter9' && import.meta.env.VITE_EVE_CHAPTER10 !== '1')))
+    return [beginExecutive14()];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);
