@@ -6,8 +6,9 @@ Each chapter gets its own design doc before build, as on Predator. Built so far 
 ([EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md](EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md)), and Ch14, "The Signature"
 ([EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md](EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md)), reached for now
 through an in-development bridge. The unique spine is complete and deepened. Shared variants: Ch10, "A Lovely Man"
-([EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md](EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md)), built pass 1; the Ch14
-bridge now starts at Ch10's end. Next: Ch11, "The Asset" (the Vesper, the signature order).
+([EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md](EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md)), built and deepened, and Ch11,
+"The Good Pen" ([EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md](EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md)), built pass 1. The
+Ch14 bridge now starts at Ch11's end. Next: Ch12, Singapore (with Julian beside her), then Ch13.
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

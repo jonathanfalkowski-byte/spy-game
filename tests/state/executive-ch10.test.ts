@@ -5,6 +5,7 @@ import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter8Choices } from '../../src/content/chapter8';
 import { chapter9Choices } from '../../src/content/chapter9';
 import { chapter10Choices } from '../../src/content/chapter10';
+import { chapter11Choices } from '../../src/content/chapter11';
 import { chapter14Choices } from '../../src/content/chapter14';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { currentPlace } from '../../src/ui/chapter4-presentation';
@@ -115,7 +116,9 @@ it('gives his calendar: the inventory knows the tray he told, Clare and the floo
   expect(`${done.scene}.${done.phase}`).toBe('chapter10.complete');
   expect(text(done)).toContain('CELESTE LAURENT. “HE’S A LOVELY MAN.”');
   expect(text(done)).toContain('HIS CALENDAR: GIVEN. EVERY FRIDAY. FOUR SECONDS.');
-  expect(chapter14Choices(done).map((c) => c.id)).toEqual(['chapter14.begin-executive']);
+  // The road goes on to Executive Chapter 11, not the Chapter 14 bridge.
+  expect(chapter11Choices(done).map((c) => c.id)).toEqual(['chapter11.begin-executive']);
+  expect(chapter14Choices(done)).toEqual([]);
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
 });
@@ -142,6 +145,8 @@ it('refuses: she walks out, Julian pays with a week in Gdańsk, and Chapter 14 r
   expect(text(done)).toContain('a shipping line in Gdańsk is called in early');
   expect(text(done)).toContain('That was a small one, darling. Friday?');
   expect(text(done)).toContain('HIS CALENDAR: REFUSED. GDAŃSK. HE NEVER KNEW.');
+  // With Chapter 11 switched off, the bridge to Chapter 14 starts here.
+  vi.stubEnv('VITE_EVE_CHAPTER11', '0');
   const called = act(done, { type: 'CHAPTER14_CHOOSE', id: 'chapter14.begin-executive' } as never);
   expect(text(called)).toContain('[Chapters 11–13 · executive road — in development]');
   const silence = act(called, { type: 'CHAPTER14_CHOOSE', id: 'chapter14.x14-to-him' } as never);

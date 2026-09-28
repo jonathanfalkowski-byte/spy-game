@@ -264,6 +264,12 @@ const byNode: Record<string, Key> = {
   'chapter11.cloak': 'serviceGallery',
   'chapter11.late': 'car',
   'chapter11.ledger': 'apartmentNight',
+  // The Executive road: The Good Pen (the shared Vesper set, on Julian's arm).
+  'chapter11.frames': 'harbourRoom',
+  'chapter11.pages': 'serviceGallery',
+  'chapter11.pen': 'rooftop',
+  'chapter11.signing': 'harbourRoom',
+  'chapter11.drive': 'car',
   // Chapter 12 (stand-ins until EVE Art's Singapore frames: Changi, Emerald Hill, number 9, the Punkah Bar, the harbour).
   'chapter12.departure': 'apartmentNight',
   'chapter12.emerald': 'shoppingStreet',
