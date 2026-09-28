@@ -22,7 +22,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). No coercion (there is nothing left to coerce with). The charge
   between the two women is attention and appraisal, never sexual.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_17_SCRIPT.md](scripts/PREDATOR_CHAPTER_17_SCRIPT.md); code: `src/content/chapter17-predator.ts`.
+It runs ~1.2–1.4k words on one path.
 
 ---
 

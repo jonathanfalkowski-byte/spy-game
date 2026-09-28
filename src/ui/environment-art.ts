@@ -333,6 +333,14 @@ const byNode: Record<string, Key> = {
   'chapter17.nell': 'harbourRoom',
   'chapter17.vote': 'harbourRoom',
   'chapter17.complete': 'rooftop',
+  // The Predator road: Sit With Us (the long room reset for the board).
+  'chapter17.sit': 'harbourRoom',
+  'chapter17.market': 'harbourRoom',
+  'chapter17.marcus': 'harbourRoom',
+  'chapter17.offer': 'harbourRoom',
+  'chapter17.eleanor': 'harbourRoom',
+  'chapter17.hands': 'harbourRoom',
+  'chapter17.minute': 'harbourRoom',
   // Chapter 18 (stand-ins until EVE Art's frames: a newspaper, three envelopes and a match, a harbour wall, a window, one card).
   'chapter18.morning': 'apartmentDay',
   'chapter18.position': 'apartmentDay',

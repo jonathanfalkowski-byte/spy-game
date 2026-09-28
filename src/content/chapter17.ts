@@ -18,6 +18,7 @@
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { getKey, setKey } from './chapter7-model';
+import { beginPredator17, isPredator17, predatorBlocks17, predatorChoices17, predatorPhase17 } from './chapter17-predator';
 
 export type C17Scene = { title: string; place: string; blocks: Block[] };
 export type C17Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -39,6 +40,14 @@ export const chapter17Definitions: Record<string, C17Scene> = {
   nell: { title: 'Eleanor', place: '18:50 · THE BOARD TABLE', blocks: [] },
   vote: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
   complete: { title: 'The Front Door', place: '19:10 · THE EMBANKMENT', blocks: [] },
+  // The Predator road (2026-09-28): Sit With Us.
+  sit: { title: 'My Successor', place: '18:00 · THE LONG ROOM', blocks: [] },
+  market: { title: 'The Shop', place: '18:15 · THE BOARD TABLE', blocks: [] },
+  marcus: { title: 'Review at Forty-Three', place: '18:25 · THE BOARD TABLE', blocks: [] },
+  offer: { title: 'Sit With Us', place: '18:40 · THE BOARD TABLE', blocks: [] },
+  eleanor: { title: 'Eleanor', place: '18:50 · THE BOARD TABLE', blocks: [] },
+  hands: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
+  minute: { title: 'One Minute', place: '19:10 · THE LONG ROOM', blocks: [] },
 };
 export const chapter17Scenes = Object.entries(chapter17Definitions).map(([phase, scene]) => ({
   id: `chapter17.${phase}` as NodeId,
@@ -513,6 +522,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function chapter17Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter17') return [];
+  if (predatorPhase17(s)) return predatorBlocks17(s);
   if (s.phase === 'opening') return openingBlocks(s);
   if (s.phase === 'defect') return defectBlocks(s);
   if (s.phase === 'sloane') return sloaneBlocks(s);
@@ -527,7 +537,10 @@ export function chapter17Choices(s: GameState): C17Choice[] {
   if (!chapter17Playable(s)) return [];
   if (s.scene === 'chapter16' && s.phase === 'complete' && ownPower(s))
     return [offer17('begin', 'The room', 'Six people, one hour, and Celeste standing.', 'opening')];
+  // The Predator road (Sit With Us) comes from its Chapter 16 (The Seventh Chair).
+  if (s.scene === 'chapter16' && s.phase === 'room' && isPredator17(s)) return [beginPredator17()];
   if (s.scene !== 'chapter17') return [];
+  if (predatorPhase17(s)) return predatorChoices17(s);
   if (s.phase === 'opening') return openingChoices();
   if (s.phase === 'defect') return defectChoices(s);
   if (s.phase === 'sloane') return sloaneChoices();
