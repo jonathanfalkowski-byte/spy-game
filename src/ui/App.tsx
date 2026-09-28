@@ -332,7 +332,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
           : state.scene === 'clinic'
             ? 'Adaptation / 02'
             : state.scene === 'chapter18'
-              ? 'Chapter 18 / The Position'
+              ? (state.choices['route.lane'] === 'predator' ? 'Chapter 18 / Paid in Full' : 'Chapter 18 / The Position')
             : state.scene === 'chapter17'
               ? (state.choices['route.lane'] === 'predator' ? 'Chapter 17 / Sit With Us' : 'Chapter 17 / The Room')
             : state.scene === 'chapter16'
@@ -375,7 +375,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         ) : state.scene === 'clinic' ? (
           'Inside Sublevel 17.'
         ) : state.scene === 'chapter18' ? (
-          'The Position.'
+          (state.choices['route.lane'] === 'predator' ? 'Paid in Full.' : 'The Position.')
         ) : state.scene === 'chapter17' ? (
           (state.choices['route.lane'] === 'predator' ? 'Sit With Us.' : 'The Room.')
         ) : state.scene === 'chapter16' ? (
@@ -569,7 +569,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter18' ? 'THE POSITION' : state.scene === 'chapter17' ? (state.choices['route.lane'] === 'predator' ? 'SIT WITH US' : 'THE ROOM') : state.scene === 'chapter16' ? (state.choices['route.lane'] === 'predator' ? 'THE SEVENTH CHAIR' : 'THE APPROACH') : state.scene === 'chapter15' ? (state.choices['route.lane'] === 'predator' ? 'THE KEY' : 'BREAKING THE LEASH') : state.scene === 'chapter14' ? (state.choices['route.lane'] === 'predator' ? 'MARCUS FALLS' : 'SLOANE’S TURN') : state.scene === 'chapter13' ? (state.choices['route.lane'] === 'predator' ? 'THE MIRROR' : 'THE HONEYPOT') : state.scene === 'chapter12' ? (state.choices['route.lane'] === 'predator' ? 'THE COUNTERPARTY' : 'SINGAPORE') : state.scene === 'chapter11' ? (state.choices['route.lane'] === 'predator' ? 'THE CATALOGUE' : 'THE ASSET') : state.scene === 'chapter10' ? (state.choices['route.lane'] === 'predator' ? 'LET ME HELP' : 'SHE KNOWS') : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? (state.choices['route.lane'] === 'predator' ? 'THE FLOOR' : 'THE COST BITES') : state.scene === 'chapter7' ? (state.choices['route.lane'] === 'predator' ? 'THE OFFER' : 'THE ROAD YOU CHOOSE') : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter18' ? (state.choices['route.lane'] === 'predator' ? 'PAID IN FULL' : 'THE POSITION') : state.scene === 'chapter17' ? (state.choices['route.lane'] === 'predator' ? 'SIT WITH US' : 'THE ROOM') : state.scene === 'chapter16' ? (state.choices['route.lane'] === 'predator' ? 'THE SEVENTH CHAIR' : 'THE APPROACH') : state.scene === 'chapter15' ? (state.choices['route.lane'] === 'predator' ? 'THE KEY' : 'BREAKING THE LEASH') : state.scene === 'chapter14' ? (state.choices['route.lane'] === 'predator' ? 'MARCUS FALLS' : 'SLOANE’S TURN') : state.scene === 'chapter13' ? (state.choices['route.lane'] === 'predator' ? 'THE MIRROR' : 'THE HONEYPOT') : state.scene === 'chapter12' ? (state.choices['route.lane'] === 'predator' ? 'THE COUNTERPARTY' : 'SINGAPORE') : state.scene === 'chapter11' ? (state.choices['route.lane'] === 'predator' ? 'THE CATALOGUE' : 'THE ASSET') : state.scene === 'chapter10' ? (state.choices['route.lane'] === 'predator' ? 'LET ME HELP' : 'SHE KNOWS') : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? (state.choices['route.lane'] === 'predator' ? 'THE FLOOR' : 'THE COST BITES') : state.scene === 'chapter7' ? (state.choices['route.lane'] === 'predator' ? 'THE OFFER' : 'THE ROAD YOU CHOOSE') : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -1037,7 +1037,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                       : state.scene === 'clinic'
                         ? 'SUBLEVEL 17'
                         : state.scene === 'chapter18'
-                          ? 'Chapter 18 / The Position'
+                          ? (state.choices['route.lane'] === 'predator' ? 'Chapter 18 / Paid in Full' : 'Chapter 18 / The Position')
                         : state.scene === 'chapter17'
                           ? (state.choices['route.lane'] === 'predator' ? 'Chapter 17 / Sit With Us' : 'Chapter 17 / The Room')
                         : state.scene === 'chapter16'

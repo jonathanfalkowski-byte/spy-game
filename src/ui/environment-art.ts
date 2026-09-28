@@ -348,6 +348,13 @@ const byNode: Record<string, Key> = {
   'chapter18.name': 'apartmentNight',
   'chapter18.later': 'rooftop',
   'chapter18.complete': 'apartmentNight',
+  // The Predator road: Paid in Full.
+  'chapter18.papers': 'apartmentDay',
+  'chapter18.hold': 'harbourRoom',
+  'chapter18.owes': 'apartmentNight',
+  'chapter18.called': 'wardrobe',
+  'chapter18.year': 'apartmentNight',
+  'chapter18.last': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

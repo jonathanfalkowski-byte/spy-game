@@ -24,7 +24,9 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md). The last night is chosen, heat 3, and fades. No identity or
   consent choice is punished.
 
-**Status: DESIGN for owner approval.** Nothing is built.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/PREDATOR_CHAPTER_18_SCRIPT.md](scripts/PREDATOR_CHAPTER_18_SCRIPT.md); code: `src/content/chapter18-predator.ts`.
+It runs ~0.6–0.9k words on one path. **The Predator road is complete, Chapters 7 to 18.**
 
 ---
 
