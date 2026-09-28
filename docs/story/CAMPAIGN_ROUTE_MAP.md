@@ -137,4 +137,7 @@ what it cost.
    Celebrity, reusing the shared Act III scaffolding (~6–7h unique rather than ~10h). Route
    design: [PREDATOR_ROUTE_DESIGN.md](PREDATOR_ROUTE_DESIGN.md), approved 2026-09-27; the `deriveRoute6` lane split is built (lane id `predator`). **Routes are now five:
    Institutional, Outside, Executive, Predator, Celebrity.**
+8. **The Executive route is designed** (owner, 2026-09-28): the Julian road, access through trust, care and intimacy;
+   Julian is never a trap; unique Ch7, Ch8 and Ch14, shared framing elsewhere
+   ([EXECUTIVE_ROUTE_DESIGN.md](EXECUTIVE_ROUTE_DESIGN.md)).
 
