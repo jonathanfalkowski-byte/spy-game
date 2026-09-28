@@ -16,9 +16,9 @@ all eight decisions as recommended). Route: [../EXECUTIVE_ROUTE_DESIGN.md](../EX
 
 | Phase | Beat | Choices | Flags |
 |---|---|---|---|
-| **orbit** | The lit office next door was Clare Adeyemi's. Marcus drove her out; "I didn't keep her. I'm not going to make that mistake twice." A line admits the kept overlay if Ch6 set it, and a touch in the lift if she stayed with him in Ch7. | **x8-light-off** ("It's your office now") · **x8-light-on** ("For her") | `c8.x-light` |
-| **favours** | Three of five, one a week. Each favour opens its scene (`c8.x-open`), then offers three answers. | See the favour table below. | `exec.fav.<id>`, `c8.x-weeks`, `exec.kept` (+1 for each of *his* favours taken), `exec.trust` (+1 for each of *hers* done) |
-| **dinner** | Helix–Axiom, black tie. Marcus opens according to Ch7's `exec.marcus`. With the **veto** term, Sloane has to introduce herself. Her line: "Mr Mercer always did like people who used to be somebody else." | **x8-sloane-cold** · **x8-sloane-civil** · **x8-sloane-deal**, which leads to the cloakroom: **x8-cloak-take** (L.S.F. a night early, and a debt to Sloane) / **x8-cloak-walk** | `exec.sloane8`, `c8.x-cloak`, `exec.owes-sloane` |
+| **orbit** | The lit office next door was Clare Adeyemi's. Marcus drove her out; "I didn't keep her. I'm not going to make that mistake twice." A line admits the kept overlay if Ch6 set it, and a touch in the lift if she stayed with him in Ch7. | **x8-light-off** ("It's your office now") · **x8-light-on** ("For her"); then Clare's drawer (deepening), HANDOVER. FOR WHOEVER IS NEXT.: **x8-clare-call** ("Watch his tray… don't let him be kind to you so much that you forget to count") · **x8-clare-read** ("Never let M. put anything on J.'s tray after six.") · **x8-clare-leave** (neutral) | `c8.x-light`, `c8.x-clare` |
+| **favours** | Three of five, one a week. Each favour opens its scene (`c8.x-open`), then offers three answers. After the second week, the middle night (deepening): two lights on forty-one, "Go home… It's a plea." | See the favour table below. Middle night: **x8-midnight-stay** (the office floor, cold noodles, his head on her shoulder at two) · **x8-midnight-ask** (Clare, the real version: "She told me to watch my tray") · **x8-midnight-go** (neutral; he switches her light back on) | `exec.fav.<id>`, `c8.x-weeks`, `exec.kept` (+1 for each of *his* favours taken), `exec.trust` (+1 for each of *hers* done), `c8.x-midnight` |
+| **dinner** | Helix–Axiom, black tie. Marcus opens according to Ch7's `exec.marcus`. With the **veto** term, Sloane has to introduce herself. Her line: "Mr Mercer always did like people who used to be somebody else." | First, Marcus at the table (deepening): **x8-table-needle** ("I could have it framed") · **x8-table-glass** (his glass raised half an inch down the table) · **x8-table-quiet** (neutral). Then **x8-sloane-cold** · **x8-sloane-civil** · **x8-sloane-deal**, which leads to the cloakroom: **x8-cloak-take** (L.S.F. a night early, and a debt to Sloane) / **x8-cloak-walk** | `exec.sloane8`, `c8.x-cloak`, `exec.owes-sloane` |
 | **tray** | 23:40. The Morel & Cie facility for Rotterdam. With the **files** term she reads it by right; without it she reads it anyway, with the door open. Page thirty-one, clause 14.3. | **x8-file-tell** ("I've signed this clause eleven times"; he doesn't sign the twelfth; trust +1) · **x8-file-keep** (copies it; "He never does") · **x8-file-pull** (into her drawer; Marcus: "Something's missing from Julian's tray.") | `exec.file` (told / kept / pulled), `exec.marcus8 = open` on pull; fact `c8.x-file` |
 | **late** | The next night. Julian's invitation changes with what she did with the file. | **x8-late-julian** (always offered), then the scope: **x8-julian-no-sex**, **x8-julian-sex** (only if Ch6 warmed things or she stayed with him in Ch7), **x8-leave**; then **x8-stop** / **x8-stay** (fades). **x8-late-maya** (if she is back: "Good, or clever?") · **x8-late-alone** (the ledger in two columns) | `c8.x-late*`; fact `c8.x-evening-consent` |
 | **complete** | The second card: the ledger in her hand (flat, then each favour). A thought according to what she kept: three or more, some, or none. Then **L.S.F. ADVISORY. 14.3. WHOSE MONEY?**, plus SLOANE. I OWE HER ONE. if she took the deal, and the light if she left it on. | — (on to Ch9) | — |
@@ -49,4 +49,14 @@ all eight decisions as recommended). Route: [../EXECUTIVE_ROUTE_DESIGN.md](../EX
 
 `executive-ch7.test.ts` now expects Ch7 to hand on to `chapter8.begin-executive`.
 
-**Size (honest), pass 1:** ~1.3k (quiet) to ~1.7k (engaged), against the ~4–4.5k target.
+**Deepening pass (2026-09-28):**
+- three moments, each with a neutral pick (Clare's drawer, the middle night, the table);
+- the tray remembers Clare (her underlined line, or "Watch his tray");
+- both stays expanded;
+- the card keeps 2 A.M. NOODLES if she stayed.
+
+Tests use a `NEUTRAL8` walker (`x8-clare-leave`, `x8-midnight-go`, `x8-table-quiet`), and the Ch14 builder takes the
+neutral picks.
+
+**Size (honest):** ~1.3k (quiet) to ~1.7k (engaged) at pass 1; ~1.55k to ~2.05k after deepening, against the ~4–4.5k
+target.

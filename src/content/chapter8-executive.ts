@@ -9,7 +9,12 @@
  * Marcus beside her, and an optional cloakroom deal (the fund's name a night early, for a debt to Sloane). The tray at
  * 23:40: clause 14.3 and L.S.F. Advisory in a Morel & Cie facility (tell him / keep it / pull the file). A chosen
  * evening (heat 3, consent-gated, fades). Julian is never a trap (EXECUTIVE_ROUTE_DESIGN §2). Local helpers mirror
- * chapter8.ts (c8.* keys, chapter8.* ids) to avoid a circular import; choice ids carry `x8-`. */
+ * chapter8.ts (c8.* keys, chapter8.* ids) to avoid a circular import; choice ids carry `x8-`.
+ * Deepening pass (2026-09-28): three moments, each with a neutral pick. Clare's drawer, after the light (c8.x-clare =
+ * call | read | leave: her handover notes, and one line underlined, "Never let M. put anything on J.'s tray after six.",
+ * which comes back at the tray); the middle night, between weeks two and three (c8.x-midnight = stay | ask | go: the two
+ * lights on forty-one, shoes off, or Clare, or home); and Marcus at the table before Sloane (c8.x-table = needle | glass
+ * | quiet). The evening and the card at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { cash5, get5 } from './chapter5-model';
@@ -49,6 +54,8 @@ const weeks = (s: GameState) => Number(get8(s, 'x-weeks') ?? 0);
 const WEEK = ['Week one', 'Week two', 'Week three'];
 
 export function placeExecutive8(s: GameState): string | undefined {
+  if (s.phase === 'orbit' && get8(s, 'x-clare-open')) return 'Afternoon · Your desk, forty-one';
+  if (s.phase === 'favours' && weeks(s) === 2 && !get8(s, 'x-midnight') && !get8(s, 'x-open')) return 'Week two · Wednesday · 23:45 · Forty-one';
   const open = get8(s, 'x-open');
   if (s.phase === 'favours' && open)
     return (
@@ -82,19 +89,50 @@ function orbitBlocks(s: GameState): Block[] {
   ];
 }
 
-function orbitChoices(): C8Choice[] {
+function orbitChoices(s: GameState): C8Choice[] {
+  if (get8(s, 'x-clare-open')) return clareChoices();
   const l = (id: 'off' | 'on', label: string, hint: string, body: Block[]) =>
-    offer('x8-light-' + id, label, hint, 'favours', (x) => {
+    offer('x8-light-' + id, label, hint, 'orbit', (x) => {
       set8(x, 'x-light', id);
-      return [
-        ...body,
-        p('Then the rhythm of it, fast, the way a new city becomes yours. The coffee at ten past seven. His diary, which is now your diary. The way the floor goes a little quieter when you walk through it, and a little straighter. Everything that crosses his desk crosses yours first, and a great deal crosses his desk.'),
-        t('Three weeks. He is going to be kind to me, and I am going to be good at this, and somebody is going to have to keep count. It had better be me.'),
-      ];
+      set8(x, 'x-clare-open');
+      return [...body, ...clareLead];
     });
   return [
     l('off', 'Turn the light off', 'It’s your office now.', [p('You reach past him and turn it off. He looks at the dark lamp for a moment, and then at you, and nods, as if you had signed something for him that he could not sign himself.')]),
     l('on', 'Leave it on', 'For her. And so that he remembers.', [q('You', 'Leave it. I’ll work under it.'), p('He looks at you in a way you will think about later, and goes to his own desk without a word.')]),
+  ];
+}
+
+const clareLead: Block[] = [
+  p('That afternoon, in the bottom drawer of the desk that is yours now, under a box of good pens nobody took, a green cardboard folder in a woman’s neat capitals: HANDOVER. FOR WHOEVER IS NEXT. Twelve pages. A mobile number on the inside cover.'),
+];
+
+const rhythm: Block[] = [
+  p('Then the rhythm of it, fast, the way a new city becomes yours. The coffee at ten past seven. His diary, which is now your diary. The way the floor goes a little quieter when you walk through it, and a little straighter. Everything that crosses his desk crosses yours first, and a great deal crosses his desk.'),
+  t('Three weeks. He is going to be kind to me, and I am going to be good at this, and somebody is going to have to keep count. It had better be me.'),
+];
+
+function clareChoices(): C8Choice[] {
+  const c = (id: 'call' | 'read' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('x8-clare-' + id, label, hint, 'favours', (x) => {
+      set8(x, 'x-clare', id);
+      delete x.choices['c8.x-clare-open'];
+      return [...body, ...rhythm];
+    });
+  return [
+    c('call', 'Ring the number', 'Clare Adeyemi, eighteen months gone.', [
+      p('She answers on the fourth ring, from somewhere with gulls.'),
+      q('Clare Adeyemi', 'Forty-one. Of course. He left the light on, didn’t he? He would.'),
+      q('Clare Adeyemi', 'He’s the only decent man in that building, and that’s his whole problem. Marcus won’t come at you. He’ll come through Julian. Watch his tray. That’s all. Watch his tray, and don’t let him be kind to you so much that you forget to count.'),
+      p('She rings off before you can thank her.'),
+    ]),
+    c('read', 'Read her notes', 'Twelve pages, for whoever is next.', [
+      p('You read it at your desk with the door shut: who takes sugar, which directors lie about their diaries, where the good stapler is, how to make Julian eat lunch. Practical, funny, kind. On the last page, alone, underlined twice:'),
+      q('The handover', 'Never let M. put anything on J.’s tray after six.'),
+    ]),
+    c('leave', 'Leave the drawer shut', 'Her job is over. Yours is starting.', [
+      p('You put the folder back under the pens and close the drawer. Whatever she knew, she knew it about somebody else’s three weeks.'),
+    ]),
   ];
 }
 
@@ -250,6 +288,7 @@ const favourLabel: Record<Favour, [string, string]> = {
 
 function favourChoices(s: GameState): C8Choice[] {
   const open = get8(s, 'x-open') as Favour | undefined;
+  if (!open && weeks(s) === 2 && !get8(s, 'x-midnight')) return midnightChoices();
   if (!open)
     return FAVOURS.filter((f) => !key(s, 'exec.fav.' + f)).map((f) =>
       offer('x8-fav-' + f, favourLabel[f][0], favourLabel[f][1], 'favours', (x) => {
@@ -265,12 +304,39 @@ function favourChoices(s: GameState): C8Choice[] {
       setKey(x, 'exec.fav.' + open, value);
       if (HIS.includes(open) && value === 'take') bump(x, 'exec.kept');
       if (!HIS.includes(open)) bump(x, 'exec.trust');
-      return n < 3 ? [...body(x), ...weekLead(n)] : body(x);
+      return n < 3 ? [...body(x), ...(n === 2 ? midnightLead : weekLead(n))] : body(x);
     }),
   );
 }
 
 const favoursBlocks = (s: GameState): Block[] => weekLead(weeks(s));
+
+const midnightLead: Block[] = [
+  p('The middle of the three weeks, a Wednesday, a quarter to midnight. The floor has been dark for hours except for two lights on forty-one: yours, and his, on either side of a glass wall. You can see him through it, jacket off, reading, rubbing his eyes. He looks up, and sees you seeing him, and comes and knocks on your glass with one knuckle.'),
+  q('Julian Mercer', 'Go home. That’s not an order. I don’t give you those. It’s a plea.'),
+];
+
+function midnightChoices(): C8Choice[] {
+  const m = (id: 'stay' | 'ask' | 'go', label: string, hint: string, body: Block[]) =>
+    offer('x8-midnight-' + id, label, hint, 'favours', (x) => {
+      set8(x, 'x-midnight', id);
+      return [...body, ...weekLead(2)];
+    });
+  return [
+    m('stay', '“Only if you do.”', 'Neither of you goes anywhere.', [
+      q('You', 'Only if you do.'),
+      p('Neither of you does. You end up on the floor of his office with your shoes off and your backs against the sofa, a box of cold noodles between you and the whole of Helix’s quarter spread out on the carpet, and at two in the morning he falls asleep mid-sentence with his head against your shoulder, and you let him, and do not move until the cleaners come.'),
+    ]),
+    m('ask', 'Ask him about Clare', 'While the floor is empty.', [
+      q('You', 'Tell me about Clare. The real version.'),
+      p('He sits on the corner of your desk and tells you. It takes twenty minutes and he does not make himself look better in any of them.'),
+      q('Julian Mercer', 'She told me to watch my tray. Her last day. I thought she was being dramatic. I think about that more than I’d like.'),
+    ]),
+    m('go', 'Go home', 'He asked nicely.', [
+      p('You go home. From the street you look back up at forty-one, and his light is still on, and after a minute yours goes on again too, because he has gone in and switched it on for you, so that the floor will not be dark on your side.'),
+    ]),
+  ];
+}
 function weekLead(n: number): Block[] {
   return [
     p(
@@ -301,7 +367,26 @@ function dinnerBlocks(s: GameState): Block[] {
   ];
 }
 
+const tableChoices = (): C8Choice[] => {
+  const tb = (id: 'needle' | 'glass' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer('x8-table-' + id, label, hint, 'dinner', (x) => {
+      set8(x, 'x-table', id);
+      return body;
+    });
+  return [
+    tb('needle', 'Needle him back', 'Two can play at dinner.', [
+      q('You', 'You’re very interested in my contract, Mr Chen. Would you like a copy? I could have it framed.'),
+      p('Across the table Sloane’s mouth moves very slightly. Marcus laughs, delighted, and for the rest of the soup he is almost charming, which is worse.'),
+    ]),
+    tb('glass', 'Look down the table at Julian', 'Only that.', [
+      p('You look down the long table at Julian, past the candles, and he is already looking at you, and he raises his glass half an inch, and you raise yours, and Marcus, who has seen the whole thing, goes quiet.'),
+    ]),
+    tb('quiet', 'Eat your soup', 'Let them all wonder.', [p('You eat your soup, and say nothing, and let every person at the table wonder what you are thinking. It is very good soup.')]),
+  ];
+};
+
 function dinnerChoices(s: GameState): C8Choice[] {
+  if (!get8(s, 'x-table')) return tableChoices();
   if (get8(s, 'x-cloak') === 'open')
     return [
       offer('x8-cloak-take', 'Take it, and owe her', 'The fund’s name tonight. A debt to Sloane.', 'tray', (x) => {
@@ -351,6 +436,7 @@ function trayBlocks(s: GameState): Block[] {
     p('Page thirty-one. Clause 14.3, in the smallest type in the document. If the financed acquisition fails, L.S.F. Advisory takes first claim on the assets of Helix itself.'),
     ...(get8(s, 'x-cloak') === 'took' ? [t('Page thirty-something. You’ll know it when you see it. Sloane knew. Sloane has known for a long time.')] : []),
     t('Not Rotterdam’s assets. Helix’s. Every deal Marcus brings him, Julian signs away the building we are sitting in, as a guarantee, to a fund nobody here has ever met. And he doesn’t read it. He told me so himself.'),
+    ...(get8(s, 'x-clare') === 'read' ? [t('Never let M. put anything on J.’s tray after six. She underlined it twice. She knew. She tried to tell whoever came next.')] : get8(s, 'x-clare') === 'call' || get8(s, 'x-midnight') === 'ask' ? [t('Watch his tray, Clare said. I am watching it. It is looking back.')] : []),
   ];
 }
 
@@ -441,10 +527,13 @@ function lateChoices(s: GameState): C8Choice[] {
         set8(x, 'x-late-outcome', 'intimate-' + sc);
         return sc === 'sex'
           ? [
-              p('Three weeks of Ms Vale in corridors come undone with the dress. He is slower than you expect and surer than you expect, and asks once more, his mouth at your ear, and you answer by pulling him down.'),
+              p('Three weeks of Ms Vale in corridors come undone with the dress. Three weeks of holding doors for you exactly as he holds them for everybody, and never once letting his hand stay a second too long, and now it stays. He is slower than you expect and surer than you expect, and asks once more, his mouth at your ear, and you answer by pulling him down.'),
               p('What happens next stays on the forty-first floor. The scene fades.'),
             ]
-          : [p('He kisses you by the glass for a very long time, and stops exactly where you said, and you fall asleep on his sofa with your head on his chest and the city still on, and he does not move until morning.')];
+          : [
+              p('He kisses you by the glass for a very long time, and stops exactly where you said, and does not seem to mind in the least. He tells you, into your hair, the name of every building you can see from here, and who owns it, and which of them he would pull down if he could.'),
+              p('You fall asleep on his sofa with your head on his chest and the city still on, and he does not move until morning.'),
+            ];
       }),
     ];
   }
@@ -513,6 +602,7 @@ function completeBlocks(s: GameState): Block[] {
     q('The card', 'L.S.F. ADVISORY. 14.3. WHOSE MONEY?'),
     ...(key(s, 'exec.owes-sloane') ? [p('Beside it, smaller, a third: SLOANE. I OWE HER ONE.')] : []),
     ...(get8(s, 'x-light') === 'on' ? [p('At the office, the light next door to his is still on. Now you know whose it is. It is yours.')] : []),
+    ...(get8(s, 'x-midnight') === 'stay' ? [p('In the corner of the card, very small, where nobody else would think to look: 2 A.M. NOODLES. HIS HEAD ON MY SHOULDER. It is not a favour. You do not know which column it goes in.')] : []),
   ];
 }
 
@@ -527,7 +617,7 @@ export function executiveBlocks8(s: GameState): Block[] {
 }
 
 export function executiveChoices8(s: GameState): C8Choice[] {
-  if (s.phase === 'orbit') return orbitChoices();
+  if (s.phase === 'orbit') return orbitChoices(s);
   if (s.phase === 'favours') return favourChoices(s);
   if (s.phase === 'dinner') return dinnerChoices(s);
   if (s.phase === 'tray') return trayChoices();

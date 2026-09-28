@@ -2,6 +2,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { act, replay } from '../../src/state/reducer';
 import type { GameState } from '../../src/state/schema';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
+import { chapter8Choices } from '../../src/content/chapter8';
 import { chapter9Choices } from '../../src/content/chapter9';
 import { chapter10Choices } from '../../src/content/chapter10';
 import { chapter14Choices } from '../../src/content/chapter14';
@@ -40,7 +41,16 @@ function toBridge(b: Build) {
   s = choose(s, 'CHAPTER7_CHOOSE', 'chapter7.' + (deriveRoute6(s)?.lane === 'executive' ? 'route-confirm' : 'route-pivot-executive'));
   for (const id of ['arrive-ontime', 'breakfast-quiet', 'safe-writing', 'photo-leave', ...(b.terms ?? ['door', 'firewall', 'files']).map((t) => 'term-' + t), 'marcus-answer', 'lift-thank', b.key ?? 'key-decline', 'x-evening-alone'])
     s = choose(s, 'CHAPTER7_CHOOSE', 'chapter7.' + id);
-  for (const id of ['begin-executive', ...b.ch8]) s = choose(s, 'CHAPTER8_CHOOSE', 'chapter8.' + id);
+  const ids8 = (x: GameState) => chapter8Choices(x).map((c) => c.id.replace(/^chapter8\./, ''));
+  for (const id of ['begin-executive', ...b.ch8]) {
+    // Chapter 8's deepening moments: take the neutral pick when it is in the way.
+    for (let i = 0; i < 3 && !ids8(s).includes(id); i++) {
+      const n = ['x8-clare-leave', 'x8-midnight-go', 'x8-table-quiet'].find((d) => ids8(s).includes(d));
+      if (!n) break;
+      s = choose(s, 'CHAPTER8_CHOOSE', 'chapter8.' + n);
+    }
+    s = choose(s, 'CHAPTER8_CHOOSE', 'chapter8.' + id);
+  }
   const prefer = ['begin-placeholder', 'arrive-begin', 'assemble-stop', 'lawyer-thank', 'resolve-end'];
   for (let i = 0; i < 20 && !(s.scene === 'chapter9' && s.phase === 'complete'); i++) {
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));

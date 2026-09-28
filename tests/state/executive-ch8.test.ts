@@ -22,7 +22,18 @@ const step = (type: 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE', prefix: string, list:
   return next;
 };
 const c7 = step('CHAPTER7_CHOOSE', 'chapter7.', ids7);
-const c8 = step('CHAPTER8_CHOOSE', 'chapter8.', ids);
+const once8 = step('CHAPTER8_CHOOSE', 'chapter8.', ids);
+/** The deepening pass's moments (Clare's drawer, the middle night, the table): take the neutral pick when in the way. */
+const NEUTRAL8 = ['x8-clare-leave', 'x8-midnight-go', 'x8-table-quiet'];
+const c8 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL8.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once8(y, n);
+  }
+  return once8(y, id);
+};
 const walk8 = (s: GameState, path: string[]) => path.reduce(c8, s);
 
 /** A real save (the maximal-julian golden) through Chapter 6 on the Julian workroom and Executive Chapter 7, to the
@@ -47,7 +58,10 @@ it('opens The Terms from an Executive Chapter 7, not the bridge: the lit office 
   expect(text(s)).toContain('Clare Adeyemi. My last chief of staff.');
   expect(text(s)).toContain('I didn’t keep her. I’m not going to make that mistake twice.');
   expect(ids(s)).toEqual(['x8-light-off', 'x8-light-on']);
-  const hub = c8(s, 'x8-light-on');
+  const drawer = c8(s, 'x8-light-on');
+  expect(drawer.phase).toBe('orbit');
+  expect(ids(drawer)).toEqual(['x8-clare-call', 'x8-clare-read', 'x8-clare-leave']);
+  const hub = c8(drawer, 'x8-clare-leave');
   expect(hub.phase).toBe('favours');
   expect(ids(hub)).toEqual(['x8-fav-car', 'x8-fav-card', 'x8-fav-fixer', 'x8-fav-diary', 'x8-fav-paper']);
   const car = c8(hub, 'x8-fav-car');
@@ -141,4 +155,33 @@ it('offers Julian even when Chapter 6 cooled it, with the night only if warmed o
   const scope2 = c8(late2, 'x8-late-julian');
   expect(text(scope2)).toContain('Page thirty-one is in my phone');
   expect(ids(scope2)).toEqual(['x8-julian-no-sex', 'x8-julian-sex', 'x8-leave']);
+});
+
+it('deepening: Clare’s drawer, the middle night and the table, each with a neutral pick, and the tray remembers Clare', () => {
+  const s = atTerms(['door', 'firewall', 'files']);
+  const read = walk8(s, ['x8-light-off', 'x8-clare-read']);
+  expect(text(read)).toContain('Never let M. put anything on J.’s tray after six.');
+  expect(text(read)).toContain('The first week.');
+  const night = walk8(read, ['x8-fav-diary', 'x8-diary-hold', 'x8-fav-paper', 'x8-paper-ours']);
+  expect(text(night)).toContain('two lights on forty-one');
+  expect(ids(night)).toEqual(['x8-midnight-stay', 'x8-midnight-ask', 'x8-midnight-go']);
+  const third = once8(night, 'x8-midnight-stay');
+  expect(text(third)).toContain('a box of cold noodles between you');
+  expect(text(third)).toContain('The third week.');
+  const dinner = walk8(third, ['x8-fav-car', 'x8-car-once']);
+  expect(ids(dinner)).toEqual(['x8-table-needle', 'x8-table-glass', 'x8-table-quiet']);
+  const sloane = once8(dinner, 'x8-table-glass');
+  expect(text(sloane)).toContain('he raises his glass half an inch');
+  expect(ids(sloane)).toEqual(['x8-sloane-cold', 'x8-sloane-civil', 'x8-sloane-deal']);
+  const tray = once8(sloane, 'x8-sloane-civil');
+  expect(text(tray)).toContain('She underlined it twice. She knew.');
+  const done = walk8(tray, ['x8-file-tell', 'x8-late-alone']);
+  expect(text(done)).toContain('2 A.M. NOODLES. HIS HEAD ON MY SHOULDER.');
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: ringing Clare, or asking Julian about her, puts "watch his tray" in her head at the tray', () => {
+  const tray = walk8(atTerms(['door', 'firewall', 'files']), ['x8-light-on', 'x8-clare-call', 'x8-fav-car', 'x8-car-refuse', 'x8-fav-diary', 'x8-diary-sit', 'x8-midnight-go', 'x8-fav-paper', 'x8-paper-his', 'x8-table-needle', 'x8-sloane-cold']);
+  expect(text(tray)).toContain('Watch his tray. That’s all.');
+  expect(text(tray)).toContain('Watch his tray, Clare said. I am watching it.');
 });

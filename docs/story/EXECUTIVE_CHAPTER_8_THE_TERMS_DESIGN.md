@@ -24,8 +24,9 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_8_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_8_SCRIPT.md); code: `src/content/chapter8-executive.ts`.
-It is entered from an Executive `chapter7.complete`, hands on to the shared Chapter 9 bridge, and runs ~1.3–1.7k words
-on one path.
+It is entered from an Executive `chapter7.complete` and hands on to the shared Chapter 9 bridge. It ran ~1.3–1.7k words
+on one path at pass 1, deepened 2026-09-28 to ~1.55–2.05k with three moments: Clare's drawer, the middle night, and
+the table.
 
 ---
 
