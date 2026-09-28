@@ -1,8 +1,9 @@
 # The Executive route: design (for owner approval)
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended).** No lane-split change was needed.
-Each chapter gets its own design doc before build, as on Predator. Built so far: Ch7, "The Room"
-([EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md](EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md)), pass 1. Next: Ch8, "The Terms".
+Each chapter gets its own design doc before build, as on Predator. Built so far (pass 1): Ch7, "The Room"
+([EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md](EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md)), and Ch8, "The Terms"
+([EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md](EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md)). Next: Ch14, "The Signature".
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

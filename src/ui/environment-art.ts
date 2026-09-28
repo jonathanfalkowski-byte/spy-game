@@ -207,6 +207,12 @@ const byNode: Record<string, Key> = {
   'chapter8.friday': 'helixSuite',
   'chapter8.julian': 'helixReception',
   'chapter8.evening': 'helixWorkroom',
+  // The Executive road: The Terms.
+  'chapter8.orbit': 'helixWorkroom',
+  'chapter8.favours': 'helixWorkroom',
+  'chapter8.dinner': 'privateDinner',
+  'chapter8.tray': 'helixSuite',
+  'chapter8.late': 'apartmentNight',
   // Chapter 9 (the shared bridge).
   'chapter9.arrive': 'apartmentDay',
   'chapter9.names': 'shoppingStreet',

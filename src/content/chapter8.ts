@@ -54,6 +54,7 @@ import { get6 } from './chapter6-model';
 import { get7, getKey, setKey } from './chapter7-model';
 import { sloaneDoubts } from './sloane-standing';
 import { isPredator8, placePredator8, predatorBlocks8, predatorChoices8, predatorPhase8 } from './chapter8-predator';
+import { executiveBlocks8, executiveChoices8, executivePhase8, isExecutive8, placeExecutive8 } from './chapter8-executive';
 
 export type C8Scene = { title: string; place: string; blocks: Block[] };
 export type C8Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -116,6 +117,12 @@ export const chapter8Definitions: Record<string, C8Scene> = {
   friday: { title: 'Friday Drinks', place: 'FRIDAY · 19:00 · THE TOP OF THE BUILDING', blocks: [] },
   julian: { title: 'Julian', place: 'MONDAY · THE THIRTY-SIXTH FLOOR', blocks: [] },
   evening: { title: 'Tonight', place: 'LATE · THE THIRTY-SIXTH FLOOR', blocks: [] },
+  // The Executive road (2026-09-28): The Terms.
+  orbit: { title: 'His Orbit', place: 'THE FIRST DAYS · FORTY-ONE', blocks: [] },
+  favours: { title: 'Favours', place: 'WEEKS ONE TO THREE · HELIX', blocks: [] },
+  dinner: { title: 'Across the Table', place: 'THURSDAY · 20:00 · A PRIVATE ROOM, HELIX AND AXIOM', blocks: [] },
+  tray: { title: 'The Tray', place: '23:40 · JULIAN MERCER’S DESK', blocks: [] },
+  late: { title: 'Late', place: 'THE NEXT NIGHT · FORTY-ONE', blocks: [] },
 };
 export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, scene]) => ({
   id: `chapter8.${phase}` as NodeId,
@@ -125,6 +132,7 @@ export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, s
 /** Scene-specific place lines while a road's scene is open (display only). */
 export function place8(s: GameState): string | undefined {
   if (s.scene === 'chapter8' && isPredator8(s)) return placePredator8(s);
+  if (s.scene === 'chapter8' && isExecutive8(s)) return placeExecutive8(s);
   if (s.scene === 'chapter8' && s.phase === 'work')
     return get8(s, 'work') ? 'Thursday · The bank' : onCampaign(s) ? 'Wednesday · The tram sheds' : 'Wednesday · Pell & Rourke';
   if (s.scene === 'chapter8' && s.phase === 'wake' && get8(s, 'wake'))
@@ -299,6 +307,7 @@ function hackChoices(): C8Choice[] {
 export function chapter8Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter8') return [];
   if (predatorPhase8(s)) return predatorBlocks8(s);
+  if (executivePhase8(s)) return executiveBlocks8(s);
   if (s.phase === 'cost') return costBlocks(s);
   if (s.phase === 'work') return workLead(s);
   if (s.phase === 'maintenance') return maintLead;
@@ -1341,8 +1350,11 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return [offer8('begin', 'Go on', 'Days later. The wall is still there.', 'cost')];
   if (s.scene === 'chapter7' && s.phase === 'complete' && isPredator8(s))
     return [offer8('begin-predator', 'Three weeks on the floor', 'Learn who owes whom.', 'weeks')];
+  if (s.scene === 'chapter7' && s.phase === 'complete' && isExecutive8(s))
+    return [offer8('begin-executive', 'Three weeks in his orbit', 'He is going to be kind to you. Keep count.', 'orbit')];
   if (s.scene !== 'chapter8') return [];
   if (predatorPhase8(s)) return predatorChoices8(s);
+  if (executivePhase8(s)) return executiveChoices8(s);
   if (s.phase === 'cost') {
     if (!get8(s, 'breakin')) return breakInChoices(s);
     if (!get8(s, 'neighbour')) return neighbourChoices();

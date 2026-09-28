@@ -3,6 +3,7 @@ import { act, replay } from '../../src/state/reducer';
 import type { GameState } from '../../src/state/schema';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter7Choices } from '../../src/content/chapter7';
+import { chapter8Choices } from '../../src/content/chapter8';
 import { chapter9Choices } from '../../src/content/chapter9';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
@@ -64,8 +65,9 @@ it('writes three terms, meets Marcus, hears the confession, pays the rent hersel
   expect(`${done.scene}.${done.phase}`).toBe('chapter7.complete');
   expect(text(done)).toContain('WHAT DO I OWE HIM?');
   expect(text(done)).not.toContain('in development]');
-  // The road goes on to the shared Chapter 9 bridge until Executive Chapter 8 exists.
-  expect(chapter9Choices(done).map((c) => c.id)).toEqual(['chapter9.begin-placeholder']);
+  // The road goes on to Executive Chapter 8, not the bridge.
+  expect(chapter8Choices(done).map((c) => c.id)).toEqual(['chapter8.begin-executive']);
+  expect(chapter9Choices(done)).toEqual([]);
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
 });

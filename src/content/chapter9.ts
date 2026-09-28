@@ -1313,9 +1313,11 @@ export function chapter9Choices(s: GameState): C9Choice[] {
   if (s.scene === 'chapter8' && s.phase === 'complete' && ownPower(s))
     return [offer9('begin', 'Go on', 'The next morning. Go looking for the name.', 'arrive', (x) => (set9(x, 'entered', 'own-power'), []))];
   // Predator plays its own Chapter 8 (The Floor) first when it is enabled, and comes to the bridge from there.
-  const predatorFloor = getKey(s, 'route.lane') === 'predator' && import.meta.env.VITE_EVE_CHAPTER8 === '1';
+  const predatorFloor = ['predator', 'executive'].includes(getKey(s, 'route.lane') ?? '') && import.meta.env.VITE_EVE_CHAPTER8 === '1';
   if (s.scene === 'chapter7' && s.phase === 'complete' && getKey(s, 'route.lane') && !ownPower(s) && !predatorFloor)
     return [offer9('begin-placeholder', 'Go on to the bridge', 'This road’s middle chapters are in development.', 'arrive', (x) => (set9(x, 'entered', getKey(x, 'route.lane')!), []))];
+  if (s.scene === 'chapter8' && s.phase === 'complete' && predatorFloor && getKey(s, 'route.lane') === 'executive')
+    return [offer9('begin-placeholder', 'Follow the counterparty', 'L.S.F. Advisory. Find out whose money Julian has been signing for.', 'arrive', (x) => (set9(x, 'entered', 'executive'), []))];
   if (s.scene === 'chapter8' && s.phase === 'complete' && predatorFloor)
     return [offer9('begin-placeholder', 'Follow the fund', 'L.S.F. Advisory. Find out whose money it really is.', 'arrive', (x) => (set9(x, 'entered', 'predator'), []))];
   if (s.scene !== 'chapter9') return [];

@@ -22,9 +22,10 @@
 - **Ch7 details still open:** the empty office next door with its light left on; the photograph turned face down;
   Marcus's line "He never did keep them."
 
-**Status: DESIGN for owner approval.** Nothing is built yet. The chapter would be entered from an Executive
-`chapter7.complete`, where today the road jumps to the Ch9 placeholder. It would hand on to the shared Chapter 9
-bridge, as Predator Ch8 does.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_8_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_8_SCRIPT.md); code: `src/content/chapter8-executive.ts`.
+It is entered from an Executive `chapter7.complete`, hands on to the shared Chapter 9 bridge, and runs ~1.3–1.7k words
+on one path.
 
 ---
 
