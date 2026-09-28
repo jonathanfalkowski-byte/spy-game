@@ -41,3 +41,30 @@ Phases: `sit → market → marcus → offer → eleanor → hands → minute`
 - a laugh with nothing held back, and Nora answering for her sister.
 
 **Size (honest), pass 1:** ~1.2k (refuse) to ~1.4k (the seat), against the ~5k target.
+
+## Deepening pass (2026-09-28)
+
+- **A client breaks** (`market`, after the press, before Marcus) (`c17.p-heavy`). The heavy man with the signet ring
+  stands: "I did not come here to be read my own accounts by a woman from Helix."
+  - **heavy-stop**: "Sit down. Your name is on page nine of her ledger, and page nine is in my coat." He sits.
+    **This moves the board by one band** (up to strong), like being seen arriving.
+  - **heavy-let**: he walks to the door, stops, and comes back to the clients' end. "They always come back to the
+    table. That is the whole of what she built."
+  - **heavy-watch** (neutral): Deverell: "Sit down."
+- **The recess** (`marcus`, after Marcus, before the offer) (`c17.p-recess`). Deverell calls five minutes:
+  - **recess-window**: the black glass beside Celeste, sleeves touching. "I did not know it would be at my expense. I
+    find I don't mind as much as I should."
+  - **recess-soames**: "One question, Ms Vale, off the record. Who paid for your flat?" "You did." "I have read that
+    standing order every month for a year. I wanted to hear somebody say it."
+  - **recess-sit** (neutral).
+- **More prose:**
+  - over the fireplace, the one frame not empty: the Vesper's own door on its opening night, 1911, "the year of the
+    key";
+  - Celeste: "You are nothing like her … She wanted out. You want in. That is why I wanted you.";
+  - the minute: the door "closed from the inside by somebody other than her" (the seat), or Pryce at the kerb, or the
+    switch holders rung back at a minute to seven: "I'm out."
+
+The tests walk the new moments on their neutral picks (`NEUTRAL17 = heavy-watch, recess-sit`); the Ch18 builder's
+Ch17 paths take the same picks.
+
+**Size (honest) after the deepening pass:** ~1.4k (refuse, quiet) to ~1.7k (the seat, engaged).

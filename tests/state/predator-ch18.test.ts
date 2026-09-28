@@ -39,7 +39,7 @@ const QUIET = {
   ch14: ['begin-predator', 'dawn-today', 'way-letter', 'eve-sleep', 'room-wait', 'ask-none', 'last-refuse', 'mercy-none', 'day-window', 'p14-evening-alone'],
   ch15: ['begin-predator', 'gift-thank', 'crew-alone', 'way-hour', 'eve-sleep', 'snag-talk', 'read-none', 'took-clients', 'cost-money', 'phone-keep', 'ev-alone'],
   ch16: ['begin-predator', 'case-set', 'aim-wound', 'inside-none', 'outside-switch', 'first-clients', 'held-page', 'hour-sleep', 'wear-black', 'key-leave', 'clasp-alone', 'arrive-front'],
-  ch17: ['begin-predator', 'open-stand', 'press-cost', 'marcus-stand', 'offer-refuse', 'named-wait', 'last-no'],
+  ch17: ['begin-predator', 'open-stand', 'press-cost', 'heavy-watch', 'marcus-stand', 'recess-sit', 'offer-refuse', 'named-wait', 'last-no'],
 };
 const ch16 = (aim: string, extra: string[], first: string, held: string, wear: string, key: string, arrive: string) => ['begin-predator', 'case-set', 'aim-' + aim, ...extra, 'outside-switch', 'first-' + first, 'held-' + held, 'hour-sleep', 'wear-' + wear, 'key-' + key, 'clasp-alone', 'arrive-' + arrive];
 const ch15 = (took: string, cost: string) => ['begin-predator', 'gift-thank', 'crew-alone', 'way-hour', 'eve-sleep', 'snag-talk', 'read-none', 'took-' + took, 'cost-' + cost, 'phone-keep', 'ev-alone'];
@@ -73,7 +73,7 @@ function toMinute17(b: Build = {}) {
 }
 
 const seatCh16 = ch16('seat', ['inside-julian', 'inside-done'], 'clients', 'page', 'green', 'throat', 'car');
-const seatCh17 = ['begin-predator', 'open-chair', 'press-market', 'marcus-stand', 'offer-accept', 'named-wait', 'last-yes'];
+const seatCh17 = ['begin-predator', 'open-chair', 'press-market', 'heavy-watch', 'marcus-stand', 'recess-sit', 'offer-accept', 'named-wait', 'last-yes'];
 
 it('enters from the Predator Chapter 17 minute: the morning after a refusal', () => {
   const s = toMinute17();
@@ -133,7 +133,7 @@ it('walks away with Helix, a year later in the corner office', () => {
   const s = toMinute17({
     ch15: ch15('nell', 'ally'),
     ch16: ch16('helix', ['inside-none'], 'nell', 'page', 'blue', 'leave', 'helix'),
-    ch17: ['begin-predator', 'open-stand', 'press-claim', 'marcus-use', 'offer-refuse', 'named-ask', 'last-no'],
+    ch17: ['begin-predator', 'open-stand', 'press-claim', 'heavy-watch', 'marcus-use', 'recess-sit', 'offer-refuse', 'named-ask', 'last-no'],
   });
   const done = walk18(s, ['begin-predator', 'papers-read', 'switch-handed', 'home-none', 'name-new', 'celeste-write', 'year-quiet']);
   expect(text(done)).toContain('Paid in full. E.');
@@ -150,7 +150,7 @@ it('names Nell, and a year later, Holland Village', () => {
     ch12: ['begin-predator', 'arrive-window', 'sign-all', 'lunch-deny', 'take-night', 'afternoon-watch', 'list-close', 'account-decline', 'lake-alone', 'call-truth', 'dawn-sleep'],
     ch15: ch15('nell', 'visibility'),
     ch16: ch16('nell', ['inside-nora', 'inside-done'], 'nell', 'page', 'black', 'leave', 'front'),
-    ch17: ['begin-predator', 'open-card', 'press-cost', 'marcus-vouch', 'offer-refuse', 'named-nora', 'last-orchid'],
+    ch17: ['begin-predator', 'open-card', 'press-cost', 'heavy-watch', 'marcus-vouch', 'recess-sit', 'offer-refuse', 'named-nora', 'last-orchid'],
   });
   const done = walk18(s, ['begin-predator', 'papers-read', 'switch-armed', 'home-none', 'name-evelyn', 'year-quiet']);
   expect(text(done)).toContain('NORA LINDEN.');

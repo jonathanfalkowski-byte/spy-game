@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter17Choices(s).map((c) => c.id.replace(/^chapter17\./, ''));
 const c17 = (s: GameState, id: string) => choose(s, 'CHAPTER17_CHOOSE', 'chapter17.' + id);
-const walk17 = (s: GameState, path: string[]) => path.reduce(c17, s);
+/** The deepening pass's moments (the heavy man, the recess): take the neutral pick when it is in the way. */
+const NEUTRAL17 = ['heavy-watch', 'recess-sit'];
+const walk17 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL17.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c17(y, n);
+    }
+    return c17(y, id);
+  }, s);
 const run = (s: GameState, n: 10 | 11 | 12 | 13 | 14 | 15 | 16, path: string[]) => path.reduce((x, id) => choose(x, `CHAPTER${n}_CHOOSE`, `chapter${n}.` + id), s);
 
 const QUIET = {
@@ -80,7 +91,15 @@ it('takes the seat: the chair first, the page as her price, and Celeste to the c
   expect(text(market)).toContain('finds his own name on it');
   // Every Predator road reaches Geneva's list, so clause 14.3 can always be read.
   expect(ids(market)).toEqual(['press-market', 'press-claim', 'press-cost']);
-  const offer = walk17(market, ['press-market', 'marcus-stand']);
+  const heavy = c17(market, 'press-market');
+  expect(ids(heavy)).toEqual(['heavy-stop', 'heavy-let', 'heavy-watch']);
+  const marcus = c17(heavy, 'heavy-stop');
+  expect(text(marcus)).toContain('Your name is on page nine of her ledger');
+  const recess = c17(marcus, 'marcus-stand');
+  expect(ids(recess)).toEqual(['recess-window', 'recess-soames', 'recess-sit']);
+  const offer = c17(recess, 'recess-soames');
+  expect(text(offer)).toContain('Who paid for your flat?');
+  expect(text(offer)).toContain('The year of the key.');
   expect(text(offer)).toContain('Sit with us. Nobody would ever place you again. You would do the placing.');
   expect(text(offer)).toContain('This is what I came for.');
   const eleanor = c17(offer, 'offer-accept');

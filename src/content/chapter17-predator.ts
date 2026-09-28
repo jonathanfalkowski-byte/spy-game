@@ -8,7 +8,12 @@
  * canon (the car, the harbour wall, the driver, six and seven o'clock), with the phone's N and the watch; the board
  * (succeeded, or by the case: resigned / diminished / closed; Meridian always stands); one minute, and the key.
  * Entered from the Predator `chapter16.room`; the road stops at `chapter17.minute` until the Predator Chapter 18 exists.
- * Writes the act4.* keys Chapter 18 reads (act4.marcus in place of act4.sloane). */
+ * Writes the act4.* keys Chapter 18 reads (act4.marcus in place of act4.sloane).
+ * Deepening pass (2026-09-28): a client breaks after the market (c17.p-heavy = stop | let | watch: the heavy man with the
+ * signet ring stands to leave; "Your name is on page nine", which moves the room; or he comes back to the table on his
+ * own), and a recess before the offer (c17.p-recess = window | soames | sit: the black glass beside Celeste, "I didn't
+ * know it would be at my expense"; Marguerite Soames off the record, "Who paid for your flat?" "You did."; or the chair).
+ * The room, Eleanor and the minute at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { cards16 } from './chapter16-predator';
@@ -44,6 +49,7 @@ export function board17p(s: GameState): { board: 'succeeded' | 'resigned' | 'dim
   let level = order.indexOf(key(s, 'act4.case') ?? 'thin');
   if (key(s, 'act4.seen') === 'yes' && level < 2) level += 1;
   if (key(s, 'act4.marcus') === 'use' && level < 3) level += 1;
+  if (key(s, 'c17.p-heavy') === 'stop' && level < 2) level += 1;
   if (level >= 2) return { board: 'resigned', terms: 'full' };
   if (level === 1) return { board: 'diminished', terms: 'partial' };
   return { board: 'closed', terms: 'none' };
@@ -96,6 +102,7 @@ function sitBlocks(s: GameState): Block[] {
     q('Celeste', 'Anton. Marguerite. Gentlemen. You all know Helix. You all know how well Helix has done this year, and why. May I present Helix’s new counterparty, Ms Evelynn Vale.'),
     p('A pause, exactly long enough.'),
     q('Celeste', 'And, you will forgive me, Anton, my successor. If she will have it.'),
+    p('The empty frames are all empty tonight but one. Over the fireplace hangs a photograph of the Vesper’s own black door, taken the night it opened: 1911, in the corner, in ink. The year of the key.'),
     p('The heavy man with the signet ring puts his pen down. Soames looks at you over the top of her glasses and does not look away. Deverell, closed as a ledger, only nods, as if a date had been confirmed.'),
     q('Celeste', wear === 'green' ? 'My green. How flattering. Or how rude. I shall decide which by seven.' : wear === 'blue' ? 'Marcus’s blue. He always did have taste, whatever else he lacked.' : 'Black. Of course. You never did let me dress you.'),
     ...(key(s, 'pred.key16') === 'throat' ? [q('Celeste', 'And my key. Wear it by all means, darling. It suits you better than it ever suited me.')] : []),
@@ -138,10 +145,33 @@ function marketBlocks(s: GameState): Block[] {
   ];
 }
 
+/** A client breaks (deepening pass): every path passes through it after the market. */
+function heavyChoices(): C17Choice[] {
+  const h = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('heavy-' + id, label, hint, 'marcus', (x) => {
+      setKey(x, 'c17.p-heavy', id);
+      return [p('The heavy man with the signet ring pushes his chair back, hard enough that it scrapes, and stands, and buttons his jacket.'), q('The heavy man', 'I did not come here to be read my own accounts by a woman from Helix. I have a car at seven.'), ...body];
+    });
+  return [
+    h('stop', 'Stop him', '“Sit down. Your name is on page nine.”', [
+      q('You', 'Sit down. Your name is on page nine of her ledger, and page nine is in my coat.'),
+      p('He looks at you for a long moment. Then he sits, slowly, the way a large man sits when he has been told the floor is not as solid as he thought. Nobody else at the table moves at all.'),
+      t('One of them has just learned that I will say his name out loud. Now all of them have.'),
+    ]),
+    h('let', 'Let him go', 'Watch what he does at the door.', [
+      q('You', 'Of course. Don’t let me keep you.'),
+      p('He walks the length of the long room to the door, and stops there, with his hand on it, for a long time. Then he walks back, not to his chair, but to the end of the table, where the clients sit, and sits there instead.'),
+      t('He came back. They always come back to the table. That is the whole of what she built.'),
+    ]),
+    h('watch', 'Say nothing', 'Let the chair deal with him.', [p('You say nothing. Deverell does not look up from his papers. “Sit down,” he says, quietly, and the heavy man does.')]),
+  ];
+}
+
 function marketChoices(s: GameState): C17Choice[] {
+  if (key(s, 'act4.press')) return heavyChoices();
   const cards = cards16(s);
   const pr = (id: string, label: string, hint: string, body: Block[]) =>
-    offer('press-' + id, label, hint, 'marcus', (x) => {
+    offer('press-' + id, label, hint, 'market', (x) => {
       setKey(x, 'act4.press', id);
       return [...body, q('Deverell', 'Celeste. Did we know?'), p('It is the first question he has asked all evening, and it is not to you.')];
     });
@@ -177,9 +207,33 @@ function marcusBlocks(s: GameState): Block[] {
       ];
 }
 
-function marcusChoices(): C17Choice[] {
+/** The recess (deepening pass), before the offer. */
+function recessChoices(): C17Choice[] {
+  const r = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('recess-' + id, label, hint, 'offer', (x) => {
+      setKey(x, 'c17.p-recess', id);
+      return [p('Deverell calls five minutes. Nobody leaves the room. They stand in twos and threes under the empty frames and do not look at each other.'), ...body];
+    });
+  return [
+    r('window', 'Stand at the black glass beside Celeste', 'She will come. She always comes.', [
+      p('You stand at the black glass with the river below it, and after a minute she comes and stands beside you, close enough that your sleeves touch, and you both look at the water.'),
+      q('Celeste', 'You were always going to be very good at this. I knew it at the Glass House, watching you work the room in a dress you hated. I did not know it would be at my expense. I find I don’t mind as much as I should.'),
+      t('She means it. That is the most dangerous thing she has said all night.'),
+    ]),
+    r('soames', 'Let Marguerite Soames find you', 'She reads everything. She has one question.', [
+      p('Marguerite Soames comes over with her folder held against her chest and her glasses on their chain, and stands beside you, and speaks very quietly.'),
+      q('Marguerite Soames', 'One question, Ms Vale, off the record. Who paid for your flat?'),
+      q('You', 'You did.'),
+      q('Marguerite Soames', 'Thank you. I have read that standing order every month for a year. I wanted to hear somebody say it.'),
+    ]),
+    r('sit', 'Stay in your chair', 'Let them come to you.', [p('You stay where you are, and let the room move around you, and nobody comes, which tells you more than any of them could have.')]),
+  ];
+}
+
+function marcusChoices(s: GameState): C17Choice[] {
+  if (key(s, 'act4.marcus')) return recessChoices();
   const m = (id: string, label: string, hint: string, body: Block[]) =>
-    offer('marcus-' + id, label, hint, 'offer', (x) => {
+    offer('marcus-' + id, label, hint, 'marcus', (x) => {
       setKey(x, 'act4.marcus', id);
       return body;
     });
@@ -244,6 +298,7 @@ function eleanorBlocks(s: GameState): Block[] {
     q('Celeste', 'On the Saturday I sent a car. To take her to her sister’s. To bring her home, if you like. She would not get into it. She walked, along the harbour wall, in the dark, with the leg. The driver followed her at walking pace for a mile. He watched her fall. He did not stop.'),
     q('Celeste', 'He rang me at six. I rang her sister at seven. I have never known why I did that.'),
     ...(isIn(s, 'nora') ? [p('Behind you, Nora makes no sound at all. You hear her not make it.')] : []),
+    q('Celeste', 'You are nothing like her, you know. She wanted out. You want in. That is why I wanted you.'),
     t('Not a push. A signature, and a car, and a man who didn’t stop. The truth, and not the whole of anybody’s guilt.'),
   ];
 }
@@ -349,11 +404,13 @@ function minuteBlocks(s: GameState): Block[] {
   return accepted(s)
     ? [
         p('Celeste goes, at last, by the front door, and the doorman opens it for her, the way he always has, and she does not look back.'),
+        p('The doorman closes the door behind her very quietly, and for the first time in thirty years it is closed from the inside by somebody other than her.'),
         p('You sit alone at the head of the table in the long room, under the empty frames, with the client ledger open in front of you, and the lamp on over the lectern, and the river going by.'),
         t('I did not walk out of the Vesper. I stayed. Somebody else opened the door for her, and I let them.'),
       ]
     : [
-        p('You go down the long room, past the empty frames, and out into the hall, and the doorman is not at the door. For the first time, nobody is.'),
+        p('You go down the long room, past the empty frames and the photograph of the door, and out into the hall, and the doorman is not at the door. For the first time, nobody is.'),
+        ...(key(s, 'act4.outside') === 'pryce' ? [p('At the kerb the long black car has its engine running, and Mr Pryce is holding the rear door, and does not say anything at all, and does not need to.')] : [p('On the embankment it has stopped raining. Your phone lights once in your pocket: the switch holders, all of them, a minute before seven. You ring each one back. “I’m out.”')]),
         t('I walked out of the Vesper by the front door, and nobody opened it for me. I opened it myself.'),
       ];
 }
@@ -372,7 +429,7 @@ export function predatorBlocks17(s: GameState): Block[] {
 export function predatorChoices17(s: GameState): C17Choice[] {
   if (s.phase === 'sit') return sitChoices(s);
   if (s.phase === 'market') return marketChoices(s);
-  if (s.phase === 'marcus') return marcusChoices();
+  if (s.phase === 'marcus') return marcusChoices(s);
   if (s.phase === 'offer') return offerChoices(s);
   if (s.phase === 'eleanor') return eleanorChoices(s);
   if (s.phase === 'hands') return handsChoices(s);

@@ -4,7 +4,7 @@
 each get their own design doc before build. Built so far, and continuous: Ch7 (The Offer), Ch8 (The Floor), Ch9 (shared),
 Ch10 (Let Me Help), Ch11 (The Catalogue), Ch12 (The Counterparty), Ch13 (The Mirror), Ch14 (Marcus Falls), Ch15
 (The Key), Ch16 (The Seventh Chair), Ch17 (Sit With Us) and Ch18 (Paid in Full). **The Predator road is complete
-(2026-09-28).** Ch17–18 are at pass 1 and can be deepened. Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
+(2026-09-28).** Ch7–18 are all built and deepened. Written 2026-09-27 as the next route after Celebrity (CAMPAIGN_ROUTE_MAP decision 7).
 
 ## 1. The route in one paragraph
 
