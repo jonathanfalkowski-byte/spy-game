@@ -25,7 +25,7 @@
 
 **Status: APPROVED (owner, 2026-09-27: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/PREDATOR_CHAPTER_16_SCRIPT.md](scripts/PREDATOR_CHAPTER_16_SCRIPT.md); code: `src/content/chapter16-predator.ts`.
-It runs ~1.0–1.1k words on one path.
+It ran ~1.0–1.1k words on one path at pass 1, and was deepened 2026-09-27 to ~1.1–1.4k.
 
 ---
 

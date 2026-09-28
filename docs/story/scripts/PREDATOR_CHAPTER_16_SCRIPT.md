@@ -40,3 +40,35 @@ nell = nell, seat is Predator's own), `act4.inside`, `act4.outside`, `act4.first
 **Size (honest), pass 1:** ~1.0k (quiet) to ~1.1k (engaged), against the ~4k target. The leanest first pass on the
 road; a deepening pass would give each person who comes a longer scene, and the floor at five in the morning more of
 Adrian.
+
+## Deepening pass (2026-09-27)
+
+- **The afternoon** (`order`, after the held card, before the mirror). Every path passes through it (`c16.p-hour`):
+  - **hour-walk**: the Vesper in daylight, and a man in overalls carrying in a single chair with a green seat. "One
+    more chair than there were at her table yesterday. She had it brought in this afternoon. For me."
+  - **hour-helix**: the thirty-sixth floor one last time. It stands up, and there is a coffee on her desk with no
+    note. "Sixty people who stand up when I walk past. I should like to be worth it."
+  - **hour-sleep** (neutral).
+- **Her key** (`armour`, after the dress, before the clasp) (`pred.key16`):
+  - **key-throat**: Celeste's key (or the copy) on its ribbon, threaded through her necklace, in the hollow of her
+    throat, "as a gift or as a trophy". In the long room: "Her eyes go to your throat first, to her own key on its
+    ribbon, and stay there one second longer than she means them to."
+  - **key-pocket**: in her coat, beside the held card.
+  - **key-leave** (neutral): on the wardrobe door.
+- **Each person who comes, at greater length:**
+  - Halvorsen: "I have bought from that book. Twice … I should like, tonight, to sit in that room and not buy
+    anything."
+  - Marcus: the good suit, and his mother: "Wear the good suit, then."
+  - Lucien: a bar of chocolate from Geneva that the first Evelyn liked.
+  - Julian: "I would like to be in the room when you decide it."
+  - Marsh: "You could post it … I want them to see my face."
+  - Iris: her own name, in that room.
+  - Nora: rain, "the only weather that minded its own business".
+- **More prose:** the floor at five (each card read aloud "in the voice of the person at that table who will hate
+  you most"), and the long room (Soames reading, Deverell half-rising).
+- **Place lines:** "15:00 · The afternoon" and "16:20 · Her key".
+
+The tests walk the new moments on their neutral picks (`NEUTRAL16 = hour-sleep, key-leave`).
+
+**Size (honest) after the deepening pass:** ~1.1k (quiet) to ~1.4k (engaged). The next lift would be a longer
+five-in-the-morning scene and a beat with Pryce or the switch holders at seven.

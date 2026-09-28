@@ -20,7 +20,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter16Choices(s).map((c) => c.id.replace(/^chapter16\./, ''));
 const c16 = (s: GameState, id: string) => choose(s, 'CHAPTER16_CHOOSE', 'chapter16.' + id);
-const walk16 = (s: GameState, path: string[]) => path.reduce(c16, s);
+/** The deepening pass's moments (the afternoon, her key): take the neutral pick when it is in the way. */
+const NEUTRAL16 = ['hour-sleep', 'key-leave'];
+const walk16 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL16.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c16(y, n);
+    }
+    return c16(y, id);
+  }, s);
 const run = (s: GameState, n: 10 | 11 | 12 | 13 | 14 | 15, path: string[]) => path.reduce((x, id) => choose(x, `CHAPTER${n}_CHOOSE`, `chapter${n}.` + id), s);
 
 const QUIET = {
@@ -81,14 +92,20 @@ it('goes in to take the seat: Julian at the clasp, the page as her price, and th
   const held = c16(order, 'first-clients');
   const price = chapter16Choices(held).find((c) => c.id === 'chapter16.held-page');
   expect(price?.label).toBe('Your price: Page forty');
-  const armour = c16(held, 'held-page');
-  const clasp = c16(armour, 'wear-green');
+  const hour = c16(held, 'held-page');
+  expect(ids(hour)).toEqual(['hour-walk', 'hour-helix', 'hour-sleep']);
+  const armour = c16(hour, 'hour-walk');
+  expect(text(armour)).toContain('One more chair than there were at her table yesterday.');
+  const keyed = c16(armour, 'wear-green');
+  expect(ids(keyed)).toEqual(['key-throat', 'key-pocket', 'key-leave']);
+  const clasp = c16(keyed, 'key-throat');
   expect(ids(clasp)).toContain('clasp-julian');
   const done = walk16(clasp, ['clasp-julian', 'arrive-car']);
   expect(`${done.scene}.${done.phase}`).toBe('chapter16.room');
   expect(text(done)).toContain('Good luck, Ms Vale.');
   expect(text(done)).toContain('The seventh chair is beside hers, and it has been pulled out.');
   expect(text(done)).toContain('I am going to sit in it.');
+  expect(text(done)).toContain('to her own key on its ribbon');
   expect([done.choices['act4.aim'], done.choices['act4.first'], done.choices['act4.held'], done.choices['act4.wear'], done.choices['act4.arrive'], done.choices['act4.seen']]).toEqual(['seat', 'clients', 'page', 'green', 'car', 'yes']);
   expect(ids(done)).toEqual([]);
   expect(replay(done.ledger, 19)).toEqual(done);
@@ -134,5 +151,5 @@ it('leaves anyone spent in Chapter 15 out of the room', () => {
   expect(ids(beside)).not.toContain('inside-julian');
   const door = walk16(beside, ['inside-none', 'outside-switch', 'first-page', 'held-none', 'wear-black']);
   expect(ids(door)).not.toContain('clasp-julian');
-  expect(ids(c16(door, 'clasp-alone'))).toEqual(['arrive-front', 'arrive-car']);
+  expect(ids(walk16(door, ['clasp-alone']))).toEqual(['arrive-front', 'arrive-car']);
 });

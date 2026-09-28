@@ -8,7 +8,12 @@
  * comes from the Predator cast, excluding anyone spent in Chapter 15; the first card and the one held back; Marcus's
  * midnight blue, the black, or Celeste's own green; the front door, Celeste's car, or Helix's. Chosen intimacy only,
  * heat 1–2 (a clasp). Entered from the Predator `chapter15.ledger`; the road stops at `chapter16.room` until the
- * Predator Chapter 17 exists. Writes the shared act4.* keys. */
+ * Predator Chapter 17 exists. Writes the shared act4.* keys.
+ * Deepening pass (2026-09-27): the afternoon after the cards are set, which every path passes through (c16.p-hour =
+ * walk | helix | sleep: the Vesper in daylight, and one chair carried in that was not there yesterday; the Helix floor
+ * one last time; or an hour's sleep), and her key after the dress (pred.key16 = throat | pocket | leave: Celeste's own
+ * key worn in the hollow of her throat, which Celeste's eyes go to first in the long room). Each person who comes, the
+ * floor at five and the long room at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -106,7 +111,9 @@ const exposed16 = (s: GameState) => !!get5(s, 'published') || key(s, 'pred.way')
 
 export function placePredator16(s: GameState): string | undefined {
   if (s.phase === 'beside' && key(s, 'act4.inside-done') === 'yes') return 'Late morning · Outside';
+  if (s.phase === 'order' && key(s, 'act4.held')) return '15:00 · The afternoon';
   if (s.phase === 'order' && key(s, 'act4.first')) return 'Noon · The card held back';
+  if (s.phase === 'armour' && key(s, 'act4.wear') && !key(s, 'pred.key16')) return '16:20 · Her key';
   if (s.phase === 'armour' && key(s, 'act4.wear')) return '16:40 · The clasp';
   if (s.phase === 'door') return key(s, 'act4.arrive') === 'car' ? '17:30 · The car she sent' : undefined;
 }
@@ -122,6 +129,7 @@ function floorBlocks(s: GameState): Block[] {
   return [
     p('You wake at a quarter to five with your heart already going, and lie in the dark for a minute deciding whether it is fear. It isn’t. It is the other thing, the thing you felt in Marcus’s office the day you said “Yours”.'),
     p('You take every card down off the wardrobe door, one by one, and lay them out on the floorboards in the order they will matter, the way Adrian laid out a filing the night before a hearing, in his socks.'),
+    p('He used to say that a case is only ever as strong as the worst card in it read aloud by somebody who hates you. You read each one aloud, quietly, in the dark, in the voice of the person at that table who will hate you most. Some of them survive it.'),
     ...reasons.map((r) => p('· ' + r)),
     p(
       strength === 'overwhelming'
@@ -186,13 +194,13 @@ function wantChoices(s: GameState): C16Choice[] {
 // ── Who comes ──
 
 const personScene: Record<Person, [string, Block[]]> = {
-  halvorsen: ['A client’s chair. He owes you, in public.', [q('Halvorsen', 'A client may attend, my dear, and I am a client, God help me. I shall sit at the end with my ships and say nothing until you want me to say something, and then I shall say it very loudly. I owe you a lunch. This is the lunch.')]],
-  marcus: ['Back into the room where he was bought.', [p('Marcus comes down from Leeds on the first train in the good suit, the one he bought with the first company he ever took apart.'), q('Marcus Chen', 'I was bought in that room. Eleven years ago, at that table, in that chair at the end. I would like very much to walk back into it on the arm of the woman who took my desk.')]],
-  lucien: ['The bank, in the room.', [q('Lucien Morel', 'Morel & Cie is a counterparty to half the people at that table. A counterparty may attend. I shall sit very still and look at the ones whose accounts I know. They will know I know. That is all a banker ever has to do.')]],
-  julian: ['Helix’s seat.', [q('Julian Mercer', 'Helix is a client. I gave notice last night. If they try anything, they will have to do it in front of the Group COO of a client, which they will not enjoy.')]],
-  marsh: ['The Authority, taking notes.', [p('Owen Marsh arrives at ten with a banker’s box of files, his bicycle clips still on, and a tie he has plainly borrowed.'), q('Owen Marsh', 'I’ll sit at the end and take notes. They hate it when someone takes notes.')]],
-  iris: ['She has taken minutes at that table.', [q('Iris Moreau', 'I took minutes at that table for four years. I know where they put their hands when they are frightened. I’ll touch my earring when one of them lies.')]],
-  nora: ['Nell’s sister, off the overnight flight.', [p('Nora is at arrivals at eleven with one small bag and Nell’s photograph in her handbag in a plastic sleeve, the way you would carry a passport.'), q('Nora Linden', 'I’m not going to say anything. I’m just going to be there, with her face, so that the woman who rang me on a Sunday morning has to look at both of us.')]],
+  halvorsen: ['A client’s chair. He owes you, in public.', [q('Halvorsen', 'A client may attend, my dear, and I am a client, God help me. I shall sit at the end with my ships and say nothing until you want me to say something, and then I shall say it very loudly. I owe you a lunch. This is the lunch.'), p('He pauses on the line, and when he speaks again it is not the voice for his ships.'), q('Halvorsen', 'I have bought from that book. Twice. I have never said so aloud. I should like, tonight, to sit in that room and not buy anything.')]],
+  marcus: ['Back into the room where he was bought.', [p('Marcus comes down from Leeds on the first train in the good suit, the one he bought with the first company he ever took apart.'), q('Marcus Chen', 'I was bought in that room. At that table, in that chair at the end. I would like very much to walk back into it on the arm of the woman who took my desk.'), p('He straightens his tie in your hall mirror, twice, the way he used to before a board, and then stops, and looks at himself, and laughs.'), q('Marcus Chen', 'My mother asked me this morning where I was going. I said to see an old friend. She said, “Wear the good suit, then.” I am.')]],
+  lucien: ['The bank, in the room.', [q('Lucien Morel', 'Morel & Cie is a counterparty to half the people at that table. A counterparty may attend. I shall sit very still and look at the ones whose accounts I know. They will know I know. That is all a banker ever has to do.'), p('He arrives on the noon flight in a coat, for once, heavy enough for London, and brings you something small in a paper bag from Geneva: a bar of the chocolate the first Evelyn liked. He does not say so. He does not have to.')]],
+  julian: ['Helix’s seat.', [q('Julian Mercer', 'Helix is a client. I gave notice last night. If they try anything, they will have to do it in front of the Group COO of a client, which they will not enjoy.'), q('Julian Mercer', 'And whatever you decide in there. Whatever you want. I would like to be in the room when you decide it. That’s all. That’s the whole of it.')]],
+  marsh: ['The Authority, taking notes.', [p('Owen Marsh arrives at ten with a banker’s box of files, his bicycle clips still on, and a tie he has plainly borrowed.'), q('Owen Marsh', 'I’ll sit at the end and take notes. They hate it when someone takes notes.'), p('He looks at the case on your table, in its rubber band, and then at you.'), q('Owen Marsh', 'You could post it. All of it. Tonight. Let the rest of us do the room.'), q('You', 'I want them to see my face when they read it.'), q('Owen Marsh', 'Yes. I thought you might.')]],
+  iris: ['She has taken minutes at that table.', [q('Iris Moreau', 'I took minutes at that table for four years. I know where they put their hands when they are frightened. I’ll touch my earring when one of them lies.'), q('Iris Moreau', 'I’m coming as myself. My own name. I have not said it in a room like that in four years. I would like to hear how it sounds.')]],
+  nora: ['Nell’s sister, off the overnight flight.', [p('Nora is at arrivals at eleven with one small bag and Nell’s photograph in her handbag in a plastic sleeve, the way you would carry a passport.'), q('Nora Linden', 'I’m not going to say anything. I’m just going to be there, with her face, so that the woman who rang me on a Sunday morning has to look at both of us.'), p('In the taxi she looks out at London in the rain and says once, to the window: “She loved rain. She said it was the only weather that minded its own business.”')]],
   maya: ['She is coming. She meant it.', [q('Maya', 'I’m coming in. I’m going to sit next to you and not say a word, and if any of them looks at you the wrong way I’m going to write their name down very slowly where they can see me doing it.')]],
 };
 
@@ -251,7 +259,29 @@ function orderBlocks(): Block[] {
   ];
 }
 
+/** The afternoon (deepening pass): every path passes through it after the cards are set. */
+function hourChoices(): C16Choice[] {
+  const h = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('hour-' + id, label, hint, 'armour', (x) => {
+      setKey(x, 'c16.p-hour', id);
+      return body;
+    });
+  return [
+    h('walk', 'Walk past the Vesper in daylight', 'Three o’clock. Just to look.', [
+      p('At three you walk the embankment in the thin afternoon light, on the far side of the road, like a tourist. The Vesper in daylight is only a building: black glass, no name, a delivery van at the kerb.'),
+      p('A man in overalls is carrying a single chair in from the van, a good one, dark wood, with a green seat. You watch him take it through the door. You count the windows of the long room, and the chairs you can see through them, and come to the same number twice.'),
+      t('One more chair than there were at her table yesterday. She had it brought in this afternoon. For me.'),
+    ]),
+    h('helix', 'Walk the Helix floor one last time', 'Whatever you decide tonight, this is what it costs or keeps.', [
+      p('At three you walk the thirty-sixth floor, the whole length of it, slowly, the way you did on the first day. It stands up for you now, the way it stood up the morning after Marcus. Somebody has put a coffee on your desk, the way you take it, with no note.'),
+      t('Whatever I decide in that room, this floor is what it will cost, or keep. Sixty people who stand up when I walk past. I should like to be worth it.'),
+    ]),
+    h('sleep', 'Sleep an hour', 'The way soldiers do.', [p('You lie on top of the covers in your slip at three and sleep an hour, the way soldiers do before a thing, and wake at four exactly, with the light gone amber on the ceiling.')]),
+  ];
+}
+
 function orderChoices(s: GameState): C16Choice[] {
+  if (key(s, 'act4.held')) return hourChoices();
   const cards = cards16(s);
   const first = key(s, 'act4.first') as Card | undefined;
   if (!first)
@@ -266,12 +296,12 @@ function orderChoices(s: GameState): C16Choice[] {
     ...cards
       .filter((c) => c !== first)
       .map((c) =>
-        offer('held-' + c, (seat ? 'Your price: ' : 'Hold back: ') + cardLabel[c][0], seat ? 'The thing she will pay to keep quiet, when you sit down.' : 'In your pocket, for the moment she thinks she has won.', 'armour', (x) => {
+        offer('held-' + c, (seat ? 'Your price: ' : 'Hold back: ') + cardLabel[c][0], seat ? 'The thing she will pay to keep quiet, when you sit down.' : 'In your pocket, for the moment she thinks she has won.', 'order', (x) => {
           setKey(x, 'act4.held', c);
           return [p(seat ? `${cardLabel[c][0]} goes in the inside pocket of your coat, alone. Not a weapon tonight. A price.` : `${cardLabel[c][0]} goes in the inside pocket of your coat, alone, where nobody at that table will think to look for it.`)];
         }),
       ),
-    offer('held-none', 'Hold nothing back', 'Everything on the table. No tricks.', 'armour', (x) => {
+    offer('held-none', 'Hold nothing back', 'Everything on the table. No tricks.', 'order', (x) => {
       setKey(x, 'act4.held', 'none');
       return [t('Everything on the table. She keeps things back. I am not going to be her tonight, whatever happens to the chair.')];
     }),
@@ -307,6 +337,23 @@ function armourChoices(s: GameState): C16Choice[] {
       w('blue', 'The midnight blue', 'Marcus’s gift, from the Vesper in December.', [p('The midnight blue, from the shop that does not deliver. It still fits exactly. Somebody measured you once without asking. Tonight you are wearing the measurement back into the room it was taken for.')]),
       w('black', 'The black', 'Your own. Plain. Final.', [p('Your own black: plain, high at the neck, the dress you would choose for a funeral you intended to enjoy.')]),
       w('green', 'Her green', 'Celeste’s colour, worn to her table.', [p('Green. Her colour, the colour she has worn at every table you have ever seen her at. You have never once worn it. Tonight you are going to walk into her house in it, and see which of you it suits.'), t('If I am going to sit beside her, I will match. If I am going to refuse her, I will match while I do it.')]),
+    ];
+  }
+  if (!key(s, 'pred.key16')) {
+    const copy = key(s, 'pred.way15') === 'copy';
+    const what = copy ? 'the copy of her key' : 'her key';
+    const k = (id: string, label: string, hint: string, body: Block[]) =>
+      offer('key-' + id, label, hint, 'armour', (x) => {
+        setKey(x, 'pred.key16', id);
+        return body;
+      });
+    return [
+      k('throat', 'Wear ' + what + ' at your throat', 'On its ribbon, in the hollow of your neck. Let her wonder.', [
+        p(`You thread the ${copy ? 'red thread' : 'green ribbon'} through the chain of your necklace so that ${what} sits in the hollow of your throat, cold, and then warm.`),
+        t('She will see it the moment I walk in. Let her wonder whether I am wearing it as a gift or as a trophy. I have not decided either.'),
+      ]),
+      k('pocket', 'Put it in your pocket, to give back', 'With the card you are holding back.', [p(`${copy ? 'The copy' : 'Her key'} goes into the inside pocket of your coat, beside the card you are holding back, where your fingers can find both at once.`)]),
+      k('leave', 'Leave it on the wardrobe door', 'Whatever happens, you will not need it again.', [p(`You leave ${what} on its pin at the top of the wardrobe door. Whatever happens tonight, you will not need to open anything of hers again.`)]),
     ];
   }
   const c = (id: string, label: string, hint: string, body: Block[]) =>
@@ -375,7 +422,9 @@ function roomBlocks(s: GameState): Block[] {
     q('The doorman', 'Good luck, Ms Vale.'),
     p('The long room is reset for the board: the empty frames on the walls, a long table under them, and people at it. Anton Deverell in the chair, shipping and insurance, silver and courteous. Marguerite Soames, who reads everything. Three others you know from the ledger, not the newspapers.'),
     ...(inside.length ? [p('Behind you, ' + inside.map((x) => personName[x]).join(' and ') + ', taking the chairs at the end where the clients sit.')] : []),
+    p('Marguerite Soames already has a folder open in front of her and is reading it, and does not look up. Deverell rises halfway, courteously, the way a man rises for a woman in a restaurant, and sits again.'),
     p('And at the head of the table, in black, no jewellery, Celeste Laurent, who stands when you come in.'),
+    ...(key(s, 'pred.key16') === 'throat' ? [p('Her eyes go to your throat first, to her own key on its ribbon, and stay there one second longer than she means them to.')] : []),
     p('There are seven chairs at the table and six people. The seventh chair is beside hers, and it has been pulled out.'),
     t(
       aim === 'seat'
