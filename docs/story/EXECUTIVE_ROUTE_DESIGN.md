@@ -2,8 +2,11 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended).** No lane-split change was needed.
 Each chapter gets its own design doc before build, as on Predator. Built so far (pass 1): Ch7, "The Room"
-([EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md](EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md)), and Ch8, "The Terms"
-([EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md](EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md)). Next: Ch14, "The Signature".
+([EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md](EXECUTIVE_CHAPTER_7_THE_ROOM_DESIGN.md)), Ch8, "The Terms"
+([EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md](EXECUTIVE_CHAPTER_8_THE_TERMS_DESIGN.md)), and Ch14, "The Signature"
+([EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md](EXECUTIVE_CHAPTER_14_THE_SIGNATURE_DESIGN.md)), reached for now
+through an in-development bridge from Ch9. The unique spine is complete. Next: the shared variants (Ch10–13, then
+Ch15–18), or deepening 7, 8 and 14.
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

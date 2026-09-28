@@ -306,6 +306,13 @@ const byNode: Record<string, Key> = {
   'chapter14.desk': 'helixSuite',
   'chapter14.evening': 'apartmentNight',
   'chapter14.ledger': 'apartmentNight',
+  // The Executive road: The Signature.
+  'chapter14.called': 'helixSuite',
+  'chapter14.silence': 'car',
+  'chapter14.truth': 'apartmentNight',
+  'chapter14.ways': 'helixWorkroom',
+  'chapter14.boardroom': 'helixSuite',
+  'chapter14.night': 'apartmentNight',
   // Chapter 15 (stand-ins until EVE Art's frames: the wall on a wardrobe door, the Vesper at 2 a.m., the archive, the bridge).
   'chapter15.crew': 'apartmentNight',
   'chapter15.plan': 'apartmentDay',

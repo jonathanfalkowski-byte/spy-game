@@ -25,8 +25,14 @@
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md): Mature 17+, heat 3, and consent in character. The reserved coercion
   beat was Ch13 (shared, off screen). Every threat here is non-sexual.
 
-**Status: DESIGN for owner approval.** Nothing is built yet. For the problem of reaching it before Chapters 10–13 have
-their Executive framing, see §6, decision 8.
+**Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_14_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_14_SCRIPT.md); code: `src/content/chapter14-executive.ts`.
+It is entered through the interim bridge from an Executive `chapter9.complete` (§6, decision 8), and runs ~1.0–1.2k
+words on one path.
+
+**One refinement made in the build:** telling him everything counts +2 toward trust, and the order alone +1, not the
+flat +1 in §4 below. That way honesty can open the enforce way on its own; Chapter 8's favours then decide how much
+help it needs.
 
 ---
 

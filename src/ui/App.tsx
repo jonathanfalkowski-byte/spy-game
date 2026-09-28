@@ -340,7 +340,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
             : state.scene === 'chapter15'
               ? (state.choices['route.lane'] === 'predator' ? 'Chapter 15 / The Key' : 'Chapter 15 / Breaking the Leash')
             : state.scene === 'chapter14'
-              ? (state.choices['route.lane'] === 'predator' ? 'Chapter 14 / Marcus Falls' : 'Chapter 14 / Sloane’s Turn')
+              ? (state.choices['route.lane'] === 'predator' ? 'Chapter 14 / Marcus Falls' : state.choices['route.lane'] === 'executive' ? 'Chapter 14 / The Signature' : 'Chapter 14 / Sloane’s Turn')
             : state.scene === 'chapter13'
               ? state.choices['route.lane'] === 'predator' ? 'Chapter 13 / The Mirror' : 'Chapter 13 / The Honeypot'
             : state.scene === 'chapter12'
@@ -383,7 +383,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
         ) : state.scene === 'chapter15' ? (
           (state.choices['route.lane'] === 'predator' ? 'The Key.' : 'Breaking the Leash.')
         ) : state.scene === 'chapter14' ? (
-          (state.choices['route.lane'] === 'predator' ? 'Marcus Falls.' : 'Sloane’s Turn.')
+          (state.choices['route.lane'] === 'predator' ? 'Marcus Falls.' : state.choices['route.lane'] === 'executive' ? 'The Signature.' : 'Sloane’s Turn.')
         ) : state.scene === 'chapter13' ? (
           state.choices['route.lane'] === 'predator' ? 'The Mirror.' : 'The Honeypot.'
         ) : state.scene === 'chapter12' ? (
@@ -569,7 +569,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
       <header className="topbar">
         <div className="wordmark">
           EVE
-          <span>{state.scene === 'chapter18' ? (state.choices['route.lane'] === 'predator' ? 'PAID IN FULL' : 'THE POSITION') : state.scene === 'chapter17' ? (state.choices['route.lane'] === 'predator' ? 'SIT WITH US' : 'THE ROOM') : state.scene === 'chapter16' ? (state.choices['route.lane'] === 'predator' ? 'THE SEVENTH CHAIR' : 'THE APPROACH') : state.scene === 'chapter15' ? (state.choices['route.lane'] === 'predator' ? 'THE KEY' : 'BREAKING THE LEASH') : state.scene === 'chapter14' ? (state.choices['route.lane'] === 'predator' ? 'MARCUS FALLS' : 'SLOANE’S TURN') : state.scene === 'chapter13' ? (state.choices['route.lane'] === 'predator' ? 'THE MIRROR' : 'THE HONEYPOT') : state.scene === 'chapter12' ? (state.choices['route.lane'] === 'predator' ? 'THE COUNTERPARTY' : 'SINGAPORE') : state.scene === 'chapter11' ? (state.choices['route.lane'] === 'predator' ? 'THE CATALOGUE' : 'THE ASSET') : state.scene === 'chapter10' ? (state.choices['route.lane'] === 'predator' ? 'LET ME HELP' : 'SHE KNOWS') : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? (state.choices['route.lane'] === 'predator' ? 'THE FLOOR' : state.choices['route.lane'] === 'executive' ? 'THE TERMS' : 'THE COST BITES') : state.scene === 'chapter7' ? (state.choices['route.lane'] === 'predator' ? 'THE OFFER' : state.choices['route.lane'] === 'executive' ? 'THE ROOM' : 'THE ROAD YOU CHOOSE') : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
+          <span>{state.scene === 'chapter18' ? (state.choices['route.lane'] === 'predator' ? 'PAID IN FULL' : 'THE POSITION') : state.scene === 'chapter17' ? (state.choices['route.lane'] === 'predator' ? 'SIT WITH US' : 'THE ROOM') : state.scene === 'chapter16' ? (state.choices['route.lane'] === 'predator' ? 'THE SEVENTH CHAIR' : 'THE APPROACH') : state.scene === 'chapter15' ? (state.choices['route.lane'] === 'predator' ? 'THE KEY' : 'BREAKING THE LEASH') : state.scene === 'chapter14' ? (state.choices['route.lane'] === 'predator' ? 'MARCUS FALLS' : state.choices['route.lane'] === 'executive' ? 'THE SIGNATURE' : 'SLOANE’S TURN') : state.scene === 'chapter13' ? (state.choices['route.lane'] === 'predator' ? 'THE MIRROR' : 'THE HONEYPOT') : state.scene === 'chapter12' ? (state.choices['route.lane'] === 'predator' ? 'THE COUNTERPARTY' : 'SINGAPORE') : state.scene === 'chapter11' ? (state.choices['route.lane'] === 'predator' ? 'THE CATALOGUE' : 'THE ASSET') : state.scene === 'chapter10' ? (state.choices['route.lane'] === 'predator' ? 'LET ME HELP' : 'SHE KNOWS') : state.scene === 'chapter9' ? 'ASSEMBLING THE CASE' : state.scene === 'chapter8' ? (state.choices['route.lane'] === 'predator' ? 'THE FLOOR' : state.choices['route.lane'] === 'executive' ? 'THE TERMS' : 'THE COST BITES') : state.scene === 'chapter7' ? (state.choices['route.lane'] === 'predator' ? 'THE OFFER' : state.choices['route.lane'] === 'executive' ? 'THE ROOM' : 'THE ROAD YOU CHOOSE') : state.scene === 'chapter6' ? 'THE CAGE YOU CHOOSE' : state.scene === 'chapter5' ? 'THE BEAUTIFUL LIFE' : 'A NARROW ASSIGNMENT'}</span>
         </div>
         {compactNavigation && !recovery && assessmentEntry}
         {compactNavigation && !recovery && (
@@ -1045,7 +1045,7 @@ export function App({ storage = browserStorage }: { storage?: StoragePort }) {
                         : state.scene === 'chapter15'
                           ? (state.choices['route.lane'] === 'predator' ? 'Chapter 15 / The Key' : 'Chapter 15 / Breaking the Leash')
                         : state.scene === 'chapter14'
-                          ? (state.choices['route.lane'] === 'predator' ? 'Chapter 14 / Marcus Falls' : 'Chapter 14 / Sloane’s Turn')
+                          ? (state.choices['route.lane'] === 'predator' ? 'Chapter 14 / Marcus Falls' : state.choices['route.lane'] === 'executive' ? 'Chapter 14 / The Signature' : 'Chapter 14 / Sloane’s Turn')
                         : state.scene === 'chapter13'
                           ? state.choices['route.lane'] === 'predator' ? 'Chapter 13 / The Mirror' : 'Chapter 13 / The Honeypot'
                         : state.scene === 'chapter12'

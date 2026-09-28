@@ -25,6 +25,7 @@ import { eveningPartners11 } from './chapter11';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { sloaneDoubts } from './sloane-standing';
 import { beginPredator14, isPredator14, placePredator14, predatorBlocks14, predatorChoices14, predatorPhase14 } from './chapter14-predator';
+import { beginExecutive14, executiveBlocks14, executiveChoices14, executivePhase14, isExecutive14, placeExecutive14 } from './chapter14-executive';
 
 export type C14Scene = { title: string; place: string; blocks: Block[] };
 export type C14Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -75,6 +76,13 @@ export const chapter14Definitions: Record<string, C14Scene> = {
   desk: { title: 'The Desk', place: 'THE NEXT MORNING · THE THIRTY-EIGHTH FLOOR', blocks: [] },
   evening: { title: 'The Evening', place: 'NIGHT', blocks: [] },
   ledger: { title: 'The Board', place: 'MIDNIGHT · THE WARDROBE DOOR', blocks: [] },
+  // The Executive road (2026-09-28): The Signature.
+  called: { title: 'Called In', place: 'MONDAY · 06:10 · FORTY-ONE', blocks: [] },
+  silence: { title: 'His Silence', place: 'MONDAY NIGHT · A CAR AT THE KERB', blocks: [] },
+  truth: { title: 'The Truth', place: 'TUESDAY · LATE · THE FORTY-FIRST FLOOR', blocks: [] },
+  ways: { title: 'Three Sheets of Paper', place: 'WEDNESDAY · YOUR OFFICE, FORTY-ONE', blocks: [] },
+  boardroom: { title: 'The Board', place: 'FRIDAY · 08:00 · THE HELIX BOARDROOM, FORTY-FOUR', blocks: [] },
+  night: { title: 'The Ledger Comes Due', place: 'FRIDAY NIGHT', blocks: [] },
 };
 export const chapter14Scenes = Object.entries(chapter14Definitions).map(([phase, scene]) => ({
   id: `chapter14.${phase}` as NodeId,
@@ -121,6 +129,7 @@ export function eveningPartners14(s: GameState): Partner14[] {
 export function place14(s: GameState): string | undefined {
   if (s.scene !== 'chapter14') return;
   if (isPredator14(s)) return placePredator14(s);
+  if (isExecutive14(s)) return placeExecutive14(s);
   if (s.phase === 'maya' && get14(s, 'tell') === 'later') return 'SATURDAY NIGHT · YOUR DOORSTEP';
   if (s.phase === 'sunday' && get14(s, 'answer') === 'refused') return 'SUNDAY · 19:00 · HOME, AND THE FIRE ESCAPE';
   if (s.phase === 'after' && get14(s, 'answer') === 'refused' && !get14(s, 'evening-open')) return 'SUNDAY NIGHT · A HOTEL, UNDER ANOTHER NAME';
@@ -889,6 +898,7 @@ function completeBlocks(s: GameState): Block[] {
 export function chapter14Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorBlocks14(s);
+  if (executivePhase14(s)) return executiveBlocks14(s);
   if (s.phase === 'door') return doorBlocks(s);
   if (s.phase === 'order') return orderBlocks(s);
   if (s.phase === 'maya') return mayaBlocks(s);
@@ -904,8 +914,11 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (s.scene === 'chapter13' && s.phase === 'complete' && ownPower(s))
     return [offer14('begin', 'Let her in', 'Sloane, on your landing, asking.', 'door')];
   if (s.scene === 'chapter13' && s.phase === 'ledger' && isPredator14(s)) return [beginPredator14()];
+  // The Executive road: an in-development bridge from its Chapter 9 until its Chapters 10–13 exist.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isExecutive14(s)) return [beginExecutive14()];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
+  if (executivePhase14(s)) return executiveChoices14(s);
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'order') return orderChoices();
   if (s.phase === 'maya') return get14(s, 'said') ? mayaMoveChoices(s) : mayaChoices(s);
