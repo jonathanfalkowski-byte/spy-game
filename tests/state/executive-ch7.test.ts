@@ -14,10 +14,21 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 const ids = (s: GameState) => chapter7Choices(s).map((c) => c.id.replace(/^chapter7\./, ''));
-const c7 = (s: GameState, id: string) => {
+const once7 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER7_CHOOSE', id: 'chapter7.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (breakfast, the photograph, the lift): take the neutral pick when it is in the way. */
+const NEUTRAL7 = ['breakfast-quiet', 'photo-leave', 'lift-thank'];
+const c7 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL7.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once7(y, n);
+  }
+  return once7(y, id);
 };
 const walk7 = (s: GameState, path: string[]) => path.reduce(c7, s);
 
@@ -40,7 +51,10 @@ it('enters from the Chapter 7 confirm beat onto the Executive road: breakfast, a
   expect([s.phase, s.choices['route.lane']]).toEqual(['table', 'executive']);
   expect(text(s)).toContain('a place on Carey Street nobody from Helix eats at');
   expect(ids(s)).toEqual(['arrive-early', 'arrive-ontime', 'arrive-late']);
-  const office = c7(s, 'arrive-ontime');
+  const breakfast = once7(s, 'arrive-ontime');
+  expect(breakfast.phase).toBe('table');
+  expect(ids(breakfast)).toEqual(['breakfast-ask', 'breakfast-hand', 'breakfast-quiet']);
+  const office = once7(breakfast, 'breakfast-quiet');
   expect(office.phase).toBe('fortyone');
   expect(text(office)).toContain('Chief of staff to the Group COO');
   expect(text(office)).toContain('Last month you said yes to the part you chose and no to the rest.');
@@ -48,13 +62,13 @@ it('enters from the Chapter 7 confirm beat onto the Executive road: breakfast, a
 });
 
 it('writes three terms, meets Marcus, hears the confession, pays the rent herself, and authenticates', () => {
-  const contract = walk7(toExecutive(), ['arrive-early', 'safe-writing']);
+  const contract = walk7(toExecutive(), ['arrive-early', 'safe-writing', 'photo-leave']);
   expect(ids(contract)).toEqual(['term-door', 'term-firewall', 'term-name', 'term-veto', 'term-files']);
   const hallway = walk7(contract, ['term-firewall', 'term-name', 'term-files']);
   expect(hallway.phase).toBe('hallway');
   expect(hallway.facts).toContain('c7.x-contract');
   expect(text(hallway)).toContain('He never did keep them.');
-  const key = c7(hallway, 'marcus-answer');
+  const key = walk7(hallway, ['marcus-answer', 'lift-thank']);
   expect(text(key)).toContain('I sign what Marcus gives me.');
   expect(text(key)).toContain('I wrote that into the contract this morning');
   const offered = ids(key);
@@ -100,4 +114,40 @@ it('offers no evening with Julian when Chapter 6 cooled it', () => {
   const tonight = walk7(toExecutive('expect-narrow', 'cool'), ['arrive-ontime', 'safe-quiet', 'term-door', 'term-firewall', 'term-veto', 'marcus-smile', 'key-decline']);
   expect(ids(tonight)).not.toContain('x-evening-julian');
   expect(ids(tonight)).toContain('x-evening-alone');
+});
+
+it('deepening: breakfast, the photograph and the lift are moments of their own, each with a neutral pick', () => {
+  const s = toExecutive('expect-narrow', 'warm');
+  const hand = once7(once7(s, 'arrive-early'), 'breakfast-hand');
+  expect(hand.choices['c7.x-breakfast']).toBe('hand');
+  expect(text(hand)).toContain('I’d like to ask it with your hand exactly where it is.');
+  const photo = once7(hand, 'safe-writing');
+  expect(photo.phase).toBe('fortyone');
+  expect(ids(photo)).toEqual(['photo-ask', 'photo-straighten', 'photo-leave']);
+  const contract = once7(photo, 'photo-ask');
+  expect(contract.phase).toBe('contract');
+  expect(contract.choices['exec.photo']).toBe('ask');
+  expect(text(contract)).toContain('Somebody I didn’t keep.');
+  const lift = walk7(contract, ['term-door', 'term-firewall', 'term-files', 'marcus-smile']);
+  expect(lift.phase).toBe('hallway');
+  expect(ids(lift)).toEqual(['lift-thank', 'lift-read', 'lift-hand']);
+  expect(chapter7Choices(lift).find((c) => c.id === 'chapter7.lift-read')?.label).toBe('“I know. I wrote it into my contract.”');
+  const key = once7(lift, 'lift-hand');
+  expect(key.phase).toBe('key');
+  expect(key.choices['exec.lift']).toBe('hand');
+  const scope = walk7(key, ['key-decline', 'x-evening-julian']);
+  expect(text(scope)).toContain('the one you gave him this morning');
+  const done = walk7(scope, ['x-julian-sex', 'x-stay']);
+  expect(text(done)).toContain('one hook at a time');
+  expect(text(done)).toContain('with your right hand closed');
+});
+
+it('deepening: squaring the photograph brings Clare into it, and asking about it marks the card', () => {
+  const contract = walk7(toExecutive(), ['arrive-ontime', 'breakfast-ask', 'safe-quiet', 'photo-straighten']);
+  expect(text(contract)).toContain('I’ll tell you about that one day.');
+  expect(text(contract)).toContain('Clare used to do that.');
+  const done = walk7(toExecutive(), ['arrive-ontime', 'breakfast-quiet', 'safe-quiet', 'photo-ask', 'term-door', 'term-name', 'term-veto', 'marcus-ask', 'lift-read', 'key-decline', 'x-evening-alone']);
+  expect(text(done)).toContain('Then from now on, let me read them first.');
+  expect(text(done)).toContain('You write KEEP on the corner of the card');
+  expect(replay(done.ledger, 19)).toEqual(done);
 });

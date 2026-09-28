@@ -38,7 +38,7 @@ function toBridge(b: Build) {
   s = c6(s, 'resolve-enforce');
   s = choose(s, 'CHAPTER7_CHOOSE', 'chapter7.begin');
   s = choose(s, 'CHAPTER7_CHOOSE', 'chapter7.' + (deriveRoute6(s)?.lane === 'executive' ? 'route-confirm' : 'route-pivot-executive'));
-  for (const id of ['arrive-ontime', 'safe-writing', ...(b.terms ?? ['door', 'firewall', 'files']).map((t) => 'term-' + t), 'marcus-answer', b.key ?? 'key-decline', 'x-evening-alone'])
+  for (const id of ['arrive-ontime', 'breakfast-quiet', 'safe-writing', 'photo-leave', ...(b.terms ?? ['door', 'firewall', 'files']).map((t) => 'term-' + t), 'marcus-answer', 'lift-thank', b.key ?? 'key-decline', 'x-evening-alone'])
     s = choose(s, 'CHAPTER7_CHOOSE', 'chapter7.' + id);
   for (const id of ['begin-executive', ...b.ch8]) s = choose(s, 'CHAPTER8_CHOOSE', 'chapter8.' + id);
   const prefer = ['begin-placeholder', 'arrive-begin', 'assemble-stop', 'lawyer-thank', 'resolve-end'];

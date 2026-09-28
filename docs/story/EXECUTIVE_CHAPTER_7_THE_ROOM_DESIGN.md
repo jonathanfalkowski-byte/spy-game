@@ -13,7 +13,8 @@
 
 **Status: APPROVED (owner, 2026-09-28: all seven decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_7_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_7_SCRIPT.md); code: `src/content/chapter7-executive.ts`.
-It is entered from the Chapter 7 confirm beat when the road is `executive`, and runs ~1.2–1.4k words on one path.
+It is entered from the Chapter 7 confirm beat when the road is `executive`. It ran ~1.2–1.4k words on one path at pass 1,
+deepened 2026-09-28 to ~1.45–1.85k with three moments: breakfast, the photograph, and the lift.
 
 ---
 

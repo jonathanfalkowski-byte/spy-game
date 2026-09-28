@@ -36,7 +36,7 @@ function atTerms(terms: string[], key = 'key-decline', ch7Evening: string[] = ['
   if (Object.keys(flags).length) s = Object.assign(structuredClone(s), { choices: { ...s.choices, ...flags } });
   s = c7(s, 'begin');
   s = c7(s, deriveRoute6(s)?.lane === 'executive' ? 'route-confirm' : 'route-pivot-executive');
-  s = ['arrive-ontime', 'safe-writing', ...terms.map((t) => 'term-' + t), 'marcus-answer', key, ...ch7Evening].reduce(c7, s);
+  s = ['arrive-ontime', 'breakfast-quiet', 'safe-writing', 'photo-leave', ...terms.map((t) => 'term-' + t), 'marcus-answer', 'lift-thank', key, ...ch7Evening].reduce(c7, s);
   expect(`${s.scene}.${s.phase}`).toBe('chapter7.complete');
   return c8(s, 'begin-executive');
 }

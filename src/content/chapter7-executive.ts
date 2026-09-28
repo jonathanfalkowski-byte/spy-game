@@ -9,7 +9,12 @@
  * (the human seed of clause 14.3); a key to a Helix flat (accept / decline / pay the rent herself: the kept overlay's
  * first seed, never punished); a chosen evening (heat 3, consent-gated, fades); the first card, WHAT DO I OWE HIM?
  * Julian is never a trap (EXECUTIVE_ROUTE_DESIGN §2). Phase names differ from the Predator road's, which shares this
- * scene; keys live under `exec.*` and `c7.x-*`. */
+ * scene; keys live under `exec.*` and `c7.x-*`.
+ * Deepening pass (2026-09-28): three moments, each with a neutral pick. Breakfast before the offer (c7.x-breakfast =
+ * ask | hand | quiet: the clerk he was at nineteen; her hand over his, asked for and kept; or the honest coffee). The
+ * photograph face down on his desk while he fetches the contract (exec.photo = ask | straighten | leave: "Somebody I
+ * didn't keep"; "Clare used to do that"). The lift after his confession (exec.lift = thank | read | hand). The dinner on
+ * forty-one and the stays at greater length; the first card remembers the hand. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { cash5, get5 } from './chapter5-model';
@@ -25,6 +30,7 @@ const cooled = (s: GameState) => c(s, 'c6.friction-julian') === 'cooled';
 const RENT = 1200;
 
 export function placeExecutive7(s: GameState): string | undefined {
+  if (s.phase === 'hallway' && get7(s, 'x-lift-open')) return '12:05 · The lifts, forty-one';
   const open = get7(s, 'x-evening-open');
   if (s.phase === 'tonight' && open) return open === 'maya' ? 'Late · Maya’s kitchen' : 'Late · Julian’s apartment, the forty-first floor';
 }
@@ -39,16 +45,49 @@ function tableBlocks(): Block[] {
   ];
 }
 
-function tableChoices(): C7Choice[] {
+function tableChoices(s: GameState): C7Choice[] {
+  if (get7(s, 'x-breakfast-open')) return breakfastChoices();
   const a = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('arrive-' + id, label, hint, 'fortyone', (x) => {
+    offer7('arrive-' + id, label, hint, 'table', (x) => {
       set7(x, 'x-arrive', id);
-      return [...body, ...breakfast];
+      set7(x, 'x-breakfast-open');
+      return [...body, ...breakfastScene];
     });
   return [
     a('early', 'Be there first', 'Take the good chair. Watch him come in.', [p('You are there at twenty past, in the chair with its back to the wall, and you watch him come in out of the rain, and see him see you, and see the half-second in which he is simply glad, before he remembers to be anything else.')]),
     a('ontime', 'Arrive at half past exactly', 'He will already be there. He always is.', [p('He is there already, of course, at the table in the corner, with two coffees, one of them the way you take it. He stands up when you come in. Nobody in your life has stood up when you came in for a long time.')]),
     a('late', 'Be ten minutes late, on purpose', 'See what he does with the waiting.', [p('You are ten minutes late on purpose, and he has not looked at his phone once. He is reading the menu as if it were a contract, and when you sit down he says only “Good,” and pours your coffee from the pot he ordered for two.')]),
+  ];
+}
+
+const breakfastScene: Block[] = [
+  p('The table is too small for two people who are trying not to touch under it. Eggs, toast cut into triangles by somebody who cares, and the window steaming up from the inside so that Carey Street goes soft and gold behind him.'),
+  q('Julian Mercer', 'I used to eat here at nineteen. I was a clerk in the building across the road, counting other people’s shipping containers, and this was the only place I could afford that had a tablecloth.'),
+  p('He talks about Helix the way some men talk about a house they grew up in: which rooms were cold, which stair creaked, which door you never opened after dark. He does not once talk about himself on purpose, and you learn more about him in ten minutes than in the whole of the spring.'),
+];
+
+function breakfastChoices(): C7Choice[] {
+  const b = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('breakfast-' + id, label, hint, 'fortyone', (x) => {
+      set7(x, 'x-breakfast', id);
+      delete x.choices['c7.x-breakfast-open'];
+      return [...body, ...breakfast];
+    });
+  return [
+    b('ask', 'Ask about the boy with the tablecloth', 'The clerk counting containers.', [
+      q('You', 'What was he like? The nineteen-year-old.'),
+      q('Julian Mercer', 'Earnest. Hungry. He had a boss who read every page of every manifest, and he promised himself he would do the same when he was important. He hasn’t, always. I’ll tell you about that one day.'),
+      t('One day. He keeps promising me the parts of himself he isn’t proud of, as if they were gifts.'),
+    ]),
+    b('hand', 'Put your hand over his', 'When he reaches for the pot.', [
+      p('He reaches for the coffee pot and you put your hand over his on the handle, and he goes completely still, the way people do when a bird lands on them.'),
+      q('Julian Mercer', 'I’m going to ask you something properly in a minute. I’d like to ask it with your hand exactly where it is. If that’s all right.'),
+      q('You', 'It’s all right.'),
+      p('It stays there. The pot goes cold. Neither of you pours.'),
+    ]),
+    b('quiet', 'Drink the honest coffee, and let him talk', 'He is worth listening to.', [
+      p('You drink the honest coffee and let him talk, and at some point you realise you have stopped listening for the catch.'),
+    ]),
   ];
 }
 
@@ -81,11 +120,13 @@ function fortyoneBlocks(s: GameState): Block[] {
   ];
 }
 
-function fortyoneChoices(): C7Choice[] {
+function fortyoneChoices(s: GameState): C7Choice[] {
+  if (get7(s, 'x-photo-open')) return photoChoices();
   const f = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('safe-' + id, label, hint, 'contract', (x) => {
+    offer7('safe-' + id, label, hint, 'fortyone', (x) => {
       set7(x, 'x-safe', id);
-      return [...body, ...contractLead];
+      set7(x, 'x-photo-open');
+      return [...body, ...photoLead];
     });
   return [
     f('writing', '“Terms. In writing. Mine.”', 'The only safety you have ever trusted.', [q('You', 'Terms. In writing. In my words, not your lawyers’.'), q('Julian Mercer', 'I hoped you’d say that. I cleared the afternoon.')]),
@@ -94,6 +135,36 @@ function fortyoneChoices(): C7Choice[] {
       q('Julian Mercer', 'Because you read everything, and you say what you read, and you don’t want my job. In this building those are three separate miracles.'),
     ]),
     f('quiet', 'Say nothing, and let him wait', 'He is good at waiting.', [p('You say nothing, and he lets you, for a long time, the way good men let a silence belong to the other person. In the end you nod once, and he pushes a pad and pen across the desk.')]),
+  ];
+}
+
+// ── The photograph ──
+
+const photoLead: Block[] = [
+  p('He goes to the cabinet in the corner for the contract, and while his back is turned you look properly at his desk: clear, one pen, a glass of water, and the photograph in its plain silver frame, turned face down and squared exactly to the edge of the wood.'),
+];
+
+function photoChoices(): C7Choice[] {
+  const ph = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('photo-' + id, label, hint, 'contract', (x) => {
+      set7(x, 'x-photo', id);
+      setKey(x, 'exec.photo', id);
+      delete x.choices['c7.x-photo-open'];
+      return [...body, ...contractLead];
+    });
+  return [
+    ph('ask', '“Who’s in the photograph?”', 'Ask. He can say no.', [
+      q('You', 'Who’s in the photograph?'),
+      p('He does not turn round, and he does not pretend not to know which photograph.'),
+      q('Julian Mercer', 'Somebody I didn’t keep. I’ll tell you one day. Not on your first morning.'),
+    ]),
+    ph('straighten', 'Square it to the edge', 'Leave it face down. Just straighter.', [
+      p('You square it a millimetre further to the edge of the desk, still face down. When he turns round he sees what you have done, and laughs, suddenly and helplessly.'),
+      q('Julian Mercer', 'Clare used to do that. My last chief of staff. You’ll hear about her.'),
+    ]),
+    ph('leave', 'Leave it alone', 'Some things face down are meant to be.', [
+      p('You leave it exactly as it is. When he turns round with the contract he glances at the frame, and then at you, and sees that you have not touched it, and something in his shoulders lets go.'),
+    ]),
   ];
 }
 
@@ -150,10 +221,12 @@ const confession: Block[] = [
   t('He has just told me the most dangerous thing about himself, in a lift, because he did not want me to find it in a file. Nobody in this building does that.'),
 ];
 
-function hallwayChoices(): C7Choice[] {
+function hallwayChoices(s: GameState): C7Choice[] {
+  if (get7(s, 'x-lift-open')) return liftChoices(s);
   const h = (id: string, label: string, hint: string, body: Block[]) =>
-    offer7('marcus-' + id, label, hint, 'key', (x) => {
+    offer7('marcus-' + id, label, hint, 'hallway', (x) => {
       set7(x, 'x-marcus', id);
+      set7(x, 'x-lift-open');
       setKey(x, 'exec.marcus', id);
       return [...body, ...confession];
     });
@@ -161,6 +234,34 @@ function hallwayChoices(): C7Choice[] {
     h('answer', '“He didn’t pick me. I picked the job.”', 'Put it on the record.', [q('You', 'He didn’t pick me, Mr Chen. I picked the job. You should read the contract. Julian has.'), p('Marcus laughs, genuinely, and walks on, and you can feel him deciding to find out what is in it.')]),
     h('smile', 'Smile, and say nothing', 'Let him wonder what you are.', [p('You smile at him, the Glass House smile, and say nothing, and walk past him close enough that he has to step aside. He does. He is still turning round to look when the lift doors close.')]),
     h('ask', '“What happened to the others?”', 'Make him say it.', [q('You', 'What happened to the others?'), q('Marcus Chen', 'They wanted things. From him. Julian can’t bear being wanted for things. Good luck.'), t('That was a warning dressed as a joke. Or a joke dressed as a warning. With Marcus, the costume is the point.')]),
+  ];
+}
+
+function liftChoices(s: GameState): C7Choice[] {
+  const l = (id: string, label: string, hint: string, body: Block[]) =>
+    offer7('lift-' + id, label, hint, 'key', (x) => {
+      setKey(x, 'exec.lift', id);
+      delete x.choices['c7.x-lift-open'];
+      return body;
+    });
+  return [
+    l('thank', '“Thank you for telling me.”', 'Mean it.', [
+      q('You', 'Thank you for telling me.'),
+      p('He takes his hand off the doors.'),
+      q('Julian Mercer', 'Thank you for listening. Most people in this building would have written it down.'),
+      p('The doors close on his face, and you ride forty-one floors down with the most dangerous thing about him in your keeping.'),
+    ]),
+    l('read', getKey(s, 'exec.term.files') ? '“I know. I wrote it into my contract.”' : '“Then let me read them first.”', 'From now on.', [
+      q('You', getKey(s, 'exec.term.files') ? 'I know. I wrote it into my contract this morning, and you signed it. From now on I read them first.' : 'Then from now on, let me read them first.'),
+      q('Julian Mercer', 'Yes. Please. God, yes.'),
+      p('He says it the way a man says it when somebody has offered to carry the heaviest bag, and he has been carrying it so long he had forgotten it was heavy.'),
+    ]),
+    l('hand', 'Put your hand over his, on the door', 'Let the lift wait.', [
+      p('You put your hand over his on the edge of the door. The doors try to close on both your hands, and give up, and try again, and the lift begins, very politely, to complain.'),
+      q('Julian Mercer', 'Ms Vale.'),
+      q('You', 'Mr Mercer.'),
+      p('Then you step in, and he lets go, and the doors close between you, and you ride forty-one floors down with the back of your hand still warm.'),
+    ]),
   ];
 }
 
@@ -218,8 +319,15 @@ const scopeReply: Record<'no-sex' | 'sex', string> = {
   sex: 'Yes. And you say stop, it stops. The same for me. That’s the only term I’ll ever ask you for.',
 };
 const stay: Record<'no-sex' | 'sex', Block[]> = {
-  'no-sex': [p('He kisses you by the window with the city laid out below, slowly, as if he had been thinking about how for a very long time, and stops exactly where you said, and holds you there, his hand warm on the back of your neck, and does not ask a single question.')],
-  sex: [p('He undoes the dress as carefully as he read your terms, and says your name, the one you are wearing, as if it were a word he had only just learned, and asks once more, his mouth against your shoulder. You answer by pulling him toward the bedroom.'), p('What happens next stays on the forty-first floor. The scene fades.')],
+  'no-sex': [
+    p('He kisses you by the window with the city laid out below, slowly, as if he had been thinking about how for a very long time, and stops exactly where you said, and holds you there, his hand warm on the back of your neck, and does not ask a single question.'),
+    p('You stay until the lights go out down there one district at a time, your head on his shoulder and his heart going under your palm, steadier than yours.'),
+  ],
+  sex: [
+    p('He kisses you by the window first, for a long time, as if the kiss were the whole of what he had asked for and anything else would be a kindness he did not expect. Then he undoes the dress as carefully as he read your terms, one hook at a time, and says your name, the one you are wearing, as if it were a word he had only just learned.'),
+    p('He asks once more, his mouth against your shoulder. You answer by pulling him toward the bedroom.'),
+    p('What happens next stays on the forty-first floor. The scene fades.'),
+  ],
 };
 
 function tonightChoices(s: GameState): C7Choice[] {
@@ -265,6 +373,8 @@ function tonightChoices(s: GameState): C7Choice[] {
             set7(x, 'x-evening-open', 'julian');
             return [
               p('At eight he cooks, badly and cheerfully, in the flat on the forty-first floor, with the city laid out below and his cuffs undone, and burns the first attempt, and laughs about it, and makes you an omelette instead.'),
+              p('You eat it at the counter, sitting on the stools like students. He asks nothing about where you came from, or what you did before the spring. He asks what you read on trains, and whether you like the rain, and which of the lights down there you would switch off first if you could, and listens to every answer as if it were going to be on the exam.'),
+              ...(get7(x, 'x-breakfast') === 'hand' || getKey(x, 'exec.lift') === 'hand' ? [p('At some point he takes your hand across the counter, the one you gave him this morning, and turns it over, and looks at it as if he were learning it.')] : []),
               q('Julian Mercer', warmed(s) ? 'I’m going to say this plainly, because I say everything plainly. I would like you to stay. And I would like you to tell me what you want tonight, and that’s what happens.' : 'I’m not going to ask for anything tonight that you haven’t offered. Tell me where the line is, and I’ll stand behind it.'),
             ];
           }),
@@ -301,6 +411,11 @@ function completeBlocks(s: GameState): Block[] {
     q('The card', 'JULIAN MERCER. CHIEF OF STAFF. ' + (flat === 'accepted' ? 'HIS KEY.' : flat === 'paid' ? 'MY RENT.' : 'MY OWN FLAT.')),
     p('And underneath it, in pencil, smaller, the question you have been asking yourself since breakfast:'),
     q('The card', 'WHAT DO I OWE HIM?'),
+    ...(get7(s, 'x-breakfast') === 'hand' || getKey(s, 'exec.lift') === 'hand'
+      ? [p('You stand there for a long time with your right hand closed, as if you were holding something in it.')]
+      : getKey(s, 'exec.photo') === 'ask'
+        ? [p('Somebody I didn’t keep, he said, about the photograph. And Marcus, in the hallway: He never did keep them. You write KEEP on the corner of the card, very small, and a question mark after it.')]
+        : []),
     t(
       get5(s, 'published')
         ? 'Half of London knows my face and none of them know what I need. He asked. I do not yet know what that costs, and I have never wanted so much to find out.'
@@ -321,10 +436,10 @@ export function executiveBlocks7(s: GameState): Block[] {
 }
 
 export function executiveChoices7(s: GameState): C7Choice[] {
-  if (s.phase === 'table') return tableChoices();
-  if (s.phase === 'fortyone') return fortyoneChoices();
+  if (s.phase === 'table') return tableChoices(s);
+  if (s.phase === 'fortyone') return fortyoneChoices(s);
   if (s.phase === 'contract') return contractChoices(s);
-  if (s.phase === 'hallway') return hallwayChoices();
+  if (s.phase === 'hallway') return hallwayChoices(s);
   if (s.phase === 'key') return keyChoices(s);
   if (s.phase === 'tonight') return tonightChoices(s);
   return [];
