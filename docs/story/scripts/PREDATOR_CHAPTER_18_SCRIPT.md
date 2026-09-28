@@ -34,3 +34,27 @@ Phases: `papers → hold → owes → called → year → last`
 
 **Size (honest), pass 1:** ~0.6k (quiet) to ~0.9k (the seat, engaged), against the ~3.5k target. The leanest pass
 on the road; a deepening pass would give OWES and the year later their full weight.
+
+## Deepening pass (2026-09-28)
+
+- **One debt paid in person** (`owes`, after the page, before who she goes home to) (`end.visit`):
+  - **visit-leeds** (Marcus near): tea with Mrs Chen, eighty-two: "And you're in insurance too, he says … You don't
+    look dull."
+  - **visit-coast** (Ana freed): a nurse laughing in a surgery window; she does not go in.
+  - **visit-norfolk** (Hollis spared): the garden, and "I did. Because of you."
+  - **visit-cab** (Pryce known): an hour along the river in his own cab, the fare refused.
+  - **visit-none** (neutral): the rest by post.
+- **Celeste, one last time** (`year`, before the last night) (`end.celeste`):
+  - **celeste-visit**, by board:
+    - Lisbon, a balcony: "The view is exactly as good as I told her it was. She never came. I am so glad you did.";
+    - her car after your Thursday: "You run it better than I did … I did not know I would mind.";
+    - the reading room: "I think that is what they call a draw."
+  - **celeste-write**: a postcard of the river: "Paid in full. E."
+  - **celeste-none** (neutral).
+- **More prose:** in the archive boxes, her own page already taken out, "and left the space". OWES written in
+  Marcus's pen, which she kept. The last card over the closed notebook, the pen capped on top.
+
+The tests walk the new moments on their neutral picks (`NEUTRAL18 = visit-none, celeste-none`).
+
+**Size (honest) after the deepening pass:** ~0.7k (quiet) to ~1.2k (the seat, engaged). The next lift would be the
+position month at greater length on each aim.

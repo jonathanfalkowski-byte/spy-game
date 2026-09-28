@@ -19,7 +19,18 @@ const choose = (s: GameState, kind: Kind, id: string) => {
 };
 const ids = (s: GameState) => chapter18Choices(s).map((c) => c.id.replace(/^chapter18\./, ''));
 const c18 = (s: GameState, id: string) => choose(s, 'CHAPTER18_CHOOSE', 'chapter18.' + id);
-const walk18 = (s: GameState, path: string[]) => path.reduce(c18, s);
+/** The deepening pass's moments (one visit, Celeste one last time): take the neutral pick when it is in the way. */
+const NEUTRAL18 = ['visit-none', 'celeste-none'];
+const walk18 = (s: GameState, path: string[]) =>
+  path.reduce((x, id) => {
+    let y = x;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const n = NEUTRAL18.find((d) => ids(y).includes(d));
+      if (!n) break;
+      y = c18(y, n);
+    }
+    return c18(y, id);
+  }, s);
 const run = (s: GameState, n: 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17, path: string[]) => path.reduce((x, id) => choose(x, `CHAPTER${n}_CHOOSE`, `chapter${n}.` + id), s);
 
 const QUIET = {
@@ -90,8 +101,16 @@ it('keeps the shop: Madame, the switch aimed at herself, Julian, and AVAILABLE',
   expect(text(owes)).toContain('or if I ever send a woman into a room she did not ask to walk into');
   expect(text(owes)).toContain('the page headed OWES');
   expect(text(owes)).toContain('MARCUS CHEN.');
-  expect(ids(owes)).toContain('home-julian');
-  const done = walk18(owes, ['home-julian', 'name-evelyn', 'year-close', 'year-sex', 'year-close']);
+  // One debt paid in person (deepening pass): Pryce drove her in Ch8 on this save.
+  expect(ids(owes)).toContain('visit-none');
+  const home = c18(owes, ids(owes).includes('visit-cab') ? 'visit-cab' : 'visit-none');
+  expect(ids(home)).toContain('home-julian');
+  const year = walk18(home, ['home-julian', 'name-evelyn']);
+  expect(ids(year)).toEqual(['celeste-visit', 'celeste-write', 'celeste-none']);
+  const last = c18(year, 'celeste-visit');
+  expect(text(last)).toContain('You run it better than I did. I knew you would. I did not know I would mind.');
+  const done = walk18(last, ['year-close', 'year-sex', 'year-close']);
+  expect(text(done)).toContain('Your own page is not in any of them.');
   expect(`${done.scene}.${done.phase}`).toBe('chapter18.last');
   expect(text(done)).toContain('receiving them, in green, you');
   expect(text(done)).toContain('I bought the shop.');
@@ -116,7 +135,8 @@ it('walks away with Helix, a year later in the corner office', () => {
     ch16: ch16('helix', ['inside-none'], 'nell', 'page', 'blue', 'leave', 'helix'),
     ch17: ['begin-predator', 'open-stand', 'press-claim', 'marcus-use', 'offer-refuse', 'named-ask', 'last-no'],
   });
-  const done = walk18(s, ['begin-predator', 'papers-read', 'switch-handed', 'home-none', 'name-new', 'year-quiet']);
+  const done = walk18(s, ['begin-predator', 'papers-read', 'switch-handed', 'home-none', 'name-new', 'celeste-write', 'year-quiet']);
+  expect(text(done)).toContain('Paid in full. E.');
   expect(done.choices['act4.aim']).toBe('helix');
   expect(text(done)).toMatch(/Helix is yours|Helix is still yours/);
   expect(text(done)).toContain('The corner office above the river');

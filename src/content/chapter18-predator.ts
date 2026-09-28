@@ -7,7 +7,12 @@
  * shop, the darkest; change it; or close the book from the chair), or the wound, Helix or Nell by the terms; the switch
  * on every road (on the seat road, aimed at herself); OWES read back, and who she goes home to; who she is now; a year
  * later, a chosen last night (heat 3, consent-gated, fades) or a quiet one; the last card (AVAILABLE, her own page, on
- * the darkest road). Entered from the Predator `chapter17.minute`. Writes the shared end.* keys. */
+ * the darkest road). Entered from the Predator `chapter17.minute`. Writes the shared end.* keys.
+ * Deepening pass (2026-09-28): one debt paid in person after OWES (end.visit = leeds | coast | norfolk | cab | none:
+ * tea with Marcus's mother, who thinks you are in insurance too; Ana across a street on a coast; Hollis's garden; Pryce's
+ * cab, and the fare he will not take), and Celeste one last time, a year later (end.celeste = visit | write | none: at the
+ * clients' end of your own table, on a balcony in Lisbon, or in her reading room; or one line back on a postcard, "Paid
+ * in full."). The boxes, OWES, the year later and the last card at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -49,6 +54,7 @@ function papersBlocks(s: GameState): Block[] {
     ? [
         p('There is nothing in the papers. Meridian is private, and a private firm’s board is nobody’s business but its own. That was always the point of it.'),
         p('At nine, two men in grey coats carry four archive boxes up your stairs and stack them in your hall without being asked where, and go. Each box is labelled in the green hand, and then, underneath, in a clerk’s: TRANSFERRED.'),
+        p('You open one box. Every page in it is a person: the ones you read at the Vesper, and the ones you never saw, and near the top, soft with handling, a woman with your haircut and your initials. Your own page is not in any of them. Somebody has taken it out already, carefully, and left the space.'),
         p('At noon you walk past the Vesper on your way to nowhere in particular, and the doorman, who has never once spoken first, touches his hat.'),
         q('The doorman', 'Good morning, Madame.'),
         p('At four, a postcard, already, from Lisbon: a tram on a hill, and on the back, in green ink, four words.'),
@@ -201,13 +207,62 @@ function owesBlocks(s: GameState): Block[] {
   if (key(s, 'pred.julian') === 'ally') lines.push(cost === 'relationship' && who === 'Julian' ? 'JULIAN MERCER. His deal, dead. He rang, in the end. He always does.' : 'JULIAN MERCER. The forty-first floor, and a man who never once asked what you took.');
   return [
     p('You find the old notebook in the drawer with Adrian’s things, and open it at the back, at the page headed OWES, in capitals, with four names on it and a question mark after each, from the tenth day at Helix.'),
-    p('You write the answers in, one line at a time, in the same pen.'),
+    p('The four names from the tenth day are there in your own capitals: HOLLIS, the question mark after it gone grey; the others, and the question marks you drew so hard they went through the paper. You write the answers in, one line at a time, in the same pen, which is Marcus’s, which you kept.'),
     ...lines.map((l) => p('· ' + l)),
     ...(cost === 'money' ? [p('· YOU. Everything the road ever paid you, given back. You have less money than you had the morning the car came. It is the only line on the page you are proud of without reservation.')] : cost === 'visibility' ? [p('· YOU. The woman who took Helix, on the record, forever. Your face is nobody’s secret now, least of all yours.')] : []),
   ];
 }
 
 type Home = 'julian' | 'marcus' | 'lucien' | 'maya' | 'none';
+/** One debt paid in person (deepening pass), before who she goes home to. */
+function visitChoices(s: GameState): C18Choice[] {
+  const v = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('visit-' + id, label, hint, 'owes', (x) => {
+      setKey(x, 'end.visit', id);
+      return body;
+    });
+  return [
+    ...(marcusNear(s)
+      ? [
+          v('leeds', 'Tea in Leeds', 'Marcus’s mother. She thinks you are in insurance too.', [
+            p('A terraced house in Leeds with net curtains and a very good biscuit tin. Marcus’s mother is eighty-two, small and sharp, and pours the tea herself, and tells you that Marcus was always a clever boy and never once did his homework anywhere but under a desk.'),
+            q('Mrs Chen', 'And you’re in insurance too, he says. It must be very dull. You don’t look dull.'),
+            q('You', 'It has its moments.'),
+            p('Marcus, in the doorway, in a jumper, does not laugh. It is the hardest you have ever seen him not laugh.'),
+          ]),
+        ]
+      : []),
+    ...(key(s, 'pred.delphine') === 'free'
+      ? [
+          v('coast', 'A coast town nobody can place', 'Ana. From across the street. Do not go in.', [
+            p('A coast town nobody can place, out of season, the sea the colour of a filing cabinet. On the corner by the harbour a small surgery with its lights on, and through the window, in a blue uniform, with her hair grown out, a nurse laughing at something a patient has said.'),
+            p('You do not go in. You stand across the street for as long as it takes to be sure, and then you walk back to the station.'),
+            t('Ana. On a train, the card said. Off it now. That line is paid, and she will never know who paid it, and that is the whole point.'),
+          ]),
+        ]
+      : []),
+    ...(key(s, 'pred.lever8.hollis') === 'spare'
+      ? [
+          v('norfolk', 'A garden in Norfolk', 'Hollis. The cottage. He winks.', [
+            p('Anthony Hollis, in a cardigan, in a garden in Norfolk full of things he has planted badly and loves anyway, shows you every one of them by name, and then, at the gate, without warning, takes both your hands.'),
+            q('Anthony Hollis', 'You gave me my letter back. Nobody in that building had ever given anybody anything back. My wife thinks I retired. I did. Because of you.'),
+          ]),
+        ]
+      : []),
+    ...(key(s, 'c8.p-night') === 'pryce'
+      ? [
+          v('cab', 'Hail Pryce’s cab', 'He will not take the fare.', [
+            p('You hail a black cab on the Strand in the rain, and it is his: Mr Pryce, in his own cab, with his own licence on the dashboard and no fund’s name anywhere.'),
+            q('Pryce', 'Where to, Ms Vale?'),
+            q('You', 'Wherever you like, Mr Pryce. For once.'),
+            p('He drives you along the river for an hour, the long way, and at the end of it will not take your money, and waits until your light goes on, the way he always did, whoever he was driving for.'),
+          ]),
+        ]
+      : []),
+    v('none', 'Post the rest', 'Every other line, by letter.', [p('You write the rest by letter, one a night for a week, in Marcus’s pen, and post them from different boxes, out of habit, and then laugh at yourself for the habit.')]),
+  ];
+}
+
 function homeChoices(s: GameState): C18Choice[] {
   const h = (id: Home, label: string, hint: string, body: Block[]) =>
     offer('home-' + id, label, hint, 'called', (x) => {
@@ -274,7 +329,42 @@ function yearBlocks(s: GameState): Block[] {
 
 const partnerFull: Record<'julian' | 'marcus' | 'lucien', string> = { julian: 'Julian Mercer', marcus: 'Marcus Chen', lucien: 'Lucien Morel' };
 
+/** Celeste one last time (deepening pass), a year later, before the last night. */
+function celesteChoices(s: GameState): C18Choice[] {
+  const b = board(s);
+  const c = (id: string, label: string, hint: string, body: Block[]) =>
+    offer('celeste-' + id, label, hint, 'year', (x) => {
+      setKey(x, 'end.celeste', id);
+      return body;
+    });
+  return [
+    c('visit', b === 'resigned' ? 'Go to Lisbon' : b === 'succeeded' ? 'Walk her to her car' : 'Go to the reading room', 'See her once more. As yourself.', [
+      ...(b === 'resigned'
+        ? [
+            p('Lisbon, a tram on a hill, a balcony above the river with a view of the bridge. Celeste in a linen dress, older by exactly one year and not a day more, with two glasses already poured.'),
+            q('Celeste', 'The view is exactly as good as I told her it was. She never came. I am so glad you did.'),
+          ]
+        : b === 'succeeded'
+          ? [
+              p('After the Thursday board you walk her to her car, the long black one, at the kerb, with the engine running. She stops with her hand on the door.'),
+              q('Celeste', 'You run it better than I did. I knew you would. I did not know I would mind.'),
+            ]
+          : [
+              p('The reading room at the Vesper, a Tuesday morning. Celeste at the lectern with her glasses on their chain, reading a book that is not a catalogue. She does not look up when you come in. She knew you would.'),
+              q('Celeste', 'Still here, darling. So are you. I think that is what they call a draw.'),
+            ]),
+      t('I came to see whether I would feel anything. I do. I am not going to tell her what.'),
+    ]),
+    c('write', 'Write back', 'One line, on a postcard of your own.', [
+      p('You buy a postcard of the river, the one with the bridge and the rain, and write one line on it in black ink, and post it to an address in Lisbon you were never given and have always known.'),
+      q('The card', 'Paid in full. E.'),
+    ]),
+    c('none', 'Let her go', 'Some lines you leave blank.', [p('You let her go. Some lines on the page you leave blank. Not because they are unanswered. Because the answer is nobody’s business, not even hers.')]),
+  ];
+}
+
 function yearChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'end.celeste')) return celesteChoices(s);
   const w = key(s, 'end.with') as Home | undefined;
   const partner = w === 'julian' || w === 'marcus' || w === 'lucien' ? w : undefined;
   const open = key(s, 'end.later-open');
@@ -332,7 +422,7 @@ function lastBlocks(s: GameState): Block[] {
           : 'My name is Evelyn Vale. They built her to be sold. I bought her back.'
         : 'I wrote my name on the last card, under a page headed OWES, and drew a line through the word. It’s nobody’s business but mine.';
   return [
-    p('The last card, pinned to a wall that is yours, in your own hand.'),
+    p('The last card, pinned to a wall that is yours, in your own hand. Under it, in the drawer, the notebook, closed at the page headed OWES, every line answered, and Marcus’s pen on top of it, capped.'),
     t(line),
     ...(seated(s) && key(s, 'end.shop') === 'keep'
       ? [p('And beneath it, one more card, in green ink, in a hand that has become very like hers:'), q('The card', 'AVAILABLE.'), p('It is your own page.')]
@@ -353,7 +443,7 @@ export function predatorBlocks18(s: GameState): Block[] {
 export function predatorChoices18(s: GameState): C18Choice[] {
   if (s.phase === 'papers') return papersChoices(s);
   if (s.phase === 'hold') return seated(s) && !key(s, 'end.shop') ? shopChoices() : switchChoices(s);
-  if (s.phase === 'owes') return homeChoices(s);
+  if (s.phase === 'owes') return key(s, 'end.visit') ? homeChoices(s) : visitChoices(s);
   if (s.phase === 'called') return calledChoices();
   if (s.phase === 'year') return yearChoices(s);
   return [];

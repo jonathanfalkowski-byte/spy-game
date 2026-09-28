@@ -26,7 +26,7 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/PREDATOR_CHAPTER_18_SCRIPT.md](scripts/PREDATOR_CHAPTER_18_SCRIPT.md); code: `src/content/chapter18-predator.ts`.
-It runs ~0.6–0.9k words on one path. **The Predator road is complete, Chapters 7 to 18.**
+It ran ~0.6–0.9k words on one path at pass 1, and was deepened 2026-09-28 to ~0.7–1.2k. **The Predator road is complete, Chapters 7 to 18.**
 
 ---
 
