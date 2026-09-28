@@ -37,7 +37,9 @@
 
 **Status: APPROVED (owner, 2026-09-28: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_10_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_10_SCRIPT.md); code: `src/content/chapter10-executive.ts`.
-It is entered from an Executive `chapter9.complete`, hands on to the Ch14 bridge, and runs ~0.95–1.2k words on one path.
+It is entered from an Executive `chapter9.complete` and hands on to the Ch14 bridge. It ran ~0.95–1.2k words on one
+path at pass 1, deepened 2026-09-28 to ~1.15–1.5k with three moments: Tuesday night, the hour after, and the middle of
+the week.
 
 ---
 

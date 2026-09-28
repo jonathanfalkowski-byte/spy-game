@@ -68,7 +68,7 @@ function toBridge(b: Build) {
     const offered = chapter9Choices(s).map((c) => c.id.replace(/^chapter9\./, ''));
     s = choose(s, 'CHAPTER9_CHOOSE', 'chapter9.' + (prefer.find((p) => offered.includes(p)) ?? offered[0]));
   }
-  for (const id of ['begin-executive', ...(b.ch10 ?? ['x10-go', 'x10-adrian-composed', 'x10-calendar-refuse', 'x10-paper-quiet', 'x10-week-yes', 'x10-night-alone'])])
+  for (const id of ['begin-executive', ...(b.ch10 ?? ['x10-go', 'x10-eve-sleep', 'x10-adrian-composed', 'x10-calendar-refuse', 'x10-after-desk', 'x10-paper-quiet', 'x10-midweek-fine', 'x10-week-yes', 'x10-night-alone'])])
     s = choose(s, 'CHAPTER10_CHOOSE', 'chapter10.' + id);
   if (b.flags) s = Object.assign(structuredClone(s), { choices: { ...s.choices, ...b.flags } });
   return s;

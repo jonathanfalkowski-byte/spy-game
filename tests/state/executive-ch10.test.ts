@@ -22,10 +22,21 @@ const choose = (s: GameState, kind: Kind, id: string) => {
   return next;
 };
 const ids = (s: GameState) => chapter10Choices(s).map((c) => c.id.replace(/^chapter10\./, ''));
-const c10 = (s: GameState, id: string) => {
+const once10 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER10_CHOOSE', id: 'chapter10.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (Tuesday night, the hour after, the middle of the week): the neutral pick when in the way. */
+const NEUTRAL10 = ['x10-eve-sleep', 'x10-after-desk', 'x10-midweek-fine'];
+const c10 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL10.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once10(y, n);
+  }
+  return once10(y, id);
 };
 const walk10 = (s: GameState, path: string[]) => path.reduce(c10, s);
 
@@ -76,7 +87,7 @@ it('enters A Lovely Man from the Executive Chapter 9, not the Chapter 14 bridge:
 });
 
 it('gives his calendar: the inventory knows the tray he told, Clare and the floor at two; four seconds on Friday', () => {
-  const lind = walk10(toTen({ ch8: TOLD8 }), ['begin-executive', 'x10-go']);
+  const lind = walk10(toTen({ ch8: TOLD8 }), ['begin-executive', 'x10-go', 'x10-eve-sleep']);
   expect(currentPlace(lind, 'x')).toBe('07:00 · The Lindqvist');
   expect(text(lind)).toContain('including those signed by the Group COO');
   expect(text(lind)).toContain('Somebody taught him to read.');
@@ -87,12 +98,12 @@ it('gives his calendar: the inventory knows the tray he told, Clare and the floo
   const order = c10(lind, 'x10-adrian-ask');
   expect(text(order)).toContain('He’ll never survive us. Unless you help me.');
   expect(ids(order)).toEqual(['x10-calendar-give', 'x10-calendar-doctor', 'x10-calendar-refuse']);
-  const paper = c10(order, 'x10-calendar-give');
+  const paper = walk10(order, ['x10-calendar-give', 'x10-after-desk']);
   expect(paper.choices['exec.calendar']).toBe('gave');
   expect(paper.facts).toContain('c10.x-order');
   expect(text(paper)).toContain('You didn’t tell me you knew Celeste Laurent.');
   expect(text(paper)).toContain('He doesn’t say Laurent Sovereign Fund.');
-  const week = c10(paper, 'x10-paper-work');
+  const week = walk10(paper, ['x10-paper-work', 'x10-midweek-fine']);
   expect(text(week)).toContain('it takes four seconds');
   expect(text(week)).toContain('— and do bring your chief of staff. C.L.');
   const night = c10(week, 'x10-week-yes');
@@ -110,7 +121,7 @@ it('gives his calendar: the inventory knows the tray he told, Clare and the floo
 });
 
 it('doctors his calendar: Celeste comes to forty-one, the kept copy stays secret, and Marcus waits outside the wrong room', () => {
-  const lind = walk10(toTen({ key: 'key-accept', ch8: KEPT8 }), ['begin-executive', 'x10-summon']);
+  const lind = walk10(toTen({ key: 'key-accept', ch8: KEPT8 }), ['begin-executive', 'x10-summon', 'x10-eve-sleep']);
   expect(currentPlace(lind, 'x')).toBe('09:00 · Julian’s reception, forty-one');
   expect(text(lind)).toContain('You took his flat.');
   expect(text(lind)).toContain('She doesn’t know about page thirty-one.');
@@ -136,4 +147,35 @@ it('refuses: she walks out, Julian pays with a week in Gdańsk, and Chapter 14 r
   const silence = act(called, { type: 'CHAPTER14_CHOOSE', id: 'chapter14.x14-to-him' } as never);
   expect(text(silence)).toContain('I told you at breakfast, darling. He’s a lovely man.');
   expect(text(silence)).not.toContain('Thank you for his calendar');
+});
+
+it('deepening: Tuesday night, the hour after, and the middle of the week, each with a neutral pick', () => {
+  const eve = walk10(toTen({ ch8: TOLD8 }), ['begin-executive', 'x10-go']);
+  expect(eve.phase).toBe('orchid');
+  expect(ids(eve)).toEqual(['x10-eve-light', 'x10-eve-card', 'x10-eve-sleep']);
+  const lind = once10(eve, 'x10-eve-light');
+  expect(text(lind)).toContain('He lifts one hand. You lift yours.');
+  const after = walk10(lind, ['x10-adrian-composed', 'x10-calendar-doctor']);
+  expect(after.phase).toBe('calendar');
+  expect(text(after)).toContain('the whole jumper comes off in their hands');
+  expect(ids(after)).toEqual(['x10-after-river', 'x10-after-camera', 'x10-after-desk']);
+  const paper = once10(after, 'x10-after-camera');
+  expect(text(paper)).toContain('one of them has a camera bag over his shoulder');
+  const mid = once10(paper, 'x10-paper-old');
+  expect(ids(mid)).toEqual(['x10-midweek-handling', 'x10-midweek-hand', 'x10-midweek-fine']);
+  const inv = once10(mid, 'x10-midweek-hand');
+  expect(text(inv)).toContain('“Stay a minute,”');
+  expect(text(inv)).toContain('do bring your chief of staff');
+  const done = walk10(inv, ['x10-week-yes', 'x10-night-alone']);
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: the card with C. on it, the phone over the river, and Julian back from Warsaw on the refusal road', () => {
+  const lind = walk10(toTen({ ch8: KEPT8 }), ['begin-executive', 'x10-summon', 'x10-eve-card']);
+  expect(text(lind)).toContain('write a single letter on it, C.');
+  const paper = walk10(lind, ['x10-adrian-ask', 'x10-calendar-refuse', 'x10-after-river']);
+  expect(text(paper)).toContain('You do not drop it.');
+  const mid = once10(paper, 'x10-paper-work');
+  expect(text(mid)).toContain('back from Warsaw and grey with it');
+  expect(text(mid)).toContain('So have I, I suppose.');
 });

@@ -10,7 +10,13 @@
  * ("You didn't tell me you knew Celeste Laurent"; the truth waits for Ch12–14); the Vesper invitation in his own diary
  * ("do bring your chief of staff"); a chosen night (heat 3, consent-gated, fades). Entered from an Executive
  * `chapter9.complete`; until Executive Ch11 exists the road goes on through the in-development bridge to Ch14. Local
- * helpers mirror chapter10.ts (c10.* keys, chapter10.* ids); choice ids carry `x10-`. */
+ * helpers mirror chapter10.ts (c10.* keys, chapter10.* ids); choice ids carry `x10-`.
+ * Deepening pass (2026-09-28): three moments, each with a neutral pick. Tuesday night, before breakfast (c10.x-eve =
+ * light | card | sleep: his light on forty-one at eleven, and his hand lifted through the glass; or a blank card with C.
+ * on it, held at the top of the door and not yet pinned); the hour after the order (c10.x-after = river | camera | desk:
+ * the black phone held over the water; the man with the camera bag, which is where the photograph comes from; or
+ * straight to her desk); and the middle of the week (c10.x-midweek = handling | hand | fine: Julian in her doorway,
+ * "You've been somewhere else all week."). The Lindqvist and the order at greater length. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -45,6 +51,9 @@ const nightOk = (s: GameState) =>
   key(s, 'c6.friction-julian') === 'warmed' || !!key(s, 'c7.x-evening-outcome')?.startsWith('intimate') || !!key(s, 'c8.x-late-outcome')?.startsWith('intimate');
 
 export function placeExecutive10(s: GameState): string | undefined {
+  if (s.phase === 'orchid' && get10(s, 'x-went')) return 'Tuesday · 23:00 · Night';
+  if (s.phase === 'calendar' && get10(s, 'x-after-open')) return summoned(s) ? '10:00 · The lifts, forty-one' : '08:10 · The street outside the Lindqvist';
+  if (s.phase === 'week' && get10(s, 'x-midweek')) return 'Friday · 18:00 · His diary';
   if (s.phase === 'lindqvist' || (s.phase === 'calendar' && !walked(s))) return summoned(s) ? '09:00 · Julian’s reception, forty-one' : '07:00 · The Lindqvist';
   if (s.phase === 'calendar') return summoned(s) ? '09:40 · The lifts, forty-one' : '07:50 · The Lindqvist, the door';
   const open = get10(s, 'x-night-open');
@@ -69,11 +78,36 @@ function orchidBlocks(): Block[] {
 
 function orchidChoices(): C10Choice[] {
   return [
-    offer('x10-go', 'Go to the Lindqvist', 'She asked. Answering is the first thing you control.', 'lindqvist', (x) => (set10(x, 'x-went', 'went'), [])),
-    offer('x10-summon', 'Let her come to you', 'Send the card back with a line: forty-one, nine o’clock.', 'lindqvist', (x) => {
-      set10(x, 'x-went', 'summoned');
-      return [p('You write on the back of her card, “Forty-one. Nine o’clock. — E.”, and leave it in the pot, and on Wednesday morning you find out what that means.')];
+    offer('x10-go', 'Go to the Lindqvist', 'She asked. Answering is the first thing you control.', 'orchid', (x) => {
+      set10(x, 'x-went', 'went');
+      return [p('You put the card in your jacket pocket, where it sits all day like a hand on your ribs.'), ...eveLead];
     }),
+    offer('x10-summon', 'Let her come to you', 'Send the card back with a line: forty-one, nine o’clock.', 'orchid', (x) => {
+      set10(x, 'x-went', 'summoned');
+      return [p('You write on the back of her card, “Forty-one. Nine o’clock. — E.”, and leave it in the pot, and on Wednesday morning you find out what that means.'), ...eveLead];
+    }),
+  ];
+}
+
+const eveLead: Block[] = [p('Tuesday night. You cannot sleep, and you do not try very hard.')];
+
+function eveChoices(): C10Choice[] {
+  const e = (id: 'light' | 'card' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('x10-eve-' + id, label, hint, 'lindqvist', (x) => {
+      set10(x, 'x-eve', id);
+      return body;
+    });
+  return [
+    e('light', 'Go back to forty-one', 'See if his light is on.', [
+      p('At eleven you let yourself back into Helix with your pass and ride up to forty-one in the dark. His light is on. He is at his desk with his jacket off and his glasses pushed up into his hair, reading something with a pencil, the way he reads everything now.'),
+      p('You stand in the dark of the corridor and do not go in. After a while he looks up, as if he felt it, and sees you through the glass, and does not get up, or ask anything. He lifts one hand. You lift yours. You go home.'),
+      t('She wants to know where he will be. I know where he is. He is there.'),
+    ]),
+    e('card', 'Write her card', 'A blank card, and one letter.', [
+      p('At the wardrobe door you take a blank card from the box and write a single letter on it, C., and hold it up at the very top of the door, above everything, above JULIAN MERCER and the two columns, and look at it there for a long time.'),
+      p('You do not pin it. Not yet. You put it face down on the chest of drawers, like his photograph, and go to bed.'),
+    ]),
+    e('sleep', 'Sleep', 'Or lie still and call it sleep.', [p('You lie in the dark and listen to the building settle and call it sleep, and at some point it is.')]),
   ];
 }
 
@@ -148,6 +182,7 @@ function calendarBlocks(s: GameState): Block[] {
   return [
     ...(walked(s) ? [p('She comes and stands beside you at the door, close, as if the two of you were waiting for the same taxi.')] : []),
     q('Celeste Laurent', 'He’s a lovely man. He really is. I’ve watched him for eleven years. He reads books, and he means it when he asks how you are, and he signs what Marcus gives him.'),
+    q('Celeste Laurent', 'I’ve seen a great many men like him. They build something decent, inside something that isn’t, and they think the decent part is load-bearing. It never is, darling. One morning somebody pulls the thread, and the whole jumper comes off in their hands, and they stand there in the cold, astonished.'),
     q('Celeste Laurent', 'He’ll never survive us. Unless you help me.'),
     p('She puts a slim black phone on the tablecloth between you, or in your hand at the door: no case, no name, one contact. C.'),
     q('Celeste Laurent', 'His calendar. The week ahead, every Friday, on that. That’s all. If I know where he’ll be, I can stand there before Marcus does. You’d be amazed what can be prevented by simply being in the right room first.'),
@@ -157,7 +192,8 @@ function calendarBlocks(s: GameState): Block[] {
 
 function calendarChoices(): C10Choice[] {
   const c = (id: 'give' | 'doctor' | 'refuse', label: string, hint: string, value: 'gave' | 'doctored' | 'refused', body: Block[]) =>
-    offer('x10-calendar-' + id, label, hint, 'paper', (x) => {
+    offer('x10-calendar-' + id, label, hint, 'calendar', (x) => {
+      set10(x, 'x-after-open');
       setKey(x, 'exec.calendar', value);
       setKey(x, 'exec.celeste10', { gave: 'trusted', doctored: 'fooled', refused: 'refused' }[value]);
       note(x, 'x-order', `Celeste Laurent asked Evelynn for Julian Mercer’s calendar, the week ahead, every Friday, on a black phone with one contact. She ${{ gave: 'agreed', doctored: 'agreed, and meant to send a week with one lie in it', refused: 'refused' }[value]}.`, 'Celeste Laurent, in person');
@@ -177,6 +213,30 @@ function calendarChoices(): C10Choice[] {
       q('Celeste Laurent', 'Of course it is, darling.'),
       p('She puts the phone in your coat pocket anyway, as you go, the way you would tuck a scarf into a child’s collar. You find it there at noon.'),
     ]),
+  ];
+}
+
+function afterChoices(s: GameState): C10Choice[] {
+  const a = (id: 'river' | 'camera' | 'desk', label: string, hint: string, body: Block[]) =>
+    offer('x10-after-' + id, label, hint, 'paper', (x) => {
+      set10(x, 'x-after', id);
+      delete x.choices['c10.x-after-open'];
+      return body;
+    });
+  return [
+    a('river', 'Walk to the river', 'With the black phone in your hand.', [
+      p('You walk to the river and stand at the wall with the black phone in your hand, over the water, for a long time. A gull considers you. The tide is going out.'),
+      p('You do not drop it. You knew you would not. You wanted to know what it felt like to hold it there, and now you do, and you put it in your pocket and go to work.'),
+    ]),
+    a('camera', 'Watch who leaves after you', summoned(s) ? 'Somebody on forty-one you have never seen.' : 'The two men who did not eat.', [
+      p(
+        summoned(s)
+          ? 'You watch the lifts. Two minutes after Celeste has gone, a man you have never seen on forty-one, in a Helix facilities fleece that fits him badly, gets into the next one with a camera bag over his shoulder.'
+          : 'You wait across the road. Two minutes after you, the two men who did not eat come out of the black door, and one of them has a camera bag over his shoulder, and neither of them looks round.',
+      ),
+      t('So that is where the picture will come from. Of course there is a picture. There was always going to be a picture.'),
+    ]),
+    a('desk', 'Go straight to your desk', 'Work. It is what you are for.', [p('You go straight to your desk and clear forty emails before ten, very fast and very well, and do not once look at your bag.')]),
   ];
 }
 
@@ -237,13 +297,37 @@ function weekBlocks(s: GameState): Block[] {
           ];
   return [
     ...week,
-    p('And on the Friday, in his diary, which is yours to run, an entry you did not make, in a hand you know now:'),
-    q('His diary', 'Helix Group. The Vesper. The first Thursday. — and do bring your chief of staff. C.L.'),
-    q('Julian Mercer', 'I’ve never been asked to the Vesper before. Eleven years. Apparently I am now. Will you come?'),
+    p((a === 'refused' ? 'The Wednesday after, back from Warsaw and grey with it, ' : 'The Wednesday after, ') + 'Julian stops in your doorway with two coffees and does not come in.'),
+    q('Julian Mercer', 'You’ve been somewhere else all week.' + (a === 'refused' ? ' So have I, I suppose.' : '') + ' I don’t need to know where. I’d like to know if you’re all right.'),
   ];
 }
 
-function weekChoices(): C10Choice[] {
+const invitation: Block[] = [
+  p('And on the Friday, in his diary, which is yours to run, an entry you did not make, in a hand you know now:'),
+  q('His diary', 'Helix Group. The Vesper. The first Thursday. — and do bring your chief of staff. C.L.'),
+  q('Julian Mercer', 'I’ve never been asked to the Vesper before. Eleven years. Apparently I am now. Will you come?'),
+];
+
+function midweekChoices(): C10Choice[] {
+  const m = (id: 'handling' | 'hand' | 'fine', label: string, hint: string, body: Block[]) =>
+    offer('x10-midweek-' + id, label, hint, 'week', (x) => {
+      set10(x, 'x-midweek', id);
+      return [...body, ...invitation];
+    });
+  return [
+    m('handling', '“I’m handling something. Let me.”', 'True, and nothing more.', [
+      q('You', 'I’m handling something. Let me handle it.'),
+      q('Julian Mercer', 'All right. Tell me when I can help. I’ll be here. I’m always here, apparently.'),
+    ]),
+    m('hand', 'Take his hand, on the doorframe', '“Stay a minute.”', [
+      p('You get up and put your hand over his where it rests on the doorframe, and say “Stay a minute,” and he does, not coming in, not going, the two coffees going cold in his other hand, and neither of you says anything, and it helps more than it should.'),
+    ]),
+    m('fine', '“I’m fine. It’s the board.”', 'Everybody believes the board.', [q('You', 'I’m fine. It’s the board.'), p('He nods, and puts your coffee on the corner of your desk, and goes. He does not believe you. He lets you have it anyway.')]),
+  ];
+}
+
+function weekChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'x-midweek')) return midweekChoices();
   return [
     offer('x10-week-yes', '“I’ll come.”', 'The first Thursday.', 'night', (x) => {
       note(x, 'x-vesper', 'Helix Group, and Evelynn by name as “your chief of staff”, are invited to the Vesper on the first Thursday, by C.L., in Julian Mercer’s own diary.', 'Julian Mercer’s diary');
@@ -355,11 +439,11 @@ export function executiveBlocks10(s: GameState): Block[] {
 }
 
 export function executiveChoices10(s: GameState): C10Choice[] {
-  if (s.phase === 'orchid') return orchidChoices();
+  if (s.phase === 'orchid') return get10(s, 'x-went') ? eveChoices() : orchidChoices();
   if (s.phase === 'lindqvist') return lindqvistChoices();
-  if (s.phase === 'calendar') return calendarChoices();
+  if (s.phase === 'calendar') return get10(s, 'x-after-open') ? afterChoices(s) : calendarChoices();
   if (s.phase === 'paper') return paperChoices();
-  if (s.phase === 'week') return weekChoices();
+  if (s.phase === 'week') return weekChoices(s);
   if (s.phase === 'night') return nightChoices(s);
   return [];
 }
