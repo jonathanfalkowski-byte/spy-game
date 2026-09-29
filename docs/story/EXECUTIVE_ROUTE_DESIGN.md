@@ -12,7 +12,9 @@ through an in-development bridge. The unique spine is complete and deepened. Sha
 "Held" ([EXECUTIVE_CHAPTER_13_HELD_DESIGN.md](EXECUTIVE_CHAPTER_13_HELD_DESIGN.md)), built pass 1. **The Executive road now
 runs from Ch7 to Ch14 without a gap**; the in-development bridge into Ch14 is only a fallback. Ch13 deepened. Ch15, "By
 Appointment" ([EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md](EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md)), built pass 1:
-the Executive road runs Ch7–15, and Act III is complete. Next: the Act IV variants (Ch16–18) and the Executive endings.
+the Executive road runs Ch7–15, and Act III is complete. Ch15 deepened. Ch16, "The Term"
+([EXECUTIVE_CHAPTER_16_THE_TERM_DESIGN.md](EXECUTIVE_CHAPTER_16_THE_TERM_DESIGN.md)), built pass 1: the aim is the
+Executive position. Next: Ch17 (the room) and Ch18 (the position: the Executive endings).
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

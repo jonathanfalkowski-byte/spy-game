@@ -40,7 +40,10 @@
 - **Ch8:** `exec.file` (the copy of page thirty-one, or the Rotterdam original); `exec.kept`, `exec.flat`.
 - **Ch7:** her own terms (`exec.term.*`). The door term makes the exit aim cheaper.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_16_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_16_SCRIPT.md); code: `src/content/chapter16-executive.ts`.
+It is entered from an Executive `chapter15.complete`, ends at the Chapters 17–18 in-development stop, and runs ~0.6–0.7k
+words on one path.
 
 ---
 

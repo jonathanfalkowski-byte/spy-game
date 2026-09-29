@@ -425,7 +425,7 @@ function completeBlocks(s: GameState): Block[] {
     ...(get15(s, 'x-first') === 'read' ? [p('And beside NELL, in your own hand, copied from a margin: SHE HATED ORCHIDS. I NEVER LEARNED. — C.')] : []),
     ...(get15(s, 'x-cardj') === 'burn' ? [p('Where the Collateral card would have gone, a clean square of wood, and a smell of smoke that has not quite left your hands.')] : []),
     t('She held everything. Now I do. Thursday, I find out what that’s worth.'),
-    p('[Chapters 16–18 · executive road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER16 === '1' ? [] : [p('[Chapters 16–18 · executive road — in development]')]),
   ];
 }
 

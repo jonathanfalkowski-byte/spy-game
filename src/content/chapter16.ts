@@ -20,6 +20,7 @@ import { getKey, setKey } from './chapter7-model';
 import { get10, julianInPlay10 } from './chapter10';
 import { eveningPartners14 } from './chapter14';
 import { beginPredator16, isPredator16, placePredator16, predatorBlocks16, predatorChoices16, predatorPhase16 } from './chapter16-predator';
+import { beginExecutive16, executiveBlocks16, executiveChoices16, executivePhase16, isExecutive16, placeExecutive16 } from './chapter16-executive';
 
 export type C16Scene = { title: string; place: string; blocks: Block[] };
 export type C16Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -53,6 +54,13 @@ export const chapter16Definitions: Record<string, C16Scene> = {
   armour: { title: 'Armour', place: '16:00 · THE MIRROR', blocks: [] },
   door: { title: 'The Embankment', place: '17:45 · THE VESPER', blocks: [] },
   room: { title: 'The Seventh Chair', place: '18:00 · THE BOARD', blocks: [] },
+  // The Executive road (2026-09-29): The Term.
+  layout: { title: 'Thursday', place: '05:00 · THE WARDROBE DOOR', blocks: [] },
+  purpose: { title: 'What His Name Means', place: '06:00 · THE KITCHEN TABLE', blocks: [] },
+  company: { title: 'Who Comes', place: 'MORNING', blocks: [] },
+  sequence: { title: 'The Order of Things', place: 'NOON', blocks: [] },
+  clasp: { title: 'Armour', place: '16:00 · THE MIRROR', blocks: [] },
+  embankment: { title: 'The Embankment', place: '17:45 · THE VESPER', blocks: [] },
 };
 export const chapter16Scenes = Object.entries(chapter16Definitions).map(([phase, scene]) => ({
   id: `chapter16.${phase}` as NodeId,
@@ -136,6 +144,7 @@ export function case16(s: GameState): { strength: 'thin' | 'supported' | 'strong
 export function place16(s: GameState): string | undefined {
   if (s.scene !== 'chapter16') return;
   if (isPredator16(s)) return placePredator16(s);
+  if (isExecutive16(s)) return placeExecutive16(s);
   if (s.phase === 'dawn' && getKey(s, 'act3.home') === 'lost') return '05:00 · THE WARDROBE DOOR';
   if (s.phase === 'arrive' && getKey(s, 'act4.arrive') === 'car') return '17:30 · THE CAR SHE SENT';
 }
@@ -555,6 +564,7 @@ function completeBlocks(s: GameState): Block[] {
 export function chapter16Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter16') return [];
   if (predatorPhase16(s)) return predatorBlocks16(s);
+  if (executivePhase16(s)) return executiveBlocks16(s);
   if (s.phase === 'dawn') return dawnBlocks(s);
   if (s.phase === 'aim') return aimBlocks();
   if (s.phase === 'crew')
@@ -577,8 +587,11 @@ export function chapter16Choices(s: GameState): C16Choice[] {
     return [offer16('begin', 'Thursday', 'The board meets at six.', 'dawn')];
   // The Predator road (The Seventh Chair) comes from its Chapter 15 (The Key).
   if (s.scene === 'chapter15' && s.phase === 'ledger' && isPredator16(s)) return [beginPredator16()];
+  // The Executive road (The Term) comes from its Chapter 15 (By Appointment).
+  if (s.scene === 'chapter15' && s.phase === 'complete' && isExecutive16(s)) return [beginExecutive16()];
   if (s.scene !== 'chapter16') return [];
   if (predatorPhase16(s)) return predatorChoices16(s);
+  if (executivePhase16(s)) return executiveChoices16(s);
   if (s.phase === 'dawn') return dawnChoices();
   if (s.phase === 'aim') return aimChoices(s);
   if (s.phase === 'crew') return crewChoices(s);

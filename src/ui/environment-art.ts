@@ -378,6 +378,12 @@ const byNode: Record<string, Key> = {
   'chapter16.order': 'apartmentDay',
   'chapter16.armour': 'wardrobe',
   'chapter16.door': 'glassLobby',
+  'chapter16.layout': 'apartmentNight',
+  'chapter16.purpose': 'apartmentDay',
+  'chapter16.company': 'helixWorkroom',
+  'chapter16.sequence': 'apartmentDay',
+  'chapter16.clasp': 'apartmentNight',
+  'chapter16.embankment': 'glassLobby',
   'chapter16.room': 'harbourRoom',
   // Chapter 17 (stand-ins until EVE Art's frames: the board table under the empty frames, three signatures, an orchid in a jug).
   'chapter17.opening': 'harbourRoom',
