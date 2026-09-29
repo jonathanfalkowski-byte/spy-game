@@ -22,10 +22,21 @@ const choose = (s: GameState, kind: Kind, id: string) => {
   return next;
 };
 const ids = (s: GameState) => chapter13Choices(s).map((c) => c.id.replace(/^chapter13\./, ''));
-const c13 = (s: GameState, id: string) => {
+const once13 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER13_CHOOSE', id: 'chapter13.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the week, Wednesday evening, 2 a.m.): take the neutral pick when it is in the way. */
+const NEUTRAL13 = ['x13-week-wall', 'x13-eve-alone', 'x13-twoam-on'];
+const c13 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL13.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once13(y, n);
+  }
+  return once13(y, id);
 };
 const walk13 = (s: GameState, path: string[]) => path.reduce(c13, s);
 
@@ -97,13 +108,14 @@ it('enters Held from the Executive Chapter 12 with a content notice, and the bri
 it('complies, having told him before: the lobby, the cut at the door, the fade, held after; it authenticates', () => {
   const days = walk13(toThirteen({ ch8: TOLD8, ch12: TOLD12 }), ['begin-executive', 'x13-placement-go']);
   expect(text(days)).toContain('He is the only person in London doing his job.');
-  expect(ids(days)).toEqual(['x13-tell-now', 'x13-tell-notyet']);
+  expect(ids(days)).toContain('x13-week-cafe');
+  expect(ids(days)).toContain('x13-week-wall');
   const need = c13(days, 'x13-tell-now');
   expect(need.choices['exec.told13']).toBe('before');
   expect(text(need)).toContain('What do you need me to be on Thursday?');
   expect(text(need)).not.toContain('Adrian, and a clinic');
   expect(ids(need)).toEqual(['x13-need-lobby', 'x13-need-phone', 'x13-need-nowhere']);
-  const wed = c13(need, 'x13-need-lobby');
+  const wed = walk13(need, ['x13-need-lobby', 'x13-eve-alone']);
   expect(ids(wed)).toEqual(['x13-answer-comply', 'x13-answer-refuse', 'x13-answer-turn']);
   const claremont = c13(wed, 'x13-answer-comply');
   expect(claremont.choices['exec.honeypot13']).toBe('complied');
@@ -159,10 +171,50 @@ it('turns Marsh: a staged scene, both in on it; an ally, and in the gallery at t
 });
 
 it('swaps the card with Iris, when she is free', () => {
-  const wed = walk13(toThirteen({ ch8: KEPT8, ch11: IRIS11 }), ['begin-executive', 'x13-placement-go', 'x13-tell-notyet']);
+  const wed = walk13(toThirteen({ ch8: KEPT8, ch11: IRIS11 }), ['begin-executive', 'x13-placement-go', 'x13-tell-notyet', 'x13-eve-alone']);
   expect(ids(wed)).toContain('x13-answer-swap');
   const done = walk13(wed, ['x13-answer-swap', 'x13-thursday-on', 'x13-twoam-on', 'x13-told-after']);
   expect(done.choices['exec.card13']).toBe('yes');
   expect(text(done)).toContain('Every one of them. Every placement they ever filmed in that room.');
   expect(text(done)).toContain('Then she’s frightened. Good.');
+});
+
+it('deepening: the week, Wednesday evening, and a Friday in Marsh’s office, each with a neutral pick', () => {
+  const days = walk13(toThirteen({ ch8: KEPT8 }), ['begin-executive', 'x13-placement-go', 'x13-week-list']);
+  expect(days.facts).toContain('c13.x-list');
+  expect(text(days)).toContain('The thirty-second is Helix Group plc.');
+  expect(ids(days)).toEqual(['x13-tell-now', 'x13-tell-notyet']);
+  const eve = once13(days, 'x13-tell-notyet');
+  expect(eve.phase).toBe('wednesday');
+  expect(text(eve)).toContain('Somewhere with a tablecloth.');
+  expect(ids(eve)).toEqual(['x13-eve-close', 'x13-eve-walk', 'x13-eve-alone']);
+  const wed = once13(eve, 'x13-eve-close');
+  expect(text(wed)).toContain('talks instead, for two hours, about nothing at all');
+  expect(text(wed)).toContain('Thursday, darling?');
+  const twoam = walk13(wed, ['x13-answer-turn', 'x13-thursday-on']);
+  expect(ids(twoam)).toEqual(['x13-friday-page', 'x13-friday-wait', 'x13-twoam-on']);
+  const done = walk13(twoam, ['x13-friday-page', 'x13-told-after']);
+  expect(done.choices['exec.marsh-page']).toBe('yes');
+  expect(text(done)).toContain('I’ve been looking for this clause for two years.');
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: told before, he sleeps on her sofa; refusing, she writes to Marsh, and Celeste knows', () => {
+  const eve = walk13(toThirteen({ ch8: TOLD8, ch12: TOLD12 }), ['begin-executive', 'x13-placement-go', 'x13-week-cafe', 'x13-tell-now', 'x13-need-nowhere']);
+  expect(text(eve)).toContain('You can do this, you absolute genius.');
+  expect(text(eve)).toContain('a carrier bag of takeaway');
+  const wed = once13(eve, 'x13-eve-close');
+  expect(text(wed)).toContain('He sleeps on your sofa, under your coat');
+  const twoam = walk13(wed, ['x13-answer-refuse', 'x13-vigil-silent']);
+  expect(ids(twoam)).toEqual(['x13-refuse-note', 'x13-refuse-call', 'x13-twoam-on']);
+  const done = walk13(twoam, ['x13-refuse-note', 'x13-saturday-on']);
+  expect(done.choices['exec.warned-marsh']).toBe('yes');
+  expect(text(done)).toContain('WATCH WHO SITS TWO STOOLS ALONG');
+  expect(text(done)).toContain('somebody wrote to Mr Marsh. Anonymously. By hand.');
+});
+
+it('deepening: the card in the lining of Adrian’s jacket', () => {
+  const done = walk13(toThirteen({ ch8: KEPT8, ch11: IRIS11 }), ['begin-executive', 'x13-placement-go', 'x13-tell-notyet', 'x13-eve-walk', 'x13-answer-swap', 'x13-thursday-on', 'x13-card-lining', 'x13-told-never']);
+  expect(done.choices['exec.card-where']).toBe('jacket');
+  expect(text(done)).toContain('EVERY ONE OF THEM. IN ADRIAN’S JACKET.');
 });

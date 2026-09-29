@@ -12,7 +12,14 @@
  * refuge after compliance is being held, nothing more (canon). Counterplay: turn Marsh (a staged scene for the camera,
  * both in on it, both clothed, heat 2: the only erotic scene here, because it is chosen), or swap the camera's card (if
  * Iris is free). Entered from an Executive `chapter12.complete`; Ch14 follows from `chapter13.complete`. Local helpers
- * mirror chapter13.ts (c13.* keys, chapter13.* ids); choice ids carry `x13-`. */
+ * mirror chapter13.ts (c13.* keys, chapter13.* ids); choice ids carry `x13-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick, none of them near the door. The week (c13.x-week =
+ * cafe | maya | list | wall: Marsh on the phone to his daughter before her exam; dinner with Maya and not one true
+ * sentence; Helix Group on the inquiry's public list); Wednesday evening, before midnight (c13.x-eve = close | walk |
+ * alone: his sofa with the door open, or dinner where he knows and does not ask; the river; or alone); and 2 a.m. on the
+ * refusal and counterplay paths (refuse: an anonymous card to Marsh, exec.warned-marsh, or ringing Julian; turn:
+ * Friday at nine in Marsh's office, page thirty-one on his desk, exec.marsh-page, or not yet; swap: the card into the
+ * lining of Adrian's old jacket, or into Iris's keeping, exec.card-where). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -70,6 +77,9 @@ const proof = (s: GameState): string | undefined =>
           : undefined;
 
 export function placeExecutive13(s: GameState): string | undefined {
+  if (s.phase === 'wednesday' && get13(s, 'x-eve')) return 'Wednesday · midnight · The kitchen table';
+  if (s.phase === 'wednesday') return 'Wednesday · 19:00';
+  if (s.phase === 'days' && !get13(s, 'x-week')) return 'The week · London';
   if (s.phase === 'days' && get13(s, 'x-need-open')) return 'Tuesday · late · Forty-one';
   const a = answer(s);
   if (s.phase === 'claremont' && a === 'refused') return '21:00 · Home';
@@ -112,11 +122,40 @@ function daysBlocks(): Block[] {
   return [
     p('You find out who he is, because you cannot not. He cycles to work along the river in a yellow jacket. He buys the same sandwich every day and is funny with the woman at the till, who is fond of him. His inquiry’s public notice is two paragraphs long and says, in careful civil-service English, that it will look at the guarantees certain funds take over the companies they finance. He is the only person in London doing his job.'),
     t('Owning him buries the one inquiry that could save Julian. Or sink him. She wants me to decide which, and to decide it with my body.'),
-    p('Tuesday, late, forty-one. Julian’s light and yours, either side of the glass.'),
+  ];
+}
+
+const tellLead: Block[] = [p('Tuesday, late, forty-one. Julian’s light and yours, either side of the glass.')];
+
+function weekChoices(s: GameState): C13Choice[] {
+  const w = (id: 'cafe' | 'maya' | 'list' | 'wall', label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('x13-week-' + id, label, hint, 'days', (x) => {
+      set13(x, 'x-week', id);
+      after?.(x);
+      return [...body, ...tellLead];
+    });
+  return [
+    w('cafe', 'Sit behind him in the café', 'Monday, eight o’clock. His sandwich place.', [
+      p('You sit behind him in the café by his office with a coffee you do not drink. He is on the phone to his daughter, who has an anatomy exam at nine and has not slept. He talks her through the bones of the hand, all twenty-seven, patiently, getting two wrong, and she corrects him, and he laughs.'),
+      q('Owen Marsh', 'You can do this, you absolute genius. Ring me after. Ring me even if it’s bad.'),
+      p('You leave before your coffee is cold, and walk the long way to forty-one, and do not remember any of the walk.'),
+    ]),
+    ...(key(s, 'c6.maya') === 'restored'
+      ? [w('maya', 'Have dinner with Maya', 'Your old place. Try to say one true sentence.', [
+          p('Your old place, the one with the bad lighting and the good noodles. Maya talks about a promotion interview and a man at her gym who breathes too loudly, and you laugh in the right places, and cannot say one true sentence all evening, and watch her notice.'),
+          q('Maya', 'You’ve gone somewhere I can’t come. That’s all right. Just come back.'),
+        ])]
+      : []),
+    w('list', 'Read his inquiry’s public list', 'The Markets Authority publishes who it is looking at.', [
+      p('The Markets Authority publishes, in a PDF nobody reads, the list of companies whose financing its open inquiries will review. You read it at your desk with the door shut. Forty-one names. The thirty-second is Helix Group plc.'),
+      t('He has the right thread in his hand. He just doesn’t know how far up it goes. She wants to cut it on Thursday, with me.'),
+    ], (x) => note(x, 'x-list', 'The Markets Authority’s published list of companies under Owen Marsh’s inquiry into fund guarantees includes Helix Group plc.', 'The Markets Authority, a public PDF')),
+    w('wall', 'Put his card on the wall', 'Next to hers.', [p('At the wardrobe door you write OWEN MARSH on a card and pin it beside CELESTE LAURENT, and stand looking at the two of them for a long time, the thread between them your own hand.')]),
   ];
 }
 
 function daysChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'x-week')) return weekChoices(s);
   if (get13(s, 'x-need-open')) {
     const n = (id: 'lobby' | 'phone' | 'nowhere', label: string, hint: string, body: Block[]) =>
       offer('x13-need-' + id, label, hint, 'wednesday', (x) => {
@@ -150,11 +189,35 @@ function daysChoices(s: GameState): C13Choice[] {
 
 // ── Wednesday ──
 
-function wednesdayBlocks(): Block[] {
-  return [p('Wednesday, midnight. The black phone, face up on the kitchen table, one contact.'), q('C.', 'Thursday, darling?')];
+function wednesdayBlocks(s: GameState): Block[] {
+  return [
+    p('Wednesday evening. Six hours until she wants an answer.'),
+    key(s, 'exec.told13') === 'before'
+      ? p('At seven Julian is at your door with a carrier bag of takeaway he has not chosen well and a bottle of wine he does not open. He does not mention Thursday. He does not need to.')
+      : p('At seven Julian stops in your doorway on forty-one with his coat on. “Dinner? Somewhere with a tablecloth. You look like you need one.”'),
+  ];
+}
+
+const midnightLead: Block[] = [p('Wednesday, midnight. The black phone, face up on the kitchen table, one contact.'), q('C.', 'Thursday, darling?')];
+
+function eveChoices(s: GameState): C13Choice[] {
+  const before = key(s, 'exec.told13') === 'before';
+  const e = (id: 'close' | 'walk' | 'alone', label: string, hint: string, body: Block[]) =>
+    offer('x13-eve-' + id, label, hint, 'wednesday', (x) => {
+      set13(x, 'x-eve', id);
+      return [...body, ...midnightLead];
+    });
+  return [
+    e('close', before ? 'Let him stay, on the sofa' : 'Go to dinner, and say nothing', before ? 'Your door open. His on the other side of it.' : 'He will know something is wrong. Let him not ask.', before
+      ? [p('He sleeps on your sofa, under your coat, and you sleep in your bed with the door open, and at some point in the night you hear him get up and stand in the doorway for a while, just to see that you are there, and go back.')]
+      : [p('A tablecloth, candles, a waiter who calls him Mr Mercer. You say almost nothing. He knows something is wrong, and does not ask, and talks instead, for two hours, about nothing at all, beautifully, so that you do not have to.')]),
+    e('walk', 'Walk by the river', 'Hands in pockets. No talking.', [p('You walk along the river together with your hands in your pockets and do not talk, all the way to the next bridge and back, and at the door he says goodnight and goes, and it is exactly what you needed and you did not have to ask for it.')]),
+    e('alone', before ? 'Send him home' : '“Not tonight.”', 'You need to decide this alone.', [p(before ? 'You send him home. He goes, and texts from the taxi: “Here. Any hour.”' : '“Not tonight.” He nods, and goes, and his light is still on when you leave.')]),
+  ];
 }
 
 function wednesdayChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'x-eve')) return eveChoices(s);
   const a = (id: string, value: 'complied' | 'refused' | 'turn' | 'swap', label: string, hint: string, body: Block[]) =>
     offer('x13-answer-' + id, label, hint, 'claremont', (x) => {
       set13(x, 'x-answer', value);
@@ -274,7 +337,40 @@ function twoamBlocks(s: GameState): Block[] {
 }
 
 function twoamChoices(s: GameState): C13Choice[] {
-  if (answer(s) !== 'complied') return [offer('x13-twoam-on', 'Morning', 'Saturday.', 'saturday')];
+  if (answer(s) !== 'complied') {
+    const a = answer(s);
+    const t2 = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+      offer('x13-' + id, label, hint, 'saturday', (x) => {
+        set13(x, 'x-twoam', id);
+        after?.(x);
+        return body;
+      });
+    const extra: C13Choice[] =
+      a === 'refused'
+        ? [
+            t2('refuse-note', 'Write to Owen Marsh', 'Anonymously. A card, by hand, to his office.', [
+              p('At two in the morning you write it on a plain card, in capitals, with your left hand: SOMEBODY WANTS YOUR INQUIRY. THEY TRIED ON THURSDAY. WATCH WHO SITS TWO STOOLS ALONG. You post it on the way to nowhere at three, and walk home in the cold, and sleep, for the first time in a week.'),
+            ], (x) => setKey(x, 'exec.warned-marsh')),
+            t2('refuse-call', 'Ring Julian', '“Are you awake?”', [
+              q('You', 'Are you awake?'),
+              q('Julian Mercer', 'Always, it seems.'),
+              p(key(s, 'exec.told13') === 'before' ? 'You tell him you said no. He is quiet for a moment, and then says, “Good,” and then, “Whatever it costs me. Good.”' : 'You don’t say why. He doesn’t ask. He stays on the line, and tells you about a book he is reading, very slowly, until you are nearly asleep.'),
+            ]),
+          ]
+        : a === 'turn'
+          ? [
+              t2('friday-page', 'Friday, nine: bring him the page', 'His office. A view of a car park.', [
+                p('Friday, nine o’clock. His office at the Markets Authority is a small room with a view of a car park and a photograph of his daughter in a graduation gown she has not graduated in yet. You put it on his desk. He reads it twice.'),
+                q('Owen Marsh', 'This is the one. I’ve been looking for this clause for two years. I knew it had to exist. Nobody would show it to me.'),
+              ], (x) => setKey(x, 'exec.marsh-page')),
+              t2('friday-wait', '“Not yet.”', 'When you know whose fund it is.', [q('You', 'Not yet, Mr Marsh. When I can tell you whose fund it is and prove it.'), q('Owen Marsh', 'Then I’ll wait. I’m good at it. It’s most of the job.')]),
+            ]
+          : [
+              t2('card-lining', 'Into the lining of Adrian’s jacket', 'Where everything that matters goes.', [p('At home, at three, you slit the lining of Adrian’s old jacket with a nail file, and put the card in beside the other things that matter, and sew it up again, badly, by the light of the fridge.')], (x) => setKey(x, 'exec.card-where', 'jacket')),
+              t2('card-iris', 'Let Iris keep it', '“Nobody searches a woman who has already disappeared.”', [q('Iris Moreau', 'Nobody searches a woman who has already disappeared. I’ll keep it. When you need it, ring the number. I’ll be somewhere.'), p('She puts the glove in her coat, and her coat on, and goes out into the Strand, and is gone before the door has finished swinging.')], (x) => setKey(x, 'exec.card-where', 'iris')),
+            ];
+    return [...extra, offer('x13-twoam-on', 'Morning', 'Saturday.', 'saturday')];
+  }
   const r = (id: 'julian' | 'maya' | 'wall' | 'alone', label: string, hint: string, body: Block[]) =>
     offer('x13-recover-' + id, label, hint, 'saturday', (x) => {
       set13(x, 'x-recover', id);
@@ -304,7 +400,7 @@ function saturdayBlocks(s: GameState): Block[] {
       a === 'complied'
         ? 'You were beautiful. He will be very useful.'
         : a === 'refused'
-          ? 'I did so hope. Helix’s audit committee meets on Tuesday. They’ll have such a lot to read.'
+          ? 'I did so hope. Helix’s audit committee meets on Tuesday. They’ll have such a lot to read.' + (key(s, 'exec.warned-marsh') ? ' And somebody wrote to Mr Marsh. Anonymously. By hand. So old-fashioned.' : '')
           : a === 'turn'
             ? 'Very pretty. Very convincing. You’ve a gift, darling.'
             : 'Somebody has been in my cupboard at the Claremont. How very brave of them.',
@@ -367,7 +463,11 @@ function completeBlocks(s: GameState): Block[] {
           ? 'I SAID NO. HE PAID. HE SAID GOOD.'
           : a === 'turn'
             ? 'OWEN MARSH. ALLY. PAGE THIRTY-ONE ON HIS DESK.'
-            : 'EVERY ONE OF THEM. IN A GLOVE.',
+            : key(s, 'exec.card-where') === 'jacket'
+              ? 'EVERY ONE OF THEM. IN ADRIAN’S JACKET.'
+              : key(s, 'exec.card-where') === 'iris'
+                ? 'EVERY ONE OF THEM. IRIS HAS IT. SOMEWHERE.'
+                : 'EVERY ONE OF THEM. IN A GLOVE.',
     ),
     q('The card', tl === 'before' ? 'HE KNEW. HE WAS WHERE I ASKED.' : tl === 'after' ? 'HE KNOWS.' : 'HE DOESN’T KNOW.'),
     t(a === 'complied' ? 'It happened. It was done to me. I am still here, and so is the wall, and so is the clause.' : 'She tried to buy the only man in London who could save him. She will not stop at a man.'),
@@ -377,7 +477,7 @@ function completeBlocks(s: GameState): Block[] {
 export function executiveBlocks13(s: GameState): Block[] {
   if (s.phase === 'placement') return placementBlocks(s);
   if (s.phase === 'days') return daysBlocks();
-  if (s.phase === 'wednesday') return wednesdayBlocks();
+  if (s.phase === 'wednesday') return wednesdayBlocks(s);
   if (s.phase === 'claremont') return claremontBlocks(s);
   if (s.phase === 'twoam') return twoamBlocks(s);
   if (s.phase === 'saturday') return saturdayBlocks(s);
