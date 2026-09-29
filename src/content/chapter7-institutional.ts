@@ -12,7 +12,13 @@
  * evening (Daniel as a colleague and nothing more, Maya, a partner from before at his place with the consent flow, or
  * alone with tape over the camera light); the first card, WHO IS WATCHING HER? Sloane is never a romance; monitoring is
  * never sexualised; Daniel is never deceived into intimacy (INSTITUTIONAL_ROUTE_DESIGN §2). Keys live under `inst.*` and
- * `c7.i-*`; choice ids carry `i7-`. */
+ * `c7.i-*`; choice ids carry `i7-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. The photograph still in Sloane's file, the woman in
+ * the ivory jacket Adrian was first shown (c7.i-photo = ask | window | wait: "Someone the vendor told us was retired.";
+ * standing beside Sloane at the glass, the two of them in it; or waiting). The lift down from seventy-one with Sloane
+ * (c7.i-lift = why | look | quiet: "Because you'd have walked in anyway."; the two of them in the steel doors; or
+ * nothing). And the new phone's first message, "Welcome home, 7A." (c7.i-message = reply | sloane | delete: two ticks
+ * and no answer; forwarded, and Sloane's "Not us. Leave it with me."; or deleted, with the green light watching). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get5 } from './chapter5-model';
@@ -93,11 +99,36 @@ function windowBlocks(s: GameState): Block[] {
       ? [q('Sloane', 'And you named Benton on a guess, at the Glass House. You were right. I am hiring the judgment. I will be watching for the luck.')]
       : []),
     p('She puts a folder on the desk between you. An operative’s contract, on Axiom paper: a file number, a handler of record (V. SLOANE), backup on every tasking, a salary with a comma in it, and the flat, the phone and the cover, which she has been providing quietly since the spring, made official. Monitored, logged, and yours.'),
+    p('Under the contract, in a buff folder with a clinic’s crest, the first page of your own file lies open, and on it the photograph they showed Adrian in this room in the spring: a woman of thirty-one in an ivory jacket, shoulder-length dark hair, a face near enough to yours now that it takes you a moment to understand that it is not.'),
     q('Sloane', 'One thing before you read it, so that you don’t have to ask. The flat is monitored. The hall, the door, the phone, the street. The bedroom is not. We don’t watch that. I’m not that kind of officer, and neither will you be.'),
   ];
 }
 
-function windowChoices(): C7Choice[] {
+function photoChoices(): C7Choice[] {
+  const ph = (id: 'ask' | 'window' | 'wait', label: string, hint: string, body: Block[]) =>
+    offer7('i7-photo-' + id, label, hint, 'window', (x) => {
+      set7(x, 'i-photo', id);
+      return body;
+    });
+  return [
+    ph('ask', 'Ask who she was', 'The woman in the ivory jacket.', [
+      q('You', 'Who was she? Before me.'),
+      p('Sloane looks at the photograph for a moment, as if she had not looked at it properly in a long time, and then closes the folder over it.'),
+      q('Sloane', 'Someone the vendor told us was retired. I didn’t ask what that meant. I’m asking now. I haven’t had an answer.'),
+      t('Retired. Like a racehorse. Like a legend nobody needs any more.'),
+    ]),
+    ph('window', 'Stand beside her at the window', 'Look at the city she looks at.', [
+      p('You get up and go and stand beside her at the glass, not close, a hand’s width, and look at what she looks at all day: the river, the cranes, the grey roofs going on for ever. In the window the two of you stand side by side, one in graphite, one in black, and for a moment neither of you is anybody’s officer.'),
+      q('Sloane', 'Most people stay in the chair.'),
+      q('You', 'Most people don’t know the view.'),
+      p('She turns her head and looks at you, very close, for a count of three, and you look back, and it is Sloane who turns away first, back to the city, with something that is almost a smile.'),
+    ]),
+    ph('wait', 'Wait', 'Let her say what she brought you here to say.', [p('You wait, the way Adrian learned to wait in this room, and after a moment she closes the file over the photograph without a word.')]),
+  ];
+}
+
+function windowChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'i-photo')) return photoChoices();
   const w = (id: 'cost' | 'above' | 'pen', label: string, hint: string, body: Block[]) =>
     offer7('i7-offer-' + id, label, hint, 'scope', (x) => {
       set7(x, 'i-offer', id);
@@ -148,7 +179,13 @@ function scopeChoices(s: GameState): C7Choice[] {
 
 // ── The crossing ──
 
-function crossingBlocks(s: GameState): Block[] {
+function crossingBlocks(): Block[] {
+  return [
+    p('Five past nine. The lift down from seventy-one, Sloane beside you, the doors closing on the grey carpet. Seventy-one floors of brushed steel and a mirror at the back, and in the mirror two women standing exactly as far apart as a handler and her operative should.'),
+  ];
+}
+
+function floorBlocks(s: GameState): Block[] {
   return [
     p('Ten past nine. Sloane walks you down to Strategic Intelligence herself, which she has never done for anybody, and the floor notices. The same hum of terminals, the same bad carpet, the same smell of burnt coffee from the machine by the window that has been broken in the same way for six years.'),
     p('Heads come up. Heads go down. Somebody’s chair squeaks and stops. You walk it the way you used to walk it, past the printer, past the pillar, and then not the way you used to, because you are wearing heels and a face and everybody is looking.'),
@@ -158,7 +195,26 @@ function crossingBlocks(s: GameState): Block[] {
   ];
 }
 
-function crossingChoices(): C7Choice[] {
+function liftChoices(): C7Choice[] {
+  const l = (id: 'why' | 'look' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer7('i7-lift-' + id, label, hint, 'crossing', (x) => {
+      set7(x, 'i-lift', id);
+      return [...body, ...floorBlocks(x)];
+    });
+  return [
+    l('why', '“Why me?”', 'Of all the problems on her desk.', [
+      q('You', 'Why me? You could have let me go. You could have let them have me.'),
+      q('Sloane', 'Because you’d have walked in anyway. Through a different door, with a worse badge, and I’d have spent a year finding out which one. I would rather know where you are.'),
+      q('You', 'That isn’t a compliment.'),
+      q('Sloane', 'It is the only kind I give.'),
+    ]),
+    l('look', 'Look at her in the mirror', 'She is looking at you.', [p('You look at her in the mirror at the back of the lift, and find that she is already looking at you, and neither of you pretends otherwise. Forty floors. Thirty. Her eyes go, once, to your mouth, and back, as if checking a detail in a report, and then the doors open on forty-four and she steps out first, and you follow, and nobody on the floor could possibly know that anything happened in there, because nothing did.')]),
+    l('quiet', 'Say nothing', 'Watch the numbers.', [p('You watch the numbers go down, seventy-one to forty-four, and say nothing, and neither does she. It is a comfortable silence, which is the most alarming thing about it.')]),
+  ];
+}
+
+function crossingChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'i-lift')) return liftChoices();
   const b = (id: 'cool' | 'adrian' | 'silent', label: string, hint: string, body: Block[]) =>
     offer7('i7-benton-' + id, label, hint, 'desk', (x) => {
       setKey(x, 'inst.benton', id);
@@ -236,6 +292,21 @@ function watchedBlocks(): Block[] {
     p('Seven o’clock. The flat, which has been hers since the spring and is Axiom’s tonight. Nothing has moved, and everything is different: a small camera high in the corner of the hall with a steady green light, a new phone on the kitchen counter in a box, and a sealed envelope with her file number on the front.'),
     p('You open it. The file number is AX-7A.'),
     t('Candidate 7A. They gave me Adrian’s candidate number. Of course they did. Somebody in records has a sense of humour, or no imagination at all.'),
+    p('You take the new phone out of its box and switch it on. It has one contact in it, SLOANE, and a number marked BACKUP. It has been on for less than a minute when it buzzes, once, with a message from a number with no name.'),
+    q('The message', 'Welcome home, 7A.'),
+  ];
+}
+
+function messageChoices(): C7Choice[] {
+  const m = (id: 'reply' | 'sloane' | 'delete', label: string, hint: string, body: Block[]) =>
+    offer7('i7-message-' + id, label, hint, 'watched', (x) => {
+      set7(x, 'i-message', id);
+      return body;
+    });
+  return [
+    m('reply', '“Who is this?”', 'Ask. See who answers.', [p('You type WHO IS THIS? and send it. Two grey ticks. Then two blue ones. Then nothing, for the rest of the night, and you check eleven times, and hate yourself for every one of them.')]),
+    m('sloane', 'Forward it to Sloane', 'This is what a handler is for.', [p('You forward it to SLOANE without a word. The reply comes in under a minute, which means she was awake, which means she is always awake.'), q('Sloane', 'Not us. Leave it with me. Lock the door. Goodnight, Ms Vale.'), t('Not us. She says it as if it were reassuring.')]),
+    m('delete', 'Delete it', 'Give it nothing.', [p('You delete it, and put the phone face down on the counter, and in the hall the little green light watches you do it, and logs it, probably, as a woman deleting a message, which is all it was.')]),
   ];
 }
 
@@ -266,6 +337,7 @@ const stayBody: Record<Partner, Record<'no-sex' | 'sex', Block[]>> = {
 };
 
 function watchedChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'i-message')) return messageChoices();
   const open = get7(s, 'i-evening-open');
   const done = (id: string, label: string, hint: string, body: Block[]) =>
     offer7('i7-evening-' + id, label, hint, 'complete', (x) => {
@@ -346,6 +418,7 @@ function completeBlocks(s: GameState): Block[] {
     p('And underneath it, in pencil, smaller, the question you have been asking since the window:'),
     q('The card', 'WHO IS WATCHING HER?'),
     ...(getKey(s, 'inst.benton') === 'adrian' ? [p('And, in the corner, very small: BENTON KNOWS.')] : []),
+    ...(get7(s, 'i-message') === 'sloane' ? [p('And on the other corner: WELCOME HOME, 7A. NOT US.')] : get7(s, 'i-message') ? [p('And on the other corner: WELCOME HOME, 7A. WHO?')] : []),
     ...(getKey(s, 'inst.daniel') === 'tie' ? [p('And under that, smaller still, a word you rub out as soon as you have written it: DANIEL.')] : []),
     t('I walked back into the building that made me, and sat down at my own desk, and nobody stopped me. That should frighten me more than it does.'),
   ];
@@ -355,7 +428,7 @@ export function institutionalBlocks7(s: GameState): Block[] {
   if (s.phase === 'gate') return gateBlocks();
   if (s.phase === 'window') return windowBlocks(s);
   if (s.phase === 'scope') return [];
-  if (s.phase === 'crossing') return crossingBlocks(s);
+  if (s.phase === 'crossing') return crossingBlocks();
   if (s.phase === 'desk') return deskBlocks();
   if (s.phase === 'watched') return watchedBlocks();
   if (s.phase === 'complete') return completeBlocks(s);
@@ -364,9 +437,9 @@ export function institutionalBlocks7(s: GameState): Block[] {
 
 export function institutionalChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'gate') return gateChoices();
-  if (s.phase === 'window') return windowChoices();
+  if (s.phase === 'window') return windowChoices(s);
   if (s.phase === 'scope') return scopeChoices(s);
-  if (s.phase === 'crossing') return crossingChoices();
+  if (s.phase === 'crossing') return crossingChoices(s);
   if (s.phase === 'desk') return deskChoices(s);
   if (s.phase === 'watched') return watchedChoices(s);
   return [];

@@ -15,10 +15,21 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 const ids = (s: GameState) => chapter7Choices(s).map((c) => c.id.replace(/^chapter7\./, ''));
-const c7 = (s: GameState, id: string) => {
+const once7 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER7_CHOOSE', id: 'chapter7.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the photograph, the lift, the message): take the neutral pick when it is in the way. */
+const NEUTRAL7 = ['i7-photo-wait', 'i7-lift-quiet', 'i7-message-delete'];
+const c7 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL7.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once7(y, n);
+  }
+  return once7(y, id);
 };
 const walk7 = (s: GameState, path: string[]) => path.reduce(c7, s);
 const withFlags = (s: GameState, flags: Record<string, string>) => {
@@ -56,7 +67,9 @@ it('enters Level 71 from the confirm beat: the staff entrance, Terry, and Sloane
   expect(text(window)).toContain('Lost two–one. Robbed.');
   expect(text(window)).toContain('You came to me. People don’t, usually.');
   expect(text(window)).toContain('We don’t watch that. I’m not that kind of officer, and neither will you be.');
-  expect(ids(window)).toEqual(['i7-offer-cost', 'i7-offer-above', 'i7-offer-pen']);
+  expect(text(window)).toContain('a woman of thirty-one in an ivory jacket');
+  expect(ids(window)).toEqual(['i7-photo-ask', 'i7-photo-window', 'i7-photo-wait']);
+  expect(ids(c7(window, 'i7-photo-wait'))).toEqual(['i7-offer-cost', 'i7-offer-above', 'i7-offer-pen']);
 });
 
 it('challenged: the ORACLE opening, three scope terms, “development feedback”, Adrian’s desk, the tie; it authenticates', () => {
@@ -71,8 +84,11 @@ it('challenged: the ORACLE opening, three scope terms, “development feedback�
   expect(crossing.facts).toContain('c7.i-contract');
   expect(text(crossing)).toContain('Once per tasking. Not once per career.');
   expect(text(crossing)).toContain('I can seal it. I can’t unread it for him.');
-  expect(text(crossing)).toContain('Ms Vale. I believe we’ve met.');
-  const desk = c7(crossing, 'i7-benton-adrian');
+  expect(ids(crossing)).toEqual(['i7-lift-why', 'i7-lift-look', 'i7-lift-quiet']);
+  const benton = c7(crossing, 'i7-lift-why');
+  expect(text(benton)).toContain('Because you’d have walked in anyway.');
+  expect(text(benton)).toContain('Ms Vale. I believe we’ve met.');
+  const desk = c7(benton, 'i7-benton-adrian');
   expect(desk.choices['inst.benton']).toBe('adrian');
   expect(text(desk)).toContain('Is this development feedback, Elias?');
   expect(text(desk)).toContain('It is Adrian’s desk.');
@@ -83,7 +99,11 @@ it('challenged: the ORACLE opening, three scope terms, “development feedback�
   const watched = c7(daniel, 'i7-daniel-tie');
   expect(text(watched)).toContain('Someone used to say that to me. Exactly that.');
   expect(text(watched)).toContain('The file number is AX-7A.');
-  const done = c7(watched, 'i7-evening-daniel');
+  expect(text(watched)).toContain('Welcome home, 7A.');
+  expect(ids(watched)).toEqual(['i7-message-reply', 'i7-message-sloane', 'i7-message-delete']);
+  const done = walk7(watched, ['i7-message-sloane', 'i7-evening-daniel']);
+  expect(text(done)).toContain('Not us. Leave it with me.');
+  expect(text(done)).toContain('WELCOME HOME, 7A. NOT US.');
   expect(`${done.scene}.${done.phase}`).toBe('chapter7.complete');
   expect(text(done)).toContain('he is going to know whose mouth it is first');
   expect(text(done)).toContain('VICTORIA SLOANE. HANDLER. AX-7A.');
@@ -114,7 +134,7 @@ it('protected: the off-the-books opening, backup and her people, Sloane answers 
 });
 
 it('the evening with a partner from before is chosen, scoped, and stopped when she says stop', () => {
-  const watched = walk7(onto(complete6('maximal-trade')), ['i7-gate-step', 'i7-offer-cost', 'i7-scope-refusal', 'i7-scope-name', 'i7-scope-backup', 'i7-benton-cool', 'i7-desk-keep', 'i7-daniel-work']);
+  const watched = walk7(onto(complete6('maximal-trade')), ['i7-gate-step', 'i7-offer-cost', 'i7-scope-refusal', 'i7-scope-name', 'i7-scope-backup', 'i7-benton-cool', 'i7-desk-keep', 'i7-daniel-work', 'i7-message-delete']);
   expect(ids(watched)).toContain('i7-evening-julian');
   const warm = withFlags(watched, { 'c6.maya': 'restored' });
   expect(ids(warm).slice(0, 3)).toEqual(['i7-evening-daniel', 'i7-evening-maya', 'i7-evening-julian']);
@@ -132,4 +152,16 @@ it('the evening with a partner from before is chosen, scoped, and stopped when s
   expect(text(stayed)).toContain('It does not know where you have been.');
   const maya = c7(warm, 'i7-evening-maya');
   expect(text(maya)).toContain('Then you’ve got a friend in compliance.');
+});
+
+it('deepening: who she was, the look in the lift, and a question nobody answers', () => {
+  const done = walk7(onto(complete6('maximal-trade')), ['i7-gate-step', 'i7-photo-ask', 'i7-offer-pen', 'i7-scope-refusal', 'i7-scope-name', 'i7-scope-backup', 'i7-lift-look', 'i7-benton-cool', 'i7-desk-keep', 'i7-daniel-warm', 'i7-message-reply', 'i7-evening-alone']);
+  expect(['i-photo', 'i-lift', 'i-message'].map((k) => done.choices['c7.' + k])).toEqual(['ask', 'look', 'reply']);
+  expect(text(done)).toContain('Someone the vendor told us was retired.');
+  expect(text(done)).toContain('because nothing did');
+  expect(text(done)).toContain('Two grey ticks. Then two blue ones.');
+  expect(text(done)).toContain('WELCOME HOME, 7A. WHO?');
+  expect(text(done)).not.toMatch(SEXUAL);
+  const glass = walk7(onto(complete6('maximal-trade')), ['i7-gate-lift', 'i7-photo-window']);
+  expect(text(glass)).toContain('it is Sloane who turns away first');
 });

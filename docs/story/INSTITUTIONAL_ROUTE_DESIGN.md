@@ -2,7 +2,7 @@
 
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended).** No lane-split change is needed. Each
 chapter gets its own design doc before build. Built so far: Ch7, "Level 71"
-([INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md](INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md)), pass 1; the road then goes to
+([INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md](INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md)), pass 1, deepened; the road then goes to
 the shared Ch9 bridge placeholder until Ch8 exists. Written 2026-09-29 as the next route after
 Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 

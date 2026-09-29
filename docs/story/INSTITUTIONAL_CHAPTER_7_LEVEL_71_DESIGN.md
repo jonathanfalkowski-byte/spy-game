@@ -18,7 +18,8 @@
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_7_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_7_SCRIPT.md); code:
 `src/content/chapter7-institutional.ts`. It is entered from the Chapter 7 confirm beat when the road is `institutional`,
-and ends at the shared `complete` (the design's `card` beat), ~1.5–1.7k words on one path.
+and ends at the shared `complete` (the design's `card` beat). It ran ~1.5–1.7k words on one path at pass 1, deepened
+2026-09-29 to ~1.77–2.07k with three moments: the photograph, the lift, and the message.
 
 ---
 
