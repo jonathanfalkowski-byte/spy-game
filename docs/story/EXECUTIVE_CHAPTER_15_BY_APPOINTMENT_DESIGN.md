@@ -37,8 +37,9 @@
 
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_15_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_15_SCRIPT.md); code: `src/content/chapter15-executive.ts`.
-It is entered from an Executive `chapter14.complete`, ends at the Act IV in-development stop, and runs ~0.75–0.96k words
-on one path.
+It is entered from an Executive `chapter14.complete` and ends at the Act IV in-development stop. It ran ~0.75–0.96k words
+on one path at pass 1, deepened 2026-09-29 to ~0.8–1.25k with three moments: the night before, the first Evelynn's
+drawer, and the Collateral card.
 
 ---
 

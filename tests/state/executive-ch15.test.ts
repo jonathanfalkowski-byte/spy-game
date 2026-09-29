@@ -87,10 +87,21 @@ const TRUSTED8 = ['x8-light-on', 'x8-fav-diary', 'x8-diary-hold', 'x8-fav-paper'
 const KEPT8 = ['x8-light-off', 'x8-fav-car', 'x8-car-take', 'x8-fav-card', 'x8-card-take', 'x8-fav-fixer', 'x8-fixer-take', 'x8-sloane-cold', 'x8-file-keep', 'x8-late-alone'];
 
 const ids15 = (s: GameState) => chapter15Choices(s).map((c) => c.id.replace(/^chapter15\./, ''));
-const c15 = (s: GameState, id: string) => {
+const once15 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER15_CHOOSE', id: 'chapter15.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids15(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the night before, the first Evelynn's drawer, the Collateral card): the neutral pick when in the way. */
+const NEUTRAL15 = ['x15-plan-sleep', 'x15-first-away', 'x15-cardj-keep'];
+const c15 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids15(y).includes(id); i++) {
+    const n = NEUTRAL15.find((d) => ids15(y).includes(d));
+    if (!n) break;
+    y = once15(y, n);
+  }
+  return once15(y, id);
 };
 const walk15 = (s: GameState, path: string[]) => path.reduce(c15, s);
 
@@ -114,7 +125,7 @@ it('enters By Appointment from the Executive Chapter 14; Ch14 no longer says Cha
 });
 
 it('by appointment, with Julian: his drawer, "She’s right about the first part", and he goes on the record; it authenticates', () => {
-  const entry = walk15(toFifteen({ ch8: TRUSTED8 }, ENFORCE14), ['begin-executive', 'x15-ally-julian', 'x15-allies-done']);
+  const entry = walk15(toFifteen({ ch8: TRUSTED8 }, ENFORCE14), ['begin-executive', 'x15-ally-julian', 'x15-allies-done', 'x15-plan-sleep']);
   expect(entry.phase).toBe('entry');
   expect(ids15(entry)).toEqual(['x15-way-appointment', 'x15-way-invited']);
   const snag = c15(entry, 'x15-way-appointment');
@@ -143,12 +154,12 @@ it('by appointment, with Julian: his drawer, "She’s right about the first part
 });
 
 it('on his card, alone: Hal answers Helix’s phone, Adrian’s file defuses Axiom, and she walks out of everything that was his', () => {
-  const entry = walk15(toFifteen({ key: 'key-accept', ch8: KEPT8 }, SPEND14), ['begin-executive', 'x15-allies-none']);
+  const entry = walk15(toFifteen({ key: 'key-accept', ch8: KEPT8 }, SPEND14), ['begin-executive', 'x15-allies-none', 'x15-plan-sleep']);
   expect(ids15(entry)).toEqual(['x15-way-card', 'x15-way-invited']);
   const stacks = walk15(entry, ['x15-way-card', 'x15-snag-talk']);
   expect(text(stacks)).toContain('Hal answers the phone at Helix.');
   expect(text(stacks)).toContain('I’ll decide later whether he ever reads it.');
-  const holds = c15(stacks, 'x15-took-adrian');
+  const holds = walk15(stacks, ['x15-took-adrian', 'x15-cardj-keep']);
   expect(text(holds)).toContain('stands his people down');
   expect(ids15(holds)).toContain('x15-cost-kept');
   const done = walk15(holds, ['x15-cost-kept', 'x15-phone-river', 'x15-night-alone']);
@@ -160,13 +171,40 @@ it('on his card, alone: Hal answers Helix’s phone, Adrian’s file defuses Axi
 it('by her own way: Hal drives, the meeting she asked for is the cover, and the 1109 safe', () => {
   const allies = walk15(toFifteen({ ch8: KEPT8 }, FALL14), ['begin-executive']);
   expect(ids15(allies)).not.toContain('x15-ally-julian');
-  const entry = walk15(allies, ['x15-ally-hal', 'x15-allies-done']);
+  const entry = walk15(allies, ['x15-ally-hal', 'x15-allies-done', 'x15-plan-sleep']);
   expect(ids15(entry)).toEqual(['x15-way-invited']);
-  const stacks = walk15(entry, ['x15-way-invited', 'x15-snag-bold']);
+  const stacks = walk15(entry, ['x15-way-invited', 'x15-snag-bold', 'x15-first-away']);
   expect(text(stacks)).toContain('She is already there, at nine forty');
   expect(ids15(stacks)).toContain('x15-took-cards');
   const done = walk15(stacks, ['x15-took-cards', 'x15-cost-money', 'x15-phone-return', 'x15-night-alone']);
   expect(done.choices['exec.took15']).toBe('cards');
   expect(text(done)).toContain('Broke, and free.');
   expect(text(done)).toContain('THE BOARD MEETS.');
+});
+
+it('deepening: the fire plan on his carpet, his hand between the cabinets, and the card burned together', () => {
+  const plan = walk15(toFifteen({ ch8: TRUSTED8 }, ENFORCE14), ['begin-executive', 'x15-ally-julian', 'x15-allies-done']);
+  expect(ids15(plan)).toEqual(['x15-plan-floor', 'x15-plan-walk', 'x15-plan-sleep']);
+  const entry = once15(plan, 'x15-plan-floor');
+  expect(text(entry)).toContain('That isn’t a cupboard. The walls are too thick.');
+  const first = walk15(entry, ['x15-way-appointment', 'x15-snag-hide']);
+  expect(text(first)).toContain('VALE, E. (I)');
+  expect(ids15(first)).toEqual(['x15-first-read', 'x15-first-hand', 'x15-first-away']);
+  const stacks = once15(first, 'x15-first-hand');
+  expect(text(stacks)).toContain('he holds on, hard');
+  const card = once15(stacks, 'x15-took-nell');
+  expect(ids15(card)).toEqual(['x15-cardj-burn', 'x15-cardj-keep']);
+  const holds = once15(card, 'x15-cardj-burn');
+  expect(text(holds)).toContain('he holds the lighter and you hold the card');
+  const done = walk15(holds, ['x15-cost-money', 'x15-phone-keep', 'x15-night-alone']);
+  expect(text(done)).toContain('a smell of smoke that has not quite left your hands');
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: the first Evelynn’s page, read, and the card given to him', () => {
+  const done = walk15(toFifteen({ ch8: KEPT8 }, FALL14), ['begin-executive', 'x15-allies-none', 'x15-plan-walk', 'x15-way-invited', 'x15-snag-talk', 'x15-first-read', 'x15-took-adrian', 'x15-cardj-give', 'x15-cost-money', 'x15-phone-river', 'x15-night-alone']);
+  expect(text(done)).toContain('eleven minutes');
+  expect(text(done)).toContain('She hated orchids. I never learned.');
+  expect(text(done)).toContain('You give it to him in his flat, among the boxes of books');
+  expect(text(done)).toContain('SHE HATED ORCHIDS. I NEVER LEARNED. — C.');
 });

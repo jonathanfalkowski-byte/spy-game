@@ -11,7 +11,12 @@
  * what was his, offered never imposed / money / Julian: on the record at the Markets Authority, by his own choice). "No
  * more orders." "I shall be there as myself." The phone; a chosen night (heat 3, consent-gated, fades). Entered from an
  * Executive `chapter14.complete`; ends at an Act IV in-development stop, having set the Act III keys the Executive Act IV
- * will read. Local helpers mirror chapter15.ts (c15.* keys, chapter15.* ids); choice ids carry `x15-`. */
+ * will read. Local helpers mirror chapter15.ts (c15.* keys, chapter15.* ids); choice ids carry `x15-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. The night before (c15.x-plan = floor | walk |
+ * sleep: on his carpet at forty-one with the Vesper's fire plan, if Julian is coming; or past the Vesper at midnight,
+ * counting windows); the first Evelynn's drawer in the archive (c15.x-first = read | hand | away: VALE, E. (I), and a
+ * line in pencil in the looping hand, "She hated orchids. I never learned."; or his hand between the cabinets); and the
+ * Collateral card in the week after (c15.x-cardj = give | burn | keep). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -60,6 +65,8 @@ export function available15(s: GameState): Ally[] {
 }
 
 export function placeExecutive15(s: GameState): string | undefined {
+  if (s.phase === 'entry' && !way(s) && !get15(s, 'x-plan')) return 'The night before · Midnight';
+  if (s.phase === 'holds' && !get15(s, 'x-cardj')) return 'The week after · Forty-one';
   if (s.phase === 'entry' && way(s)) return { appointment: '11:00 · The Vesper, the reading room', card: '11:00 · The Vesper, the front desk', stair: '02:00 · The Vesper, the service stair', invited: '22:00 · The Vesper, the long room' }[way(s)!];
   const open = get15(s, 'x-night-open');
   if (s.phase === 'last' && open) return 'Late · Julian’s apartment';
@@ -127,7 +134,27 @@ const snagLead: Record<'appointment' | 'card' | 'stair' | 'invited', Block[]> = 
   invited: [p('You ask Celeste for a meeting at the Vesper at ten, “to discuss the board”. She says yes at once. You arrive at ten. She is already there, at nine forty, in the long room, with two glasses poured.')],
 };
 
+function planChoices(s: GameState): C15Choice[] {
+  const pl = (id: 'floor' | 'walk' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('x15-plan-' + id, label, hint, 'entry', (x) => {
+      set15(x, 'x-plan', id);
+      return body;
+    });
+  return [
+    ...(has(s, 'julian') || cred(s) === 'julian'
+      ? [pl('floor', 'His carpet, and the Vesper’s fire plan', 'Helix’s insurers have one. Of course they do.', [
+          p('Midnight on forty-one, on the carpet of his office with your shoes off and the Vesper’s fire-safety plan spread between you, which Helix’s insurers have, because Helix’s insurers have everything. He learns it the way he learns anything: twice, moving his lips very slightly on the second reading. At one he puts his finger on a small grey rectangle behind the reading room.'),
+          q('Julian Mercer', 'That isn’t a cupboard. The walls are too thick.'),
+          p('At two he falls asleep with his head on the reading room, and you leave him there, and put your jacket over him.'),
+        ])]
+      : []),
+    pl('walk', 'Walk past the Vesper at midnight', 'Count the windows. Time the doorman.', [p('You walk past the Vesper at midnight on the other side of the canal, twice, and count the windows, and time the doorman’s cigarette, eleven minutes, and watch the one light on the second floor go off at twenty past, and on again at half past, as if somebody had come back for something.')]),
+    pl('sleep', 'Sleep', 'You will need it.', [p('You sleep. You did not expect to. You dream of nothing, and wake at six, clear as glass.')]),
+  ];
+}
+
 function entryChoices(s: GameState): C15Choice[] {
+  if (!way(s) && !get15(s, 'x-plan')) return planChoices(s);
   if (way(s)) {
     const sn = (id: 'talk' | 'hide' | 'bold', label: string, hint: string, body: Block[]) =>
       offer('x15-snag-' + id, label, hint, 'stacks', (x) => {
@@ -182,11 +209,32 @@ function stacksBlocks(s: GameState): Block[] {
       ? [p('Julian reads it twice, the way he reads everything, and puts it in his inside pocket.'), q('Julian Mercer', 'She’s right about the first part.')]
       : [t('A record of what she did to him. Not of what he was. I’ll decide later whether he ever reads it.')]),
     ...(key(s, 'exec.sloane14') === 'accepted' ? [p('Sloane’s file, as promised: a slim grey folder with an Axiom crest, which you put on top of his without opening it.')] : []),
-    p('And there is time for one thing more.'),
+    p('Three drawers down from page seven, a drawer with your name on it that is not yours: VALE, E. (I).'),
+  ];
+}
+
+function firstChoices(s: GameState): C15Choice[] {
+  const f = (id: 'read' | 'hand' | 'away', label: string, hint: string, body: Block[]) =>
+    offer('x15-first-' + id, label, hint, 'stacks', (x) => {
+      set15(x, 'x-first', id);
+      return [...body, p('And there is time for one thing more.')];
+    });
+  return [
+    f('read', 'Open it', 'The first one.', [
+      p('Her page, the first issue: the same photograph as yours, near enough, in a harder light. E. V. (I) · SINGAPORE · JAKARTA · BURNED · RETURNED TO INVENTORY.'),
+      p('And under it, in pencil, in the looping green hand, small, as if it had been written a long time after the rest:'),
+      q('The page', 'She hated orchids. I never learned.'),
+      t('Not proof. A woman writing in the margin of a life she sold. I will carry it anyway.'),
+    ]),
+    ...(julianThere(s)
+      ? [f('hand', 'Take his hand', 'Between the cabinets, in the dark.', [p('You do not open it. You reach back without looking, between the grey cabinets in the one-lamp dark, and find his hand, and he holds on, hard, and neither of you says anything, and the archive is very quiet around the two of you.')])]
+      : []),
+    f('away', 'Leave it shut', 'She had enough people reading her.', [p('You leave it shut. She had enough people reading her.')]),
   ];
 }
 
 function stacksChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'x-first')) return firstChoices(s);
   const tk = (id: 'adrian' | 'cards' | 'nell', label: string, hint: string, body: Block[]) =>
     offer('x15-took-' + id, label, hint, 'holds', (x) => {
       setKey(x, 'exec.took15', id);
@@ -230,7 +278,29 @@ function holdsBlocks(s: GameState): Block[] {
   ];
 }
 
+function cardChoices(s: GameState): C15Choice[] {
+  const c = (id: 'give' | 'burn' | 'keep', label: string, hint: string, body: Block[]) =>
+    offer('x15-cardj-' + id, label, hint, 'holds', (x) => {
+      set15(x, 'x-cardj', id);
+      return body;
+    });
+  const there = julianThere(s);
+  return [
+    ...(!there
+      ? [c('give', 'Give him the card', 'Collateral, in the person of J.M. He should read it.', [
+          p(sig(s) === 'fell' ? 'You give it to him in his flat, among the boxes of books, without a word. He reads it twice.' : 'You give it to him on forty-one, at his desk, without a word. He reads it twice.'),
+          q('Julian Mercer', 'She’s right about the first part. I’d like to prove her wrong about the second.'),
+        ])]
+      : []),
+    c('burn', there ? 'Burn it, together' : 'Burn it', there ? 'In the sink on forty-one. He holds the lighter.' : 'She doesn’t get to have written it.', [
+      p(there ? 'In the little kitchen on forty-one, at midnight, he holds the lighter and you hold the card, and it curls up black from the corner in, KIND going last, and he runs the tap over the ash and says, “There.”' : 'You burn it in your own sink, at midnight, KIND going last, and run the tap over the ash.'),
+    ]),
+    c('keep', 'Keep it', 'In the box. Evidence.', [p('You keep it, with everything else, in the Helix document box. Evidence. Thursday might want it.')]),
+  ];
+}
+
 function holdsChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'x-cardj')) return cardChoices(s);
   const c = (id: 'ally' | 'kept' | 'money' | 'julian', label: string, hint: string, shared: string, who: string, body: Block[]) =>
     offer('x15-cost-' + id, label, hint, 'last', (x) => {
       setKey(x, 'exec.cost15', id);
@@ -352,6 +422,8 @@ function completeBlocks(s: GameState): Block[] {
     p('Except one, at the top, which you leave exactly where it is:'),
     q('The card', 'THE BOARD MEETS.'),
     ...(cost === 'kept' ? [p('Under JULIAN MERCER, in pencil, the question from the first day, and under it, at last, an answer: NOTHING.')] : []),
+    ...(get15(s, 'x-first') === 'read' ? [p('And beside NELL, in your own hand, copied from a margin: SHE HATED ORCHIDS. I NEVER LEARNED. — C.')] : []),
+    ...(get15(s, 'x-cardj') === 'burn' ? [p('Where the Collateral card would have gone, a clean square of wood, and a smell of smoke that has not quite left your hands.')] : []),
     t('She held everything. Now I do. Thursday, I find out what that’s worth.'),
     p('[Chapters 16–18 · executive road — in development]'),
   ];
