@@ -377,7 +377,7 @@ function completeBlocks(s: GameState): Block[] {
   return [
     p('You walk out of the Vesper by the front door, and nobody opens it for you. You open it yourself.'),
     p(julianIn(s) ? 'Julian walks out beside you, not holding your arm, and on the steps he puts his glasses back in his pocket and breathes for what looks like the first time in a year.' : j === 'outside' ? 'Julian is at the kerb where he said he would be, with Hal and the engine running, and he does not ask anything. He opens the door.' : 'The Embankment, the river, the evening. Your phone, with one message on it, from him: Well?'),
-    p('[Chapter 18 · executive road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER18 === '1' ? [] : [p('[Chapter 18 · executive road — in development]')]),
   ];
 }
 

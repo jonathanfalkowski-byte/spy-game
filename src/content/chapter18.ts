@@ -21,6 +21,7 @@ import { getKey, setKey } from './chapter7-model';
 import { eveningPartners14 } from './chapter14';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { beginPredator18, isPredator18, predatorBlocks18, predatorChoices18, predatorPhase18 } from './chapter18-predator';
+import { beginExecutive18, executiveBlocks18, executiveChoices18, executivePhase18, isExecutive18 } from './chapter18-executive';
 
 export type C18Scene = { title: string; place: string; blocks: Block[] };
 export type C18Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -48,6 +49,14 @@ export const chapter18Definitions: Record<string, C18Scene> = {
   called: { title: 'A Name', place: 'THE WARDROBE DOOR', blocks: [] },
   year: { title: 'A Year Later', place: 'A YEAR LATER', blocks: [] },
   last: { title: 'Paid in Full', place: '', blocks: [] },
+  // The Executive road (2026-09-29): Read Twice.
+  friday: { title: 'Friday', place: 'THE MORNING AFTER', blocks: [] },
+  settle: { title: 'The Position', place: 'THAT MONTH', blocks: [] },
+  keys: { title: 'The Counter', place: 'A SATURDAY · THE KITCHEN', blocks: [] },
+  dinner: { title: 'Sitting Down', place: 'SATURDAY NIGHT · PIMLICO', blocks: [] },
+  signed: { title: 'A Name', place: 'THE WARDROBE DOOR', blocks: [] },
+  page: { title: 'Additional Terms', place: 'A YEAR LATER', blocks: [] },
+  read: { title: 'Read Twice', place: '', blocks: [] },
 };
 export const chapter18Scenes = Object.entries(chapter18Definitions).map(([phase, scene]) => ({
   id: `chapter18.${phase}` as NodeId,
@@ -529,6 +538,7 @@ function completeBlocks(s: GameState): Block[] {
 export function chapter18Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter18') return [];
   if (predatorPhase18(s)) return predatorBlocks18(s);
+  if (executivePhase18(s)) return executiveBlocks18(s);
   if (s.phase === 'morning') return morningBlocks(s);
   if (s.phase === 'position') return positionBlocks(s);
   if (s.phase === 'people') return peopleBlocks(s);
@@ -544,8 +554,11 @@ export function chapter18Choices(s: GameState): C18Choice[] {
     return [offer18('begin', 'Friday', 'The morning after.', 'morning')];
   // The Predator road (Paid in Full) comes from its Chapter 17 (Sit With Us).
   if (s.scene === 'chapter17' && s.phase === 'minute' && isPredator18(s)) return [beginPredator18()];
+  // The Executive road (Read Twice) comes from its Chapter 17 (Collateral), at the front door.
+  if (s.scene === 'chapter17' && s.phase === 'complete' && isExecutive18(s)) return [beginExecutive18()];
   if (s.scene !== 'chapter18') return [];
   if (predatorPhase18(s)) return predatorChoices18(s);
+  if (executivePhase18(s)) return executiveChoices18(s);
   if (s.phase === 'morning') return morningChoices(s);
   if (s.phase === 'position') return positionChoices(s);
   if (s.phase === 'people') return peopleChoices(s);

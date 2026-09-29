@@ -423,6 +423,14 @@ const byNode: Record<string, Key> = {
   'chapter18.called': 'wardrobe',
   'chapter18.year': 'apartmentNight',
   'chapter18.last': 'apartmentNight',
+  // The Executive road: Read Twice.
+  'chapter18.friday': 'apartmentDay',
+  'chapter18.settle': 'apartmentDay',
+  'chapter18.keys': 'apartmentDay',
+  'chapter18.dinner': 'apartmentNight',
+  'chapter18.signed': 'wardrobe',
+  'chapter18.page': 'apartmentNight',
+  'chapter18.read': 'apartmentNight',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

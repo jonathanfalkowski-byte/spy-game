@@ -38,7 +38,8 @@ const finish = (s: GameState) => {
 
 it('opens after an own-power Chapter 17 ending, and stays closed in production', () => {
   for (const from of ['expose-room', 'terms-celeste', 'nell-silent']) expect(ids(start({}, from))).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'executive' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'executive' }))).toEqual(['begin-executive']);
   vi.stubEnv('VITE_EVE_CHAPTER18', '');
   expect(chapter18Choices(start())).toEqual([]);
   expect(JSON.stringify(availableIntents(start()))).not.toContain('CHAPTER18');

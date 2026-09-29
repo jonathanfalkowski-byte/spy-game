@@ -41,7 +41,10 @@
 - **Ch16–17:** `act4.aim`, `act4.board`, `act4.terms`, `act4.julian`, `act4.last`, `act4.nell-said`, and `c17.x-pen`
   (whether he read the minute twice, in front of the board).
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_18_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_18_SCRIPT.md); code: `src/content/chapter18-executive.ts`.
+It is entered from an Executive `chapter17.complete` and ends at `read` (a seventh phase added in the build for the last
+card), ~0.95–1.33k words on one path. **The Executive road is complete, Chapters 7 to 18.**
 
 ---
 
@@ -157,7 +160,7 @@ and **the Executive road is complete, Chapters 7 to 18.**
 - **NOTHING**, if she gave everything back (Ch15 or Ch18) or never took it;
 - **WHAT I CHOOSE**, if she kept any of it with open eyes (the kept overlay, honest, never punished);
 - **THE TRUTH**, if she never told him about the placement (`exec.told13 = never`). She tells him at dinner, and his
-  answer is a person's, not a verdict: "I know. I've known since the lift. I was waiting to be told."
+  answer is a person's, not a verdict: "I know. I've known for a long time. I was waiting to be told."
 
 **The page** (`end.page`), a year later:
 - **With Julian (page-write):** a blank page, ADDITIONAL TERMS, and two pens. He writes first. Then her three,
