@@ -1,7 +1,8 @@
 # The Institutional route: design (for owner approval)
 
-**Status: DESIGN for owner approval.** Nothing is built. Written 2026-09-29 as the next route after Executive
-(Celebrity, Predator and Executive are complete, Ch7–18).
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended).** No lane-split change is needed. Each
+chapter gets its own design doc before build, starting with Ch7, "Level 71". Written 2026-09-29 as the next route after
+Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md), the Institutional row:

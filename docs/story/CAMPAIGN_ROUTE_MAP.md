@@ -140,4 +140,8 @@ what it cost.
 8. **The Executive route is designed** (owner, 2026-09-28): the Julian road, access through trust, care and intimacy;
    Julian is never a trap; unique Ch7, Ch8 and Ch14, shared framing elsewhere
    ([EXECUTIVE_ROUTE_DESIGN.md](EXECUTIVE_ROUTE_DESIGN.md)).
+9. **The Institutional route is designed** (owner, 2026-09-29): the Axiom road, back inside the machine that made
+   her as Sloane's operative; Sloane is handler, rival and bounded ally, never a romance; Daniel Kessler is a partner
+   only after she tells him who she was; monitoring is never sexualised; unique Ch7, Ch8 and Ch14
+   ([INSTITUTIONAL_ROUTE_DESIGN.md](INSTITUTIONAL_ROUTE_DESIGN.md)).
 
