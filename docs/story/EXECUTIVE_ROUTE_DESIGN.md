@@ -10,8 +10,9 @@ through an in-development bridge. The unique spine is complete and deepened. Sha
 "The Good Pen" ([EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md](EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md)), built and deepened, and Ch12,
 "Whose Face" ([EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md](EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md)), built and deepened, and Ch13,
 "Held" ([EXECUTIVE_CHAPTER_13_HELD_DESIGN.md](EXECUTIVE_CHAPTER_13_HELD_DESIGN.md)), built pass 1. **The Executive road now
-runs from Ch7 to Ch14 without a gap**; the in-development bridge into Ch14 is only a fallback. Next: deepening Ch13,
-then the Act III finale and Act IV variants (Ch15–18).
+runs from Ch7 to Ch14 without a gap**; the in-development bridge into Ch14 is only a fallback. Ch13 deepened. Ch15, "By
+Appointment" ([EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md](EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md)), built pass 1:
+the Executive road runs Ch7–15, and Act III is complete. Next: the Act IV variants (Ch16–18) and the Executive endings.
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

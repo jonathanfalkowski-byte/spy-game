@@ -35,7 +35,10 @@
 - **Ch11:** `exec.iris11 = warn` (Iris free); `exec.coat11`.
 - **Ch8:** `exec.fav.car` (Hal); `exec.kept`, `exec.flat` (the kept overlay).
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_15_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_15_SCRIPT.md); code: `src/content/chapter15-executive.ts`.
+It is entered from an Executive `chapter14.complete`, ends at the Act IV in-development stop, and runs ~0.75–0.96k words
+on one path.
 
 ---
 

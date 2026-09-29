@@ -357,6 +357,12 @@ const byNode: Record<string, Key> = {
   'chapter15.week': 'apartmentDay',
   'chapter15.line': 'apartmentNight',
   'chapter15.ledger': 'apartmentNight',
+  // The Executive road: By Appointment (the shared Vesper archive, by appointment).
+  'chapter15.allies': 'apartmentNight',
+  'chapter15.entry': 'glassLobby',
+  'chapter15.stacks': 'serviceGallery',
+  'chapter15.holds': 'officeDusk',
+  'chapter15.last': 'apartmentNight',
   // Chapter 16 (stand-ins until EVE Art's frames: cards on a floor at dawn, a clasp in a mirror, the embankment, the board table).
   'chapter16.dawn': 'apartmentNight',
   'chapter16.aim': 'apartmentDay',

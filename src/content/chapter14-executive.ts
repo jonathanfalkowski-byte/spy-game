@@ -519,7 +519,7 @@ function completeBlocks(s: GameState): Block[] {
     p('And beside it, the next one, the one that goes somewhere:'),
     q('The card', 'THE VESPER. ' + (cred === 'julian' ? 'HIS CREDENTIALS. HE COMES.' : cred === 'card' ? 'HIS APPOINTMENT CARD. BEFORE THEY TAKE IT OFF HIM.' : 'NO WAY IN BUT MINE.') + (key(s, 'exec.sloane14') === 'accepted' ? ' SLOANE’S FILE TOO.' : '')),
     ...(ledgerDue(s).length && w !== 'enforced' ? [p('The Monday after.'), ...ledgerDue(s)] : []),
-    p('[Chapter 15 · executive road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER15 === '1' ? [] : [p('[Chapter 15 · executive road — in development]')]),
   ];
 }
 
