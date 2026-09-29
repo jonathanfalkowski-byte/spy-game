@@ -113,10 +113,21 @@ const FALL14 = ['begin-executive', 'x14-to-him', 'x14-celeste-silent', 'x14-trut
 const toFifteen = (b: Build, ch14: string[]) => walk14(toBridge(b), ch14);
 
 const ids16 = (s: GameState) => chapter16Choices(s).map((c) => c.id.replace(/^chapter16\./, ''));
-const c16 = (s: GameState, id: string) => {
+const once16 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER16_CHOOSE', id: 'chapter16.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids16(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (dawn, the orchid at noon, the last minute): take the neutral pick when it is in the way. */
+const NEUTRAL16 = ['x16-dawn-quiet', 'x16-orchid-leave', 'x16-minute-breathe'];
+const c16 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids16(y).includes(id); i++) {
+    const n = NEUTRAL16.find((d) => ids16(y).includes(d));
+    if (!n) break;
+    y = once16(y, n);
+  }
+  return once16(y, id);
 };
 const walk16 = (s: GameState, path: string[]) => path.reduce(c16, s);
 
@@ -147,12 +158,12 @@ it('the term, enforced: Julian as Helix, 14.3 first, his hands at the clasp, Hel
   const inside = c16(company, 'x16-inside-julian');
   expect(inside.choices['act4.julian']).toBe('helix');
   expect(text(inside)).toContain('Helix has a seat. I’m told it’s by the door.');
-  const seq = walk16(inside, ['x16-inside-done', 'x16-outside-switch']);
+  const seq = walk16(inside, ['x16-inside-done', 'x16-outside-switch', 'x16-orchid-leave']);
   expect(seq.phase).toBe('sequence');
   expect(ids16(seq)).toContain('x16-first-julian');
   const clasp = walk16(seq, ['x16-first-julian', 'x16-held-nell']);
   expect(clasp.choices['act4.held']).toBe('nell');
-  const emb = walk16(clasp, ['x16-wear-black', 'x16-dressed-julian']);
+  const emb = walk16(clasp, ['x16-wear-black', 'x16-dressed-julian', 'x16-minute-breathe']);
   expect(text(emb)).toContain('Come back.');
   expect(ids16(emb)[0]).toBe('x16-arrive-helix');
   const done = c16(emb, 'x16-arrive-helix');
@@ -190,4 +201,27 @@ it('Nell: the term is closed when he fell, and says why; Julian comes as a witne
   const done = walk16(inside, ['x16-inside-done', 'x16-outside-switch', 'x16-first-nell', 'x16-held-julian', 'x16-wear-black', 'x16-dressed-alone', 'x16-arrive-car']);
   expect(done.choices['act4.aim']).toBe('nell');
   expect(text(done)).toContain('Eleanor Linden. Say it.');
+});
+
+it('deepening: dawn with Julian on the phone, the orchid at noon, and his hand on the pavement', () => {
+  const layout = c16(toSixteen({ ch8: TRUSTED8 }, ENFORCE14, APPT15), 'begin-executive');
+  expect(ids16(layout)).toContain('x16-dawn-julian');
+  expect(ids16(layout)).toContain('x16-dawn-quiet');
+  const purpose = walk16(layout, ['x16-dawn-julian', 'x16-case-set']);
+  expect(text(purpose)).toContain('I would like the board to watch me read them now.');
+  const orchid = walk16(purpose, ['x16-aim-term', 'x16-inside-julian', 'x16-inside-done', 'x16-outside-switch']);
+  expect(text(orchid)).toContain('Do wear something you chose. — C.');
+  expect(ids16(orchid)).toEqual(['x16-orchid-bin', 'x16-orchid-sill', 'x16-orchid-leave']);
+  const minute = walk16(orchid, ['x16-orchid-bin', 'x16-first-julian', 'x16-held-none', 'x16-wear-grey', 'x16-dressed-alone']);
+  expect(text(minute)).toContain('among the coffee grounds');
+  expect(ids16(minute)).toEqual(['x16-minute-hand', 'x16-minute-glass', 'x16-minute-breathe']);
+  const done = walk16(minute, ['x16-minute-hand', 'x16-arrive-helix']);
+  expect(text(done)).toContain('his fingers cold and steady');
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: alone, the reflection in the black glass is hers', () => {
+  const done = walk16(toSixteen({ ch8: KEPT8 }, FALL14, OWN15), ['begin-executive', 'x16-dawn-quiet', 'x16-case-set', 'x16-aim-exit', 'x16-inside-none', 'x16-outside-switch', 'x16-orchid-sill', 'x16-first-page', 'x16-held-none', 'x16-wear-grey', 'x16-dressed-alone', 'x16-minute-glass', 'x16-arrive-front']);
+  expect(text(done)).toContain('can look at somebody else');
+  expect(text(done)).toContain('a woman in grey silk');
 });

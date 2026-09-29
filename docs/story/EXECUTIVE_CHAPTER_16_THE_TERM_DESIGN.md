@@ -42,8 +42,9 @@
 
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_16_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_16_SCRIPT.md); code: `src/content/chapter16-executive.ts`.
-It is entered from an Executive `chapter15.complete`, ends at the Chapters 17–18 in-development stop, and runs ~0.6–0.7k
-words on one path.
+It is entered from an Executive `chapter15.complete` and ends at the Chapters 17–18 in-development stop. It ran ~0.6–0.7k
+words on one path at pass 1, deepened 2026-09-29 to ~0.8–0.9k with three moments: dawn, the orchid at noon, and the last
+minute.
 
 ---
 

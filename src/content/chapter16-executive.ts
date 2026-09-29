@@ -11,7 +11,12 @@
  * "Come back.", Maya, or nobody; heat 1–2). The way in (Helix's appointment in Helix's car, the front door, the service
  * door, Celeste's car); "Good luck, Ms Vale." The long room; Celeste stands, as herself. Entered from an Executive
  * `chapter15.complete`; ends at the Chapters 17–18 in-development stop, having set the shared act4.* contract. Local
- * helpers mirror chapter16.ts; choice ids carry `x16-`. */
+ * helpers mirror chapter16.ts; choice ids carry `x16-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. Dawn, before the cards are picked up (c16.x-dawn
+ * = julian | nell | quiet: ring him, and he reads her the first line of what he'll say; Nell's photograph off the wall and
+ * into her pocket; or the cards); noon, Celeste's orchid at the door with a card, "Do wear something you chose" (c16.x-
+ * orchid = bin | sill | leave); and the last minute on the Embankment (c16.x-minute = hand | glass | breathe: his hand,
+ * or whoever's; her own reflection in the black glass; or counting, the way Adrian counted floors). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { get5 } from './chapter5-model';
@@ -84,6 +89,8 @@ export function inside16(s: GameState): Who[] {
 const inside = (s: GameState): Who[] => ((key(s, 'act4.inside') ?? '').split(',').filter(Boolean) as Who[]);
 
 export function placeExecutive16(s: GameState): string | undefined {
+  if (s.phase === 'sequence' && !get16(s, 'x-orchid')) return '12:00 · The door';
+  if (s.phase === 'embankment' && get16(s, 'x-minute')) return '17:55 · The steps';
   if (s.phase === 'company' && key(s, 'act4.inside-done')) return 'Morning · Outside';
   if (s.phase === 'sequence' && key(s, 'act4.first')) return 'Noon · The one you keep';
   if (s.phase === 'clasp' && key(s, 'act4.wear')) return '16:30 · The mirror';
@@ -101,14 +108,36 @@ function layoutBlocks(s: GameState): Block[] {
   const c = case16x(s);
   return [
     p('Thursday, five in the morning. You take every card down from the wardrobe door, one by one, and lay them on the floor in the order they will matter, the way Adrian used to lay out a filing before a hearing.'),
-    p('MERCER, J. in the middle, where his name has always been.'),
+    p('MERCER, J. in the middle, where his name has always been. Around it, in a ring, everything he gave you and everything you gave him: his calendar, his pen, his confession in a lift, a key, a tie at a window.'),
+    t('A year ago I wrote three terms on a blank page and he signed them and read them twice. Today I find out whether anything I wrote down was worth the paper.'),
     p('What you hold: ' + (c.reasons.length ? c.reasons.join('; ') : 'less than you would like, and all of it yours') + '.'),
     q('The card', 'THE CASE: ' + c.strength.toUpperCase() + '.'),
     t(c.strength === 'thin' ? 'Thin. Then I walk in thin, and make up the rest with my face.' : c.strength === 'overwhelming' ? 'Overwhelming. She has never been overwhelmed in her life. I would like to be there when she finds out what it feels like.' : 'Enough to make her sit down. Not enough to make her stay down. Then I choose carefully.'),
   ];
 }
 
-function layoutChoices(): C16Choice[] {
+function dawnChoices(s: GameState): C16Choice[] {
+  const d = (id: 'julian' | 'nell' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer('x16-dawn-' + id, label, hint, 'layout', (x) => {
+      set16(x, 'x-dawn', id);
+      return body;
+    });
+  return [
+    d('julian', 'Ring Julian', 'He will be awake. He always is.', [
+      q('You', 'Are you awake?'),
+      q('Julian Mercer', 'Always, it seems. I’ve been writing what I’ll say. Can I read you the first line? It’s the only one I’m sure of.'),
+      q('Julian Mercer', '“I signed eleven things I didn’t read, and I would like the board to watch me read them now.”'),
+      q('You', 'Keep that one.'),
+    ]),
+    ...(['truth', 'kind'].includes(key(s, 'exec.nora12') ?? '')
+      ? [d('nell', 'Take Nell’s photograph off the wall', 'The one Nora gave you. For your pocket.', [p('You unpin the photograph Nora gave you, Nell on the harbour wall, laughing, in flat shoes, and look at it for a long time, and put it in the inside pocket of the jacket you will wear, over your heart, where it will be in the room whether anybody else says her name or not.')])]
+      : []),
+    d('quiet', 'Keep laying out the cards', 'In order. In silence.', [p('You keep laying out the cards in silence, and the room gets light around you, and the kettle clicks off, and you do not notice.')]),
+  ];
+}
+
+function layoutChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'x-dawn')) return dawnChoices(s);
   return [
     offer('x16-case-set', 'Pick up the cards', 'In order. You know the order now.', 'purpose', (x) => {
       setKey(x, 'act4.case', case16x(x).strength);
@@ -210,10 +239,28 @@ const cardName: Record<Card, string> = { julian: 'MERCER, J.', nell: 'the Jakart
 const cardsHeld = (s: GameState): Card[] => ['julian', ...(nellOrder(s) ? ['nell' as Card] : []), ...(cards1109(s) ? ['cards' as Card] : []), 'page'];
 
 function sequenceBlocks(): Block[] {
-  return [p('Noon. The cards on the table in a row. What goes down first, in front of the woman who sold you. And which one you keep in your pocket, for the moment she thinks she has won.')];
+  return [
+    p('Noon. A ring at the door. On the mat, a white orchid in a black pot, three flowers open and one closed, and a card in the looping green hand:'),
+    q('The card', 'Six o’clock. Do wear something you chose. — C.'),
+    t('Even now. Even today. She wants the last word on my clothes.'),
+  ];
+}
+
+function orchidChoices(): C16Choice[] {
+  const o = (id: 'bin' | 'sill' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('x16-orchid-' + id, label, hint, 'sequence', (x) => {
+      set16(x, 'x-orchid', id);
+      return [...body, p('Then the cards on the table in a row. What goes down first, in front of the woman who sold you. And which one you keep in your pocket, for the moment she thinks she has won.')];
+    });
+  return [
+    o('bin', 'Put it in the bin', 'Pot and all.', [p('You put it in the kitchen bin, pot and all, and the flowers go on looking up at you from among the coffee grounds, very white.')]),
+    o('sill', 'Put it on the sill, turned away', 'Let it look at the street.', [p('You put it on the windowsill with its flowers turned to face the street, so that whatever she meant by it can look at somebody else.')]),
+    o('leave', 'Leave it on the mat', 'Step over it on the way out.', [p('You leave it on the mat where it was delivered. You will step over it on your way out, and that seems exactly right.')]),
+  ];
 }
 
 function sequenceChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'x-orchid')) return orchidChoices();
   const first = key(s, 'act4.first') as Card | undefined;
   if (!first)
     return cardsHeld(s).map((c) =>
@@ -284,7 +331,26 @@ function embankmentBlocks(s: GameState): Block[] {
   ];
 }
 
+function minuteChoices(s: GameState): C16Choice[] {
+  const inn = inside(s);
+  const m = (id: 'hand' | 'glass' | 'breathe', label: string, hint: string, body: Block[]) =>
+    offer('x16-minute-' + id, label, hint, 'embankment', (x) => {
+      set16(x, 'x-minute', id);
+      return body;
+    });
+  return [
+    ...(inn.length
+      ? [m('hand', inn.includes('julian') ? 'Take his hand' : 'Take a hand', 'For one minute. Then let go.', [
+          p(inn.includes('julian') ? 'You take his hand on the pavement for one minute, his fingers cold and steady, and neither of you says anything, and then you let go, because you are going to walk in with your hands free.' : 'You take a hand on the pavement for one minute, whoever’s is nearest, and it holds on, and then you let go, because you are going to walk in with your hands free.'),
+        ])]
+      : []),
+    m('glass', 'Look at yourself in the black glass', 'The only reflection that door has ever given you.', [p('You look at the black glass and it gives you back a woman in ' + (key(s, 'act4.wear') === 'grey' ? 'grey silk' : key(s, 'act4.wear') === 'his' ? 'a dress from a window on Sloane Street' : 'black') + ', finished, fitted, standing very straight, whom you have never seen before and recognise completely.')]),
+    m('breathe', 'Count', 'The way Adrian counted floors in a lift.', [p('You count, the way Adrian used to count the floors in a lift when he was frightened: one, and another, and another, until the numbers run out and the door is there.')]),
+  ];
+}
+
 function embankmentChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'x-minute')) return minuteChoices(s);
   const arr = (id: 'helix' | 'front' | 'quiet' | 'car', label: string, hint: string, body: Block[]) =>
     offer('x16-arrive-' + id, label, hint, 'complete', (x) => {
       setKey(x, 'act4.arrive', id);
@@ -329,7 +395,7 @@ export function executiveBlocks16(s: GameState): Block[] {
 }
 
 export function executiveChoices16(s: GameState): C16Choice[] {
-  if (s.phase === 'layout') return layoutChoices();
+  if (s.phase === 'layout') return layoutChoices(s);
   if (s.phase === 'purpose') return purposeChoices(s);
   if (s.phase === 'company') return companyChoices(s);
   if (s.phase === 'sequence') return sequenceChoices(s);
