@@ -58,6 +58,7 @@ import { get6 } from './chapter6-model';
 import { type C7Choice, get7, getKey, note7, offer7, set7, setKey } from './chapter7-model';
 import { placePredator7 } from './chapter7-predator';
 import { placeExecutive7 } from './chapter7-executive';
+import { placeInstitutional7 } from './chapter7-institutional';
 
 const SENDER = 'Unknown sender';
 export const RECORDS_FEE = 40;
@@ -78,6 +79,7 @@ export function place7(s: GameState): string | undefined {
   if (s.scene !== 'chapter7') return;
   if (getKey(s, 'route.lane') === 'predator') return placePredator7(s);
   if (getKey(s, 'route.lane') === 'executive') return placeExecutive7(s);
+  if (getKey(s, 'route.lane') === 'institutional') return placeInstitutional7(s);
   const open = get7(s, 'pursue-open');
   if (s.phase === 'pursue' && open)
     return {

@@ -183,6 +183,13 @@ const byNode: Record<string, Key> = {
   'chapter7.hallway': 'helixReception',
   'chapter7.key': 'helixWorkroom',
   'chapter7.tonight': 'apartmentNight',
+  // The Institutional road: Level 71.
+  'chapter7.gate': 'securityLobby',
+  'chapter7.window': 'executiveOffice',
+  'chapter7.scope': 'executiveOffice',
+  'chapter7.crossing': 'officeDusk',
+  'chapter7.desk': 'officeDusk',
+  'chapter7.watched': 'apartmentNight',
   'chapter7.office': 'helixSuite',
   'chapter7.terms': 'helixSuite',
   'chapter7.corridor': 'helixReception',
