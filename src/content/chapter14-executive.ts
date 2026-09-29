@@ -9,10 +9,10 @@
  * setting c14.answer (countered / refused / complied) for Ch15; Sloane collects the Ch8 debt at the board ("take my
  * file out too"); the kept ledger comes due honestly (what was Helix's follows Helix; what she paid for stays hers); a
  * chosen night (heat 3, consent-gated, fades); the card and the Vesper credentials. Julian is never a trap.
- * Until the Executive framing of Chapter 13 exists, it is entered from an Executive `chapter12.complete` through an
- * in-development bridge (from the last playable of Chapters 9–12 otherwise); exec.calendar is set by Chapter 10 ("A
- * Lovely Man"), exec.sign11 by Chapter 11 ("The Good Pen") and exec.told12 by Chapter 12 ("Whose Face"); the planned
- * key exec.told13 reads its default. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
+ * Entered from an Executive `chapter13.complete` (Held); the in-development bridge from the last playable of Chapters
+ * 9–12 remains only as a fallback. exec.calendar is set by Chapter 10 ("A Lovely Man"), exec.sign11 by Chapter 11 ("The
+ * Good Pen"), exec.told12 by Chapter 12 ("Whose Face") and exec.told13 by Chapter 13 ("Held"); Owen Marsh as an ally
+ * (exec.marsh13) sits in the gallery on the enforce way, and the audit committee's letter (exec.cost13) is in the minutes. Local helpers mirror chapter14.ts (c14.* keys, chapter14.* ids); choice ids carry `x14-`.
  * Deepening pass (2026-09-28): three moments, each with a neutral pick. Marcus in her doorway on Tuesday morning, before
  * the truth (c14.x-marcus = no | maybe | quiet: "Come and sit next to me after."); the tie on Thursday night as its own
  * moment (c14.x-tie = rehearse | kiss | go); and the box on Friday afternoon, by way (c14.x-box = word | hand | silence:
@@ -81,7 +81,8 @@ export function placeExecutive14(s: GameState): string | undefined {
 
 // ── The bridge (until Executive Chapters 10–13 exist) ──
 
-export function beginExecutive14(): C14Choice {
+export function beginExecutive14(s: GameState): C14Choice {
+  if (s.scene === 'chapter13') return offer('begin-executive', 'Monday', 'The fund calls in the clause.', 'called');
   return offer('begin-executive', 'Go on to the signature', 'This road’s Act III chapters are in development.', 'called', (x) => [
     x.scene === 'chapter12'
       ? p('[Chapter 13 · executive road — in development] The winter comes the way it does on forty-one: fast, and then all at once. The black phone in your bag, every Friday. A placement date on a card on your wardrobe door, and a photograph of a woman on a harbour wall beside it. The clause is still there.')
@@ -287,6 +288,7 @@ function tieChoices(s: GameState): C14Choice[] {
 function boardroomBlocks(s: GameState): Block[] {
   return [
     p('Friday, eight o’clock. The Helix boardroom on forty-four: one long table, one long window of rain, eleven chairs and the water jugs sweating. Marcus Chen at the far end, freshly shaved, with the fund’s letter in a clear folder in front of him like a winning hand. In the observer’s chair by the door, for Axiom, in charcoal: Sloane.'),
+    ...(key(s, 'exec.honeypot13') === 'refused' ? [p('In front of every chair, under the agenda, the audit committee’s letter about the eleven signatures, which has been sitting in the minutes for a month like a stone in a shoe.')] : []),
     ...(sloaneAsks(s)
       ? [
           p('Sloane catches you in the corridor on the way in, and walks beside you for exactly ten steps.'),
@@ -306,6 +308,7 @@ function voteBlocks(s: GameState): Block[] {
       p('Then you stand, and show them: ' + ({ told: 'his own note from the tray, “Not until I understand it,” dated the night you rang him', kept: 'page thirty-one, photographed at twenty to midnight on his desk', pulled: 'the Rotterdam original, never signed, with Marcus Chen’s routing notes in the margin' }[file(s)!]) + ', and the minutes of every board meeting for six years, in none of which a guarantee of Helix’s own assets was ever put to a vote.' + (signed11(s) ? ' And you tell them, in a level voice, whose hand was on his shoulder at the Vesper.' : '')),
       ...(sloane ? [q('Sloane', 'For the record: Axiom was never told either. We would have objected. We object now.')] : []),
       p('It takes forty minutes. The board resolves that the guarantee was never authorised and binds nobody but the man who negotiated it. The fund’s charge on Helix fails. Marcus Chen is suspended pending review, and leaves the room with his clear folder under his arm and his face perfectly still.'),
+      ...(key(s, 'exec.marsh13') === 'ally' ? [p('In the gallery at the back, where nobody noticed him come in, a tired man in a yellow cycling jacket closes his notebook. Owen Marsh, of the Markets Authority, whose inquiry into a fund’s guarantees will have a great deal to say about this morning.')] : []),
       p('At noon a message on your phone, from a number with no name: “Well played, darling. We shall talk after my board meets.”'),
       t('She is afraid. She would never say so. She just did.'),
     ];

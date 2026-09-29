@@ -4,7 +4,7 @@ import type { GameState } from '../../src/state/schema';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter8Choices } from '../../src/content/chapter8';
 import { chapter9Choices } from '../../src/content/chapter9';
-import { chapter12Choices } from '../../src/content/chapter12';
+import { chapter13Choices } from '../../src/content/chapter13';
 import { chapter14Choices } from '../../src/content/chapter14';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { c6, complete19, ids as ids6, settle6, text, walk } from '../chapter6-helpers';
@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 
-type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER10_CHOOSE' | 'CHAPTER11_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER14_CHOOSE';
+type Kind = 'CHAPTER7_CHOOSE' | 'CHAPTER8_CHOOSE' | 'CHAPTER9_CHOOSE' | 'CHAPTER10_CHOOSE' | 'CHAPTER11_CHOOSE' | 'CHAPTER12_CHOOSE' | 'CHAPTER13_CHOOSE' | 'CHAPTER14_CHOOSE';
 const choose = (s: GameState, kind: Kind, id: string) => {
   const next = act(s, { type: kind, id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase);
@@ -39,10 +39,10 @@ const c14 = (s: GameState, id: string) => {
 };
 const walk14 = (s: GameState, path: string[]) => path.reduce(c14, s);
 
-type Build = { terms?: string[]; key?: string; ch8: string[]; ch10?: string[]; ch11?: string[]; ch12?: string[]; flags?: Record<string, string> };
+type Build = { terms?: string[]; key?: string; ch8: string[]; ch10?: string[]; ch11?: string[]; ch12?: string[]; ch13?: string[]; flags?: Record<string, string> };
 /** A real save (the maximal-julian golden) through Chapter 6 on the Julian workroom, Executive Chapters 7 and 8, the
- * Chapter 9 bridge, and Executive Chapters 10–12 (by default refusing the calendar and the pen, and not telling him), to
- * its end. `flags` override keys or stand in for the planned Executive Chapter 13 key (not replayable). */
+ * Chapter 9 bridge, and Executive Chapters 10–13 (by default refusing the calendar, the pen and the placement, and never
+ * telling him), to its end. `flags` override keys (not replayable). */
 function toBridge(b: Build) {
   let s = walk(complete19('maximal-julian'), ['begin', 'benefit-accept']);
   s = c6(s, ids6(s).includes('expect-narrow') ? 'expect-narrow' : 'expect-clarify');
@@ -74,6 +74,8 @@ function toBridge(b: Build) {
     s = choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
   for (const id of ['begin-executive', ...(b.ch12 ?? ['x12-changi-go', 'x12-tan-listen', 'x12-evening-hotel', 'x12-search-wardrobe', 'x12-caught-hide', 'x12-ashby-nell', 'x12-morning-errands', 'x12-nora-go', 'x12-afternoon-sleep', 'x12-tell-not', 'x12-harbour-quiet', 'x12-night-alone'])])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
+  for (const id of ['begin-executive', ...(b.ch13 ?? ['x13-placement-go', 'x13-tell-notyet', 'x13-answer-refuse', 'x13-vigil-silent', 'x13-twoam-on', 'x13-told-never'])])
+    s = choose(s, 'CHAPTER13_CHOOSE', 'chapter13.' + id);
   if (b.flags) s = Object.assign(structuredClone(s), { choices: { ...s.choices, ...b.flags } });
   return s;
 }
@@ -83,14 +85,16 @@ const TRUSTED8 = ['x8-light-on', 'x8-fav-diary', 'x8-diary-hold', 'x8-fav-paper'
 /** Ch8: takes the car, the card and the call; cold with Sloane; keeps a copy of page thirty-one. */
 const KEPT8 = ['x8-light-off', 'x8-fav-car', 'x8-car-take', 'x8-fav-card', 'x8-card-take', 'x8-fav-fixer', 'x8-fixer-take', 'x8-sloane-cold', 'x8-file-keep', 'x8-late-alone'];
 
-it('bridges from the Executive Chapter 12 to The Signature while Chapter 13 is in development', () => {
+it('enters The Signature straight from the Executive Chapter 13: no bridge', () => {
   const s = toBridge({ ch8: TRUSTED8 });
-  expect(`${s.scene}.${s.phase}`).toBe('chapter12.complete');
-  expect(chapter12Choices(s)).toEqual([]);
+  expect(`${s.scene}.${s.phase}`).toBe('chapter13.complete');
+  expect(chapter13Choices(s)).toEqual([]);
+  expect(chapter14Choices(s).map((c) => c.label)).toEqual(['Monday']);
   expect(ids(s)).toEqual(['begin-executive']);
   const called = c14(s, 'begin-executive');
   expect(called.phase).toBe('called');
-  expect(text(called)).toContain('[Chapter 13 · executive road — in development]');
+  expect(text(called)).not.toContain('· executive road — in development]');
+  expect(text(called)).toContain('audit committee');
   expect(text(called)).toContain('L.S.F. Advisory has invoked clause 14.3.');
   expect(text(called)).toContain('You told me. Months ago, on the phone at midnight');
   const silence = c14(called, 'x14-to-him');

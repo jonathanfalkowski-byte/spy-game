@@ -8,8 +8,10 @@ Each chapter gets its own design doc before build, as on Predator. Built so far 
 through an in-development bridge. The unique spine is complete and deepened. Shared variants: Ch10, "A Lovely Man"
 ([EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md](EXECUTIVE_CHAPTER_10_A_LOVELY_MAN_DESIGN.md)), built and deepened, and Ch11,
 "The Good Pen" ([EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md](EXECUTIVE_CHAPTER_11_THE_GOOD_PEN_DESIGN.md)), built and deepened, and Ch12,
-"Whose Face" ([EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md](EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md)), built pass 1. The Ch14
-bridge now starts at Ch12's end. Next: Ch13, the shared placement, and what she tells Julian and when.
+"Whose Face" ([EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md](EXECUTIVE_CHAPTER_12_WHOSE_FACE_DESIGN.md)), built and deepened, and Ch13,
+"Held" ([EXECUTIVE_CHAPTER_13_HELD_DESIGN.md](EXECUTIVE_CHAPTER_13_HELD_DESIGN.md)), built pass 1. **The Executive road now
+runs from Ch7 to Ch14 without a gap**; the in-development bridge into Ch14 is only a fallback. Next: deepening Ch13,
+then the Act III finale and Act IV variants (Ch15–18).
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

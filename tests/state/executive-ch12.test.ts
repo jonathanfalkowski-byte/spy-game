@@ -134,6 +134,7 @@ it('tells him who she is: Mrs Tan, the schedule, Ashby by Iris’s card, Nora an
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
   // Chapter 14 (through its bridge while Chapter 13 is in development).
+  vi.stubEnv('VITE_EVE_CHAPTER13', '0');
   const called = choose(done, 'CHAPTER14_CHOOSE', 'chapter14.begin-executive');
   expect(text(called)).toContain('[Chapter 13 · executive road — in development]');
 });

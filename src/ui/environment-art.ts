@@ -310,6 +310,13 @@ const byNode: Record<string, Key> = {
   'chapter13.late': 'apartmentNight',
   'chapter13.friday': 'apartmentDay',
   'chapter13.ledger': 'apartmentNight',
+  // The Executive road: Held (the shared placement).
+  'chapter13.placement': 'reviewRoom',
+  'chapter13.days': 'helixWorkroom',
+  'chapter13.wednesday': 'apartmentNight',
+  'chapter13.claremont': 'harbourRoom',
+  'chapter13.twoam': 'car',
+  'chapter13.saturday': 'apartmentDay',
   // Chapter 14 (stand-ins until EVE Art's frames: Sloane under the wall, Maya's kitchen, the reading room, the fire escape).
   'chapter14.door': 'apartmentNight',
   'chapter14.order': 'apartmentDay',

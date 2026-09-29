@@ -38,7 +38,10 @@
 - **Ch14** (built): `exec.told13` (before / after / never) is the key this chapter must set, and it counts toward
   trust. **Ch14's truth scene** covers Celeste's orders; this chapter covers what was done to her.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/EXECUTIVE_CHAPTER_13_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_13_SCRIPT.md); code: `src/content/chapter13-executive.ts`.
+It is entered from an Executive `chapter12.complete`, and Ch14 follows from its end with no bridge. It runs ~0.6–1.1k
+words on one path.
 
 ---
 

@@ -909,9 +909,12 @@ export function chapter14Blocks(s: GameState): Block[] {
   return [];
 }
 
-/** Where the Executive road's in-development bridge to Chapter 14 starts: the last of Chapters 9–12 that is playable. */
+/** Where the Executive road enters Chapter 14: from its Chapter 13, or the last of Chapters 9–12 that is playable. */
 function executiveBridgeFrom14(s: GameState): boolean {
-  if (s.scene === 'chapter12') return true;
+  // Since Executive Chapter 13 (Held), the road runs straight in from chapter13.complete; the bridge is only a fallback
+  // when a chapter before it is not playable.
+  if (s.scene === 'chapter13') return true;
+  if (s.scene === 'chapter12') return import.meta.env.VITE_EVE_CHAPTER13 !== '1';
   if (s.scene === 'chapter11') return import.meta.env.VITE_EVE_CHAPTER12 !== '1';
   if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
   if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
@@ -923,9 +926,9 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (s.scene === 'chapter13' && s.phase === 'complete' && ownPower(s))
     return [offer14('begin', 'Let her in', 'Sloane, on your landing, asking.', 'door')];
   if (s.scene === 'chapter13' && s.phase === 'ledger' && isPredator14(s)) return [beginPredator14()];
-  // The Executive road: an in-development bridge from its Chapter 12 until its Chapter 13 exists (from the last
-  // playable chapter before it otherwise).
-  if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14()];
+  // The Executive road: from its Chapter 13 (Held), or through the in-development bridge from the last playable chapter
+  // before it.
+  if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14(s)];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);

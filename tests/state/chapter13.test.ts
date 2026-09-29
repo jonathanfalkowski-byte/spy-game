@@ -68,7 +68,9 @@ const SEXUAL = /\b(undress\w*|naked|nude|breasts?|thighs?|kiss\w*|moan\w*|sex\w*
 it('opens after an own-power Chapter 12 ending with a content notice, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
   expect(chapter13Choices(start())[0].hint).toContain('Content notice');
-  expect(ids(start({ 'route.lane': 'executive' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual([]);
+  // The Executive road has its own Chapter 13 (Held), entered from its own Chapter 12.
+  expect(ids(start({ 'route.lane': 'executive' }))).toEqual(['begin-executive']);
   const brief = c13(start(), 'begin');
   expect(brief.history.at(-1)!.blocks[0]).toEqual({ kind: 'notice', text: CONTENT_NOTICE13 });
   vi.stubEnv('VITE_EVE_CHAPTER13', '');
