@@ -145,10 +145,21 @@ const NELL16 = ['begin-executive', 'x16-case-set', 'x16-aim-nell', 'x16-inside-n
 const toSeventeen = (b: Build, ch14: string[], ch15: string[], ch16: string[]) => walk16(toSixteen(b, ch14, ch15), ch16);
 
 const ids17 = (s: GameState) => chapter17Choices(s).map((c) => c.id.replace(/^chapter17\./, ''));
-const c17 = (s: GameState, id: string) => {
+const once17 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER17_CHOOSE', id: 'chapter17.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids17(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the chair, the recess, the pen): take the neutral pick when it is in the way. */
+const NEUTRAL17 = ['x17-chair-stand', 'x17-recess-table', 'x17-pen-leave'];
+const c17 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids17(y).includes(id); i++) {
+    const n = NEUTRAL17.find((d) => ids17(y).includes(d));
+    if (!n) break;
+    y = once17(y, n);
+  }
+  return once17(y, id);
 };
 const walk17 = (s: GameState, path: string[]) => path.reduce(c17, s);
 const ch17 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter17.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -170,7 +181,9 @@ it('enters Collateral from the Executive long room; Ch16 no longer says Chapter 
   expect(`${product.scene}.${product.phase}`).toBe('chapter17.product');
   expect(ch17(product)).toContain('by your catalogue number');
   expect(ch17(product)).toContain('Black. You did dare.');
-  expect(ids17(product)).toEqual(['x17-open-room', 'x17-open-celeste', 'x17-open-silent']);
+  expect(ch17(product)).toContain('waits to see which you take');
+  expect(ids17(product)).toEqual(['x17-chair-foot', 'x17-chair-beside', 'x17-chair-stand']);
+  expect(ids17(c17(product, 'x17-chair-foot'))).toEqual(['x17-open-room', 'x17-open-celeste', 'x17-open-silent']);
 });
 
 it('the term, resigned: Julian reads 14.3 into the minutes, Sloane is vouched for, the gift refused; it authenticates', () => {
@@ -185,8 +198,12 @@ it('the term, resigned: Julian reads 14.3 into the minutes, Sloane is vouched fo
   expect(ch17(officer)).toContain('You put the small card on the table, face up');
   expect(ch17(officer)).toContain('Kind. Will not survive us.');
   expect(ch17(officer)).toContain('She’s right about the first part.');
-  const gift = c17(officer, 'x17-sloane-vouch');
-  expect(gift.choices['act4.sloane']).toBe('vouch');
+  const recess = c17(officer, 'x17-sloane-vouch');
+  expect(recess.choices['act4.sloane']).toBe('vouch');
+  expect(ch17(recess)).toContain('the board will take five minutes');
+  expect(ids17(recess)).toEqual(['x17-recess-celeste', 'x17-recess-julian', 'x17-recess-table']);
+  const gift = c17(recess, 'x17-recess-julian');
+  expect(ch17(gift)).toContain('which has come loose');
   expect(ch17(gift)).toContain('All you have to do is stay.');
   expect(ch17(gift)).toContain('Whatever you choose, don’t choose it for me. I’m not the reason.');
   const wall = c17(gift, 'x17-gift-refuse');
@@ -199,7 +216,10 @@ it('the term, resigned: Julian reads 14.3 into the minutes, Sloane is vouched fo
   expect(tally.choices['act4.nell-said']).toBe('eleanor');
   expect(ch17(tally)).toContain('Celeste is asked to resign her seat, tonight');
   expect(ch17(tally)).toContain('Clause 14.3 struck from every Helix facility, tonight');
-  const alone = c17(tally, 'x17-tally-on');
+  expect(ch17(tally)).toContain('A good pen.');
+  expect(ids17(tally)).toEqual(['x17-pen-julian', 'x17-pen-sign', 'x17-pen-leave']);
+  const alone = walk17(tally, ['x17-pen-julian', 'x17-tally-on']);
+  expect(ch17(alone)).toContain('I did. Twice.');
   expect([alone.choices['act4.board'], alone.choices['act4.terms']]).toEqual(['resigned', 'full']);
   expect(ch17(alone)).toContain('Did you ever like being her?');
   expect(ch17(alone)).toContain('He survived us. I didn’t expect that.');
@@ -222,8 +242,9 @@ it('exit, diminished: she reads the clause in his name, he texts from the kerb, 
   const gift = c17(clause, 'x17-press-cost');
   expect(gift.phase).toBe('gift');
   expect(ch17(gift)).toContain('Owen Marsh, who cycles to work.');
-  expect(ch17(gift)).toContain('Don’t choose it for me.');
+  expect(ids17(gift)).toEqual(['x17-recess-celeste', 'x17-recess-table']);
   const wall = c17(gift, 'x17-gift-laugh');
+  expect(ch17(wall)).toContain('Don’t choose it for me.');
   expect(ch17(wall)).toContain('I’m still here.');
   const done = walk17(wall, ['x17-named-wait', 'x17-tally-on', 'x17-last-no']);
   expect([done.choices['act4.board'], done.choices['act4.terms'], done.choices['act4.nell-said']]).toEqual(['diminished', 'partial', 'no']);
@@ -249,4 +270,29 @@ it('drawing Celeste out prices the gift in her own words, and moves the board', 
   expect(ch17(done)).toContain('Mr Marsh’s inquiry, closed.');
   expect(done.choices['act4.board']).toBe('diminished');
   expect(done.choices['act4.nell-said']).toBe('evie');
+});
+
+it('deepening: the chair at her right, the corridor with Celeste, and her own name on the minute', () => {
+  const s = toSeventeen({ key: 'key-accept', ch8: KEPT8 }, SPEND14, CARD15, EXIT16);
+  const chair = walk17(s, ['begin-executive', 'x17-chair-beside']);
+  expect(chair.choices['c17.x-chair']).toBe('beside');
+  expect(ch17(chair)).toContain('she looks away first');
+  const recess = walk17(chair, ['x17-open-celeste', 'x17-press-clause', 'x17-recess-celeste']);
+  expect(recess.choices['c17.x-recess']).toBe('celeste');
+  expect(ch17(recess)).toContain('I taught myself to look back.');
+  expect(ch17(recess)).toContain('neither of you moves an inch');
+  const done = walk17(recess, ['x17-gift-refuse', 'x17-named-ask', 'x17-pen-sign', 'x17-tally-on', 'x17-last-no']);
+  expect(done.choices['c17.x-pen']).toBe('sign');
+  expect(ch17(done)).toContain('Your own name, in your own hand');
+  expect(ch17(done)).toContain('her hand is not quite steady');
+  expect(ch17(done)).not.toMatch(SEXUAL);
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: the neutral picks keep the room moving', () => {
+  const done = walk17(toSeventeen({ ch8: KEPT8 }, FALL14, OWN15, NELL16), ['begin-executive', 'x17-chair-stand', 'x17-open-silent', 'x17-press-cost', 'x17-recess-table', 'x17-gift-refuse', 'x17-named-wait', 'x17-pen-leave', 'x17-tally-on', 'x17-last-orchid']);
+  expect(['x-chair', 'x-recess', 'x-pen'].map((k) => done.choices['c17.' + k])).toEqual(['stand', 'table', 'leave']);
+  expect(ch17(done)).toContain('and straighten, and wait');
+  expect(ch17(done)).toContain('slides it the length of the table');
+  expect(ch17(done)).toContain('Let them sign it');
 });

@@ -11,11 +11,21 @@
  * board decides (resigned / diminished / closed) from the case and who is in the room, and the aim becomes terms (full /
  * partial / none). One minute alone: "Did you ever like being her?"; "He survived us." Nothing sexual on screen; the offer
  * is refusable at no cost; Julian is never a trap. Entered from an Executive `chapter16.complete`; ends at a Chapter 18
- * in-development stop, having written the shared act4.* keys for Ch17. Choice ids carry `x17-`. */
+ * in-development stop, having written the shared act4.* keys for Ch17. Choice ids carry `x17-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. Where she sits, before she opens (c17.x-chair =
+ * foot | beside | stand: the full length of the table from Celeste; the chair at Celeste's right, close enough for
+ * tuberose; or on her feet); Deverell's five-minute recess before the gift (c17.x-recess = celeste | julian | table:
+ * Celeste follows her into the corridor, attention and nothing touched; Julian, if he is inside, and the clasp he
+ * fastened that afternoon; or neither woman moves from the table); and the minute brought in for signing, with Celeste's
+ * good pen (c17.x-pen = julian | sign | leave: "Read it first."; her own name, in her own hand; or the board's). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 
 type C17Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
+const get17 = (s: GameState, k: string) => s.choices['c17.' + k];
+const set17 = (s: GameState, k: string, v = 'yes') => {
+  s.choices['c17.' + k] = v;
+};
 const key = (s: GameState, k: string) => s.choices[k];
 const setKey = (s: GameState, k: string, v = 'yes') => {
   s.choices[k] = v;
@@ -60,10 +70,35 @@ function productBlocks(s: GameState): Block[] {
   return [
     p('Celeste speaks first, of course: to the board, warmly, about the product. The reissue, performing beyond forecast. The public profile. The characteristic “which we priced in, as you will recall, Anton.” She introduces you to the table by your catalogue number.'),
     q('Celeste Laurent', wear === 'his' ? 'His dress. You kept it.' : wear === 'grey' ? 'Iris’s grey. How very loyal.' : 'Black. You did dare.'),
+    p('She says it to the table, not to you, the way an auctioneer reads a provenance: pleasantly, for the record, so that everybody present can see what they are being asked to value. Soames writes something down. The heavy man in the middle looks at your shoes.'),
+    p('There are seven chairs and six people. The seventh is at the foot of the table, the full length of it from Celeste, with a water glass already poured. And Celeste, still standing, rests one hand on the back of the empty chair at her own right, and smiles, and waits to see which you take.'),
   ];
 }
 
-function productChoices(): C17Choice[] {
+function chairChoices(): C17Choice[] {
+  const c = (id: 'foot' | 'beside' | 'stand', label: string, hint: string, body: Block[]) =>
+    offer('x17-chair-' + id, label, hint, 'product', (x) => {
+      set17(x, 'x-chair', id);
+      return body;
+    });
+  return [
+    c('foot', 'Take the chair at the foot', 'The full length of the table from her.', [
+      p('You take the chair at the foot, the one they set for you, and move the water glass an inch to the left, because it was put there for you, and sit down across the whole length of the table from her, like the other side of a negotiation.'),
+      q('Celeste Laurent', 'Opposite. Of course. You always did like to be looked at from a distance.'),
+    ]),
+    c('beside', 'Take the chair at her right', 'Close enough to smell the tuberose.', [
+      p('You walk the length of the table, past Deverell, past Soames and the three men with no names, and take the chair at her right, and she sits down beside you as if it had been her idea.'),
+      p('Close enough for tuberose, the same scent for twelve years. Close enough to see the powder at the corner of her mouth and the one grey hair she has let stay. She looks at you the way she looked at you the first time, in a room with better light: slowly, all of you, pricing it. You look back the same way, and for the first time in your life she looks away first.'),
+      q('Celeste Laurent', 'Darling. How brave.'),
+    ]),
+    c('stand', 'Stay on your feet', 'Let her be the one who sits.', [
+      p('You do not sit. You stand behind the chair at the foot with your hands on its back, and after a moment Celeste, who has stood in this room for twenty years while other people sat, sits down.'),
+    ]),
+  ];
+}
+
+function productChoices(s: GameState): C17Choice[] {
+  if (!get17(s, 'x-chair')) return chairChoices();
   const o = (id: 'room' | 'celeste' | 'silent', label: string, hint: string, body: Block[]) =>
     offer('x17-open-' + id, label, hint, 'clause', (x) => {
       setKey(x, 'act4.open', id);
@@ -72,7 +107,7 @@ function productChoices(): C17Choice[] {
   return [
     o('room', 'Speak to the board', '“I’m the product. I’d like to read you the warranty.”', [q('You', 'I’m the product. I’d like to read you the warranty.')]),
     o('celeste', 'Speak only to her', 'And make the board listen in.', [q('You', 'You told me once you keep everything. So do I, now. Shall we go through it?')]),
-    o('silent', 'Say nothing', 'Put the first card down and let it speak.', [p('You say nothing at all. You put the first card on the table, square it to the edge, and sit back.')]),
+    o('silent', 'Say nothing', 'Put the first card down and let it speak.', [p(key(s, 'c17.x-chair') === 'stand' ? 'You say nothing at all. You put the first card on the table, square it to the edge, and straighten, and wait.' : 'You say nothing at all. You put the first card on the table, square it to the edge, and sit back.')]),
   ];
 }
 
@@ -90,6 +125,8 @@ function clauseBlocks(s: GameState): Block[] {
       : [p('You read clause 14.3 into the minutes yourself, from page thirty-one, in his name: the fund takes first charge on the assets of the company it finances. You read it once, slowly, and then again.')]),
     p('Anton Deverell does not look at you. He looks at Celeste.'),
     q('Anton Deverell', 'Did we know about 14.3?'),
+    q('Celeste Laurent', 'Of course we knew, Anton. You initialled the template. You said it was elegant.'),
+    p('Deverell’s face does something slow and unhappy, the face of a man remembering a lunch. Soames takes her glasses off, and cleans them, and puts them back on, and looks at the chairman instead of the product for the rest of the hour.'),
   ];
 }
 
@@ -147,9 +184,47 @@ const heldLands: Record<string, Block[]> = {
   none: [p('You have nothing in your pocket. You put your hands flat on the table instead.'), q('You', 'I’m still here.')],
 };
 
-function giftBlocks(s: GameState): Block[] {
+function giftBlocks(): Block[] {
   return [
-    p('Celeste waits for the room to be quiet. Then she makes her last move, and it is the best she has ever made: not a threat. There is nothing left to threaten with. A gift.'),
+    p('Deverell takes his glasses off and puts them on the table, and says, to nobody, that the board will take five minutes. Chairs go back. The three men with no names go out together to the corridor to make telephone calls they will not describe to their wives.'),
+    t('Five minutes. She will use them. So will I.'),
+  ];
+}
+
+function recessChoices(s: GameState): C17Choice[] {
+  const r = (id: 'celeste' | 'julian' | 'table', label: string, hint: string, body: Block[]) =>
+    offer('x17-recess-' + id, label, hint, 'gift', (x) => {
+      set17(x, 'x-recess', id);
+      return [...body, ...offerBlocks(x)];
+    });
+  return [
+    r('celeste', 'Go out to the corridor', 'She will follow. She always did.', [
+      p('You go out into the corridor, to the tall black window at the end of it, and she follows, as you knew she would, and stands beside you, a hand’s width away, not touching, the two of you in the glass like one woman and her reflection twelve years apart.'),
+      q('Celeste Laurent', 'You’ve learned to stand still. I taught you that.'),
+      q('You', 'You taught me to be looked at. I taught myself to look back.'),
+      p('She does look, then: your mouth, your throat, the pulse there, your eyes, the long appraising look she has given a hundred girls on a hundred first evenings, and you let her, and give it back, and it is the most intimate thing that has ever passed between you, and neither of you moves an inch.'),
+      q('Celeste Laurent', 'He’ll bore you inside a year.'),
+      q('You', 'Then I’ll have been bored by somebody kind. You should try it.'),
+    ]),
+    ...(julianIn(s)
+      ? [
+          r('julian', 'Find Julian by the window', 'Five minutes. His.', [
+            p('Julian is at the window on the landing with his glasses in his hand, looking at the river as if it had been explained to him badly.'),
+            ...(key(s, 'act4.dressed-with') === 'julian'
+              ? [p('Without a word he turns you by the shoulder, gently, and finds the clasp at the nape of your neck, the one he fastened at four, which has come loose, and does it up again, his fingers cold and steady against your skin, and leaves his hand there one second longer than the clasp needs.'), q('Julian Mercer', 'Come back.'), q('You', 'I’m only in the next room.')]
+              : [p('He does not say anything clever. He puts his hand flat at the small of your back, once, the way you steady somebody on a boat, and takes it away.'), q('Julian Mercer', 'You’re doing it.'), q('You', 'We are.')]),
+          ]),
+        ]
+      : []),
+    r('table', 'Stay at the table', 'Neither of you gets up.', [
+      p('You stay where you are. So does Celeste. For five minutes the two of you are the only people in the long room, not speaking, the water jug between you, while the empty frames look down and the river goes by in the black glass. She pours herself a glass of water, and then, after a moment, one for you, and slides it the length of the table, and you let it stand there untouched until the board comes back.'),
+    ]),
+  ];
+}
+
+function offerBlocks(s: GameState): Block[] {
+  return [
+    p('The board comes back in. Celeste waits for the room to be quiet. Then she makes her last move, and it is the best she has ever made: not a threat. There is nothing left to threaten with. A gift.'),
     q('Celeste Laurent', 'Sit with us, darling, and Helix is released tonight. 14.3 struck from every deal. Julian keeps his chair. You can have everything you came for, as a present. All you have to do is stay.'),
     p('The board, frightened, is half ready to agree. It is everything you came for, handed to you by the one person who owns you.'),
     ...(julianIn(s)
@@ -158,7 +233,8 @@ function giftBlocks(s: GameState): Block[] {
   ];
 }
 
-function giftChoices(): C17Choice[] {
+function giftChoices(s: GameState): C17Choice[] {
+  if (!get17(s, 'x-recess')) return recessChoices(s);
   const g = (id: 'refuse' | 'draw' | 'laugh', label: string, hint: string, body: Block[]) =>
     offer('x17-gift-' + id, label, hint, 'wall', (x) => {
       setKey(x, 'act4.offer', id);
@@ -227,10 +303,37 @@ function tallyBlocks(s: GameState): Block[] {
     p('Seven o’clock. Deverell moves, not to punish Celeste but to save Meridian: the firm must be seen to have acted.'),
     p(b.board === 'resigned' ? 'Celeste is asked to resign her seat, tonight, and does, standing, with her hands folded, as if accepting a small award.' : b.board === 'diminished' ? 'Celeste keeps her seat, and loses the room. She will not speak for this board again, and everybody at the table knows it, including her.' : 'Celeste keeps her seat, and knows it will not last.'),
     p(grant),
+    p('Deverell’s secretary brings the minute in, one page, typed in the next room while you talked. And Celeste, without being asked, takes a pen out of her bag and lays it across the page: black and gold and heavy. A good pen.'),
+    ...(key(s, 'exec.sign11') === 'signed' ? [t('The same pen. I carried it across this room to him once, with my hand on his shoulder, and watched him sign with it.')] : []),
   ];
 }
 
-function tallyChoices(): C17Choice[] {
+function penChoices(s: GameState): C17Choice[] {
+  const pn = (id: 'julian' | 'sign' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('x17-pen-' + id, label, hint, 'tally', (x) => {
+      set17(x, 'x-pen', id);
+      return body;
+    });
+  return [
+    ...(julianIn(s)
+      ? [
+          pn('julian', 'Hand the pen to Julian', '“Read it first.”', [
+            q('You', 'Read it first.'),
+            p('He reads it. Then he reads it again, the whole page, slowly, with his glasses on, while the people who own a great deal of the world wait for him, and nobody hurries him, and he signs it at the bottom as a witness, in a hand that does not shake.'),
+            q('Julian Mercer', 'I did. Twice.'),
+          ]),
+        ]
+      : []),
+    pn('sign', 'Sign it yourself', 'Your own name. Not the number.', [
+      p('You take her pen, and sign as a witness at the bottom of the minute: not the catalogue number she introduced you by. Your own name, in your own hand, which has changed this year, and which Soames reads upside down, and nods at.'),
+      p('Then you hand the good pen back to Celeste, cap first, the way she taught you to hand a gentleman anything sharp.'),
+    ]),
+    pn('leave', 'Let the board sign its own minute', 'Leave the pen where it lies.', [p('You leave the pen where it lies. It is their minute. Let them sign it, one after another, down the table, while you watch each of them read what they are signing, for once.')]),
+  ];
+}
+
+function tallyChoices(s: GameState): C17Choice[] {
+  if (!get17(s, 'x-pen')) return penChoices(s);
   return [
     offer('x17-tally-on', 'Let the board file out', 'One minute.', 'alone', (x) => {
       const b = board17x(x);
@@ -246,8 +349,10 @@ function tallyChoices(): C17Choice[] {
 function aloneBlocks(): Block[] {
   return [
     p('The board files out. For one minute the two of you are alone in the long room under the empty frames.'),
+    p('Celeste does not go to the window. She stays at the table, one hand on the back of a chair, and for a moment she looks her age, which nobody in this building has ever been allowed to see, and then she doesn’t.'),
     q('Celeste Laurent', 'Did you ever like being her?'),
-    p('She holds out a white orchid, from nowhere, the way she always does.'),
+    t('Her. The one in the catalogue. The one who laughed at his jokes in Singapore and wore what she was sent. The one Celeste made, out of a girl with good bones and nowhere to go.'),
+    p('She holds out a white orchid, from nowhere, the way she always does, and it is only then that you see her hand is not quite steady.'),
     q('Celeste Laurent', 'He’s a lovely man. He survived us. I didn’t expect that.'),
   ];
 }
@@ -280,7 +385,7 @@ export function executiveBlocks17(s: GameState): Block[] {
   if (s.phase === 'product') return productBlocks(s);
   if (s.phase === 'clause') return clauseBlocks(s);
   if (s.phase === 'officer') return officerBlocks(s);
-  if (s.phase === 'gift') return giftBlocks(s);
+  if (s.phase === 'gift') return giftBlocks();
   if (s.phase === 'wall') return wallBlocks();
   if (s.phase === 'tally') return tallyBlocks(s);
   if (s.phase === 'alone') return aloneBlocks();
@@ -289,12 +394,12 @@ export function executiveBlocks17(s: GameState): Block[] {
 }
 
 export function executiveChoices17(s: GameState): C17Choice[] {
-  if (s.phase === 'product') return productChoices();
+  if (s.phase === 'product') return productChoices(s);
   if (s.phase === 'clause') return clauseChoices(s);
   if (s.phase === 'officer') return officerChoices();
-  if (s.phase === 'gift') return giftChoices();
+  if (s.phase === 'gift') return giftChoices(s);
   if (s.phase === 'wall') return wallChoices(s);
-  if (s.phase === 'tally') return tallyChoices();
+  if (s.phase === 'tally') return tallyChoices(s);
   if (s.phase === 'alone') return aloneChoices();
   return [];
 }

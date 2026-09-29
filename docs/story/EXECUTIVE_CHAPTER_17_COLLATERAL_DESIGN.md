@@ -35,8 +35,8 @@
 
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_17_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_17_SCRIPT.md); code: `src/content/chapter17-executive.ts`.
-It is entered from an Executive `chapter16.complete` and ends at the Chapter 18 in-development stop, ~0.65–0.73k words
-on one path. Build note: the
+It is entered from an Executive `chapter16.complete` and ends at the Chapter 18 in-development stop. It ran ~0.65–0.73k words
+on one path at pass 1, deepened 2026-09-29 to ~1.16–1.35k with three moments: the chair, the recess, and the pen. Build note: the
 board scores the case (thin 0 to overwhelming 3), plus 1 for Julian at the table and 1 for drawing Celeste out; 2 or more
 resigns her, 1 diminishes her, and 0 closes ranks.
 
