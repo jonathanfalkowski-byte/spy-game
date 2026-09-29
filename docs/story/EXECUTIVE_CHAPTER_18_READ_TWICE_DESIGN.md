@@ -44,7 +44,8 @@
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/EXECUTIVE_CHAPTER_18_SCRIPT.md](scripts/EXECUTIVE_CHAPTER_18_SCRIPT.md); code: `src/content/chapter18-executive.ts`.
 It is entered from an Executive `chapter17.complete` and ends at `read` (a seventh phase added in the build for the last
-card), ~0.95–1.33k words on one path. **The Executive road is complete, Chapters 7 to 18.**
+card). It ran ~0.95–1.33k words on one path at pass 1, deepened 2026-09-29 to ~1.27–1.79k with three moments: the
+lift, the dress, and the card kept out. **The Executive road is complete, Chapters 7 to 18.**
 
 ---
 

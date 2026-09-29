@@ -181,10 +181,21 @@ const exitEighteen = () => walk17(withCase(toSeventeen({ key: 'key-accept', ch8:
 const nellEighteen = () => walk17(withCase(toSeventeen({ ch8: KEPT8 }, FALL14, OWN15, NELL16), 'thin'), NELL17);
 
 const ids18 = (s: GameState) => chapter18Choices(s).map((c) => c.id.replace(/^chapter18\./, ''));
-const c18 = (s: GameState, id: string) => {
+const once18 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER18_CHOOSE', id: 'chapter18.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids18(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the lift, the dress, the card kept out): take the neutral pick when it is in the way. */
+const NEUTRAL18 = ['x18-lift-count', 'x18-wear-black', 'x18-card-none'];
+const c18 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids18(y).includes(id); i++) {
+    const n = NEUTRAL18.find((d) => ids18(y).includes(d));
+    if (!n) break;
+    y = once18(y, n);
+  }
+  return once18(y, id);
 };
 const walk18 = (s: GameState, path: string[]) => path.reduce(c18, s);
 const ch18 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter18.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -209,14 +220,24 @@ it('enters Read Twice from the Executive front door; Ch17 no longer says Chapter
 });
 
 it('the term, in full, with Julian: the office next door, the photograph, the page written by both; it authenticates', () => {
-  const settle = walk18(termEighteen(), ['begin-executive', 'x18-friday-julian']);
-  expect(ch18(settle)).toContain('Well.');
+  const lift = walk18(termEighteen(), ['begin-executive', 'x18-friday-julian']);
+  expect(ch18(lift)).toContain('Well.');
+  expect(ch18(lift)).toContain('The doors are closing.');
+  expect(ids18(lift)).toEqual(['x18-lift-julian', 'x18-lift-hold', 'x18-lift-count']);
+  const settle = c18(lift, 'x18-lift-julian');
+  expect(ch18(settle)).toContain('After you.');
   expect(ch18(settle)).toContain('Director, Counterparties');
   expect(ids18(settle)).toEqual(['x18-switch-armed', 'x18-switch-disarmed']);
   const keys = c18(settle, 'x18-switch-armed');
   expect([keys.choices['end.switch'], keys.choices['end.position']]).toEqual(['armed', 'term-full']);
   expect(ch18(keys)).toContain('I never took any of it.');
-  const dinner = c18(keys, 'x18-keys-none');
+  const dress = c18(keys, 'x18-keys-none');
+  expect(ch18(dress)).toContain('The wardrobe mirror, the good light');
+  expect(ids18(dress)).toEqual(['x18-wear-new', 'x18-wear-black']);
+  const dinner = c18(dress, 'x18-wear-new');
+  expect(dinner.choices['c18.x-wear']).toBe('new');
+  expect(ch18(dinner)).toContain('the colour of oxblood');
+  expect(ch18(dinner)).toContain('says, “Oh,” and nothing else');
   expect(ch18(dinner)).toContain('I said I’d tell you sitting down.');
   const photo = c18(dinner, 'x18-dinner-photo');
   expect(ch18(photo)).toContain('I signed the first 14.3 the week she went.');
@@ -293,4 +314,24 @@ it('the chosen night: offered only where it was chosen before, and stop is honou
   const faded = walk18(warm, ['x18-later-sex', 'x18-later-close']);
   expect(ch18(faded)).toContain('The scene fades.');
   expect(ch18(walk18(warm, ['x18-later-goodnight']))).toContain('he says “Saturday,” and goes');
+});
+
+it('deepening: the doors held for a girl running late, his dress worn as hers, and Nell’s card kept out', () => {
+  const s = withFlags(nellEighteen(), { 'act4.wear': 'his' });
+  const done = walk18(s, ['begin-executive', 'x18-friday-sleep', 'x18-lift-hold', 'x18-switch-armed', 'x18-keys-keep', 'x18-wear-his', 'x18-dinner-quiet', 'x18-home-none', 'x18-card-nell', 'x18-name-evelyn', 'x18-page-own', 'x18-later-quiet']);
+  expect(['x-lift', 'x-wear', 'x-card'].map((k) => done.choices['c18.' + k])).toEqual(['hold', 'his', 'nell']);
+  expect(ch18(done)).toContain('Read everything, darling. Twice.');
+  expect(ch18(done)).toContain('only a man glad to be remembered');
+  expect(ch18(done)).toContain('TWO SUGARS AND CINNAMON');
+  expect(ch18(done)).toContain('I wrote my own terms, and read them twice myself.');
+  const returned = walk18(s, ['begin-executive', 'x18-friday-sleep', 'x18-lift-count', 'x18-switch-armed', 'x18-keys-return']);
+  expect(ids18(returned)).toEqual(['x18-wear-new', 'x18-wear-black']);
+});
+
+it('deepening: the neutral picks keep the evening moving, and the first card goes in her purse', () => {
+  const done = walk18(termEighteen(), ['begin-executive', 'x18-friday-julian', 'x18-lift-count', 'x18-switch-disarmed', 'x18-keys-none', 'x18-wear-black', 'x18-dinner-terms', 'x18-home-julian', 'x18-card-first', 'x18-name-adrian', 'x18-page-write', 'x18-term-files', 'x18-later-quiet']);
+  expect(ch18(done)).toContain('one to forty-one');
+  expect(ch18(done)).toContain('You look like the first morning');
+  expect(ch18(done)).toContain('in the back of your purse');
+  expect(replay(done.ledger, 19)).toEqual(done);
 });

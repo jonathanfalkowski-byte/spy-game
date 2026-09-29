@@ -18,8 +18,8 @@ Executive position. Ch16 deepened. Ch17, "Collateral"
 ([EXECUTIVE_CHAPTER_17_COLLATERAL_DESIGN.md](EXECUTIVE_CHAPTER_17_COLLATERAL_DESIGN.md)), built pass 1: 14.3 read into
 Meridian's minutes, and the term offered as a gift. Ch17 deepened. Ch18, "Read Twice"
 ([EXECUTIVE_CHAPTER_18_READ_TWICE_DESIGN.md](EXECUTIVE_CHAPTER_18_READ_TWICE_DESIGN.md)), built pass 1: WHAT DO I OWE
-HIM? answered, and a blank page written by both. **The Executive road is complete, Chapters 7 to 18.** Next: deepen
-Ch18.
+HIM? answered, and a blank page written by both. **The Executive road is complete, Chapters 7 to 18,** and every
+chapter is deepened.
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

@@ -12,7 +12,13 @@
  * ADDITIONAL TERMS, written by both and read twice (end.page = together | own; end.term = stay | door | files), a chosen
  * night (heat 3, consent in character, fades) or a quiet one (end.later), and the last card. Entered from an Executive
  * `chapter17.complete`; the last chapter of the route: nothing is offered after `read`. Julian is never a trap, never
- * the price, and never the only good road. Choice ids carry `x18-`. */
+ * the price, and never the only good road. Choice ids carry `x18-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. Monday, the lift at Helix one more time, before
+ * the position (c18.x-lift = julian | hold | count: Julian from the lobby, "After you."; the doors held for a girl
+ * running late, who might have been her; or the floors counted the way Adrian counted them); dressing for the dinner
+ * (c18.x-wear = his | new | black: the dress on his card, if she still has it; something she bought herself, oxblood;
+ * or black); and the one card she keeps out of the shoebox (c18.x-card = first | nell | none). More of Friday, the
+ * dinner and the year. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -87,6 +93,7 @@ function fridayBlocks(s: GameState): Block[] {
       : j === 'waiting'
         ? [p('At seven your phone lights up. Julian: Well?')]
         : [p('At seven your phone lights up. Julian: Awake? I’m told there’s a café on your corner that does terrible coffee.')]),
+    t('The first morning in a year that nobody has an appointment for. I do not know what to do with my hands.'),
   ];
 }
 
@@ -161,14 +168,43 @@ function positionLines(s: GameState): Block[] {
   ];
 }
 
-function settleBlocks(s: GameState): Block[] {
+function settleBlocks(): Block[] {
+  return [
+    p('Monday, five to nine. The lift at Helix, one more time: the same brushed steel, the same mirror at the back, the same lift where a man once told you the most dangerous thing about himself between two floors, because he did not want you to find it in a file.'),
+    p('The doors are closing.'),
+  ];
+}
+
+function drawerBlocks(s: GameState): Block[] {
   return [
     ...positionLines(s),
     p('And in a drawer, the switch: the letters, the copies, the people with keys to it. Everything that could still take Meridian apart, if anybody ever came for you again.'),
   ];
 }
 
+function liftChoices(): C18Choice[] {
+  const l = (id: 'julian' | 'hold' | 'count', label: string, hint: string, body: Block[]) =>
+    offer('x18-lift-' + id, label, hint, 'settle', (x) => {
+      setKey(x, 'c18.x-lift', id);
+      return [...body, ...drawerBlocks(x)];
+    });
+  return [
+    l('julian', 'A hand between the doors', 'You know whose.', [
+      p('A hand between the doors, and they open again, and Julian gets in with his coat over his arm, and stands beside you, and presses nothing, because forty-one is already lit.'),
+      p('Neither of you says anything for thirty-nine floors. In the mirror at the back you can see the two of you standing exactly as far apart as two colleagues should, and his little finger resting against yours on the rail, which nobody could possibly see.'),
+      q('Julian Mercer', 'After you.'),
+    ]),
+    l('hold', 'Hold the doors', 'Somebody is running.', [
+      p('You put your hand out and hold the doors for a girl running across the lobby in heels she has not learned yet, with a folder held to her chest and a lanyard with a photograph on it that does not look like her. She gets in, breathless, and thanks you, and does not know who you are.'),
+      p('She gets out at twenty-six. You notice, as the doors close, that she read the floor directory first, all of it, before she pressed anything.'),
+      t('Good. Read everything, darling. Twice.'),
+    ]),
+    l('count', 'Let them close', 'Count the floors.', [p('You let the doors close and count the floors on the way up, the way Adrian used to count floors in buildings he did not own, one to forty-one, and for the first time the number at the top is not a threat.')]),
+  ];
+}
+
 function settleChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.x-lift')) return liftChoices();
   const sw = (id: 'armed' | 'handed' | 'disarmed', label: string, hint: string, to: string, body: Block[]) =>
     offer('x18-switch-' + id + (to ? '-' + to : ''), label, hint, 'keys', (x) => {
       setKey(x, 'end.switch', id);
@@ -218,6 +254,13 @@ function keysChoices(s: GameState): C18Choice[] {
 
 function dinnerBlocks(): Block[] {
   return [
+    p('Saturday, seven o’clock. The wardrobe mirror, the good light, and an hour you have given yourself on purpose. You do your face the way the Vesper taught you, and then take half of it off again, the way nobody taught you.'),
+    t('The first dinner in a year I am paying for. I would like to look like somebody who can.'),
+  ];
+}
+
+function restaurantBlocks(): Block[] {
+  return [
     p('Saturday night. A small restaurant in Pimlico, his choice, eight tables and a waiter who has known him for years. Your bill: you booked it yourself, and told the waiter so on the telephone, and the waiter, who has clearly never been told that about Mr Mercer’s table, sounded delighted.'),
     p('He arrives with something flat in his coat pocket, and when he sits down he takes it out and puts it on the tablecloth by the bread: a plain silver frame, face down, squared to the edge of the table.'),
     q('Julian Mercer', 'I said I’d tell you sitting down. I’m sitting down.'),
@@ -246,7 +289,37 @@ function answerBlocks(s: GameState): Block[] {
   ];
 }
 
+const hasHisDress = (s: GameState) => key(s, 'act4.wear') === 'his' && key(s, 'end.keys') !== 'return' && key(s, 'exec.cost15') !== 'kept';
+
+function arrivalLine(s: GameState): Block[] {
+  const w = key(s, 'c18.x-wear');
+  return w === 'new'
+    ? [p('He stands up when you come in, and then forgets to sit down again, and the waiter has to pull out your chair, and Julian Mercer, who has chaired rooms full of men who own ports, says, “Oh,” and nothing else for a full ten seconds.')]
+    : w === 'his'
+      ? [p('He stands up when you come in, and sees the dress, and something goes across his face that is not ownership and never was: only a man glad to be remembered.')]
+      : [p('He stands up when you come in, and takes your coat himself, and says, quietly, “You look like the first morning,” and you realise he means it as the highest thing he knows how to say.')];
+}
+
+function wearChoices(s: GameState): C18Choice[] {
+  const w = (id: 'his' | 'new' | 'black', label: string, hint: string, body: Block[]) =>
+    offer('x18-wear-' + id, label, hint, 'dinner', (x) => {
+      setKey(x, 'c18.x-wear', id);
+      return [...body, ...restaurantBlocks(), ...arrivalLine(x)];
+    });
+  return [
+    ...(hasHisDress(s)
+      ? [w('his', 'The dress on his card', 'Worn as yours. It always was, in the end.', [p('The dress from the window on Sloane Street. You step into it and reach back for the zip and do it up yourself, all the way, and it is the easiest thing in the world, and you stand in front of the mirror for a moment longer than you need to, because you can.')])]
+      : []),
+    w('new', 'Something you bought yourself', 'Oxblood. Nobody chose it for you.', [
+      p('On Saturday afternoon, with your own money, in a shop nobody sent you to, you bought a dress the colour of oxblood that no stylist at the Vesper would ever have let you near: bare shoulders, a slit that means it, and a price you had to think about.'),
+      p('You put it on, and the earrings you bought yourself the week you signed your own contract, and nothing else that anybody gave you, and look at the woman in the mirror, and she looks right back, and you both know she is going to be trouble.'),
+    ]),
+    w('black', 'Black', 'It has never once let you down.', [p('Black, and the good heels, and your hair up. It has never once let you down, and tonight it is not going to start.')]),
+  ];
+}
+
 function dinnerChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.x-wear')) return wearChoices(s);
   const d = key(s, 'c18.x-dinner');
   if (d === 'photo' && !key(s, 'end.photo')) {
     const ph = (id: 'up' | 'down' | 'his', label: string, hint: string, body: Block[]) =>
@@ -314,11 +387,24 @@ function signedBlocks(s: GameState): Block[] {
   return [
     p('The wardrobe door, the last time. You take every card down, one by one, and read each one before it goes in the shoebox.'),
     ...lines.map((l) => p(l)),
-    p('Last of all, the one at the top, with nothing on it yet. The name.'),
   ];
 }
 
-function signedChoices(): C18Choice[] {
+function cardChoices(): C18Choice[] {
+  const c = (id: 'first' | 'nell' | 'none', label: string, hint: string, body: Block[]) =>
+    offer('x18-card-' + id, label, hint, 'signed', (x) => {
+      setKey(x, 'c18.x-card', id);
+      return [...body, p('Last of all, the one at the top, with nothing on it yet. The name.')];
+    });
+  return [
+    c('first', 'Keep the first card out', 'JULIAN MERCER. CHIEF OF STAFF.', [p('You keep one card out of the shoebox: the first, from a year ago, JULIAN MERCER. CHIEF OF STAFF., with the question underneath it in pencil and the answer in ink. You put it in the back of your purse, where you will find it in ten years, looking for a receipt, and have to sit down on the floor of whatever shop you are in.')]),
+    c('nell', 'Keep Nell’s card out', 'Two sugars and cinnamon.', [p('You keep one card out of the shoebox: NELL, in capitals, and under it in your own hand, TWO SUGARS AND CINNAMON. SHE HATED ORCHIDS. You pin it inside the kitchen cupboard, where the coffee is, where you will see it every morning and nobody else ever will.')]),
+    c('none', 'Put them all in the box', 'Every one. Lid on.', [p('You put every one of them in the box, and the lid on, and the box on the top shelf of the wardrobe, and leave the door a clean white rectangle of wood with the pin holes still in it, like stars.')]),
+  ];
+}
+
+function signedChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.x-card')) return cardChoices();
   const n = (id: 'adrian' | 'evelyn' | 'new', label: string, hint: string, body: Block[]) =>
     offer('x18-name-' + id, label, hint, 'page', (x) => {
       setKey(x, 'end.name', id);
@@ -346,6 +432,7 @@ function pageBlocks(s: GameState): Block[] {
             ? 'A year later. The smaller flat, the window that looks at another window, a job nobody placed you in, and a plant on the sill that, against every expectation, is alive.'
             : 'A year later. Holland Village, Nora’s kitchen, Nell’s photograph on the wall, and two sugars and cinnamon in your coffee, because somebody should go on taking it that way.',
     ),
+    p('It rains in the afternoon and clears at six, and the sky goes the colour of pewter and then of nothing, and the lights come on across the city one at a time, as if somebody were counting them.'),
     p(with_ === 'julian' ? 'Julian comes round at eight with a bottle of wine and a single sheet of paper, and puts the paper on the table between you. Across the top, in his careful hand: ADDITIONAL TERMS.' : 'At eight you sit down at the table with a single sheet of paper and write across the top of it, in your own hand: ADDITIONAL TERMS.'),
   ];
 }
@@ -454,7 +541,7 @@ function readBlocks(s: GameState): Block[] {
 
 export function executiveBlocks18(s: GameState): Block[] {
   if (s.phase === 'friday') return fridayBlocks(s);
-  if (s.phase === 'settle') return settleBlocks(s);
+  if (s.phase === 'settle') return settleBlocks();
   if (s.phase === 'keys') return keysBlocks(s);
   if (s.phase === 'dinner') return dinnerBlocks();
   if (s.phase === 'signed') return signedBlocks(s);
@@ -468,7 +555,7 @@ export function executiveChoices18(s: GameState): C18Choice[] {
   if (s.phase === 'settle') return settleChoices(s);
   if (s.phase === 'keys') return keysChoices(s);
   if (s.phase === 'dinner') return dinnerChoices(s);
-  if (s.phase === 'signed') return signedChoices();
+  if (s.phase === 'signed') return signedChoices(s);
   if (s.phase === 'page') return pageChoices(s);
   return [];
 }
