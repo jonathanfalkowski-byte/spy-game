@@ -401,6 +401,14 @@ const byNode: Record<string, Key> = {
   'chapter17.eleanor': 'harbourRoom',
   'chapter17.hands': 'harbourRoom',
   'chapter17.minute': 'harbourRoom',
+  // The Executive road: Collateral.
+  'chapter17.product': 'harbourRoom',
+  'chapter17.clause': 'harbourRoom',
+  'chapter17.officer': 'harbourRoom',
+  'chapter17.gift': 'harbourRoom',
+  'chapter17.wall': 'harbourRoom',
+  'chapter17.tally': 'harbourRoom',
+  'chapter17.alone': 'harbourRoom',
   // Chapter 18 (stand-ins until EVE Art's frames: a newspaper, three envelopes and a match, a harbour wall, a window, one card).
   'chapter18.morning': 'apartmentDay',
   'chapter18.position': 'apartmentDay',

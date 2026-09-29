@@ -51,7 +51,8 @@ const SEXUAL = /\b(undress\w*|naked|nude|kiss\w*|sex\w*|arous\w*|lust\w*)\b/i;
 
 it('opens after an own-power Chapter 16 ending, and stays closed in production', () => {
   for (const from of ['expose-front', 'terms-car', 'nell-quiet']) expect(ids(start({}, from))).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'executive' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'executive' }))).toEqual(['begin-executive']);
   vi.stubEnv('VITE_EVE_CHAPTER17', '');
   expect(chapter17Choices(start())).toEqual([]);
   expect(JSON.stringify(availableIntents(start()))).not.toContain('CHAPTER17');

@@ -19,6 +19,7 @@ import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { getKey, setKey } from './chapter7-model';
 import { beginPredator17, isPredator17, predatorBlocks17, predatorChoices17, predatorPhase17 } from './chapter17-predator';
+import { beginExecutive17, executiveBlocks17, executiveChoices17, executivePhase17, isExecutive17 } from './chapter17-executive';
 
 export type C17Scene = { title: string; place: string; blocks: Block[] };
 export type C17Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -48,6 +49,14 @@ export const chapter17Definitions: Record<string, C17Scene> = {
   eleanor: { title: 'Eleanor', place: '18:50 · THE BOARD TABLE', blocks: [] },
   hands: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
   minute: { title: 'One Minute', place: '19:10 · THE LONG ROOM', blocks: [] },
+  // The Executive road (2026-09-29): Collateral.
+  product: { title: 'The Exhibit', place: '18:00 · THE LONG ROOM', blocks: [] },
+  clause: { title: '14.3', place: '18:15 · THE BOARD TABLE', blocks: [] },
+  officer: { title: 'The Officer of Record', place: '18:25 · THE BOARD TABLE', blocks: [] },
+  gift: { title: 'A Present', place: '18:40 · THE BOARD TABLE', blocks: [] },
+  wall: { title: 'The Harbour Wall', place: '18:50 · THE BOARD TABLE', blocks: [] },
+  tally: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
+  alone: { title: 'One Minute', place: '19:10 · THE LONG ROOM', blocks: [] },
 };
 export const chapter17Scenes = Object.entries(chapter17Definitions).map(([phase, scene]) => ({
   id: `chapter17.${phase}` as NodeId,
@@ -523,6 +532,7 @@ function completeBlocks(s: GameState): Block[] {
 export function chapter17Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter17') return [];
   if (predatorPhase17(s)) return predatorBlocks17(s);
+  if (executivePhase17(s)) return executiveBlocks17(s);
   if (s.phase === 'opening') return openingBlocks(s);
   if (s.phase === 'defect') return defectBlocks(s);
   if (s.phase === 'sloane') return sloaneBlocks(s);
@@ -539,8 +549,11 @@ export function chapter17Choices(s: GameState): C17Choice[] {
     return [offer17('begin', 'The room', 'Six people, one hour, and Celeste standing.', 'opening')];
   // The Predator road (Sit With Us) comes from its Chapter 16 (The Seventh Chair).
   if (s.scene === 'chapter16' && s.phase === 'room' && isPredator17(s)) return [beginPredator17()];
+  // The Executive road (Collateral) comes from its Chapter 16 (The Term), in the long room.
+  if (s.scene === 'chapter16' && s.phase === 'complete' && isExecutive17(s)) return [beginExecutive17()];
   if (s.scene !== 'chapter17') return [];
   if (predatorPhase17(s)) return predatorChoices17(s);
+  if (executivePhase17(s)) return executiveChoices17(s);
   if (s.phase === 'opening') return openingChoices();
   if (s.phase === 'defect') return defectChoices(s);
   if (s.phase === 'sloane') return sloaneChoices();

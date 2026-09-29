@@ -14,7 +14,9 @@ runs from Ch7 to Ch14 without a gap**; the in-development bridge into Ch14 is on
 Appointment" ([EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md](EXECUTIVE_CHAPTER_15_BY_APPOINTMENT_DESIGN.md)), built pass 1:
 the Executive road runs Ch7–15, and Act III is complete. Ch15 deepened. Ch16, "The Term"
 ([EXECUTIVE_CHAPTER_16_THE_TERM_DESIGN.md](EXECUTIVE_CHAPTER_16_THE_TERM_DESIGN.md)), built pass 1: the aim is the
-Executive position. Next: Ch17 (the room) and Ch18 (the position: the Executive endings).
+Executive position. Ch16 deepened. Ch17, "Collateral"
+([EXECUTIVE_CHAPTER_17_COLLATERAL_DESIGN.md](EXECUTIVE_CHAPTER_17_COLLATERAL_DESIGN.md)), built pass 1: 14.3 read into
+Meridian's minutes, and the term offered as a gift. Next: Ch18 (the position: the Executive endings).
 
 **Authority:**
 - [CAMPAIGN_ROUTE_MAP.md](CAMPAIGN_ROUTE_MAP.md): Executive is the Julian / Helix lane.

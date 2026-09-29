@@ -379,7 +379,7 @@ function completeBlocks(s: GameState): Block[] {
     p('At the head of the table, in grey, Celeste Laurent stands up.'),
     q('Celeste Laurent', 'Darling. You came as yourself. So did I.'),
     t(aim === 'term' ? 'A clause. A company. A man. Let’s begin.' : aim === 'exit' ? 'I am going to walk out of this room owing nobody. First she is going to watch me do it.' : aim === 'spent' ? 'Everything I have, on the table, for him. Watch.' : 'Eleanor Linden. Say it. I am not leaving until you say it.'),
-    p('[Chapters 17–18 · executive road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER17 === '1' ? [] : [p('[Chapters 17–18 · executive road — in development]')]),
   ];
 }
 
