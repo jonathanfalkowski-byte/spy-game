@@ -11,7 +11,13 @@
  * harbour, and a chosen night (heat 3, consent-gated, fades). Nell is not alive; Celeste's guilt is a seed, not proof.
  * Entered from an Executive `chapter11.complete`; until Executive Ch13 exists the road goes on through the
  * in-development bridge to Ch14, which reads exec.told12. Local helpers mirror chapter12.ts (c12.* keys, chapter12.*
- * ids); choice ids carry `x12-`. */
+ * ids); choice ids carry `x12-`.
+ * Deepening pass (2026-09-29): three moments, each with a neutral pick. The first evening (c12.x-evening = hawker |
+ * rain | hotel: chilli crab with his sleeves rolled, or the afternoon storm along the river, or the hotel); the morning
+ * after Ashby, "Where do you go all day?" (c12.x-morning = take | truthish | errands: he comes to Emerald Hill for an hour,
+ * and Mrs Tan calls her Evie in front of him, exec.heard-evie; "To see where I used to live"; or errands); and Sunday
+ * afternoon (c12.x-afternoon = opposite | pool | sleep: the watcher's flat across the lane, one chair at the window
+ * facing Number 9, binoculars, a white orchid dying; the hotel pool; or sleep). The suite remembers "Evie". */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -46,6 +52,9 @@ const nightOk = (s: GameState) =>
   ['c7.x-evening-outcome', 'c8.x-late-outcome', 'c10.x-night-outcome', 'c11.x-night-outcome'].some((k) => !!key(s, k)?.startsWith('intimate'));
 
 export function placeExecutive12(s: GameState): string | undefined {
+  if (s.phase === 'tan' && get12(s, 'x-tan')) return 'Monday · 18:00 · The hotel lobby';
+  if (s.phase === 'punkah' && get12(s, 'x-ashby')) return 'Wednesday · 07:30 · His terrace';
+  if (s.phase === 'nora' && key(s, 'exec.nora12')) return 'Sunday · 14:00 · The heat';
   if (s.phase === 'number9' && get12(s, 'x-search')) return 'Emerald Hill · a key in the lock';
   if (s.phase === 'harbour' && get12(s, 'x-harbour')) {
     const open = get12(s, 'x-night-open');
@@ -96,9 +105,9 @@ function tanChoices(): C12Choice[] {
     p('And a key, from under the orchids, where Evie left it, and where Mrs Tan has kept it, watering around it.'),
   ];
   const c = (id: 'evie' | 'truth' | 'listen', label: string, hint: string, body: Block[]) =>
-    offer('x12-tan-' + id, label, hint, 'number9', (x) => {
+    offer('x12-tan-' + id, label, hint, 'tan', (x) => {
       set12(x, 'x-tan', id);
-      return [...body, ...story];
+      return [...body, ...story, ...eveningLead];
     });
   return [
     c('evie', 'Be Evie for her', 'She has waited fourteen months.', [p('You are Evie for her. She feeds you rice and scolds you for being thin and tells you about “your” last night without being asked, and you let her, and it is the kindest lie you have ever told.')]),
@@ -112,11 +121,31 @@ function tanChoices(): C12Choice[] {
   ];
 }
 
+const eveningLead: Block[] = [p('At six Julian comes out of his last meeting with his tie in his pocket and finds you in the lobby, and looks at your face, and does not ask where you have been.')];
+
+function eveningChoices(): C12Choice[] {
+  const e = (id: 'hawker' | 'rain' | 'hotel', label: string, hint: string, body: Block[]) =>
+    offer('x12-evening-' + id, label, hint, 'number9', (x) => {
+      set12(x, 'x-evening', id);
+      return body;
+    });
+  return [
+    e('hawker', 'A hawker centre, and chilli crab', 'Plastic stools. His sleeves rolled.', [
+      p('A hawker centre under a Victorian iron roof, plastic stools, fans turning, and chilli crab, which he eats with enormous concentration and no dignity at all, his sleeves rolled to the elbow, sauce on his wrist. He asks nothing. He tells you about a man in his meeting who said “going forward” eleven times. You laugh until you have to put your crab down.'),
+      t('For an hour nobody in this city knows whose face I have. Not even me.'),
+    ]),
+    e('rain', 'Walk by the river, into the storm', 'The afternoon storm comes at six here.', [
+      p('You walk along the river and the storm comes, all at once, the way they do here: warm rain like a bath being emptied on you. He takes off his jacket and holds it over both your heads, which is useless, and you both know it, and he keeps holding it anyway, and you are soaked to the skin and laughing under a bridge by the time it stops.'),
+    ]),
+    e('hotel', 'The hotel, and room service', 'You are tired. Let him see it.', [p('Room service, and the air conditioning, and his feet on the coffee table, and your head against his arm, and the news on with the sound down. You fall asleep before the food comes. He eats his quietly, and leaves yours under the silver lid.')]),
+  ];
+}
+
 // ── Number 9 ──
 
 function number9Blocks(): Block[] {
   return [
-    p('After dark. The key still fits.'),
+    p('Monday, after midnight, while he sleeps. You take the key and a taxi. The key still fits.'),
     p('The flat is not empty. It is furnished exactly as it was: an ivory jacket over a chair, a lipstick by the mirror, fresh milk in the fridge with a date on it from this week. A stage, kept dressed. And in the wardrobe, new clothes, in your size, not hers. The legend has a flat, and the flat has been waiting for you.'),
   ];
 }
@@ -176,16 +205,45 @@ function punkahChoices(s: GameState): C12Choice[] {
     ...(key(x, 'exec.sign11') === 'signed' ? [t('The good pen. My hand on his shoulder. Kind to him first. I was the kind part.')] : []),
   ];
   const c = (id: 'nell' | 'press' | 'truth', label: string, hint: string, body: Block[]) =>
-    offer('x12-ashby-' + id, label, hint, 'nora', (x) => {
+    offer('x12-ashby-' + id, label, hint, 'punkah', (x) => {
       set12(x, 'x-ashby', id);
       note(x, 'x-ashby', 'Colin Ashby, who ran Meridian’s Singapore station, says the order to burn Nell in Jakarta came “from upstairs. From a friend of hers.” White orchids came to her hospital bed. Of Helix: “She takes a man’s company the way she took Nell’s name. By being kind to him first.”', 'Colin Ashby, the Punkah Bar, the Marlowe');
-      return [...body, ...knows(x)];
+      return [...body, ...knows(x), ...morningLead];
     });
   const evidence = get12(s, 'x-search') === 'desk' || ['hide', 'own'].includes(get12(s, 'x-caught') ?? '');
   return [
     c('nell', 'Sit down as Nell', 'Let him talk to a ghost.', [p('You sit down opposite him as Nell, and he talks to a ghost, and apologises to her, and tells her it wasn’t his desk, and has no idea he has said it.')]),
     ...(evidence ? [c('press', 'Lay it on the bar', 'The schedule, or the report. Let him read.', [p('You put your phone on the bar, the photograph up. He reads it, and understands that the reissue is holding things he never could, and orders two more drinks without asking you.')])] : []),
     c('truth', '“I’m the reissue.”', 'They fitted me to her.', [q('You', 'I’m the reissue, Mr Ashby. They fitted me to her.'), p('He looks at your face for a long time, and orders two more drinks, and tells you everything he is prepared to say, which is not quite everything.')]),
+  ];
+}
+
+const morningLead: Block[] = [
+  p('Wednesday morning, breakfast on his terrace, the city already hot. He butters toast for both of you without asking, and then puts the knife down.'),
+  q('Julian Mercer', 'Where do you go all day? You don’t have to tell me. I’d just like to know if it’s somewhere I could come.'),
+];
+
+function morningChoices(): C12Choice[] {
+  const m = (id: 'take' | 'truthish' | 'errands', label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+    offer('x12-morning-' + id, label, hint, 'nora', (x) => {
+      set12(x, 'x-morning', id);
+      after?.(x);
+      return body;
+    });
+  return [
+    m('take', 'Take him with you, for an hour', 'Emerald Hill. Mrs Tan.', [
+      p('You take him to Emerald Hill for the hour before his first meeting. He stands on the landing in his suit among somebody else’s orchids, and Mrs Tan comes out with her watering can, and looks at him, and at you, and lights up.'),
+      q('Mrs Tan', 'Evie! And this is your man? Good. Tall. Evie never brought a man home. Never.'),
+      p('Julian says good morning to her very politely, and accepts a cup of tea, and does not look at you once while he drinks it. You know he heard the name. You watch him decide not to ask.'),
+    ], (x) => setKey(x, 'exec.heard-evie')),
+    m('truthish', '“To see where I used to live.”', 'True, in its way.', [
+      q('You', 'To see where I used to live.'),
+      p('He looks at you for a long moment over the toast.'),
+      q('Julian Mercer', 'I didn’t know you’d lived here.'),
+      q('You', 'Neither did I.'),
+      p('He does not laugh, because it was not a joke, and he can tell.'),
+    ]),
+    m('errands', '“Errands.”', 'Everybody has errands.', [q('You', 'Errands. Boring ones.'), p('He nods, and pours your coffee, and lets you have it.')]),
   ];
 }
 
@@ -204,15 +262,35 @@ function noraChoices(s: GameState): C12Choice[] {
     q('Nora Linden', 'Her friend rang me on the Sunday morning. The tall one, with the beautiful voice. Before the police. Before anybody. She said she was so sorry. I have spent a year wondering how she knew.'),
   ];
   const c = (id: 'truth' | 'kind' | 'go', label: string, hint: string, body: Block[], giveAll: boolean) =>
-    offer('x12-nora-' + id, label, hint, 'suite', (x) => {
+    offer('x12-nora-' + id, label, hint, 'nora', (x) => {
       setKey(x, 'exec.nora12', id);
       if (giveAll) note(x, 'x-nora', 'Nora Linden says her sister Nell rang on the Saturday night to say she was out and coming on Sunday; a tall friend with a beautiful voice rang Nora on the Sunday morning, before the police, to say she was sorry.', 'Nora Linden, Holland Village');
-      return giveAll ? [...body, ...gives(x), p('At the door she gives you a photograph: Nell on the harbour wall, laughing, in flat shoes. Your face, on somebody else.')] : body;
+      return [...(giveAll ? [...body, ...gives(x), p('At the door she gives you a photograph: Nell on the harbour wall, laughing, in flat shoes. Your face, on somebody else.')] : body), ...afternoonLead];
     });
   return [
     c('truth', '“I’m not Nell. They gave me her life.”', 'The hardest thing in the chapter.', [q('You', 'I’m not Nell. They gave me her life.'), q('Nora Linden', 'I know. She walked like our father. You don’t.'), p('You sit in her kitchen until dark.')], true),
     c('kind', '“I knew her. She talked about you.”', 'A kindness that is also a lie.', [q('You', 'I knew her. She talked about you.'), p('She wants it so badly she takes it, and makes coffee, and talks.')], true),
     c('go', 'Say you have the wrong house', 'You cannot do it.', [p('You cannot. You say you have the wrong house, and walk back to the road, and she stands in the doorway watching you go in her sister’s body.')], false),
+  ];
+}
+
+const afternoonLead: Block[] = [p('Sunday afternoon. Four hours until dinner. The heat at its worst, and the city asleep under it.')];
+
+function afternoonChoices(): C12Choice[] {
+  const a = (id: 'opposite' | 'pool' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('x12-afternoon-' + id, label, hint, 'suite', (x) => {
+      set12(x, 'x-afternoon', id);
+      return body;
+    });
+  return [
+    a('opposite', 'Knock on the flat across the lane', 'The window with the white orchid.', [
+      p('You go back to Emerald Hill and cross the lane to the house opposite Number 9, and climb to the second floor, to the window you saw from the balcony. The door is not locked.'),
+      p('An empty flat. One chair, pulled up to the window, facing Number 9. A pair of good binoculars on the sill. An ashtray, washed. And the white orchid, in a black pot exactly like the one on your desk on forty-one, dying slowly, turned toward her balcony.'),
+      t('Somebody sat here and watched her, every night. Somebody who sends orchids.'),
+      p('You do not touch anything. You close the door behind you exactly as you found it.'),
+    ]),
+    a('pool', 'The hotel pool', 'Wash Holland Village off.', [p('The rooftop pool, empty in the heat, and you swim lengths until your arms burn and Nora’s kitchen goes quiet in your head, and then float on your back and look up at the white sky until the black phone, on the lounger, starts to feel like something you could ignore.')]),
+    a('sleep', 'Sleep through it', 'The heat wins. Let it.', [p('You lie on top of the sheets with the curtains drawn and sleep through the worst of the heat, and dream of nothing, and wake at six with the photograph of a woman on a harbour wall face down on the pillow beside you.')]),
   ];
 }
 
@@ -225,6 +303,7 @@ function suiteBlocks(s: GameState): Block[] {
     q('C.', 'You make a lovely couple, darling. Does he know whose face he’s kissing? Somebody ought to tell him. It oughtn’t to be me.'),
     ...(key(s, 'exec.calendar') === 'gave' ? [q('C.', 'I know where he’ll be all week. You sent it.')] : []),
     p('Julian sees your face, and then the photograph, because you let him. He does not know who sent it. He waits.'),
+    ...(key(s, 'exec.heard-evie') ? [q('Julian Mercer', 'Mrs Tan called you Evie. I didn’t ask. I’d like to be told.')] : []),
     ...(key(s, 'exec.book11') === 'show' ? [t('Later, I promised him, at the Vesper, over a page that said available. It is later.')] : []),
   ];
 }
@@ -359,10 +438,10 @@ export function executiveBlocks12(s: GameState): Block[] {
 
 export function executiveChoices12(s: GameState): C12Choice[] {
   if (s.phase === 'changi') return changiChoices();
-  if (s.phase === 'tan') return tanChoices();
+  if (s.phase === 'tan') return get12(s, 'x-tan') ? eveningChoices() : tanChoices();
   if (s.phase === 'number9') return get12(s, 'x-search') ? caughtChoices() : searchChoices();
-  if (s.phase === 'punkah') return punkahChoices(s);
-  if (s.phase === 'nora') return noraChoices(s);
+  if (s.phase === 'punkah') return get12(s, 'x-ashby') ? morningChoices() : punkahChoices(s);
+  if (s.phase === 'nora') return key(s, 'exec.nora12') ? afternoonChoices() : noraChoices(s);
   if (s.phase === 'suite') return suiteChoices();
   if (s.phase === 'harbour') return harbourChoices(s);
   return [];

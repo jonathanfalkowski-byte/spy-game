@@ -22,10 +22,21 @@ const choose = (s: GameState, kind: Kind, id: string) => {
   return next;
 };
 const ids = (s: GameState) => chapter12Choices(s).map((c) => c.id.replace(/^chapter12\./, ''));
-const c12 = (s: GameState, id: string) => {
+const once12 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER12_CHOOSE', id: 'chapter12.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.phase + ': ' + ids(s).join(', '));
   return next;
+};
+/** The deepening pass's moments (the first evening, the morning after Ashby, Sunday afternoon): the neutral pick when in the way. */
+const NEUTRAL12 = ['x12-evening-hotel', 'x12-morning-errands', 'x12-afternoon-sleep'];
+const c12 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL12.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once12(y, n);
+  }
+  return once12(y, id);
 };
 const walk12 = (s: GameState, path: string[]) => path.reduce(c12, s);
 
@@ -89,7 +100,7 @@ it('tells him who she is: Mrs Tan, the schedule, Ashby by Iris’s card, Nora an
   const tan = walk12(toTwelve({ ch8: TOLD8, ch10: GAVE10, ch11: SIGNED11 }), ['begin-executive', 'x12-changi-go']);
   expect(text(tan)).toContain('Evie! Evie.');
   expect(ids(tan)).toEqual(['x12-tan-evie', 'x12-tan-truth', 'x12-tan-listen']);
-  const flat = c12(tan, 'x12-tan-truth');
+  const flat = walk12(tan, ['x12-tan-truth', 'x12-evening-hotel']);
   expect(text(flat)).toContain('No. You stand wrong.');
   expect(text(flat)).toContain('in your size, not hers');
   const caught = c12(flat, 'x12-search-desk');
@@ -103,7 +114,7 @@ it('tells him who she is: Mrs Tan, the schedule, Ashby by Iris’s card, Nora an
   expect(nora.facts).toContain('c12.x-ashby');
   expect(text(nora)).toContain('By being kind to him first.');
   expect(text(nora)).toContain('I was the kind part.');
-  const suite = c12(nora, 'x12-nora-truth');
+  const suite = walk12(nora, ['x12-nora-truth', 'x12-afternoon-sleep']);
   expect(text(suite)).toContain('The cinnamon was hers. The black was always her friend’s.');
   expect(text(suite)).toContain('I have spent a year wondering how she knew.');
   expect(text(suite)).toContain('Does he know whose face he’s kissing?');
@@ -146,4 +157,35 @@ it('does not tell him: the wrong house, the photograph face down, and no photo a
   expect(ids(harbour)).toEqual(['x12-harbour-name', 'x12-harbour-quiet']);
   const done = walk12(harbour, ['x12-harbour-quiet', 'x12-night-alone']);
   expect(text(done)).toContain('HE DOESN’T KNOW. SHE COULD TELL HIM. SHE WON’T. I SHOULD.');
+});
+
+it('deepening: the first evening, the morning after Ashby, and Sunday afternoon, each with a neutral pick', () => {
+  const tan = walk12(toTwelve({ ch8: TOLD8, ch10: GAVE10, ch11: SIGNED11 }), ['begin-executive', 'x12-changi-go', 'x12-tan-listen']);
+  expect(tan.phase).toBe('tan');
+  expect(ids(tan)).toEqual(['x12-evening-hawker', 'x12-evening-rain', 'x12-evening-hotel']);
+  const flat = once12(tan, 'x12-evening-rain');
+  expect(text(flat)).toContain('warm rain like a bath being emptied on you');
+  expect(text(flat)).toContain('after midnight, while he sleeps');
+  const morning = walk12(flat, ['x12-search-balcony', 'x12-caught-own', 'x12-ashby-truth']);
+  expect(morning.phase).toBe('punkah');
+  expect(ids(morning)).toEqual(['x12-morning-take', 'x12-morning-truthish', 'x12-morning-errands']);
+  const nora = once12(morning, 'x12-morning-take');
+  expect(nora.choices['exec.heard-evie']).toBe('yes');
+  expect(text(nora)).toContain('Evie! And this is your man?');
+  const afternoon = once12(nora, 'x12-nora-kind');
+  expect(afternoon.phase).toBe('nora');
+  expect(ids(afternoon)).toEqual(['x12-afternoon-opposite', 'x12-afternoon-pool', 'x12-afternoon-sleep']);
+  const suite = once12(afternoon, 'x12-afternoon-opposite');
+  expect(text(suite)).toContain('One chair, pulled up to the window, facing Number 9.');
+  expect(text(suite)).toContain('Mrs Tan called you Evie. I didn’t ask. I’d like to be told.');
+  const done = walk12(suite, ['x12-tell-told', 'x12-harbour-quiet', 'x12-night-alone']);
+  expect(replay(done.ledger, 19)).toEqual(done);
+});
+
+it('deepening: chilli crab, and "To see where I used to live"', () => {
+  const flat = walk12(toTwelve({ ch8: KEPT8 }), ['begin-executive', 'x12-changi-go', 'x12-tan-evie', 'x12-evening-hawker']);
+  expect(text(flat)).toContain('going forward');
+  const nora = walk12(flat, ['x12-search-wardrobe', 'x12-caught-hide', 'x12-ashby-nell', 'x12-morning-truthish']);
+  expect(text(nora)).toContain('I didn’t know you’d lived here.');
+  expect(text(nora)).toContain('Neither did I.');
 });

@@ -72,7 +72,7 @@ function toBridge(b: Build) {
     s = choose(s, 'CHAPTER10_CHOOSE', 'chapter10.' + id);
   for (const id of ['begin-executive', ...(b.ch11 ?? ['x11-room-watch', 'x11-dance-no', 'x11-iris-quiet', 'x11-book-turn', 'x11-corridor-quiet', 'x11-pen-refuse', 'x11-signing-go', 'x11-drive-party', 'x11-night-alone'])])
     s = choose(s, 'CHAPTER11_CHOOSE', 'chapter11.' + id);
-  for (const id of ['begin-executive', ...(b.ch12 ?? ['x12-changi-go', 'x12-tan-listen', 'x12-search-wardrobe', 'x12-caught-hide', 'x12-ashby-nell', 'x12-nora-go', 'x12-tell-not', 'x12-harbour-quiet', 'x12-night-alone'])])
+  for (const id of ['begin-executive', ...(b.ch12 ?? ['x12-changi-go', 'x12-tan-listen', 'x12-evening-hotel', 'x12-search-wardrobe', 'x12-caught-hide', 'x12-ashby-nell', 'x12-morning-errands', 'x12-nora-go', 'x12-afternoon-sleep', 'x12-tell-not', 'x12-harbour-quiet', 'x12-night-alone'])])
     s = choose(s, 'CHAPTER12_CHOOSE', 'chapter12.' + id);
   if (b.flags) s = Object.assign(structuredClone(s), { choices: { ...s.choices, ...b.flags } });
   return s;
