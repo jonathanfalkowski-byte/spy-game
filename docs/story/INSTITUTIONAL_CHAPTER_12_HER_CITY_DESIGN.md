@@ -22,8 +22,9 @@ EVE (I) box; Ch14's confession ("I didn't know about the first one until the wee
 
 **Status: APPROVED (owner, 2026-09-30: "do it", all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_12_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_12_SCRIPT.md); code:
-`src/content/chapter12-institutional.ts`. Entered from an Institutional `chapter11.complete`; hands on to the Ch14 bridge;
-~1.07–1.35k words on one path.
+`src/content/chapter12-institutional.ts`. Entered from an Institutional `chapter11.complete`; hands on to the Ch14 bridge.
+It ran ~1.07–1.35k words on one path at pass 1, deepened 2026-09-30 to ~1.33–1.71k with three moments: the hawker
+centre, the morning after Ashby, and the minibar in room 811.
 
 ---
 

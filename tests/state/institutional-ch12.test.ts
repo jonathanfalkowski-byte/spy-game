@@ -162,10 +162,21 @@ const WARN11 = ['begin-institutional', 'i11-room-work', 'i11-iris-told', 'i11-bo
 const toTwelve = (s10: GameState, ch11: string[]) => walk11(s10, ch11);
 
 const ids12 = (s: GameState) => chapter12Choices(s).map((c) => c.id.replace(/^chapter12\./, ''));
-const c12 = (s: GameState, id: string) => {
+const once12 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER12_CHOOSE', id: 'chapter12.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids12(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the hawker centre, the morning, the minibar): take the neutral pick when it is in the way. */
+const NEUTRAL12 = ['i12-hawker-alone', 'i12-morning-desk', 'i12-minibar-water'];
+const c12 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids12(y).includes(id); i++) {
+    const d = NEUTRAL12.find((x) => ids12(y).includes(x));
+    if (!d) break;
+    y = once12(y, d);
+  }
+  return once12(y, id);
 };
 const walk12 = (s: GameState, path: string[]) => path.reduce(c12, s);
 const ch12 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter12.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -186,8 +197,12 @@ it('all of it: on the books, the warrant card, Ashby, Nora told the truth, the r
   expect(ch12(landing)).toContain('Evie! Evie. Aiyoh, look at you. So thin.');
   const site = c12(landing, 'i12-tan-truth');
   expect(ch12(site)).toContain('No. You stand wrong.');
-  expect(ids12(site)).toEqual(['i12-search-desk', 'i12-search-wardrobe', 'i12-search-balcony']);
-  const caretaker = c12(site, 'i12-search-desk');
+  expect(ch12(site)).toContain('Your handler is checking on her operative.');
+  expect(ids12(site)).toEqual(['i12-hawker-sit', 'i12-hawker-away', 'i12-hawker-alone']);
+  const search = c12(site, 'i12-hawker-sit');
+  expect(ch12(search)).toContain('surgical precision and no dignity at all');
+  expect(ids12(search)).toEqual(['i12-search-desk', 'i12-search-wardrobe', 'i12-search-balcony']);
+  const caretaker = c12(search, 'i12-search-desk');
   expect(caretaker.facts).toContain('c12.i-schedule');
   expect(ids12(caretaker)).toEqual(['i12-caretaker-hide', 'i12-caretaker-card', 'i12-caretaker-who']);
   const bar = c12(caretaker, 'i12-caretaker-card');
@@ -201,8 +216,11 @@ it('all of it: on the books, the warrant card, Ashby, Nora told the truth, the r
   expect(report.choices['act3.nell']).toBe('known');
   expect(ch12(report)).toContain('She walked like our father. You don’t.');
   expect(ch12(report)).toContain('The tall one, with the beautiful voice.');
-  expect(ids12(report)).toEqual(['i12-report-all', 'i12-report-shaded', 'i12-report-site']);
-  const wall = c12(report, 'i12-report-all');
+  expect(ids12(report)).toEqual(['i12-minibar-drink', 'i12-minibar-ask', 'i12-minibar-water']);
+  const content = c12(report, 'i12-minibar-drink');
+  expect(ch12(content)).toContain('I ran in this city once.');
+  expect(ids12(content)).toEqual(['i12-report-all', 'i12-report-shaded', 'i12-report-site']);
+  const wall = c12(content, 'i12-report-all');
   expect(ch12(wall)).toContain('She knows that voice. So do you.');
   expect(ids12(wall)).toContain('i12-wall-daniel');
   const done = c12(wall, 'i12-wall-daniel');
@@ -240,4 +258,14 @@ it('the site only: the MRT, "Who pays you?", the reissue, the wrong house, a thi
   expect(ch12(done)).toContain('That’s a very thin week, Ms Vale.');
   expect(ch12(done)).toContain('REPORT: THE SITE ONLY. THE REST IS MINE.');
   expect(ch12(done)).not.toContain('i12-wall-daniel');
+});
+
+it('deepening: Sloane sent back to the hotel, the pool at six, one question over the minibar', () => {
+  const done = walk12(toTwelve(toEleven(toNine(TRADE7(), PLAIN8), REFUSE10), WARN11), ['begin-institutional', 'i12-cover-mrt', 'i12-tan-listen', 'i12-hawker-away', 'i12-search-balcony', 'i12-caretaker-hide', 'i12-ashby-reissue', 'i12-morning-swim', 'i12-nora-kind', 'i12-minibar-ask', 'i12-report-site', 'i12-wall-stand']);
+  expect(['i-hawker', 'i-morning', 'i-minibar'].map((k) => done.choices['c12.' + k])).toEqual(['away', 'swim', 'ask']);
+  expect(ch12(done)).toContain('Backup waits in room 811.');
+  expect(ch12(done)).toContain('BREAKFAST 7.30. V.S.');
+  expect(ch12(done)).toContain('Because they asked me first.');
+  const breakfast = walk12(toTwelve(toEleven(toNine(TRADE7(), PLAIN8), REFUSE10), WARN11), ['begin-institutional', 'i12-cover-taxi', 'i12-tan-evie', 'i12-search-desk', 'i12-caretaker-who', 'i12-ashby-nell', 'i12-morning-breakfast']);
+  expect(ch12(breakfast)).toContain('the most restful hour you have spent with anyone in a year');
 });

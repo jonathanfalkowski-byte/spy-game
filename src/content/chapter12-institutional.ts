@@ -7,7 +7,13 @@
  * the wardrobe / the balcony) and the caretaker (hide / the Axiom warrant card / "Who pays you?"). Ashby at the Punkah Bar
  * (canon, plus "They bought the reissue. The original was never theirs."). Nora (canon). The report in room 811 (all /
  * shaded / the site only). The harbour wall at midnight. Entered from an Institutional `chapter11.complete`; hands on to
- * the Ch14 bridge. Keys `inst.*`, `act3.nell`, `c12.i-*`; ids carry `i12-`. */
+ * the Ch14 bridge. Keys `inst.*`, `act3.nell`, `c12.i-*`; ids carry `i12-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. Monday night at a hawker centre, where her handler
+ * turns up to check on her operative (c12.i-hawker = sit | away | alone: Sloane eating chilli crab with no dignity at
+ * all; sent back to the hotel; or alone). Wednesday morning after Ashby (c12.i-morning = swim | breakfast | desk: the
+ * rooftop pool at six; breakfast with Sloane, who asks nothing; or the notes). In room 811 before the report, Sloane
+ * pours two drinks from the minibar (c12.i-minibar = drink | ask | water: a whisky and one true thing, "I ran in this city
+ * once."; one question, "Why Axiom?"; or water). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -91,7 +97,7 @@ function landingChoices(): C12Choice[] {
   const c = (id: 'evie' | 'truth' | 'listen', label: string, hint: string, body: Block[]) =>
     offer('i12-tan-' + id, label, hint, 'site', (x) => {
       setKey(x, 'inst.tan12', id);
-      return [...body, ...tanStory, p('That night, when the lane is dark, you let yourself into Number 9 with the key that smells of wet soil.')];
+      return [...body, ...tanStory];
     });
   return [
     c('evie', 'Be Evie for her', 'She has waited fourteen months.', [p('You are Evie for her. She feeds you rice and scolds you for being thin and tells you about “your” last night without being asked, and you let her, and it is the kindest lie you have ever told, and it will not go in any report.')]),
@@ -103,12 +109,33 @@ function landingChoices(): C12Choice[] {
 // ── The site ──
 
 function siteBlocks(): Block[] {
+  return [
+    p('Seven o’clock. A hawker centre under an old iron roof, fans turning, plastic stools, the smell of chilli and lime and charcoal. You have a plate of something you pointed at and a can of lime juice, and you are halfway through both when a woman in a linen shirt sits down on the stool opposite with a plate of chilli crab and a very straight back.'),
+    q('Sloane', 'Your handler is checking on her operative. It says so in the manual. I wrote the manual.'),
+  ];
+}
+
+function hawkerChoices(): C12Choice[] {
+  const h = (id: 'sit' | 'away' | 'alone', label: string, hint: string, body: Block[]) =>
+    offer('i12-hawker-' + id, label, hint, 'site', (x) => {
+      set12(x, 'i-hawker', id);
+      return [...body, p('That night, when the lane is dark, you let yourself into Number 9 with the key that smells of wet soil.'), ...nineBlocks()];
+    });
+  return [
+    h('sit', 'Let her stay', 'Watch Victoria Sloane eat chilli crab.', [p('You let her stay. She eats the chilli crab with surgical precision and no dignity at all, sauce to the wrist, her linen sleeve rolled, and asks nothing about Emerald Hill, and tells you instead about a man at Axiom’s Singapore desk who says “per my last email” out loud. You laugh until you have to put your fork down, and so, very nearly, does she.'), t('I have never seen her eat before. I did not know she was allowed.')]),
+    h('away', 'Send her back to the hotel', '“Backup waits in room 811.”', [q('You', 'Backup waits in room 811. It says so in the tasking. You wrote the tasking.'), p('She looks at you over the crab for a long moment, and then, astonishingly, picks up her plate and goes, and you hear her laugh once, out in the street, where she thinks you can’t.')]),
+    h('alone', 'Eat alone', 'She came. You didn’t ask her to.', [p('You finish your plate without looking up, and after a while she understands, and eats hers at another table, and leaves before you do. Neither of you mentions it again.')]),
+  ];
+}
+
+function nineBlocks(): Block[] {
   return [p('Number 9. The flat kept dressed, as if its tenant had gone out for milk fourteen months ago: cushions plumped, the bed made, fresh flowers in a vase, and in the wardrobe new clothes in your size, with the tags cut off.'), t('Site SG/EH-9. They keep it lived-in. For the reissue. For me.')];
 }
 
 const caretakerLead: Block[] = [p('A key in the lock. A young man in a polo shirt, with a clipboard and a phone: the caretaker, who has kept this flat for a year for people he has never met, and has never seen the tenant.')];
 
 function siteChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'i-hawker')) return hawkerChoices();
   if (!get12(s, 'i-search')) {
     const c = (id: 'desk' | 'wardrobe' | 'balcony', label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
       offer('i12-search-' + id, label, hint, 'site', (x) => {
@@ -156,7 +183,7 @@ function marloweChoices(): C12Choice[] {
     offer('i12-ashby-' + id, label, hint, 'village', (x) => {
       setKey(x, 'inst.ashby12', id);
       note(x, 'i-ashby', 'Colin Ashby says Nell was burned in Jakarta on an order “from upstairs, from a friend of hers”, and that Axiom bought the reissue; the original was never theirs.', 'Colin Ashby, the Punkah Bar, the Marlowe');
-      return [...body, ...ashbyTells, p('Sunday. Holland Village. The sister.')];
+      return [...body, ...ashbyTells];
     });
   return [
     a('nell', 'Be Nell', 'Sit down as if you always had.', [p('You sit down across from him the way she would have, the way the photograph sits, and order her drink without asking what it was, and he goes white, and then, when he understands, grey.')]),
@@ -168,10 +195,28 @@ function marloweChoices(): C12Choice[] {
 // ── The village ──
 
 function villageBlocks(): Block[] {
+  return [p('Wednesday, a quarter to six, the sky over the Straits going from black to the colour of a bruise. You have not slept. A friend of hers, he said. From upstairs.')];
+}
+
+function morningChoices(): C12Choice[] {
+  const m = (id: 'swim' | 'breakfast' | 'desk', label: string, hint: string, body: Block[]) =>
+    offer('i12-morning-' + id, label, hint, 'village', (x) => {
+      set12(x, 'i-morning', id);
+      return [...body, p('Sunday. Holland Village. The sister.'), ...noraDoor()];
+    });
+  return [
+    m('swim', 'The rooftop pool at six', 'Swim until you can think.', [p('The rooftop pool at six, empty, the water the temperature of skin, the city coming up grey and gold all round you. You swim lengths until your shoulders burn and your head goes quiet, and when you climb out there is a towel on your lounger that you did not put there, and a note in small upright capitals: BREAKFAST 7.30. V.S.')]),
+    m('breakfast', 'Breakfast with Sloane', 'She won’t ask. That’s the point.', [p('Breakfast on the terrace, Sloane already there with the papers and a pot of tea. She pours you a cup and asks nothing at all about Tuesday night, and you tell her nothing, and it is, you realise halfway through a slice of papaya, the most restful hour you have spent with anyone in a year.')]),
+    m('desk', 'Write it up', 'Notes, in order. The way Adrian did.', [p('You sit at the desk in your room and write it all down, in order, in longhand, the way Adrian did: the bar, the gin, the fans, “a friend of hers”. Then you read it back and tear out the page you are not ready to hand to anybody, and fold it into your passport.')]),
+  ];
+}
+
+function noraDoor(): Block[] {
   return [p('A low house in Holland Village, a frangipani in the yard, a child’s bicycle against the wall. Nora Linden, forty, a teacher, opens the door and sees her sister’s face, and holds on to the door frame with both hands.')];
 }
 
-function villageChoices(): C12Choice[] {
+function villageChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'i-morning')) return morningChoices();
   const gives: Block[] = [
     p('Nell took two sugars and cinnamon in her coffee. She hated orchids. She loved the harbour at night. She rang on the Saturday night, fourteen months ago: I’m out, I’m coming to you Sunday, make the spare bed. She never came. They found her in the harbour the next week. Misadventure, they said. She had a bad leg. It was dark.'),
     q('Nora Linden', 'Her friend rang me on the Sunday morning. The tall one, with the beautiful voice. Before the police. Before anybody. She said she was so sorry. I have spent a year wondering how she knew.'),
@@ -198,12 +243,32 @@ function villageChoices(): C12Choice[] {
 function reportBlocks(s: GameState): Block[] {
   return [
     p('Sunday, eleven at night. The Fullerton, room 811. Sloane at the desk by the window with her shoes off and her jacket on the back of the chair, a legal pad in front of her and a pen she has not uncapped. She has been waiting for you since six. She did not ring.'),
+    p('Before she says anything, she gets up, in her stockinged feet, and opens the minibar, and takes out two small bottles of whisky, and holds one out to you.'),
+  ];
+}
+
+function minibarChoices(s: GameState): C12Choice[] {
+  const m = (id: 'drink' | 'ask' | 'water', label: string, hint: string, body: Block[]) =>
+    offer('i12-minibar-' + id, label, hint, 'report', (x) => {
+      set12(x, 'i-minibar', id);
+      return [...body, ...reportPrompt(x)];
+    });
+  return [
+    m('drink', 'Take the whisky', 'Drink with her.', [p('You take it. She pours hers into a tooth glass and sits on the end of the bed, a hand’s width from the desk chair, and drinks half of it, and looks at the window.'), q('Sloane', 'I ran in this city once. Your age, or near it. On Axiom’s books, with a handler who wrote very thin reports about me. I used to think he was lazy. He was protecting me. It took me ten years to work that out.')]),
+    m('ask', 'Ask her one question', 'She might answer one.', [q('You', 'Why Axiom? Of everywhere.'), p('She turns the little bottle over in her fingers.'), q('Sloane', 'Because they asked me first. That’s everybody’s reason, if they’re honest. Nobody chooses the first door. You only choose whether to stay in the room.')]),
+    m('water', 'Water', 'One of you should.', [q('You', 'Water.'), q('Sloane', 'Good. One of us should.'), p('She puts the whisky back, unopened, and pours you a glass of water from the jug, and sits down again behind the legal pad.')]),
+  ];
+}
+
+function reportPrompt(s: GameState): Block[] {
+  return [
     q('Sloane', 'Report.'),
     t(key(s, 'inst.nora12') === 'go' ? 'I have a flat, a dead man’s gin and a sister I couldn’t face. What goes on the pad is mine to decide.' : 'I have a flat, a bar, a sister, and a phone call on a Sunday morning before the police. What goes on the pad is mine to decide.'),
   ];
 }
 
 function reportChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'i-minibar')) return minibarChoices(s);
   const nora = key(s, 'inst.nora12') !== 'go';
   const r = (id: 'all' | 'shaded' | 'site', label: string, hint: string, body: Block[]) =>
     offer('i12-report-' + id, label, hint, 'wall', (x) => {
@@ -276,7 +341,7 @@ export function institutionalChoices12(s: GameState): C12Choice[] {
   if (s.phase === 'landing') return landingChoices();
   if (s.phase === 'site') return siteChoices(s);
   if (s.phase === 'marlowe') return marloweChoices();
-  if (s.phase === 'village') return villageChoices();
+  if (s.phase === 'village') return villageChoices(s);
   if (s.phase === 'report') return reportChoices(s);
   if (s.phase === 'wall') return wallChoices(s);
   return [];
