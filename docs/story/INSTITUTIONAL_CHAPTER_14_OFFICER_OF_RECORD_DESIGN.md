@@ -31,7 +31,11 @@
   intact / copy / note); the empty PROJECT EVE (I) box (`c8.i-dark = torch`); Benton reading Adrian's sealed file
   three times; the man under the street lamp.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-30: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_14_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_14_SCRIPT.md); code:
+`src/content/chapter14-institutional.ts`. It is entered through the interim bridge from an Institutional
+`chapter9.complete` and ends at the Chapters 15–18 in-development stop, ~1.05–1.42k words on one path. Canon adopted:
+**Benton is Meridian's man inside Axiom**, and took the first Evelyn's file.
 
 ---
 

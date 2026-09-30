@@ -26,6 +26,7 @@ import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { sloaneDoubts } from './sloane-standing';
 import { beginPredator14, isPredator14, placePredator14, predatorBlocks14, predatorChoices14, predatorPhase14 } from './chapter14-predator';
 import { beginExecutive14, executiveBlocks14, executiveChoices14, executivePhase14, isExecutive14, placeExecutive14 } from './chapter14-executive';
+import { beginInstitutional14, institutionalBlocks14, institutionalChoices14, institutionalPhase14, isInstitutional14, placeInstitutional14 } from './chapter14-institutional';
 
 export type C14Scene = { title: string; place: string; blocks: Block[] };
 export type C14Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -83,6 +84,13 @@ export const chapter14Definitions: Record<string, C14Scene> = {
   ways: { title: 'Three Sheets of Paper', place: 'WEDNESDAY · YOUR OFFICE, FORTY-ONE', blocks: [] },
   boardroom: { title: 'The Board', place: 'FRIDAY · 08:00 · THE HELIX BOARDROOM, FORTY-FOUR', blocks: [] },
   night: { title: 'The Ledger Comes Due', place: 'FRIDAY NIGHT', blocks: [] },
+  // The Institutional road (2026-09-30): Officer of Record.
+  notice: { title: 'The Notice', place: 'MONDAY · 08:05 · STRATEGIC INTELLIGENCE', blocks: [] },
+  confession: { title: 'The Sealed Office', place: 'MONDAY · 22:00 · LEVEL 71', blocks: [] },
+  wire: { title: 'The Last Order', place: 'TUESDAY · 09:00 · THE BLACK PHONE', blocks: [] },
+  channels: { title: 'Through the Channel', place: 'WEDNESDAY · COMPLIANCE', blocks: [] },
+  hearing: { title: 'The Inquiry', place: 'FRIDAY · 10:00 · LEVEL 12', blocks: [] },
+  dusk: { title: 'Afterwards', place: 'FRIDAY NIGHT', blocks: [] },
 };
 export const chapter14Scenes = Object.entries(chapter14Definitions).map(([phase, scene]) => ({
   id: `chapter14.${phase}` as NodeId,
@@ -130,6 +138,7 @@ export function place14(s: GameState): string | undefined {
   if (s.scene !== 'chapter14') return;
   if (isPredator14(s)) return placePredator14(s);
   if (isExecutive14(s)) return placeExecutive14(s);
+  if (isInstitutional14(s)) return placeInstitutional14(s);
   if (s.phase === 'maya' && get14(s, 'tell') === 'later') return 'SATURDAY NIGHT · YOUR DOORSTEP';
   if (s.phase === 'sunday' && get14(s, 'answer') === 'refused') return 'SUNDAY · 19:00 · HOME, AND THE FIRE ESCAPE';
   if (s.phase === 'after' && get14(s, 'answer') === 'refused' && !get14(s, 'evening-open')) return 'SUNDAY NIGHT · A HOTEL, UNDER ANOTHER NAME';
@@ -899,6 +908,7 @@ export function chapter14Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorBlocks14(s);
   if (executivePhase14(s)) return executiveBlocks14(s);
+  if (institutionalPhase14(s)) return institutionalBlocks14(s);
   if (s.phase === 'door') return doorBlocks(s);
   if (s.phase === 'order') return orderBlocks(s);
   if (s.phase === 'maya') return mayaBlocks(s);
@@ -929,9 +939,12 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   // The Executive road: from its Chapter 13 (Held), or through the in-development bridge from the last playable chapter
   // before it.
   if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14(s)];
+  // The Institutional road: through the in-development bridge from its Chapter 9, until its Chapters 10–13 exist.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isInstitutional14(s)) return [beginInstitutional14()];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);
+  if (institutionalPhase14(s)) return institutionalChoices14(s);
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'order') return orderChoices();
   if (s.phase === 'maya') return get14(s, 'said') ? mayaMoveChoices(s) : mayaChoices(s);
