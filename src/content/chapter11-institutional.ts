@@ -9,7 +9,13 @@
  * The order on the balcony: the receipt for CANDIDATE 9C (Priya, from Adrian's floor), for Sloane to countersign (bring
  * it / warn her / refuse; refusal costs Celeste's letter to Axiom's board, the seed of Ch14's inquiry). The placement date
  * is never moved. The ride home; Singapore as an Axiom tasking. The night. Entered from an Institutional
- * `chapter10.complete`; hands on to the Ch14 bridge. Keys `inst.*`, `c11.i-*`; ids carry `i11-`. */
+ * `chapter10.complete`; hands on to the Ch14 bridge. Keys `inst.*`, `c11.i-*`; ids carry `i11-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. The car there (c11.i-car = why | well | window:
+ * "Because Axiom has been invited to a funeral and hasn't been told whose."; "Don't. … Thank you."; or the window). A
+ * dance on the floor before the powder room (c11.i-dance = accept | decline: a client who dances like a man counting
+ * money, and what she learns about "the good ones being extended"; or no). The cloakroom after the signing, Iris leaving
+ * on Halvorsen's arm (c11.i-cloak = number | coat | go: her number on the back of a cloakroom ticket, "if you ever need
+ * out"; Iris's coat held for her, and a whispered name; or let her go). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -61,12 +67,30 @@ export function beginInstitutional11(): C11Choice {
 
 // ── The threshold ──
 
-function thresholdBlocks(s: GameState): Block[] {
-  const log = key(s, 'inst.log10');
+function thresholdBlocks(): Block[] {
   return [
     p('The first Thursday, eight o’clock. Axiom’s car, the long black one the directorate keeps for funerals and ministers, with Sloane already in the back of it. She is in black. You have never seen her in anything but graphite.'),
     q('You', 'You look —'),
     q('Sloane', 'Like an officer at a party. Don’t.'),
+  ];
+}
+
+function carChoices(): C11Choice[] {
+  const c = (id: 'why' | 'well' | 'window', label: string, hint: string, body: Block[]) =>
+    offer('i11-car-' + id, label, hint, 'threshold', (x) => {
+      set11(x, 'i-car', id);
+      return [...body, ...arrivalBlocks(x)];
+    });
+  return [
+    c('why', '“Why black?”', 'She has never once worn it.', [q('You', 'Why black?'), q('Sloane', 'Because Axiom has been invited to a funeral and hasn’t been told whose. I thought one of us should dress for it.')]),
+    c('well', '“You look well.”', 'Say it anyway.', [q('You', 'You look well. In black. I’m saying it anyway.'), p('She looks out of the window for the length of a street.'), q('Sloane', 'Don’t.'), p('And then, at the next lights, without turning her head:'), q('Sloane', 'Thank you.')]),
+    c('window', 'Watch the river', 'Say nothing the whole way.', [p('You watch the river go by, black and slow, the whole length of the Embankment, and neither of you says anything, and it is not uncomfortable, which is its own kind of problem.')]),
+  ];
+}
+
+function arrivalBlocks(s: GameState): Block[] {
+  const log = key(s, 'inst.log10');
+  return [
     p('The Vesper on the Embankment: the black glass front with no name on it, the doorman who says “Good evening, Director,” as if he has been saying it for years, and the long room beyond, where the frames on the walls are empty and lit as if they held something worth looking at.'),
     p('Celeste receives Axiom at the top of the room, in cream, with both hands.'),
     q('Celeste Laurent', 'Victoria. At last. Three years, and you never once came to see the shop. And you brought her.'),
@@ -75,11 +99,12 @@ function thresholdBlocks(s: GameState): Block[] {
   ];
 }
 
-function thresholdChoices(): C11Choice[] {
+function thresholdChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'i-car')) return carChoices();
   const r = (id: 'beside' | 'work' | 'watch', label: string, hint: string, body: Block[]) =>
     offer('i11-room-' + id, label, hint, 'catalogue', (x) => {
       setKey(x, 'inst.room11', id);
-      return [...body, ...powderBlocks];
+      return [...body, ...danceLead];
     });
   return [
     r('beside', 'Stay beside her', 'Let them say it to both of you.', [p('You stay at her shoulder all through the first hour, not touching, a hand’s width away, and every time a client says “the Axiom piece” you look at him until he stops, and after the third one Sloane says, very quietly, without turning her head, “Thank you.”')]),
@@ -90,6 +115,26 @@ function thresholdChoices(): C11Choice[] {
 
 // ── The catalogue ──
 
+const danceLead: Block[] = [
+  p('At nine a quartet in the corner starts something slow, and a man with a shipping fortune and a signet ring comes across the floor to you with his hand already out, as if the answer were in the catalogue.'),
+];
+
+function danceChoices(): C11Choice[] {
+  const d = (id: 'accept' | 'decline', label: string, hint: string, body: Block[]) =>
+    offer('i11-dance-' + id, label, hint, 'catalogue', (x) => {
+      set11(x, 'i-dance', id);
+      return [...body, ...powderBlocks];
+    });
+  return [
+    d('accept', 'Dance with him', 'Let him lead. Listen.', [
+      p('You let him lead, for a song. He dances like a man counting money, beautifully and without pleasure, and tells you, his mouth near your ear, in the tone of a man recommending a restaurant, that placements are usually for a season, “and the good ones are extended.”'),
+      p('Over his shoulder, across the room, Sloane is watching the two of you with no expression at all, which on her is the loudest expression there is.'),
+      t('The good ones are extended. I am learning the vocabulary of my own sale, one song at a time.'),
+    ]),
+    d('decline', 'Decline', '“I don’t dance at work.”', [q('You', 'I don’t dance at work.'), p('He laughs, as if you had said something charming, and goes to find somebody who does.')]),
+  ];
+}
+
 const powderBlocks: Block[] = [
   p('At a quarter past nine, in the powder room, a woman at the next mirror in grey silk, perhaps thirty-five, very still, meets your eyes in the glass.'),
   q('Iris Moreau', 'They put you on the list too. I can always tell.'),
@@ -97,6 +142,7 @@ const powderBlocks: Block[] = [
 ];
 
 function catalogueChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'i-dance')) return danceChoices();
   if (!get11(s, 'i-iris')) {
     const i = (id: 'warned' | 'told' | 'quiet', label: string, hint: string, body: Block[]) =>
       offer('i11-iris-' + id, label, hint, 'catalogue', (x) => {
@@ -170,6 +216,7 @@ function countersignBlocks(s: GameState): Block[] {
       p('Twenty to eleven, the long room. You cross it with the folder and the good pen, through the clients and the empty frames, and put the folder on the little table in front of Sloane, and stand beside her.'),
       p('She looks at the photograph for a long time. Then at you. Then she takes the pen, and signs, V. SLOANE, OFFICER OF RECORD, in the neat upright hand you know from a hundred margins, because you brought it, and because it has been in the works since the spring, and because, you will understand later, she thinks that if it is going to happen anyway she would rather it happened under her name, where she can watch it.'),
       p('Across the room Celeste raises her glass to you both, half an inch.'),
+      ...cloakLead,
     ];
   if (pn === 'warned')
     return [
@@ -177,6 +224,7 @@ function countersignBlocks(s: GameState): Block[] {
       p('She reads it, all of it, and closes it, and puts the pen on top of it, capped.'),
       q('Sloane', 'Not tonight. Axiom doesn’t sign for deliveries at parties. Send it to my office, Celeste. I’ll read it twice.'),
       p('Across the room Celeste smiles, and lifts her glass an inch, and you cannot tell whether she is angry, or delighted, or both, and neither, you suspect, can she.'),
+      ...cloakLead,
     ];
   return [
     p('Twenty to eleven, the long room. Benton finds the folder where Celeste left it, and brings it to Sloane himself, with a good pen, smiling, in front of the clients.'),
@@ -184,11 +232,25 @@ function countersignBlocks(s: GameState): Block[] {
     q('Sloane', 'Not for you, Elias. Not tonight. Not ever, I think.'),
     p('Benton smiles and takes the folder away. On Monday a letter goes from Meridian to the chair of Axiom’s board, regretting certain irregularities it has observed in the conduct of Executive Intelligence, and wondering whether a formal review might be in everybody’s interest.'),
     t('She didn’t sign it. She paid for that, and so will I. The inquiry has a start date now. It just doesn’t know it yet.'),
+    ...cloakLead,
   ];
 }
 
+const cloakLead: Block[] = [
+  p('Half past eleven, the cloakroom. Iris Moreau is there before you, in a long grey coat, with Halvorsen at the door checking his phone, and she is looking at nothing, very steadily, the way you look at nothing when you have just read a word about yourself.'),
+];
+
 function countersignChoices(): C11Choice[] {
-  return [offer('i11-countersign-on', 'The car', 'Midnight. Home.', 'ride')];
+  const c = (id: 'number' | 'coat' | 'go', label: string, hint: string, body: Block[]) =>
+    offer('i11-cloak-' + id, label, hint, 'ride', (x) => {
+      set11(x, 'i-cloak', id);
+      return body;
+    });
+  return [
+    c('number', 'Give her your number', 'On the back of a cloakroom ticket.', [p('You write your own number, the real one, on the back of your cloakroom ticket, and fold it into her hand when you pass her.'), q('You', 'If you ever need out. Any hour. It answers.'), p('She closes her hand on it without looking down, and follows Halvorsen out into the rain, and at the door she looks back, once.')]),
+    c('coat', 'Hold her coat for her', 'And say one word, low.', [p('You take her coat from the attendant before she can, and hold it for her, and as she puts her arms into it you say, very low, by her ear, a single word: “Singapore.”'), p('She goes still inside the coat for a heartbeat. Then she buttons it, and thanks you, as if you had done nothing but hold a coat.')]),
+    c('go', 'Let her go', 'It isn’t yours to stop.', [p('You let her go. She passes you in the doorway with Halvorsen’s hand at her back, and does not look at you, and you understand that she is protecting you, or herself, and that it comes to the same thing tonight.')]),
+  ];
 }
 
 // ── The ride ──
@@ -285,12 +347,13 @@ function completeBlocks(s: GameState): Block[] {
     p('And under it:'),
     q('The card', '9C · PRIYA. ' + (pn === 'signed' ? 'SIGNED. HER NAME, MY HAND.' : pn === 'warned' ? 'NOT TONIGHT.' : 'REFUSED. THE LETTER GOES MONDAY.')),
     p('And beside it, a third: SINGAPORE. HER CITY.'),
+    ...(get11(s, 'i-cloak') === 'number' ? [p('And in the corner, very small: IRIS HAS MY NUMBER.')] : []),
     t('I have been in the window. Now I have seen who is next in it. That changes what I am for.'),
   ];
 }
 
 export function institutionalBlocks11(s: GameState): Block[] {
-  if (s.phase === 'threshold') return thresholdBlocks(s);
+  if (s.phase === 'threshold') return thresholdBlocks();
   if (s.phase === 'catalogue') return [];
   if (s.phase === 'receipt') return receiptBlocks();
   if (s.phase === 'countersign') return countersignBlocks(s);
@@ -300,7 +363,7 @@ export function institutionalBlocks11(s: GameState): Block[] {
 }
 
 export function institutionalChoices11(s: GameState): C11Choice[] {
-  if (s.phase === 'threshold') return thresholdChoices();
+  if (s.phase === 'threshold') return thresholdChoices(s);
   if (s.phase === 'catalogue') return catalogueChoices(s);
   if (s.phase === 'receipt') return receiptChoices();
   if (s.phase === 'countersign') return countersignChoices();

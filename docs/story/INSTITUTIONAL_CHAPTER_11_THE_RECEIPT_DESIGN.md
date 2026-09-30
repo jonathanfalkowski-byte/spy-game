@@ -27,7 +27,8 @@ framing**
 **Status: APPROVED (owner, 2026-09-30: "do your recommendations for chapter 11", all eight decisions as recommended)
 and BUILT, pass 1.** Script: [scripts/INSTITUTIONAL_CHAPTER_11_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_11_SCRIPT.md);
 code: `src/content/chapter11-institutional.ts`. Entered from an Institutional `chapter10.complete`; hands on to the Ch14
-bridge; ~1.03–1.14k words on one path. Canon adopted: Axiom's next candidate is Priya (CANDIDATE 9C).
+bridge. It ran ~1.03–1.14k words on one path at pass 1, deepened 2026-09-30 to ~1.21–1.42k with three moments: the
+car, the dance, and the cloakroom. Canon adopted: Axiom's next candidate is Priya (CANDIDATE 9C).
 
 ---
 

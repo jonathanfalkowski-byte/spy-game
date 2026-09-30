@@ -136,10 +136,21 @@ const REFUSE10 = ['begin-institutional', 'i10-card-gate', 'i10-adrian-walk', 'i1
 const toEleven = (s9: GameState, ch10: string[]) => walk10(s9, ch10);
 
 const ids11 = (s: GameState) => chapter11Choices(s).map((c) => c.id.replace(/^chapter11\./, ''));
-const c11 = (s: GameState, id: string) => {
+const once11 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER11_CHOOSE', id: 'chapter11.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids11(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the car, the dance, the cloakroom): take the neutral pick when it is in the way. */
+const NEUTRAL11 = ['i11-car-window', 'i11-dance-decline', 'i11-cloak-go'];
+const c11 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids11(y).includes(id); i++) {
+    const d = NEUTRAL11.find((x) => ids11(y).includes(x));
+    if (!d) break;
+    y = once11(y, d);
+  }
+  return once11(y, id);
 };
 const walk11 = (s: GameState, path: string[]) => path.reduce(c11, s);
 const ch11 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter11.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -152,16 +163,20 @@ it('enters The Receipt from an Institutional Chapter 10: Axiom’s car, Sloane i
   const threshold = c11(s, 'begin-institutional');
   expect(threshold.phase).toBe('threshold');
   expect(ch11(threshold)).toContain('Like an officer at a party. Don’t.');
-  expect(ch11(threshold)).toContain('Victoria. At last. Three years, and you never once came to see the shop.');
-  expect(ch11(threshold)).toContain('Fridays have never been so restful.');
-  expect(ids11(threshold)).toEqual(['i11-room-beside', 'i11-room-work', 'i11-room-watch']);
+  expect(ids11(threshold)).toEqual(['i11-car-why', 'i11-car-well', 'i11-car-window']);
+  const vesper = c11(threshold, 'i11-car-why');
+  expect(ch11(vesper)).toContain('invited to a funeral and hasn’t been told whose');
+  expect(ch11(vesper)).toContain('Victoria. At last. Three years, and you never once came to see the shop.');
+  expect(ch11(vesper)).toContain('Fridays have never been so restful.');
+  expect(ids11(vesper)).toEqual(['i11-room-beside', 'i11-room-work', 'i11-room-watch']);
 });
 
 it('bring it: Iris warned, the page seen, 9C countersigned; Daniel; on to Ch14, which remembers; it authenticates', () => {
   const catalogue = walk11(toEleven(toNine(PROTECTED7(), TORCH8), GIVE10), ['begin-institutional', 'i11-room-beside']);
   expect(ch11(catalogue)).toContain('Thank you.');
-  expect(ch11(catalogue)).toContain('They put you on the list too.');
-  expect(ids11(catalogue)).toEqual(['i11-iris-warned', 'i11-iris-told', 'i11-iris-quiet']);
+  expect(ids11(catalogue)).toEqual(['i11-dance-accept', 'i11-dance-decline']);
+  expect(ch11(c11(catalogue, 'i11-dance-decline'))).toContain('They put you on the list too.');
+  expect(ids11(c11(catalogue, 'i11-dance-decline'))).toEqual(['i11-iris-warned', 'i11-iris-told', 'i11-iris-quiet']);
   const book = c11(catalogue, 'i11-iris-warned');
   expect(ch11(book)).toContain('E. V. (II) · AXIOM · AVAILABLE FOR PLACEMENT FROM THE FIRST THURSDAY OF NEXT MONTH.');
   const receipt = c11(book, 'i11-book-seen');
@@ -172,7 +187,10 @@ it('bring it: Iris warned, the page seen, 9C countersigned; Daniel; on to Ch14, 
   const sign = c11(receipt, 'i11-pen-bring');
   expect(sign.facts).toContain('c11.i-9c');
   expect(ch11(sign)).toContain('V. SLOANE, OFFICER OF RECORD');
-  const ride = walk11(sign, ['i11-countersign-on', 'i11-ride-shop']);
+  expect(ch11(sign)).toContain('Iris Moreau is there before you, in a long grey coat');
+  expect(ids11(sign)).toEqual(['i11-cloak-number', 'i11-cloak-coat', 'i11-cloak-go']);
+  const ride = walk11(sign, ['i11-cloak-number', 'i11-ride-shop']);
+  expect(ch11(ride)).toContain('If you ever need out. Any hour. It answers.');
   expect(ch11(ride)).toContain('And you were in the window.');
   expect(ch11(ride)).toContain('Singapore wants you next month.');
   const done = walk11(ride, ['i11-night-daniel', 'i11-daniel-sex', 'i11-stay']);
@@ -180,6 +198,7 @@ it('bring it: Iris warned, the page seen, 9C countersigned; Daniel; on to Ch14, 
   expect(done.facts).toContain('c11.i-evening-consent');
   expect(ch11(done)).toContain('9C · PRIYA. SIGNED. HER NAME, MY HAND.');
   expect(ch11(done)).toContain('SINGAPORE. HER CITY.');
+  expect(ch11(done)).toContain('IRIS HAS MY NUMBER.');
   expect(ch11(done)).not.toMatch(SEXUAL);
   expect(ids14(done)).toEqual(['begin-institutional']);
   const confession = walk14(done, ['begin-institutional', 'i14-notice-screen']);
@@ -190,7 +209,7 @@ it('bring it: Iris warned, the page seen, 9C countersigned; Daniel; on to Ch14, 
 });
 
 it('warn her: work the room, Iris told, the book closed, “Not tonight.”', () => {
-  const done = walk11(toEleven(toNine(TRADE7(), BENTON8), DOCTOR10), ['begin-institutional', 'i11-room-work', 'i11-iris-told', 'i11-book-closed', 'i11-pen-warn', 'i11-countersign-on', 'i11-ride-singapore', 'i11-night-daniel']);
+  const done = walk11(toEleven(toNine(TRADE7(), BENTON8), DOCTOR10), ['begin-institutional', 'i11-room-work', 'i11-iris-told', 'i11-book-closed', 'i11-pen-warn', 'i11-ride-singapore', 'i11-night-daniel']);
   expect([done.choices['inst.pen11'], done.choices['inst.iris11'], done.choices['inst.book11'], done.choices['inst.room11']]).toEqual(['warned', 'told', 'closed', 'work']);
   expect(ch11(done)).toContain('Poor Elias stood in a corridor for forty minutes.');
   expect(ch11(done)).toContain('the autumn collection is in the anteroom');
@@ -201,11 +220,20 @@ it('warn her: work the room, Iris told, the book closed, “Not tonight.”', ()
 });
 
 it('refuse: the page turned to Iris’s, Benton brings the folder, Sloane won’t sign, the letter goes Monday', () => {
-  const done = walk11(toEleven(toNine(TRADE7(), PLAIN8), REFUSE10), ['begin-institutional', 'i11-room-watch', 'i11-iris-quiet', 'i11-book-turned', 'i11-pen-refuse', 'i11-countersign-on', 'i11-ride-party', 'i11-night-alone']);
+  const done = walk11(toEleven(toNine(TRADE7(), PLAIN8), REFUSE10), ['begin-institutional', 'i11-room-watch', 'i11-iris-quiet', 'i11-book-turned', 'i11-pen-refuse', 'i11-ride-party', 'i11-night-alone']);
   expect(done.choices['inst.pen11']).toBe('refused');
   expect(ch11(done)).toContain('Pity about your budget, Victoria.');
   expect(ch11(done)).toContain('I. M. · HALVORSEN · FOUR YEARS · ENDING.');
   expect(ch11(done)).toContain('Not for you, Elias. Not tonight. Not ever, I think.');
   expect(ch11(done)).toContain('regretting certain irregularities');
   expect(ch11(done)).toContain('9C · PRIYA. REFUSED. THE LETTER GOES MONDAY.');
+});
+
+it('deepening: “Thank you.” in the car, the dance, Iris’s coat', () => {
+  const done = walk11(toEleven(toNine(TRADE7(), PLAIN8), GIVE10), ['begin-institutional', 'i11-car-well', 'i11-room-watch', 'i11-dance-accept', 'i11-iris-quiet', 'i11-book-closed', 'i11-pen-warn', 'i11-cloak-coat', 'i11-ride-party', 'i11-night-alone']);
+  expect(['i-car', 'i-dance', 'i-cloak'].map((k) => done.choices['c11.' + k])).toEqual(['well', 'accept', 'coat']);
+  expect(ch11(done)).toContain('You look well. In black. I’m saying it anyway.');
+  expect(ch11(done)).toContain('the good ones are extended');
+  expect(ch11(done)).toContain('a single word: “Singapore.”');
+  expect(ch11(done)).not.toContain('IRIS HAS MY NUMBER.');
 });
