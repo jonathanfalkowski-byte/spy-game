@@ -68,6 +68,7 @@ export function placeInstitutional14(s: GameState): string | undefined {
 // ── The entry ──
 
 export function beginInstitutional14(s: GameState): C14Choice {
+  if (s.scene === 'chapter13') return offer('begin-institutional', 'Monday', 'The notice.', 'notice');
   return offer('begin-institutional', 'Go on to the inquiry', 'This road’s Act III chapters are in development.', 'notice', () => [
     p((s.scene === 'chapter12' ? '[Chapter 13 · institutional road — in development] The first Thursday of the next month, and a placement, and an Axiom tasking with Sloane’s name on it. ' : s.scene === 'chapter11' ? '[Chapters 12–13 · institutional road — in development] Singapore, her city, on an Axiom tasking. The first Thursday of the next month, and a placement. ' : s.scene === 'chapter10' ? '[Chapters 11–13 · institutional road — in development] The Vesper, the first Thursday, with Axiom’s card in Sloane’s hand. ' : '[Chapters 10–13 · institutional road — in development] ') + 'The winter comes to Axiom the way it always did: the heating late, the coffee machine worse, the grey envelopes every Monday. Celeste Laurent’s name, which you found at the end of the bridge, sits on the card beside MERIDIAN on your wardrobe door. The ORACLE page. The empty box. A man under a street lamp who has not come back. And the black phone, which rings on Fridays.'),
   ]);
@@ -75,10 +76,11 @@ export function beginInstitutional14(s: GameState): C14Choice {
 
 // ── The notice ──
 
-function noticeBlocks(): Block[] {
+function noticeBlocks(s: GameState): Block[] {
   return [
     p('Monday, five past eight. The floor goes quiet the way a room goes quiet when somebody has died in it, which is to say all at once, and then everybody talks very softly about something else.'),
     p('An all-staff notice, on every screen, in the grey typeface Axiom keeps for the things it would rather not say: a formal inquiry into the procurement of PROJECT EVE, to be led by Compliance (M. Reyes). The officer of record, V. Sloane, Director of Executive Intelligence, is suspended pending its findings.'),
+    ...(key(s, 'inst.channel13') === 'sloane' ? [p('You know why. On Saturday she took a forged tasking in her own name to the chair of the board, and the board has done what boards do: opened something, and put her name at the top of it.')] : []),
     p('There is no grey envelope on your desk. You ring the backup number. It rings out.'),
     t('For the first time since Level 71, I have no handler. I did not expect that to feel like falling.'),
   ];
@@ -194,6 +196,7 @@ function channelsBlocks(s: GameState): Block[] {
     ...(scope(s, 'people')
       ? [q('Maya', 'Before you say anything. Nobody gave me you, and nobody can give you me. It’s in your contract, and I read it. I asked for this file myself. That’s the only reason I’m sitting here.')]
       : [q('Maya', 'Before you say anything. I asked for this file myself. Nobody gave me you. That’s the only reason I’m sitting here.')]),
+    ...(key(s, 'inst.maya13') === 'warned' ? [q('Maya', 'They took my promotion away on Friday, over a journalist I’ve never met. I asked for this file anyway. Especially now.')] : []),
     q('Maya', 'Interview with operative AX-7A, in the matter of the procurement of Project Eve. Wednesday. Ten past ten.'),
   ];
 }
@@ -429,7 +432,7 @@ function completeBlocks(s: GameState): Block[] {
 }
 
 export function institutionalBlocks14(s: GameState): Block[] {
-  if (s.phase === 'notice') return noticeBlocks();
+  if (s.phase === 'notice') return noticeBlocks(s);
   if (s.phase === 'confession') return confessionBlocks(s);
   if (s.phase === 'wire') return wireBlocks(s);
   if (s.phase === 'channels') return channelsBlocks(s);

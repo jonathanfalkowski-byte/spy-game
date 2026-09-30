@@ -43,7 +43,11 @@ Institutional choice into **whether Evelynn notices, and whom she takes it to.**
 - **Ch8:** Daniel told (`inst.daniel-told`); Records (`inst.file`).
 - **Ch14** (built): the inquiry. With the forgery taken to Sloane and refused, the inquiry has a clean trigger.
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-30: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_13_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_13_SCRIPT.md); code:
+`src/content/chapter13-institutional.ts`. Entered from an Institutional `chapter12.complete`; Ch14 follows directly. ~0.78–1.24k
+words on one path. One change in the build, for continuity: the refusal cost is Maya's promotion and a warning, not
+detention, because Maya leads Ch14's inquiry.
 
 ---
 
@@ -64,7 +68,7 @@ By the end of the chapter the player must:
 3. **Choose the channel** (§4): take it up to seventy-one and put it on Sloane's desk; go over her head to Benton; or
    take it to nobody.
 4. **Answer the order:** **comply** (the door closes, and the scene cuts); **refuse** (in writing, under the scope term if
-   she has it: Axiom can't touch her; Meridian can, and Maya is detained on Friday, as canon); or **counterplay** (turn
+   she has it: Axiom can't touch her; Meridian can: Maya's promotion is withdrawn on Friday and a warning goes on her record, a road-specific cost like Executive's audit committee, so that Maya can still lead Ch14's inquiry); or **counterplay** (turn
    Marsh, a staged scene, both in on it, heat 2; or swap the camera's card, if Iris has her number).
 5. **Take a recovery step,** on the comply path, under the overlay: Daniel if he knows (**being held, nothing more**),
    Maya, Sloane (only if she took it to her: Sloane sits on the floor of the hall under the green light until morning and
@@ -104,14 +108,14 @@ twoam / saturday`).
 | **reply** | Wednesday midnight · the black phone | **comply** / **refuse** (with the refusal term: DECLINED UNDER SCOPE, and Axiom notes it; without: a hearing, and she goes anyway to the carpet) / **counterplay:** **turn** Marsh, or **swap** the card (if Iris has her number, or is free). |
 | **corridor** | Thursday | **Comply:** getting ready as armour; the bar; the lift; 1109; **door-look** / **door-away**; the door closes; **the scene cuts** (fade-aware). With Sloane's backup: she is in the lobby, and Evelynn walks past her, and neither of them looks. **Refuse:** at home, the phone face down. **Turn:** the truth in the lift, the proof on her phone, the staged scene (clothed, "is this all right?" off the microphone; heat 2). **Swap:** Iris, the service corridor, the card out of the camera. |
 | **smallhours** | 2 a.m. | **Comply:** the car; the shower written as time; then the recovery step (above). **Refuse / counterplay:** the relief, and the danger. |
-| **weekend** | Saturday | The costs and Celeste's word: **refuse:** Maya detained on Friday (canon; non-sexual). **Turn:** Marsh an ally. **Swap:** the card (every placement filmed in 1109). Then the card on the wardrobe door. |
+| **weekend** | Saturday | The costs and Celeste's word: **refuse:** Maya's promotion withdrawn and a warning on her record (non-sexual; she keeps her desk). **Turn:** Marsh an ally. **Swap:** the card (every placement filmed in 1109). Then the card on the wardrobe door. |
 
 ---
 
 ## 3. Keys
 
 The shared Act III keys Ch14–15 read: `c13.answer` (complied / refused / countered), `act3.honeypot` (done / refused /
-staged / pulled), `act3.maya-status = detained` (refuse), `act3.ally.marsh = in` (turn), `c13.card` (swap). Institutional:
+staged / pulled), `inst.maya13 = warned` (refuse; not `act3.maya-status`, since Maya leads Ch14's inquiry), `act3.ally.marsh = in` (turn), `c13.card` (swap). Institutional:
 `inst.channel13` (sloane / benton / nobody), `inst.backup13`, `c13.i-*`; facts `c13.i-forgery` (to Sloane),
 `c13.i-evening-consent` (the turn scene's scope), and the recovery note.
 
@@ -123,7 +127,7 @@ staged / pulled), `act3.maya-status = detained` (refuse), `act3.ally.marsh = in`
 3. **The channel is the Institutional choice:** to Sloane ("I never wrote this."), over her head to Benton (a trap that
    confirms it), or nobody. *Recommended.*
 4. **The refusal term protects her from Axiom, not from Meridian:** refusing under scope costs a note; without it, a
-   hearing; either way Maya's file is Meridian's cost (canon). *Recommended.*
+   hearing; either way Maya's file is Meridian's cost: her promotion withdrawn and a warning on her record (not detention, which would contradict Ch14, where she leads the inquiry). *Recommended.*
 5. **Counterplay as canon:** turn Marsh (heat 2, both in on it), or swap the card if Iris has her number. *Recommended.*
 6. **The comply path as canon, fade-aware**, with a new recovery option: **Sloane on the floor of the hall, not touching
    her**, only if Evelynn took the tasking to her. Daniel (if he knows) is being held, nothing more. *Recommended.*

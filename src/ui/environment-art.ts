@@ -351,6 +351,14 @@ const byNode: Record<string, Key> = {
   'chapter13.claremont': 'harbourRoom',
   'chapter13.twoam': 'car',
   'chapter13.saturday': 'apartmentDay',
+  // The Institutional road: Through Channels.
+  'chapter13.tasking': 'officeDusk',
+  'chapter13.dread': 'apartmentDay',
+  'chapter13.channel': 'executiveOffice',
+  'chapter13.reply': 'phone',
+  'chapter13.corridor': 'hotelRoom',
+  'chapter13.smallhours': 'apartmentNight',
+  'chapter13.weekend': 'apartmentDay',
   // Chapter 14 (stand-ins until EVE Art's frames: Sloane under the wall, Maya's kitchen, the reading room, the fire escape).
   'chapter14.door': 'apartmentNight',
   'chapter14.order': 'apartmentDay',
