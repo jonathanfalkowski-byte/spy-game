@@ -20,6 +20,7 @@ import { getKey, setKey } from './chapter7-model';
 import { eveningPartners14 } from './chapter14';
 import { beginPredator15, isPredator15, placePredator15, predatorBlocks15, predatorChoices15, predatorPhase15 } from './chapter15-predator';
 import { beginExecutive15, executiveBlocks15, executiveChoices15, executivePhase15, isExecutive15, placeExecutive15 } from './chapter15-executive';
+import { beginInstitutional15, institutionalBlocks15, institutionalChoices15, institutionalPhase15, isInstitutional15, placeInstitutional15 } from './chapter15-institutional';
 
 export type C15Scene = { title: string; place: string; blocks: Block[] };
 export type C15Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -75,6 +76,12 @@ export const chapter15Definitions: Record<string, C15Scene> = {
   stacks: { title: 'Everything', place: 'THE ARCHIVE', blocks: [] },
   holds: { title: 'Breaking the Leash', place: 'THE WEEK AFTER', blocks: [] },
   last: { title: 'No More Orders', place: 'WEDNESDAY NIGHT', blocks: [] },
+  // The Institutional road (2026-09-30): The Audit.
+  warrant: { title: 'Clause 22', place: 'THE WEEK BEFORE THE BOARD', blocks: [] },
+  audit: { title: 'The Audit', place: 'THE VESPER', blocks: [] },
+  cabinets: { title: 'Everything', place: 'THE ARCHIVE', blocks: [] },
+  aftermath: { title: 'Breaking the Leash', place: 'THE WEEK AFTER', blocks: [] },
+  eve: { title: 'No More Orders', place: 'WEDNESDAY NIGHT', blocks: [] },
 };
 export const chapter15Scenes = Object.entries(chapter15Definitions).map(([phase, scene]) => ({
   id: `chapter15.${phase}` as NodeId,
@@ -112,6 +119,7 @@ export function place15(s: GameState): string | undefined {
   if (s.scene !== 'chapter15') return;
   if (isPredator15(s)) return placePredator15(s);
   if (isExecutive15(s)) return placeExecutive15(s);
+  if (isInstitutional15(s)) return placeInstitutional15(s);
   if (s.phase === 'crew' && road(s) === 'refused') return marshAlly(s) ? 'THE WEEK AFTER · A FLAT IN KENNINGTON' : 'THE WEEK AFTER · A HOTEL, UNDER ANOTHER NAME';
   if (s.phase === 'crew' && road(s) !== 'refused') return 'THE WEEK AFTER · THE FLAT';
   if (s.phase === 'vesper' && get15(s, 'way') === 'invited') return 'WEDNESDAY · 23:30 · THE VESPER';
@@ -796,6 +804,7 @@ export function chapter15Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter15') return [];
   if (predatorPhase15(s)) return predatorBlocks15(s);
   if (executivePhase15(s)) return executiveBlocks15(s);
+  if (institutionalPhase15(s)) return institutionalBlocks15(s);
   if (s.phase === 'crew') return crewBlocks(s);
   if (s.phase === 'plan') return planBlocks(s);
   if (s.phase === 'vesper') return vesperBlocks(s);
@@ -814,9 +823,11 @@ export function chapter15Choices(s: GameState): C15Choice[] {
   if (s.scene === 'chapter14' && s.phase === 'ledger' && isPredator15(s)) return [beginPredator15()];
   // The Executive road (By Appointment) comes from its Chapter 14 (The Signature).
   if (s.scene === 'chapter14' && s.phase === 'complete' && isExecutive15(s)) return [beginExecutive15()];
+  if (s.scene === 'chapter14' && s.phase === 'complete' && isInstitutional15(s)) return [beginInstitutional15()];
   if (s.scene !== 'chapter15') return [];
   if (predatorPhase15(s)) return predatorChoices15(s);
   if (executivePhase15(s)) return executiveChoices15(s);
+  if (institutionalPhase15(s)) return institutionalChoices15(s);
   if (s.phase === 'crew') return crewChoices(s);
   if (s.phase === 'plan') return planChoices(s);
   if (s.phase === 'vesper') return snagChoices(s);

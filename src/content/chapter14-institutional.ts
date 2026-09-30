@@ -427,7 +427,7 @@ function completeBlocks(s: GameState): Block[] {
     p('And under that, the next line, which is the Vesper:'),
     q('The card', w === 'ally' ? 'THE VESPER · WITH AXIOM’S AUTHORITY.' : w === 'proof' ? 'THE VESPER · WITHOUT IT. THE REGULATOR IS WATCHING.' : 'THE VESPER · WITH AXIOM’S AUTHORITY. BENTON’S VERSION.'),
     t(w === 'ally' ? 'Celeste is afraid. I heard it on the phone on Friday night: one word, and no darling after it.' : w === 'proof' ? 'I spent the name. It was mine to spend. Nobody can threaten me with it again.' : 'I kept everything and gave her away. I will be deciding for a long time whether that was clever.'),
-    p('[Chapters 15–18 · institutional road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER15 === '1' ? [] : [p('[Chapters 15–18 · institutional road — in development]')]),
   ];
 }
 

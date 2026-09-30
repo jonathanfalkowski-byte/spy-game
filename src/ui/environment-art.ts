@@ -412,6 +412,12 @@ const byNode: Record<string, Key> = {
   'chapter15.stacks': 'serviceGallery',
   'chapter15.holds': 'officeDusk',
   'chapter15.last': 'apartmentNight',
+  // The Institutional road: The Audit.
+  'chapter15.warrant': 'executiveOffice',
+  'chapter15.audit': 'harbourRoom',
+  'chapter15.cabinets': 'clinicalRecords',
+  'chapter15.aftermath': 'apartmentDay',
+  'chapter15.eve': 'apartmentNight',
   // Chapter 16 (stand-ins until EVE Art's frames: cards on a floor at dawn, a clasp in a mirror, the embankment, the board table).
   'chapter16.dawn': 'apartmentNight',
   'chapter16.aim': 'apartmentDay',
