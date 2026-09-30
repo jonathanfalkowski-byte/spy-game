@@ -320,6 +320,14 @@ const byNode: Record<string, Key> = {
   'chapter12.nora': 'apartmentDay',
   'chapter12.suite': 'hotelRoom',
   'chapter12.harbour': 'rooftop',
+  // The Institutional road: Her City.
+  'chapter12.wheels': 'glassLobby',
+  'chapter12.landing': 'shoppingStreet',
+  'chapter12.site': 'wardrobe',
+  'chapter12.marlowe': 'harbourRoom',
+  'chapter12.village': 'apartmentDay',
+  'chapter12.report': 'hotelRoom',
+  'chapter12.wall': 'rooftop',
   // Chapter 13 (stand-ins until EVE Art's frames: the reading room by day, the Claremont bar, a corridor and a door, never the room).
   'chapter13.brief': 'reviewRoom',
   'chapter13.week': 'apartmentNight',

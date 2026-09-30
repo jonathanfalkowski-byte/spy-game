@@ -919,10 +919,11 @@ export function chapter14Blocks(s: GameState): Block[] {
   return [];
 }
 
-/** Where the Institutional road enters Chapter 14 until its Chapters 12–13 exist: the last of Chapters 9–11 that is
+/** Where the Institutional road enters Chapter 14 until its Chapter 13 exists: the last of Chapters 9–12 that is
  * playable. */
 function institutionalBridgeFrom14(s: GameState): boolean {
-  if (s.scene === 'chapter11') return true;
+  if (s.scene === 'chapter12') return true;
+  if (s.scene === 'chapter11') return import.meta.env.VITE_EVE_CHAPTER12 !== '1';
   if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
   if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
   return false;
