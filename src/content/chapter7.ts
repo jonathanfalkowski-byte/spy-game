@@ -11,6 +11,7 @@ import { ownBlocks7, ownChoices7, enterClose7 } from './chapter7-own';
 import { predatorBlocks7, predatorChoices7, predatorPhase7 } from './chapter7-predator';
 import { executiveBlocks7, executiveChoices7, executivePhase7 } from './chapter7-executive';
 import { institutionalBlocks7, institutionalChoices7, institutionalPhase7 } from './chapter7-institutional';
+import { outsideBlocks7, outsideChoices7, outsidePhase7 } from './chapter7-outside';
 
 export const chapter7Definitions: Record<string, C7Scene> = {
   confirm: { title: 'The Road You Choose', place: 'ONE WEEK LATER', blocks: [] },
@@ -47,6 +48,13 @@ export const chapter7Definitions: Record<string, C7Scene> = {
   desk: { title: 'Fourth from the End', place: '09:20 · THE DESK', blocks: [] },
   watched: { title: 'The Green Light', place: '19:00 · THE FLAT', blocks: [] },
   tonight: { title: 'Tonight', place: '19:00 · FORTY-ONE', blocks: [] },
+  // The Outside road (2026-09-30): The Sender.
+  flit: { title: 'The Flit', place: '08:00 · THE WATCHED FLAT', blocks: [] },
+  room: { title: 'Above the Shop', place: '11:00 · THE FERRY TERMINAL', blocks: [] },
+  rules: { title: 'Rules of Trade', place: 'NOON · THE TABLE', blocks: [] },
+  page: { title: 'The First Page', place: 'AFTERNOON · THE ROOM', blocks: [] },
+  price: { title: 'A Fact for a Fact', place: '· WHAT IT COSTS', blocks: [] },
+  dusk: { title: 'The River Side', place: '19:00 · OVER THE WATER', blocks: [] },
 };
 export const chapter7Scenes = Object.entries(chapter7Definitions).map(([phase, scene]) => ({
   id: `chapter7.${phase}` as NodeId,
@@ -102,7 +110,7 @@ function choose(x: GameState, lane: RouteLane6, entry: 'built' | 'partial' | 'un
   if (lane === 'own-power' || lane === 'predator') setKey(x, 'own.cash', String(Math.max(0, cash5(x))));
   note7(x, 'route', `Evelynn chose the ${lane} road (${entry}). The suggestion was ${suggested7(x)}.`, 'Explicit player choice at the Chapter 7 confirm beat');
 }
-const nextFor = (lane: RouteLane6) => (lane === 'own-power' ? 'standing' : lane === 'predator' ? 'summons' : lane === 'executive' ? 'table' : lane === 'institutional' ? 'gate' : 'complete');
+const nextFor = (lane: RouteLane6) => (lane === 'own-power' ? 'standing' : lane === 'predator' ? 'summons' : lane === 'executive' ? 'table' : lane === 'institutional' ? 'gate' : lane === 'outside' ? 'flit' : 'complete');
 
 function confirmChoices(s: GameState): C7Choice[] {
   const suggested = suggested7(s);
@@ -158,6 +166,7 @@ export function chapter7Blocks(s: GameState): Block[] {
   if (predatorPhase7(s)) return predatorBlocks7(s);
   if (executivePhase7(s)) return executiveBlocks7(s);
   if (institutionalPhase7(s)) return institutionalBlocks7(s);
+  if (outsidePhase7(s)) return outsideBlocks7(s);
   if (s.phase === 'complete' && getKey(s, 'route.lane') !== 'own-power')
     return [p(`[Chapter 7 · ${getKey(s, 'route.lane')} route — in development]`)];
   return ownBlocks7(s);
@@ -172,6 +181,7 @@ export function chapter7Choices(s: GameState): C7Choice[] {
   if (predatorPhase7(s)) return predatorChoices7(s);
   if (executivePhase7(s)) return executiveChoices7(s);
   if (institutionalPhase7(s)) return institutionalChoices7(s);
+  if (outsidePhase7(s)) return outsideChoices7(s);
   return ownChoices7(s);
 }
 

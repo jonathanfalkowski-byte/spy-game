@@ -59,6 +59,7 @@ import { type C7Choice, get7, getKey, note7, offer7, set7, setKey } from './chap
 import { placePredator7 } from './chapter7-predator';
 import { placeExecutive7 } from './chapter7-executive';
 import { placeInstitutional7 } from './chapter7-institutional';
+import { placeOutside7 } from './chapter7-outside';
 
 const SENDER = 'Unknown sender';
 export const RECORDS_FEE = 40;
@@ -80,6 +81,7 @@ export function place7(s: GameState): string | undefined {
   if (getKey(s, 'route.lane') === 'predator') return placePredator7(s);
   if (getKey(s, 'route.lane') === 'executive') return placeExecutive7(s);
   if (getKey(s, 'route.lane') === 'institutional') return placeInstitutional7(s);
+  if (getKey(s, 'route.lane') === 'outside') return placeOutside7(s);
   const open = get7(s, 'pursue-open');
   if (s.phase === 'pursue' && open)
     return {

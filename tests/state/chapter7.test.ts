@@ -77,8 +77,8 @@ it('opens on the confirm beat with the suggested road, two pivots and a break', 
 
 it('writes route.lane and route.entry from the choice; the built roads continue, the rest end marked', () => {
   const confirm = c7(c7(complete6('maximal-trade'), 'begin'), 'route-confirm');
-  expect([confirm.choices['route.lane'], confirm.choices['route.entry'], `${confirm.scene}.${confirm.phase}`]).toEqual(['outside', 'built', 'chapter7.complete']);
-  expect(text(confirm)).toContain('[Chapter 7 · outside route — in development]');
+  expect([confirm.choices['route.lane'], confirm.choices['route.entry'], `${confirm.scene}.${confirm.phase}`]).toEqual(['outside', 'built', 'chapter7.flit']);
+  expect(text(confirm)).toContain('one last time');
   const pivot = c7(c7(complete6('maximal-trade'), 'begin'), 'route-pivot-own-power');
   expect([pivot.choices['route.lane'], pivot.choices['route.entry'], pivot.phase]).toEqual(['own-power', 'partial', 'standing']);
   const asked = c7(c7(complete6('maximal-trade'), 'begin'), 'route-break');

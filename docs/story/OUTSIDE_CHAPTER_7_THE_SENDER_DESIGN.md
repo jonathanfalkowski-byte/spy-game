@@ -19,7 +19,10 @@
 - [ENDGAME_RECONVERGENCE.md](ENDGAME_RECONVERGENCE.md) §4: on this lane Sloane is a target or a trade.
 - [CONTENT_DIRECTION.md](CONTENT_DIRECTION.md): Mature 17+, heat 3, consent in character, fades; partners mostly men.
 
-**Status: DESIGN, for owner approval.**
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/OUTSIDE_CHAPTER_7_SCRIPT.md](scripts/OUTSIDE_CHAPTER_7_SCRIPT.md); code: `src/content/chapter7-outside.ts`.
+Entered from the Chapter 7 confirm beat when the road is `outside`; the road continues to the shared Chapter 9 bridge
+placeholder until Outside Chapter 8 exists. ~1.76–1.84k words on one path.
 
 ---
 

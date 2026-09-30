@@ -187,6 +187,13 @@ const byNode: Record<string, Key> = {
   'chapter7.gate': 'securityLobby',
   'chapter7.window': 'executiveOffice',
   'chapter7.scope': 'executiveOffice',
+  // The Outside road: The Sender.
+  'chapter7.flit': 'apartmentDay',
+  'chapter7.room': 'apartmentNight',
+  'chapter7.rules': 'apartmentNight',
+  'chapter7.page': 'apartmentNight',
+  'chapter7.price': 'apartmentNight',
+  'chapter7.dusk': 'rooftop',
   'chapter7.crossing': 'officeDusk',
   'chapter7.desk': 'officeDusk',
   'chapter7.watched': 'apartmentNight',
