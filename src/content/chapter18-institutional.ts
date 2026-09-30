@@ -13,7 +13,14 @@
  * night (heat 3, consent in character, fades) or a quiet one (end.later); the two cards, WHO IS WATCHING HER? and WHO IS
  * WATCHING ME?, answered (end.cards); the last line. `nfa` is the terminal phase: nothing is offered after it. Sloane is
  * never a romance; monitoring is never sexualised; Daniel is never deceived into intimacy. Entered from an Institutional
- * `chapter17.complete`. Choice ids carry `i18-`. */
+ * `chapter17.complete`. Choice ids carry `i18-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. Maya's letter, the inquiry closed: IN RESPECT OF THE
+ * OPERATIVE: NO FURTHER ACTION (c18.i-letter = frame | pin | file). On the floor, before going home, one last walk
+ * (c18.i-desk = adrian | machine | lift: the desk fourth from the end, and Adrian's mug still in the drawer; the coffee
+ * machine, with Daniel if he knows, or alone; or the lift). A year later, before the page, an envelope from Axiom's
+ * Records: her own file, as requested (c18.i-file = read | sloane | unopened: the last log entry, "CAMERA REMOVED.
+ * SUBJECT SMILED.", or its equivalent; Sloane's last assessment, if Sloane is still at Axiom, "FIT FOR NO PURPOSE BUT
+ * HER OWN."; or left sealed). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -147,10 +154,33 @@ function positionLines(s: GameState): Block[] {
 }
 
 function dispositionBlocks(s: GameState): Block[] {
-  return [p('That month.'), ...positionLines(s), ...SLOANE_END[sloaneEnd18(s)], p('And the switch, still in its envelopes, still armed, waiting for you to decide what it is for now.')];
+  return [
+    p('That month.'),
+    ...positionLines(s),
+    ...SLOANE_END[sloaneEnd18(s)],
+    p('And one more envelope, from Maya’s wing, on Axiom paper, in the internal post, which has never once in its history arrived on time and arrives on time: the inquiry, closed. Three pages. The last line in capitals.'),
+    q('The letter', 'IN RESPECT OF THE OPERATIVE: NO FURTHER ACTION.'),
+    p('And under it, in green highlighter, in Maya’s hand: “Told you. M.”'),
+  ];
+}
+
+const switchLine = p('And the switch, still in its envelopes, still armed, waiting for you to decide what it is for now.');
+
+function letterChoices(): C18Choice[] {
+  const l = (id: 'frame' | 'pin' | 'file', label: string, hint: string, body: Block[]) =>
+    offer('i18-letter-' + id, label, hint, 'disposition', (x) => {
+      setKey(x, 'c18.i-letter', id);
+      return [...body, switchLine];
+    });
+  return [
+    l('frame', 'Frame it', 'For the loo. Maya would approve.', [p('You buy a frame on Saturday, a good one, black, and hang the last page in the loo at eye level, where every guest you ever have will read it, and Maya, the first time she sees it, laughs so hard she has to sit down on the edge of the bath.')]),
+    l('pin', 'Pin it to the wardrobe door', 'With everything else.', [p('You pin it to the wardrobe door, in the middle, over the place where the grey envelopes used to go.')]),
+    l('file', 'File it', 'In the drawer, with the rest.', [p('You file it in the drawer with your contract, your scope, and a Records slip for a box that was empty. It is only paper. It is the best paper you own.')]),
+  ];
 }
 
 function dispositionChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.i-letter')) return letterChoices();
   const h = holders(s);
   const sw = (id: 'armed' | 'handed' | 'disarmed', label: string, hint: string, body: Block[]) =>
     offer('i18-switch-' + id, label, hint, 'light', (x) => {
@@ -208,6 +238,28 @@ function floorBlocks(s: GameState): Block[] {
   ];
 }
 
+function deskChoices(s: GameState): C18Choice[] {
+  const d = (id: 'adrian' | 'machine' | 'lift', label: string, hint: string, body: Block[]) =>
+    offer('i18-desk-' + id, label, hint, 'floor', (x) => {
+      setKey(x, 'c18.i-desk', id);
+      return [...body, p('Then home, and the question of who, if anybody, is there when you get to it.')];
+    });
+  return [
+    d('adrian', 'The desk fourth from the end', 'Adrian’s. Somebody else’s now.', [
+      p('At six, when the floor has emptied, you walk down to the desk fourth from the end. Somebody else sits there now: a photograph of two children and a dog, a plant that is trying. You open the bottom drawer, because you can’t not.'),
+      p('At the back of it, behind the new person’s spare shoes, a mug nobody threw away: white, chipped, with a crossword printed round it, half filled in, in Adrian’s handwriting, eleven years ago.'),
+      t('He never finished it. Nine across. I know the answer now.'),
+      p('You fill it in with the new person’s pen, and put the mug back where it was, and close the drawer.'),
+    ]),
+    d('machine', 'The coffee machine', !!key(s, 'inst.daniel-told') ? 'Daniel fixed it. He wants you to know.' : 'It works now. Nobody knows why.', [
+      ...(key(s, 'inst.daniel-told')
+        ? [p('Daniel walks you to the coffee machine, which works, and presents it to you with one hand like a magician’s assistant.'), q('Daniel', 'A paperclip and a threat. Four years. Nobody thanked me. I’d like to be thanked.'), q('You', 'Thank you, Daniel.'), q('Daniel', 'You say that like somebody who means it. I’ll allow it.')]
+        : [p('The coffee machine on seventy-one works. Nobody knows why. There is a paperclip in the back of it, bent into a very precise shape, and a note on it in somebody’s neat capitals: DO NOT TOUCH. IT KNOWS.')]),
+    ]),
+    d('lift', 'Take the lift', 'Down seventy-one floors. Count them or don’t.', [p('You take the lift down seventy-one floors, alone, and for the first time since you came back you do not count them.')]),
+  ];
+}
+
 function floorChoices(s: GameState): C18Choice[] {
   if (!key(s, 'inst.daniel-told') && !key(s, 'end.daniel')) {
     const d = (id: 'told-now' | 'never', label: string, hint: string, body: Block[]) =>
@@ -225,6 +277,7 @@ function floorChoices(s: GameState): C18Choice[] {
       d('never', 'Let it be', 'Say hello back. Nothing else.', [q('You', 'Hello, Daniel.'), p('You say hello back, and nothing else, and he goes back to his screen, and never knows, and is never asked for anything he didn’t choose.')]),
     ];
   }
+  if (!key(s, 'c18.i-desk')) return deskChoices(s);
   const partners = eveningPartners7(s).filter((x): x is 'julian' | 'sebastian' => x === 'julian' || x === 'sebastian');
   const h = (id: 'daniel' | 'julian' | 'sebastian' | 'maya' | 'none', label: string, hint: string, body: Block[]) =>
     offer('i18-home-' + id, label, hint, 'particulars', (x) => {
@@ -277,7 +330,6 @@ const scopeTaken = (s: GameState) => (key(s, 'end.scope') ?? '').split(',').filt
 
 function scopeBlocks(s: GameState): Block[] {
   const a = aim(s);
-  const w = key(s, 'end.with');
   return [
     p(
       a === 'inside'
@@ -288,12 +340,41 @@ function scopeBlocks(s: GameState): Block[] {
             ? 'A year later. A desk of your own, three streets from the river, over a small practice that reads contracts for people who cannot afford to have them read. Nobody’s product. Nobody’s officer.'
             : 'A year later. Holland Village, Nora’s kitchen, Nell’s photograph on the wall, and two sugars and cinnamon in your coffee, because somebody should go on taking it that way.',
     ),
+    p('On the doormat, a year to the day, a grey envelope, Axiom’s, the kind that used to bring taskings, and on the front, in the Records typeface: YOUR FILE, AS REQUESTED.'),
+  ];
+}
+
+const pageLines = (s: GameState): Block[] => {
+  const w = key(s, 'end.with');
+  return [
     p(w && w !== 'none' && w !== 'maya' ? 'In the evening he comes round, and you sit at the table with a single sheet of paper between you, and you write across the top of it, the way you did once on seventy-one, with Sloane watching: SCOPE.' : 'In the evening you sit at the table with a single sheet of paper and write across the top of it, the way you did once on seventy-one, with Sloane watching: SCOPE.'),
     t('Three terms. Not for a job this time. For a life.'),
+  ];
+};
+
+function fileChoices(s: GameState): C18Choice[] {
+  const f = (id: 'read' | 'sloane' | 'unopened', label: string, hint: string, body: Block[]) =>
+    offer('i18-file-' + id, label, hint, 'scope', (x) => {
+      setKey(x, 'c18.i-file', id);
+      return [...body, ...pageLines(x)];
+    });
+  const light = key(s, 'end.light');
+  const last = light === 'down' ? 'CAMERA REMOVED BY SUBJECT. SUBJECT SMILED.' : light === 'form' ? 'CAMERA REMOVED BY FACILITIES AT SUBJECT’S REQUEST. REASON GIVEN: NO FURTHER ACTION.' : light === 'tape' ? 'CAMERA OBSCURED. NO FURTHER ACTION.' : 'NO MONITORING AT CURRENT ADDRESS.';
+  return [
+    f('read', 'Read it', 'All of it. You wrote that into your scope once.', [
+      p('You read it at the kitchen table, all of it, the way you once asked to: the clinic, the procurement, the monitoring logs, a year of them, a woman coming home, not sleeping, taping over a light, standing at a window. It is strange to read yourself as a column of times.'),
+      p('The last entry, in the monitoring log, in a duty officer’s neat capitals:'),
+      q('The file', last),
+    ]),
+    ...(sloaneEnd18(s) !== 'retired'
+      ? [f('sloane', 'Turn to Sloane’s last assessment', 'The officer of record, on her product.', [p('You turn to the back, where the handler’s assessments go, three years of them in that small quick hand, and find the last one, dated the Friday after the board. One line.'), q('The file', 'FIT FOR NO PURPOSE BUT HER OWN. V.S.'), t('Minuted, as requested.')])]
+      : []),
+    f('unopened', 'Leave it sealed', 'You know what’s in it. You were there.', [p('You leave it sealed on the kitchen table. You know what’s in it. You were there for all of it. That is the difference now: you don’t need them to tell you.')]),
   ];
 }
 
 function scopeChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.i-file')) return fileChoices(s);
   const taken = scopeTaken(s);
   const retired = key(s, 'end.sloane') === 'retired';
   if (taken.length < 3)

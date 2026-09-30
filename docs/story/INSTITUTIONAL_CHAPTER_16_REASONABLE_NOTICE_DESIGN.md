@@ -46,7 +46,7 @@ framing**
 **Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_16_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_16_SCRIPT.md); code:
 `src/content/chapter16-institutional.ts`. Entered from an Institutional `chapter15.complete`; Ch17 follows directly.
-~0.83–1.09k words on one path. Build note: the case bands are supported 4, strong 7, overwhelming 10 (the road's
+It ran ~0.83–1.09k words on one path at pass 1, deepened 2026-09-30 to ~0.97–1.35k with three moments: five past five, Celeste's reply to the notice, and the last look at the flat. Build note: the case bands are supported 4, strong 7, overwhelming 10 (the road's
 evidence runs deep, and the lower Executive bands made nearly every save overwhelming).
 
 ---

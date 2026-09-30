@@ -12,7 +12,13 @@
  * lanyard worn like jewellery; Daniel at her cuffs if he knows, Maya at her hair, Sloane's "Collar." from the doorway,
  * never touching; heat 1–2). The way in; "Good luck, Ms Vale." The long room; Celeste stands, as herself. Sloane is never
  * a romance; the green light is never near anything erotic. Entered from an Institutional `chapter15.complete`; ends at
- * the Chapters 17–18 in-development stop, having set the shared act4.* contract. Choice ids carry `i16-`. */
+ * the Chapters 17–18 in-development stop, having set the shared act4.* contract. Choice ids carry `i16-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. Five past five, before the cards are picked up
+ * (c16.i-dawn = sloane | daniel | nell | quiet: Sloane on the phone, awake since three, "Read me the first line."; Daniel's
+ * text about the tie; Nell's photograph into her pocket; or the cards). Noon, Celeste's reply to the notice by courier,
+ * "Received with thanks. Twenty-three hours would have been reasonable. C." (c16.i-reply = bin | pin | file). Five o'clock,
+ * the last look at the flat on the way out (c16.i-leave = light | wardrobe | go: a word to the green light, "Back by
+ * nine. Log it."; the first card on the wardrobe door; or out). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -41,6 +47,7 @@ export const isInstitutional16 = (s: GameState) => key(s, 'route.lane') === 'ins
 export const institutionalPhase16 = (s: GameState) => isInstitutional16(s) && ((INSTITUTIONAL_PHASES16 as readonly string[]).includes(s.phase) || s.phase === 'complete');
 
 const told = (s: GameState) => !!key(s, 'inst.daniel-told');
+const danielNight = (s: GameState) => ['c10.i-night', 'c11.i-night', 'c14.i-evening', 'c15.i-night'].some((k) => key(s, k) === 'daniel' && !!key(s, k + '-outcome')?.startsWith('intimate'));
 const way14 = (s: GameState) => key(s, 'inst.way14') as 'ally' | 'proof' | 'cut' | undefined;
 const cost15 = (s: GameState) => key(s, 'inst.cost15');
 const spentAlly = (s: GameState, who: string) => cost15(s) === 'ally' && key(s, 'c15.cost-who') === who;
@@ -119,7 +126,37 @@ function briefingBlocks(s: GameState): Block[] {
   ];
 }
 
-function briefingChoices(): C16Choice[] {
+function dawnChoices(s: GameState): C16Choice[] {
+  const d = (id: 'sloane' | 'daniel' | 'nell' | 'quiet', label: string, hint: string, body: Block[]) =>
+    offer('i16-dawn-' + id, label, hint, 'briefing', (x) => {
+      set16(x, 'i-dawn', id);
+      return body;
+    });
+  return [
+    ...(way14(s) !== 'cut'
+      ? [d('sloane', 'Answer the phone', 'Ten past five. You know who it is.', [
+          p('Ten past five, the phone, and you know who it is before you look.'),
+          q('Sloane', 'You’re up.'),
+          q('You', 'So are you.'),
+          q('Sloane', 'Since three. I always am, before a board. Read me the first line of what you’ll say. Just the first line. I’ll know from that whether you’re ready.'),
+          p('You read it to her. There is a silence on the line of exactly the length she uses before she signs something.'),
+          q('Sloane', 'Good. Don’t change it. And don’t ring me back, I shall only tell you to change it.'),
+        ])]
+      : []),
+    ...(told(s)
+      ? [d('daniel', 'Read Daniel’s text', 'He’s awake too.', [
+          q('Daniel', 'Are you awake? I’m awake. I’ve ironed the tie. Don’t ask which tie. It’s the one you hate. It felt right.'),
+          q('Daniel', danielNight(s) ? 'Also I love you. That’s not a board thing. That’s just a five in the morning thing.' : 'Also, you’ll be brilliant. That’s not a prediction. I’ve seen you read a filing.'),
+          p('You read it twice, and put the phone face down on the floor beside the cards, and do not answer yet, because you will want to say it properly, and properly takes longer than a text.'),
+        ])]
+      : []),
+    ...(noraIn(s) ? [d('nell', 'Take Nell’s photograph off the wall', 'The one Nora gave you. For your pocket.', [p('You unpin the photograph Nora gave you, Nell on the harbour wall, laughing, in flat shoes, and look at it for a long time, and put it in the inside pocket of the jacket you will wear, over your heart, where it will be in the room whether anybody else says her name or not.')])] : []),
+    d('quiet', 'Keep laying out the cards', 'In order. In silence.', [p('You keep laying out the cards in silence, and the room gets light around you, and the kettle clicks off, and you do not notice.')]),
+  ];
+}
+
+function briefingChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'i-dawn')) return dawnChoices(s);
   return [
     offer('i16-case-set', 'Pick up the cards', 'Graded, sourced, in order.', 'objective', (x) => {
       setKey(x, 'act4.case', case16i(x).strength);
@@ -237,10 +274,30 @@ const cardHint: Record<Card, string> = {
 const cardsHeld = (s: GameState): Card[] => ['client', ...(took(s) === 'nell' ? ['nell' as Card] : []), ...(cards1109(s) ? ['cards' as Card] : []), 'page', ...(emptyBox(s) ? ['box' as Card] : [])];
 
 function bundleBlocks(): Block[] {
-  return [p('Noon. The cards on the kitchen table in a row. What goes down first, in front of the woman who sold you. And which one you keep in your pocket, for the moment she thinks she has won.')];
+  return [
+    p('Noon. A courier at the door with a black envelope, Vesper stock, and inside it a single card in the looping green hand: her reply to your notice.'),
+    q('The card', 'Received with thanks. Twenty-three hours would have been reasonable. C.'),
+    t('She knows about clause 22. She knows about Victoria’s twenty-three hours. Of course she does. She keeps everything.'),
+  ];
+}
+
+const cardsLine = p('Then the cards on the kitchen table in a row. What goes down first, in front of the woman who sold you. And which one you keep in your pocket, for the moment she thinks she has won.');
+
+function replyChoices(): C16Choice[] {
+  const r = (id: 'bin' | 'pin' | 'file', label: string, hint: string, body: Block[]) =>
+    offer('i16-reply-' + id, label, hint, 'bundle', (x) => {
+      set16(x, 'i-reply', id);
+      return [...body, cardsLine];
+    });
+  return [
+    r('bin', 'In the bin', 'With the coffee grounds.', [p('You put it in the kitchen bin with this morning’s coffee grounds, green ink down, and wash your hands, which is childish, and helps.')]),
+    r('pin', 'Pin it to the wardrobe door', 'With the others.', [p('You pin it to the wardrobe door beside the others, in the corner, where it can watch you get dressed. Let her. It is the last time.')]),
+    r('file', 'File it with the receipts', 'She wrote enough of them.', [p('You slide it into the client file, behind the last receipt, where it belongs: one more piece of paper from the vendor, filed, in date order.'), t('Received. She taught me that word. I’m keeping it.')]),
+  ];
 }
 
 function bundleChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'i-reply')) return replyChoices();
   const first = key(s, 'act4.first') as Card | undefined;
   if (!first)
     return cardsHeld(s).map((c) =>
@@ -271,7 +328,23 @@ function uniformBlocks(): Block[] {
   return [p('Four o’clock. Getting dressed as power, not display: finished, fitted, heels you can walk out in.')];
 }
 
+function leaveChoices(s: GameState): C16Choice[] {
+  const l = (id: 'light' | 'wardrobe' | 'go', label: string, hint: string, body: Block[]) =>
+    offer('i16-leave-' + id, label, hint, 'notice', (x) => {
+      set16(x, 'i-leave', id);
+      return body;
+    });
+  return [
+    ...(key(s, 'act3.home') !== 'lost'
+      ? [l('light', 'A word to the green light', 'On your way out. It has watched everything else.', [p('At the door you stop under the little camera in the corner of the hall, and look straight up into it, the way you never have, and say, clearly, for the log:'), q('You', 'Back by nine. Log it.'), p('The light stays green. Somewhere on seventy-one, a duty officer writes it down, and does not know why he is smiling.')])]
+      : []),
+    l('wardrobe', 'One look at the wardrobe door', 'The first card of this road.', [p('One look at the wardrobe door before you go: VICTORIA SLOANE. HANDLER. AX-7A., and under it, in pencil, the question you pinned there on your first night back. You leave it unanswered. Tomorrow you will know the answer.')]),
+    l('go', 'Just go', 'Keys, door, stairs.', [p('Keys, door, stairs. You don’t look back. You have looked at this flat enough for one year.')]),
+  ];
+}
+
 function uniformChoices(s: GameState): C16Choice[] {
+  if (key(s, 'act4.dressed-with') && !get16(s, 'i-leave')) return leaveChoices(s);
   if (!key(s, 'act4.wear')) {
     const w = (id: 'charcoal' | 'black' | 'lanyard', label: string, hint: string, body: Block[]) =>
       offer('i16-wear-' + id, label, hint, 'uniform', (x) => {
@@ -287,7 +360,7 @@ function uniformChoices(s: GameState): C16Choice[] {
     ];
   }
   const d = (id: 'daniel' | 'maya' | 'sloane' | 'alone', label: string, hint: string, body: Block[]) =>
-    offer('i16-dressed-' + id, label, hint, 'notice', (x) => {
+    offer('i16-dressed-' + id, label, hint, 'uniform', (x) => {
       setKey(x, 'act4.dressed-with', id);
       return body;
     });
@@ -365,7 +438,7 @@ export function institutionalBlocks16(s: GameState): Block[] {
 }
 
 export function institutionalChoices16(s: GameState): C16Choice[] {
-  if (s.phase === 'briefing') return briefingChoices();
+  if (s.phase === 'briefing') return briefingChoices(s);
   if (s.phase === 'objective') return objectiveChoices(s);
   if (s.phase === 'detail') return detailChoices(s);
   if (s.phase === 'bundle') return bundleChoices(s);

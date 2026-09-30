@@ -252,6 +252,7 @@ const B15 = ['begin-institutional', 'i15-crew-marsh', 'i15-crew-done', 'i15-way-
 const C15 = ['begin-institutional', 'i15-crew-none', 'i15-way-invited', 'i15-snag-hide', 'i15-priya-give', 'i15-took-nell', 'i15-cost-badge', 'i15-phone-return', 'i15-night-alone'];
 const toAct4 = (s12: GameState, ch13: string[], ch14: string[], ch15: string[]) => walk15(toFifteen(s12, ch13, ch14), ch15);
 
+const NEUTRAL = ['i16-dawn-quiet', 'i16-reply-pin', 'i16-leave-go', 'i17-card-leave', 'i17-recess-table', 'i17-minute-leave', 'i18-letter-file', 'i18-desk-lift', 'i18-file-unopened'];
 const mk = (n: 16 | 17 | 18, choices: (s: GameState) => { id: string }[]) => {
   const ids = (s: GameState) => choices(s).map((c) => c.id.replace(new RegExp('^chapter' + n + '\.'), ''));
   const one = (s: GameState, id: string) => {
@@ -259,9 +260,19 @@ const mk = (n: 16 | 17 | 18, choices: (s: GameState) => { id: string }[]) => {
     if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids(s).join(', ') + ')');
     return next;
   };
-  const walk = (s: GameState, path: string[]) => path.reduce(one, s);
+  /** The deepening pass's moments: take the neutral pick when one is in the way. */
+  const auto = (s: GameState, id: string) => {
+    let y = s;
+    for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+      const d = NEUTRAL.find((x) => ids(y).includes(x));
+      if (!d) break;
+      y = one(y, d);
+    }
+    return one(y, id);
+  };
+  const walk = (s: GameState, path: string[]) => path.reduce(auto, s);
   const txt = (s: GameState) => s.history.filter((h) => String(h.node).startsWith(`chapter${n}.`)).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
-  return { ids, one, walk, txt };
+  return { ids, one: auto, walk, txt };
 };
 const K16 = mk(16, chapter16Choices);
 const K17 = mk(17, chapter17Choices);
@@ -301,7 +312,7 @@ it('terms from inside, with Sloane and Maya: “I’m here to return her.” “
   expect(K17.txt(warranty)).toContain('Did we know about 9C?');
   const record = K17.one(warranty, 'i17-press-receipts');
   expect(K17.ids(record)).toEqual(['i17-sloane-vouch', 'i17-sloane-stand', 'i17-sloane-use']);
-  const leash = K17.one(record, 'i17-sloane-vouch');
+  const leash = K17.walk(record, ['i17-sloane-vouch', 'i17-recess-table']);
   expect(K17.txt(leash)).toContain('It was round my neck.');
   const c17 = K17.walk(leash, ['i17-leash-refuse', 'i17-named-ask', 'i17-ruling-on', 'i17-last-no']);
   expect(`${c17.scene}.${c17.phase}`).toBe('chapter17.complete');
@@ -318,7 +329,8 @@ it('terms from inside, with Sloane and Maya: “I’m here to return her.” “
   const floor = K18.walk(disp, ['i18-switch-handed', 'i18-light-down']);
   expect(K18.txt(floor)).toContain('It weighs nothing. It weighed everything.');
   expect(K18.txt(floor)).toContain('Hello, you.');
-  expect(K18.ids(floor)).toEqual(['i18-home-daniel', 'i18-home-maya', 'i18-home-none']);
+  expect(K18.ids(floor)).toEqual(['i18-desk-adrian', 'i18-desk-machine', 'i18-desk-lift']);
+  expect(K18.ids(K18.one(floor, 'i18-desk-lift'))).toEqual(['i18-home-daniel', 'i18-home-maya', 'i18-home-none']);
   const scope = K18.walk(floor, ['i18-home-daniel', 'i18-name-evelyn']);
   const signed = K18.walk(scope, ['i18-scope-refusal', 'i18-scope-backup', 'i18-scope-leave']);
   expect(K18.txt(signed)).toContain('Yours now.');
@@ -347,9 +359,11 @@ it('through channels on the cut road: Benton walks her in, the empty box lands o
   const aim = K16.walk(s, ['begin-institutional', 'i16-case-set']);
   expect(K16.txt(aim)).toContain('Victoria resigned on a Friday with a typed sheet.');
   const c16 = K16.walk(aim, ['i16-aim-channels', 'i16-inside-maya', 'i16-inside-marsh', 'i16-outside-switch', 'i16-first-client', 'i16-held-box', 'i16-wear-black', 'i16-dressed-alone']);
-  expect(K16.txt(c16)).toContain('Axiom will escort its asset, Ms Vale.');
-  expect(K16.ids(c16)).toEqual(['i16-arrive-notice', 'i16-arrive-escort', 'i16-arrive-front', 'i16-arrive-car']);
-  const room = K16.one(c16, 'i16-arrive-escort');
+  expect(K16.ids(c16)).toEqual(['i16-leave-light', 'i16-leave-wardrobe', 'i16-leave-go']);
+  const kerb = K16.one(c16, 'i16-leave-go');
+  expect(K16.txt(kerb)).toContain('Axiom will escort its asset, Ms Vale.');
+  expect(K16.ids(kerb)).toEqual(['i16-arrive-notice', 'i16-arrive-escort', 'i16-arrive-front', 'i16-arrive-car']);
+  const room = K16.one(kerb, 'i16-arrive-escort');
   expect(room.choices['act4.benton']).toBe('escort');
   expect(K16.txt(room)).toContain('taking the chair beside the door');
 
@@ -410,4 +424,26 @@ it('Daniel was never told: he says hello to a stranger, she can tell him now, an
   expect(K18.txt(told)).toContain('I knew the coffee machine. I didn’t know I knew you.');
   expect(K18.ids(told)).not.toContain('i18-home-daniel');
   expect(told.choices['inst.daniel-told']).toBe('late');
+});
+
+it('deepening: five past five, Celeste’s reply, the green light, the place card, the recess, the minute, the letter, the desk, the file', () => {
+  const s = toAct4(PROT12(), COMPLY13, ALLY14, A15);
+  const b = K16.walk(s, ['begin-institutional']);
+  expect(K16.ids(b)).toEqual(['i16-dawn-sloane', 'i16-dawn-daniel', 'i16-dawn-nell', 'i16-dawn-quiet']);
+  const c16 = K16.walk(b, ['i16-dawn-sloane', 'i16-case-set', 'i16-aim-inside', 'i16-inside-sloane', 'i16-inside-maya', 'i16-outside-switch', 'i16-reply-file', 'i16-first-client', 'i16-held-nell', 'i16-wear-lanyard', 'i16-dressed-sloane', 'i16-leave-light', 'i16-arrive-client']);
+  expect(K16.txt(c16)).toContain('Read me the first line of what you’ll say.');
+  expect(K16.txt(c16)).toContain('Twenty-three hours would have been reasonable. C.');
+  expect(K16.txt(c16)).toContain('Back by nine. Log it.');
+  const c17 = K17.walk(c16, ['begin-institutional', 'i17-card-name', 'i17-open-room', 'i17-press-receipts', 'i17-sloane-vouch', 'i17-recess-sloane', 'i17-leash-refuse', 'i17-named-ask', 'i17-minute-sloane', 'i17-ruling-on', 'i17-last-no']);
+  expect(K17.txt(c17)).toContain('Initialled, too. Victoria has taught you everything.');
+  expect(K17.txt(c17)).toContain('It was in the contract. Read it twice.');
+  expect(K17.txt(c17)).toContain('V. SLOANE, OFFICER OF RECORD');
+  expect(K17.txt(c17)).not.toMatch(SEXUAL);
+  const done = K18.walk(c17, ['begin-institutional', 'i18-morning-sleep', 'i18-letter-frame', 'i18-switch-disarmed', 'i18-light-down', 'i18-desk-adrian', 'i18-home-none', 'i18-name-adrian', 'i18-file-sloane', 'i18-scope-refusal', 'i18-scope-record', 'i18-scope-name', 'i18-later-own']);
+  expect(K18.txt(done)).toContain('IN RESPECT OF THE OPERATIVE: NO FURTHER ACTION.');
+  expect(K18.txt(done)).toContain('Nine across. I know the answer now.');
+  expect(K18.txt(done)).toContain('FIT FOR NO PURPOSE BUT HER OWN. V.S.');
+  expect([done.choices['c16.i-dawn'], done.choices['c17.i-recess'], done.choices['c18.i-file']]).toEqual(['sloane', 'sloane', 'sloane']);
+  const read = K18.walk(c17, ['begin-institutional', 'i18-morning-sleep', 'i18-switch-armed', 'i18-light-down', 'i18-home-none', 'i18-name-new', 'i18-file-read']);
+  expect(K18.txt(read)).toContain('CAMERA REMOVED BY SUBJECT. SUBJECT SMILED.');
 });

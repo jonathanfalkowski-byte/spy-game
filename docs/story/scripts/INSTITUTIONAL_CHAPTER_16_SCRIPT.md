@@ -25,14 +25,16 @@ Design: [../INSTITUTIONAL_CHAPTER_16_REASONABLE_NOTICE_DESIGN.md](../INSTITUTION
 
 | Phase | Beat | Choices | Flags |
 |---|---|---|---|
-| **briefing** | 05:00, the cards laid out like an Axiom briefing; the green light watching (unless the flat was lost); the case with its reasons. | **i16-case-set** | `act4.case` |
+| **briefing** | 05:00, the cards laid out like an Axiom briefing; the green light watching (unless the flat was lost); the case with its reasons. | First five past five (deepening): **i16-dawn-sloane** (not on the cut road: "Read me the first line.") · **-daniel** (told: the tie; "I love you" only after a chosen night with him) · **-nell** (Nora an ally) · **-quiet** (neutral). Then **i16-case-set** | `c16.i-dawn`, `act4.case` |
 | **objective** | 06:00. Inside, when closed, says why (cut: "Victoria resigned on a Friday with a typed sheet."; proof: "I made her the proof, not the partner."). | **i16-aim-inside** (Sloane allied) · **-channels** · **-walk** · **-nell**. Each serves **the notice**, on Axiom paper if she still holds a commission, her own paper otherwise: "THE PRODUCT WILL ATTEND." / "…FILED WITH THE REGULATOR AT NINE TOMORROW…" / "I WILL NOT BE STAYING." / "ELEANOR LINDEN. SIX O'CLOCK." | `act4.aim`, `act4.notice` |
 | **detail** | Who goes in with the principal. | Inside (up to two): **i16-inside-sloane** (allied) · **-maya** (always) · **-daniel** (told) · **-priya** (given her receipt) · **-marsh** (ally, unspent) · **-nora**; **-done** / **-none**. Outside: **i16-outside-sloane** (the van) · **-marsh** · **-iris** · **-switch** | `act4.inside`, `act4.outside` |
-| **bundle** | Noon. | **i16-first-{client, nell, cards, page, box}**, then **i16-held-…** / **-none** (the empty box needs `c8.i-dark = torch`) | `act4.first`, `act4.held` |
-| **uniform** | 16:00. | **i16-wear-charcoal** · **-black** · **-lanyard** (commissioned); then **i16-dressed-daniel** (told: the cuffs, "With footnotes.", a kiss at the door) · **-maya** · **-sloane** ("Collar.", never touching) · **-alone** | `act4.wear`, `act4.dressed-with` |
+| **bundle** | Noon: Celeste's reply to the notice, "Received with thanks. Twenty-three hours would have been reasonable. C." | First the reply (deepening): **i16-reply-bin** · **-pin** (neutral) · **-file** (with the receipts: "Received. She taught me that word."). Then **i16-first-{client, nell, cards, page, box}**, then **i16-held-…** / **-none** (the empty box needs `c8.i-dark = torch`) | `c16.i-reply`, `act4.first`, `act4.held` |
+| **uniform** | 16:00. | **i16-wear-charcoal** · **-black** · **-lanyard** (commissioned); then **i16-dressed-daniel** (told: the cuffs, "With footnotes.", a kiss at the door) · **-maya** · **-sloane** ("Collar.", never touching) · **-alone**; then the last look (deepening): **i16-leave-light** ("Back by nine. Log it.") · **-wardrobe** · **-go** (neutral) | `act4.wear`, `act4.dressed-with`, `c16.i-leave` |
 | **notice** | 17:45. On the cut road, Benton at the kerb: "Axiom will escort its asset, Ms Vale." | **i16-arrive-client** (formal authority, or the inside aim) · **-notice** (Marsh) · **-escort** (Benton) · **-front** ("Shut the car door on him" on the cut road) · **-car**; "Good luck, Ms Vale." "They read it. Twice." | `act4.arrive`, `act4.benton`; fact `c16.i-approach` |
 | **complete** | The long room; Sloane in the chair marked AXIOM, CLIENT; Benton by the door if he walked her in; Celeste stands ("It's a reunion."). | — | — |
 
 **Tests:** `tests/state/institutional-act4.test.ts` (with Ch17–18), on real golden saves through Institutional Ch7–15.
 
-**Size (honest), pass 1:** ~0.83k (walk, alone) to ~1.09k (inside, with Sloane and Maya), against the ~4.5k target.
+**Deepening pass (2026-09-30):** three moments, each with a neutral pick; tests use a `NEUTRAL` walker (`i16-dawn-quiet`, `i16-reply-pin`, `i16-leave-go`).
+
+**Size (honest):** ~0.83–1.09k at pass 1; ~0.97k (walk, alone) to ~1.35k (inside) after deepening, against the ~4.5k target.

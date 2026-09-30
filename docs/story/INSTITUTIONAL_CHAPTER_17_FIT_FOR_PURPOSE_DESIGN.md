@@ -35,7 +35,7 @@ framing**
 **Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_17_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_17_SCRIPT.md); code:
 `src/content/chapter17-institutional.ts`. Entered from an Institutional `chapter16.complete`; Ch18 follows directly.
-~1.0–1.17k words on one path. Build note: the board resigns Celeste at 3 points or more, not 2 (§5.8), because an
+It ran ~1.0–1.17k words on one path at pass 1, deepened 2026-09-30 to ~1.31–1.56k with three moments: the place card, the recess, and the minute. Build note: the board resigns Celeste at 3 points or more, not 2 (§5.8), because an
 officer, the inquiry or the regulator is in the room on almost every Institutional path; "Where is Mr Benton?"
 "Suspended, I'm told. So careless." is added when Benton was walked out in Ch14.
 

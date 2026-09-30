@@ -44,7 +44,7 @@ framing**
 **Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_18_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_18_SCRIPT.md); code:
 `src/content/chapter18-institutional.ts`. Entered from an Institutional `chapter17.complete`; ends at `nfa`, a seventh
-phase added in the build for the two cards and the last line. ~0.86–1.21k words on one path. **The Institutional road
+phase added in the build for the two cards and the last line. It ran ~0.86–1.21k words on one path at pass 1, deepened 2026-09-30 to ~1.07–1.47k with three moments: Maya's letter, one last walk on the floor, and her own file a year later. **The Institutional road
 is complete, Chapters 7 to 18.**
 
 ---

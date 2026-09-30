@@ -14,7 +14,13 @@
  * Celeste drawn out; the aim becomes terms. One minute alone: "Did you ever like being her?"; "Victoria survived us."
  * Nothing sexual on screen; Sloane is never a romance; the offer is refusable at no cost. Entered from an Institutional
  * `chapter16.complete`; ends at a Chapter 18 in-development stop, having written the shared act4.* keys for Ch17. Choice
- * ids carry `i17-`. */
+ * ids carry `i17-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. The place card at the foot of the table, printed
+ * E. V. (II) (c17.i-card = name | pocket | leave: her own name written over the number; the card kept; or left). Deverell's
+ * five-minute recess before the gift (c17.i-recess = celeste | sloane | table: Celeste follows her into the corridor,
+ * attention and nothing touched; Sloane at the landing window, if she is inside, power and nothing touched; or neither
+ * woman moves from the table). The minute brought in for signing (c17.i-minute = sloane | sign | leave: the pen handed to
+ * the client's officer; her own signature as a witness; or the board's). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 
@@ -69,11 +75,26 @@ function exhibitBlocks(s: GameState): Block[] {
     q('Celeste Laurent', 'E. V. (II). Axiom’s, for the moment.'),
     q('Celeste Laurent', wear === 'lanyard' ? 'And a lanyard, worn like pearls. Victoria taught you that.' : wear === 'charcoal' ? 'Axiom’s charcoal. How very corporate of you.' : 'Black. You did dare.'),
     p('She says it to the table, not to you, the way an auctioneer reads a provenance: pleasantly, for the record, so that everybody present can see what they are being asked to value. Soames writes something down. The heavy man in the middle looks at your shoes.'),
+    p('At the foot of the table, the seventh chair, a water glass already poured, and a place card, cream, engraved, the way the Vesper does its dinners: E. V. (II).'),
     ...(key(s, 'act4.benton') === 'gone' ? [q('Anton Deverell', 'Where is Mr Benton? I understood Axiom would send Mr Benton.'), q('Celeste Laurent', 'Suspended, I’m told. So careless.')] : []),
   ];
 }
 
-function exhibitChoices(): C17Choice[] {
+function placeCardChoices(): C17Choice[] {
+  const c = (id: 'name' | 'pocket' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('i17-card-' + id, label, hint, 'exhibit', (x) => {
+      setKey(x, 'c17.i-card', id);
+      return body;
+    });
+  return [
+    c('name', 'Write your name over the number', 'In ink. In front of them.', [p('You take a pen out of your jacket, uncap it, and draw one line through E. V. (II), neatly, the way Records strikes an entry, and write your own name above it in capitals. Then you stand the card back up, facing Celeste.'), q('Celeste Laurent', 'Oh, darling. Initialled, too. Victoria has taught you everything.')]),
+    c('pocket', 'Put it in your pocket', 'A souvenir. Nobody else gets it.', [p('You pick the card up and put it in your inside pocket, beside whatever else is there. It is the last time anybody will print that number. You would like to have the last copy.')]),
+    c('leave', 'Leave it where it is', 'Let them read it all evening.', [p('You leave it where it is, facing the table, and sit down behind it. Let them read it all evening. Let them look at the number and then at your face, and do the arithmetic.')]),
+  ];
+}
+
+function exhibitChoices(s: GameState): C17Choice[] {
+  if (!key(s, 'c17.i-card')) return placeCardChoices();
   const o = (id: 'room' | 'celeste' | 'silent', label: string, hint: string, body: Block[]) =>
     offer('i17-open-' + id, label, hint, 'warranty', (x) => {
       setKey(x, 'act4.open', id);
@@ -185,16 +206,52 @@ const heldLands: Record<string, Block[]> = {
   none: [p('You have nothing in your pocket. You put your hands flat on the table instead.'), q('You', 'I’m still here.')],
 };
 
-function leashBlocks(s: GameState): Block[] {
+function leashBlocks(): Block[] {
   return [
-    p('Celeste waits for the room to be quiet. Then she makes her last move, and it is the best she has ever made: not a threat. There is nothing left to threaten with. A gift.'),
+    p('Deverell takes his glasses off and puts them on the table, and says, to nobody, that the board will take five minutes. Chairs go back. The three men with no names go out together to the corridor to make telephone calls they will not describe to their wives.'),
+    t('Five minutes. She will use them. So will I.'),
+  ];
+}
+
+function offerBlocks(s: GameState): Block[] {
+  return [
+    p('The board comes back in. Celeste waits for the room to be quiet. Then she makes her last move, and it is the best she has ever made: not a threat. There is nothing left to threaten with. A gift.'),
     q('Celeste Laurent', 'Sit with us, darling. Not as the product. As the client. Axiom will need a new officer for Project Eve, and 9C needs somebody kind to hold her. You’d be kinder than Victoria. You’d be kinder than me.'),
     p('The board, frightened, is half ready to agree. It is the one thing this road has taught you to want: authority. Handed to you as a leash, with your hand on the other end, and a woman with a careful fringe on the end of it.'),
     ...(isIn(s, 'sloane') ? [q('Sloane', 'I held it for three years. It was never in my hand. It was round my neck.')] : []),
   ];
 }
 
-function leashChoices(): C17Choice[] {
+function recessChoices(s: GameState): C17Choice[] {
+  const r = (id: 'celeste' | 'sloane' | 'table', label: string, hint: string, body: Block[]) =>
+    offer('i17-recess-' + id, label, hint, 'leash', (x) => {
+      setKey(x, 'c17.i-recess', id);
+      return [...body, ...offerBlocks(x)];
+    });
+  return [
+    r('celeste', 'Go out to the corridor', 'She will follow. She always did.', [
+      p('You go out into the corridor, to the tall black window at the end of it, and she follows, as you knew she would, and stands beside you, a hand’s width away, not touching, the two of you in the glass like one woman and her reflection twelve years apart.'),
+      q('Celeste Laurent', 'A lanyard. A notice. Clause 22. You’ve become an institution, darling. I did warn Victoria you might.'),
+      q('You', 'You made me a product. She made me an officer. I made the rest.'),
+      p('She looks at you, then: your mouth, your throat, the pulse there, the long appraising look she has given a hundred girls on a hundred first evenings, and you let her, and give it back, and it is the most intimate thing that has ever passed between you, and neither of you moves an inch.'),
+    ]),
+    ...(isIn(s, 'sloane')
+      ? [
+          r('sloane', 'Find Sloane at the landing window', 'Five minutes. Not a word wasted.', [
+            p('Sloane is at the window on the landing with her hands behind her back, looking at the river as if it had filed a report she disagreed with. You stand beside her. Neither of you looks at the other. It is how you have always talked best.'),
+            q('Sloane', 'She’ll offer you something. She always offers. It will be something you want.'),
+            q('You', 'I know what I want.'),
+            q('Sloane', 'So did I, once. It was in the contract. Read it twice.'),
+            p('She does not touch you. She never has. She straightens her own cuff instead, very precisely, and goes back in first, as the senior officer should.'),
+          ]),
+        ]
+      : []),
+    r('table', 'Stay at the table', 'Neither of you gets up.', [p('You stay where you are. So does Celeste. For five minutes the two of you are the only people in the long room, not speaking, the water jug between you, while the empty frames look down and the river goes by in the black glass. She pours herself a glass of water, and then, after a moment, one for you, and slides it the length of the table, and you let it stand there untouched until the board comes back.')]),
+  ];
+}
+
+function leashChoices(s: GameState): C17Choice[] {
+  if (!key(s, 'c17.i-recess')) return recessChoices(s);
   const g = (id: 'refuse' | 'draw' | 'laugh', label: string, hint: string, body: Block[]) =>
     offer('i17-leash-' + id, label, hint, 'harbour', (x) => {
       setKey(x, 'act4.offer', id);
@@ -264,10 +321,31 @@ function rulingBlocks(s: GameState): Block[] {
     p(b.board === 'resigned' ? 'Celeste is asked to resign her seat, tonight, and does, standing, with her hands folded, as if accepting a small award.' : b.board === 'diminished' ? 'Celeste keeps her seat, and loses the room. She will not speak for this board again, and everybody at the table knows it, including her.' : 'Celeste keeps her seat, and knows it will not last.'),
     p(grant),
     ...(key(s, 'act4.benton-beat') && key(s, 'act4.benton-beat') !== 'ignore' ? [p('And a line at the bottom of the minute, added in Soames’s hand: the client to be informed, in writing, of the position of Mr E. Benton.')] : []),
+    p('Deverell’s secretary brings the minute in, one page, typed in the next room while you talked, and lays it on the table with a pen: Meridian’s pen, black and heavy, the kind the Vesper keeps for signatures that matter.'),
   ];
 }
 
-function rulingChoices(): C17Choice[] {
+function minuteChoices(s: GameState): C17Choice[] {
+  const m = (id: 'sloane' | 'sign' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('i17-minute-' + id, label, hint, 'ruling', (x) => {
+      setKey(x, 'c17.i-minute', id);
+      return body;
+    });
+  return [
+    ...(isIn(s, 'sloane')
+      ? [m('sloane', 'Hand the pen to Sloane', 'The client’s officer signs for the client.', [
+          p('You pick up the pen and hold it out across the table, not to Deverell, but to the chair marked AXIOM, CLIENT.'),
+          q('You', 'The client should sign. It’s the client’s complaint.'),
+          p('Sloane reads the minute. Then she reads it again, the whole page, while the people who own a great deal of the world wait for her, and signs it at the bottom, V. SLOANE, OFFICER OF RECORD, in a hand that has countersigned a great many things it should not have, and does not shake now.'),
+        ])]
+      : []),
+    m('sign', 'Sign it yourself', 'As a witness. Not the number.', [p('You take the pen and sign as a witness at the bottom of the minute: not the number on the place card. A name, in your own hand, which Soames reads upside down, and nods at, and initials beside, which nobody asked her to do.')]),
+    m('leave', 'Let the board sign its own minute', 'Leave the pen where it lies.', [p('You leave the pen where it lies. It is their minute. Let them sign it, one after another, down the table, while you watch each of them read what they are signing, for once.')]),
+  ];
+}
+
+function rulingChoices(s: GameState): C17Choice[] {
+  if (!key(s, 'c17.i-minute')) return minuteChoices(s);
   return [
     offer('i17-ruling-on', 'Let the board file out', 'One minute.', 'aside', (x) => {
       const b = board17i(x);
@@ -324,7 +402,7 @@ export function institutionalBlocks17(s: GameState): Block[] {
   if (s.phase === 'exhibit') return exhibitBlocks(s);
   if (s.phase === 'warranty') return warrantyBlocks(s);
   if (s.phase === 'record') return recordBlocks(s);
-  if (s.phase === 'leash') return leashBlocks(s);
+  if (s.phase === 'leash') return leashBlocks();
   if (s.phase === 'harbour') return harbourBlocks();
   if (s.phase === 'ruling') return rulingBlocks(s);
   if (s.phase === 'aside') return asideBlocks(s);
@@ -333,12 +411,12 @@ export function institutionalBlocks17(s: GameState): Block[] {
 }
 
 export function institutionalChoices17(s: GameState): C17Choice[] {
-  if (s.phase === 'exhibit') return exhibitChoices();
+  if (s.phase === 'exhibit') return exhibitChoices(s);
   if (s.phase === 'warranty') return warrantyChoices(s);
   if (s.phase === 'record') return recordChoices(s);
-  if (s.phase === 'leash') return leashChoices();
+  if (s.phase === 'leash') return leashChoices(s);
   if (s.phase === 'harbour') return harbourChoices(s);
-  if (s.phase === 'ruling') return rulingChoices();
+  if (s.phase === 'ruling') return rulingChoices(s);
   if (s.phase === 'aside') return asideChoices();
   return [];
 }

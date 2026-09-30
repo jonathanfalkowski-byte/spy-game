@@ -20,13 +20,15 @@ Design: [../INSTITUTIONAL_CHAPTER_17_FIT_FOR_PURPOSE_DESIGN.md](../INSTITUTIONAL
 
 | Phase | Beat | Choices | Flags |
 |---|---|---|---|
-| **exhibit** | "E. V. (II). Axiom's, for the moment."; her clothes read. If Benton was walked out in Ch14: "Where is Mr Benton?" "Suspended, I'm told. So careless." | **i17-open-room** ("I've come about the warranty.") · **-celeste** · **-silent**; the first card lands | `act4.open` |
+| **exhibit** | "E. V. (II). Axiom's, for the moment."; her clothes read. If Benton was walked out in Ch14: "Where is Mr Benton?" "Suspended, I'm told. So careless." | First the place card, E. V. (II) (deepening): **i17-card-name** (her name over the number: "Initialled, too.") · **-pocket** · **-leave** (neutral). Then **i17-open-room** ("I've come about the warranty.") · **-celeste** · **-silent**; the first card lands | `c17.i-card`, `act4.open` |
 | **warranty** | Not fit for purpose: Sloane ("I was the officer who took delivery of her. I'm here to return her." / "I declined."), or Maya reads the finding, or Evelynn. "Did we know about 9C?" | **i17-press-receipts** · **-forgery** (the sevens, if she has the proof; otherwise her word, and she says so) · **-cost** | `act4.press` |
 | **record** | Only with Sloane inside, the proof road, or her countersignature on 9C; and/or Benton at the table. | **i17-sloane-vouch** · **-stand** · **-use**; then **i17-benton-box** (torch: "Where is it, Director?") · **-celeste** ("Elias is ours, darling. He always was.") · **-ignore** | `act4.sloane`, `act4.benton-beat` |
-| **leash** | The gift: the officer's chair, and 9C to hold. Sloane (inside): "It was round my neck." | **i17-leash-refuse** ("I came to return one.") · **-draw** · **-laugh**; then the held card lands | `act4.offer`, `act4.held-landed` |
+| **leash** | Deverell's five-minute recess (deepening), then the gift: the officer's chair, and 9C to hold. Sloane (inside): "It was round my neck." | First **i17-recess-celeste** (the corridor; attention, nothing touched) · **-sloane** (inside: the landing window, "Read it twice."; nothing touched) · **-table** (neutral). Then **i17-leash-refuse** ("I came to return one.") · **-draw** · **-laugh**; then the held card lands | `c17.i-recess`, `act4.offer`, `act4.held-landed` |
 | **harbour** | Nell, canon, told. | **i17-named-ask** · **-nora** · **-wait** | `act4.named`, `act4.nell-said` |
-| **ruling** | The board, by aim and terms; Soames's line about Mr E. Benton if he was exposed in the room. | **i17-ruling-on** | `act4.board`, `act4.terms` |
+| **ruling** | The board, by aim and terms; Soames's line about Mr E. Benton if he was exposed in the room. | The minute and Meridian's pen (deepening): **i17-minute-sloane** (inside: V. SLOANE, OFFICER OF RECORD) · **-sign** · **-leave** (neutral). Then **i17-ruling-on** | `c17.i-minute`, `act4.board`, `act4.terms` |
 | **aside** | One minute: "Victoria survived us." / "You didn't let Victoria survive us." / "Victoria resigned rather than survive us." | **i17-last-yes** · **-no** · **-orchid** | `act4.last` |
 | **complete** | The front door; Sloane's "Debrief. Tomorrow. Ten o'clock. Bring coffee." if she was inside. | — | — |
 
-**Size (honest), pass 1:** ~1.0k to ~1.17k on one path, against the ~4.5k target. Nothing sexual on screen.
+**Deepening pass (2026-09-30):** three moments, each with a neutral pick (`i17-card-leave`, `i17-recess-table`, `i17-minute-leave`).
+
+**Size (honest):** ~1.0–1.17k at pass 1; ~1.31–1.56k after deepening, against the ~4.5k target. Nothing sexual on screen.
