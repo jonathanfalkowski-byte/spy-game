@@ -25,7 +25,10 @@
 - The file number AX-7A, and the first message, "Welcome home, 7A." (`c7.i-message`), sender unknown.
 - The woman in the ivory jacket, "someone the vendor told us was retired" (`c7.i-photo`).
 
-**Status: DESIGN for owner approval.** Nothing is built yet.
+**Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_8_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_8_SCRIPT.md); code:
+`src/content/chapter8-institutional.ts`. It is entered from an Institutional `chapter7.complete` and hands on to the
+shared Ch9 bridge ("Follow the vendor"), ~1.25–1.58k words on one path.
 
 ---
 

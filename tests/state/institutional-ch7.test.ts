@@ -5,7 +5,7 @@ import golden6 from '../fixtures/rev19-chapter6-golden.json';
 import type { GameState } from '../../src/state/schema';
 import { decodeSave, encodeSave } from '../../src/persistence/saves';
 import { chapter7Choices } from '../../src/content/chapter7';
-import { chapter9Choices } from '../../src/content/chapter9';
+import { chapter8Choices } from '../../src/content/chapter8';
 import { deriveRoute6 } from '../../src/content/chapter6-counterpower';
 import { settle6, text, toProof, walk } from '../chapter6-helpers';
 
@@ -111,7 +111,7 @@ it('challenged: the ORACLE opening, three scope terms, “development feedback�
   expect(text(done)).toContain('BENTON KNOWS.');
   expect(text(done)).not.toContain('route — in development');
   expect(ids(done)).toEqual([]);
-  expect(chapter9Choices(done).map((c) => c.id)).toEqual(['chapter9.begin-placeholder']);
+  expect(chapter8Choices(done).map((c) => c.id)).toEqual(['chapter8.begin-institutional']);
   expect(text(done)).not.toMatch(SEXUAL);
 });
 

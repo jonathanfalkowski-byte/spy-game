@@ -220,6 +220,12 @@ const byNode: Record<string, Key> = {
   'chapter8.dinner': 'privateDinner',
   'chapter8.tray': 'helixSuite',
   'chapter8.late': 'apartmentNight',
+  // The Institutional road: Scope.
+  'chapter8.rota': 'officeDusk',
+  'chapter8.tasked': 'officeDusk',
+  'chapter8.records': 'clinicalRecords',
+  'chapter8.backseat': 'car',
+  'chapter8.afterhours': 'apartmentNight',
   // Chapter 9 (the shared bridge).
   'chapter9.arrive': 'apartmentDay',
   'chapter9.names': 'shoppingStreet',
