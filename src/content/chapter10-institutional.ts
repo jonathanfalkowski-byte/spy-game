@@ -10,7 +10,13 @@
  * the Friday photograph; Benton outside the wrong hotel room; or Sloane grey. The Vesper invitation in Sloane's in-tray.
  * The night (Daniel as a colleague, or if he knows the consent flow at his place; Maya; a partner from before; alone).
  * Entered from an Institutional `chapter9.complete`; hands on to the Ch14 interim bridge. Keys under `inst.*` and
- * `c10.i-*`; ids carry `i10-`. */
+ * `c10.i-*`; ids carry `i10-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. Dawn on Wednesday, dressing for the woman who
+ * designed you (c10.i-dress = ivory | grey | black: the ivory jacket from the photograph, a provocation she notices at
+ * once; Axiom's grey, like armour; or black). Page seven reaches Daniel before Sloane (c10.i-daniel = joke | true |
+ * nothing: "It's a very good photograph."; the truth, as far as it goes; or nothing). Friday at seven, a white orchid
+ * on her mat, "For the operative. C." (c10.i-orchid = security | sill | bin: handed in to Axiom security as a
+ * suspicious package, and Sloane laughs out loud for the first time; turned to the street; or the bin). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -104,17 +110,42 @@ function inventory(s: GameState): Block[] {
   ];
 }
 
-function clubBlocks(s: GameState): Block[] {
+function clubBlocks(): Block[] {
+  return [
+    p('Wednesday, six o’clock. The wardrobe mirror, the cards behind you, and a question that is not about clothes at all: what do you wear to breakfast with the woman who designed you?'),
+  ];
+}
+
+function dressChoices(): C10Choice[] {
+  const d = (id: 'ivory' | 'grey' | 'black', label: string, hint: string, body: Block[]) =>
+    offer('i10-dress-' + id, label, hint, 'club', (x) => {
+      set10(x, 'i-dress', id);
+      return [...body, ...arrivalBlocks(x)];
+    });
+  return [
+    d('ivory', 'An ivory jacket', 'Like the woman in the photograph.', [p('An ivory jacket, bought on Saturday in a shop you had never been into, the nearest thing in London to the one in the photograph on Sloane’s file. You put it on over black and look at yourself for a long time. It is not a costume. It is a question, and you are going to ask it with your shoulders.')]),
+    d('grey', 'Axiom grey', 'The work suit. Armour.', [p('The grey suit you wear to Axiom, pressed, with the lanyard in the pocket where she will see its edge. Let her have breakfast with an Axiom operative. Let her see what her product became.')]),
+    d('black', 'Black', 'It never tells anybody anything.', [p('Black. It never tells anybody anything, and today that is exactly what you want from it.')]),
+  ];
+}
+
+function arrivalBlocks(s: GameState): Block[] {
   return [
     ...(gate(s)
       ? [p('Twenty to eight, the staff entrance. Celeste Laurent is standing by Terry’s desk in a camel coat with a white box of pastries from the good bakery, and every analyst coming through the barrier looks at her twice. She kisses the air beside your cheek, and takes your arm, and walks you out onto the pavement as if she owned it, which, you remember, she may.')]
       : [p('The Lindqvist at seven: the long room with the curtains that never open, the silver domes, the coffee poured before you ask. Celeste is at the table in the window that has no window, in cream, and she stands when you come in, and holds you at arm’s length, and looks.')]),
     q('Celeste Laurent', 'There you are. Back at Axiom. At his desk. You must tell me what it’s like.'),
+    ...(get10(s, 'i-dress') === 'ivory'
+      ? [p('Her eyes go to the jacket, and stay there, and for one second the whole of her face stops, the way a clock stops, and then starts again.'), q('Celeste Laurent', 'Ivory. How cruel of you. She wore it better. No, that isn’t true. She wore it first.')]
+      : get10(s, 'i-dress') === 'grey'
+        ? [q('Celeste Laurent', 'Axiom grey. They do love to dress you all alike, don’t they. It suits you. I’d hoped it wouldn’t.')]
+        : []),
     ...inventory(s),
   ];
 }
 
-function clubChoices(): C10Choice[] {
+function clubChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'i-dress')) return dressChoices();
   const a = (id: 'composed' | 'ask' | 'walk', label: string, hint: string, body: Block[]) =>
     offer('i10-adrian-' + id, label, hint, 'log', (x) => {
       set10(x, 'i-adrian', id);
@@ -166,6 +197,26 @@ function logChoices(): C10Choice[] {
 function pagesBlocks(s: GameState): Block[] {
   return [
     p('By noon it is in the City pages, page seven, a photograph taken from somewhere you did not see: the two of you laughing over silver domes, her hand on your wrist. CELESTE LAURENT AT BREAKFAST WITH AXIOM’S NEW ANALYST.'),
+    p('At ten past twelve Daniel rolls his chair the two desks over with the paper folded to page seven, and holds it up beside your face, and looks from one to the other.'),
+    q('Daniel', told(s) ? 'Adrian Vale had breakfast with Celeste Laurent. I’m going to need a minute. Actually, I’m going to need a drink.' : 'Is this you? This is you. You had breakfast with Celeste Laurent. People like us don’t have breakfast with Celeste Laurent. People like us have the coffee machine.'),
+  ];
+}
+
+function danielChoices(s: GameState): C10Choice[] {
+  const d = (id: 'joke' | 'true' | 'nothing', label: string, hint: string, body: Block[]) =>
+    offer('i10-daniel-' + id, label, hint, 'pages', (x) => {
+      set10(x, 'i-daniel', id);
+      return [...body, ...sloaneBlocks(x)];
+    });
+  return [
+    d('joke', '“It’s a very good photograph.”', 'Make him laugh. Buy a minute.', [q('You', 'It’s a very good photograph. Look at my hair.'), p('He laughs, the startled real laugh, and rolls back to his desk, and looks at page seven again when he thinks you aren’t watching, and then at you, and then at page seven.')]),
+    d('true', 'The truth, as far as it goes', '“She knew me before.”', [q('You', 'She knew me before. Before Axiom. It wasn’t a nice breakfast, Daniel.'), p(told(s) ? 'He looks at you for a long moment with the face he has started wearing since the Feathers, the one that knows exactly who is under yours.' : 'He stops smiling at once, and puts the paper face down on your desk, and says, “Then I’m sorry I waved it about,” and means it.'), ...(told(s) ? [q('Daniel', 'Then I don’t like her. Whoever she is. Just so you know whose side the coffee machine is on.')] : [])]),
+    d('nothing', 'Say nothing', 'Let him look.', [p('You say nothing at all, and go on typing, and after a moment he folds the paper away and rolls back to his desk, and the floor goes on pretending not to have seen page seven.')]),
+  ];
+}
+
+function sloaneBlocks(s: GameState): Block[] {
+  return [
     p('At half past twelve Sloane is at your desk with the paper folded to page seven, which she puts down on your keyboard, the way she puts down everything, squared to the edge.'),
     q('Sloane', 'You didn’t tell me you knew Celeste Laurent.'),
     ...(get10(s, 'i-card') === 'sloane' ? [q('Sloane', 'You told me she asked you to breakfast. You didn’t tell me she’d put you on page seven.')] : []),
@@ -173,6 +224,7 @@ function pagesBlocks(s: GameState): Block[] {
 }
 
 function pagesChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'i-daniel')) return danielChoices(s);
   const a = answer(s);
   const pg = (id: 'old' | 'work' | 'report', label: string, hint: string, body: Block[]) =>
     offer('i10-pages-' + id, label, hint, 'fridays', (x) => {
@@ -215,11 +267,27 @@ function fridaysBlocks(s: GameState): Block[] {
     p('And on Friday, in Sloane’s in-tray, a card on cream, in green ink, addressed to Axiom as a client of long standing:'),
     q('The card', 'The Vesper. The first Thursday. — and do bring your operative. C.L.'),
     q('Sloane', 'Axiom has never been asked before. Apparently we are now. I wonder why.'),
+    p('At seven, when you get home, there is a white orchid on your mat in a black pot, three flowers open and one closed, and a card in the looping green hand:'),
+    q('The card', 'For the operative. C.'),
+    t('Past a monitored door. In a building Axiom watches. She wanted me to know she could.'),
   ];
 }
 
 function fridaysChoices(): C10Choice[] {
-  return [offer('i10-fridays-on', 'Friday night', 'The week is over. Nearly.', 'nightfall')];
+  const o = (id: 'security' | 'sill' | 'bin', label: string, hint: string, body: Block[]) =>
+    offer('i10-orchid-' + id, label, hint, 'nightfall', (x) => {
+      set10(x, 'i-orchid', id);
+      return body;
+    });
+  return [
+    o('security', 'Hand it in to Axiom security', 'As a suspicious package. Through the proper channel.', [
+      p('You carry it back to Axiom Tower, pot and all, and hand it in at the security desk on the ground floor as a suspicious package, and fill in the form, in triplicate, with the time of delivery and the text of the card.'),
+      p('Security x-rays it. It is an orchid. On Monday a copy of the form comes up to seventy-one with the incident log, and for the first time in your acquaintance you hear Victoria Sloane laugh out loud, once, behind a closed door.'),
+      q('Sloane', 'Suspicious package. One orchid, white. Logged. That’s the best thing anybody has done in this building all year.'),
+    ]),
+    o('sill', 'Put it on the sill, turned to the street', 'Let it look at somebody else.', [p('You put it on the windowsill with its flowers turned to face the street, so that whatever she meant by it can look at somebody else, and whoever is watching the building can see that you received it and were not impressed.')]),
+    o('bin', 'Put it in the bin', 'Pot and all.', [p('You put it in the kitchen bin, pot and all, and the flowers go on looking up at you, very white, until you put the lid on.')]),
+  ];
 }
 
 // ── Nightfall ──
@@ -304,7 +372,7 @@ function completeBlocks(s: GameState): Block[] {
 
 export function institutionalBlocks10(s: GameState): Block[] {
   if (s.phase === 'card') return cardBlocks();
-  if (s.phase === 'club') return clubBlocks(s);
+  if (s.phase === 'club') return clubBlocks();
   if (s.phase === 'log') return logBlocks(s);
   if (s.phase === 'pages') return pagesBlocks(s);
   if (s.phase === 'fridays') return fridaysBlocks(s);
@@ -315,7 +383,7 @@ export function institutionalBlocks10(s: GameState): Block[] {
 
 export function institutionalChoices10(s: GameState): C10Choice[] {
   if (s.phase === 'card') return cardChoices();
-  if (s.phase === 'club') return clubChoices();
+  if (s.phase === 'club') return clubChoices(s);
   if (s.phase === 'log') return logChoices();
   if (s.phase === 'pages') return pagesChoices(s);
   if (s.phase === 'fridays') return fridaysChoices();

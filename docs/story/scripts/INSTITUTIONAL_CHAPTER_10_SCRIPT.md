@@ -24,10 +24,10 @@ Design: [../INSTITUTIONAL_CHAPTER_10_A_VERY_GOOD_OFFICER_DESIGN.md](../INSTITUTI
 | Phase | Beat | Choices | Flags |
 |---|---|---|---|
 | **card** | A grey Axiom envelope, AX-7A, in capitals like Sloane's, with crossed sevens: *Breakfast? Wednesday. The Lindqvist, seven. — C.* | **i10-card-go** · **-sloane** ("That isn't my hand. It's very good.") · **-gate** (Terry: "A lady for you, madam. She's brought pastries.") | `c10.i-card` |
-| **club** | The Lindqvist, or the pavement outside the staff gate. The inventory: AX-7A; one scope term quoted exactly; Records with Victoria in the car ("Elias tells me everything"); never the copy or the note; Daniel. "Eat your eggs, Adrian." | **i10-adrian-composed** · **-ask** · **-walk** | `c10.i-adrian` |
+| **club** | The Lindqvist, or the pavement outside the staff gate. The inventory: AX-7A; one scope term quoted exactly; Records with Victoria in the car ("Elias tells me everything"); never the copy or the note; Daniel. "Eat your eggs, Adrian." | First, dawn (deepening): **i10-dress-ivory** (the jacket from the photograph; "Ivory. How cruel of you. … She wore it first.") · **-grey** (Axiom's suit; "It suits you. I'd hoped it wouldn't.") · **-black** (neutral). Then **i10-adrian-composed** · **-ask** · **-walk** | `c10.i-dress`, `c10.i-adrian` |
 | **log** | "Victoria is a very good officer. … She'll never survive us. … Unless you help me." The log, every Friday; the black phone. Benton's Ch8 log remembered (Sloane's version: "wrong in eleven places"; hers: "those three very well chosen"; refused: "He was quite hurt"). | **i10-log-give** · **-doctor** · **-refuse** | `inst.log10`, `inst.celeste10`; fact `c10.i-order` |
-| **pages** | Page seven: CELESTE LAURENT AT BREAKFAST WITH AXIOM'S NEW ANALYST. Sloane at her desk: "You didn't tell me you knew Celeste Laurent." | **i10-pages-old** · **-work** · **-report** (by answer: "thank you for telling me after" / "Let me choose the lie on Fridays" / "I'd rather pay than be sold") | `inst.pages10`, `inst.told10` |
-| **fridays** | The week: the Friday photograph; Benton outside room 412 for a debrief that doesn't exist; or Sloane's budget cut by a third and "That was a small one. Friday?". The Vesper invitation in Sloane's in-tray: *do bring your operative. C.L.* | **i10-fridays-on** | — |
+| **pages** | Page seven: CELESTE LAURENT AT BREAKFAST WITH AXIOM'S NEW ANALYST. Sloane at her desk: "You didn't tell me you knew Celeste Laurent." | First Daniel with page seven (deepening): **i10-daniel-joke** ("Look at my hair.") · **-true** ("She knew me before.") · **-nothing** (neutral). Then **i10-pages-old** · **-work** · **-report** (by answer: "thank you for telling me after" / "Let me choose the lie on Fridays" / "I'd rather pay than be sold") | `c10.i-daniel`, `inst.pages10`, `inst.told10` |
+| **fridays** | The week: the Friday photograph; Benton outside room 412 for a debrief that doesn't exist; or Sloane's budget cut by a third and "That was a small one. Friday?". The Vesper invitation in Sloane's in-tray: *do bring your operative. C.L.* At seven, a white orchid on her mat: *For the operative. C.* | **i10-orchid-security** (a suspicious package, logged; Sloane laughs out loud) · **-sill** (turned to the street) · **-bin** (neutral) | `c10.i-orchid` |
 | **nightfall** | Friday night. | **i10-night-daniel** (as a colleague at the Feathers; or, if told, at his place with the consent flow) · **-julian** / **-sebastian** (if available) · **-maya** (if restored: "Whose leash is that?") · **-alone**; **i10-{partner}-no-sex** / **-sex** / **i10-leave**, then **i10-stop** / **i10-stay** | `c10.i-night*`; fact `c10.i-evening-consent` |
 | **complete** | CELESTE LAURENT. GIVEN / DOCTORED / REFUSED. (SLOANE KNOWS.) The Vesper invitation pinned beside it. | — (Ch14 bridge) | — |
 
@@ -36,4 +36,8 @@ Ch9: the entry; **give** (reported to Sloane, a night with Daniel who knows, the
 authenticates); **doctor** (shown to Sloane first, Elias's pretty log, room 412); **refuse** (Celeste at the gate, the
 budget cut).
 
-**Size (honest), pass 1:** ~0.85k (quiet) to ~1.04k (engaged), against the ~4.5k target.
+**Deepening pass (2026-09-30):** three moments, each with a neutral pick (the dress, Daniel with page seven, the
+orchid). Tests use a `NEUTRAL10` walker (`i10-dress-black`, `i10-daniel-nothing`, `i10-orchid-bin`).
+
+**Size (honest):** ~0.85k (quiet) to ~1.04k (engaged) at pass 1; ~1.07k to ~1.43k after deepening, against the ~4.5k
+target.

@@ -109,10 +109,21 @@ const ch14 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith
 const BENTON8 = ['i8-task-benton', 'i8-benton-sloane', 'i8-task-debrief', 'i8-debrief-full', 'i8-task-report', 'i8-report-tell', 'i8-file-copy', 'i8-car-ask', 'i8-evening-alone'];
 
 const ids10 = (s: GameState) => chapter10Choices(s).map((c) => c.id.replace(/^chapter10\./, ''));
-const c10 = (s: GameState, id: string) => {
+const once10 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER10_CHOOSE', id: 'chapter10.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids10(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the dress, Daniel with page seven, the orchid): take the neutral pick when it is in the way. */
+const NEUTRAL10 = ['i10-dress-black', 'i10-daniel-nothing', 'i10-orchid-bin'];
+const c10 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids10(y).includes(id); i++) {
+    const d = NEUTRAL10.find((x) => ids10(y).includes(x));
+    if (!d) break;
+    y = once10(y, d);
+  }
+  return once10(y, id);
 };
 const walk10 = (s: GameState, path: string[]) => path.reduce(c10, s);
 const ch10 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter10.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -130,24 +141,30 @@ it('enters A Very Good Officer from an Institutional Chapter 9: the grey envelop
 });
 
 it('give: the Lindqvist, the log handed over, Sloane told, Daniel; on to the Ch14 bridge; it authenticates', () => {
-  const club = walk10(toNine(PROTECTED7(), TORCH8), ['begin-institutional', 'i10-card-go']);
+  const club = walk10(toNine(PROTECTED7(), TORCH8), ['begin-institutional', 'i10-card-go', 'i10-dress-black']);
   expect(ch10(club)).toContain('AX-7A. They gave you his candidate number.');
   expect(ch10(club)).toContain('The Operative may decline any single tasking, in writing, without penalty');
   expect(ch10(club)).toContain('Elias tells me everything, darling.');
   expect(ch10(club)).toContain('She doesn’t know about the note.');
   expect(ch10(club)).toContain('Eat your eggs, Adrian.');
+  expect(ids10(walk10(toNine(PROTECTED7(), TORCH8), ['begin-institutional', 'i10-card-go']))).toEqual(['i10-dress-ivory', 'i10-dress-grey', 'i10-dress-black']);
   const log = c10(club, 'i10-adrian-composed');
   expect(ch10(log)).toContain('Victoria is a very good officer.');
   expect(ids10(log)).toEqual(['i10-log-give', 'i10-log-doctor', 'i10-log-refuse']);
   const pages = c10(log, 'i10-log-give');
   expect(pages.facts).toContain('c10.i-order');
   expect(ch10(pages)).toContain('CELESTE LAURENT AT BREAKFAST WITH AXIOM’S NEW ANALYST.');
-  expect(ids10(pages)).toEqual(['i10-pages-old', 'i10-pages-work', 'i10-pages-report']);
+  expect(ids10(c10(pages, 'i10-daniel-nothing'))).toEqual(['i10-pages-old', 'i10-pages-work', 'i10-pages-report']);
+  expect(ch10(pages)).toContain('Adrian Vale had breakfast with Celeste Laurent.');
+  expect(ids10(pages)).toEqual(['i10-daniel-joke', 'i10-daniel-true', 'i10-daniel-nothing']);
   const fridays = c10(pages, 'i10-pages-report');
   expect(fridays.choices['inst.told10']).toBe('yes');
   expect(ch10(fridays)).toContain('And thank you for telling me after.');
   expect(ch10(fridays)).toContain('do bring your operative. C.L.');
-  const night = c10(fridays, 'i10-fridays-on');
+  expect(ch10(fridays)).toContain('For the operative. C.');
+  expect(ids10(fridays)).toEqual(['i10-orchid-security', 'i10-orchid-sill', 'i10-orchid-bin']);
+  const night = c10(fridays, 'i10-orchid-security');
+  expect(ch10(night)).toContain('One orchid, white. Logged.');
   expect(ids10(night)).toContain('i10-night-daniel');
   expect(ids10(night)).not.toContain('i10-night-daniel-feathers');
   const done = walk10(night, ['i10-night-daniel', 'i10-daniel-no-sex', 'i10-stay']);
@@ -166,7 +183,7 @@ it('give: the Lindqvist, the log handed over, Sloane told, Daniel; on to the Ch1
 });
 
 it('doctor: shown to Sloane first, Elias’s pretty log, Benton outside room 412', () => {
-  const done = walk10(toNine(TRADE7(), BENTON8), ['begin-institutional', 'i10-card-sloane', 'i10-adrian-ask', 'i10-log-doctor', 'i10-pages-work', 'i10-fridays-on', 'i10-night-daniel', ]);
+  const done = walk10(toNine(TRADE7(), BENTON8), ['begin-institutional', 'i10-card-sloane', 'i10-adrian-ask', 'i10-log-doctor', 'i10-pages-work', 'i10-night-daniel', ]);
   expect([done.choices['inst.log10'], done.choices['inst.celeste10'], done.choices['inst.pages10']]).toEqual(['doctored', 'fooled', 'work']);
   expect(ch10(done)).toContain('That isn’t my hand. It’s very good.');
   expect(ch10(done)).toContain('It was very pretty, and wrong in eleven places.');
@@ -177,7 +194,7 @@ it('doctor: shown to Sloane first, Elias’s pretty log, Benton outside room 412
 });
 
 it('refuse: Celeste at the staff gate, the log refused, Sloane’s budget cut', () => {
-  const done = walk10(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i10-card-gate', 'i10-adrian-walk', 'i10-log-refuse', 'i10-pages-old', 'i10-fridays-on', 'i10-night-alone']);
+  const done = walk10(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i10-card-gate', 'i10-adrian-walk', 'i10-log-refuse', 'i10-pages-old', 'i10-night-alone']);
   expect([done.choices['inst.log10'], done.choices['inst.celeste10']]).toEqual(['refused', 'refused']);
   expect(ch10(done)).toContain('A lady for you, madam.');
   expect(ch10(done)).toContain('Her log is hers.');
@@ -185,4 +202,15 @@ it('refuse: Celeste at the staff gate, the log refused, Sloane’s budget cut', 
   expect(ch10(done)).toContain('That was a small one. Friday?');
   expect(ch10(done)).toContain('CELESTE LAURENT. REFUSED.');
   expect(done.choices['inst.told10']).toBeUndefined();
+});
+
+it('deepening: the ivory jacket, the truth to Daniel, the orchid on the sill', () => {
+  const done = walk10(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i10-card-go', 'i10-dress-ivory', 'i10-adrian-composed', 'i10-log-give', 'i10-daniel-true', 'i10-pages-work', 'i10-orchid-sill', 'i10-night-alone']);
+  expect(['i-dress', 'i-daniel', 'i-orchid'].map((k) => done.choices['c10.' + k])).toEqual(['ivory', 'true', 'sill']);
+  expect(ch10(done)).toContain('Ivory. How cruel of you. She wore it better. No, that isn’t true. She wore it first.');
+  expect(ch10(done)).toContain('Then I’m sorry I waved it about');
+  expect(ch10(done)).toContain('were not impressed');
+  const grey = walk10(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i10-card-gate', 'i10-dress-grey']);
+  expect(ch10(grey)).toContain('Axiom grey.');
+  expect(ch10(grey)).toContain('She’s brought pastries.');
 });

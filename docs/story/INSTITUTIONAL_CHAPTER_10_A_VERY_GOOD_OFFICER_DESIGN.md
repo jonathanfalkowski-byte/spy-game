@@ -26,8 +26,9 @@ framing**
 
 **Status: APPROVED (owner, 2026-09-30: "ok do your recommendations", all eight decisions as recommended) and BUILT,
 pass 1.** Script: [scripts/INSTITUTIONAL_CHAPTER_10_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_10_SCRIPT.md); code:
-`src/content/chapter10-institutional.ts`. Entered from an Institutional `chapter9.complete`; hands on to the Ch14 bridge;
-~0.85–1.04k words on one path.
+`src/content/chapter10-institutional.ts`. Entered from an Institutional `chapter9.complete`; hands on to the Ch14 bridge.
+It ran ~0.85–1.04k words on one path at pass 1, deepened 2026-09-30 to ~1.07–1.43k with three moments: the dress,
+Daniel with page seven, and the orchid.
 
 ---
 
