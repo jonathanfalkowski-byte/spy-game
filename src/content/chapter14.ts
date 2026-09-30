@@ -919,6 +919,15 @@ export function chapter14Blocks(s: GameState): Block[] {
   return [];
 }
 
+/** Where the Institutional road enters Chapter 14 until its Chapters 12–13 exist: the last of Chapters 9–11 that is
+ * playable. */
+function institutionalBridgeFrom14(s: GameState): boolean {
+  if (s.scene === 'chapter11') return true;
+  if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
+  if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
+  return false;
+}
+
 /** Where the Executive road enters Chapter 14: from its Chapter 13, or the last of Chapters 9–12 that is playable. */
 function executiveBridgeFrom14(s: GameState): boolean {
   // Since Executive Chapter 13 (Held), the road runs straight in from chapter13.complete; the bridge is only a fallback
@@ -940,7 +949,7 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   // before it.
   if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14(s)];
   // The Institutional road: through the in-development bridge from its Chapter 9, until its Chapters 10–13 exist.
-  if (s.phase === 'complete' && isInstitutional14(s) && ((s.scene === 'chapter9' && import.meta.env.VITE_EVE_CHAPTER10 !== '1') || s.scene === 'chapter10')) return [beginInstitutional14(s)];
+  if (s.phase === 'complete' && isInstitutional14(s) && institutionalBridgeFrom14(s)) return [beginInstitutional14(s)];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);

@@ -8,7 +8,8 @@ shared Ch9 bridge ("Follow the vendor"), and through an interim bridge to Ch14, 
 ([INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md](INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md)), pass 1, deepened.
 **The unique spine (7, 8, 14) is built.** Shared variants: Ch10, "A Very Good Officer"
 ([INSTITUTIONAL_CHAPTER_10_A_VERY_GOOD_OFFICER_DESIGN.md](INSTITUTIONAL_CHAPTER_10_A_VERY_GOOD_OFFICER_DESIGN.md)), pass 1, deepened;
-the Ch14 bridge now starts at Ch10's end. Next: Ch11–13, then 15–18. Written 2026-09-29 as the next route after
+Ch11, "The Receipt" ([INSTITUTIONAL_CHAPTER_11_THE_RECEIPT_DESIGN.md](INSTITUTIONAL_CHAPTER_11_THE_RECEIPT_DESIGN.md)), pass 1.
+The Ch14 bridge now starts at Ch11's end. Next: Ch12–13, then 15–18. Written 2026-09-29 as the next route after
 Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 
 **Authority:**

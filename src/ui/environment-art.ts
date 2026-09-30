@@ -289,6 +289,12 @@ const byNode: Record<string, Key> = {
   'chapter11.pages': 'serviceGallery',
   'chapter11.pen': 'rooftop',
   'chapter11.signing': 'harbourRoom',
+  // The Institutional road: The Receipt.
+  'chapter11.threshold': 'harbourRoom',
+  'chapter11.catalogue': 'harbourRoom',
+  'chapter11.receipt': 'harbourRoom',
+  'chapter11.countersign': 'harbourRoom',
+  'chapter11.ride': 'car',
   'chapter11.drive': 'car',
   // Chapter 12 (stand-ins until EVE Art's Singapore frames: Changi, Emerald Hill, number 9, the Punkah Bar, the harbour).
   'chapter12.departure': 'apartmentNight',

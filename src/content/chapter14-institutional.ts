@@ -69,7 +69,7 @@ export function placeInstitutional14(s: GameState): string | undefined {
 
 export function beginInstitutional14(s: GameState): C14Choice {
   return offer('begin-institutional', 'Go on to the inquiry', 'This road’s Act III chapters are in development.', 'notice', () => [
-    p((s.scene === 'chapter10' ? '[Chapters 11–13 · institutional road — in development] The Vesper, the first Thursday, with Axiom’s card in Sloane’s hand. ' : '[Chapters 10–13 · institutional road — in development] ') + 'The winter comes to Axiom the way it always did: the heating late, the coffee machine worse, the grey envelopes every Monday. Celeste Laurent’s name, which you found at the end of the bridge, sits on the card beside MERIDIAN on your wardrobe door. The ORACLE page. The empty box. A man under a street lamp who has not come back. And the black phone, which rings on Fridays.'),
+    p((s.scene === 'chapter11' ? '[Chapters 12–13 · institutional road — in development] Singapore, her city, on an Axiom tasking. The first Thursday of the next month, and a placement. ' : s.scene === 'chapter10' ? '[Chapters 11–13 · institutional road — in development] The Vesper, the first Thursday, with Axiom’s card in Sloane’s hand. ' : '[Chapters 10–13 · institutional road — in development] ') + 'The winter comes to Axiom the way it always did: the heating late, the coffee machine worse, the grey envelopes every Monday. Celeste Laurent’s name, which you found at the end of the bridge, sits on the card beside MERIDIAN on your wardrobe door. The ORACLE page. The empty box. A man under a street lamp who has not come back. And the black phone, which rings on Fridays.'),
   ]);
 }
 
@@ -115,6 +115,7 @@ function confessionBlocks(s: GameState): Block[] {
     q('Sloane', 'I understood too late that a slipping asset that stays useful is a better product than a controlled one. And that if it slipped far enough, Meridian would have an officer to blame. Me. I didn’t know about the placements. I didn’t know about the first one until the week I met you.'),
     p('She takes a single sheet out of the inside of her jacket, the one place in the room that is still hers, and puts it on the desk between you: the ORACLE verdict, with the board’s sign-off at the bottom, and three signatures. One of them is C. Laurent’s.'),
     ...(key(s, 'inst.file') === 'note' ? [q('Sloane', 'And you have the delivery note. I counted the pages in the car. I’m glad it was you.')] : []),
+    ...(key(s, 'inst.pen11') === 'signed' ? [q('Sloane', 'And I signed 9C. In her house. Because you brought it. I’ll carry that one myself.')] : []),
     ...(s.mission.source === 'benton' ? [q('Sloane', 'You guessed Benton, once. You were right. You are about to find out how right.')] : []),
   ];
 }

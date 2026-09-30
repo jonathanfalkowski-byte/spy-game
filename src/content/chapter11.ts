@@ -24,6 +24,7 @@ import { getKey, setKey } from './chapter7-model';
 import { eveningPartners10, get10, julianInPlay10, theoInPlay10 } from './chapter10';
 import { beginPredator11, isPredator11, placePredator11, predatorBlocks11, predatorChoices11, predatorPhase11 } from './chapter11-predator';
 import { beginExecutive11, executiveBlocks11, executiveChoices11, executivePhase11, isExecutive11, placeExecutive11 } from './chapter11-executive';
+import { beginInstitutional11, institutionalBlocks11, institutionalChoices11, institutionalPhase11, isInstitutional11, placeInstitutional11 } from './chapter11-institutional';
 
 export type C11Scene = { title: string; place: string; blocks: Block[] };
 export type C11Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -79,6 +80,12 @@ export const chapter11Definitions: Record<string, C11Scene> = {
   pages: { title: 'Iris', place: '21:15 · THE POWDER ROOM', blocks: [] },
   pen: { title: 'The Good Pen', place: '22:15 · THE BALCONY OVER THE CANAL', blocks: [] },
   signing: { title: 'The Long Room', place: '22:40 · THE LONG ROOM', blocks: [] },
+  // The Institutional road (2026-09-30): The Receipt.
+  threshold: { title: 'The First Thursday', place: '20:00 · THE VESPER', blocks: [] },
+  catalogue: { title: 'Iris', place: '21:15 · THE POWDER ROOM', blocks: [] },
+  receipt: { title: 'The Receipt', place: '22:15 · THE BALCONY OVER THE CANAL', blocks: [] },
+  countersign: { title: 'The Long Room', place: '22:40 · THE LONG ROOM', blocks: [] },
+  ride: { title: 'A Shop', place: 'MIDNIGHT · AXIOM’S CAR', blocks: [] },
   drive: { title: 'What Was That Place?', place: 'MIDNIGHT · HAL’S CAR', blocks: [] },
 };
 export const chapter11Scenes = Object.entries(chapter11Definitions).map(([phase, scene]) => ({
@@ -110,6 +117,7 @@ export function place11(s: GameState): string | undefined {
   if (s.scene !== 'chapter11') return;
   if (isPredator11(s)) return placePredator11(s);
   if (isExecutive11(s)) return placeExecutive11(s);
+  if (isInstitutional11(s)) return placeInstitutional11(s);
   if (s.phase === 'arrival' && get10(s, 'invitation') === 'pending' && !get11(s, 'entry')) return '19:30 · The car she booked';
   const evening = get11(s, 'evening-open');
   if (s.phase === 'after' && evening)
@@ -939,6 +947,7 @@ export function chapter11Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter11') return [];
   if (predatorPhase11(s)) return predatorBlocks11(s);
   if (executivePhase11(s)) return executiveBlocks11(s);
+  if (institutionalPhase11(s)) return institutionalBlocks11(s);
   if (s.phase === 'arrival') return arrivalBlocks(s);
   if (s.phase === 'viewing') return viewingBlocks(s);
   if (s.phase === 'upstairs') return upstairsBlocks(s);
@@ -963,9 +972,11 @@ export function chapter11Choices(s: GameState): C11Choice[] {
   if (s.scene === 'chapter10' && s.phase === 'ledger' && isPredator11(s)) return [beginPredator11()];
   // The Executive road comes from its Chapter 10 (A Lovely Man).
   if (s.scene === 'chapter10' && s.phase === 'complete' && isExecutive11(s)) return [beginExecutive11()];
+  if (s.scene === 'chapter10' && s.phase === 'complete' && isInstitutional11(s)) return [beginInstitutional11()];
   if (s.scene !== 'chapter11') return [];
   if (predatorPhase11(s)) return predatorChoices11(s);
   if (executivePhase11(s)) return executiveChoices11(s);
+  if (institutionalPhase11(s)) return institutionalChoices11(s);
   if (s.phase === 'arrival') return arrivalChoices(s);
   if (s.phase === 'viewing') return viewingChoices(s);
   if (s.phase === 'upstairs') return upstairsChoices(s);
