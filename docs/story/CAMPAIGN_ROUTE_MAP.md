@@ -145,4 +145,7 @@ what it cost.
    only after she tells him who she was; monitoring is never sexualised; unique Ch7, Ch8 and Ch14
    ([INSTITUTIONAL_ROUTE_DESIGN.md](INSTITUTIONAL_ROUTE_DESIGN.md)). **Built, Chapters 7 to 18** (2026-09-30), ending
    on "No Further Action".
+10. **The Outside route is designed, for owner approval** (2026-09-30): the sender's road, off the books, living on the
+   truth a source chooses to send; the sender is "R." on the Ch6 ledger leaf, Rafe Lim, Nell's courier and the man she
+   was leaving with ([OUTSIDE_ROUTE_DESIGN.md](OUTSIDE_ROUTE_DESIGN.md)).
 
