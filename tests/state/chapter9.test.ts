@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import golden7 from '../fixtures/rev19-chapter7-golden.json';
 import golden8 from '../fixtures/rev19-chapter8-golden.json';
+import { chapter8Choices } from '../../src/content/chapter8';
 import type { GameEvent } from '../../src/state/actions';
 import type { GameState } from '../../src/state/schema';
 import { act, availableIntents, replay } from '../../src/state/reducer';
@@ -38,6 +39,14 @@ const c9 = (s: GameState, id: string) => choose9(settled(s, id), id);
 const walk = (s: GameState, path: string[]) => path.reduce(c9, s);
 const complete7 = (name: string) => replay(golden7.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const complete8 = (name: string) => replay(golden8.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
+/** Outside now plays its own Chapter 8 (Provenance) before the bridge; a chapter8.complete outside save. */
+const CH8_OUTSIDE = ['begin-outside', 'o8-settle-on', 'o8-lead-manifest', 'o8-manifest-verify', 'o8-lead-board', 'o8-board-verify', 'o8-lead-retired', 'o8-retired-verify', 'o8-plant-on', 'o8-met-dark', 'o8-evening-alone'];
+const outsideCh8 = () =>
+  CH8_OUTSIDE.reduce((s, id) => {
+    const next = act(s, { type: 'CHAPTER8_CHOOSE', id: 'chapter8.' + id });
+    if (next === s) throw Error('ch8 ' + id + ' at ' + s.phase + ' (offered: ' + chapter8Choices(s).map((c) => c.id).join(', ') + ')');
+    return next;
+  }, complete7('outside-placeholder'));
 const withFlags = (s: GameState, flags: Record<string, string | undefined>) => {
   const x = structuredClone(s);
   for (const [k, v] of Object.entries(flags)) if (v === undefined) delete x.choices[k];
@@ -65,9 +74,9 @@ const hub = (flags: Record<string, string | undefined> = {}) => {
 
 it('opens after an own-power Chapter 8 ending, or through the placeholder for other lanes, and stays closed in production', () => {
   expect(ids(complete8('own-records-stop'))).toEqual(['begin']);
-  expect(ids(complete7('outside-placeholder'))).toEqual(['begin-placeholder']);
+  expect(ids(outsideCh8())).toEqual(['begin-placeholder']);
   expect(ids(complete7('own-records-stop'))).toEqual([]);
-  const placeholder = walk(complete7('outside-placeholder'), ['begin-placeholder']);
+  const placeholder = walk(outsideCh8(), ['begin-placeholder']);
   expect([`${placeholder.scene}.${placeholder.phase}`, placeholder.choices['c9.entered']]).toEqual(['chapter9.arrive', 'outside']);
   expect(text(placeholder)).toContain('in development');
   vi.stubEnv('VITE_EVE_CHAPTER9', '');
@@ -159,7 +168,7 @@ it('charges the inferred ORACLE on the own-power road only, never blocking', () 
   expect([unpaid.choices['c9.oracle-fee'], unpaid.choices['own.cash']]).toEqual(['unpaid', '0']);
   const seen = walk(hub({ 'c6.oracle-seen': 'yes', 'own.cash': '100' }), ['assemble-oracle']);
   expect([seen.choices['c9.lever'], seen.choices['own.cash']]).toEqual(['oracle', '100']);
-  const outside = walk(withFlags(complete7('outside-placeholder'), { 'c6.oracle-seen': undefined, 'c6.proof-opened': 'yes', 'own.cash': '100' }), ['begin-placeholder', 'arrive-begin', 'assemble-oracle']);
+  const outside = walk(withFlags(outsideCh8(), { 'c6.oracle-seen': undefined, 'c6.proof-opened': 'yes', 'own.cash': '100' }), ['begin-placeholder', 'arrive-begin', 'assemble-oracle']);
   expect([outside.choices['c9.lever'], outside.choices['own.cash'], outside.choices['c9.oracle-fee']]).toEqual(['oracle-inferred', '100', undefined]);
 });
 
@@ -314,7 +323,7 @@ it('sets the Usual Table before the hub, and the auction if the Aster piece ran'
   expect(Object.keys(thanked.choices).filter((k) => k.startsWith('c9.took.'))).toEqual([]);
 
   // Other lanes reach the hub straight from arrive.
-  const outside = walk(complete7('outside-placeholder'), ['begin-placeholder', 'arrive-begin']);
+  const outside = walk(outsideCh8(), ['begin-placeholder', 'arrive-begin']);
   expect(ids(outside)).not.toContain('table-sit');
 });
 
@@ -386,7 +395,7 @@ it('opens the Straits Club book before the floor, and sits Sloane down before th
   expect(ids(counsel)).toEqual(['lawyer-retain', 'lawyer-exhibit', 'lawyer-thank']);
 
   // Other lanes: no club, no Sloane; straight to the lawyer.
-  const outside = walk(complete7('outside-placeholder'), ['begin-placeholder']);
+  const outside = walk(outsideCh8(), ['begin-placeholder']);
   expect(ids(outside)).toEqual(['arrive-begin']);
 });
 

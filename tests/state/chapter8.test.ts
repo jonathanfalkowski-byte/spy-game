@@ -51,7 +51,7 @@ const leverage = (flags: Record<string, string | undefined> = {}) =>
 
 it('opens only after an own-power Chapter 7 ending, and stays closed in production', () => {
   expect(ids(complete7('own-records-stop'))).toEqual(['begin']);
-  expect(ids(complete7('outside-placeholder'))).toEqual([]);
+  expect(ids(complete7('outside-placeholder'))).toEqual(['begin-outside']);
   vi.stubEnv('VITE_EVE_CHAPTER8', '');
   expect(chapter8Choices(complete7('own-records-stop'))).toEqual([]);
   expect(JSON.stringify(availableIntents(complete7('own-records-stop')))).not.toContain('CHAPTER8');

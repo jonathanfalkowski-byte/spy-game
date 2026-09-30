@@ -27,7 +27,10 @@
 - The room over the water, the 02:40 phone, the sender as a disguised voice that pauses before her name.
 - `c6.rook-proof` (supported / broken / untested), `c6.oracle-seen`, `c3.misdirect-rook` (he remembers the lie).
 
-**Status: DESIGN, for owner approval.**
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/OUTSIDE_CHAPTER_8_SCRIPT.md](scripts/OUTSIDE_CHAPTER_8_SCRIPT.md); code: `src/content/chapter8-outside.ts`.
+Entered from an Outside `chapter7.complete`; hands on to the shared Chapter 9 bridge ("Follow the vendor"). ~1.63–1.73k
+words on one path.
 
 ---
 

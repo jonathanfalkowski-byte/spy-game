@@ -56,6 +56,7 @@ import { sloaneDoubts } from './sloane-standing';
 import { isPredator8, placePredator8, predatorBlocks8, predatorChoices8, predatorPhase8 } from './chapter8-predator';
 import { executiveBlocks8, executiveChoices8, executivePhase8, isExecutive8, placeExecutive8 } from './chapter8-executive';
 import { institutionalBlocks8, institutionalChoices8, institutionalPhase8, isInstitutional8, placeInstitutional8 } from './chapter8-institutional';
+import { outsideBlocks8, outsideChoices8, outsidePhase8, isOutside8, placeOutside8 } from './chapter8-outside';
 
 export type C8Scene = { title: string; place: string; blocks: Block[] };
 export type C8Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -130,6 +131,12 @@ export const chapter8Definitions: Record<string, C8Scene> = {
   records: { title: 'Records', place: 'THURSDAY · 22:10 · LEVEL B2', blocks: [] },
   backseat: { title: 'The Reading Light', place: '22:50 · SLOANE’S CAR', blocks: [] },
   afterhours: { title: 'After Hours', place: 'FRIDAY · 19:00', blocks: [] },
+  // The Outside road (2026-09-30): Provenance.
+  settle: { title: 'The Wall', place: 'WEEK ONE · OVER THE WATER', blocks: [] },
+  leads: { title: 'Can You Prove It?', place: 'WEEKS ONE TO THREE · THE ROOM', blocks: [] },
+  plant: { title: 'The Seam', place: 'THE THIRD WEEK', blocks: [] },
+  terminal: { title: 'The Sender', place: '02:40 · THE FERRY TERMINAL', blocks: [] },
+  after: { title: 'The Thread', place: 'THAT NIGHT · THE ROOM', blocks: [] },
 };
 export const chapter8Scenes = Object.entries(chapter8Definitions).map(([phase, scene]) => ({
   id: `chapter8.${phase}` as NodeId,
@@ -141,6 +148,7 @@ export function place8(s: GameState): string | undefined {
   if (s.scene === 'chapter8' && isPredator8(s)) return placePredator8(s);
   if (s.scene === 'chapter8' && isExecutive8(s)) return placeExecutive8(s);
   if (s.scene === 'chapter8' && isInstitutional8(s)) return placeInstitutional8(s);
+  if (s.scene === 'chapter8' && isOutside8(s)) return placeOutside8(s);
   if (s.scene === 'chapter8' && s.phase === 'work')
     return get8(s, 'work') ? 'Thursday · The bank' : onCampaign(s) ? 'Wednesday · The tram sheds' : 'Wednesday · Pell & Rourke';
   if (s.scene === 'chapter8' && s.phase === 'wake' && get8(s, 'wake'))
@@ -317,6 +325,7 @@ export function chapter8Blocks(s: GameState): Block[] {
   if (predatorPhase8(s)) return predatorBlocks8(s);
   if (executivePhase8(s)) return executiveBlocks8(s);
   if (institutionalPhase8(s)) return institutionalBlocks8(s);
+  if (outsidePhase8(s)) return outsideBlocks8(s);
   if (s.phase === 'cost') return costBlocks(s);
   if (s.phase === 'work') return workLead(s);
   if (s.phase === 'maintenance') return maintLead;
@@ -1363,10 +1372,13 @@ export function chapter8Choices(s: GameState): C8Choice[] {
     return [offer8('begin-executive', 'Three weeks in his orbit', 'He is going to be kind to you. Keep count.', 'orbit')];
   if (s.scene === 'chapter7' && s.phase === 'complete' && isInstitutional8(s))
     return [offer8('begin-institutional', 'Three weeks on the books', 'Grey envelopes. Read what they ask for.', 'rota')];
+  if (s.scene === 'chapter7' && s.phase === 'complete' && isOutside8(s))
+    return [offer8('begin-outside', 'Three weeks off the books', 'Pages from the sender. Check every one.', 'settle')];
   if (s.scene !== 'chapter8') return [];
   if (predatorPhase8(s)) return predatorChoices8(s);
   if (executivePhase8(s)) return executiveChoices8(s);
   if (institutionalPhase8(s)) return institutionalChoices8(s);
+  if (outsidePhase8(s)) return outsideChoices8(s);
   if (s.phase === 'cost') {
     if (!get8(s, 'breakin')) return breakInChoices(s);
     if (!get8(s, 'neighbour')) return neighbourChoices();

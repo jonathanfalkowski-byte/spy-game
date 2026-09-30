@@ -228,6 +228,12 @@ const byNode: Record<string, Key> = {
   'chapter8.tray': 'helixSuite',
   'chapter8.late': 'apartmentNight',
   // The Institutional road: Scope.
+  // The Outside road: Provenance.
+  'chapter8.settle': 'apartmentNight',
+  'chapter8.leads': 'apartmentNight',
+  'chapter8.plant': 'apartmentNight',
+  'chapter8.terminal': 'glassLobby',
+  'chapter8.after': 'rooftop',
   'chapter8.rota': 'officeDusk',
   'chapter8.tasked': 'officeDusk',
   'chapter8.records': 'clinicalRecords',
