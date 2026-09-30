@@ -76,7 +76,7 @@ const finish = (s: GameState) => {
 
 it('opens after an own-power Chapter 15 ending, and stays closed in production', () => {
   for (const from of ['countered-iris', 'complied-sloane', 'refused-alone']) expect(ids(start({}, from))).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual([]);
+  expect(ids(start({ 'route.lane': 'institutional' }))).toEqual(['begin-institutional']);
   // The Executive road has its own Chapter 16 (The Term), entered from its own Chapter 15.
   expect(ids(start({ 'route.lane': 'executive' }))).toEqual(['begin-executive']);
   vi.stubEnv('VITE_EVE_CHAPTER16', '');

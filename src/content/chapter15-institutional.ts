@@ -444,7 +444,7 @@ function completeBlocks(s: GameState): Block[] {
     p('One card left, in capitals:'),
     q('The card', 'THE BOARD MEETS.'),
     t('She held everything. Now I do. Thursday, I find out what that’s worth.'),
-    p('[Chapters 16–18 · institutional road — in development]'),
+    ...(import.meta.env.VITE_EVE_CHAPTER16 === '1' ? [] : [p('[Chapters 16–18 · institutional road — in development]')]),
   ];
 }
 

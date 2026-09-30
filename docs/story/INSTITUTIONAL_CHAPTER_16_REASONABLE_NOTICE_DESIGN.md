@@ -43,6 +43,12 @@ framing**
   (the empty PROJECT EVE (I) box). **Ch7:** the scope (`inst.scope.*`), the green light in the hall, Terry, Daniel's
   "Hi. Daniel.", the first card: VICTORIA SLOANE. HANDLER. AX-7A. / WHO IS WATCHING HER?
 
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_16_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_16_SCRIPT.md); code:
+`src/content/chapter16-institutional.ts`. Entered from an Institutional `chapter15.complete`; Ch17 follows directly.
+~0.83–1.09k words on one path. Build note: the case bands are supported 4, strong 7, overwhelming 10 (the road's
+evidence runs deep, and the lower Executive bands made nearly every save overwhelming).
+
 ---
 
 ## 1. The chapter's job

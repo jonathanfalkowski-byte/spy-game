@@ -13,7 +13,7 @@ Ch12, "Her City" ([INSTITUTIONAL_CHAPTER_12_HER_CITY_DESIGN.md](INSTITUTIONAL_CH
 "Through Channels" ([INSTITUTIONAL_CHAPTER_13_THROUGH_CHANNELS_DESIGN.md](INSTITUTIONAL_CHAPTER_13_THROUGH_CHANNELS_DESIGN.md)),
 pass 1, deepened. **The Institutional road now runs from Ch7 to Ch14 without a gap**; the Ch14 bridge is only a fallback. Ch15, "The Audit"
 ([INSTITUTIONAL_CHAPTER_15_THE_AUDIT_DESIGN.md](INSTITUTIONAL_CHAPTER_15_THE_AUDIT_DESIGN.md)), pass 1, deepened: **Act III is complete
-on this road.** Act IV designed for owner approval: Ch16 "Reasonable Notice" ([INSTITUTIONAL_CHAPTER_16_REASONABLE_NOTICE_DESIGN.md](INSTITUTIONAL_CHAPTER_16_REASONABLE_NOTICE_DESIGN.md)), Ch17 "Fit for Purpose" ([INSTITUTIONAL_CHAPTER_17_FIT_FOR_PURPOSE_DESIGN.md](INSTITUTIONAL_CHAPTER_17_FIT_FOR_PURPOSE_DESIGN.md)), Ch18 "No Further Action" ([INSTITUTIONAL_CHAPTER_18_NO_FURTHER_ACTION_DESIGN.md](INSTITUTIONAL_CHAPTER_18_NO_FURTHER_ACTION_DESIGN.md)). Written 2026-09-29 as the next route after
+on this road.** Act IV approved and built, pass 1 (2026-09-30), and **the Institutional road is complete, Chapters 7 to 18**: Ch16 "Reasonable Notice" ([INSTITUTIONAL_CHAPTER_16_REASONABLE_NOTICE_DESIGN.md](INSTITUTIONAL_CHAPTER_16_REASONABLE_NOTICE_DESIGN.md)), Ch17 "Fit for Purpose" ([INSTITUTIONAL_CHAPTER_17_FIT_FOR_PURPOSE_DESIGN.md](INSTITUTIONAL_CHAPTER_17_FIT_FOR_PURPOSE_DESIGN.md)), Ch18 "No Further Action" ([INSTITUTIONAL_CHAPTER_18_NO_FURTHER_ACTION_DESIGN.md](INSTITUTIONAL_CHAPTER_18_NO_FURTHER_ACTION_DESIGN.md)). Written 2026-09-29 as the next route after
 Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 
 **Authority:**

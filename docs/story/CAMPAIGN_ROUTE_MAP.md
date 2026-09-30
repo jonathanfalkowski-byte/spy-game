@@ -143,5 +143,6 @@ what it cost.
 9. **The Institutional route is designed** (owner, 2026-09-29): the Axiom road, back inside the machine that made
    her as Sloane's operative; Sloane is handler, rival and bounded ally, never a romance; Daniel Kessler is a partner
    only after she tells him who she was; monitoring is never sexualised; unique Ch7, Ch8 and Ch14
-   ([INSTITUTIONAL_ROUTE_DESIGN.md](INSTITUTIONAL_ROUTE_DESIGN.md)).
+   ([INSTITUTIONAL_ROUTE_DESIGN.md](INSTITUTIONAL_ROUTE_DESIGN.md)). **Built, Chapters 7 to 18** (2026-09-30), ending
+   on "No Further Action".
 

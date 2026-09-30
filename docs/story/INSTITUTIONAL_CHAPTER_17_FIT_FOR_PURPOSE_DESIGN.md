@@ -32,7 +32,12 @@ framing**
 - Ch10's canon line from Celeste's breakfast: "Victoria is a very good officer. She'll never survive us. Unless you
   help me."
 
-**Status: DESIGN, for owner approval.**
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_17_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_17_SCRIPT.md); code:
+`src/content/chapter17-institutional.ts`. Entered from an Institutional `chapter16.complete`; Ch18 follows directly.
+~1.0–1.17k words on one path. Build note: the board resigns Celeste at 3 points or more, not 2 (§5.8), because an
+officer, the inquiry or the regulator is in the room on almost every Institutional path; "Where is Mr Benton?"
+"Suspended, I'm told. So careless." is added when Benton was walked out in Ch14.
 
 ---
 

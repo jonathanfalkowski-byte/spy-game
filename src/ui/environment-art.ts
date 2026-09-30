@@ -486,6 +486,27 @@ const byNode: Record<string, Key> = {
   'chapter18.signed': 'wardrobe',
   'chapter18.page': 'apartmentNight',
   'chapter18.read': 'apartmentNight',
+  // The Institutional road: Reasonable Notice, Fit for Purpose, No Further Action.
+  'chapter16.briefing': 'apartmentNight',
+  'chapter16.objective': 'apartmentDay',
+  'chapter16.detail': 'apartmentDay',
+  'chapter16.bundle': 'apartmentDay',
+  'chapter16.uniform': 'apartmentNight',
+  'chapter16.notice': 'glassLobby',
+  'chapter17.exhibit': 'harbourRoom',
+  'chapter17.warranty': 'harbourRoom',
+  'chapter17.record': 'harbourRoom',
+  'chapter17.leash': 'harbourRoom',
+  'chapter17.harbour': 'harbourRoom',
+  'chapter17.ruling': 'harbourRoom',
+  'chapter17.aside': 'harbourRoom',
+  'chapter18.debrief': 'executiveOffice',
+  'chapter18.disposition': 'apartmentDay',
+  'chapter18.light': 'apartmentDay',
+  'chapter18.floor': 'executiveOffice',
+  'chapter18.particulars': 'apartmentNight',
+  'chapter18.scope': 'apartmentNight',
+  'chapter18.nfa': 'wardrobe',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

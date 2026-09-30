@@ -41,7 +41,11 @@ framing**
   `act4.last`, `act4.nell-said`, `act4.inside`.
 - **Daniel:** `inst.daniel-told`, and every chosen evening with him.
 
-**Status: DESIGN, for owner approval.**
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended) and BUILT, pass 1.** Script:
+[scripts/INSTITUTIONAL_CHAPTER_18_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_18_SCRIPT.md); code:
+`src/content/chapter18-institutional.ts`. Entered from an Institutional `chapter17.complete`; ends at `nfa`, a seventh
+phase added in the build for the two cards and the last line. ~0.86–1.21k words on one path. **The Institutional road
+is complete, Chapters 7 to 18.**
 
 ---
 
