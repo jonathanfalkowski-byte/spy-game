@@ -192,10 +192,21 @@ const PROT12 = () => toThirteen(toTwelve(toEleven(toNine(PROTECTED7(), TORCH8), 
 const TRADE12 = () => toThirteen(toTwelve(toEleven(toNine(TRADE7(), BENTON8), DOCTOR10), WARN11), SITE12);
 
 const ids13 = (s: GameState) => chapter13Choices(s).map((c) => c.id.replace(/^chapter13\./, ''));
-const c13 = (s: GameState, id: string) => {
+const once13 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER13_CHOOSE', id: 'chapter13.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids13(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the café, Wednesday evening, two in the morning): take the neutral pick when it is in the way. */
+const NEUTRAL13 = ['i13-cafe-leave', 'i13-eve-window', 'i13-small-sit', 'i13-small-wait', 'i13-small-iris'];
+const c13 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids13(y).includes(id); i++) {
+    const d = NEUTRAL13.find((x) => ids13(y).includes(x));
+    if (!d) break;
+    y = once13(y, d);
+  }
+  return once13(y, id);
 };
 const walk13 = (s: GameState, path: string[]) => path.reduce(c13, s);
 const ch13 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter13.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -223,8 +234,11 @@ it('comply, with the tasking taken to Sloane: “I never wrote this.”, the doo
   expect(reply.facts).toContain('c13.i-forgery');
   expect(ch13(reply)).toContain('I never wrote this. Look at the sevens.');
   expect(ch13(reply)).toContain('MINE.');
-  expect(ids13(reply)).toEqual(['i13-reply-comply', 'i13-reply-refuse', 'i13-reply-turn', 'i13-reply-swap']);
-  const corridor = c13(reply, 'i13-reply-comply');
+  expect(ids13(reply)).toEqual(['i13-eve-jacket', 'i13-eve-backup', 'i13-eve-window']);
+  const answers = c13(reply, 'i13-eve-backup');
+  expect(ch13(answers)).toContain('I’m here. That’s all this call is.');
+  expect(ids13(answers)).toEqual(['i13-reply-comply', 'i13-reply-refuse', 'i13-reply-turn', 'i13-reply-swap']);
+  const corridor = c13(answers, 'i13-reply-comply');
   expect([corridor.choices['c13.answer'], corridor.choices['act3.honeypot']]).toEqual(['complied', 'done']);
   const lead = corridor.history.at(-1)!.blocks;
   expect(lead[0].text).toContain('by the checklist');
@@ -257,7 +271,7 @@ it('comply, with the tasking taken to Sloane: “I never wrote this.”, the doo
 });
 
 it('refuse under scope, with Benton confirming it: Axiom can’t touch her; Maya’s promotion is the cost', () => {
-  const done = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-alone', 'i13-channel-benton', 'i13-reply-refuse', 'i13-corridor-on', 'i13-smallhours-on', 'i13-weekend-card']);
+  const done = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-alone', 'i13-channel-benton', 'i13-reply-refuse', 'i13-corridor-on', 'i13-weekend-card']);
   expect([done.choices['c13.answer'], done.choices['act3.honeypot'], done.choices['inst.maya13'], done.choices['act3.maya-status']]).toEqual(['refused', 'refused', 'warned', undefined]);
   expect(ch13(done)).toContain('Victoria signs what the client needs, Ms Vale.');
   expect(ch13(done)).toContain('DECLINED UNDER SCOPE');
@@ -271,8 +285,9 @@ it('refuse under scope, with Benton confirming it: Axiom can’t touch her; Maya
 
 it('turn: nobody told, the Records copy in the lift, a staged scene both in on it; Marsh an ally', () => {
   const reply = walk13(TRADE12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-maya', 'i13-channel-nobody']);
-  expect(ids13(reply)).toEqual(['i13-reply-comply', 'i13-reply-refuse', 'i13-reply-turn']);
-  const done = walk13(reply, ['i13-reply-turn', 'i13-corridor-on', 'i13-smallhours-on', 'i13-weekend-card']);
+  expect(ids13(reply)).toEqual(['i13-eve-jacket', 'i13-eve-window']);
+  expect(ids13(c13(reply, 'i13-eve-window'))).toEqual(['i13-reply-comply', 'i13-reply-refuse', 'i13-reply-turn']);
+  const done = walk13(reply, ['i13-reply-turn', 'i13-corridor-on', 'i13-weekend-card']);
   expect([done.choices['c13.answer'], done.choices['act3.honeypot'], done.choices['act3.ally.marsh']]).toEqual(['countered', 'staged', 'in']);
   expect(done.facts).toContain('c13.i-marsh');
   expect(ch13(done)).toContain('forty-one pages of the Project Eve procurement file');
@@ -282,8 +297,23 @@ it('turn: nobody told, the Records copy in the lift, a staged scene both in on i
 });
 
 it('swap: Iris and the service corridor; the card out of the camera', () => {
-  const done = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-alone', 'i13-channel-nobody', 'i13-reply-swap', 'i13-corridor-on', 'i13-smallhours-on', 'i13-weekend-card']);
+  const done = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-alone', 'i13-channel-nobody', 'i13-reply-swap', 'i13-corridor-on', 'i13-weekend-card']);
   expect([done.choices['c13.answer'], done.choices['act3.honeypot'], done.choices['c13.card']]).toEqual(['countered', 'pulled', 'taken']);
   expect(ch13(done)).toContain('The monitor cupboard is behind the wardrobe in 1108.');
   expect(ch13(done)).toContain('THE CARD IS OUT.');
+});
+
+it('deepening: the newspaper, Adrian’s jacket, and two in the morning on the refusal and counterplay paths', () => {
+  const refuse = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-cafe-sit', 'i13-dread-alone', 'i13-channel-nobody', 'i13-eve-jacket', 'i13-reply-refuse', 'i13-corridor-on']);
+  expect(ch13(refuse)).toContain('I’ve done the crossword. Badly.');
+  expect(ch13(refuse)).toContain('Adrian’s old jacket');
+  expect(ids13(refuse)).toEqual(['i13-small-card', 'i13-small-daniel', 'i13-small-sit']);
+  const card = c13(refuse, 'i13-small-card');
+  expect(card.choices['inst.warned-marsh13']).toBe('yes');
+  expect(ch13(card)).toContain('THROUGH A CHANNEL YOU WOULD TRUST');
+  const turn = walk13(TRADE12(), ['begin-institutional', 'i13-tasking-on', 'i13-cafe-notice', 'i13-dread-alone', 'i13-channel-nobody', 'i13-reply-turn', 'i13-corridor-on', 'i13-small-page']);
+  expect(ch13(turn)).toContain('He has put his name where a lost cat would go.');
+  expect(turn.choices['inst.marsh-page13']).toBe('yes');
+  const swap = walk13(PROT12(), ['begin-institutional', 'i13-tasking-on', 'i13-dread-alone', 'i13-channel-nobody', 'i13-reply-swap', 'i13-corridor-on', 'i13-small-jacket']);
+  expect(swap.choices['inst.card-where13']).toBe('jacket');
 });

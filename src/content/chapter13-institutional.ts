@@ -13,7 +13,14 @@
  * (a withdrawn promotion and a warning, never her safety) / counterplay: turn Marsh, a staged scene both in on it, heat 2; or swap the camera's card with Iris). The recovery step
  * on the comply path (Daniel if he knows, being held, nothing more; Maya; Sloane on the floor of the hall, not touching
  * her, only if she took the tasking to her; the wall; alone). The card. Ch14 follows directly. Writes the shared Act III
- * keys; `inst.*`, `c13.i-*`; ids carry `i13-`. */
+ * keys; `inst.*`, `c13.i-*`; ids carry `i13-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick, none of them near the door. The café by his office
+ * in the week (c13.i-cafe = sit | notice | leave: the next table, and the newspaper he lends her; his inquiry's public
+ * notice on the board by the till; or leave). Wednesday evening, before midnight (c13.i-eve = jacket | backup | window:
+ * Adrian's old jacket, the only thing in the flat that was never anybody's but his; the backup line, if Sloane wrote MINE
+ * on it; or the window). Two in the morning on the refusal and counterplay paths (refuse: a card to Marsh in capitals,
+ * Daniel on the phone if he knows, or sitting; turn: Friday at nine in his office, or not yet; swap: the card into the
+ * lining of Adrian's jacket, or into Iris's keeping). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -113,7 +120,26 @@ function dreadBlocks(): Block[] {
   ];
 }
 
+function cafeChoices(): C13Choice[] {
+  const c = (id: 'sit' | 'notice' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('i13-cafe-' + id, label, hint, 'dread', (x) => {
+      set13(x, 'i-cafe', id);
+      return body;
+    });
+  return [
+    c('sit', 'Sit at the next table', 'Close enough to hear him.', [
+      p('Tuesday, eight in the morning, the café by the Markets Authority. You take the table next to his with a coffee you don’t want, and listen to him tell the woman at the till that his daughter has changed her course again, to philosophy this time, “which will be tremendously useful when the robots come.”'),
+      p('When he gets up to go he sees you looking at his paper, and holds it out.'),
+      q('Owen Marsh', 'I’ve done the crossword. Badly. The rest is all yours.'),
+      t('He gave me his newspaper. On Thursday I am supposed to take his inquiry.'),
+    ]),
+    c('notice', 'Read the notice by the till', 'His inquiry, in public.', [p('On the board by the till, between a lost cat and a yoga class, somebody has pinned a printed notice from the Markets Authority: a public call for evidence in its inquiry into certain fund guarantees, and a name at the bottom, O. MARSH, DEPUTY DIRECTOR, and an email address anyone can write to. Anyone. He has put his name where a lost cat would go.')]),
+    c('leave', 'Leave before he sees you', 'You’ve seen enough.', [p('You watch him lock his bicycle to the railings through the café window, and leave before he comes in. You have seen enough to know that it will cost something, whichever way you go.')]),
+  ];
+}
+
 function dreadChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'i-cafe')) return cafeChoices();
   const d = (id: 'maya' | 'daniel' | 'alone', label: string, hint: string, body: Block[]) =>
     offer('i13-dread-' + id, label, hint, 'channel', (x) => {
       set13(x, 'i-dread', id);
@@ -168,10 +194,28 @@ function channelChoices(): C13Choice[] {
 // ── The reply ──
 
 function replyBlocks(): Block[] {
-  return [p('Wednesday, midnight. The black phone with its one contact, lit on the kitchen table. The tasking beside it.')];
+  return [p('Wednesday evening. The flat, the green light in the hall, the tasking on the kitchen table where you have been not looking at it since six. Midnight is five hours away and has been for a week.')];
+}
+
+const midnight: Block[] = [p('Midnight. The black phone with its one contact, lit on the kitchen table. The tasking beside it.')];
+
+function eveChoices(s: GameState): C13Choice[] {
+  const e = (id: 'jacket' | 'backup' | 'window', label: string, hint: string, body: Block[]) =>
+    offer('i13-eve-' + id, label, hint, 'reply', (x) => {
+      set13(x, 'i-eve', id);
+      return [...body, ...midnight];
+    });
+  return [
+    e('jacket', 'Put on Adrian’s old jacket', 'The only thing in the flat that was never anybody’s but his.', [p('You take Adrian’s old jacket out of the back of the wardrobe, the grey one with the frayed cuff, and put it on over your dress. It is too big across the shoulders now. It is the only thing in the flat that was never anybody’s but his, and you sit in it at the kitchen table for five hours, and it helps more than it should.')]),
+    ...(key(s, 'inst.backup13') === 'sloane'
+      ? [e('backup', 'Ring the backup line', 'MINE, she wrote.', [p('You ring the number on the tasking, the backup line, the one she wrote MINE beside. It answers on the first ring.'), q('Sloane', 'I’m here. That’s all this call is. You don’t have to say anything.'), p('You don’t. Neither does she. The line stays open for an hour, and you can hear her breathing, and somewhere behind her a clock, and at nine o’clock she says “Still here,” and at ten, “Still here.”')])]
+      : []),
+    e('window', 'Stand at the window', 'Watch the river go by.', [p('You stand at the window and watch the river go by, black and slow, until the lights on the far bank start going out, one district at a time.')]),
+  ];
 }
 
 function replyChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'i-eve')) return eveChoices(s);
   const a = (id: 'comply' | 'refuse' | 'turn' | 'swap', value: 'complied' | 'refused' | 'turn' | 'swap', label: string, hint: string, body: Block[]) =>
     offer('i13-reply-' + id, label, hint, 'corridor', (x) => {
       set13(x, 'i-answer', value);
@@ -284,7 +328,30 @@ function smallhoursBlocks(s: GameState): Block[] {
 }
 
 function smallhoursChoices(s: GameState): C13Choice[] {
-  if (answer(s) !== 'complied') return [offer('i13-smallhours-on', 'Morning', 'Saturday.', 'weekend')];
+  if (answer(s) !== 'complied') {
+    const a = answer(s);
+    const t2 = (id: string, label: string, hint: string, body: Block[], after?: (x: GameState) => void) =>
+      offer('i13-small-' + id, label, hint, 'weekend', (x) => {
+        set13(x, 'i-small', id);
+        after?.(x);
+        return body;
+      });
+    if (a === 'refused')
+      return [
+        t2('card', 'Write to Owen Marsh', 'Anonymously. Capitals. Your left hand.', [p('At two in the morning you write it on a plain card, in capitals, with your left hand: SOMEBODY WANTS YOUR INQUIRY. THEY TRIED ON THURSDAY, THROUGH A CHANNEL YOU WOULD TRUST. WATCH WHO SITS TWO STOOLS ALONG. You post it on the way to nowhere at three, and walk home in the cold, and sleep, for the first time in a week.')], (x) => setKey(x, 'inst.warned-marsh13')),
+        ...(told(s) ? [t2('daniel', 'Ring Daniel', '“Are you awake?”', [q('You', 'Are you awake?'), q('Daniel', 'I am now. What do you need?'), q('You', 'Talk to me. About anything. The coffee machine.'), p('He does, for an hour, and never once asks why, and at three you hear him yawn and pretend it was a cough.')])] : []),
+        t2('sit', 'Sit with it', 'Until it gets light.', [p('You sit with your back against the wall under the green light until the window goes grey. You said no. It was the right answer. It will cost somebody else. Both of those are true, and you sit with both of them.')]),
+      ];
+    if (a === 'turn')
+      return [
+        t2('page', 'Friday, nine: bring him what you have', 'His office. A view of a car park.', [p('Friday, nine o’clock. His office at the Markets Authority is a small room with a view of a car park and a photograph of his daughter. You put everything you have on his desk. He reads it twice.'), q('Owen Marsh', 'This is the shape I’ve been looking for for two years. I knew it had to exist. Nobody would show it to me.')], (x) => setKey(x, 'inst.marsh-page13')),
+        t2('wait', '“Not yet.”', 'When you can prove whose it is.', [q('You', 'Not yet, Mr Marsh. When I can tell you whose it is and prove it.'), q('Owen Marsh', 'Then I’ll wait. I’m good at it. It’s most of the job.')]),
+      ];
+    return [
+      t2('jacket', 'Into the lining of Adrian’s jacket', 'Where everything that matters goes.', [p('At home, at three, you slit the lining of Adrian’s old jacket with a nail file, and put the card in beside the other things that matter, and sew it up again, badly, by the light of the fridge.')], (x) => setKey(x, 'inst.card-where13', 'jacket')),
+      t2('iris', 'Let Iris keep it', '“Nobody searches a woman who has already disappeared.”', [q('Iris Moreau', 'Nobody searches a woman who has already disappeared. I’ll keep it. When you need it, ring me. I’ll be somewhere.'), p('She puts the glove in her coat, and her coat on, and goes out into the Strand, and is gone before the door has finished swinging.')], (x) => setKey(x, 'inst.card-where13', 'iris')),
+    ];
+  }
   const r = (id: 'daniel' | 'maya' | 'sloane' | 'wall' | 'alone', label: string, hint: string, body: Block[]) =>
     offer('i13-recover-' + id, label, hint, 'weekend', (x) => {
       set13(x, 'i-recover', id);

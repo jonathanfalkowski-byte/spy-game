@@ -11,7 +11,7 @@ shared Ch9 bridge ("Follow the vendor"), and through an interim bridge to Ch14, 
 Ch11, "The Receipt" ([INSTITUTIONAL_CHAPTER_11_THE_RECEIPT_DESIGN.md](INSTITUTIONAL_CHAPTER_11_THE_RECEIPT_DESIGN.md)), pass 1, deepened.
 Ch12, "Her City" ([INSTITUTIONAL_CHAPTER_12_HER_CITY_DESIGN.md](INSTITUTIONAL_CHAPTER_12_HER_CITY_DESIGN.md)), pass 1, deepened; and Ch13,
 "Through Channels" ([INSTITUTIONAL_CHAPTER_13_THROUGH_CHANNELS_DESIGN.md](INSTITUTIONAL_CHAPTER_13_THROUGH_CHANNELS_DESIGN.md)),
-pass 1. **The Institutional road now runs from Ch7 to Ch14 without a gap**; the Ch14 bridge is only a fallback. Next:
+pass 1, deepened. **The Institutional road now runs from Ch7 to Ch14 without a gap**; the Ch14 bridge is only a fallback. Next:
 Ch15–18. Written 2026-09-29 as the next route after
 Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 

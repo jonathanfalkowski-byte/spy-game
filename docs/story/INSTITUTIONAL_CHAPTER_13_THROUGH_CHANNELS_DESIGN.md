@@ -45,8 +45,9 @@ Institutional choice into **whether Evelynn notices, and whom she takes it to.**
 
 **Status: APPROVED (owner, 2026-09-30: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_13_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_13_SCRIPT.md); code:
-`src/content/chapter13-institutional.ts`. Entered from an Institutional `chapter12.complete`; Ch14 follows directly. ~0.78–1.24k
-words on one path. One change in the build, for continuity: the refusal cost is Maya's promotion and a warning, not
+`src/content/chapter13-institutional.ts`. Entered from an Institutional `chapter12.complete`; Ch14 follows directly. It ran
+~0.78–1.24k words on one path at pass 1, deepened 2026-09-30 to ~0.92–1.45k with three moments, none near the door: the
+café, Wednesday evening, and two in the morning on the refusal and counterplay paths. One change in the build, for continuity: the refusal cost is Maya's promotion and a warning, not
 detention, because Maya leads Ch14's inquiry.
 
 ---
