@@ -47,10 +47,21 @@ const TRADE7 = () => walk7(onto(complete6('maximal-trade')), ['i7-gate-step', 'i
 const BARE7 = () => walk7(onto(complete6('maximal-trade')), ['i7-gate-step', 'i7-offer-cost', 'i7-scope-people', 'i7-scope-name', 'i7-scope-record', 'i7-benton-silent', 'i7-desk-move', 'i7-daniel-work', 'i7-evening-alone']);
 
 const ids = (s: GameState) => chapter8Choices(s).map((c) => c.id.replace(/^chapter8\./, ''));
-const c8 = (s: GameState, id: string) => {
+const once8 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER8_CHOOSE', id: 'chapter8.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the machine, the green light, the dark): take the neutral pick when it is in the way. */
+const NEUTRAL8 = ['i8-machine-cafe', 'i8-light-sleep', 'i8-dark-wait'];
+const c8 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids(y).includes(id); i++) {
+    const n = NEUTRAL8.find((d) => ids(y).includes(d));
+    if (!n) break;
+    y = once8(y, n);
+  }
+  return once8(y, id);
 };
 const walk8 = (s: GameState, path: string[]) => path.reduce(c8, s);
 const ch8 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter8.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -63,9 +74,12 @@ it('enters Scope from an Institutional Chapter 7: the rota, the grey envelopes, 
   const rota = c8(s, 'begin-institutional');
   expect(rota.phase).toBe('rota');
   expect(ch8(rota)).toContain('AX-7A on the front in Sloane’s small upright capitals');
-  expect(ch8(rota)).toContain('Ask Records for E.V. (I).');
-  expect(ids(rota)).toEqual(['i8-rota-reply', 'i8-rota-sloane', 'i8-rota-leave']);
-  const hub = c8(rota, 'i8-rota-sloane');
+  expect(ch8(rota)).toContain('WORLD’S OKAYEST ANALYST');
+  expect(ids(rota)).toEqual(['i8-machine-kick', 'i8-machine-show', 'i8-machine-cafe']);
+  const message = c8(rota, 'i8-machine-cafe');
+  expect(ch8(message)).toContain('Ask Records for E.V. (I).');
+  expect(ids(message)).toEqual(['i8-rota-reply', 'i8-rota-sloane', 'i8-rota-leave']);
+  const hub = c8(message, 'i8-rota-sloane');
   expect(ch8(hub)).toContain('Somebody wants you in Records. So do I, as it happens.');
   expect(ids(hub)).toEqual(['i8-task-debrief', 'i8-task-compliance', 'i8-task-benton', 'i8-task-report', 'i8-task-file']);
 });
@@ -79,11 +93,18 @@ it('by the book: the debrief, her own file, Daniel’s report fixed silently; Re
   expect(ch8(file)).toContain('Thorough.');
   expect(ch8(file)).toContain('22:14 · subject taped hall camera. Logged. No action. — V.S.');
   expect(ch8(file)).toContain('You’ll wish you hadn’t, she wrote in the margin.');
-  const records = walk8(file, ['i8-file-margin', 'i8-task-report', 'i8-report-silent']);
-  expect(records.phase).toBe('records');
-  expect(ch8(records)).toContain('Subject noticed. — E.V.');
-  expect(ch8(records)).toContain('Somebody used to do this. Sat right where you’re sitting.');
-  expect(ch8(records)).toContain('Aisle nine. Third bay. I’m here.');
+  const light = c8(file, 'i8-file-margin');
+  expect(ch8(light)).toContain('The green light on the hall camera goes out.');
+  expect(ids(light)).toEqual(['i8-light-look', 'i8-light-ring', 'i8-light-sleep']);
+  const dark = walk8(light, ['i8-light-ring', 'i8-task-report', 'i8-report-silent']);
+  expect(ch8(dark)).toContain('Maintenance. A firmware push.');
+  expect(dark.phase).toBe('records');
+  expect(ch8(dark)).toContain('Subject noticed. — E.V.');
+  expect(ch8(dark)).toContain('Somebody used to do this. Sat right where you’re sitting.');
+  expect(ch8(dark)).toContain('Aisle nine. Third bay. I’m here.');
+  expect(ids(dark)).toEqual(['i8-dark-torch', 'i8-dark-talk', 'i8-dark-wait']);
+  const records = c8(dark, 'i8-dark-talk');
+  expect(ch8(records)).toContain('I’ll count with you.');
   expect(ch8(records)).toContain('MERIDIAN HOLDINGS · VENDOR.');
   expect(ch8(records)).toContain('LEGEND E.V. (II). PRIOR INSTANCE RETIRED · SINGAPORE.');
   const car = c8(records, 'i8-file-intact');
@@ -134,6 +155,7 @@ it('no refusal term and no backup: a refused tasking costs a hearing; Records al
   expect(ch8(records)).toContain('Development feedback');
   expect(ch8(records)).toContain('Seals are for keeping honest men honest.');
   expect(ch8(records)).toContain('No backup. The number on the sheet is Sloane’s desk');
+  expect(ids(records)).toEqual(['i8-dark-torch', 'i8-dark-wait']);
   const car = c8(records, 'i8-file-note');
   expect(ch8(car)).toContain('I’m going to assume Records lost it. Records loses things.');
   const done = walk8(car, ['i8-car-ask', 'i8-evening-daniel', 'i8-daniel-notyet']);
@@ -149,4 +171,15 @@ it('the evening with a partner from before is chosen, scoped, and stopped when s
   expect(ids(scoped)).toEqual(['i8-stop', 'i8-stay']);
   expect(c8(scoped, 'i8-stop').choices['c8.i-evening-outcome']).toBe('withdrawn');
   expect(ch8(c8(scoped, 'i8-stay'))).toContain('The scene fades.');
+});
+
+it('deepening: the kick, the man under the street lamp, and the empty box', () => {
+  const done = walk8(TRADE7(), ['begin-institutional', 'i8-machine-kick', 'i8-rota-leave', 'i8-task-debrief', 'i8-debrief-full', 'i8-task-compliance', 'i8-compliance-page', 'i8-light-look', 'i8-task-report', 'i8-report-tell', 'i8-dark-torch', 'i8-file-intact', 'i8-car-ask', 'i8-evening-alone']);
+  expect(['i-machine', 'i-light', 'i-dark'].map((k) => done.choices['c8.' + k])).toEqual(['kick', 'look', 'torch']);
+  expect(ch8(done)).toContain('Who told you about that?');
+  expect(ch8(done)).toContain('as if counting floors');
+  expect(ch8(done)).toContain('PROJECT EVE (I).');
+  expect(ch8(done)).toContain('THE BOX WAS EMPTY. SOMEBODY GOT THERE FIRST.');
+  const shown = walk8(TRADE7(), ['begin-institutional', 'i8-machine-show']);
+  expect(ch8(shown)).toContain('He kept the mug. He kept the kick.');
 });

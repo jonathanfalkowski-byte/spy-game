@@ -28,7 +28,8 @@
 **Status: APPROVED (owner, 2026-09-29: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_8_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_8_SCRIPT.md); code:
 `src/content/chapter8-institutional.ts`. It is entered from an Institutional `chapter7.complete` and hands on to the
-shared Ch9 bridge ("Follow the vendor"), ~1.25–1.58k words on one path.
+shared Ch9 bridge ("Follow the vendor"). It ran ~1.25–1.58k words on one path at pass 1, deepened 2026-09-30 to
+~1.59–2.1k with three moments: the coffee machine, the green light, and the dark in Records.
 
 ---
 

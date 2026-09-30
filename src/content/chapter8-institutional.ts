@@ -10,7 +10,14 @@
  * over intact, copied, or the note held back; the back of Sloane's car ("You're the second."); the evening (Daniel,
  * and the telling if she chooses, after which he asks for a day; Maya; a partner from before with the consent flow;
  * alone); the second card. Refusal without the term costs a hearing, never safety. Keys live under `inst.*` and
- * `c8.i-*`; choice ids carry `i8-`. Local helpers mirror chapter8.ts to avoid a circular import. */
+ * `c8.i-*`; choice ids carry `i8-`. Local helpers mirror chapter8.ts to avoid a circular import.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. The coffee machine in week one (c8.i-machine =
+ * kick | show | cafe: she kicks it where Adrian always kicked it, and Daniel stares; he shows her the trick "somebody
+ * taught me"; or the café downstairs). Week two, 02:00, the hall camera's green light goes out for eleven minutes
+ * (c8.i-light = look | ring | sleep: a man under the street lamp, then nobody; Sloane on the backup line, "Maintenance.
+ * Go back to sleep."; or sleep). Records, the timers: the lights go out in aisle nine (c8.i-dark = torch | talk | wait:
+ * the phone's torch finds the next box, PROJECT EVE (I), empty but for the outline of a file in the dust; Sloane's
+ * voice in the dark, with the backup term; or standing still and counting). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -64,12 +71,40 @@ function rotaBlocks(s: GameState): Block[] {
     p('Three weeks. You learn the rhythm again the way a hand learns a piano it played as a child: 07:40 at the gate and Terry’s football; the coffee machine by the window, which takes your coin and gives you nothing, as it gave Adrian nothing for six years; Daniel’s ties, each worse than the last; the hush that goes across Strategic Intelligence when the lift opens on seventy-one’s people.'),
     p('And the grey envelopes. They come up from seventy-one by hand, one on Monday of each week, sealed, with AX-7A on the front in Sloane’s small upright capitals. Inside, a single sheet: a tasking, a scope line, a backup name. Nothing that could embarrass anybody if it were found in a bin.'),
     ...(key(s, 'inst.benton') === 'adrian' ? [p('Benton does not speak to you once in the first week. He does not need to. Every time you look up, the smoked glass is turned your way.')] : []),
-    p('On the first Sunday, at 23:02, the phone Axiom gave you buzzes once. The same number with no name.'),
-    q('The message', 'Ask Records for E.V. (I).'),
+    p('Wednesday of the first week, ten past eight. The coffee machine by the window takes your coin, thinks about it, and gives you nothing, with the small self-satisfied click it has been making since before Adrian’s first day. Daniel is behind you in the queue with his mug, a mug that says WORLD’S OKAYEST ANALYST, which Adrian gave him as a joke and which he has apparently used every day since.'),
+  ];
+}
+
+const messageLead: Block[] = [
+  p('On the first Sunday, at 23:02, the phone Axiom gave you buzzes once. The same number with no name.'),
+  q('The message', 'Ask Records for E.V. (I).'),
+];
+
+function machineChoices(): C8Choice[] {
+  const m = (id: 'kick' | 'show' | 'cafe', label: string, hint: string, body: Block[]) =>
+    offer('i8-machine-' + id, label, hint, 'rota', (x) => {
+      set8(x, 'i-machine', id);
+      return [...body, ...messageLead];
+    });
+  return [
+    m('kick', 'Kick it', 'Low on the left. Where Adrian always did.', [
+      p('You kick it, once, low on the left side, exactly where the panel is loose, exactly as hard as it needs, without looking. It clunks, and thinks, and pours a perfect cup.'),
+      p('Behind you Daniel has gone completely still, with his mug halfway up.'),
+      q('Daniel', 'Who told you about that?'),
+      q('You', 'Nobody. It looked like it wanted kicking.'),
+      p('He does not believe you. He does not say so. He puts his mug under the spout and kicks it himself, in the same place, and watches you walk back to your desk all the way down the floor.'),
+    ]),
+    m('show', 'Let him show you', 'He is dying to.', [
+      q('Daniel', 'No, no, you have to — here. Low on the left. Somebody taught me. Not too hard, it sulks.'),
+      p('He kicks it, carefully, the way you taught him four years ago on a wet Monday, and it pours, and he hands you the cup as if he had made it himself, and is so pleased with himself that you have to look out of the window.'),
+      t('He kept the mug. He kept the kick. He is keeping all of it, and he doesn’t know what for.'),
+    ]),
+    m('cafe', 'Go down to the café', 'Six pounds. Worth it.', [p('You leave the machine to its victory and go down to the café in the lobby, where the coffee costs six pounds and is worth it, and Terry tells you about Saturday’s penalty again on the way back.')]),
   ];
 }
 
 function rotaChoices(s: GameState): C8Choice[] {
+  if (!get8(s, 'i-machine')) return machineChoices();
   const r = (id: 'reply' | 'sloane' | 'leave', label: string, hint: string, body: Block[]) =>
     offer('i8-rota-' + id, label, hint, 'tasked', (x) => {
       set8(x, 'i-message', id);
@@ -130,7 +165,7 @@ function answers(s: GameState, t8: Task): C8Choice[] {
       if (value === 'shade') bump(x, 'inst.kept');
       delete x.choices['c8.i-open'];
       set8(x, 'i-weeks', String(weeks(x) + 1));
-      return body(x);
+      return weeks(x) === 2 ? [...body(x), ...lightLead] : body(x);
     });
   if (t8 === 'debrief')
     return [
@@ -168,9 +203,37 @@ function answers(s: GameState, t8: Task): C8Choice[] {
   ];
 }
 
+const lightLead: Block[] = [
+  p('Week two. Wednesday night, or Thursday morning: 02:00, and you are awake for no reason, lying in the dark in the flat Axiom pays for, looking at the sliver of hall through the bedroom door.'),
+  p('The green light on the hall camera goes out.'),
+  p('Not a flicker. Out. The hall is darker than you have ever seen it. The fridge hums. Somewhere below, a car door closes softly, the way people close car doors when they do not want to be heard closing them.'),
+];
+
+function lightChoices(): C8Choice[] {
+  const l = (id: 'look' | 'ring' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('i8-light-' + id, label, hint, 'tasked', (x) => {
+      set8(x, 'i-light', id);
+      return body;
+    });
+  return [
+    l('look', 'Go to the window', 'Barefoot. Don’t touch the curtain.', [
+      p('You go to the window barefoot and do not touch the curtain, and look down through the gap. Under the street lamp opposite a man in a dark coat is standing with his hands in his pockets, looking up at your building, not at your window, at the building, as if counting floors.'),
+      p('You blink, and he is walking away, unhurried, and turns the corner. Behind you, in the hall, the green light comes back on. Eleven minutes, by the oven clock.'),
+      t('Eleven minutes with nobody watching. Somebody wanted eleven minutes. I would very much like to know what for.'),
+    ]),
+    l('ring', 'Ring the backup number', 'It is supposed to answer. At any hour.', [
+      p('You ring BACKUP. It answers on the first ring, and it is Sloane, awake, with no sleep in her voice at all.'),
+      q('Sloane', 'Maintenance. A firmware push. It’ll be back in ten minutes. Go back to sleep, Ms Vale.'),
+      p('It is back in eleven. You lie awake until four wondering whether she was lying, and whether she knew, and which of those would be worse.'),
+    ]),
+    l('sleep', 'Go back to sleep', 'It’s a light.', [p('You turn over and close your eyes. It is a light. Lights go out. When you wake at seven the green is back, steady, and there is nothing in the log about it when you think to look, which you do, twice.')]),
+  ];
+}
+
 function taskedChoices(s: GameState): C8Choice[] {
   const open = get8(s, 'i-open') as Task | undefined;
   if (open) return answers(s, open);
+  if (weeks(s) === 2 && !get8(s, 'i-light')) return lightChoices();
   return TASKS.filter((t8) => !key(s, 'inst.task.' + t8) && (t8 !== 'file' || scope(s, 'record'))).map((t8) =>
     offer('i8-task-' + t8, WEEK[weeks(s)] + ': ' + (t8 === 'debrief' ? 'The debrief' : t8 === 'compliance' ? 'The compliance question' : t8 === 'benton' ? 'Benton’s errand' : t8 === 'report' ? 'Daniel’s report' : 'Your own file'), t8 === 'debrief' ? 'Room 412, noon. A man with a file to sell.' : t8 === 'compliance' ? 'Find out what Maya is asking.' : t8 === 'benton' ? 'Off scope. At your desk.' : t8 === 'report' ? '23:00. Page four is wrong.' : 'The monthly log. You wrote the right to read it.', 'tasked', (x) => {
       set8(x, 'i-open', t8);
@@ -188,7 +251,13 @@ function recordsBlocks(s: GameState): Block[] {
     ...(scope(s, 'backup')
       ? [p('Your backup is Sloane herself. She is in her car on the ramp above, engine running, on the line in your ear.'), q('Sloane', 'Aisle nine. Third bay. I’m here.')]
       : [p('No backup. The number on the sheet is Sloane’s desk, and her desk is empty at this hour, and you know it, and you go down anyway.')]),
-    p('Aisle nine. Third bay. A grey box with a clinic’s crest, and inside it a file thicker than your wrist. The procurement papers for a product called PROJECT EVE. The purchaser: AXIOM. The officer of record: V. SLOANE. And the vendor, on every page, at the top, in a typeface nobody at Axiom uses:'),
+    p('Aisle nine. You are halfway down it when the timer clicks, and the bank of lights over your head goes out, and then the next, and the one behind, and there is nothing in B2 but the dark and the smell of paper and the sound of your own breathing.'),
+  ];
+}
+
+function fileBlocks(s: GameState): Block[] {
+  return [
+    p('The lights come back, bank by bank, as if nothing had happened. Aisle nine. Third bay. A grey box with a clinic’s crest, and inside it a file thicker than your wrist. The procurement papers for a product called PROJECT EVE. The purchaser: AXIOM. The officer of record: V. SLOANE. And the vendor, on every page, at the top, in a typeface nobody at Axiom uses:'),
     q('The file', 'MERIDIAN HOLDINGS · VENDOR.'),
     p('The ORACLE page is there, the one you have seen before, with its numbers about how willingly you would take a face and how badly anyone would hold you. And behind it, a single sheet on thinner paper, a delivery note, stamped:'),
     q('The file', 'LEGEND E.V. (II). PRIOR INSTANCE RETIRED · SINGAPORE.'),
@@ -197,7 +266,27 @@ function recordsBlocks(s: GameState): Block[] {
   ];
 }
 
-function recordsChoices(): C8Choice[] {
+function darkChoices(s: GameState): C8Choice[] {
+  const d = (id: 'torch' | 'talk' | 'wait', label: string, hint: string, body: Block[]) =>
+    offer('i8-dark-' + id, label, hint, 'records', (x) => {
+      set8(x, 'i-dark', id);
+      return [...body, ...fileBlocks(x)];
+    });
+  return [
+    d('torch', 'The phone’s torch', 'Look at what’s in front of you.', [
+      p('You thumb the torch on. A white circle on grey boxes, labels, dates. Aisle nine, second bay, one box before the one you came for: a box with the same clinic’s crest, and on its label, in the same typeface: PROJECT EVE (I).'),
+      p('You lift the lid. It is empty. On the cardboard floor of it, in the dust, the clean pale outline of a file that sat there for a long time and was taken away not long ago.'),
+      t('Ask Records for E.V. (I). I asked. Records says somebody got here first.'),
+    ]),
+    ...(scope(s, 'backup')
+      ? [d('talk', '“Talk to me.”', 'She said she was there.', [q('You', 'The lights have gone. Talk to me.'), q('Sloane', 'I’m here. I can see the ramp. Nobody has come in or out since you went down. Count to twenty, and they’ll come back. Count out loud, if you like. I’ll count with you.'), p('And she does, in your ear, in the dark, low and even, one to twenty, and you have never in your life heard anybody count like that, as if every number were a promise, and at nineteen the lights come back.')])]
+      : []),
+    d('wait', 'Stand still and count', 'They come back. They always come back.', [p('You stand still in the dark and count, the way Adrian counted floors in buildings he did not own, and at twenty-two the timer clicks and the lights come back, bank by bank, and you are standing exactly where you were.')]),
+  ];
+}
+
+function recordsChoices(s: GameState): C8Choice[] {
+  if (!get8(s, 'i-dark')) return darkChoices(s);
   const f = (id: 'intact' | 'copy' | 'note', label: string, hint: string, body: Block[]) =>
     offer('i8-file-' + id, label, hint, 'backseat', (x) => {
       setKey(x, 'inst.file', id);
@@ -359,6 +448,7 @@ function completeBlocks(s: GameState): Block[] {
     p('And under it, in capitals, pressed so hard the pen goes through:'),
     q('The card', 'MERIDIAN · E.V. (I) · RETIRED.'),
     ...(key(s, 'inst.file') === 'note' ? [p('Behind the card, pinned face in, a thin page with a stamp on it that nobody else in the world knows is gone.')] : []),
+    ...(get8(s, 'i-dark') === 'torch' ? [p('And under RETIRED, smaller: THE BOX WAS EMPTY. SOMEBODY GOT THERE FIRST.')] : []),
     ...(key(s, 'inst.daniel-told') ? [p('And in the corner, the word you rubbed out three weeks ago, written back in: DANIEL. And after it, in pencil: KNOWS.')] : []),
     t('They bought me from somebody. The somebody has a name now. Tomorrow I find out whose.'),
   ];
@@ -377,7 +467,7 @@ export function institutionalBlocks8(s: GameState): Block[] {
 export function institutionalChoices8(s: GameState): C8Choice[] {
   if (s.phase === 'rota') return rotaChoices(s);
   if (s.phase === 'tasked') return taskedChoices(s);
-  if (s.phase === 'records') return recordsChoices();
+  if (s.phase === 'records') return recordsChoices(s);
   if (s.phase === 'backseat') return backseatChoices(s);
   if (s.phase === 'afterhours') return afterhoursChoices(s);
   return [];
