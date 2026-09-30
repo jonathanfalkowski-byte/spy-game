@@ -85,10 +85,21 @@ const TORCH8 = ['i8-task-debrief', 'i8-debrief-full', 'i8-task-file', 'i8-file-m
 const PLAIN8 = ['i8-task-debrief', 'i8-debrief-full', 'i8-task-compliance', 'i8-compliance-page', 'i8-task-report', 'i8-report-tell', 'i8-file-intact', 'i8-car-out', 'i8-evening-alone'];
 
 const ids14 = (s: GameState) => chapter14Choices(s).map((c) => c.id.replace(/^chapter14\./, ''));
-const c14 = (s: GameState, id: string) => {
+const once14 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER14_CHOOSE', id: 'chapter14.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids14(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (the office, the eve, the corridor): take the neutral pick when it is in the way. */
+const NEUTRAL14 = ['i14-office-door', 'i14-eve-sleep', 'i14-corridor-walk'];
+const c14 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids14(y).includes(id); i++) {
+    const d = NEUTRAL14.find((x) => ids14(y).includes(x));
+    if (!d) break;
+    y = once14(y, d);
+  }
+  return once14(y, id);
 };
 const walk14 = (s: GameState, path: string[]) => path.reduce(c14, s);
 const ch14 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter14.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -107,6 +118,7 @@ it('enters Officer of Record through the interim bridge from an Institutional Ch
 
 it('the bounded ally: Sloane heard, the verdict on the record, Benton’s drawer, Daniel who knows; it authenticates', () => {
   const confession = walk14(toNine(PROTECTED7(), TORCH8), ['begin-institutional', 'i14-notice-daniel']);
+  expect(ids14(confession)).toEqual(['i14-office-water', 'i14-office-desk', 'i14-office-door']);
   expect(ch14(confession)).toContain('Your handler. Adrian’s — your — God.');
   expect(ch14(confession)).toContain('priced in');
   expect(ch14(confession)).toContain('One of them is C. Laurent’s.');
@@ -123,12 +135,18 @@ it('the bounded ally: Sloane heard, the verdict on the record, Benton’s drawer
   const ways = c14(channels, 'i14-maya-off');
   expect(ch14(ways)).toContain('Thirty seconds.');
   expect(ids14(ways)).toEqual(['i14-way-ally', 'i14-way-proof', 'i14-way-cut']);
-  const hearing = c14(ways, 'i14-way-ally');
+  const eve = c14(ways, 'i14-way-ally');
+  expect(ch14(eve)).toContain('The eve of it.');
+  expect(ids14(eve)).toEqual(['i14-eve-mirror', 'i14-eve-sloane', 'i14-eve-sleep']);
+  const hearing = c14(eve, 'i14-eve-sloane');
+  expect(ch14(hearing)).toContain('I wanted to hear you say it’s still tomorrow.');
   expect([hearing.choices['c14.answer'], hearing.choices['act3.sloane'], hearing.choices['act3.celeste-afraid'], hearing.choices['inst.authority'], hearing.choices['inst.benton-exposed']]).toEqual(['countered', 'allied', 'yes', 'formal', 'yes']);
   expect(ch14(hearing)).toContain('Entered. The vendor knew.');
   expect(ch14(hearing)).toContain('where is the PROJECT EVE (I) file?');
   expect(ch14(hearing)).toContain('Meridian’s man inside Axiom.');
-  const dusk = c14(hearing, 'i14-hearing-out');
+  expect(ids14(hearing)).toEqual(['i14-corridor-sloane', 'i14-corridor-benton', 'i14-corridor-walk']);
+  const dusk = c14(hearing, 'i14-corridor-benton');
+  expect(ch14(dusk)).toContain('You were always the better analyst.');
   expect(ids14(dusk)[0]).toBe('i14-evening-daniel');
   const scoped = walk14(dusk, ['i14-evening-daniel', 'i14-daniel-sex']);
   expect(scoped.facts).toContain('c14.i-evening-consent');
@@ -148,7 +166,7 @@ it('the bounded ally: Sloane heard, the verdict on the record, Benton’s drawer
 it('the proof: Sloane shut out, the ally closed, “I am Project Eve”, and the name spent by her own hand', () => {
   const ways = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-screen', 'i14-sloane-shut', 'i14-wire-no', 'i14-maya-on']);
   expect(ids14(ways)).toEqual(['i14-way-proof', 'i14-way-cut']);
-  const done = walk14(ways, ['i14-way-proof', 'i14-hearing-out', 'i14-evening-alone']);
+  const done = walk14(ways, ['i14-way-proof', 'i14-corridor-walk', 'i14-evening-alone']);
   expect([done.choices['c14.answer'], done.choices['act3.sloane'], done.choices['act3.adrian-burned'], done.choices['act3.home'], done.choices['inst.authority']]).toEqual(['refused', 'handed', 'yes', 'lost', 'regulator']);
   expect(ch14(done)).toContain('I am Project Eve. I was Adrian Vale');
   expect(ch14(done)).toContain('I can’t be sure.');
@@ -157,7 +175,7 @@ it('the proof: Sloane shut out, the ally closed, “I am Project Eve”, and the
 });
 
 it('cut her loose: the order, her resignation, Benton above her', () => {
-  const done = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-maya', 'i14-sloane-hold', 'i14-wire-silent', 'i14-maya-nothing', 'i14-way-cut', 'i14-hearing-out', 'i14-evening-alone']);
+  const done = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-maya', 'i14-sloane-hold', 'i14-wire-silent', 'i14-maya-nothing', 'i14-way-cut', 'i14-corridor-walk', 'i14-evening-alone']);
   expect([done.choices['c14.answer'], done.choices['act3.sloane'], done.choices['inst.authority'], done.choices['act3.adrian-burned']]).toEqual(['complied', 'shut', 'benton', undefined]);
   expect(ch14(done)).toContain('I asked for this file. Nobody gave me you.');
   expect(ch14(done)).toContain('You’ll sign for the truth now.');
@@ -166,4 +184,17 @@ it('cut her loose: the order, her resignation, Benton above her', () => {
   expect(ch14(done)).toContain('Nobody had to be unkind.');
   expect(ch14(done)).toContain('OFFICER OF RECORD: RESIGNED. BENTON ABOVE ME.');
   expect(ch14(done)).not.toContain('BENTON = MERIDIAN.');
+});
+
+it('deepening: the glass of water, the mirror, and the corridor', () => {
+  const done = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-screen', 'i14-office-water', 'i14-sloane-hear', 'i14-wire-no', 'i14-maya-on', 'i14-way-proof', 'i14-eve-mirror', 'i14-corridor-sloane', 'i14-evening-alone']);
+  expect(['i-office', 'i-eve', 'i-corridor'].map((k) => done.choices['c14.' + k])).toEqual(['water', 'mirror', 'sloane']);
+  expect(ch14(done)).toContain('Nobody has given me anything in this building for eleven years that wasn’t a file.');
+  expect(ch14(done)).toContain('the fourth time you are proud of it');
+  expect(ch14(done)).toContain('You didn’t have to do that for me.');
+  const desk = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-screen', 'i14-office-desk']);
+  expect(ch14(desk)).toContain('You’ve become very difficult to supervise.');
+  const cut = walk14(toNine(TRADE7(), PLAIN8), ['begin-institutional', 'i14-notice-screen', 'i14-sloane-shut', 'i14-wire-yes', 'i14-maya-nothing', 'i14-way-cut']);
+  expect(ids14(cut)).toEqual(['i14-eve-mirror', 'i14-eve-sleep']);
+  expect(ch14(c14(cut, 'i14-eve-mirror'))).toContain('It takes nine times.');
 });

@@ -5,7 +5,7 @@ chapter gets its own design doc before build. Built so far: Ch7, "Level 71"
 ([INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md](INSTITUTIONAL_CHAPTER_7_LEVEL_71_DESIGN.md)), pass 1, deepened; and Ch8, "Scope"
 ([INSTITUTIONAL_CHAPTER_8_SCOPE_DESIGN.md](INSTITUTIONAL_CHAPTER_8_SCOPE_DESIGN.md)), pass 1, deepened. The road then goes to the
 shared Ch9 bridge ("Follow the vendor"), and through an interim bridge to Ch14, "Officer of Record"
-([INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md](INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md)), pass 1.
+([INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md](INSTITUTIONAL_CHAPTER_14_OFFICER_OF_RECORD_DESIGN.md)), pass 1, deepened.
 **The unique spine (7, 8, 14) is built.** Next: the shared variants, Ch10–13 and 15–18. Written 2026-09-29 as the next route after
 Executive (Celebrity, Predator and Executive are complete, Ch7–18).
 

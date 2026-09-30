@@ -34,7 +34,8 @@
 **Status: APPROVED (owner, 2026-09-30: all eight decisions as recommended) and BUILT, pass 1.** Script:
 [scripts/INSTITUTIONAL_CHAPTER_14_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_14_SCRIPT.md); code:
 `src/content/chapter14-institutional.ts`. It is entered through the interim bridge from an Institutional
-`chapter9.complete` and ends at the Chapters 15–18 in-development stop, ~1.05–1.42k words on one path. Canon adopted:
+`chapter9.complete` and ends at the Chapters 15–18 in-development stop. It ran ~1.05–1.42k words on one path at pass 1, deepened 2026-09-30
+to ~1.22–1.73k with three moments: the office, the eve, and the corridor. Canon adopted:
 **Benton is Meridian's man inside Axiom**, and took the first Evelyn's file.
 
 ---

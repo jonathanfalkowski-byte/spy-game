@@ -11,7 +11,13 @@
  * with the PROJECT EVE (I) file in his drawer if she found the empty box), the proof ("I am Project Eve"; refused; Adrian's
  * name spent by her own hand; the flat lost), or cut her loose (complied; Sloane resigns; Benton her handler). Writes the
  * shared Act III keys Chapter 15 reads. A chosen evening (Daniel only if he knows; the consent flow; at his place).
- * Sloane is never a romance; nothing here is sexual coercion. Keys under `inst.*`, `act3.*`, `c14.*`; ids carry `i14-`. */
+ * Sloane is never a romance; nothing here is sexual coercion. Keys under `inst.*`, `act3.*`, `c14.*`; ids carry `i14-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. In the sealed office, before the choice about
+ * Sloane (c14.i-office = water | desk | door: pour her the glass of water she is not allowed to touch; sit on the edge
+ * of her desk, close, in the one place she can't ask you to leave; or stay by the door). Thursday night, the eve of the
+ * hearing (c14.i-eve = mirror | sloane | sleep: rehearse the way at the wardrobe mirror, in its own words; Sloane's
+ * forbidden call, on the ally way only; or sleep). The corridor on Level 12 afterwards (c14.i-corridor = sloane |
+ * benton | walk: one look and one line from Sloane, by the way; Benton's; or walk straight to the lift). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -113,7 +119,31 @@ function confessionBlocks(s: GameState): Block[] {
   ];
 }
 
-function confessionChoices(): C14Choice[] {
+function officeChoices(): C14Choice[] {
+  const o = (id: 'water' | 'desk' | 'door', label: string, hint: string, body: Block[]) =>
+    offer('i14-office-' + id, label, hint, 'confession', (x) => {
+      set14(x, 'i-office', id);
+      return body;
+    });
+  return [
+    o('water', 'Pour her a glass of water', 'From the carafe she isn’t allowed to touch.', [
+      p('There is a carafe on the side table, and a glass, and she has been sitting here an hour not touching either, because the tape says she mayn’t. You pour her a glass of water and put it in front of her, on the desk, by her folded hands.'),
+      p('She looks at it for a long moment, as if it were a document. Then she drinks it, all of it, without taking her eyes off you, and puts the glass down exactly where you put it.'),
+      q('Sloane', 'Thank you. Nobody has given me anything in this building for eleven years that wasn’t a file.'),
+    ]),
+    o('desk', 'Sit on the edge of her desk', 'Close. The one place she can’t ask you to leave.', [
+      p('You don’t take the chair. You sit on the edge of her desk, her side of it, close enough to see the one grey hair she has let stay and the place at her collar where the graphite has worn soft, in the one place in the room she cannot ask you to leave, because she is not allowed to touch anything, including you.'),
+      p('She looks up at you, and neither of you says anything, and the silence goes on a count of three past where it should.'),
+      q('Sloane', 'You’ve become very difficult to supervise.'),
+      q('You', 'You said you’d rather know where I am.'),
+      q('Sloane', 'I did. I do. Right now I know exactly where you are.'),
+    ]),
+    o('door', 'Stay by the door', 'Hear it from there.', [p('You stay by the door, on the right side of the tape, with your coat on, and let her say it to you across the room. She doesn’t seem to mind. She says it to the window, mostly.')]),
+  ];
+}
+
+function confessionChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'i-office')) return officeChoices();
   const c = (id: 'hear' | 'hold' | 'shut', label: string, hint: string, sloane: string, file: boolean, body: Block[]) =>
     offer('i14-sloane-' + id, label, hint, 'wire', (x) => {
       setKey(x, 'act3.sloane', sloane);
@@ -210,7 +240,44 @@ function channelsChoices(s: GameState): C14Choice[] {
 
 // ── The hearing ──
 
-function hearingBlocks(s: GameState): Block[] {
+function hearingBlocks(): Block[] {
+  return [
+    p('Thursday night. The eve of it. The flat is quiet in the way it has been quiet since the notice: the green light steady in the hall, the grey envelopes gone, the black phone face down on the counter.'),
+    t('Tomorrow at ten, in a room with a recorder in it, I find out what I am to this building. I would like to be the one who says it.'),
+  ];
+}
+
+function eveChoices(s: GameState): C14Choice[] {
+  const w = way(s);
+  const e = (id: 'mirror' | 'sloane' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('i14-eve-' + id, label, hint, 'hearing', (x) => {
+      set14(x, 'i-eve', id);
+      return [...body, ...fridayBlocks(x)];
+    });
+  return [
+    e('mirror', 'Rehearse at the mirror', 'Say it out loud. In order.', [
+      p('You stand at the wardrobe mirror with the cards behind you, and say it out loud, in order, the way Adrian used to rehearse a briefing to an empty room.'),
+      ...(w === 'ally'
+        ? [p('The verdict first. Then the file. Then the note. Then the question for the directorate’s witness. You say it until the order is in your hands and not your head.')]
+        : w === 'proof'
+          ? [q('You', 'I am Project Eve.'), p('The woman in the mirror says it back to you. You say it again, and the second time your voice does not shake, and the third time you believe it, and the fourth time you are proud of it.')]
+          : [q('You', 'She knew.'), p('You say it to the mirror until it sounds like the truth. It takes nine times. The woman in the mirror looks as if she has done something unforgivable, and then, at the ninth, as if she has done nothing at all, which is worse.')]),
+    ]),
+    ...(w === 'ally'
+      ? [
+          e('sloane', 'Answer the unknown number', 'It isn’t unknown. It’s her, on a phone she shouldn’t have.', [
+            p('At eleven your phone rings from a number you don’t know, and it is Sloane, on a phone a suspended officer should not have, from somewhere with traffic outside.'),
+            q('Sloane', 'I’m not calling. This call isn’t happening. I wanted to hear you say it’s still tomorrow.'),
+            q('You', 'It’s still tomorrow.'),
+            p('Neither of you hangs up for a long time. Neither of you says anything else. You listen to her breathing and the traffic, and she listens to yours, and it is the most she has ever let anybody hear.'),
+          ]),
+        ]
+      : []),
+    e('sleep', 'Sleep', 'You’ll need it.', [p('You go to bed at ten, like a sensible person, and to your considerable surprise you sleep.')]),
+  ];
+}
+
+function fridayBlocks(s: GameState): Block[] {
   const w = way(s);
   const opening: Block[] = [
     p('Friday, ten o’clock. The inquiry room on Level 12: a long table, a window with the blinds half down, a grey recorder, and a jug of water nobody touches. Maya in the chair. Sloane at the far end of the table, in graphite, alone. Benton to her right as the directorate’s witness, with his little slate. And, called about “the analyst who sat at that desk”, Daniel, in his worst tie, looking at nobody.'),
@@ -250,8 +317,29 @@ function hearingBlocks(s: GameState): Block[] {
   ];
 }
 
-function hearingChoices(): C14Choice[] {
-  return [offer('i14-hearing-out', 'Walk out of the room', 'Friday is not over yet.', 'dusk')];
+function hearingChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'i-eve')) return eveChoices(s);
+  const w = way(s);
+  const c = (id: 'sloane' | 'benton' | 'walk', label: string, hint: string, body: Block[]) =>
+    offer('i14-corridor-' + id, label, hint, 'dusk', (x) => {
+      set14(x, 'i-corridor', id);
+      return body;
+    });
+  return [
+    c('sloane', 'Look at Sloane', 'In the corridor, as she passes.', [
+      p('In the corridor on Level 12 she passes you, close, going the other way.'),
+      ...(w === 'ally'
+        ? [q('Sloane', 'Square.'), p('She says it without stopping, and it is the warmest thing you have ever heard from her.')]
+        : w === 'proof'
+          ? [q('Sloane', 'You didn’t have to do that for me.'), q('You', 'I didn’t.'), p('She almost smiles. It is the first time you have ever seen her not know what to say.')]
+          : [p('She does not look at you. She walks past you with her resignation still in her hand and her eyes on the lift, and you understand that she will never look at you again, and that you will spend a long time wishing she would.')]),
+    ]),
+    c('benton', 'Look at Benton', 'Let him see you looking.', [
+      p(key(s, 'inst.benton-exposed') ? 'Benton is walked past you by two people from Maya’s wing, not touching him, one on each side. He stops, and looks at you, and for the first time there is no slate against his chest.' : 'Benton comes out last, with his slate, and stops beside you, and looks at your face for a long time, the way he did at his door on your first morning.'),
+      q('Benton', key(s, 'inst.benton-exposed') ? 'You were always the better analyst. I told them so. They should have listened.' : w === 'cut' ? 'Monday, then, Ms Vale. My office. We’ll discuss your development.' : 'Well played. I hope you know who you’ve just made an enemy of. It isn’t me.'),
+    ]),
+    c('walk', 'Walk straight to the lift', 'Don’t look back.', [p('You walk straight to the lift and do not look back, and the doors close on Level 12, and in the steel a woman in black looks at you as if she has every right to be here, which, as of today, she does.')]),
+  ];
 }
 
 // ── Dusk ──
@@ -342,7 +430,7 @@ export function institutionalBlocks14(s: GameState): Block[] {
   if (s.phase === 'confession') return confessionBlocks(s);
   if (s.phase === 'wire') return wireBlocks();
   if (s.phase === 'channels') return channelsBlocks(s);
-  if (s.phase === 'hearing') return hearingBlocks(s);
+  if (s.phase === 'hearing') return hearingBlocks();
   if (s.phase === 'dusk') return duskBlocks(s);
   if (s.phase === 'complete') return completeBlocks(s);
   return [];
@@ -350,10 +438,10 @@ export function institutionalBlocks14(s: GameState): Block[] {
 
 export function institutionalChoices14(s: GameState): C14Choice[] {
   if (s.phase === 'notice') return noticeChoices(s);
-  if (s.phase === 'confession') return confessionChoices();
+  if (s.phase === 'confession') return confessionChoices(s);
   if (s.phase === 'wire') return wireChoices();
   if (s.phase === 'channels') return channelsChoices(s);
-  if (s.phase === 'hearing') return hearingChoices();
+  if (s.phase === 'hearing') return hearingChoices(s);
   if (s.phase === 'dusk') return duskChoices(s);
   return [];
 }
