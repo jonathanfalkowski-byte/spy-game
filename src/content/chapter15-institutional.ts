@@ -9,7 +9,12 @@
  * Priya (tear / keep / give), and one thing more (Adrian's file / the 1109 safe / Nell's order). The holds broken; one
  * cost (ally / badge / money / Sloane). "No more orders." The phone. The night. Entered from an Institutional
  * `chapter14.complete`; ends at the Act IV in-development stop, having written the shared Act III keys. Keys `inst.*`,
- * `act3.*`, `c15.*`; ids carry `i15-`. */
+ * `act3.*`, `c15.*`; ids carry `i15-`.
+ * Deepening pass (2026-09-30): three moments, each with a neutral pick. Monday night (c15.i-mon = plan | suit | sleep: the
+ * crew round the kitchen table, if there is one; dressing for her archive in front of the long mirror; or lying awake). Her
+ * page by the lamp (c15.i-page = read | others | tear: Celeste's note on the back; forty years of catalogues and a name
+ * reissued three times; or one clean pull). Friday's black orchid (c15.i-orchid = chute | sill | received). The nights
+ * are fuller, each partner his own, still chosen, still fading at the act. */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -111,7 +116,34 @@ function warrantChoices(s: GameState): C15Choice[] {
 // ── The audit ──
 
 function auditBlocks(): Block[] {
-  return [p('The Vesper on the Embankment, the black glass front with no name on it.')];
+  return [p('Monday night. Tomorrow, the Vesper on the Embankment, the black glass front with no name on it, and behind it everything Celeste Laurent has ever kept.')];
+}
+
+const planLine: Record<Who, string> = {
+  sloane: 'Sloane arrives at nine with a floor plan of the Vesper she will not say where she got, and a bottle of wine she does not drink, and corrects your route twice. “Left at the kitchens. Not right. Right is the cold store, and I am not coming in to get you out of the cold store.”',
+  daniel: 'Daniel labels the evidence boxes in his neat capitals, A to F, and then, when he thinks you aren’t looking, a seventh: G, FOR GOOD LUCK.',
+  iris: 'Iris draws the archive from memory on the back of an envelope, every cabinet, and puts a small cross on the one that squeaks. “Open that one last. Or never.”',
+  maya: 'Maya brings evidence bags, a label maker, and clause 22 printed out with the important words highlighted in three colours, and reads it aloud to you, twice, with feeling.',
+  marsh: 'Marsh brings a thermos, a bicycle lamp and the switch in a padded envelope, and asks, very seriously, whether noon is noon by the pips or by his watch, which is two minutes fast.',
+};
+
+function mondayChoices(s: GameState): C15Choice[] {
+  const m = (id: 'plan' | 'suit' | 'sleep', label: string, hint: string, body: Block[]) =>
+    offer('i15-mon-' + id, label, hint, 'audit', (x) => {
+      set15(x, 'i-mon', id);
+      return body;
+    });
+  return [
+    ...(crew(s).length
+      ? [m('plan', 'Lay out the plan with your crew', 'The kitchen table. Everybody talking at once.', [p('The kitchen table, the lamp pulled low, the route drawn on the back of a tasking nobody will ever send again.'), ...crew(s).map((w) => p(planLine[w])), p('At midnight they go, and you stand at the door after them, and for a moment the flat feels like somewhere people come to on purpose.')])]
+      : []),
+    m('suit', 'Dress for her archive', 'The long mirror. One piece at a time.', [
+      p('You lay it out on the bed: the charcoal suit, cut close; the silk shirt the colour of a bruise; the heels you can run in, because you have learned to buy heels you can run in. You dress slowly in front of the long mirror, the way she taught you, one piece at a time, and then you look.'),
+      p('A woman who looks as if she owns the building she is about to walk into. That is the point. That was always the point.'),
+      t('She dressed me for a year. Tomorrow I dress for her.'),
+    ]),
+    m('sleep', 'Go to bed early', 'You won’t sleep.', [p('You go to bed at ten and lie awake until four, listening to the river and walking the route in your head, and at four you give up and make coffee.')]),
+  ];
 }
 
 const wayText: Record<string, Block[]> = {
@@ -135,6 +167,7 @@ const wayText: Record<string, Block[]> = {
 };
 
 function auditChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'i-mon')) return mondayChoices(s);
   if (!key(s, 'inst.way15')) {
     const a = authority(s);
     const w = (id: 'audit' | 'notice' | 'escort' | 'stair' | 'invited', label: string, hint: string) =>
@@ -173,18 +206,44 @@ function auditChoices(s: GameState): C15Choice[] {
 
 // ── The cabinets ──
 
-function cabinetsBlocks(s: GameState): Block[] {
-  const signed = key(s, 'inst.pen11') === 'signed';
+function cabinetsBlocks(): Block[] {
   return [
     p('The archive. Grey steel cabinets numbered by catalogue page, one lamp, cold as a church. Everything Celeste Laurent has ever kept.'),
-    p('Your own page first, torn out of The Autumn Collection with one clean pull, folded, into your coat.'),
-    p('Then the drawer that matters on this road: AXIOM · CLIENT. Three years of receipts on cream paper. E.V. (II), delivered. And the newest, on top, for a product not yet delivered:'),
-    q('The receipt', 'CANDIDATE 9C · AXIOM · STRATEGIC INTELLIGENCE · DELIVERY: THE FIRST THURSDAY AFTER NEXT' + (signed ? ' · COUNTERSIGNED: V. SLOANE' : ' · COUNTERSIGNATURE PENDING')),
-    p('Priya’s photograph, clipped to the corner. The careful fringe. The lanyard.'),
+    p('Your own page first. The Autumn Collection on its lectern under the lamp, and three pages after Iris’s, your photograph and the neat type: E. V. (II) · AXIOM · AVAILABLE FOR PLACEMENT.'),
+  ];
+}
+
+const receipt = (s: GameState): Block[] => [
+  p('Then the drawer that matters on this road: AXIOM · CLIENT. Three years of receipts on cream paper. E.V. (II), delivered. And the newest, on top, for a product not yet delivered:'),
+  q('The receipt', 'CANDIDATE 9C · AXIOM · STRATEGIC INTELLIGENCE · DELIVERY: THE FIRST THURSDAY AFTER NEXT' + (key(s, 'inst.pen11') === 'signed' ? ' · COUNTERSIGNED: V. SLOANE' : ' · COUNTERSIGNATURE PENDING')),
+  p('Priya’s photograph, clipped to the corner. The careful fringe. The lanyard.'),
+];
+
+function pageChoices(): C15Choice[] {
+  const g = (id: 'read' | 'others' | 'tear', label: string, hint: string, body: Block[]) =>
+    offer('i15-page-' + id, label, hint, 'cabinets', (x) => {
+      set15(x, 'i-page', id);
+      return [...body, ...receipt(x)];
+    });
+  const pull = p('Then one clean pull, and it is out of the book, folded, in your coat.');
+  return [
+    g('read', 'Turn it over', 'Before you tear it.', [
+      p('You turn it over before you tear it. On the back, in the looping green hand, a note nobody was meant to read but her:'),
+      q('The page', 'Takes direction beautifully. Resents it beautifully. Will be worth more angry. — C.'),
+      t('Then let’s find out what I’m worth.'),
+      pull,
+    ]),
+    g('others', 'Look at the other drawers', 'Forty years of catalogues.', [
+      p('You look along the rows before you touch your own. Forty years of catalogues, a cabinet to each season: The Spring Collection, The Winter, the Autumns before this one. You pull an index card at random. A name, and after it, in brackets: (III).'),
+      t('Somebody has been reissued three times. Three women have worn one name, and none of them knew the others’.'),
+      pull,
+    ]),
+    g('tear', 'Just tear it out', 'One clean pull.', [p('You don’t read it. You don’t look at the others. One clean pull, folded, into your coat.')]),
   ];
 }
 
 function cabinetsChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'i-page')) return pageChoices();
   if (!key(s, 'inst.priya15')) {
     const r = (id: 'tear' | 'keep' | 'give', label: string, hint: string, body: Block[]) =>
       offer('i15-priya-' + id, label, hint, 'cabinets', (x) => {
@@ -230,11 +289,28 @@ function aftermathBlocks(s: GameState): Block[] {
     ...(key(s, 'inst.maya13') === 'warned' ? [p('Maya’s warning: withdrawn by Wednesday, when the client file lands on the board with the same forger’s hand all over it. Her promotion comes back on Friday, with an apology nobody signs.')] : []),
     ...(took === 'adrian' ? [p(key(s, 'act3.adrian-burned') ? 'Adrian Vale’s name: spent, in a room with a recorder, by you. Now the file is in your box, and there is nothing left for anybody to spend it with.' : 'Adrian Vale’s name: in your box. Nobody spends it again.')] : []),
     p('Copies of everything, in envelopes, to the people who hold the switch: ' + (holders(s).length ? holders(s).map((h) => ({ marsh: 'Owen Marsh', nora: 'Nora Linden', iris: 'Iris Moreau', sloane: 'Victoria Sloane', daniel: 'Daniel Kessler' })[h]).join(', ') : 'a solicitor in Holborn who has never met you and never will') + '. If you stop ringing, everything goes to everyone.'),
-    p('And the price. There is always a price for the last door.'),
+    p('On Friday a courier brings a box to the flat: black, a Vesper orchid box, and in it a black orchid, perfect, and a card in the looping green hand.'),
+    q('The card', 'You took my favourite page. I shall miss it more than you know. — C.'),
+  ];
+}
+
+const price = p('And the price. There is always a price for the last door.');
+
+function orchidChoices(): C15Choice[] {
+  const o = (id: 'chute' | 'sill' | 'received', label: string, hint: string, body: Block[]) =>
+    offer('i15-orchid-' + id, label, hint, 'aftermath', (x) => {
+      set15(x, 'i-orchid', id);
+      return [...body, price];
+    });
+  return [
+    o('chute', 'Down the chute', 'Box and all.', [p('You carry it down the hall and put it down the rubbish chute, box and all, and listen to it fall seven floors, and feel wonderful for nearly an hour.')]),
+    o('sill', 'On the sill', 'It isn’t the orchid’s fault.', [p('You put it on the kitchen sill, where the light is. It is a very beautiful orchid. That is not its fault.')]),
+    o('received', 'Send the card back', 'One word, on the back.', [p('You write one word on the back of her card, in capitals, RECEIVED, and send it back by the same courier, and imagine her reading it under the one lamp. She will know exactly what it means. She has written enough receipts.')]),
   ];
 }
 
 function aftermathChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'i-orchid')) return orchidChoices();
   const allyWho = irisFree(s) ? 'iris' : key(s, 'act3.ally.marsh') === 'in' ? 'marsh' : '';
   const c = (id: 'ally' | 'badge' | 'money' | 'sloane', label: string, hint: string, shared: string, who: string, body: Block[]) =>
     offer('i15-cost-' + id, label, hint, 'eve', (x) => {
@@ -270,6 +346,24 @@ function eveBlocks(): Block[] {
     q('C.', 'I shall be there as myself.'),
   ];
 }
+
+const nightLead: Record<Partner, Block[]> = {
+  daniel: [p('Daniel’s flat, at eleven, the one with the coffee machine he mended with a paperclip. He opens the door in his shirtsleeves and looks at you, at the suit, at your face, and says both your names, the one on the badge and the one underneath, as if he were trying them for size.')],
+  julian: [p('Julian’s suite, at eleven, the lamps low and the city laid out in the window like something he bought and forgot about. He opens the door before you knock, because he heard the lift, because he has been listening for it.')],
+  sebastian: [p('Sebastian’s car, at eleven, idling under your window with its lights off, and then his flat, and then his hand at the small of your back in the hall, not pushing, just there, so you know where it is.')],
+};
+
+const stayLead: Record<Partner, string> = {
+  daniel: 'He is careful with you, the way he is careful with everything, and then, when you laugh at him for it, much less careful. You take his tie off with one hand. He has been waiting a year to be allowed to look at you like this.',
+  julian: 'He takes the pins out of your hair one at a time and puts each one down on the piano, as if they were worth something, and undoes the zip of your dress slowly enough that you could stop him at every inch. You don’t.',
+  sebastian: 'He kisses you against the door of his own flat, and then asks, and you say yes into his mouth, and he laughs, and asks again anyway, properly, and you say it properly.',
+};
+
+const softLead: Record<Partner, string> = {
+  daniel: 'He is careful with you, the way he is careful with everything, and you let him be, for once, and put your head on his shoulder in your good suit.',
+  julian: 'He takes the pins out of your hair one at a time and puts each one down on the piano, as if they were worth something, and leaves the rest exactly where it is.',
+  sebastian: 'He kisses you against the door of his own flat, slowly, and when you put a hand on his chest to say this far, he smiles against your mouth and stays exactly there.',
+};
 
 function eveChoices(s: GameState): C15Choice[] {
   if (!key(s, 'act3.black-phone')) {
@@ -320,9 +414,10 @@ function eveChoices(s: GameState): C15Choice[] {
       offer('i15-stay', 'Stay', 'Continue within what you chose.', 'complete', (x) => {
         delete x.choices['c15.i-night-open'];
         set15(x, 'i-night-outcome', 'intimate-' + scp);
+        const pt = get15(x, 'i-night') as Partner;
         return scp === 'sex'
-          ? [p('The first night in a year with nobody holding anything over either of you. He says your name, whichever one you gave him, and asks once more, and you answer by pulling him down, and nothing in the room is owed to anybody.'), p('What happens next is yours and his. The scene fades.')]
-          : [p('He kisses you by the window for a long time, and stops where you said, and you fall asleep against him with the city on, owing nobody anything, for the first time in a year.')];
+          ? [p(stayLead[pt]), p('The first night in a year with nobody holding anything over either of you. He says your name, whichever one you gave him, and asks once more, and you answer by pulling him down, and nothing in the room is owed to anybody.'), p('What happens next is yours and his. The scene fades.')]
+          : [p(softLead[pt]), p('He kisses you by the window for a long time, and stops where you said, and you fall asleep against him with the city on, owing nobody anything, for the first time in a year.')];
       }),
     ];
   }
@@ -331,7 +426,7 @@ function eveChoices(s: GameState): C15Choice[] {
       offer('i15-night-' + pt, pt === 'daniel' ? 'Daniel' : pt === 'julian' ? 'Julian' : 'Sebastian', 'The first night in a year with nothing owed.', 'eve', (x) => {
         set15(x, 'i-night', pt);
         set15(x, 'i-night-open', pt);
-        return [q(partnerName[pt], 'Tell me what you want tonight, and that’s what happens. Nobody else gets a say. Not tonight.')];
+        return [...nightLead[pt], q(partnerName[pt], 'Tell me what you want tonight, and that’s what happens. Nobody else gets a say. Not tonight.')];
       }),
     ),
     done('alone', 'Alone', 'Act III ends here.', [p('You sit up alone, the wall in front of you, a glass of wine you do not drink, and the first quiet in a year that belongs to nobody but you.')]),
@@ -356,7 +451,7 @@ function completeBlocks(s: GameState): Block[] {
 export function institutionalBlocks15(s: GameState): Block[] {
   if (s.phase === 'warrant') return warrantBlocks(s);
   if (s.phase === 'audit') return auditBlocks();
-  if (s.phase === 'cabinets') return cabinetsBlocks(s);
+  if (s.phase === 'cabinets') return cabinetsBlocks();
   if (s.phase === 'aftermath') return aftermathBlocks(s);
   if (s.phase === 'eve') return eveBlocks();
   if (s.phase === 'complete') return completeBlocks(s);

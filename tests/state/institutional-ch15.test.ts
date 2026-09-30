@@ -224,10 +224,21 @@ const PROOF14 = ['begin-institutional', 'i14-notice-screen', 'i14-sloane-shut', 
 const toFifteen = (s12: GameState, ch13: string[], ch14: string[]) => walk14(walk13(s12, ch13), ch14);
 
 const ids15 = (s: GameState) => chapter15Choices(s).map((c) => c.id.replace(/^chapter15\./, ''));
-const c15 = (s: GameState, id: string) => {
+const once15 = (s: GameState, id: string) => {
   const next = act(s, { type: 'CHAPTER15_CHOOSE', id: 'chapter15.' + id } as never);
   if (next === s) throw Error('Unavailable ' + id + ' at ' + s.scene + '.' + s.phase + ' (offered: ' + ids15(s).join(', ') + ')');
   return next;
+};
+/** The deepening pass's moments (Monday night, her page, Friday's orchid): take the neutral pick when it is in the way. */
+const NEUTRAL15 = ['i15-mon-sleep', 'i15-page-tear', 'i15-orchid-sill'];
+const c15 = (s: GameState, id: string) => {
+  let y = s;
+  for (let i = 0; i < 3 && !ids15(y).includes(id); i++) {
+    const d = NEUTRAL15.find((x) => ids15(y).includes(x));
+    if (!d) break;
+    y = once15(y, d);
+  }
+  return once15(y, id);
 };
 const walk15 = (s: GameState, path: string[]) => path.reduce(c15, s);
 const ch15 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter15.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
@@ -249,11 +260,19 @@ it('the audit, with Sloane and Daniel: clause 22, 9C torn up, Adrian’s file, S
   expect(ids15(crew)).toContain('i15-crew-done');
   const audit = c15(crew, 'i15-crew-daniel');
   expect(audit.choices['inst.crew15']).toBe('sloane,daniel');
-  expect(ids15(audit)).toEqual(['i15-way-audit', 'i15-way-stair', 'i15-way-invited']);
-  const snag = c15(audit, 'i15-way-audit');
+  expect(ids15(audit)).toEqual(['i15-mon-plan', 'i15-mon-suit', 'i15-mon-sleep']);
+  const monday = c15(audit, 'i15-mon-plan');
+  expect(ch15(monday)).toContain('I am not coming in to get you out of the cold store.');
+  expect(ch15(monday)).toContain('G, FOR GOOD LUCK');
+  expect(ids15(monday)).toEqual(['i15-way-audit', 'i15-way-stair', 'i15-way-invited']);
+  const snag = c15(monday, 'i15-way-audit');
   expect(ch15(snag)).toContain('CLIENT AUDIT UNDER CLAUSE 22');
-  const cabinets = c15(snag, 'i15-snag-talk');
-  expect(ch15(cabinets)).toContain('Axiom, auditing me. Victoria must be feeling better.');
+  const archive = c15(snag, 'i15-snag-talk');
+  expect(ch15(archive)).toContain('Axiom, auditing me. Victoria must be feeling better.');
+  expect(ids15(archive)).toEqual(['i15-page-read', 'i15-page-others', 'i15-page-tear']);
+  expect(ch15(archive)).not.toContain('CANDIDATE 9C');
+  const cabinets = c15(archive, 'i15-page-read');
+  expect(ch15(cabinets)).toContain('Will be worth more angry. — C.');
   expect(ch15(cabinets)).toContain('CANDIDATE 9C · AXIOM · STRATEGIC INTELLIGENCE · DELIVERY: THE FIRST THURSDAY AFTER NEXT · COUNTERSIGNED: V. SLOANE');
   expect(ids15(cabinets)).toEqual(['i15-priya-tear', 'i15-priya-keep', 'i15-priya-give']);
   const more = c15(cabinets, 'i15-priya-tear');
@@ -262,13 +281,19 @@ it('the audit, with Sloane and Daniel: clause 22, 9C torn up, Adrian’s file, S
   const after = c15(more, 'i15-took-adrian');
   expect(ch15(after)).not.toContain('Maya’s warning');
   expect(ch15(after)).toContain('Victoria Sloane, Daniel Kessler');
-  expect(ids15(after)).toEqual(['i15-cost-ally', 'i15-cost-badge', 'i15-cost-money', 'i15-cost-sloane']);
-  const eve = c15(after, 'i15-cost-sloane');
+  expect(ch15(after)).toContain('You took my favourite page.');
+  expect(ids15(after)).toEqual(['i15-orchid-chute', 'i15-orchid-sill', 'i15-orchid-received']);
+  const orchid = c15(after, 'i15-orchid-received');
+  expect(ch15(orchid)).toContain('RECEIVED');
+  expect(ids15(orchid)).toEqual(['i15-cost-ally', 'i15-cost-badge', 'i15-cost-money', 'i15-cost-sloane']);
+  const eve = c15(orchid, 'i15-cost-sloane');
   expect([eve.choices['act3.leash'], eve.choices['c15.cost'], eve.choices['c15.cost-who']]).toEqual(['broken', 'relationship', 'sloane']);
   expect(eve.choices['act3.switch']).toContain('sloane');
   expect(ch15(eve)).toContain('It turns out to have been you.');
   expect(ch15(eve)).toContain('I shall be there as myself.');
   const done = walk15(eve, ['i15-phone-river', 'i15-night-daniel', 'i15-daniel-no-sex', 'i15-stay']);
+  expect(ch15(done)).toContain('says both your names');
+  expect(ch15(done)).toContain('put your head on his shoulder');
   expect(`${done.scene}.${done.phase}`).toBe('chapter15.complete');
   expect(done.choices['act3.black-phone']).toBe('river');
   expect(ch15(done)).toContain('four pieces of a receipt');
@@ -293,13 +318,28 @@ it('after the proof, with no authority: by invitation, Priya told, Nell’s orde
   const s = toFifteen(PROT12(), REFUSE13, PROOF14);
   const audit = walk15(s, ['begin-institutional', 'i15-crew-none']);
   expect(ch15(audit)).toContain('no badge that opens anything');
-  expect(ids15(audit)).toEqual(['i15-way-stair', 'i15-way-invited']);
-  const done = walk15(audit, ['i15-way-invited', 'i15-snag-hide', 'i15-priya-give', 'i15-took-nell', 'i15-cost-badge', 'i15-phone-return', 'i15-night-alone']);
+  expect(ids15(audit)).toEqual(['i15-mon-suit', 'i15-mon-sleep']);
+  const dressed = c15(audit, 'i15-mon-suit');
+  expect(ch15(dressed)).toContain('She dressed me for a year. Tomorrow I dress for her.');
+  expect(ids15(dressed)).toEqual(['i15-way-stair', 'i15-way-invited']);
+  const done = walk15(dressed, ['i15-way-invited', 'i15-snag-hide', 'i15-page-others', 'i15-priya-give', 'i15-took-nell', 'i15-cost-badge', 'i15-phone-return', 'i15-night-alone']);
   expect(ch15(done)).toContain('Ask me again next week whether I mean it.');
+  expect(ch15(done)).toContain('in brackets: (III).');
   expect(ch15(done)).toContain('one initial. C.');
   expect(ch15(done)).toContain('Mind the step, madam.');
   expect(ch15(done)).toContain('THANK YOU. I THINK. — P.');
   expect(ch15(done)).toContain('Maya’s warning: withdrawn by Wednesday');
 
   expect(done.choices['c15.cost']).toBe('visibility');
+});
+
+it('deepening: the chute, and a chosen night with Daniel that fades at the act', () => {
+  const done = walk15(toFifteen(PROT12(), COMPLY13, ALLY14), ['begin-institutional', 'i15-crew-daniel', 'i15-crew-done', 'i15-way-invited', 'i15-snag-bold', 'i15-priya-keep', 'i15-took-nell', 'i15-orchid-chute', 'i15-cost-money', 'i15-phone-keep', 'i15-night-daniel', 'i15-daniel-sex', 'i15-stay']);
+  expect(done.choices['c15.i-orchid']).toBe('chute');
+  expect(done.facts).toContain('c15.i-evening-consent');
+  expect(ch15(done)).toContain('fall seven floors');
+  expect(ch15(done)).toContain('You take his tie off with one hand.');
+  expect(ch15(done)).toContain('The scene fades.');
+  expect(ch15(done)).not.toMatch(SEXUAL);
+  expect(done.choices['c15.i-night-outcome']).toBe('intimate-sex');
 });

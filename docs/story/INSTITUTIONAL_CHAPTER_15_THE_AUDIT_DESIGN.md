@@ -22,7 +22,9 @@ Ch12's Nora (`inst.nora12`); Ch11's Iris and **9C · Priya** (`inst.pen11`); Ch8
 **Status: APPROVED (owner, 2026-09-30: "ok do your recommendation", all eight decisions as recommended) and BUILT, pass
 1.** Script: [scripts/INSTITUTIONAL_CHAPTER_15_SCRIPT.md](scripts/INSTITUTIONAL_CHAPTER_15_SCRIPT.md); code:
 `src/content/chapter15-institutional.ts`. Entered from an Institutional `chapter14.complete`; ends at the Act IV
-in-development stop; ~0.71–0.86k words on one path.
+in-development stop. It ran ~0.71–0.86k words on one path at pass 1, deepened 2026-09-30 to ~0.96–1.41k with three
+moments, each with a neutral pick (Monday night; her page by the lamp; Friday's black orchid), and fuller nights, each
+partner his own, still chosen, still fading at the act.
 
 ---
 
