@@ -28,6 +28,7 @@ import { sloaneDoubts } from './sloane-standing';
 import { wallLines } from './leverage';
 import { beginPredator10, isPredator10, placePredator10, predatorBlocks10, predatorChoices10, predatorPhase10 } from './chapter10-predator';
 import { beginExecutive10, executiveBlocks10, executiveChoices10, executivePhase10, isExecutive10, placeExecutive10 } from './chapter10-executive';
+import { beginInstitutional10, institutionalBlocks10, institutionalChoices10, institutionalPhase10, isInstitutional10, placeInstitutional10 } from './chapter10-institutional';
 
 export type C10Scene = { title: string; place: string; blocks: Block[] };
 export type C10Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -82,6 +83,13 @@ export const chapter10Definitions: Record<string, C10Scene> = {
   calendar: { title: 'A Lovely Man', place: 'THE COFFEE', blocks: [] },
   paper: { title: 'Old Money, New Blood', place: 'NOON · YOUR DOORWAY, FORTY-ONE', blocks: [] },
   week: { title: 'Fridays', place: 'THE WEEK AFTER', blocks: [] },
+  // The Institutional road (2026-09-30): A Very Good Officer.
+  card: { title: 'A Grey Envelope', place: 'MONDAY · 09:00 · STRATEGIC INTELLIGENCE', blocks: [] },
+  club: { title: 'She Knows', place: 'WEDNESDAY · 07:00', blocks: [] },
+  log: { title: 'A Very Good Officer', place: 'THE SAME TABLE', blocks: [] },
+  pages: { title: 'Page Seven', place: 'WEDNESDAY · 12:30 · YOUR DESK', blocks: [] },
+  fridays: { title: 'Fridays', place: 'THE WEEK AFTER', blocks: [] },
+  nightfall: { title: 'Friday Night', place: 'FRIDAY NIGHT', blocks: [] },
   night: { title: 'Friday Night', place: 'NIGHT', blocks: [] },
 };
 export const chapter10Scenes = Object.entries(chapter10Definitions).map(([phase, scene]) => ({
@@ -122,6 +130,7 @@ export function place10(s: GameState): string | undefined {
   if (s.scene !== 'chapter10') return;
   if (isPredator10(s)) return placePredator10(s);
   if (isExecutive10(s)) return placeExecutive10(s);
+  if (isInstitutional10(s)) return placeInstitutional10(s);
   if (s.phase === 'breakfast') {
     const b = get10(s, 'breakfast');
     return b === 'went' ? '07:00 · THE LINDQVIST' : b === 'ambushed' ? '09:10 · THE BAKERY ON YOUR STREET' : 'DAWN · APARTMENT';
@@ -1765,6 +1774,7 @@ export function chapter10Blocks(s: GameState): Block[] {
   if (s.scene !== 'chapter10') return [];
   if (predatorPhase10(s)) return predatorBlocks10(s);
   if (executivePhase10(s)) return executiveBlocks10(s);
+  if (institutionalPhase10(s)) return institutionalBlocks10(s);
   if (s.phase === 'breakfast') return dawnBlocks();
   if (s.phase === 'claimed')
     return [
@@ -1825,9 +1835,11 @@ export function chapter10Choices(s: GameState): C10Choice[] {
   if (s.scene === 'chapter9' && s.phase === 'complete' && isPredator10(s)) return [beginPredator10()];
   // The Executive road (A Lovely Man) comes from its Chapter 9 bridge too.
   if (s.scene === 'chapter9' && s.phase === 'complete' && isExecutive10(s)) return [beginExecutive10()];
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isInstitutional10(s)) return [beginInstitutional10()];
   if (s.scene !== 'chapter10') return [];
   if (predatorPhase10(s)) return predatorChoices10(s);
   if (executivePhase10(s)) return executiveChoices10(s);
+  if (institutionalPhase10(s)) return institutionalChoices10(s);
   if (s.phase === 'breakfast') return breakfastChoices(s);
   if (s.phase === 'claimed') return claimedChoices(s);
   if (s.phase === 'wall') return wallChoices(s);

@@ -67,9 +67,9 @@ export function placeInstitutional14(s: GameState): string | undefined {
 
 // ── The entry ──
 
-export function beginInstitutional14(): C14Choice {
+export function beginInstitutional14(s: GameState): C14Choice {
   return offer('begin-institutional', 'Go on to the inquiry', 'This road’s Act III chapters are in development.', 'notice', () => [
-    p('[Chapters 10–13 · institutional road — in development] The winter comes to Axiom the way it always did: the heating late, the coffee machine worse, the grey envelopes every Monday. Celeste Laurent’s name, which you found at the end of the bridge, sits on the card beside MERIDIAN on your wardrobe door. The ORACLE page. The empty box. A man under a street lamp who has not come back. And the black phone, which rings on Fridays.'),
+    p((s.scene === 'chapter10' ? '[Chapters 11–13 · institutional road — in development] The Vesper, the first Thursday, with Axiom’s card in Sloane’s hand. ' : '[Chapters 10–13 · institutional road — in development] ') + 'The winter comes to Axiom the way it always did: the heating late, the coffee machine worse, the grey envelopes every Monday. Celeste Laurent’s name, which you found at the end of the bridge, sits on the card beside MERIDIAN on your wardrobe door. The ORACLE page. The empty box. A man under a street lamp who has not come back. And the black phone, which rings on Fridays.'),
   ]);
 }
 
@@ -162,9 +162,10 @@ function confessionChoices(s: GameState): C14Choice[] {
 
 // ── The wire ──
 
-function wireBlocks(): Block[] {
+function wireBlocks(s: GameState): Block[] {
   return [
     p('Tuesday. The black phone, at nine in the morning, which is early for her.'),
+    ...(key(s, 'inst.log10') ? [q('C.', 'I told you at breakfast, darling. A very good officer. They never survive us.')] : []),
     q('C.', 'Poor Victoria. They will want a name, darling, and hers is on everything. Tell the inquiry she knew about the placements. She didn’t, of course, but nobody will believe that of an officer of record. You’ll have her chair by Christmas.'),
     q('C.', 'And if you won’t, then on Friday Adrian Vale’s name goes to the inquiry, and the regulator, and a man at the Courier who has been very patient. Axiom will have no choice but to disown its operative. And I’m afraid the flat was always mine.'),
   ];
@@ -428,7 +429,7 @@ function completeBlocks(s: GameState): Block[] {
 export function institutionalBlocks14(s: GameState): Block[] {
   if (s.phase === 'notice') return noticeBlocks();
   if (s.phase === 'confession') return confessionBlocks(s);
-  if (s.phase === 'wire') return wireBlocks();
+  if (s.phase === 'wire') return wireBlocks(s);
   if (s.phase === 'channels') return channelsBlocks(s);
   if (s.phase === 'hearing') return hearingBlocks();
   if (s.phase === 'dusk') return duskBlocks(s);

@@ -940,7 +940,7 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   // before it.
   if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14(s)];
   // The Institutional road: through the in-development bridge from its Chapter 9, until its Chapters 10–13 exist.
-  if (s.scene === 'chapter9' && s.phase === 'complete' && isInstitutional14(s)) return [beginInstitutional14()];
+  if (s.phase === 'complete' && isInstitutional14(s) && ((s.scene === 'chapter9' && import.meta.env.VITE_EVE_CHAPTER10 !== '1') || s.scene === 'chapter10')) return [beginInstitutional14(s)];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);

@@ -260,6 +260,13 @@ const byNode: Record<string, Key> = {
   'chapter10.paper': 'helixWorkroom',
   'chapter10.week': 'helixSuite',
   'chapter10.night': 'apartmentNight',
+  // The Institutional road: A Very Good Officer.
+  'chapter10.card': 'officeDusk',
+  'chapter10.club': 'privateDinner',
+  'chapter10.log': 'privateDinner',
+  'chapter10.pages': 'officeDusk',
+  'chapter10.fridays': 'executiveOffice',
+  'chapter10.nightfall': 'apartmentNight',
   // Chapter 11 (stand-ins until EVE Art's Vesper frames: the black-glass front, the empty frames, the catalogue).
   'chapter11.arrival': 'glassLobby',
   'chapter11.viewing': 'harbourRoom',
