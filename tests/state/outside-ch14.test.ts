@@ -81,7 +81,7 @@ it('caught, press the lie, spare Sloane, trust him, a chosen night that fades; i
   expect(ch14(done)).toContain('RAFE LIM. R. ON THE LEAF.');
   expect(ch14(done)).toContain('THE VESPER · BY THE COURIER’S DOOR. TOGETHER.');
   expect(ch14(done)).toContain('LINDEN, E.');
-  expect(ch14(done)).toContain('[Chapters 15–18 · outside road — in development]');
+  expect(ch14(done)).not.toContain('outside road — in development]');
   expect(ch14(done)).not.toMatch(SEXUAL);
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);

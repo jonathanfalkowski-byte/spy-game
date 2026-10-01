@@ -432,7 +432,6 @@ function completeBlocks(s: GameState): Block[] {
     q('The card', w === 'cut' ? 'THE VESPER · BY THE STAIR. ALONE.' : w === 'trust' ? 'THE VESPER · BY THE COURIER’S DOOR. TOGETHER.' : 'THE VESPER · BY THE COURIER’S DOOR. MY TERMS.'),
     q('The card', 'LINDEN, E.'),
     t(w === 'cut' ? 'I kept only what I proved. It is not much. It is mine, and it holds, and I will find the rest myself.' : w === 'trust' ? 'I forgave a page, once, with my eyes open. If he lies again there is no third conversation. But for tonight the voice has a name, and a hand, and a wound I recognise.' : 'I hold the one page that is him. He gets me into the rooms. We both know what it weighs.'),
-    p('[Chapters 15–18 · outside road — in development]'),
   ];
 }
 
