@@ -942,7 +942,10 @@ function institutionalBridgeFrom14(s: GameState): boolean {
 /** Where the Outside road enters Chapter 14: Outside Chapters 10–13 do not exist yet, so it comes through the in-development
  * bridge from the last of Chapters 9–13 it has reached. */
 function outsideBridgeFrom14(s: GameState): boolean {
-  return ['chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13'].includes(s.scene);
+  // Outside variants built so far: Chapter 10. The bridge starts at the last of Chapters 9–13 whose next Outside chapter is
+  // not built and playable (extend the list below as Outside Chapters 11–13 arrive).
+  if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
+  return ['chapter10', 'chapter11', 'chapter12', 'chapter13'].includes(s.scene);
 }
 
 /** Where the Executive road enters Chapter 14: from its Chapter 13, or the last of Chapters 9–12 that is playable. */

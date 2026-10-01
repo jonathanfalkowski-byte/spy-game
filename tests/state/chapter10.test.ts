@@ -57,7 +57,8 @@ const answer = (order: GameState, id: string) => {
 
 it('opens only after an own-power Chapter 9, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
-  expect(ids(complete9('outside-placeholder-all'))).toEqual([]);
+  // The Outside road has its own Chapter 10 (Bring Me Their Name), entered from its own Chapter 9.
+  expect(ids(complete9('outside-placeholder-all'))).toEqual(['begin-outside']);
   vi.stubEnv('VITE_EVE_CHAPTER10', '');
   expect(chapter10Choices(start())).toEqual([]);
   expect(JSON.stringify(availableIntents(start()))).not.toContain('CHAPTER10');

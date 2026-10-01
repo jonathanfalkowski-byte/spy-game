@@ -111,6 +111,13 @@ function reckoningBlocks(s: GameState): Block[] {
     p('02:40. The iron stair outside, a step you know and have never heard. A knock, which is a courtesy, since he has a key, and has had, you suppose, from the first day.'),
     p('He comes in without the disguiser, without the dark, without the barrier between you. The courier’s jacket, waxed at the cuffs. The good watch on the worn strap. He stands in the lamplight with his hands where you can see them, a man of forty or so who has not slept in a year, and he looks at the wall first, the red thread, the three pencilled stones, and something in his face shifts, the way a man’s face shifts when he sees his own handwriting on someone else’s door.'),
     q(SENDER, 'You’ve kept the stones. I wondered if you would.'),
+    ...(key(s, 'out.give10') === 'gave'
+      ? [q(SENDER, 'You gave her the terminal. I moved the same night. I would have done the same in your coat, and I need you to hear that I know it.')]
+      : key(s, 'out.give10') === 'doctored'
+        ? [q(SENDER, 'Somebody stood on Pier Nine in the rain for three hours with a flask. I watched from a doorway. I have not been so happy in years, and I am ashamed of how much.')]
+        : key(s, 'out.give10') === 'refused'
+          ? [q(SENDER, 'You said no to her over eggs, and I went to ground, and you let me. Nobody has ever not given me up before. I have not known what to do with it since.')]
+          : []),
     ...(key(s, 'out.seam') === 'caught'
       ? [p('He looks at the two pages in your hand, the leaf and the copy, the little gap in the paper, and does not pretend.')]
       : []),

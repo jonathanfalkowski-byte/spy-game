@@ -274,6 +274,13 @@ const byNode: Record<string, Key> = {
   'chapter10.week': 'helixSuite',
   'chapter10.night': 'apartmentNight',
   // The Institutional road: A Very Good Officer.
+  // The Outside road: Bring Me Their Name.
+  'chapter10.slip': 'apartmentDay',
+  'chapter10.cafe': 'privateDinner',
+  'chapter10.source': 'privateDinner',
+  'chapter10.press': 'apartmentDay',
+  'chapter10.weeks': 'apartmentNight',
+  'chapter10.hours': 'apartmentNight',
   'chapter10.card': 'officeDusk',
   'chapter10.club': 'privateDinner',
   'chapter10.log': 'privateDinner',

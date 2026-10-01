@@ -29,6 +29,7 @@ import { wallLines } from './leverage';
 import { beginPredator10, isPredator10, placePredator10, predatorBlocks10, predatorChoices10, predatorPhase10 } from './chapter10-predator';
 import { beginExecutive10, executiveBlocks10, executiveChoices10, executivePhase10, isExecutive10, placeExecutive10 } from './chapter10-executive';
 import { beginInstitutional10, institutionalBlocks10, institutionalChoices10, institutionalPhase10, isInstitutional10, placeInstitutional10 } from './chapter10-institutional';
+import { beginOutside10, outsideBlocks10, outsideChoices10, outsidePhase10, isOutside10, placeOutside10 } from './chapter10-outside';
 
 export type C10Scene = { title: string; place: string; blocks: Block[] };
 export type C10Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -90,6 +91,13 @@ export const chapter10Definitions: Record<string, C10Scene> = {
   pages: { title: 'Page Seven', place: 'WEDNESDAY · 12:30 · YOUR DESK', blocks: [] },
   fridays: { title: 'Fridays', place: 'THE WEEK AFTER', blocks: [] },
   nightfall: { title: 'Friday Night', place: 'FRIDAY NIGHT', blocks: [] },
+  // The Outside road (2026-10-01): Bring Me Their Name.
+  slip: { title: 'The Third Step', place: 'MONDAY · THE IRON STAIR', blocks: [] },
+  cafe: { title: 'She Knows', place: 'WEDNESDAY · 07:00', blocks: [] },
+  source: { title: 'Bring Me Their Name', place: 'THE SAME TABLE', blocks: [] },
+  press: { title: 'Page Seven', place: 'WEDNESDAY · NOON · THE ROOM OVER THE WATER', blocks: [] },
+  weeks: { title: 'Fridays', place: 'THE WEEK AFTER', blocks: [] },
+  hours: { title: 'Sunday Night', place: 'SUNDAY NIGHT', blocks: [] },
   night: { title: 'Friday Night', place: 'NIGHT', blocks: [] },
 };
 export const chapter10Scenes = Object.entries(chapter10Definitions).map(([phase, scene]) => ({
@@ -131,6 +139,7 @@ export function place10(s: GameState): string | undefined {
   if (isPredator10(s)) return placePredator10(s);
   if (isExecutive10(s)) return placeExecutive10(s);
   if (isInstitutional10(s)) return placeInstitutional10(s);
+  if (isOutside10(s)) return placeOutside10(s);
   if (s.phase === 'breakfast') {
     const b = get10(s, 'breakfast');
     return b === 'went' ? '07:00 · THE LINDQVIST' : b === 'ambushed' ? '09:10 · THE BAKERY ON YOUR STREET' : 'DAWN · APARTMENT';
@@ -1775,6 +1784,7 @@ export function chapter10Blocks(s: GameState): Block[] {
   if (predatorPhase10(s)) return predatorBlocks10(s);
   if (executivePhase10(s)) return executiveBlocks10(s);
   if (institutionalPhase10(s)) return institutionalBlocks10(s);
+  if (outsidePhase10(s)) return outsideBlocks10(s);
   if (s.phase === 'breakfast') return dawnBlocks();
   if (s.phase === 'claimed')
     return [
@@ -1836,10 +1846,13 @@ export function chapter10Choices(s: GameState): C10Choice[] {
   // The Executive road (A Lovely Man) comes from its Chapter 9 bridge too.
   if (s.scene === 'chapter9' && s.phase === 'complete' && isExecutive10(s)) return [beginExecutive10()];
   if (s.scene === 'chapter9' && s.phase === 'complete' && isInstitutional10(s)) return [beginInstitutional10()];
+  // The Outside road (Bring Me Their Name) comes from its Chapter 9 bridge too.
+  if (s.scene === 'chapter9' && s.phase === 'complete' && isOutside10(s)) return [beginOutside10()];
   if (s.scene !== 'chapter10') return [];
   if (predatorPhase10(s)) return predatorChoices10(s);
   if (executivePhase10(s)) return executiveChoices10(s);
   if (institutionalPhase10(s)) return institutionalChoices10(s);
+  if (outsidePhase10(s)) return outsideChoices10(s);
   if (s.phase === 'breakfast') return breakfastChoices(s);
   if (s.phase === 'claimed') return claimedChoices(s);
   if (s.phase === 'wall') return wallChoices(s);

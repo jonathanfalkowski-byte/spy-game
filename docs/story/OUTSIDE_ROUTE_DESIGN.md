@@ -1,6 +1,6 @@
 # The Outside route: design (for owner approval)
 
-**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended).** No lane-split change is needed. Ch7, "The Sender" ([OUTSIDE_CHAPTER_7_THE_SENDER_DESIGN.md](OUTSIDE_CHAPTER_7_THE_SENDER_DESIGN.md)), is built, pass 1. Ch8, "Provenance" ([OUTSIDE_CHAPTER_8_PROVENANCE_DESIGN.md](OUTSIDE_CHAPTER_8_PROVENANCE_DESIGN.md)), is built, pass 1. Ch14, "The Source" ([OUTSIDE_CHAPTER_14_THE_SOURCE_DESIGN.md](OUTSIDE_CHAPTER_14_THE_SOURCE_DESIGN.md)), is built, pass 1: **the unique spine (7, 8, 14) is built.** Next: the shared variants (10–13, 15–18). Each chapter gets its own design doc before
+**Status: APPROVED (owner, 2026-09-30: "approved", all eight decisions as recommended).** No lane-split change is needed. Ch7, "The Sender" ([OUTSIDE_CHAPTER_7_THE_SENDER_DESIGN.md](OUTSIDE_CHAPTER_7_THE_SENDER_DESIGN.md)), is built, pass 1. Ch8, "Provenance" ([OUTSIDE_CHAPTER_8_PROVENANCE_DESIGN.md](OUTSIDE_CHAPTER_8_PROVENANCE_DESIGN.md)), is built, pass 1. Ch14, "The Source" ([OUTSIDE_CHAPTER_14_THE_SOURCE_DESIGN.md](OUTSIDE_CHAPTER_14_THE_SOURCE_DESIGN.md)), is built, pass 1: **the unique spine (7, 8, 14) is built.** Shared variants: Ch10, "Bring Me Their Name" ([OUTSIDE_CHAPTER_10_BRING_ME_THEIR_NAME_DESIGN.md](OUTSIDE_CHAPTER_10_BRING_ME_THEIR_NAME_DESIGN.md)), pass 1. Next: Ch11–13, then Ch15–18. Each chapter gets its own design doc before
 build. Written 2026-09-30 as the last of the five routes (Celebrity, Predator, Executive and Institutional are
 complete, Ch7–18).
 
