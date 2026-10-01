@@ -546,6 +546,13 @@ const byNode: Record<string, Key> = {
   'chapter16.bundle': 'apartmentDay',
   'chapter16.uniform': 'apartmentNight',
   'chapter16.notice': 'glassLobby',
+  // The Outside road: Her Own Hand.
+  'chapter16.sheet': 'apartmentNight',
+  'chapter16.stand': 'apartmentNight',
+  'chapter16.retinue': 'apartmentDay',
+  'chapter16.spread': 'apartmentDay',
+  'chapter16.coat': 'apartmentNight',
+  'chapter16.steps': 'glassLobby',
   'chapter17.exhibit': 'harbourRoom',
   'chapter17.warranty': 'harbourRoom',
   'chapter17.record': 'harbourRoom',

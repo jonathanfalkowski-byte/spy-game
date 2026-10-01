@@ -101,13 +101,13 @@ it('the courier’s door with Rafe and Marsh, a talked snag, the drawer, the sli
   expect(ch15(done)).toContain('The scene fades.');
   expect(ch15(done)).toContain('ROTTERDAM. SATURDAY. AUTH. C. HE KNOWS.');
   expect(ch15(done)).toContain('THE BOARD MEETS.');
-  expect(ch15(done)).toContain('[Chapters 16–18 · outside road — in development]');
+  expect(ch15(done)).not.toContain('outside road — in development]');
   expect(ch15(done)).not.toMatch(SEXUAL);
   // how Nell died is not told here, and Rafe never makes her Nell
   expect(ch15(done)).not.toMatch(DEATH);
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
-  expect(chapter16Choices(done)).toEqual([]);
+  expect(chapter16Choices(done).map((c) => c.id)).toEqual(['chapter16.begin-outside']);
 });
 
 it('cut him loose: alone, by invitation, bold; the slip is held; the cost is her face; the night can be declined', () => {

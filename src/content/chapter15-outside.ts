@@ -408,7 +408,6 @@ function completeBlocks(s: GameState): Block[] {
     p('One card left, in capitals:'),
     q('The card', 'THE BOARD MEETS.'),
     t('She held everything. Now I do. And a man who has carried envelopes all his life has carried me, across a river, in the dark, to the one drawer where she kept her. Thursday, I find out what that is worth.'),
-    p('[Chapters 16–18 · outside road — in development]'),
   ];
 }
 
