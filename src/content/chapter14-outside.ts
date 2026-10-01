@@ -124,6 +124,7 @@ function reckoningBlocks(s: GameState): Block[] {
     p('And he says it, the thing he has withheld for a year. He says it as if setting down something heavy that he has carried up a great many stairs.'),
     q('Rafe', 'My name is Rafe Lim. I carried a package at two in the morning for a woman called Nell Linden, for three years, on Meridian’s Singapore line. The handoff on your leaf is me. R. is me. I scraped it off the Jakarta copy because a name is the thing they take you apart with, and I didn’t want you to find mine until I’d found out whether you’d stop checking.'),
     t('Nell. He says it plainly, the way you say the name of someone you have said every day for a year and never aloud. Nell Linden. Eleanor. The first one. The woman who wore my name.'),
+    ...vesperCallbacks(s),
   ];
 }
 
@@ -150,6 +151,28 @@ function reckoningChoices(): C14Choice[] {
       q('Rafe', 'Good. Check me. She didn’t, and look.'),
       p('You turn the tickets over. A date, a sailing, a stamp from a booth that closed that spring. You verify them, there at the table, against two things on the wall, while he waits. They hold.'),
     ]),
+  ];
+}
+
+/** What she did at the Vesper (Ch11) comes back in his mouth. */
+function vesperCallbacks(s: GameState): Block[] {
+  const ph = key(s, 'out.photo11');
+  const sl = key(s, 'out.slip11');
+  return [
+    ...(ph === 'photo'
+      ? [q('Rafe', 'You sent me her face. I have not shown it to anyone. I keep it where I keep nothing else. I wanted you to know that before I asked you for anything else.')]
+      : ph === 'heart'
+        ? [q('Rafe', 'You told me about the eyebrow. Nobody who had not looked at her could have known the eyebrow. I have thought about it every night since.')]
+        : ph === 'turned'
+          ? [q('Rafe', 'You turned the page. You were right to. I have been ashamed since of having asked, and I have not once been sorry that you said no.')]
+          : []),
+    ...(sl === 'read'
+      ? [t('You were never going to be on the ferry. I read that line on a landing at the Vesper, in her hand, and did not know what ferry. I know now. I know exactly which.')]
+      : sl === 'passed'
+        ? [q('Rafe', 'You passed me a page from her. I read it where she couldn’t see me read it. It said I was never going to be on the ferry. You didn’t know what you were carrying. I knew it was bait, and I walked toward it for a week anyway.')]
+        : sl === 'burned'
+          ? [q('Rafe', 'The page you burned. I know what it said, because she sent it again, by post, three days later. I am grateful you did not make me read it first in your hand.')]
+          : []),
   ];
 }
 
