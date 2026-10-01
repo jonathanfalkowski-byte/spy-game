@@ -355,6 +355,13 @@ const byNode: Record<string, Key> = {
   'chapter12.village': 'apartmentDay',
   'chapter12.report': 'hotelRoom',
   'chapter12.wall': 'rooftop',
+  // The Outside road: His City.
+  'chapter12.ticket': 'apartmentNight',
+  'chapter12.arrivals': 'apartmentNight',
+  'chapter12.katong': 'shoppingStreet',
+  'chapter12.hill': 'wardrobe',
+  'chapter12.kitchen': 'apartmentDay',
+  'chapter12.quay': 'rooftop',
   // Chapter 13 (stand-ins until EVE Art's frames: the reading room by day, the Claremont bar, a corridor and a door, never the room).
   'chapter13.brief': 'reviewRoom',
   'chapter13.week': 'apartmentNight',

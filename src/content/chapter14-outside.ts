@@ -123,7 +123,8 @@ function reckoningBlocks(s: GameState): Block[] {
       : []),
     p('And he says it, the thing he has withheld for a year. He says it as if setting down something heavy that he has carried up a great many stairs.'),
     q('Rafe', 'My name is Rafe Lim. I carried a package at two in the morning for a woman called Nell Linden, for three years, on Meridian’s Singapore line. The handoff on your leaf is me. R. is me. I scraped it off the Jakarta copy because a name is the thing they take you apart with, and I didn’t want you to find mine until I’d found out whether you’d stop checking.'),
-    t('Nell. He says it plainly, the way you say the name of someone you have said every day for a year and never aloud. Nell Linden. Eleanor. The first one. The woman who wore my name.'),
+    t(key(s, 'act3.nell') === 'known' ? 'Nell. Nora’s sister, the one on the harbour wall, in his mouth, said plainly, the way you say the name of someone you have said every day for a year and never aloud.' : 'Nell. He says it plainly, the way you say the name of someone you have said every day for a year and never aloud. Nell Linden. Eleanor. The first one. The woman who wore my name.'),
+    ...singaporeCallbacks(s),
     ...vesperCallbacks(s),
   ];
 }
@@ -151,6 +152,24 @@ function reckoningChoices(): C14Choice[] {
       q('Rafe', 'Good. Check me. She didn’t, and look.'),
       p('You turn the tickets over. A date, a sailing, a stamp from a booth that closed that spring. You verify them, there at the table, against two things on the wall, while he waits. They hold.'),
     ]),
+  ];
+}
+
+/** What happened in his city (Ch12) comes back in his mouth. */
+function singaporeCallbacks(s: GameState): Block[] {
+  const nora = key(s, 'out.nora12');
+  const asked = key(s, 'out.asked12');
+  return [
+    ...(nora === 'with'
+      ? [q('Rafe', 'You sat me at Nora’s table, and she looked straight at me and did not know me. Three years I was her sister’s Postman, and she never once saw my face. I will remember that look until I die. I would not take it back.')]
+      : nora === 'gate'
+        ? [q('Rafe', 'I stood under her frangipani while you were inside, with my back to the house, and I did not turn round once. I have never been so close to anything I wanted and been so unable to go in.')]
+        : []),
+    ...(asked === 'ask'
+      ? [q('Rafe', 'You asked me at Nora’s gate. I said before the first Thursday. This is before the first Thursday. This is me keeping it.')]
+      : asked === 'wait'
+        ? [q('Rafe', 'You did not ask me at Nora’s gate. I have been grateful for that every day since, and ashamed that I let you not.')]
+        : []),
   ];
 }
 

@@ -55,7 +55,8 @@ const finish = (s: GameState) => {
 
 it('opens after an own-power Chapter 11 ending, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'outside' }))).toEqual([]);
+  // The Outside road has its own Chapter 12 (His City), entered from its own Chapter 11.
+  expect(ids(start({ 'route.lane': 'outside' }))).toEqual(['begin-outside']);
   // The Institutional road has its own Chapter 12 (Her City), entered from its own Chapter 11.
   expect(ids(start({ 'route.lane': 'institutional' }))).toEqual(['begin-institutional']);
   // The Executive road has its own Chapter 12 (Whose Face), entered from its own Chapter 11.
