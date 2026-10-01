@@ -393,6 +393,13 @@ const byNode: Record<string, Key> = {
   'chapter13.corridor': 'hotelRoom',
   'chapter13.smallhours': 'apartmentNight',
   'chapter13.weekend': 'apartmentDay',
+  // The Outside road: The Price.
+  'chapter13.terms': 'apartmentNight',
+  'chapter13.watch': 'apartmentDay',
+  'chapter13.dusk': 'apartmentNight',
+  'chapter13.door': 'glassLobby',
+  'chapter13.hours': 'apartmentNight',
+  'chapter13.morrow': 'apartmentDay',
   // Chapter 14 (stand-ins until EVE Art's frames: Sloane under the wall, Maya's kitchen, the reading room, the fire escape).
   'chapter14.door': 'apartmentNight',
   'chapter14.order': 'apartmentDay',

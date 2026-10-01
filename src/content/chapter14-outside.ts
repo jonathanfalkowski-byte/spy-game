@@ -124,6 +124,7 @@ function reckoningBlocks(s: GameState): Block[] {
     p('And he says it, the thing he has withheld for a year. He says it as if setting down something heavy that he has carried up a great many stairs.'),
     q('Rafe', 'My name is Rafe Lim. I carried a package at two in the morning for a woman called Nell Linden, for three years, on Meridian’s Singapore line. The handoff on your leaf is me. R. is me. I scraped it off the Jakarta copy because a name is the thing they take you apart with, and I didn’t want you to find mine until I’d found out whether you’d stop checking.'),
     t(key(s, 'act3.nell') === 'known' ? 'Nell. Nora’s sister, the one on the harbour wall, in his mouth, said plainly, the way you say the name of someone you have said every day for a year and never aloud.' : 'Nell. He says it plainly, the way you say the name of someone you have said every day for a year and never aloud. Nell Linden. Eleanor. The first one. The woman who wore my name.'),
+    ...claremontCallbacks(s),
     ...singaporeCallbacks(s),
     ...vesperCallbacks(s),
   ];
@@ -152,6 +153,20 @@ function reckoningChoices(): C14Choice[] {
       q('Rafe', 'Good. Check me. She didn’t, and look.'),
       p('You turn the tickets over. A date, a sailing, a stamp from a booth that closed that spring. You verify them, there at the table, against two things on the wall, while he waits. They hold.'),
     ]),
+  ];
+}
+
+/** What the placement cost (Ch13) comes back in his mouth. */
+function claremontCallbacks(s: GameState): Block[] {
+  const a = key(s, 'c13.answer');
+  return [
+    ...(a === 'complied'
+      ? [q('Rafe', 'I did not ask what happened on the Thursday. I read you the shipping forecast and I did not ask. I have been ashamed ever since that the price was me.')]
+      : a === 'refused'
+        ? [q('Rafe', 'They found my lodging on the Friday, two men with a clipboard. I was in a launderette on the other side of the river, at the dryers, reading a paper. I have never been so glad of a launderette. You said no, and it cost me a flat. I have never been so happy to pay a bill.')]
+        : a === 'countered'
+          ? [q('Rafe', 'You took my ledger to Marsh. Every page in my hand. He has kept my name off every one of them, and I did not think anybody would. I should like to shake his hand some day, in daylight.')]
+          : []),
   ];
 }
 

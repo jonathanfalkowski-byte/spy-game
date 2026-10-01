@@ -942,12 +942,14 @@ function institutionalBridgeFrom14(s: GameState): boolean {
 /** Where the Outside road enters Chapter 14: Outside Chapters 10–13 do not exist yet, so it comes through the in-development
  * bridge from the last of Chapters 9–13 it has reached. */
 function outsideBridgeFrom14(s: GameState): boolean {
-  // Outside variants built so far: Chapters 10–12. The bridge starts at the last of Chapters 9–13 whose next Outside
-  // chapter is not built and playable (extend the cases below as Outside Chapter 13 arrives).
-  if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
-  if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
+  // Outside variants built: Chapters 10–13. Since Outside Chapter 13 (The Price) the road runs straight in from
+  // chapter13.complete; the bridge is only a fallback when a chapter before it is not playable.
+  if (s.scene === 'chapter13') return true;
+  if (s.scene === 'chapter12') return import.meta.env.VITE_EVE_CHAPTER13 !== '1';
   if (s.scene === 'chapter11') return import.meta.env.VITE_EVE_CHAPTER12 !== '1';
-  return ['chapter12', 'chapter13'].includes(s.scene);
+  if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
+  if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
+  return false;
 }
 
 /** Where the Executive road enters Chapter 14: from its Chapter 13, or the last of Chapters 9–12 that is playable. */

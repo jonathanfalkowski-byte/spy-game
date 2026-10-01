@@ -28,6 +28,7 @@ import { get11, eveningPartners11 } from './chapter11';
 import { get12 } from './chapter12';
 import { beginPredator13, fadePredator13, isPredator13, P_COMPLY_OPENING13, predatorBlocks13, predatorChoices13, predatorPhase13 } from './chapter13-predator';
 import { beginExecutive13, executiveBlocks13, executiveChoices13, executivePhase13, fadeExecutive13, isExecutive13, placeExecutive13, X_COMPLY_OPENING13 } from './chapter13-executive';
+import { beginOutside13, fadeOutside13, O_COMPLY_OPENING13, outsideBlocks13, outsideChoices13, outsidePhase13, isOutside13, placeOutside13 } from './chapter13-outside';
 import { beginInstitutional13, fadeInstitutional13, I_COMPLY_OPENING13, institutionalBlocks13, institutionalChoices13, institutionalPhase13, isInstitutional13, placeInstitutional13 } from './chapter13-institutional';
 
 export type C13Scene = { title: string; place: string; blocks: Block[] };
@@ -93,6 +94,13 @@ export const chapter13Definitions: Record<string, C13Scene> = {
   corridor: { title: 'The Claremont', place: 'THURSDAY', blocks: [] },
   smallhours: { title: 'Afterwards', place: '2 A.M.', blocks: [] },
   weekend: { title: 'Paper', place: 'FRIDAY · SATURDAY', blocks: [] },
+  // The Outside road (2026-10-01): The Price.
+  terms: { title: 'The Price', place: 'MONDAY · 09:00 · THE BLACK PHONE', blocks: [] },
+  watch: { title: 'A Man Who Has Not Stopped', place: 'THE WEEK', blocks: [] },
+  dusk: { title: 'Midnight', place: 'WEDNESDAY · MIDNIGHT · THE BLACK PHONE', blocks: [] },
+  door: { title: 'The Claremont', place: 'THURSDAY · 21:00', blocks: [] },
+  hours: { title: 'Afterwards', place: '2 A.M.', blocks: [] },
+  morrow: { title: 'Paper', place: 'FRIDAY · SATURDAY', blocks: [] },
 };
 export const chapter13Scenes = Object.entries(chapter13Definitions).map(([phase, scene]) => ({
   id: `chapter13.${phase}` as NodeId,
@@ -114,6 +122,7 @@ export function fadeCoercion13(blocks: Block[]): Block[] {
   if (blocks[0]?.text === P_COMPLY_OPENING13) return fadePredator13(blocks);
   if (blocks[0]?.text === X_COMPLY_OPENING13) return fadeExecutive13(blocks);
   if (blocks[0]?.text === I_COMPLY_OPENING13) return fadeInstitutional13(blocks);
+  if (blocks[0]?.text === O_COMPLY_OPENING13) return fadeOutside13(blocks);
   if (blocks[0]?.text !== COMPLY_OPENING13) return blocks;
   const door = blocks.findIndex((b) => b.text.startsWith(CORRIDOR13));
   return [{ kind: 'notice', text: FADED_LEAD13 }, ...(door >= 0 ? blocks.slice(door) : [])];
@@ -152,6 +161,7 @@ export function place13(s: GameState): string | undefined {
   if (s.scene !== 'chapter13') return;
   if (isExecutive13(s)) return placeExecutive13(s);
   if (isInstitutional13(s)) return placeInstitutional13(s);
+  if (isOutside13(s)) return placeOutside13(s);
   const answer = get13(s, 'answer');
   if (s.phase === 'thursday' && answer === 'refused') return '21:00 · Home, and then the police station';
   if (s.phase === 'after' && answer === 'refused') return '06:00 · Outside the station';
@@ -971,6 +981,7 @@ export function chapter13Blocks(s: GameState): Block[] {
   if (predatorPhase13(s)) return predatorBlocks13(s);
   if (executivePhase13(s)) return executiveBlocks13(s);
   if (institutionalPhase13(s)) return institutionalBlocks13(s);
+  if (outsidePhase13(s)) return outsideBlocks13(s);
   if (s.phase === 'brief') return briefBlocks(s);
   if (s.phase === 'week') return weekBlocks();
   if (s.phase === 'answer') return answerBlocks(s);
@@ -990,10 +1001,13 @@ export function chapter13Choices(s: GameState): C13Choice[] {
   // The Executive road comes from its Chapter 12 (Whose Face).
   if (s.scene === 'chapter12' && s.phase === 'complete' && isExecutive13(s)) return [beginExecutive13()];
   if (s.scene === 'chapter12' && s.phase === 'complete' && isInstitutional13(s)) return [beginInstitutional13()];
+  // The Outside road (The Price) comes from its Chapter 12 (His City).
+  if (s.scene === 'chapter12' && s.phase === 'complete' && isOutside13(s)) return [beginOutside13()];
   if (s.scene !== 'chapter13') return [];
   if (predatorPhase13(s)) return predatorChoices13(s);
   if (executivePhase13(s)) return executiveChoices13(s);
   if (institutionalPhase13(s)) return institutionalChoices13(s);
+  if (outsidePhase13(s)) return outsideChoices13(s);
   if (s.phase === 'brief') return briefChoices();
   if (s.phase === 'week') return weekChoices(s);
   if (s.phase === 'answer') return answerChoices(s);
