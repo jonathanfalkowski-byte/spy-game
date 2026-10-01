@@ -27,6 +27,7 @@ import { sloaneDoubts } from './sloane-standing';
 import { beginPredator14, isPredator14, placePredator14, predatorBlocks14, predatorChoices14, predatorPhase14 } from './chapter14-predator';
 import { beginExecutive14, executiveBlocks14, executiveChoices14, executivePhase14, isExecutive14, placeExecutive14 } from './chapter14-executive';
 import { beginInstitutional14, institutionalBlocks14, institutionalChoices14, institutionalPhase14, isInstitutional14, placeInstitutional14 } from './chapter14-institutional';
+import { beginOutside14, outsideBlocks14, outsideChoices14, outsidePhase14, isOutside14, placeOutside14 } from './chapter14-outside';
 
 export type C14Scene = { title: string; place: string; blocks: Block[] };
 export type C14Choice = { id: string; label: string; hint: string; next: string; apply?: (s: GameState) => Block[] };
@@ -91,6 +92,12 @@ export const chapter14Definitions: Record<string, C14Scene> = {
   channels: { title: 'Through the Channel', place: 'WEDNESDAY · COMPLIANCE', blocks: [] },
   hearing: { title: 'The Inquiry', place: 'FRIDAY · 10:00 · LEVEL 12', blocks: [] },
   dusk: { title: 'Afterwards', place: 'FRIDAY NIGHT', blocks: [] },
+  // The Outside road (2026-10-01): The Source.
+  seam: { title: 'The Seam', place: 'LATE · THE ROOM OVER THE WATER', blocks: [] },
+  reckoning: { title: 'A Name', place: '02:40 · THE ROOM OVER THE WATER', blocks: [] },
+  verdict: { title: 'The File', place: 'BEFORE DAWN · THE WALL', blocks: [] },
+  source: { title: 'What He Is', place: 'BEFORE DAWN', blocks: [] },
+  water: { title: 'Before Light', place: 'THE LAST OF THE NIGHT', blocks: [] },
 };
 export const chapter14Scenes = Object.entries(chapter14Definitions).map(([phase, scene]) => ({
   id: `chapter14.${phase}` as NodeId,
@@ -139,6 +146,7 @@ export function place14(s: GameState): string | undefined {
   if (isPredator14(s)) return placePredator14(s);
   if (isExecutive14(s)) return placeExecutive14(s);
   if (isInstitutional14(s)) return placeInstitutional14(s);
+  if (isOutside14(s)) return placeOutside14(s);
   if (s.phase === 'maya' && get14(s, 'tell') === 'later') return 'SATURDAY NIGHT · YOUR DOORSTEP';
   if (s.phase === 'sunday' && get14(s, 'answer') === 'refused') return 'SUNDAY · 19:00 · HOME, AND THE FIRE ESCAPE';
   if (s.phase === 'after' && get14(s, 'answer') === 'refused' && !get14(s, 'evening-open')) return 'SUNDAY NIGHT · A HOTEL, UNDER ANOTHER NAME';
@@ -909,6 +917,7 @@ export function chapter14Blocks(s: GameState): Block[] {
   if (predatorPhase14(s)) return predatorBlocks14(s);
   if (executivePhase14(s)) return executiveBlocks14(s);
   if (institutionalPhase14(s)) return institutionalBlocks14(s);
+  if (outsidePhase14(s)) return outsideBlocks14(s);
   if (s.phase === 'door') return doorBlocks(s);
   if (s.phase === 'order') return orderBlocks(s);
   if (s.phase === 'maya') return mayaBlocks(s);
@@ -928,6 +937,12 @@ function institutionalBridgeFrom14(s: GameState): boolean {
   if (s.scene === 'chapter10') return import.meta.env.VITE_EVE_CHAPTER11 !== '1';
   if (s.scene === 'chapter9') return import.meta.env.VITE_EVE_CHAPTER10 !== '1';
   return false;
+}
+
+/** Where the Outside road enters Chapter 14: Outside Chapters 10–13 do not exist yet, so it comes through the in-development
+ * bridge from the last of Chapters 9–13 it has reached. */
+function outsideBridgeFrom14(s: GameState): boolean {
+  return ['chapter9', 'chapter10', 'chapter11', 'chapter12', 'chapter13'].includes(s.scene);
 }
 
 /** Where the Executive road enters Chapter 14: from its Chapter 13, or the last of Chapters 9–12 that is playable. */
@@ -952,10 +967,13 @@ export function chapter14Choices(s: GameState): C14Choice[] {
   if (s.phase === 'complete' && isExecutive14(s) && executiveBridgeFrom14(s)) return [beginExecutive14(s)];
   // The Institutional road: through the in-development bridge from its Chapter 9, until its Chapters 10–13 exist.
   if (s.phase === 'complete' && isInstitutional14(s) && institutionalBridgeFrom14(s)) return [beginInstitutional14(s)];
+  // The Outside road: through the in-development bridge from its Chapter 9, until its Chapters 10–13 exist.
+  if (s.phase === 'complete' && isOutside14(s) && outsideBridgeFrom14(s)) return [beginOutside14(s)];
   if (s.scene !== 'chapter14') return [];
   if (predatorPhase14(s)) return predatorChoices14(s);
   if (executivePhase14(s)) return executiveChoices14(s);
   if (institutionalPhase14(s)) return institutionalChoices14(s);
+  if (outsidePhase14(s)) return outsideChoices14(s);
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'order') return orderChoices();
   if (s.phase === 'maya') return get14(s, 'said') ? mayaMoveChoices(s) : mayaChoices(s);

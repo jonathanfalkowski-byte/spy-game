@@ -397,6 +397,12 @@ const byNode: Record<string, Key> = {
   'chapter14.boardroom': 'helixSuite',
   'chapter14.night': 'apartmentNight',
   // The Institutional road: Officer of Record.
+  // The Outside road: The Source.
+  'chapter14.seam': 'apartmentNight',
+  'chapter14.reckoning': 'apartmentNight',
+  'chapter14.verdict': 'apartmentNight',
+  'chapter14.source': 'apartmentNight',
+  'chapter14.water': 'rooftop',
   'chapter14.notice': 'officeDusk',
   'chapter14.confession': 'executiveOffice',
   'chapter14.wire': 'phone',

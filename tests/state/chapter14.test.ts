@@ -51,7 +51,8 @@ const SEXUAL = /\b(undress\w*|naked|nude|breasts?|thighs?|kiss\w*|moan\w*|sex\w*
 
 it('opens after an own-power Chapter 13 ending, and stays closed in production', () => {
   expect(ids(start())).toEqual(['begin']);
-  expect(ids(start({ 'route.lane': 'outside' }))).toEqual([]);
+  // The Outside road has its own Chapter 14 (The Source), entered through the in-development bridge.
+  expect(ids(start({ 'route.lane': 'outside' }))).toEqual(['begin-outside']);
   // The Institutional road has its own Chapter 14 (Officer of Record), entered from its own Chapter 13.
   expect(ids(start({ 'route.lane': 'institutional' }))).toEqual(['begin-institutional']);
   // The Executive road has its own Chapter 14 (The Signature), entered from its own Chapter 13.

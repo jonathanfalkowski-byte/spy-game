@@ -34,7 +34,10 @@
   bank / burn / leave), the plant (`out.plant`: caught / bit), the vendor (`out.vendor = meridian`), and the terminal
   meeting (`out.met`: hand / dark / light).
 
-**Status: DESIGN, for owner approval.**
+**Status: APPROVED (owner, 2026-10-01: "do your recommendations", all eight decisions as recommended) and BUILT, pass 1.**
+Script: [scripts/OUTSIDE_CHAPTER_14_SCRIPT.md](scripts/OUTSIDE_CHAPTER_14_SCRIPT.md); code:
+`src/content/chapter14-outside.ts`. Entered through an interim bridge from an Outside `chapter9.complete` and ends at the
+Chapters 15–18 in-development stop. ~1.56–1.78k words on one path.
 
 ---
 
