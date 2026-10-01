@@ -575,6 +575,13 @@ const byNode: Record<string, Key> = {
   'chapter18.particulars': 'apartmentNight',
   'chapter18.scope': 'apartmentNight',
   'chapter18.nfa': 'wardrobe',
+  // The Outside road: Proof of Delivery.
+  'chapter18.dispatch': 'apartmentDay',
+  'chapter18.delivery': 'apartmentDay',
+  'chapter18.consignee': 'apartmentDay',
+  'chapter18.docket': 'apartmentNight',
+  'chapter18.receipt': 'apartmentNight',
+  'chapter18.proof': 'wardrobe',
 };
 
 export function environmentShot(state: GameState): { shotId: string; assetId: string; alt: string } | undefined {

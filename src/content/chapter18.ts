@@ -22,6 +22,7 @@ import { eveningPartners14 } from './chapter14';
 import { mayaKnowsAdaptation } from '../state/chapter3-provenance';
 import { beginPredator18, isPredator18, predatorBlocks18, predatorChoices18, predatorPhase18 } from './chapter18-predator';
 import { beginExecutive18, executiveBlocks18, executiveChoices18, executivePhase18, isExecutive18 } from './chapter18-executive';
+import { beginOutside18, isOutside18, outsideBlocks18, outsideChoices18, outsidePhase18 } from './chapter18-outside';
 import { beginInstitutional18, institutionalBlocks18, institutionalChoices18, institutionalPhase18, isInstitutional18 } from './chapter18-institutional';
 
 export type C18Scene = { title: string; place: string; blocks: Block[] };
@@ -66,6 +67,13 @@ export const chapter18Definitions: Record<string, C18Scene> = {
   particulars: { title: 'A Name', place: 'THE FILE', blocks: [] },
   scope: { title: 'Scope', place: 'A YEAR LATER', blocks: [] },
   nfa: { title: 'No Further Action', place: '', blocks: [] },
+  // The Outside road (2026-10-01): Proof of Delivery.
+  dispatch: { title: 'Friday', place: 'THE MORNING AFTER', blocks: [] },
+  delivery: { title: 'Delivered', place: 'THAT MONTH', blocks: [] },
+  consignee: { title: 'The Consignee', place: 'THAT SEASON', blocks: [] },
+  docket: { title: 'Signed For By', place: 'THE WALL', blocks: [] },
+  receipt: { title: 'A Year Later', place: 'THE ROOM OVER THE WATER', blocks: [] },
+  proof: { title: 'Proof of Delivery', place: '', blocks: [] },
 };
 export const chapter18Scenes = Object.entries(chapter18Definitions).map(([phase, scene]) => ({
   id: `chapter18.${phase}` as NodeId,
@@ -549,6 +557,7 @@ export function chapter18Blocks(s: GameState): Block[] {
   if (predatorPhase18(s)) return predatorBlocks18(s);
   if (executivePhase18(s)) return executiveBlocks18(s);
   if (institutionalPhase18(s)) return institutionalBlocks18(s);
+  if (outsidePhase18(s)) return outsideBlocks18(s);
   if (s.phase === 'morning') return morningBlocks(s);
   if (s.phase === 'position') return positionBlocks(s);
   if (s.phase === 'people') return peopleBlocks(s);
@@ -568,10 +577,13 @@ export function chapter18Choices(s: GameState): C18Choice[] {
   if (s.scene === 'chapter17' && s.phase === 'complete' && isExecutive18(s)) return [beginExecutive18()];
   // The Institutional road (No Further Action) comes from its Chapter 17 (Fit for Purpose), at the front door.
   if (s.scene === 'chapter17' && s.phase === 'complete' && isInstitutional18(s)) return [beginInstitutional18()];
+  // The Outside road (Proof of Delivery) comes from its Chapter 17 (Return to Sender).
+  if (s.scene === 'chapter17' && s.phase === 'complete' && isOutside18(s)) return [beginOutside18()];
   if (s.scene !== 'chapter18') return [];
   if (predatorPhase18(s)) return predatorChoices18(s);
   if (executivePhase18(s)) return executiveChoices18(s);
   if (institutionalPhase18(s)) return institutionalChoices18(s);
+  if (outsidePhase18(s)) return outsideChoices18(s);
   if (s.phase === 'morning') return morningChoices(s);
   if (s.phase === 'position') return positionChoices(s);
   if (s.phase === 'people') return peopleChoices(s);
