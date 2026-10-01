@@ -20,6 +20,7 @@ import { paragraph as p, speech as q, thought as t, type Block, type NodeId } fr
 import { getKey, setKey } from './chapter7-model';
 import { beginPredator17, isPredator17, predatorBlocks17, predatorChoices17, predatorPhase17 } from './chapter17-predator';
 import { beginExecutive17, executiveBlocks17, executiveChoices17, executivePhase17, isExecutive17 } from './chapter17-executive';
+import { beginOutside17, isOutside17, outsideBlocks17, outsideChoices17, outsidePhase17 } from './chapter17-outside';
 import { beginInstitutional17, institutionalBlocks17, institutionalChoices17, institutionalPhase17, isInstitutional17 } from './chapter17-institutional';
 
 export type C17Scene = { title: string; place: string; blocks: Block[] };
@@ -66,6 +67,14 @@ export const chapter17Definitions: Record<string, C17Scene> = {
   harbour: { title: 'The Harbour Wall', place: '18:50 · THE BOARD TABLE', blocks: [] },
   ruling: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
   aside: { title: 'One Minute', place: '19:10 · THE LONG ROOM', blocks: [] },
+  // The Outside road (2026-10-01): Return to Sender.
+  bearing: { title: 'Unclaimed', place: '18:00 · THE LONG ROOM', blocks: [] },
+  provenance: { title: 'Provenance', place: '18:15 · THE BOARD TABLE', blocks: [] },
+  postman: { title: 'The Post', place: '18:25 · THE BOARD TABLE', blocks: [] },
+  terms: { title: 'Return to Sender', place: '18:40 · THE BOARD TABLE', blocks: [] },
+  saturday: { title: 'The Saturday', place: '18:50 · THE BOARD TABLE', blocks: [] },
+  verdict: { title: 'The Board', place: '19:00 · THE LONG ROOM', blocks: [] },
+  quiet: { title: 'One Minute', place: '19:10 · THE LONG ROOM', blocks: [] },
 };
 export const chapter17Scenes = Object.entries(chapter17Definitions).map(([phase, scene]) => ({
   id: `chapter17.${phase}` as NodeId,
@@ -543,6 +552,7 @@ export function chapter17Blocks(s: GameState): Block[] {
   if (predatorPhase17(s)) return predatorBlocks17(s);
   if (executivePhase17(s)) return executiveBlocks17(s);
   if (institutionalPhase17(s)) return institutionalBlocks17(s);
+  if (outsidePhase17(s)) return outsideBlocks17(s);
   if (s.phase === 'opening') return openingBlocks(s);
   if (s.phase === 'defect') return defectBlocks(s);
   if (s.phase === 'sloane') return sloaneBlocks(s);
@@ -563,10 +573,13 @@ export function chapter17Choices(s: GameState): C17Choice[] {
   if (s.scene === 'chapter16' && s.phase === 'complete' && isExecutive17(s)) return [beginExecutive17()];
   // The Institutional road (Fit for Purpose) comes from its Chapter 16 (Reasonable Notice), in the long room.
   if (s.scene === 'chapter16' && s.phase === 'complete' && isInstitutional17(s)) return [beginInstitutional17()];
+  // The Outside road (Return to Sender) comes from its Chapter 16 (Her Own Hand), in the long room.
+  if (s.scene === 'chapter16' && s.phase === 'complete' && isOutside17(s)) return [beginOutside17()];
   if (s.scene !== 'chapter17') return [];
   if (predatorPhase17(s)) return predatorChoices17(s);
   if (executivePhase17(s)) return executiveChoices17(s);
   if (institutionalPhase17(s)) return institutionalChoices17(s);
+  if (outsidePhase17(s)) return outsideChoices17(s);
   if (s.phase === 'opening') return openingChoices();
   if (s.phase === 'defect') return defectChoices(s);
   if (s.phase === 'sloane') return sloaneChoices();
