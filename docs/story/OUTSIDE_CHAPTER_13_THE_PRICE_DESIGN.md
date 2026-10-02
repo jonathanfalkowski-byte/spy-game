@@ -97,6 +97,20 @@ The shared Act III keys Ch14 reads: `c13.answer` (complied / refused / countered
    goldens (comply; refuse; turn on the ledger; turn on a verified page), a test that nothing is described after the door
    closes, the fade, and a real-save authentication test.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes). **None is inside or beside the coercion beat:** the content notice,
+the comply lead-in, the fade, the door and the recovery step are untouched, and the existing tests that nothing is described after "The door closes behind you."
+and that the next thing on screen is "The car home." still pass.
+
+| Moment | Where | Choices (`c13.o-…`) |
+|---|---|---|
+| **The price on the phone** | before the week (`terms`, after the notice) | **o13-msg-wall** (four lines of facts, no adjectives) · **-book** (each fact checked in the exercise book, all true; does not add to `out.verified`) · **-face** (the phone turned face down) |
+| **Marsh as a person** | before she chooses who to tell (`watch`) | **o13-see-bike** (two locks, good morning to the guard by name) · **-paper** (his own talks: "proportionate") · **-none** (no more than she must) |
+| **The Sunday after** | before the card (`morrow`, every path) | **o13-sunday-walk** · **-letter** (to Maya, not sent) · **-stove** (the Vesper's ribbon burned) |
+
+No golden recapture is needed.
+
 ## 5. Art impact
 
 Reuses the Claremont's bar, lift and corridor (shared Ch13 set) and the room over the water. New: the black phone's price at

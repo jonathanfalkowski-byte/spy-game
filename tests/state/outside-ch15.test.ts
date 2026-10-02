@@ -38,7 +38,7 @@ const twelve = () => {
 };
 /** Ch13 turned on his ledger (Marsh an ally); Ch14: told, spared, and the way the player chooses. */
 const fourteen = (way: 'trust' | 'cut' | 'keep') => {
-  const thirteen = ['begin-outside', 'o13-terms-on', 'o13-move-rafe', 'o13-reply-turn', 'o13-door-on', 'o13-hours-on', 'o13-morrow-on'].reduce(c13, twelve());
+  const thirteen = ['begin-outside', 'o13-msg-wall', 'o13-terms-on', 'o13-see-bike', 'o13-move-rafe', 'o13-reply-turn', 'o13-door-on', 'o13-hours-on', 'o13-sunday-walk', 'o13-morrow-on'].reduce(c13, twelve());
   return ['begin-outside', 'o14-seam-summon', 'o14-reck-press', 'o14-sloane-spare', 'o14-way-' + way, 'o14-evening-alone'].reduce(c14, thirteen);
 };
 

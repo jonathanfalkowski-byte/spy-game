@@ -14,7 +14,14 @@
  * is a refuge and never sexual: Maya; the wall ("Done to me. Not by me."); the 02:40 phone, a man reading her the shipping
  * forecast; or alone. The placement date is never moved as a punishment. Entered from an Outside `chapter12.complete`; Ch14
  * follows directly. Writes the shared Act III keys (c13.answer, act3.honeypot, act3.ally.marsh); `out.*`, `c13.o-*`; ids carry
- * `o13-`. */
+ * `o13-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag, none inside or beside the
+ * coercion beat: the content notice, the comply lead-in, the fade, the door and the recovery are untouched. The price on the
+ * black phone, before the week (c13.o-msg = wall | book | face: the facts put on the wall; each fact checked in the exercise
+ * book, and true; or the phone turned face down). Marsh as a person, before she chooses who to tell (c13.o-see = bike |
+ * paper | none: his bicycle and his good morning to the guard; his own published talks; or not looking at all). The Sunday
+ * after, whichever way the week went, before the card (c13.o-sunday = walk | letter | stove: a long walk to the end of the
+ * river; a letter to Maya, not sent; or the stove lit and the Vesper's ribbon burned). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -96,7 +103,21 @@ function termsBlocks(s: GameState): Block[] {
   ];
 }
 
-function termsChoices(): C13Choice[] {
+function msgChoices(): C13Choice[] {
+  const k = (id: 'wall' | 'book' | 'face', label: string, hint: string, body: Block[]) =>
+    offer('o13-msg-' + id, label, hint, 'terms', (x) => {
+      set13(x, 'o-msg', id);
+      return body;
+    });
+  return [
+    k('wall', 'Put the facts on the wall', 'Names, a place, a date. Nothing else.', [p('You write it on the wall in pencil, in four lines, and nothing else: THE CLAREMONT. THE FIRST THURSDAY. NINE. OWEN MARSH. No adjectives. No verbs. A wall that reads like a docket is a wall you can look at without it looking back.')]),
+    k('book', 'Check what she said in the exercise book', 'Every fact, in the column.', [p('You open the exercise book and check what she said the way you check anything: that there is a Claremont, that there is a bar, that a man called Owen Marsh is a deputy director of enforcement and drinks one whisky on Thursdays. You tick each one in the right-hand column. All true. You have never hated a column so much.')]),
+    k('face', 'Turn the phone face down', 'And sit with your hands beside it.', [p('You turn the black phone face down on the table, and put your hands flat on either side of it, and sit like that until the light on its back has gone out. It is not an answer. It is a thing a person can do with her hands while she is deciding not to be hurried.')]),
+  ];
+}
+
+function termsChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'o-msg')) return msgChoices();
   return [offer('o13-terms-on', 'The week', 'Six days.', 'watch')];
 }
 
@@ -110,7 +131,21 @@ function watchBlocks(): Block[] {
   ];
 }
 
+function seeChoices(): C13Choice[] {
+  const k = (id: 'bike' | 'paper' | 'none', label: string, hint: string, body: Block[]) =>
+    offer('o13-see-' + id, label, hint, 'watch', (x) => {
+      set13(x, 'o-see', id);
+      return body;
+    });
+  return [
+    k('bike', 'See him arrive, once', 'From the café opposite the Authority.', [p('You are in the café opposite the Authority at ten to eight on Tuesday with a coffee you do not drink, and he comes up the road on a bicycle in the rain, in clips and a yellow cape, and locks it to the railings with two locks, properly, like a man who has had a bicycle stolen once. He says good morning to the guard by name, and asks after the guard’s knee. Then he goes in. It takes ninety seconds. You would not know him in a crowd, and that is what frightens you.')]),
+    k('paper', 'Read what he has published', 'His talks. His own words.', [p('You find the talks he has given, three of them, on a regulator’s website, transcribed, and read them at the table under the lamp, and they are very dull and very careful, full of subordinate clauses and the word “proportionate”. In the third, in a paragraph nobody will ever quote, he says that the thing he minds most about his work is how often the people it protects never learn they were protected.')]),
+    k('none', 'Don’t look at him at all', 'Know no more than you must.', [p('You do not go to the café. You do not read the talks. You know his name, his post and his whisky, and you decide to know no more than that, because every extra fact you learn about a man is one more thing you will have to carry, whatever happens on Thursday.')]),
+  ];
+}
+
 function watchChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'o-see')) return seeChoices();
   const m = (id: 'rafe' | 'maya' | 'alone', label: string, hint: string, body: Block[], extra?: (x: GameState) => void) =>
     offer('o13-move-' + id, label, hint, 'dusk', (x) => {
       set13(x, 'o-move', id);
@@ -293,7 +328,21 @@ function morrowBlocks(s: GameState): Block[] {
   ];
 }
 
-function morrowChoices(): C13Choice[] {
+function sundayChoices(): C13Choice[] {
+  const k = (id: 'walk' | 'letter' | 'stove', label: string, hint: string, body: Block[]) =>
+    offer('o13-sunday-' + id, label, hint, 'morrow', (x) => {
+      set13(x, 'o-sunday', id);
+      return body;
+    });
+  return [
+    k('walk', 'Walk to the end of the river', 'As far as the road goes.', [p('On Sunday you walk. You go along the river as far as the road goes, past the old ferry terminal and the last of the chandlers, to a place where the pavement gives out and there is only a wall and a view of the estuary and a man with a dog who nods and does not say anything. You stand there for an hour. Then you walk back.')]),
+    k('letter', 'Write Maya a letter, and keep it', 'Everything. Not sent.', [p('You write Maya a letter on three sheets of the pad by the window, everything, in order, plainly, without one adjective, and read it through once, and fold it, and put it in the drawer with the notes. You do not send it. It is enough, tonight, to know that it exists and that it is true and that it is hers when you can bear it.')]),
+    k('stove', 'Light the stove', 'Burn the ribbon from the Vesper’s box.', [p('You light the stove, though it is not cold, and burn the white ribbon from the Vesper’s box a loop at a time, and the dried orchid, if you kept it, and then the room is warm and smells of smoke and wax, and you sit in front of it for as long as it lasts, with the window open an inch for the river.')]),
+  ];
+}
+
+function morrowChoices(s: GameState): C13Choice[] {
+  if (!get13(s, 'o-sunday')) return sundayChoices();
   return [offer('o13-morrow-on', 'The wall', 'The card.', 'complete')];
 }
 
@@ -323,11 +372,11 @@ export function outsideBlocks13(s: GameState): Block[] {
 }
 
 export function outsideChoices13(s: GameState): C13Choice[] {
-  if (s.phase === 'terms') return termsChoices();
+  if (s.phase === 'terms') return termsChoices(s);
   if (s.phase === 'watch') return watchChoices(s);
   if (s.phase === 'dusk') return duskChoices(s);
   if (s.phase === 'door') return doorChoices(s);
   if (s.phase === 'hours') return hoursChoices(s);
-  if (s.phase === 'morrow') return morrowChoices();
+  if (s.phase === 'morrow') return morrowChoices(s);
   return [];
 }

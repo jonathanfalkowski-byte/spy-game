@@ -25,6 +25,9 @@ spine: [../CHAPTER_13_THE_HONEYPOT_DESIGN.md](../CHAPTER_13_THE_HONEYPOT_DESIGN.
 | **morrow** | **Comply:** "I've called off my dogs, darling, for now"; the inquiry "restructured". **Refuse:** they found his lodging; he was in a launderette; "Don't ring this number." **Turn:** Marsh's office, "Thank you for being something to find"; he keeps the courier's name off every page. | **o13-morrow-on** | — |
 | **complete** | The card: THE CLAREMONT. 1109. DONE. / REFUSED. THEY FOUND HIS LODGING. / STAGED. MARSH IS OURS.; DONE TO ME. NOT BY ME. (on the wall); HIS LEDGER. HIS HAND. MARSH KEEPS HIS NAME. | — | — |
 
+**Deepening (2026-10-02):** `o13-msg-wall / -book / -face` (terms, after the notice), `o13-see-bike / -paper / -none` (watch, before the move),
+`o13-sunday-walk / -letter / -stove` (morrow, before the card). Facts `c13.o-msg`, `c13.o-see`, `c13.o-sunday`. None is inside or beside the coercion beat; nothing reads them as flags.
+
 **Ch14 callbacks:** the reckoning gains a line by `c13.answer` (complied: "I read you the shipping forecast and I did not ask."; refused: "I
 have never been so glad of a launderette."; countered: "You took my ledger to Marsh.").
 

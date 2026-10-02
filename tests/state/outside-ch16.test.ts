@@ -45,7 +45,7 @@ const twelve = () => {
   return ['begin-outside', 'o12-ticket-together', 'o12-heat-flowers', 'o12-arrivals-on', 'o12-seat-sit', 'o12-katong-along', 'o12-step-wait', 'o12-flat-with', 'o12-nora-with', 'o12-trust-ask', 'o12-wall-beside'].reduce(c12, eleven);
 };
 const fourteen = (way: 'trust' | 'cut' | 'keep') => {
-  const thirteen = ['begin-outside', 'o13-terms-on', 'o13-move-rafe', 'o13-reply-turn', 'o13-door-on', 'o13-hours-on', 'o13-morrow-on'].reduce(c13, twelve());
+  const thirteen = ['begin-outside', 'o13-msg-wall', 'o13-terms-on', 'o13-see-bike', 'o13-move-rafe', 'o13-reply-turn', 'o13-door-on', 'o13-hours-on', 'o13-sunday-walk', 'o13-morrow-on'].reduce(c13, twelve());
   return ['begin-outside', 'o14-seam-summon', 'o14-reck-press', 'o14-sloane-spare', 'o14-way-' + way, 'o14-evening-alone'].reduce(c14, thirteen);
 };
 /** Rafe on the crew at the courier's door; Marsh outside; his statement on the record; a chosen night with him. */
