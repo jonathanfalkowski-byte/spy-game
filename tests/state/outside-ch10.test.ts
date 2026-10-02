@@ -41,12 +41,13 @@ it('enters Bring Me Their Name from an Outside Chapter 9: the box on the third s
   const slip = once(s, 'begin-outside');
   expect(slip.phase).toBe('slip');
   expect(ch10(slip)).toContain('on the third step down, where the key once waited');
-  expect(ids(slip)).toEqual(['o10-slip-go', 'o10-slip-sender', 'o10-slip-door']);
+  expect(ids(slip)).toEqual(['o10-box-water', 'o10-box-bin', 'o10-box-wall']);
+  expect(ids(once(slip, 'o10-box-water'))).toEqual(['o10-slip-go', 'o10-slip-sender', 'o10-slip-door']);
 });
 
 it('go, give her the hour, tell him after: the order, the week, the invitation; it authenticates', () => {
   const s = nine();
-  const cafe = walk10(s, ['begin-outside', 'o10-slip-go']);
+  const cafe = walk10(s, ['begin-outside', 'o10-box-water', 'o10-slip-go']);
   expect(cafe.phase).toBe('cafe');
   expect(ids(cafe)).toEqual(['o10-dress-cash', 'o10-dress-own', 'o10-dress-black']);
   const table = once(cafe, 'o10-dress-cash');
@@ -61,13 +62,13 @@ it('go, give her the hour, tell him after: the order, the week, the invitation; 
   expect([press.choices['out.give10'], press.choices['out.celeste10']]).toEqual(['gave', 'trusted']);
   expect(press.facts).toContain('c10.o-order');
   expect(ch10(press)).toContain('a place and an hour');
-  const weeks = once(press, 'o10-press-report');
+  const weeks = walk10(press, ['o10-paper-pin', 'o10-press-report']);
   expect(weeks.choices['out.pages10']).toBe('report');
   expect(weeks.choices['out.told10']).toBe('yes');
   expect(ch10(weeks)).toContain('I moved the night before you told me.');
   expect(ch10(weeks)).toContain('He wasn’t there. Careless of him.');
   expect(ch10(weeks)).toContain('do bring your source.');
-  const done = walk10(weeks, ['o10-week-on', 'o10-night-alone']);
+  const done = walk10(weeks, ['o10-text-keep', 'o10-week-on', 'o10-night-alone']);
   expect(done.phase).toBe('complete');
   expect(ch10(done)).toContain('CELESTE LAURENT. GIVEN.');
   expect(ch10(done)).toContain('HE KNOWS.');
@@ -83,30 +84,30 @@ const once14 = (s: GameState) => act(s, { type: 'CHAPTER14_CHOOSE', id: 'chapter
 
 it('doctored: Meridian’s man on the wrong pier; the source rule is quoted; Daniel is not on this road', () => {
   const s = withFlags(nine(), { 'out.rules': 'source,people,door' });
-  const order = walk10(s, ['begin-outside', 'o10-slip-sender', 'o10-dress-black', 'o10-adrian-ask']);
+  const order = walk10(s, ['begin-outside', 'o10-box-water', 'o10-slip-sender', 'o10-dress-black', 'o10-adrian-ask']);
   expect(ch10(order)).toContain('You wrote that down? They always do. It never holds.');
   expect(ch10(order)).toContain('That isn’t mine. It’s her hand; I’ve seen it on a list.');
-  const weeks = walk10(order, ['o10-order-doctor', 'o10-press-work']);
+  const weeks = walk10(order, ['o10-order-doctor', 'o10-paper-pin', 'o10-press-work']);
   expect(weeks.choices['out.give10']).toBe('doctored');
   expect(ch10(weeks)).toContain('a thin man in a long coat');
   expect(ch10(weeks)).toContain('He was shy. Next Friday?');
   expect(weeks.choices['out.told10']).toBeUndefined();
-  const done = walk10(weeks, ['o10-week-on', 'o10-night-alone']);
+  const done = walk10(weeks, ['o10-text-keep', 'o10-week-on', 'o10-night-alone']);
   expect(ch10(done)).toContain('CELESTE LAURENT. DOCTORED.');
   expect(ch10(done)).not.toContain('HE KNOWS.');
 });
 
 it('refused: the 02:40 phone goes silent (the cost falls on the source, never her body); a chosen night that fades', () => {
   const s = nine();
-  const door = walk10(s, ['begin-outside', 'o10-slip-door']);
+  const door = walk10(s, ['begin-outside', 'o10-box-water', 'o10-slip-door']);
   expect(ch10(door)).toContain('She’s brought pastries');
   const order = walk10(door, ['o10-dress-own', 'o10-adrian-walk']);
-  const weeks = walk10(order, ['o10-order-refuse', 'o10-press-old']);
+  const weeks = walk10(order, ['o10-order-refuse', 'o10-paper-pin', 'o10-press-old']);
   expect(weeks.choices['out.give10']).toBe('refused');
   expect(ch10(weeks)).toContain('The cheap phone does not ring at 02:40');
   expect(ch10(weeks)).toContain('That was a small one. Friday?');
   expect(ch10(weeks)).not.toMatch(SEXUAL);
-  const hours = once(weeks, 'o10-week-on');
+  const hours = walk10(weeks, ['o10-text-keep', 'o10-week-on']);
   if (ids(hours).some((x) => x === 'o10-night-julian' || x === 'o10-night-sebastian')) {
     const pt = ids(hours).includes('o10-night-julian') ? 'julian' : 'sebastian';
     const room = walk10(hours, ['o10-night-' + pt, 'o10-' + pt + '-sex', 'o10-stay']);
@@ -118,4 +119,28 @@ it('refused: the 02:40 phone goes silent (the cost falls on the source, never he
   const done = once(hours, 'o10-night-alone');
   expect(ch10(done)).toContain('CELESTE LAURENT. REFUSED.');
   expect(text(done)).toContain('THE VESPER. THE FIRST THURSDAY.');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const s = once(nine(), 'begin-outside');
+  expect(ids(s)).toEqual(['o10-box-water', 'o10-box-bin', 'o10-box-wall']);
+  expect(ch10(once(s, 'o10-box-wall'))).toContain('hang side by side');
+  const run = (box: string, paper: string, text: string) => {
+    const order = walk10(s, [box, 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed']);
+    const press = once(order, 'o10-order-give');
+    expect(ids(press)).toEqual(['o10-paper-pin', 'o10-paper-cut', 'o10-paper-leave']);
+    const weeks = walk10(press, [paper, 'o10-press-report']);
+    expect(ids(weeks)).toEqual(['o10-text-keep', 'o10-text-delete', 'o10-text-regrets']);
+    return walk10(weeks, [text, 'o10-week-on', 'o10-night-alone']);
+  };
+  const a = run('o10-box-water', 'o10-paper-pin', 'o10-text-keep');
+  const b = run('o10-box-bin', 'o10-paper-cut', 'o10-text-delete');
+  const c = run('o10-box-wall', 'o10-paper-leave', 'o10-text-regrets');
+  for (const k of ['out.give10', 'out.celeste10', 'out.pages10', 'out.told10', 'out.card10']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch10(b)).toContain('take Celeste’s hand off your wrist');
+  expect(ch10(c)).toContain('do not send it');
+  expect(a.phase).toBe('complete');
 });

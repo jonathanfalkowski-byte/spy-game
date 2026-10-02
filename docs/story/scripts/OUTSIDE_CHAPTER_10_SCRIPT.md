@@ -29,6 +29,9 @@ punished; Adrian's name is kept for Ch14; neither the sender's name nor Nell's i
 **Ch14 callback:** the reckoning gains a line by what she did here (gave: "I moved the same night."; doctored: "Somebody
 stood on Pier Nine in the rain for three hours with a flask."; refused: "Nobody has ever not given me up before.").
 
+**Deepening (2026-10-02):** `o10-box-water / -bin / -wall` (slip, before the card), `o10-paper-pin / -cut / -leave` (press, before the sender rings),
+`o10-text-keep / -delete / -regrets` (weeks, before the Friday). Facts `c10.o-box`, `c10.o-paper`, `c10.o-text`; nothing reads them as flags.
+
 **Tests:** `tests/state/outside-ch10.test.ts`, on the real Outside Chapter 9 golden: the entry (and the Ch14 bridge
 stepping aside); go + give + report, which authenticates (replay + decode) and hands on to Chapter 14; the source rule
 quoted, the doctored pier, the sender rung first; the door, the refusal, and a chosen night that fades. Also played in the

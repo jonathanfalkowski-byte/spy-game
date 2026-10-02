@@ -11,7 +11,13 @@
  * ringing at an hour he never rings (old / work / report: telling the source is this road's honest answer). The week: the
  * empty terminal, Meridian's man on the wrong pier, or a week of silence. The Vesper invitation, "do bring your source". A
  * chosen night (a partner from before with the consent flow; Maya; alone). The card, CELESTE LAURENT, and the answer. Adrian's
- * name is kept for Ch14; Nell is not named. Keys under `out.*` and `c10.o-*`; ids carry `o10-`. */
+ * name is kept for Ch14; Nell is not named. Keys under `out.*` and `c10.o-*`; ids carry `o10-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The Vesper box on the third
+ * step, before the card is answered (c10.o-box = water | bin | wall: the orchid put in water, because it is not the
+ * orchid's fault; binned; or the card pinned to the wall beside THE SENDER). The photograph in the City pages, before the
+ * sender rings (c10.o-paper = pin | cut | leave: pinned; Celeste's hand cut off her wrist; or left on the stall). Her
+ * text on the cheap phone, before the Friday (c10.o-text = keep | delete | regrets: copied into the exercise book under C.;
+ * deleted; or "Regrets." typed and not sent). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -71,7 +77,21 @@ function slipBlocks(): Block[] {
   ];
 }
 
-function slipChoices(): C10Choice[] {
+function boxChoices(): C10Choice[] {
+  const k = (id: 'water' | 'bin' | 'wall', label: string, hint: string, body: Block[]) =>
+    offer('o10-box-' + id, label, hint, 'slip', (x) => {
+      set10(x, 'o-box', id);
+      return body;
+    });
+  return [
+    k('water', 'Put the orchid in water', 'It is not the orchid’s fault.', [p('You carry the box up the iron stair and stand the orchid in the kettle’s one cup of water on the table, three flowers open and one closed, because it is not the orchid’s fault, and because a thing that has been grown to be beautiful is owed a glass of water whoever sent it.')]),
+    k('bin', 'Put it straight in the bin', 'Box, orchid, ribbon.', [p('You carry the box down the alley behind the shop and put it in the bin, box and orchid and ribbon and all, and put the lid down on it with your palm, and wipe the palm on your coat, which is childish, and helps.')]),
+    k('wall', 'Pin the card to the wall', 'Beside THE SENDER. Let them look at each other.', [p('You take the card up the stair and pin it to the wall beside the first card of this road, THE SENDER, so that the looping green hand and the block capitals hang side by side, two people who have both written to you in the dark. Then you look at them for a long time and do not decide which one you are more afraid of.')]),
+  ];
+}
+
+function slipChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'o-box')) return boxChoices();
   const c = (id: 'go' | 'sender' | 'door', label: string, hint: string, body: Block[]) =>
     offer('o10-slip-' + id, label, hint, 'cafe', (x) => {
       set10(x, 'o-card', id);
@@ -214,7 +234,21 @@ function pressBlocks(s: GameState): Block[] {
   ];
 }
 
+function paperChoices(): C10Choice[] {
+  const k = (id: 'pin' | 'cut' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('o10-paper-' + id, label, hint, 'press', (x) => {
+      set10(x, 'o-paper', id);
+      return body;
+    });
+  return [
+    k('pin', 'Pin it to the wall', 'Evidence. Of what, you are not sure.', [p('You carry the paper up the stair, and pin the page to the wall with the photograph facing out: you, laughing, over silver domes, with her hand on your wrist. It is the first photograph of you that anybody has taken since you left Axiom. You look at it for some time, to see whether you recognise her.')]),
+    k('cut', 'Cut her hand off your wrist', 'With the kitchen scissors.', [p('You cut the photograph out of the page with the kitchen scissors, neatly, along the edge of the silver dome, and then, with a more careful cut, you take Celeste’s hand off your wrist, and look at the small pale strip where it was. It is a very good hand. It is not yours. You throw it in the stove.')]),
+    k('leave', 'Leave it on the stall', 'Not yours to buy.', [p('You put the paper down on the stall where you found it, face down, past the stallholder’s helpful cough, and walk to the end of the road, and stand there with your hands in your pockets in the wind off the river, a woman nobody can place, who has just decided she would rather not see how she looks when she is being placed.')]),
+  ];
+}
+
 function pressChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'o-paper')) return paperChoices();
   const a = answer(s);
   const pg = (id: 'old' | 'work' | 'report', label: string, hint: string, body: Block[]) =>
     offer('o10-press-' + id, label, hint, 'weeks', (x) => {
@@ -266,7 +300,21 @@ function weeksBlocks(s: GameState): Block[] {
   ];
 }
 
-function weeksChoices(): C10Choice[] {
+function textChoices(): C10Choice[] {
+  const k = (id: 'keep' | 'delete' | 'regrets', label: string, hint: string, body: Block[]) =>
+    offer('o10-text-' + id, label, hint, 'weeks', (x) => {
+      set10(x, 'o-text', id);
+      return body;
+    });
+  return [
+    k('keep', 'Copy it into the exercise book', 'Under C. In the column.', [p('You copy her text into the back of the exercise book, word for word, under C., in pencil, and in the right-hand column, where it says CHECKED BY, you write nothing at all. It is the only entry in the book that she wrote for you. It is also the only one that did not need checking.')]),
+    k('delete', 'Delete it', 'Gone from the phone. Not from your head.', [p('You delete it. It is a very small thing to do with a thumb, and it is the whole of what a person can do with a text. You can still see it, in the dark behind your eyes, in her looping green hand, which a thumb cannot reach.')]),
+    k('regrets', 'Type “Regrets.” and do not send it', 'Her word. Your thumb.', [p('You type one word, REGRETS, with a full stop, the way she would, and look at it in the little window for a full minute, and do not send it. A reply is a thing she can keep. You would like her to have to wonder.')]),
+  ];
+}
+
+function weeksChoices(s: GameState): C10Choice[] {
+  if (!get10(s, 'o-text')) return textChoices();
   return [
     offer('o10-week-on', 'The Friday after', 'Whatever the week left.', 'hours', () => [p('You put both phones face down on the table, the cheap one and the black one, side by side like two halves of an argument, and leave them there.')]),
   ];
@@ -371,11 +419,11 @@ export function outsideBlocks10(s: GameState): Block[] {
 }
 
 export function outsideChoices10(s: GameState): C10Choice[] {
-  if (s.phase === 'slip') return slipChoices();
+  if (s.phase === 'slip') return slipChoices(s);
   if (s.phase === 'cafe') return cafeChoices(s);
   if (s.phase === 'source') return sourceChoices(s);
   if (s.phase === 'press') return pressChoices(s);
-  if (s.phase === 'weeks') return weeksChoices();
+  if (s.phase === 'weeks') return weeksChoices(s);
   if (s.phase === 'hours') return get10(s, 'o-night-open') === 'maya' ? hoursOnMaya(s) : hoursChoices(s);
   return [];
 }

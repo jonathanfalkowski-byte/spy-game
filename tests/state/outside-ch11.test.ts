@@ -25,7 +25,7 @@ const c11 = step('CHAPTER11_CHOOSE', 'chapter11');
 const c14 = step('CHAPTER14_CHOOSE', 'chapter14');
 /** A real Outside Chapter 10 complete save: gave her the hour, told the sender. */
 const ten = (order = 'o10-order-give', press = 'o10-press-report') =>
-  ['begin-outside', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', order, press, 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
+  ['begin-outside', 'o10-box-water', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', order, 'o10-paper-pin', press, 'o10-text-keep', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
 const ids = (s: GameState) => chapter11Choices(s).map((c) => c.id.replace(/^chapter11\./, ''));
 const walk11 = (s: GameState, path: string[]) => path.reduce(c11, s);
 const ch11 = (s: GameState) => s.history.filter((h) => String(h.node).startsWith('chapter11.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');

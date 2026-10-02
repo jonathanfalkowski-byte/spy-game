@@ -32,7 +32,7 @@ const DEATH = /\b(drowned|jumped|pushed her|killed her|murdered|suicide)\b/i;
 
 /** A real Outside Chapter 12 complete save (as in outside-ch13.test.ts). */
 const twelve = () => {
-  const ten = ['begin-outside', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', 'o10-order-give', 'o10-press-report', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
+  const ten = ['begin-outside', 'o10-box-water', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', 'o10-order-give', 'o10-paper-pin', 'o10-press-report', 'o10-text-keep', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
   const eleven = ['begin-outside', 'o11-price-photo', 'o11-iris-quiet', 'o11-page-photo', 'o11-slip-passed', 'o11-river-all', 'o11-night-alone'].reduce(c11, ten);
   return ['begin-outside', 'o12-ticket-together', 'o12-arrivals-on', 'o12-katong-along', 'o12-flat-with', 'o12-nora-with', 'o12-trust-ask', 'o12-wall-beside'].reduce(c12, eleven);
 };

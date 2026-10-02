@@ -24,7 +24,7 @@ const c12 = step('CHAPTER12_CHOOSE', 'chapter12');
 const c14 = step('CHAPTER14_CHOOSE', 'chapter14');
 /** A real Outside Chapter 11 complete save (gave the hour, photographed the page, passed the sealed page, told him). */
 const eleven = () => {
-  const ten = ['begin-outside', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', 'o10-order-give', 'o10-press-report', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
+  const ten = ['begin-outside', 'o10-box-water', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', 'o10-order-give', 'o10-paper-pin', 'o10-press-report', 'o10-text-keep', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
   return ['begin-outside', 'o11-price-photo', 'o11-iris-quiet', 'o11-page-photo', 'o11-slip-passed', 'o11-river-all', 'o11-night-alone'].reduce(c11, ten);
 };
 const ids = (s: GameState) => chapter12Choices(s).map((c) => c.id.replace(/^chapter12\./, ''));

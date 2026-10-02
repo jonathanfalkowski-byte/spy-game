@@ -94,6 +94,18 @@ Institutional's (`card / club / log / pages / fridays / nightfall`).
    11–13 in development"), and steps aside from Ch9 when Ch10 is playable; Ch14's reckoning calls back to the breakfast;
    goldens (give, doctor, refuse) and a real-save authentication test.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c10.o-…`) |
+|---|---|---|
+| **The box on the third step** | before the card is answered (`slip`) | **o10-box-water** (the orchid in the kettle's cup of water) · **-bin** · **-wall** (the card pinned beside THE SENDER) |
+| **The photograph in the City pages** | before the sender rings (`press`) | **o10-paper-pin** · **-cut** (Celeste's hand cut off her wrist) · **-leave** (put down on the stall) |
+| **Her text** | before the Friday (`weeks`) | **o10-text-keep** (copied under C. in the exercise book) · **-delete** · **-regrets** ("Regrets." typed and not sent) |
+
+No Ch9 golden recapture is needed: Ch10 and later chapters have no Outside route in the committed goldens.
+
 ## 5. Art impact
 
 Reuses the Lindqvist (Celebrity Ch10) and the room over the water. New inserts: the black Vesper box on the iron stair; the
