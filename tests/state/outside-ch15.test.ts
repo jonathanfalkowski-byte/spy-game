@@ -34,7 +34,7 @@ const DEATH = /\b(drowned|jumped|pushed her|killed her|murdered|suicide)\b/i;
 const twelve = () => {
   const ten = ['begin-outside', 'o10-box-water', 'o10-slip-go', 'o10-dress-black', 'o10-adrian-composed', 'o10-order-give', 'o10-paper-pin', 'o10-press-report', 'o10-text-keep', 'o10-week-on', 'o10-night-alone'].reduce(c10, nine());
   const eleven = ['begin-outside', 'o11-price-photo', 'o11-clients-listen', 'o11-iris-quiet', 'o11-own-close', 'o11-page-photo', 'o11-slip-passed', 'o11-river-all', 'o11-write-seen', 'o11-night-alone'].reduce(c11, ten);
-  return ['begin-outside', 'o12-ticket-together', 'o12-arrivals-on', 'o12-katong-along', 'o12-flat-with', 'o12-nora-with', 'o12-trust-ask', 'o12-wall-beside'].reduce(c12, eleven);
+  return ['begin-outside', 'o12-ticket-together', 'o12-heat-flowers', 'o12-arrivals-on', 'o12-seat-sit', 'o12-katong-along', 'o12-step-wait', 'o12-flat-with', 'o12-nora-with', 'o12-trust-ask', 'o12-wall-beside'].reduce(c12, eleven);
 };
 /** Ch13 turned on his ledger (Marsh an ally); Ch14: told, spared, and the way the player chooses. */
 const fourteen = (way: 'trust' | 'cut' | 'keep') => {

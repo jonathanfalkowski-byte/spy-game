@@ -27,6 +27,9 @@ frangipani…"; "You asked me at Nora's gate… This is me keeping it." / "You d
 **Rules honoured:** the sender stays unnamed; no cause of death (a test asserts it); he never makes her Nell; the trust question
 is his and is never forced; no sexual content.
 
+**Deepening (2026-10-02):** `o12-heat-flowers / -taxis / -jacket` (arrivals), `o12-seat-sit / -cup / -stand` (katong, before the Mrs Wee choice),
+`o12-step-wait / -count / -look` (hill, before the flat). Facts `c12.o-heat`, `c12.o-seat`, `c12.o-step`; nothing reads them as flags.
+
 **Tests:** `tests/state/outside-ch12.test.ts`, on the real Outside Chapter 9 golden played through Chapters 10–11: the entry (and
 the Ch14 bridge stepping aside); the full path, which authenticates (replay + decode) and hands on to Chapter 14 with the
 callbacks; apart + told + alone + gate + wait + leaf; silent + leave + gate + leave + alone. Played in the real UI on port 5181.

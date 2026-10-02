@@ -47,11 +47,11 @@ it('together, play along, ask him in, bring him to Nora, ask, stand beside him; 
   const arrivals = walk12(eleven(), ['begin-outside', 'o12-ticket-together']);
   expect(arrivals.choices['out.sg12']).toBe('together');
   expect(ch12(arrivals)).toContain('Three rows back.');
-  const katong = c12(arrivals, 'o12-arrivals-on');
+  const katong = walk12(arrivals, ['o12-heat-flowers', 'o12-arrivals-on', 'o12-seat-sit']);
   expect(ch12(katong)).toContain('Miss Evelyn! So long!');
   expect(ch12(katong)).toContain('First Sunday every month she sit one hour, two cups');
   expect(ids(katong)).toEqual(['o12-katong-along', 'o12-katong-told', 'o12-katong-silent']);
-  const hill = c12(katong, 'o12-katong-along');
+  const hill = walk12(katong, ['o12-katong-along', 'o12-step-wait']);
   expect(hill.choices['out.watched12']).toBe('yes');
   expect(hill.facts).toContain('c12.o-table');
   expect(ch12(hill)).toContain('a man in a linen suit');
@@ -91,7 +91,7 @@ it('apart, tell Mrs Wee, go in alone, leave him at the gate, wait, read him her 
   const s = eleven();
   const arrivals = walk12(s, ['begin-outside', 'o12-ticket-apart']);
   expect(ch12(arrivals)).toContain('I’ll fly through Doha');
-  const hill = walk12(arrivals, ['o12-arrivals-on', 'o12-katong-told']);
+  const hill = walk12(arrivals, ['o12-heat-flowers', 'o12-arrivals-on', 'o12-seat-sit', 'o12-katong-told', 'o12-step-wait']);
   expect(ch12(hill)).toContain('Then I know why she stop coming.');
   const kitchen = c12(hill, 'o12-flat-alone');
   expect(ch12(kitchen)).toContain('ivory jacket');
@@ -106,7 +106,7 @@ it('apart, tell Mrs Wee, go in alone, leave him at the gate, wait, read him her 
 });
 
 it('say nothing, leave the flat, leave it unasked, leave him alone with the water', () => {
-  const kitchen = walk12(eleven(), ['begin-outside', 'o12-ticket-together', 'o12-arrivals-on', 'o12-katong-silent', 'o12-flat-leave']);
+  const kitchen = walk12(eleven(), ['begin-outside', 'o12-ticket-together', 'o12-heat-flowers', 'o12-arrivals-on', 'o12-seat-sit', 'o12-katong-silent', 'o12-step-wait', 'o12-flat-leave']);
   const talk = c12(kitchen, 'o12-nora-gate');
   const quay = c12(talk, 'o12-trust-leave');
   const done = c12(quay, 'o12-wall-alone');
@@ -115,4 +115,29 @@ it('say nothing, leave the flat, leave it unasked, leave him alone with the wate
   expect(ch12(done)).toContain('his face is wet');
   expect(ch12(done)).not.toContain('HE SWORE.');
   expect(ch12(done)).toContain('THE FIRST THURSDAY. WHO IS WATCHING?');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const arrivals = walk12(eleven(), ['begin-outside', 'o12-ticket-together']);
+  expect(ids(arrivals)).toEqual(['o12-heat-flowers', 'o12-heat-taxis', 'o12-heat-jacket']);
+  expect(ch12(c12(arrivals, 'o12-heat-taxis'))).toContain('A sleeve at the window.');
+  expect(ch12(c12(arrivals, 'o12-heat-jacket'))).toContain('the only coat I own that’s mine');
+  const run = (heat: string, seat: string, step: string) => {
+    const katong = walk12(arrivals, [heat, 'o12-arrivals-on']);
+    expect(ids(katong)).toEqual(['o12-seat-sit', 'o12-seat-cup', 'o12-seat-stand']);
+    const hill = walk12(katong, [seat, 'o12-katong-along']);
+    expect(ids(hill)).toEqual(['o12-step-wait', 'o12-step-count', 'o12-step-look']);
+    const kitchen = walk12(hill, [step, 'o12-flat-with']);
+    return walk12(kitchen, ['o12-nora-with', 'o12-trust-ask', 'o12-wall-beside']);
+  };
+  const a = run('o12-heat-flowers', 'o12-seat-sit', 'o12-step-wait');
+  const b = run('o12-heat-taxis', 'o12-seat-cup', 'o12-step-count');
+  const c = run('o12-heat-jacket', 'o12-seat-stand', 'o12-step-look');
+  for (const k of ['out.sg12', 'out.katong12', 'out.watched12', 'out.flat12', 'out.nora12', 'out.asked12', 'out.wall12', 'act3.nell']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch12(b)).toContain('I always get twelve');
+  expect(ch12(c)).toContain('a lamp left on in an empty house');
+  expect(a.phase).toBe('complete');
 });

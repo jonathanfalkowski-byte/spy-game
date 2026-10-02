@@ -11,7 +11,13 @@
  * (bring him in / leave him at the gate; then the trust question, which is his: ask him / wait / leave it). The harbour wall
  * at dusk (stand beside him / read the leaf to him / leave him alone with the water). A man in a linen suit watches. The
  * sender is still unnamed and Nell's death is not told here (Ch17); she is named by her sister as in every road. Keys `out.*`,
- * `act3.*`, `c12.o-*`; ids carry `o12-`. */
+ * `act3.*`, `c12.o-*`; ids carry `o12-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. Arrivals, before she walks with
+ * him (c12.o-heat = flowers | taxis | jacket: she does exactly as told and looks at the man with the flowers; looks at the
+ * taxis once, in the glass; or tells him to take the jacket off and is told it is the only coat that is his). Katong, before she
+ * answers Mrs Wee (c12.o-seat = sit | cup | stand: the second chair at the table for two; the second cup, full and cold; or her
+ * hand on the back of the chair). Emerald Hill, at the foot of the steps, before the flat (c12.o-step = wait | count | look:
+ * she stands beside him; counts the eleven steps he has counted a hundred times; or looks up at the shutters). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -101,7 +107,21 @@ function arrivalsBlocks(): Block[] {
   ];
 }
 
-function arrivalsChoices(): C12Choice[] {
+function heatChoices(): C12Choice[] {
+  const k = (id: 'flowers' | 'taxis' | 'jacket', label: string, hint: string, body: Block[]) =>
+    offer('o12-heat-' + id, label, hint, 'arrivals', (x) => {
+      set12(x, 'o-heat', id);
+      return body;
+    });
+  return [
+    k('flowers', 'Look at the man with the flowers', 'Exactly as told.', [p('You look at the man with the flowers: an old man behind a bucket of frangipani, in a white vest, unhurried, selling nothing to nobody. It is the first time in a year that you have done precisely what somebody said, and it costs you nothing at all, which is what worries you.')]),
+    k('taxis', 'Look at the taxis, once', 'In the glass of the door.', [p('You look at the taxis, once, because you were told not to, in the black glass of the arrivals door, and the glass gives you back the rank: a dozen cabs in a patient line, and at the far end a pale car with its engine running and nobody getting in. A sleeve at the window. Linen, perhaps. Then a cab pulls across, and it is only traffic.')]),
+    k('jacket', 'Tell him to take the jacket off', 'It is thirty degrees. He is in waxed cotton.', [q('You', 'Take that off. You’ll faint.'), q(SENDER, 'It’s the only coat I own that’s mine. I’ve had it twelve years. I’ll faint in it.'), p('He does not take it off. A bead of sweat goes down the side of his face, slowly, and he lets it.')]),
+  ];
+}
+
+function arrivalsChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'o-heat')) return heatChoices();
   return [offer('o12-arrivals-on', 'Walk with him', 'Out of the cold and into the wet.', 'katong', () => [p('The doors part, and the heat takes you by the whole of the body, and for a moment you stand in it with your eyes shut and let it. He waits. He does not hurry you. He is, you notice, breathing in as if it were a medicine.')])];
 }
 
@@ -118,7 +138,21 @@ function katongBlocks(): Block[] {
   ];
 }
 
-function katongChoices(): C12Choice[] {
+function seatChoices(): C12Choice[] {
+  const k = (id: 'sit' | 'cup' | 'stand', label: string, hint: string, body: Block[]) =>
+    offer('o12-seat-' + id, label, hint, 'katong', (x) => {
+      set12(x, 'o-seat', id);
+      return body;
+    });
+  return [
+    k('sit', 'Sit in the second chair', 'The one she keeps for you.', [p('You sit down in the second chair at the table for two, the wire-backed stool with its back to the wall, the one she keeps for you, and it is warm from nobody. The marble is cool under your palms. You can see the whole room from here, which is, you suppose, why she picked it.')]),
+    k('cup', 'Touch the second cup', 'Full. Cold.', [p('You touch the second cup, the one set at the place where she does not sit, and it is full, to the brim, black, and cold all the way through, the way a cup is cold that was poured an hour ago for a person who did not come. You take your hand away and do not wipe it.')]),
+    k('stand', 'Stay standing', 'A hand on the back of the chair.', [p('You do not sit. You put one hand on the back of the second chair and stand behind it, like a woman at a graveside who has been told she may sit down and knows better. Mrs Wee watches you do it and says nothing, which in this room is a kind of speech.')]),
+  ];
+}
+
+function katongChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'o-seat')) return seatChoices();
   const k = (id: 'along' | 'told' | 'silent', label: string, hint: string, body: Block[]) =>
     offer('o12-katong-' + id, label, hint, 'hill', (x) => {
       set12(x, 'o-katong', id);
@@ -155,7 +189,21 @@ function hillBlocks(s: GameState): Block[] {
   ];
 }
 
-function hillChoices(): C12Choice[] {
+function stepChoices(): C12Choice[] {
+  const k = (id: 'wait' | 'count' | 'look', label: string, hint: string, body: Block[]) =>
+    offer('o12-step-' + id, label, hint, 'hill', (x) => {
+      set12(x, 'o-step', id);
+      return body;
+    });
+  return [
+    k('wait', 'Stand beside him a moment', 'At the foot of the steps. Say nothing.', [p('You stand beside him at the foot of the steps and say nothing, the two of you in the geckos’ quiet, a pace apart, looking at a brass number on a green door. It is the longest you have stood still next to another person since the clinic. He does not seem to mind. He seems, if anything, relieved.')]),
+    k('count', 'Count the steps', 'Eleven.', [p('You count the steps up to the door without meaning to, a habit from a life of doors: eleven.'), q(SENDER, 'Eleven. I’ve counted them a hundred times. I always get twelve, and then I go back and do it again, and it’s eleven.')]),
+    k('look', 'Look at the shutters', 'Upstairs. A light.', [p('You look up at the shuttered window on the first floor, and there is a line of light at the bottom of it, thin and yellow, a lamp left on in an empty house on a timer, so that anybody passing will think somebody lives there. Somebody does. It is you, on paper, and has been for a year.')]),
+  ];
+}
+
+function hillChoices(s: GameState): C12Choice[] {
+  if (!get12(s, 'o-step')) return stepChoices();
   const h = (id: 'alone' | 'with' | 'leave', label: string, hint: string, body: Block[]) =>
     offer('o12-flat-' + id, label, hint, 'kitchen', (x) => {
       set12(x, 'o-flat', id);
@@ -313,9 +361,9 @@ export function outsideBlocks12(s: GameState): Block[] {
 
 export function outsideChoices12(s: GameState): C12Choice[] {
   if (s.phase === 'ticket') return ticketChoices();
-  if (s.phase === 'arrivals') return arrivalsChoices();
-  if (s.phase === 'katong') return katongChoices();
-  if (s.phase === 'hill') return hillChoices();
+  if (s.phase === 'arrivals') return arrivalsChoices(s);
+  if (s.phase === 'katong') return katongChoices(s);
+  if (s.phase === 'hill') return hillChoices(s);
   if (s.phase === 'kitchen') return kitchenChoices(s);
   if (s.phase === 'quay') return quayChoices();
   return [];

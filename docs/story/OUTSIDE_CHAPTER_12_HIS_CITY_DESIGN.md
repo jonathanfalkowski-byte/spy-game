@@ -84,6 +84,18 @@ facts `c12.o-table`, `c12.o-nora`.
    development"); Ch14's reckoning gains callbacks to Nora and the gate; goldens (together + along + with + ask + beside;
    apart + told + alone + gate + wait + leaf; silent + leave + gate + leave + alone) and a real-save authentication test.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c12.o-…`) |
+|---|---|---|
+| **The heat** | before she walks with him (`arrivals`) | **o12-heat-flowers** (exactly as told) · **-taxis** (once, in the glass: a pale car, a sleeve at the window) · **-jacket** (it is the only coat he owns that is his) |
+| **The seat** | before she answers Mrs Wee (`katong`) | **o12-seat-sit** (the second chair, warm from nobody) · **-cup** (full and cold) · **-stand** (a hand on the back of the chair) |
+| **The steps** | at the foot of Emerald Hill, before the flat (`hill`) | **o12-step-wait** · **-count** (eleven; he always gets twelve) · **-look** (a lamp on a timer in the empty house) |
+
+The fact `c12.o-table` is the existing Katong table fact; the new seat moment uses `c12.o-seat`. No golden recapture is needed.
+
 ## 5. Art impact
 
 Reuses Changi, Emerald Hill, Holland Village and the harbour wall (shared Ch12 set). New: the Katong coffee shop (marble
