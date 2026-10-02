@@ -191,6 +191,20 @@ about the terminal meeting), or alone with the wall.
 
 ---
 
+## 6a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c8.o-…`) |
+|---|---|---|
+| **The exercise book** | before the first page (`settle`) | **o8-book-checked** (a right-hand column headed CHECKED BY: the first of her Chapter 16 ledger) · **-source** (PHONE, 02:40, the date, and a pencilled line HOW HE KNEW) · **-plain** (dates and a pencil) |
+| **The false page** | before she tells the sender (`plant`) | **o8-seam-keep** (marked FALSE, back on the wall) · **-burn** · **-file** (copied in red under F.) |
+| **The walk away** | before the evening (`after`) | **o8-walk-watch** (he crosses the footbridge and goes into an all-night launderette; she turns away) · **-home** (three night buses) · **-tide** (stays on the barrier till it turns) |
+
+The launderette is a quiet plant for Ch13 ("I was in a launderette on the other side of the river"); nothing reads the moments as flags. Because they are
+required steps, the Ch9 golden `outside-placeholder-all` was recaptured (old ledger replayed with the neutral picks inserted) and `rev20-golden-ledgers.json`
+regenerated; the Ch7 golden is unaffected.
+
 ## 7. Art impact
 
 New:

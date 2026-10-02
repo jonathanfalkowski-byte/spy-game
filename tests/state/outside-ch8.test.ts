@@ -58,14 +58,14 @@ it('enters Provenance from an Outside Chapter 7: the wall, the red thread, the 0
   expect([b.scene, b.phase]).toEqual(['chapter8', 'settle']);
   expect(text(b)).toContain('the room over the water');
   expect(text(b)).toContain('I’d rather be doubted than believed');
-  const leads = once8(b, 'o8-settle-on');
+  const leads = walk8(b, ['o8-book-checked', 'o8-settle-on']);
   expect(leads.phase).toBe('leads');
   expect(ids(leads)).toEqual(['o8-lead-manifest', 'o8-lead-board', 'o8-lead-retired', 'o8-lead-sloane', 'o8-lead-courier']);
 });
 
 it('the hub, three verified leads, catches the plant; MERIDIAN surfaces; the terminal; it authenticates', () => {
   const s = once8(ch7OutsideGolden(['o7-rule-verify', 'o7-rule-provenance', 'o7-rule-door']), 'begin-outside');
-  const leads = once8(s, 'o8-settle-on');
+  const leads = walk8(s, ['o8-book-checked', 'o8-settle-on']);
   const m = walk8(leads, ['o8-lead-manifest', 'o8-manifest-verify']);
   expect(text(m)).toContain('broker’s name, in Rotterdam'); // provenance rule
   const bd = walk8(m, ['o8-lead-board', 'o8-board-verify']);
@@ -75,13 +75,13 @@ it('the hub, three verified leads, catches the plant; MERIDIAN surfaces; the ter
   expect(plant.choices['out.verified']).toBe('3');
   expect(text(plant)).toContain('MERIDIAN HOLDINGS · VENDOR');
   expect(text(plant)).toContain('a seam in it');
-  const term = once8(plant, 'o8-plant-on');
+  const term = walk8(plant, ['o8-seam-keep', 'o8-plant-on']);
   expect(term.choices['out.plant']).toBe('caught');
   expect(text(term)).toContain('The last one stopped checking');
   expect(term.phase).toBe('terminal');
   expect(text(term)).toContain('the half-beat before your name');
   expect(ids(term)).toEqual(['o8-met-hand', 'o8-met-dark', 'o8-met-light']);
-  const done = walk8(term, ['o8-met-light', 'o8-evening-alone']);
+  const done = walk8(term, ['o8-met-light', 'o8-walk-home', 'o8-evening-alone']);
   expect(done.phase).toBe('complete');
   expect(done.choices['out.met']).toBe('light');
   expect(done.facts).toContain('c8.o-vendor');
@@ -99,7 +99,7 @@ it('the hub, three verified leads, catches the plant; MERIDIAN surfaces; the ter
 
 it('used raw, the plant bites; the no-people rule closes the sells; the courier route is the one she keeps', () => {
   const s = once8(ch7Outside(['o7-rule-people', 'o7-rule-source', 'o7-rule-door']), 'begin-outside');
-  const leads = once8(s, 'o8-settle-on');
+  const leads = walk8(s, ['o8-book-checked', 'o8-settle-on']);
   // E.V. (I): no-people closes the sell
   const retired = once8(leads, 'o8-lead-retired');
   expect(ids(retired)).toEqual(['o8-retired-verify', 'o8-retired-raw']);
@@ -117,10 +117,10 @@ it('used raw, the plant bites; the no-people rule closes the sells; the courier 
   expect(plant.phase).toBe('plant');
   expect(plant.choices['out.verified'] === undefined).toBe(true);
   expect(text(plant)).toContain('You moved on a lie');
-  const term = once8(plant, 'o8-plant-on');
+  const term = walk8(plant, ['o8-seam-keep', 'o8-plant-on']);
   expect(term.choices['out.plant']).toBe('bit');
   expect(text(term)).toContain('The last one I asked is dead');
-  const done = walk8(term, ['o8-met-dark', 'o8-evening-alone']);
+  const done = walk8(term, ['o8-met-dark', 'o8-walk-home', 'o8-evening-alone']);
   expect(text(done)).toContain('I DIDN’T CHECK. THEY KNOW.');
   expect(text(done)).toContain('Don’t trust the face.');
   expect(done.choices['out.plant']).toBe('bit');
@@ -128,13 +128,13 @@ it('used raw, the plant bites; the no-people rule closes the sells; the courier 
 
 it('selling builds a trail; Sloane’s file banked; a chosen night that fades', () => {
   const s = once8(ch7Outside(['o7-rule-door', 'o7-rule-provenance', 'o7-rule-verify']), 'begin-outside');
-  const leads = once8(s, 'o8-settle-on');
+  const leads = walk8(s, ['o8-book-checked', 'o8-settle-on']);
   const sold = walk8(leads, ['o8-lead-manifest', 'o8-manifest-sell', 'o8-lead-sloane', 'o8-sloane-bank']);
   expect(sold.choices['out.trail']).toBe('yes');
   expect(sold.choices['out.file']).toBe('bank');
   const plant = walk8(sold, ['o8-lead-board', 'o8-board-verify']);
-  const term = once8(plant, 'o8-plant-on');
-  const dusk = walk8(term, ['o8-met-hand']);
+  const term = walk8(plant, ['o8-seam-keep', 'o8-plant-on']);
+  const dusk = walk8(term, ['o8-met-hand', 'o8-walk-home']);
   if (ids(dusk).some((x) => x === 'o8-evening-julian' || x === 'o8-evening-sebastian')) {
     const pt = ids(dusk).includes('o8-evening-julian') ? 'julian' : 'sebastian';
     const room = walk8(dusk, ['o8-evening-' + pt, 'o8-' + pt + '-sex', 'o8-stay']);
@@ -143,4 +143,30 @@ it('selling builds a trail; Sloane’s file banked; a chosen night that fades', 
     expect(room.choices['c8.o-evening-outcome']).toBe('intimate-sex');
     expect(text(room)).not.toMatch(SEXUAL);
   }
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const s = once8(ch7Outside(['o7-rule-verify', 'o7-rule-provenance', 'o7-rule-door']), 'begin-outside');
+  expect(ids(s)).toEqual(['o8-book-checked', 'o8-book-source', 'o8-book-plain']);
+  expect(text(once8(s, 'o8-book-checked'))).toContain('CHECKED BY');
+  expect(text(once8(s, 'o8-book-source'))).toContain('HOW HE KNEW');
+  const hub = (book: string, seam: string, walk: string) => {
+    const leads = walk8(s, [book, 'o8-settle-on']);
+    const plant = walk8(leads, ['o8-lead-manifest', 'o8-manifest-verify', 'o8-lead-board', 'o8-board-verify', 'o8-lead-retired', 'o8-retired-verify']);
+    expect(ids(plant)).toEqual(['o8-seam-keep', 'o8-seam-burn', 'o8-seam-file']);
+    const term = walk8(plant, [seam, 'o8-plant-on']);
+    const after = walk8(term, ['o8-met-dark']);
+    expect(ids(after)).toEqual(['o8-walk-watch', 'o8-walk-home', 'o8-walk-tide']);
+    return walk8(after, [walk, 'o8-evening-alone']);
+  };
+  const a = hub('o8-book-checked', 'o8-seam-keep', 'o8-walk-home');
+  const b = hub('o8-book-plain', 'o8-seam-burn', 'o8-walk-tide');
+  const c = hub('o8-book-source', 'o8-seam-file', 'o8-walk-watch');
+  for (const k of ['out.plant', 'out.vendor', 'out.met', 'out.verified', 'out.lead.manifest', 'out.lead.board', 'out.lead.retired']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(text(c)).toContain('an all-night launderette');
+  expect(text(b)).toContain('Stay for the tide'.slice(0, 0) + 'watch the tide come back in');
+  expect(a.phase).toBe('complete');
 });

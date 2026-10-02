@@ -40,7 +40,7 @@ const walk = (s: GameState, path: string[]) => path.reduce(c9, s);
 const complete7 = (name: string) => replay(golden7.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 const complete8 = (name: string) => replay(golden8.routes.find((r) => r.name === name)!.ledger as GameEvent[], 19);
 /** Outside now plays its own Chapter 8 (Provenance) before the bridge; a chapter8.complete outside save. */
-const CH8_OUTSIDE = ['begin-outside', 'o8-settle-on', 'o8-lead-manifest', 'o8-manifest-verify', 'o8-lead-board', 'o8-board-verify', 'o8-lead-retired', 'o8-retired-verify', 'o8-plant-on', 'o8-met-dark', 'o8-evening-alone'];
+const CH8_OUTSIDE = ['begin-outside', 'o8-book-checked', 'o8-settle-on', 'o8-lead-manifest', 'o8-manifest-verify', 'o8-lead-board', 'o8-board-verify', 'o8-lead-retired', 'o8-retired-verify', 'o8-seam-keep', 'o8-plant-on', 'o8-met-dark', 'o8-walk-home', 'o8-evening-alone'];
 const outsideCh8 = () =>
   CH8_OUTSIDE.reduce((s, id) => {
     const next = act(s, { type: 'CHAPTER8_CHOOSE', id: 'chapter8.' + id });

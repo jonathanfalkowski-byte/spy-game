@@ -11,7 +11,13 @@
  * The evening (a partner from before with the consent flow, Maya, or alone with the wall). The second card, MERIDIAN ·
  * THE VENDOR. His price is always information; the skeptic is never punished; the sender stays unnamed (three soft cracks
  * of Nell); Sloane is a target or a trade, never a romance (OUTSIDE_ROUTE_DESIGN §2). Keys live under `out.*` and
- * `c8.o-*`; choice ids carry `o8-`. Local helpers mirror chapter8.ts to avoid a circular import. */
+ * `c8.o-*`; choice ids carry `o8-`. Local helpers mirror chapter8.ts to avoid a circular import.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The exercise book, before the
+ * first page (c8.o-book = checked | source | plain: the right-hand column headed CHECKED BY, which is where her Chapter 16
+ * ledger begins; a line for where each page came from; or dates and a pencil). The false page, before she tells the sender
+ * (c8.o-seam = keep | burn | file: kept on the wall marked FALSE; burned; or filed in red under F.). The walk away from the
+ * terminal, before the evening (c8.o-walk = watch | home | tide: she watches him cross the footbridge and go into an
+ * all-night launderette on the far bank; takes three buses home; or stays for the tide). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -72,7 +78,21 @@ function settleBlocks(): Block[] {
   ];
 }
 
-function settleChoices(): C8Choice[] {
+function bookChoices(): C8Choice[] {
+  const k = (id: 'checked' | 'source' | 'plain', label: string, hint: string, body: Block[]) =>
+    offer('o8-book-' + id, label, hint, 'settle', (x) => {
+      set8(x, 'o-book', id);
+      return body;
+    });
+  return [
+    k('checked', 'Rule a column headed CHECKED BY', 'On the right of every page. Empty for now.', [p('You rule a narrow column down the right-hand side of every page in the exercise book, with the edge of the kettle’s tray for a straight-edge, and head it in capitals: CHECKED BY. There is nothing in it yet. It is the most honest column you have ever drawn, because it is the only one that can be left empty.')]),
+    k('source', 'Head each line with where it came from', 'PHONE, 02:40, and the date.', [p('Beside every entry you write where it came from, in the same four words, PHONE, 02:40, and the date, and then, on a line of its own, in pencil, the thing you do not have: HOW HE KNEW. It is the longest line in the book, and the only one you have not been able to fill.')]),
+    k('plain', 'Dates and a pencil, nothing more', 'No columns. Not yet.', [p('You do not rule anything. You write the date at the top of each page and the pencil does the rest. You will know what the book is for when it tells you, and not before; a column is a promise, and you are not making any this week.')]),
+  ];
+}
+
+function settleChoices(s: GameState): C8Choice[] {
+  if (!get8(s, 'o-book')) return bookChoices();
   return [offer('o8-settle-on', 'Take the first page down off the phone', 'One at a time. Check them.', 'leads', () => [p('You take the first page down and lay it on the table under the lamp, and begin.')])];
 }
 
@@ -210,7 +230,21 @@ function plantBlocks(s: GameState): Block[] {
   ];
 }
 
+function seamChoices(): C8Choice[] {
+  const k = (id: 'keep' | 'burn' | 'file', label: string, hint: string, body: Block[]) =>
+    offer('o8-seam-' + id, label, hint, 'plant', (x) => {
+      set8(x, 'o-seam', id);
+      return body;
+    });
+  return [
+    k('keep', 'Keep it on the wall, marked FALSE', 'The best teacher in the room.', [p('You do not take it down. You write FALSE across the top of it in red pencil, large, and pin it back where it was, in the middle of the wall, between two true ones, so that every morning you will see exactly what a page built to be believed looks like, and what it cost to learn it.')]),
+    k('burn', 'Burn it', 'A page that was built to be acted on.', [p('You burn it in the sink, a corner at a time, and watch the letterhead go brown and then black, and open the window on the smell. It was built to be acted on. It will not be acted on again.')]),
+    k('file', 'File it in red, under F.', 'In the exercise book. In the column you drew.', [p('You copy the whole of it into the back of the exercise book, line by line, in red pencil, under the letter F, and put the original in the drawer. A false page is also a fact: it is the fact of who wanted you to believe it.')]),
+  ];
+}
+
 function plantChoices(s: GameState): C8Choice[] {
+  if (!get8(s, 'o-seam')) return seamChoices();
   return [
     offer('o8-plant-on', caught(s) ? 'Tell the sender you caught it' : 'Tell the sender it bit', 'He will have something to say.', 'terminal', (x) => {
       setKey(x, 'out.plant', caught(x) ? 'caught' : 'bit');
@@ -287,8 +321,25 @@ function afterBlocks(): Block[] {
   return [p('Home, or somewhere warmer. The wall is still on the far side of the room with its red thread and its three stones — the last person, the last one, what became of her — and you have to decide what to do with the rest of a night that is entirely your own.')];
 }
 
+function walkChoices(): C8Choice[] {
+  const w = (id: 'watch' | 'home' | 'tide', label: string, hint: string, body: Block[]) =>
+    offer('o8-walk-' + id, label, hint, 'after', (x) => {
+      set8(x, 'o-walk', id);
+      return body;
+    });
+  return [
+    w('watch', 'Watch him go', 'From the dark, and not a step after him.', [
+      p('You stay in the shadow of the barrier and watch him walk away along the sea wall, not hurrying, and cross the iron footbridge to the far bank, and you do not follow him. At the end of the bridge there is an all-night launderette under a flickering sign, and he goes in.'),
+      p('Through the steamed glass you watch him sit down among the dryers with his jacket folded on his knees, in the warm, for the whole of an hour, a man with nothing to deliver and nobody in particular to deliver it to. Then you turn your back on the glass, because you have just seen something you were not meant to, and you would like to give it back.'),
+    ]),
+    w('home', 'Go home by three buses', 'The long way. Nobody behind you.', [p('You go home the long way, three night buses and a mile on foot, changing sides of the road twice, the way a woman does who has been told by a file that she is worth following. Nobody follows. It takes an hour and a half, and by the end of it you are almost sorry.')]),
+    w('tide', 'Stay for the tide', 'Till it turns. Till it is light.', [p('You sit on the broken barrier with your hands in your pockets and watch the tide come back in over the mud, a hand’s breadth at a time, until the sodium lamp goes out on its timer and the river is simply grey. Nothing happens. It is the first night in a year that nothing has happened to you, and you let it.')]),
+  ];
+}
+
 function afterChoices(s: GameState): C8Choice[] {
   const open = get8(s, 'o-evening-open');
+  if (!get8(s, 'o-walk') && !open) return walkChoices();
   const done = (id: string, label: string, hint: string, body: Block[]) =>
     offer('o8-evening-' + id, label, hint, 'complete', (x) => {
       set8(x, 'o-evening', id);
@@ -378,7 +429,7 @@ export function outsideBlocks8(s: GameState): Block[] {
 }
 
 export function outsideChoices8(s: GameState): C8Choice[] {
-  if (s.phase === 'settle') return settleChoices();
+  if (s.phase === 'settle') return settleChoices(s);
   if (s.phase === 'leads') return leadsChoices(s);
   if (s.phase === 'plant') return plantChoices(s);
   if (s.phase === 'terminal') return terminalChoices();

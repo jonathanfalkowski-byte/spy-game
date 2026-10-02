@@ -23,6 +23,9 @@ eight decisions as recommended). Route: [../OUTSIDE_ROUTE_DESIGN.md](../OUTSIDE_
 | **after** | A room nobody watches. | **o8-evening-{julian,sebastian}** (consent flow → `-no-sex` / `-sex` / `o8-leave`, then `o8-stop` / `o8-stay`; fades) · **o8-evening-maya** (`c6.maya = restored`) · **o8-evening-alone** (the wall, the three stones) | `c8.o-evening*`; fact `c8.o-evening-consent` |
 | **complete** | The second card: VERIFIED / MOVED / SOLD (by the counts) and MERIDIAN · THE VENDOR, plus a corner line by the plant (I CHECKED. IT SAVED ME. / I DIDN'T CHECK. THEY KNOW.) and, if she crossed, I CROSSED THE BARRIER. | — | — |
 
+**Deepening (2026-10-02):** `o8-book-checked / -source / -plain` (settle, before the first page), `o8-seam-keep / -burn / -file` (plant, before she tells
+the sender), `o8-walk-watch / -home / -tide` (after, before the evening). Facts `c8.o-book`, `c8.o-seam`, `c8.o-walk`; nothing reads them as flags.
+
 **Tests:** `tests/state/outside-ch8.test.ts`, on real Outside Chapter 7 saves: the entry; the hub (three verified leads
 catching the plant, MERIDIAN surfacing, the terminal, and the shared Ch9 bridge's outside "Follow the vendor"), which
 authenticates on the `maximal-trade` golden routed onto Outside (replay + decode); the plant biting with the no-people
