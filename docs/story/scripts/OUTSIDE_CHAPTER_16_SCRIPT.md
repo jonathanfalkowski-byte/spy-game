@@ -23,6 +23,9 @@ Design: [../OUTSIDE_CHAPTER_16_HER_OWN_HAND_DESIGN.md](../OUTSIDE_CHAPTER_16_HER
 **Safety:** how Nell died is not told; Rafe never makes her Nell; the collar is a hand on a collar, and a kiss only if a night was
 chosen earlier.
 
+**Deepening (2026-10-02):** `o16-trust-sign / -apart / -count` (sheet, before the ledger is signed), `o16-hand-girl / -rafe / -self` (retinue, before the retinue is chosen),
+`o16-last-tide / -windows / -pockets` (steps, before the way in). Facts `c16.o-trust`, `c16.o-hand`, `c16.o-last`; no `act4.*` key changes.
+
 **Tests:** `tests/state/outside-ch16.test.ts`, on the real Outside Chapter 9 golden played through Chapters 10–15: the entry; Rafe in the
 room with Marsh (expose, the slip held back, the grey, the collar, the river door), authenticated (replay + decode) with no cause of
 death and nothing in the word list; Rafe at the door (trade); Rafe cut (no Rafe anywhere, no river door, no inside Rafe) and expose closed

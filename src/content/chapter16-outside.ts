@@ -12,7 +12,13 @@
  * last look at the wall. The way in (the river door with Rafe, the front, Celeste's car, Marsh's notice). The long room;
  * Celeste stands, as herself. Rafe never makes her Nell; how Nell died is not told here (Chapter 17). Entered from an
  * Outside `chapter15.complete`; ends at the Chapters 17–18 in-development stop, having set the shared act4.* contract.
- * Choice ids carry `o16-`. */
+ * Choice ids carry `o16-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The pages taken on trust, before
+ * the ledger is signed (c16.o-trust = sign | apart | count: her name put to them all the same; set apart in a clip at the back;
+ * or counted, and the count written in the margin). The notice leaving at seven, before the retinue is chosen (c16.o-hand =
+ * girl | rafe | self: handed to a girl on a moped with a docket to be signed for; carried by Rafe, if he is not cut; or taken
+ * to the Vesper's door herself). The last minute on the Embankment, before the way in (c16.o-last = tide | windows | pockets:
+ * the tide, the same tide as the terminal; the lit windows counted; or what is in her pockets, touched one by one). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 
@@ -142,8 +148,22 @@ function dawnChoices(s: GameState): C16Choice[] {
   ];
 }
 
+function trustChoices(): C16Choice[] {
+  const k = (id: 'sign' | 'apart' | 'count', label: string, hint: string, body: Block[]) =>
+    offer('o16-trust-' + id, label, hint, 'sheet', (x) => {
+      set16(x, 'o-trust', id);
+      return body;
+    });
+  return [
+    k('sign', 'Put your name to them all the same', 'Because you chose to carry them.', [p('You go down the pages you took on trust, the ones that will have to be marked, and decide that you will sign them anyway, under your own name, not as a pretence that you checked, but as a plain statement that you chose to carry them. It is a different thing to sign, and you can feel the difference in the pencil.')]),
+    k('apart', 'Set them apart, in a clip', 'At the back. Marked.', [p('You take the pages you took on trust and clip them together at the back of the ledger with a black bulldog clip, so that nobody can mistake them for the others, and so that you cannot. They are not worthless. They are simply the part of the evidence that depends on somebody else.')]),
+    k('count', 'Count them, and write the count', 'In the margin. In pencil.', [p('You count the pages you took on trust, once, slowly, without wanting to get a smaller number, and write the number in the margin of the first page in pencil, small, where anybody who looks will find it: how many, and no more. It is the most useful sentence in the book, and the one nobody else would have written.')]),
+  ];
+}
+
 function sheetChoices(s: GameState): C16Choice[] {
   if (!get16(s, 'o-dawn')) return dawnChoices(s);
+  if (!get16(s, 'o-trust')) return trustChoices();
   return [
     offer('o16-case-set', 'Sign the ledger', 'Your initials, where they belong.', 'stand', (x) => {
       setKey(x, 'act4.case', case16o(x).strength);
@@ -213,7 +233,23 @@ function retinueBlocks(): Block[] {
   ];
 }
 
+function handChoices(s: GameState): C16Choice[] {
+  const k = (id: 'girl' | 'rafe' | 'self', label: string, hint: string, body: Block[]) =>
+    offer('o16-hand-' + id, label, hint, 'retinue', (x) => {
+      set16(x, 'o-hand', id);
+      return body;
+    });
+  return [
+    k('girl', 'Hand it to a girl on a moped', 'With a docket. Signed for.', [p('At seven the notice goes, in a plain envelope, to a girl on a moped in a yellow jacket, who has a grey carbon docket pad on a clip and asks you to sign for having handed it over. You sign. She tears off the top copy and gives it to you, and you put it in the ledger, at the back, under C. It is the first time you have ever signed for sending anything.')]),
+    ...(rafeComes16(s)
+      ? [k('rafe', 'Let Rafe carry it', 'He knows the door. He has never rung its bell.', [p('Rafe takes it from you on the iron stair at seven, and looks at the front of the envelope, and at the name of the house, and does not say anything for the length of a held breath. Then he puts it inside his jacket, against his chest, where the others have always gone, and says only: “I’ll ring the front bell. I’ve never rung the front bell.”')])]
+      : []),
+    k('self', 'Take it to the door yourself', 'And ring.', [p('You take it to the Embankment yourself at seven, in the grey, and climb the black steps of the Vesper in your own coat, and ring the bell, and hand it to a doorman who has to be told twice that you are not delivering a flower. “For Mrs Laurent,” you say. “From the product.”')]),
+  ];
+}
+
 function retinueChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'o-hand')) return handChoices(s);
   if (!key(s, 'act4.inside-done')) {
     const chosen = inside(s);
     const n = chosen.length;
@@ -385,7 +421,21 @@ function stepsBlocks(): Block[] {
   return [p('A quarter to six. The Embankment in the last of the light, the river the colour of a knife, and the Vesper’s black glass front with no name on it. Round the side, the river door, shut, and nobody at it yet.')];
 }
 
+function lastChoices(): C16Choice[] {
+  const k = (id: 'tide' | 'windows' | 'pockets', label: string, hint: string, body: Block[]) =>
+    offer('o16-last-' + id, label, hint, 'steps', (x) => {
+      set16(x, 'o-last', id);
+      return body;
+    });
+  return [
+    k('tide', 'Look at the tide', 'The same river as the terminal.', [p('You stop at the rail and look at the tide, coming up the river towards the old ferry terminal with the evening on its back, the same tide you watched come back over the mud on a night when nothing happened to you. It does not care. It is the most restful thing in London.')]),
+    k('windows', 'Count the lit windows', 'On the Vesper’s front. Eleven.', [p('You count the lit windows on the black glass front, from the bottom, as you used to count the floors in the lift: eleven. Then you count the dark ones, the ones that are only reflection, and get fifteen, and understand that most of what the Vesper shows the street is the street.')]),
+    k('pockets', 'Touch what is in your pockets', 'One by one.', [p('You touch what is in your pockets, one thing at a time, as a woman does before an examination: the ledger, folded small; a pencil with a chewed end; the slip, if you kept it, with its brass pin; the cheap phone, which will ring at twenty to three whatever happens in the next hour. It is a very small inventory. It is all yours.')]),
+  ];
+}
+
 function stepsChoices(s: GameState): C16Choice[] {
+  if (!get16(s, 'o-last')) return lastChoices();
   const arr = (id: 'river' | 'notice' | 'front' | 'car', label: string, hint: string, body: Block[]) =>
     offer('o16-arrive-' + id, label, hint, 'complete', (x) => {
       setKey(x, 'act4.arrive', id);

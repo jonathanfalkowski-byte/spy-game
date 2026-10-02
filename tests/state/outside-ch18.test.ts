@@ -44,11 +44,11 @@ const fifteenWithRafe = () =>
   ['begin-outside', 'o15-plan-leave', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-page-back', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-post-mail', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));
 const fifteenCut = () => ['begin-outside', 'o15-plan-leave', 'o15-crew-none', 'o15-way-invited', 'o15-snag-bold', 'o15-page-back', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards', 'o15-post-mail', 'o15-cost-face', 'o15-phone-return', 'o15-night-alone'].reduce(c15, fourteen('cut'));
 const sixteenRoom = () =>
-  ['begin-outside', 'o16-dawn-rafe', 'o16-case-set', 'o16-aim-expose', 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch', 'o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write', 'o16-arrive-river'].reduce(c16, fifteenWithRafe());
+  ['begin-outside', 'o16-dawn-rafe', 'o16-trust-sign', 'o16-case-set', 'o16-aim-expose', 'o16-hand-girl', 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch', 'o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write', 'o16-last-tide', 'o16-arrive-river'].reduce(c16, fifteenWithRafe());
 const sixteenDoor = () =>
-  ['begin-outside', 'o16-dawn-quiet', 'o16-case-set', 'o16-aim-trade', 'o16-inside-marsh', 'o16-inside-done', 'o16-outside-rafe', 'o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-arrive-front'].reduce(c16, fifteenWithRafe());
+  ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-trade', 'o16-hand-girl', 'o16-inside-marsh', 'o16-inside-done', 'o16-outside-rafe', 'o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-last-tide', 'o16-arrive-front'].reduce(c16, fifteenWithRafe());
 const sixteenCut = () =>
-  ['begin-outside', 'o16-dawn-quiet', 'o16-case-set', 'o16-aim-cut', 'o16-inside-none', 'o16-outside-switch', 'o16-reply-pin', 'o16-first-ledger', 'o16-held-nell', 'o16-wear-plain', 'o16-dressed-alone', 'o16-leave-take', 'o16-arrive-car'].reduce(c16, fifteenCut());
+  ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-cut', 'o16-hand-girl', 'o16-inside-none', 'o16-outside-switch', 'o16-reply-pin', 'o16-first-ledger', 'o16-held-nell', 'o16-wear-plain', 'o16-dressed-alone', 'o16-leave-take', 'o16-last-tide', 'o16-arrive-car'].reduce(c16, fifteenCut());
 const seventeenRoom = () =>
   ['begin-outside', 'o17-card-name', 'o17-open-room', 'o17-press-flaw', 'o17-postman-use', 'o17-offer-draw', 'o17-named-rafe', 'o17-minute-rafe', 'o17-verdict-on', 'o17-last-orchid'].reduce(c17, sixteenRoom());
 const seventeenDoor = () =>

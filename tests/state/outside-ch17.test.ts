@@ -54,13 +54,13 @@ const fifteenCut = () => ['begin-outside', 'o15-plan-leave', 'o15-crew-none', 'o
 
 /** Chapter 16 played with Rafe in the room (expose, the slip held, the river door). */
 const sixteenRoom = () =>
-  ['begin-outside', 'o16-dawn-rafe', 'o16-case-set', 'o16-aim-expose', 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch', 'o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write', 'o16-arrive-river'].reduce(c16, fifteenWithRafe());
+  ['begin-outside', 'o16-dawn-rafe', 'o16-trust-sign', 'o16-case-set', 'o16-aim-expose', 'o16-hand-girl', 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch', 'o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write', 'o16-last-tide', 'o16-arrive-river'].reduce(c16, fifteenWithRafe());
 /** Rafe at the river door (trade, nothing held back). */
 const sixteenDoor = () =>
-  ['begin-outside', 'o16-dawn-quiet', 'o16-case-set', 'o16-aim-trade', 'o16-inside-marsh', 'o16-inside-done', 'o16-outside-rafe', 'o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-arrive-front'].reduce(c16, fifteenWithRafe());
+  ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-trade', 'o16-hand-girl', 'o16-inside-marsh', 'o16-inside-done', 'o16-outside-rafe', 'o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-last-tide', 'o16-arrive-front'].reduce(c16, fifteenWithRafe());
 /** Rafe cut; alone; plain clothes. */
 const sixteenCut = () =>
-  ['begin-outside', 'o16-dawn-quiet', 'o16-case-set', 'o16-aim-cut', 'o16-inside-none', 'o16-outside-switch', 'o16-reply-pin', 'o16-first-ledger', 'o16-held-nell', 'o16-wear-plain', 'o16-dressed-alone', 'o16-leave-take', 'o16-arrive-car'].reduce(c16, fifteenCut());
+  ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-cut', 'o16-hand-girl', 'o16-inside-none', 'o16-outside-switch', 'o16-reply-pin', 'o16-first-ledger', 'o16-held-nell', 'o16-wear-plain', 'o16-dressed-alone', 'o16-leave-take', 'o16-last-tide', 'o16-arrive-car'].reduce(c16, fifteenCut());
 
 it('enters Return to Sender from an Outside Chapter 16; Chapter 16 no longer says Act IV is in development', () => {
   const s = sixteenRoom();

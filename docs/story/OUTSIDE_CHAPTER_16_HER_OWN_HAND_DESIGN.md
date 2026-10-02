@@ -74,6 +74,18 @@ Read: `out.verified`, `out.linden15`, `out.slip15`, `out.took15`, `out.cost15` (
 8. **Build shape:** entered from an Outside `chapter15.complete`; Ch15's stop line removed; goldens on the real Outside golden played
    through Ch10–15; the old "[Chapters 17–18 in development]" stop line follows until Ch17 is built.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no `act4.*` key changes):
+
+| Moment | Where | Choices (`c16.o-…`) |
+|---|---|---|
+| **The pages taken on trust** | before the ledger is signed (`sheet`) | **o16-trust-sign** (her name to them all the same) · **-apart** (a black clip at the back) · **-count** (the number in the margin, in pencil) |
+| **The notice leaves** | before the retinue (`retinue`) | **o16-hand-girl** (a girl on a moped; a grey docket to sign, top copy kept, under C.) · **-rafe** (he carries it; not offered if cut; "I've never rung the front bell") · **-self** ("For Mrs Laurent. From the product.") |
+| **The last minute** | before the way in (`steps`) | **o16-last-tide** (the same tide as the terminal) · **-windows** (eleven lit, fifteen reflection) · **-pockets** (the small inventory) |
+
+The docket (girl) and Rafe's bell echo Ch18's SIGNED FOR BY; the trust moment continues the Ch8 exercise book. No golden recapture is needed.
+
 ## 5. Art impact
 
 Reuses the room over the water, the Embankment and the Vesper's front (shared set). New: the ledger laid out on the floor with its

@@ -70,10 +70,10 @@ it('with Rafe in the room: expose, signed; the slip held back; Rafe straightens 
   const sheet = c16(fifteenWithRafe(), 'begin-outside');
   const dawn = c16(sheet, 'o16-dawn-rafe');
   expect(ch16(dawn)).toContain('On the bench opposite');
-  const stand = c16(dawn, 'o16-case-set');
+  const stand = walk(dawn, ['o16-trust-sign', 'o16-case-set']);
   expect(['strong', 'overwhelming']).toContain(stand.choices['act4.case']);
   expect(ids(stand)).toEqual(['o16-aim-expose', 'o16-aim-trade', 'o16-aim-cut', 'o16-aim-nell']);
-  const retinue = c16(stand, 'o16-aim-expose');
+  const retinue = walk(stand, ['o16-aim-expose', 'o16-hand-girl']);
   expect(retinue.choices['act4.aim']).toBe('expose');
   expect(ch16(retinue)).toContain('EVERY PAGE ENCLOSED IS SIGNED. EVERY SIGNATURE IS MINE.');
   expect(ids(retinue)).toEqual(expect.arrayContaining(['o16-inside-rafe', 'o16-inside-marsh', 'o16-inside-none']));
@@ -92,7 +92,7 @@ it('with Rafe in the room: expose, signed; the slip held back; Rafe straightens 
   const dressed = walk(held, ['o16-wear-grey', 'o16-dressed-rafe']);
   expect(ch16(dressed)).toContain('he lets you go first');
   expect(ids(dressed)).toEqual(['o16-leave-take', 'o16-leave-leave', 'o16-leave-write']);
-  const steps = c16(dressed, 'o16-leave-write');
+  const steps = walk(dressed, ['o16-leave-write', 'o16-last-tide']);
   expect(ids(steps)).toEqual(['o16-arrive-river', 'o16-arrive-notice', 'o16-arrive-front', 'o16-arrive-car']);
   const done = c16(steps, 'o16-arrive-river');
   expect(done.phase).toBe('complete');
@@ -110,8 +110,8 @@ it('with Rafe in the room: expose, signed; the slip held back; Rafe straightens 
 });
 
 it('Rafe at the door; trade quietly', () => {
-  const stand = walk(fifteenWithRafe(), ['begin-outside', 'o16-dawn-quiet', 'o16-case-set']);
-  const retinue = c16(stand, 'o16-aim-trade');
+  const stand = walk(fifteenWithRafe(), ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set']);
+  const retinue = walk(stand, ['o16-aim-trade', 'o16-hand-girl']);
   expect(ch16(retinue)).toContain('I HAVE SOMETHING YOU WOULD RATHER NOT SEE PUBLISHED');
   const outside = walk(retinue, ['o16-inside-marsh', 'o16-inside-done']);
   expect(outside.choices['act4.rafe']).toBeUndefined();
@@ -119,7 +119,7 @@ it('Rafe at the door; trade quietly', () => {
   const spread = c16(outside, 'o16-outside-rafe');
   expect(spread.choices['act4.rafe']).toBe('door');
   expect(ch16(spread)).toContain('The river door. Six o’clock.');
-  const done = walk(spread, ['o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-arrive-front']);
+  const done = walk(spread, ['o16-reply-bin', 'o16-first-nell', 'o16-held-none', 'o16-wear-black', 'o16-dressed-alone', 'o16-leave-leave', 'o16-last-tide', 'o16-arrive-front']);
   expect(done.choices['act4.aim']).toBe('trade');
   expect(done.choices['act4.held']).toBe('none');
   expect(ch16(done)).toContain('And in the street behind you, at the river door');
@@ -130,9 +130,9 @@ it('Rafe cut: nobody beside her, no Rafe anywhere, expose only if she can sign i
   const s = fifteenCut();
   const sheet = c16(s, 'begin-outside');
   expect(ids(sheet)).toEqual(['o16-dawn-nell', 'o16-dawn-quiet']);
-  const stand = walk(sheet, ['o16-dawn-quiet', 'o16-case-set']);
+  const stand = walk(sheet, ['o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set']);
   expect(ids(stand)).toContain('o16-aim-expose');
-  const cut = c16(stand, 'o16-aim-cut');
+  const cut = walk(stand, ['o16-aim-cut', 'o16-hand-girl']);
   expect(ch16(cut)).toContain('I AM COMING TO TELL YOU WHAT I CAN PROVE.');
   expect(ch16(cut)).not.toContain('And him.');
   expect(ids(cut)).not.toContain('o16-inside-rafe');
@@ -144,7 +144,7 @@ it('Rafe cut: nobody beside her, no Rafe anywhere, expose only if she can sign i
   const coat = walk(spread, ['o16-reply-pin', 'o16-first-ledger', 'o16-held-nell']);
   const dressed = c16(c16(coat, 'o16-wear-plain'), 'o16-dressed-alone');
   expect(ids(dressed)).toEqual(['o16-leave-take', 'o16-leave-leave', 'o16-leave-write']);
-  const steps = c16(dressed, 'o16-leave-take');
+  const steps = walk(dressed, ['o16-leave-take', 'o16-last-tide']);
   expect(ids(steps)).not.toContain('o16-arrive-river');
   const done = c16(steps, 'o16-arrive-car');
   expect(done.choices['act4.rafe']).toBe('absent');
@@ -153,7 +153,38 @@ it('Rafe cut: nobody beside her, no Rafe anywhere, expose only if she can sign i
   expect(replay(done.ledger, 19)).toEqual(done);
   // with no drawer and no checked pages, she cannot publish what she cannot sign
   const bare = withFlags(c16(fifteenCut(), 'begin-outside'), { 'out.linden15': undefined, 'out.verified': '0' });
-  const standBare = walk(bare, ['o16-dawn-quiet', 'o16-case-set']);
+  const standBare = walk(bare, ['o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set']);
   expect(ids(standBare)).toEqual(['o16-aim-trade', 'o16-aim-cut', 'o16-aim-nell']);
   expect(ch16(standBare)).toContain('I can’t sign what I haven’t read.');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const sheet = c16(fifteenWithRafe(), 'begin-outside');
+  const dawn = c16(sheet, 'o16-dawn-quiet');
+  expect(ids(dawn)).toEqual(['o16-trust-sign', 'o16-trust-apart', 'o16-trust-count']);
+  expect(ch16(c16(dawn, 'o16-trust-count'))).toContain('how many, and no more');
+  const run = (trust: string, hand: string, last: string) => {
+    const stand = walk(dawn, [trust, 'o16-case-set']);
+    const retinue = c16(stand, 'o16-aim-expose');
+    expect(ids(retinue)).toEqual(['o16-hand-girl', 'o16-hand-rafe', 'o16-hand-self']);
+    const spread = walk(retinue, [hand, 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch']);
+    const steps = walk(spread, ['o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write']);
+    expect(ids(steps)).toEqual(['o16-last-tide', 'o16-last-windows', 'o16-last-pockets']);
+    return walk(steps, [last, 'o16-arrive-river']);
+  };
+  const a = run('o16-trust-sign', 'o16-hand-girl', 'o16-last-tide');
+  const b = run('o16-trust-apart', 'o16-hand-rafe', 'o16-last-windows');
+  const c = run('o16-trust-count', 'o16-hand-self', 'o16-last-pockets');
+  for (const k of ['act4.case', 'act4.aim', 'act4.notice', 'act4.inside', 'act4.rafe', 'act4.first', 'act4.held', 'act4.arrive']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch16(a)).toContain('a girl on a moped in a yellow jacket');
+  expect(ch16(b)).toContain('I’ve never rung the front bell');
+  expect(ch16(c)).toContain('From the product.');
+  expect(a.phase).toBe('complete');
+  // Rafe cut: no Rafe to carry the notice
+  const cutSheet = c16(fifteenCut(), 'begin-outside');
+  const cutRetinue = walk(cutSheet, ['o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-cut']);
+  expect(ids(cutRetinue)).toEqual(['o16-hand-girl', 'o16-hand-self']);
 });
