@@ -77,6 +77,18 @@ Written (the shared Ch18 contract): `act4.open`, `act4.press` (signed | flaw | c
 7. **Rafe signs the minute** if present: the first time anyone has watched him write his own name in that house.
 8. **Build shape:** entered from an Outside `chapter16.complete`; goldens on the real Outside golden played through Ch10–16; Ch18 follows.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no `act4.*` key changes; nothing sexual; the offer stays refusable at no cost):
+
+| Moment | Where | Choices (`c17.o-…`) |
+|---|---|---|
+| **Her hands** | after the place card, before she opens (`bearing`) | **o17-hands-ledger** (a palm on the closed ledger) · **-pencil** (held ready to initial) · **-still** (folded in her lap) |
+| **The recess** | before Celeste's offer (`terms`; the offer now follows the pick) | **o17-recess-corridor** (Celeste follows to the black window: attention, nothing touched) · **-wall** (Rafe, only if he is in the room: "Whatever she offers, don't take it for me. I'd rather be found.") · **-table** (neither moves; the water jug) |
+| **The look** | after the Saturday is told, before the name (`saturday`) | **o17-hear-look** (at Celeste, until she looks down first) · **-rafe** (at Rafe by the wall; at the river in the glass if he is at the door) · **-down** (at the walnut) |
+
+The recess moves the offer behind the pick (`offerBlocks`), so the offer text appears after she chooses. No golden recapture is needed.
+
 ## 5. Art impact
 
 Reuses the long room as a boardroom (shared set). New: Rafe by the wall with his hat; the slip on the walnut with its brass pin; Rafe's

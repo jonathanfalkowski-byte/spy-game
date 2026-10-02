@@ -76,7 +76,7 @@ it('enters Return to Sender from an Outside Chapter 16; Chapter 16 no longer say
 
 it('Rafe in the room: the post named, the flawed page owned, the courier on the record, the slip lands, Rafe asks for the name, he signs; it authenticates', () => {
   const bearing = c17(sixteenRoom(), 'begin-outside');
-  const prov = walk(bearing, ['o17-card-name', 'o17-open-room']);
+  const prov = walk(bearing, ['o17-card-name', 'o17-hands-ledger', 'o17-open-room']);
   expect(ch17(prov)).toContain('Your ledger goes down first');
   expect(ch17(prov)).toContain('A man who stole from his employer');
   expect(ids(prov)).toEqual(['o17-press-signed', 'o17-press-flaw', 'o17-press-cost']);
@@ -86,10 +86,11 @@ it('Rafe in the room: the post named, the flawed page owned, the courier on the 
   expect(ch17(postman)).toContain('Rafe Lim. Ten years of Tuesdays');
   expect(ids(postman)).toEqual(['o17-postman-vouch', 'o17-postman-stand', 'o17-postman-use']);
   const terms = c17(postman, 'o17-postman-use');
+  expect(ids(terms)).toEqual(['o17-recess-corridor', 'o17-recess-wall', 'o17-recess-table']);
   expect(terms.choices['act4.rafe-beat']).toBe('use');
   expect(ch17(terms)).toContain('no longer, for the first time in ten years, a man who can disappear');
-  expect(ch17(terms)).toContain('Let me buy it, darling.');
-  const sat = c17(terms, 'o17-offer-draw');
+  expect(ch17(c17(terms, 'o17-recess-table'))).toContain('Let me buy it, darling.');
+  const sat = walk(terms, ['o17-recess-wall', 'o17-offer-draw']);
   expect([sat.choices['act4.offer'], sat.choices['act4.held-landed']]).toEqual(['draw', 'slip']);
   expect(ch17(sat)).toContain('ROTTERDAM. COURIER. R. L. SATURDAY. NON-REFUSABLE. AUTH. C.');
   // he had already seen it (shown in the archive): he looks at Celeste, and she is the one who has to look away
@@ -97,8 +98,9 @@ it('Rafe in the room: the post named, the flawed page owned, the courier on the 
   // Nell, told not shown, as canon, plus the Rotterdam Saturday
   expect(ch17(sat)).toContain('She walked the harbour wall in the dark with that leg, and the driver watched her fall, and didn’t stop.');
   expect(ch17(sat)).toContain('And I sent the post to Rotterdam that morning, Mr Lim');
-  expect(ids(sat)).toEqual(['o17-named-ask', 'o17-named-rafe', 'o17-named-wait']);
-  const verdict = c17(sat, 'o17-named-rafe');
+  expect(ids(sat)).toEqual(['o17-hear-look', 'o17-hear-rafe', 'o17-hear-down']);
+  expect(ids(c17(sat, 'o17-hear-look'))).toEqual(['o17-named-ask', 'o17-named-rafe', 'o17-named-wait']);
+  const verdict = walk(sat, ['o17-hear-rafe', 'o17-named-rafe']);
   expect([verdict.choices['act4.named'], verdict.choices['act4.nell-said'], verdict.choices['act4.rafe-heard']]).toEqual(['rafe', 'eleanor', 'room']);
   expect(ch17(verdict)).toContain('Say her name, Mrs Laurent.');
   expect(ids(verdict)).toEqual(['o17-minute-rafe', 'o17-minute-sign', 'o17-minute-leave']);
@@ -121,18 +123,18 @@ it('Rafe in the room: the post named, the flawed page owned, the courier on the 
 it('Rafe at the river door: the post named, nothing held, the offer refused, he hears it later; no Rafe in the room', () => {
   const bearing = c17(sixteenDoor(), 'begin-outside');
   expect(ch17(bearing)).not.toContain('Do sit, Mr Lim.');
-  const prov = walk(bearing, ['o17-card-pocket', 'o17-open-silent']);
+  const prov = walk(bearing, ['o17-card-pocket', 'o17-hands-pencil', 'o17-open-silent']);
   expect(ch17(prov)).toContain('The Jakarta order goes down first');
   const postman = c17(prov, 'o17-press-signed');
   expect(ch17(postman)).toContain('Behind the black glass');
   expect(ids(postman)).toEqual(['o17-postman-vouch', 'o17-postman-stand', 'o17-postman-use']);
   const terms = c17(postman, 'o17-postman-stand');
-  const sat = c17(terms, 'o17-offer-refuse');
+  const sat = walk(terms, ['o17-recess-table', 'o17-offer-refuse']);
   expect(sat.choices['act4.held-landed']).toBe('none');
   expect(ch17(sat)).toContain('I’m still here.');
-  expect(ids(sat)).toEqual(['o17-named-ask', 'o17-named-wait']);
+  expect(ids(c17(sat, 'o17-hear-down'))).toEqual(['o17-named-ask', 'o17-named-wait']);
   expect(ch17(sat)).toContain('a man is waiting for a phone to ring');
-  const verdict = c17(sat, 'o17-named-wait');
+  const verdict = walk(sat, ['o17-hear-down', 'o17-named-wait']);
   expect(verdict.choices['act4.rafe-heard']).toBeUndefined();
   expect(ids(verdict)).toEqual(['o17-minute-sign', 'o17-minute-leave']);
   const done = walk(verdict, ['o17-minute-sign', 'o17-verdict-on', 'o17-last-yes']);
@@ -147,17 +149,48 @@ it('Rafe cut, alone, in plain clothes: no Rafe anywhere; a thin case closes rank
   const bearing = c17(s, 'begin-outside');
   expect(ch17(bearing)).toContain('Flat shoes. A plain coat. Whom are we being this evening?');
   expect(ch17(bearing)).not.toContain('Mr Lim');
-  const prov = walk(bearing, ['o17-card-leave', 'o17-open-celeste']);
-  const sat = walk(prov, ['o17-press-cost', 'o17-postman-vouch', 'o17-offer-laugh']);
-  expect(ids(sat)).toEqual(['o17-named-ask', 'o17-named-wait']);
-  const done = walk(sat, ['o17-named-ask', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-no']);
+  const prov = walk(bearing, ['o17-card-leave', 'o17-hands-still', 'o17-open-celeste']);
+  const sat = walk(prov, ['o17-press-cost', 'o17-postman-vouch', 'o17-recess-table', 'o17-offer-laugh']);
+  expect(ids(c17(sat, 'o17-hear-down'))).toEqual(['o17-named-ask', 'o17-named-wait']);
+  const done = walk(sat, ['o17-hear-down', 'o17-named-ask', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-no']);
   expect(done.choices['act4.board']).toBeTruthy();
   expect(ch17(done)).toContain('Then I did one thing right.');
   expect(replay(done.ledger, 19)).toEqual(done);
   // thin case, nobody in the room, nothing owned, nothing drawn out: the board closes ranks
   const thin = withFlags(s, { 'act4.case': 'thin', 'act4.inside': '' });
-  const closed = walk(thin, ['begin-outside', 'o17-card-leave', 'o17-open-celeste', 'o17-press-cost', 'o17-postman-stand', 'o17-offer-refuse', 'o17-named-wait', 'o17-minute-leave', 'o17-verdict-on']);
+  const closed = walk(thin, ['begin-outside', 'o17-card-leave', 'o17-hands-still', 'o17-open-celeste', 'o17-press-cost', 'o17-postman-stand', 'o17-recess-table', 'o17-offer-refuse', 'o17-hear-down', 'o17-named-wait', 'o17-minute-leave', 'o17-verdict-on']);
   expect([closed.choices['act4.board'], closed.choices['act4.terms']]).toEqual(['closed', 'none']);
   expect(ch17(closed)).toContain('The board closes ranks.');
   expect(ch17(closed)).toContain('the switch armed');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const bearing = walk(c17(sixteenRoom(), 'begin-outside'), ['o17-card-pocket']);
+  expect(ids(bearing)).toEqual(['o17-hands-ledger', 'o17-hands-pencil', 'o17-hands-still']);
+  expect(ch17(c17(bearing, 'o17-hands-pencil'))).toContain('a small stub with a chewed end');
+  const run = (hands: string, recess: string, hear: string) => {
+    const prov = walk(bearing, [hands, 'o17-open-room']);
+    const terms = walk(prov, ['o17-press-flaw', 'o17-postman-use']);
+    expect(ids(terms)).toEqual(['o17-recess-corridor', 'o17-recess-wall', 'o17-recess-table']);
+    const sat = walk(terms, [recess, 'o17-offer-draw']);
+    expect(ids(sat)).toEqual(['o17-hear-look', 'o17-hear-rafe', 'o17-hear-down']);
+    return walk(sat, [hear, 'o17-named-rafe', 'o17-minute-rafe', 'o17-verdict-on', 'o17-last-orchid']);
+  };
+  const a = run('o17-hands-ledger', 'o17-recess-corridor', 'o17-hear-look');
+  const b = run('o17-hands-pencil', 'o17-recess-wall', 'o17-hear-rafe');
+  const c = run('o17-hands-still', 'o17-recess-table', 'o17-hear-down');
+  for (const k of ['act4.press', 'act4.rafe-beat', 'act4.offer', 'act4.held-landed', 'act4.named', 'act4.nell-said', 'act4.rafe-heard', 'act4.board', 'act4.terms', 'act4.last']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch17(a)).toContain('not touching, the two of you in the glass');
+  expect(ch17(b)).toContain('I’d rather be found.');
+  expect(ch17(c)).toContain('the shape of a name that has not been said yet');
+  expect(ch17(a)).not.toMatch(SEXUAL);
+  expect(a.phase).toBe('complete');
+  // no Rafe at the wall when he is at the door: no recess-wall option, and the look goes to the river
+  const door = walk(c17(sixteenDoor(), 'begin-outside'), ['o17-card-pocket', 'o17-hands-still', 'o17-open-silent', 'o17-press-signed', 'o17-postman-stand']);
+  expect(ids(door)).toEqual(['o17-recess-corridor', 'o17-recess-table']);
+  const sat = walk(door, ['o17-recess-table', 'o17-offer-refuse']);
+  expect(ch17(c17(sat, 'o17-hear-rafe'))).toContain('the river in the black glass');
 });

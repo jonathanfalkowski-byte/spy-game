@@ -16,7 +16,13 @@
  * who is in the room, the offer drawn out and the provenance owned, and the aim becomes terms. One minute alone: "Did you
  * ever like being her?" Nothing sexual on screen; Rafe never makes her Nell; the offer is refusable at no cost. Entered from
  * an Outside `chapter16.complete`; ends at a Chapter 18 in-development stop, having written the shared act4.* keys for
- * Ch17. Choice ids carry `o17-`. */
+ * Ch17. Choice ids carry `o17-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. Her hands at the foot of the
+ * table, before she opens (c17.o-hands = ledger | pencil | still: a palm on the closed ledger; a pencil held ready to
+ * initial; or hands folded and still). The five-minute recess, before Celeste's offer (c17.o-recess = corridor | wall |
+ * table: Celeste follows her to the black window, attention and nothing touched; Rafe at the wall, if he is in the room; or
+ * neither moves). The look after the Saturday has been said, before the name (c17.o-hear = look | rafe | down: at Celeste; at
+ * Rafe, or at the river in the glass if he is not there; or at the table). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 
@@ -100,8 +106,22 @@ function placeCardChoices(): C17Choice[] {
   ];
 }
 
+function handsChoices(): C17Choice[] {
+  const k = (id: 'ledger' | 'pencil' | 'still', label: string, hint: string, body: Block[]) =>
+    offer('o17-hands-' + id, label, hint, 'bearing', (x) => {
+      setKey(x, 'c17.o-hands', id);
+      return body;
+    });
+  return [
+    k('ledger', 'Rest a palm on the ledger', 'Closed. Flat. Yours.', [p('You put the ledger on the walnut in front of you, closed, and rest your palm flat on the cover, the way a woman keeps a hand on a Bible she does not believe in and would not like to see moved. It is warm from your pocket. It is the only warm thing at the table.')]),
+    k('pencil', 'Take out the pencil', 'Ready to initial.', [p('You take the pencil out of your hair, and hold it between two fingers over the cover of the ledger, ready, the way you held it over a column on the first night, and the room notices it, a small stub with a chewed end, among all that silver and walnut, and nobody quite knows what it is for.')]),
+    k('still', 'Fold your hands and keep them still', 'In your lap. Nothing to show.', [p('You fold your hands in your lap and keep them still. A woman who is afraid of what her hands will do puts them on the table. A woman who is not afraid keeps them where nobody can read them. You have worked out which you are, and it is neither, and you keep them still anyway.')]),
+  ];
+}
+
 function bearingChoices(s: GameState): C17Choice[] {
   if (!key(s, 'c17.o-card')) return placeCardChoices();
+  if (!key(s, 'c17.o-hands')) return handsChoices();
   const o = (id: 'room' | 'celeste' | 'silent', label: string, hint: string, body: Block[]) =>
     offer('o17-open-' + id, label, hint, 'provenance', (x) => {
       setKey(x, 'act4.open', id);
@@ -228,13 +248,43 @@ const heldLands: Record<string, (s: GameState) => Block[]> = {
 function termsBlocks(): Block[] {
   return [
     p('Deverell takes his glasses off and says, to nobody, that the board will take five minutes. Chairs go back. The three men with no names go out together to the corridor to make telephone calls they will not describe to their wives.'),
+    p('Five minutes is a long time in a room built to hold silences.'),
+  ];
+}
+
+function offerBlocks(): Block[] {
+  return [
     p('The board comes back in. Celeste waits for the room to be quiet. Then she makes her last move, and it is the best she has ever made: not a threat. There is nothing left to threaten with. A purchase.'),
     q('Celeste Laurent', 'Let me buy it, darling. All of it: the file, the order, the slip, the cards. Your name struck out of every catalogue, in writing. A sum you may name. And the man at the wall kept safe, for as long as he lives, by the very people who sent him to Rotterdam. Nobody reads a word. Nobody needs to. You would never have to sign anything again.'),
     t('Everything I came for, bought, with a bow on it, and a clause I should be very careful to read twice. It is the best offer anyone has ever made me. That is exactly why it is the worst.'),
   ];
 }
 
+function recessChoices(s: GameState): C17Choice[] {
+  const k = (id: 'corridor' | 'wall' | 'table', label: string, hint: string, body: Block[]) =>
+    offer('o17-recess-' + id, label, hint, 'terms', (x) => {
+      setKey(x, 'c17.o-recess', id);
+      return [...body, ...offerBlocks()];
+    });
+  return [
+    k('corridor', 'Go out to the corridor', 'She will follow. She always did.', [
+      p('You go out into the corridor, to the tall black window at the end of it, and she follows, as you knew she would, and stands beside you, a hand’s width away, not touching, the two of you in the glass like one woman and her reflection a generation apart.'),
+      q('Celeste Laurent', 'A ledger. Initials. You’ve become a bookkeeper, darling. I did warn them you might.'),
+      p('She looks at you then, your mouth, your throat, the pulse there, the long appraising look she has given a hundred girls on a hundred first evenings, and you let her, and give it back, and it is the most intimate thing that has ever passed between you, and neither of you moves an inch.'),
+    ]),
+    ...(inRoom(s)
+      ? [k('wall', 'Go to Rafe at the wall', 'Say nothing. Stand beside him.', [
+          p('You go to the wall, to the man with the hat, and stand beside him under the empty frame, a pace apart, facing the room, as if the two of you were guarding it. He does not look at you. He speaks to the middle distance, low, in the flat clear voice of a man reading a delivery note.'),
+          q('Rafe', 'Whatever she offers, don’t take it for me. I’d rather be found.'),
+          p('He does not say anything else. It is not advice. It is only the thing he wanted you to have heard.'),
+        ])]
+      : []),
+    k('table', 'Stay at the table', 'Neither of you gets up.', [p('You stay where you are. So does Celeste. For five minutes the two of you are the only people in the long room, not speaking, the water jug between you, while the empty frames look down and the river goes by in the black glass. She pours herself a glass of water, and then, after a moment, one for you, and slides it the length of the table, and you let it stand there untouched until the board comes back.')]),
+  ];
+}
+
 function termsChoices(s: GameState): C17Choice[] {
+  if (!key(s, 'c17.o-recess')) return recessChoices(s);
   const g = (id: 'refuse' | 'draw' | 'laugh', label: string, hint: string, body: Block[]) =>
     offer('o17-offer-' + id, label, hint, 'saturday', (x) => {
       setKey(x, 'act4.offer', id);
@@ -267,7 +317,21 @@ function saturdayBlocks(s: GameState): Block[] {
   ];
 }
 
+function hearChoices(s: GameState): C17Choice[] {
+  const k = (id: 'look' | 'rafe' | 'down', label: string, hint: string, body: Block[]) =>
+    offer('o17-hear-' + id, label, hint, 'saturday', (x) => {
+      setKey(x, 'c17.o-hear', id);
+      return body;
+    });
+  return [
+    k('look', 'Look at Celeste', 'Steadily. Until she looks back.', [p('You look at Celeste, steadily, and do not look away, and for a moment she does not either: two women who have each looked at the other for a long time without ever once being seen. Then she lowers her eyes, first, to her own folded hands, and you understand that you have just won something that you do not want.')]),
+    k('rafe', inRoom(s) ? 'Look at Rafe' : 'Look at the river in the glass', inRoom(s) ? 'He is by the wall. His face.' : 'Black, and a long way down.', [inRoom(s) ? p('You look at the man by the wall. You do not mean to. His face has not changed, exactly, and it is the most changed face you have ever seen: the face of a man who has been told, in a room full of strangers, the one thing he has crossed a world for, and who does not yet know where to put it. He looks back. It is not a look that asks you for anything.') : p('You look at the river in the black glass instead, a long way down, the lamps going by on the water, and somewhere out there a man in a courier’s jacket by a van with its back doors open, who cannot hear a word of this. You hold the thought of him there, the way you would hold a hand.')]),
+    k('down', 'Look down at the table', 'At the walnut. At your own hands.', [p('You look down at the walnut, at the grain of the wood, at your own hands on the cover of the ledger, and let the room be as large as it needs to be. Nobody at the table speaks. The silence has a shape, and it is the shape of a name that has not been said yet.')]),
+  ];
+}
+
 function saturdayChoices(s: GameState): C17Choice[] {
+  if (!key(s, 'c17.o-hear')) return hearChoices(s);
   const sc = caseScore(s);
   const n = (id: 'ask' | 'nora' | 'rafe' | 'wait', label: string, hint: string, said: 'eleanor' | 'evie' | 'no', body: Block[]) =>
     offer('o17-named-' + id, label, hint, 'verdict', (x) => {

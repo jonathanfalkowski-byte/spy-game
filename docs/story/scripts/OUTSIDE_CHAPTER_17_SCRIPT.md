@@ -24,6 +24,10 @@ Design: [../OUTSIDE_CHAPTER_17_RETURN_TO_SENDER_DESIGN.md](../OUTSIDE_CHAPTER_17
 **Board (`board17o`):** case strength (thin 0 … overwhelming 3) + a witness in the room (Marsh, Maya, Rafe, Nora or Iris) + the offer
 drawn out + provenance owned (flaw, or signed with ≥ 3 checked pages). 3+ resigned/full; 1–2 diminished/partial; 0 closed/none.
 
+**Deepening (2026-10-02):** `o17-hands-ledger / -pencil / -still` (bearing, before she opens), `o17-recess-corridor / -wall / -table` (terms, before the offer, which is
+now shown after the pick; `-wall` only if Rafe is in the room), `o17-hear-look / -rafe / -down` (saturday, before the name). Facts `c17.o-hands`, `c17.o-recess`, `c17.o-hear`;
+no `act4.*` key changes.
+
 **Safety:** nothing sexual; Nell's death is told by Celeste in two sentences and never shown; Rafe never makes her Nell; the offer costs
 nothing to refuse; Meridian stands.
 

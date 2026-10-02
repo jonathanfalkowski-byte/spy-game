@@ -50,11 +50,11 @@ const sixteenDoor = () =>
 const sixteenCut = () =>
   ['begin-outside', 'o16-dawn-quiet', 'o16-trust-sign', 'o16-case-set', 'o16-aim-cut', 'o16-hand-girl', 'o16-inside-none', 'o16-outside-switch', 'o16-reply-pin', 'o16-first-ledger', 'o16-held-nell', 'o16-wear-plain', 'o16-dressed-alone', 'o16-leave-take', 'o16-last-tide', 'o16-arrive-car'].reduce(c16, fifteenCut());
 const seventeenRoom = () =>
-  ['begin-outside', 'o17-card-name', 'o17-open-room', 'o17-press-flaw', 'o17-postman-use', 'o17-offer-draw', 'o17-named-rafe', 'o17-minute-rafe', 'o17-verdict-on', 'o17-last-orchid'].reduce(c17, sixteenRoom());
+  ['begin-outside', 'o17-card-name', 'o17-hands-pencil', 'o17-open-room', 'o17-press-flaw', 'o17-postman-use', 'o17-recess-table', 'o17-offer-draw', 'o17-hear-down', 'o17-named-rafe', 'o17-minute-rafe', 'o17-verdict-on', 'o17-last-orchid'].reduce(c17, sixteenRoom());
 const seventeenDoor = () =>
-  ['begin-outside', 'o17-card-pocket', 'o17-open-silent', 'o17-press-signed', 'o17-postman-stand', 'o17-offer-refuse', 'o17-named-wait', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-yes'].reduce(c17, sixteenDoor());
+  ['begin-outside', 'o17-card-pocket', 'o17-hands-pencil', 'o17-open-silent', 'o17-press-signed', 'o17-postman-stand', 'o17-recess-table', 'o17-offer-refuse', 'o17-hear-down', 'o17-named-wait', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-yes'].reduce(c17, sixteenDoor());
 const seventeenCut = () =>
-  ['begin-outside', 'o17-card-leave', 'o17-open-celeste', 'o17-press-cost', 'o17-postman-vouch', 'o17-offer-laugh', 'o17-named-ask', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-no'].reduce(c17, sixteenCut());
+  ['begin-outside', 'o17-card-leave', 'o17-hands-pencil', 'o17-open-celeste', 'o17-press-cost', 'o17-postman-vouch', 'o17-recess-table', 'o17-offer-laugh', 'o17-hear-down', 'o17-named-ask', 'o17-minute-sign', 'o17-verdict-on', 'o17-last-no'].reduce(c17, sixteenCut());
 
 it('enters Proof of Delivery from an Outside Chapter 17; Chapter 17 no longer says Chapter 18 is in development', () => {
   const s = seventeenRoom();
