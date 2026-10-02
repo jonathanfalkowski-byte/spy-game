@@ -23,6 +23,9 @@ eight decisions as recommended). Route: [../OUTSIDE_ROUTE_DESIGN.md](../OUTSIDE_
 | **dusk** | 19:00, a room nobody watches; no green light. | **o7-evening-{julian,sebastian}** (from before; the consent flow → `-no-sex` / `-sex` / `o7-leave`, then `o7-stop` / `o7-stay`; fades) · **o7-evening-maya** (`c6.maya = restored`; "You can't hide from a woman in compliance by disappearing.") · **o7-evening-alone** (the window, the river side) | `c7.o-evening*`; fact `c7.o-evening-consent` |
 | **complete** | The wall over the table: THE SENDER. / WHO IS HOLDING THE PAGE? plus a corner line by the price (I OWE HIM ONE / I SAID NO AND HE STAYED) and, if `no people` was chosen, HE TRADED A PERSON ONCE. | — | — |
 
+**Deepening (2026-10-02):** `o7-hand-compare / -keep / -burn` (room, before the gift), `o7-voice-record / -listen / -pauses` (rules, before the first
+rule), `o7-phone-drawer / -sill / -pocket` (dusk, before the evening). Facts `c7.o-hand`, `c7.o-voice`, `c7.o-phone`; nothing reads them as flags.
+
 **Tests:** `tests/state/outside-ch7.test.ts`, on real Chapter 6 saves routed onto the Outside lane: the entry; the rules
 (three of five, his matching rule) with the ORACLE page verified and a fact paid; the lie surcharge, the board page, a
 debt owed, and a chosen night that fades; the thin page for the doubter, refused at no cost. A fifth authenticates on

@@ -160,6 +160,21 @@ I sent the page anyway. The difference is I'll be watching what you do with this
 
 ---
 
+## 5a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c7.o-…`) |
+|---|---|---|
+| **The hand** | before she decides what the gift is (`room`) | **o7-hand-compare** (every block hand she knows; the R in EXPENSES has a long straight leg and a small careful bowl) · **-keep** (the envelope pinned to the wall) · **-burn** |
+| **The voice** | before she writes her rules (`rules`) | **o7-voice-record** (the call taken down in shorthand) · **-listen** (a ferry horn and a washing machine behind the voice) · **-pauses** (eleven half-beats before her name in six minutes; he never says the other name) |
+| **The cheap phone** | before the evening (`dusk`) | **o7-phone-drawer / -sill / -pocket** (it rings at twenty to three whichever she picks) |
+
+The hand's R and the washing machine are quiet plants for the reveal of Rafe (Ch8, Ch14) and the launderette (Ch13); nothing reads them as flags.
+Because the moments are required steps, the two Outside goldens (`rev19-chapter7-golden.json` `outside-placeholder`, `rev19-chapter9-golden.json`
+`outside-placeholder-all`) were recaptured with the same decisions plus the three neutral picks, and `rev20-golden-ledgers.json` was regenerated;
+`rev19-golden-ledgers.json` (Ch1–5) is unchanged.
+
 ## 6. Art impact
 
 Reuses the old ferry terminal and the embankment (Celebrity Ch7). New: the room above the shut-down shop (her base

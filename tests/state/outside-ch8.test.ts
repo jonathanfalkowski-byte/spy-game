@@ -33,13 +33,13 @@ function ontoOutside(s: GameState) {
 /** A real exposed-ORACLE save routed onto Outside, through Chapter 7 with the given rules. */
 function ch7Outside(rules: string[], extra: Record<string, string> = {}) {
   const at = ontoOutside(walk(settle6(walk(toProof({ verified: true, flags: { 'c5.message-sloane': 'yes', ...extra } }), ['proof-open', 'proof-view'])), ['verify-compare', 'celeste-let-be', 'oracle-take', 'counterpower-decide', 'resolve-trade-expose']));
-  return walk7(at, ['o7-flit-nothing', 'o7-room-room', ...rules, 'o7-page-verify', 'o7-price-refuse', 'o7-evening-alone']);
+  return walk7(at, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', ...rules, 'o7-page-verify', 'o7-price-refuse', 'o7-phone-drawer', 'o7-evening-alone']);
 }
 
 /** A real golden save (maximal-trade) routed onto Outside, through Chapter 7 with the given rules. Replayable. */
 function ch7OutsideGolden(rules: string[]) {
   const at = ontoOutside(complete6('maximal-trade'));
-  return walk7(at, ['o7-flit-nothing', 'o7-room-room', ...rules, 'o7-page-verify', 'o7-price-refuse', 'o7-evening-alone']);
+  return walk7(at, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', ...rules, 'o7-page-verify', 'o7-price-refuse', 'o7-phone-drawer', 'o7-evening-alone']);
 }
 
 const ids = (s: GameState) => chapter8Choices(s).map((c) => c.id.replace(/^chapter8\./, ''));

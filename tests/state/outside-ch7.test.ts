@@ -62,12 +62,13 @@ it('enters The Sender from the confirm beat: the watched flat, the ferry-termina
   expect(text(room)).toContain('YOU WATCHED THE WRONG PERSON. — 7A');
   expect(room.phase).toBe('room');
   expect(text(room)).toContain('paid up front, in cash, by a man he never met');
-  expect(ids(room)).toEqual(['o7-room-kindness', 'o7-room-hook', 'o7-room-room']);
+  expect(ids(room)).toEqual(['o7-hand-compare', 'o7-hand-keep', 'o7-hand-burn']);
+  expect(ids(once7(room, 'o7-hand-keep'))).toEqual(['o7-room-kindness', 'o7-room-hook', 'o7-room-room']);
 });
 
 it('the rules of trade, three of five, with his reply and one rule of his own; the ORACLE page, verified; a fact paid', () => {
   const s = exposeSave();
-  const rules = walk7(s, ['o7-flit-nothing', 'o7-room-hook']);
+  const rules = walk7(s, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-hook', 'o7-voice-record']);
   expect(rules.phase).toBe('rules');
   expect(text(rules)).toContain('pauses before your name');
   expect(ids(rules)).toEqual(['o7-rule-verify', 'o7-rule-provenance', 'o7-rule-source', 'o7-rule-people', 'o7-rule-door']);
@@ -92,7 +93,7 @@ it('the rules of trade, three of five, with his reply and one rule of his own; t
   expect(dusk.choices['out.price1']).toBe('fact');
   expect(dusk.choices['out.gave-fact']).toBe('yes');
   expect(dusk.phase).toBe('dusk');
-  const done = walk7(dusk, ['o7-evening-alone']);
+  const done = walk7(dusk, ['o7-phone-drawer', 'o7-evening-alone']);
   expect(done.phase).toBe('complete');
   expect(text(done)).toContain('THE SENDER.');
   expect(text(done)).toContain('WHO IS HOLDING THE PAGE?');
@@ -103,7 +104,7 @@ it('the rules of trade, three of five, with his reply and one rule of his own; t
 it('authenticates on a real golden save routed onto Outside (maximal-trade)', () => {
   const s = onto(complete6('maximal-trade'));
   expect([s.phase, s.choices['route.lane']]).toEqual(['flit', 'outside']);
-  const done = walk7(s, ['o7-flit-note', 'o7-room-room', 'o7-rule-verify', 'o7-rule-source', 'o7-rule-door', 'o7-page-verify', 'o7-price-answer', 'o7-evening-alone']);
+  const done = walk7(s, ['o7-flit-note', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', 'o7-rule-verify', 'o7-rule-source', 'o7-rule-door', 'o7-page-verify', 'o7-price-answer', 'o7-phone-drawer', 'o7-evening-alone']);
   expect(done.phase).toBe('complete');
   expect(text(done)).toContain('THE SENDER.');
   expect(text(done)).not.toMatch(SEXUAL);
@@ -114,7 +115,7 @@ it('authenticates on a real golden save routed onto Outside (maximal-trade)', ()
 it('the lie surcharge, the board page, a debt owed, and a chosen night that fades', () => {
   const s = exposeSave({ 'c3.misdirect-rook': 'yes' });
   // give-route flags would change the page; here oracle was taken, so the page is ORACLE; use the give save for the board page instead
-  const rules = walk7(giveSave(), ['o7-flit-tape', 'o7-room-room', 'o7-rule-source', 'o7-rule-provenance', 'o7-rule-verify']);
+  const rules = walk7(giveSave(), ['o7-flit-tape', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', 'o7-rule-source', 'o7-rule-provenance', 'o7-rule-verify']);
   expect(rules.phase).toBe('page');
   expect(text(rules)).toContain('signed on the Project Eve board');
   expect(rules.choices['out.rules']).toBe('source,provenance,verify');
@@ -125,13 +126,14 @@ it('the lie surcharge, the board page, a debt owed, and a chosen night that fade
   expect(dusk.choices['out.alliance.rook']).toBe('owed');
 
   // the lie surcharge shows on the misdirect save's price beat
-  const liar = walk7(s, ['o7-flit-nothing', 'o7-room-room', 'o7-rule-verify', 'o7-rule-door', 'o7-rule-source', 'o7-page-verify']);
+  const liar = walk7(s, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', 'o7-rule-verify', 'o7-rule-door', 'o7-rule-source', 'o7-page-verify']);
   expect(text(liar)).toContain('you lied to me once');
 
   // a chosen night, if a partner from before is on offer
-  if (ids(dusk).some((x) => x === 'o7-evening-julian' || x === 'o7-evening-sebastian')) {
-    const pt = ids(dusk).includes('o7-evening-julian') ? 'julian' : 'sebastian';
-    const room = walk7(dusk, ['o7-evening-' + pt, 'o7-' + pt + '-sex', 'o7-stay']);
+  const duskP = once7(dusk, 'o7-phone-sill');
+  if (ids(duskP).some((x) => x === 'o7-evening-julian' || x === 'o7-evening-sebastian')) {
+    const pt = ids(duskP).includes('o7-evening-julian') ? 'julian' : 'sebastian';
+    const room = walk7(duskP, ['o7-evening-' + pt, 'o7-' + pt + '-sex', 'o7-stay']);
     expect(room.facts).toContain('c7.o-evening-consent');
     expect(text(room)).toContain('The scene fades.');
     expect(room.choices['c7.o-evening-outcome']).toBe('intimate-sex');
@@ -141,7 +143,7 @@ it('the lie surcharge, the board page, a debt owed, and a chosen night that fade
 
 it('the thin page for the doubter, refused at no cost; the skeptic still reaches the card', () => {
   const low = withFlags(giveSave(), { 'c6.rook-proof': 'untested', 'c6.oracle-seen': undefined });
-  const page = walk7(low, ['o7-flit-nothing', 'o7-room-hook', 'o7-rule-verify', 'o7-rule-provenance', 'o7-rule-door']);
+  const page = walk7(low, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-hook', 'o7-voice-record', 'o7-rule-verify', 'o7-rule-provenance', 'o7-rule-door']);
   expect(text(page)).toContain('a true thing that looks like nothing');
   expect(page.choices['out.page1'] === undefined).toBe(true);
   const price = once7(page, 'o7-page-aside');
@@ -149,7 +151,27 @@ it('the thin page for the doubter, refused at no cost; the skeptic still reaches
   const dusk = once7(price, 'o7-price-refuse');
   expect(dusk.choices['out.refused-price']).toBe('yes');
   expect(text(dusk)).toContain('Leave by the river side');
-  const done = walk7(dusk, ['o7-evening-alone']);
+  const done = walk7(dusk, ['o7-phone-drawer', 'o7-evening-alone']);
   expect(text(done)).toContain('I SAID NO AND HE STAYED.');
   expect(text(done)).toContain('WHO IS HOLDING THE PAGE?');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const s = exposeSave();
+  const hand = walk7(s, ['o7-flit-nothing']);
+  expect(ids(hand)).toEqual(['o7-hand-compare', 'o7-hand-keep', 'o7-hand-burn']);
+  expect(text(once7(hand, 'o7-hand-compare'))).toContain('the R in EXPENSES has a long straight leg');
+  expect(text(once7(hand, 'o7-hand-burn'))).toContain('burn the envelope in the sink');
+  const voice = walk7(hand, ['o7-hand-keep', 'o7-room-room']);
+  expect(ids(voice)).toEqual(['o7-voice-record', 'o7-voice-listen', 'o7-voice-pauses']);
+  expect(text(once7(voice, 'o7-voice-listen'))).toContain('a washing machine');
+  expect(text(once7(voice, 'o7-voice-pauses'))).toContain('Eleven of them in six minutes');
+  // the same rules, the same page, the same price whichever moments are picked
+  const route = (m: string[], ph: string) => walk7(s, ['o7-flit-nothing', m[0], 'o7-room-room', m[1], 'o7-rule-verify', 'o7-rule-source', 'o7-rule-door', 'o7-page-verify', 'o7-price-fact', ph, 'o7-evening-alone']);
+  const a = route(['o7-hand-keep', 'o7-voice-record'], 'o7-phone-drawer');
+  const b = route(['o7-hand-burn', 'o7-voice-listen'], 'o7-phone-pocket');
+  for (const k of ['out.rules', 'out.page1', 'out.price1', 'out.gave-fact', 'route.lane']) expect(a.choices[k]).toEqual(b.choices[k]);
+  const dusk = walk7(s, ['o7-flit-nothing', 'o7-hand-keep', 'o7-room-room', 'o7-voice-record', 'o7-rule-verify', 'o7-rule-source', 'o7-rule-door', 'o7-page-verify', 'o7-price-fact']);
+  expect(ids(dusk)).toEqual(['o7-phone-drawer', 'o7-phone-sill', 'o7-phone-pocket']);
+  expect(text(once7(dusk, 'o7-phone-sill'))).toContain('It will ring at twenty to three.');
 });

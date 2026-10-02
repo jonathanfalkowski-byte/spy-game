@@ -12,7 +12,13 @@
  * debt — refusable, and refusing costs only the page); a chosen evening (a partner from before at his place with the
  * consent flow, Maya who tracked her down, or alone at the window); the first card, WHO IS HOLDING THE PAGE? The sender
  * stays a voice this chapter (no face, no name until Ch8); he never makes her Nell; his price is always information; the
- * skeptic is never punished (OUTSIDE_ROUTE_DESIGN §2). Keys live under `out.*` and `c7.o-*`; choice ids carry `o7-`. */
+ * skeptic is never punished (OUTSIDE_ROUTE_DESIGN §2). Keys live under `out.*` and `c7.o-*`; choice ids carry `o7-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The hand on the EXPENSES
+ * envelope, before she decides what the gift is (c7.o-hand = compare | keep | burn: held against every block hand she
+ * knows, and the leg of the R; kept as it is; or burned). The voice, before she writes her rules (c7.o-voice = record |
+ * listen | pauses: the call taken down on the cheap phone; the room behind the voice, a ferry horn and a washing machine;
+ * or the half-beat before her name, counted). The cheap phone's place for the night, before the evening (c7.o-phone =
+ * drawer | sill | pocket: it will ring at 02:40 whichever she picks). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block } from './schema';
 import { get5 } from './chapter5-model';
@@ -78,7 +84,24 @@ function roomBlocks(): Block[] {
   ];
 }
 
-function roomChoices(): C7Choice[] {
+function handChoices(): C7Choice[] {
+  const h = (id: 'compare' | 'keep' | 'burn', label: string, hint: string, body: Block[]) =>
+    offer7('o7-hand-' + id, label, hint, 'room', (x) => {
+      set7(x, 'o-hand', id);
+      return body;
+    });
+  return [
+    h('compare', 'Hold it against every hand you know', 'Block capitals, one by one.', [
+      p('You lay the envelope on the table under the window and go through every block hand you have ever been given: the capitals on Adrian’s old desk labels, the neat capitals of a duty officer’s log, the initial on the ledger leaf. None of them is a match, and the R in EXPENSES has a long straight leg and a small, very careful bowl, which is the only thing about it that is not anonymous.'),
+      t('Somebody who has written a great many addresses. Somebody who does not like to be misread.'),
+    ]),
+    h('keep', 'Keep it as it is', 'Money in the drawer, envelope on the wall.', [p('You take the notes out and put them in the drawer, and pin the empty envelope to the wall above the table with the word EXPENSES facing out. It is the first thing on the wall. It will do until there is something better.')]),
+    h('burn', 'Burn the envelope', 'Keep the notes. Lose the handwriting.', [p('You count the notes into the drawer and burn the envelope in the sink with the kettle’s match, block capitals and all, because a hand is a thing a person can be found by, and you would rather not be a woman who keeps somebody’s handwriting in a drawer.')]),
+  ];
+}
+
+function roomChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'o-hand')) return handChoices();
   const r = (id: 'kindness' | 'hook' | 'room', label: string, hint: string, body: Block[]) =>
     offer7('o7-room-' + id, label, hint, 'rules', (x) => {
       set7(x, 'o-gift', id);
@@ -125,7 +148,21 @@ function rulesBlocks(): Block[] {
   ];
 }
 
+function voiceChoices(): C7Choice[] {
+  const v = (id: 'record' | 'listen' | 'pauses', label: string, hint: string, body: Block[]) =>
+    offer7('o7-voice-' + id, label, hint, 'rules', (x) => {
+      set7(x, 'o-voice', id);
+      return body;
+    });
+  return [
+    v('record', 'Take the call down', 'Every word, on the cheap phone’s one memo.', [p('You hold the cheap phone to your ear with one hand and with the other write every word he says on the back of the EXPENSES notes, in shorthand, the way you were taught to minute a meeting you did not trust. When he stops, you have two pages and a headache.')]),
+    v('listen', 'Listen to the room behind him', 'What is under a disguised voice.', [p('You stop listening to what he says and listen to what is behind it. The voice is shaved down to nothing, but the room is not: a ferry’s horn, a long way off, twice. And something rhythmic and domestic under it that you take, after a moment, to be a washing machine.'), t('A man with a washing machine and a view of a ferry. That is nearly everybody. It is also, for the moment, all I have.')]),
+    v('pauses', 'Count the pauses', 'The half-beat before your name.', [p('You count the pauses. He leaves a half-beat before every one of your names, Evelynn, and before no other word: a half-beat, like a man crossing a floor he has learned in the dark. Eleven of them in six minutes. You note the number, and the places, and that he never once says the other name.')]),
+  ];
+}
+
 function rulesChoices(s: GameState): C7Choice[] {
+  if (!get7(s, 'o-voice')) return voiceChoices();
   const chosen = (c(s, 'out.rules') ?? '').split(',').filter(Boolean);
   const n = chosen.length;
   if (n < 3) {
@@ -259,8 +296,22 @@ function duskBlocks(): Block[] {
   return [p('Seven o’clock, and the river going grey, then black, then the lights of the far bank coming on one at a time. A room nobody is watching. No green light. For the first time in a year, the evening is entirely yours, and you have to decide, out of practice, what to do with a thing that is yours.')];
 }
 
+function phoneChoices(): C7Choice[] {
+  const f = (id: 'drawer' | 'sill' | 'pocket', label: string, hint: string, body: Block[]) =>
+    offer7('o7-phone-' + id, label, hint, 'dusk', (x) => {
+      set7(x, 'o-phone', id);
+      return [...body, p('It will ring at twenty to three. You know that without being told. It is what he does.')];
+    });
+  return [
+    f('drawer', 'Put it in the drawer', 'Shut. Out of the room.', [p('You put the cheap phone in the table drawer, with the notes, and shut it, and the room is quieter by exactly one small object. It is not far enough away. Nothing in a room this size is.')]),
+    f('sill', 'Put it on the sill', 'Face up, over the water.', [p('You stand the phone on the window sill, face up, against the glass, where you can see it from the bed, and the lights of the far bank come up behind it one at a time like something it is looking at.')]),
+    f('pocket', 'Keep it on you', 'In your coat, wherever you go.', [p('You put it in the inside pocket of your coat, the one that was Adrian’s, and decide, with some irritation, that you will carry it wherever you go tonight, because a thing you cannot see is a thing you cannot be surprised by.')]),
+  ];
+}
+
 function duskChoices(s: GameState): C7Choice[] {
   const open = get7(s, 'o-evening-open');
+  if (!get7(s, 'o-phone') && !open) return phoneChoices();
   const done = (id: string, label: string, hint: string, body: Block[]) =>
     offer7('o7-evening-' + id, label, hint, 'complete', (x) => {
       set7(x, 'o-evening', id);
@@ -351,7 +402,7 @@ export function outsideBlocks7(s: GameState): Block[] {
 
 export function outsideChoices7(s: GameState): C7Choice[] {
   if (s.phase === 'flit') return flitChoices();
-  if (s.phase === 'room') return roomChoices();
+  if (s.phase === 'room') return roomChoices(s);
   if (s.phase === 'rules') return rulesChoices(s);
   if (s.phase === 'page') return pageChoices(s);
   if (s.phase === 'price') return priceChoices(s);
