@@ -13,7 +13,13 @@
  * page of three rules of trade, answering Ch7's, margins in Rafe's hand or her own (end.rules); a chosen night (heat 3,
  * consent in character, fades) or a quiet one (end.later). The two cards, WHO IS HOLDING THE PAGE? and THE SOURCE.; the last
  * line. `proof` is the terminal phase: nothing is offered after it. Sloane is never a romance; Rafe never makes her Nell; a
- * night is chosen and stoppable. Entered from an Outside `chapter17.complete`. Choice ids carry `o18-`. */
+ * night is chosen and stoppable. Entered from an Outside `chapter17.complete`. Choice ids carry `o18-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The board's minute in the post,
+ * before the switch (c18.o-minute = pin | drawer | ledger: pinned under THE SENDER; put away; or filed at the back of the
+ * ledger under M., with the docket). Her own name said aloud, before she writes it on the docket (c18.o-say = aloud |
+ * mirror | none). The last page of the exercise book, a year later, before the catalogue (c18.o-last = signed | blank |
+ * shelf: her own initials in the CHECKED BY column against the last entry; the column left empty on purpose; or the book
+ * closed and put on the shelf). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -158,7 +164,28 @@ function deliveryBlocks(s: GameState): Block[] {
   return [p('That month.'), ...positionLines(s), ...SLOANE_END[sloaneEnd18(s)]];
 }
 
+function minuteChoices(s: GameState): C18Choice[] {
+  const signed = key(s, 'c17.o-minute');
+  const foot =
+    signed === 'rafe'
+      ? 'At the foot, in a clear upright hand, R. LIM, COURIER, the first time that name has been on a paper from that house.'
+      : signed === 'sign'
+        ? 'At the foot, in your own hand, your name as a witness, and beside it, initialled by a woman who reads everything, a small, upright M. S.'
+        : 'At the foot, the board’s signatures, one after another down the page, each of them a person who read what they signed, for once.';
+  const k = (id: 'pin' | 'drawer' | 'ledger', label: string, hint: string, body: Block[]) =>
+    offer('o18-minute-' + id, label, hint, 'delivery', (x) => {
+      setKey(x, 'c18.o-minute', id);
+      return [p('In the post, a copy of the board’s minute, one page, typed. ' + foot), ...body];
+    });
+  return [
+    k('pin', 'Pin it under THE SENDER', 'On the wall. Beside the first card.', [p('You pin it to the wall under the first card of this road, THE SENDER, so that a page nobody could ever have sent hangs beneath the card that began it. It is the only paper on the wall that somebody sent you because you asked.')]),
+    k('drawer', 'Put it in the drawer', 'With the notes.', [p('You fold it once and put it in the table drawer, with the old EXPENSES notes and the rest of what a woman keeps who has learned to keep things. It is only paper. It is the best paper you own, and you do not need to look at it to know what it says.')]),
+    k('ledger', 'File it at the back of the ledger', 'Under M. In date order.', [p('You file it at the back of the ledger, under M., in date order, behind the last page, and rule a column beside it, out of habit, headed CHECKED BY, and write nothing in it. Some pages do not need checking. That is the last thing the ledger teaches you.')]),
+  ];
+}
+
 function deliveryChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.o-minute')) return minuteChoices(s);
   const h = holders(s);
   const sw = (id: 'armed' | 'handed' | 'disarmed', label: string, hint: string, body: Block[]) =>
     offer('o18-switch-' + id, label, hint, 'consignee', (x) => {
@@ -255,7 +282,21 @@ function docketBlocks(): Block[] {
   ];
 }
 
-function docketChoices(): C18Choice[] {
+function sayChoices(): C18Choice[] {
+  const k = (id: 'aloud' | 'mirror' | 'none', label: string, hint: string, body: Block[]) =>
+    offer('o18-say-' + id, label, hint, 'docket', (x) => {
+      setKey(x, 'c18.o-say', id);
+      return body;
+    });
+  return [
+    k('aloud', 'Say it to the empty room', 'Once. Before you write it.', [p('You say your name to the empty room, once, aloud, before you write it, the way you once learned to say a name before you trusted it. It does not echo. The room is small, and the walls are close, and it is all the better for it: a name does not need a hall.')]),
+    k('mirror', 'Say it to the mirror', 'The one you have not used.', [p('You say it to the mirror you have not used since you moved in, the small one by the door, in the grey of the morning, and the woman in it says it back, a half-beat after you, the way a person does who has been practising the sound in the dark.')]),
+    k('none', 'Write it without saying it', 'Some names are for the page.', [p('You do not say it. You pick up the pencil and put it to the paper, and let the hand say what the mouth has not decided to. There are names that are for saying, and names that are for signing, and you suspect that this is the second kind.')]),
+  ];
+}
+
+function docketChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.o-say')) return sayChoices();
   const n = (id: 'adrian' | 'evelyn' | 'new', label: string, hint: string, body: Block[]) =>
     offer('o18-name-' + id, label, hint, 'receipt', (x) => {
       setKey(x, 'end.name', id);
@@ -317,7 +358,21 @@ function catalogueChoices(): C18Choice[] {
   ];
 }
 
+function lastPageChoices(): C18Choice[] {
+  const k = (id: 'signed' | 'blank' | 'shelf', label: string, hint: string, body: Block[]) =>
+    offer('o18-last-' + id, label, hint, 'receipt', (x) => {
+      setKey(x, 'c18.o-last', id);
+      return body;
+    });
+  return [
+    k('signed', 'Initial the last entry', 'E.V., in the column.', [p('You open the exercise book to the last page, the last line in it, and in the right-hand column headed CHECKED BY, which has stood empty beside the first page for two years, you write, firmly, in pencil, two initials: E.V. It is the first entry in the whole book that you checked by being there for it.')]),
+    k('blank', 'Leave the column empty, on purpose', 'Some things are not for a column.', [p('You open the book to the last page and look at the column on the right, headed CHECKED BY, and leave it empty. Not because nobody checked. Because this is the one entry whose truth does not depend on a second pair of eyes, and it seems a pity to pretend that it does.')]),
+    k('shelf', 'Close it and put it on the shelf', 'Spine out. A plain exercise book.', [p('You close the exercise book, with its ruled column and its red pencil under F, and put it on the shelf above the table, spine out, between a telephone directory and a tide table, where it looks like any other schoolchild’s book. Nobody would ever look twice. That is the point of a good ledger.')]),
+  ];
+}
+
 function receiptChoices(s: GameState): C18Choice[] {
+  if (!key(s, 'c18.o-last')) return lastPageChoices();
   if (!key(s, 'end.catalogue')) return catalogueChoices();
   const taken = rulesTaken(s);
   const r = key(s, 'end.rafe');
@@ -422,7 +477,7 @@ export function outsideChoices18(s: GameState): C18Choice[] {
   if (s.phase === 'dispatch') return dispatchChoices(s);
   if (s.phase === 'delivery') return deliveryChoices(s);
   if (s.phase === 'consignee') return consigneeChoices(s);
-  if (s.phase === 'docket') return docketChoices();
+  if (s.phase === 'docket') return docketChoices(s);
   if (s.phase === 'receipt') return receiptChoices(s);
   return [];
 }

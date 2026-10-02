@@ -75,6 +75,18 @@ Written: `end.morning` (papers | rafe | sleep), `end.switch` (+ `end.switch-to`)
 8. **Build shape:** entered from an Outside `chapter17.complete`; goldens on the real Outside golden played through Ch10–17; Ch17's stop
    line steps aside when Ch18 is built; the Outside road ends at `proof`.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no `end.*` key changes):
+
+| Moment | Where | Choices (`c18.o-…`) |
+|---|---|---|
+| **The minute in the post** | before the switch (`delivery`) | **o18-minute-pin** (under THE SENDER; the foot reads R. LIM, COURIER if he signed, her own name and M. S.'s initials if she did, or the board's signatures) · **-drawer** · **-ledger** (filed under M., with an empty CHECKED BY column) |
+| **Her name aloud** | before she writes it on the docket (`docket`) | **o18-say-aloud** (to the empty room: "a name does not need a hall") · **-mirror** (it says it back a half-beat after) · **-none** (names for signing) |
+| **The last page** | a year later, before the catalogue (`receipt`) | **o18-last-signed** (E.V. in the CHECKED BY column against the last entry) · **-blank** (the column left empty on purpose) · **-shelf** (the book closed, spine out, between a telephone directory and a tide table) |
+
+The last page closes the exercise book that began in Ch8. No golden recapture is needed. With this pass every Outside chapter (7, 8, 10–18) has had deepening pass 1.
+
 ## 5. Art impact
 
 Reuses the room over the water, the wardrobe/wall (shared set). New: the front page with a column headed CHECKED BY; Rafe on the iron

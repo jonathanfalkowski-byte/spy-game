@@ -70,7 +70,7 @@ it('enters Proof of Delivery from an Outside Chapter 17; Chapter 17 no longer sa
 
 it('Rafe stays, a chosen night with him that fades, the whole spine on one real save; it authenticates and ends at the terminal card', () => {
   const dispatch = c18(seventeenRoom(), 'begin-outside');
-  const delivery = c18(dispatch, 'o18-morning-rafe');
+  const delivery = walk(dispatch, ['o18-morning-rafe', 'o18-minute-pin']);
   expect(delivery.choices['end.morning']).toBe('rafe');
   expect(ch18(delivery)).toContain('with your signature on every page');
   expect(ch18(delivery)).toContain('ACKNOWLEDGED. V.S.');
@@ -87,8 +87,9 @@ it('Rafe stays, a chosen night with him that fades, the whole spine on one real 
   expect(ids(stays)).toContain('o18-home-rafe');
   const docket = c18(stays, 'o18-home-rafe');
   expect(docket.choices['end.with']).toBe('rafe');
-  expect(ids(docket)).toEqual(['o18-name-adrian', 'o18-name-evelyn', 'o18-name-new']);
-  const receipt = walk(docket, ['o18-name-evelyn', 'o18-catalogue-look']);
+  expect(ids(docket)).toEqual(['o18-say-aloud', 'o18-say-mirror', 'o18-say-none']);
+  expect(ids(c18(docket, 'o18-say-aloud'))).toEqual(['o18-name-adrian', 'o18-name-evelyn', 'o18-name-new']);
+  const receipt = walk(docket, ['o18-say-aloud', 'o18-name-evelyn', 'o18-last-signed', 'o18-catalogue-look']);
   expect(ch18(receipt)).toContain('There is no page seven.');
   expect(ch18(receipt)).toContain('A man with no crate');
   expect(ids(receipt)).toEqual(expect.arrayContaining(['o18-rule-verify', 'o18-rule-sign', 'o18-rule-door']));
@@ -115,7 +116,7 @@ it('Rafe stays, a chosen night with him that fades, the whole spine on one real 
 });
 
 it('stopping a chosen night is honoured at once', () => {
-  const s = walk(c18(seventeenRoom(), 'begin-outside'), ['o18-morning-papers', 'o18-switch-armed', 'o18-rafe-stay', 'o18-home-rafe', 'o18-name-new', 'o18-catalogue-sealed', 'o18-rule-people', 'o18-rule-name', 'o18-rule-source', 'o18-later-invite', 'o18-later-no-sex']);
+  const s = walk(c18(seventeenRoom(), 'begin-outside'), ['o18-morning-papers', 'o18-minute-pin', 'o18-switch-armed', 'o18-rafe-stay', 'o18-home-rafe', 'o18-say-aloud', 'o18-name-new', 'o18-last-signed', 'o18-catalogue-sealed', 'o18-rule-people', 'o18-rule-name', 'o18-rule-source', 'o18-later-invite', 'o18-later-no-sex']);
   const done = walk(s, ['o18-later-stop']);
   expect(done.phase).toBe('proof');
   expect(ch18(done)).toContain('he stops at once');
@@ -126,13 +127,13 @@ it('Rafe goes home with Nell’s file: no partner; he rings at 02:40 once a mont
   const s = seventeenDoor();
   const dispatch = c18(s, 'begin-outside');
   expect(ch18(dispatch)).toContain('Is it done? Tell me properly.');
-  const consignee = walk(dispatch, ['o18-morning-rafe', 'o18-switch-armed']);
+  const consignee = walk(dispatch, ['o18-morning-rafe', 'o18-minute-pin', 'o18-switch-armed']);
   const home = c18(consignee, 'o18-rafe-home');
   expect(home.choices['end.rafe']).toBe('home');
   expect(ch18(home)).toContain('I’ll ring at 02:40. Once a month.');
   expect(ids(home)).not.toContain('o18-home-rafe');
   const docket = c18(home, 'o18-home-none');
-  const receipt = walk(docket, ['o18-name-adrian', 'o18-catalogue-burn']);
+  const receipt = walk(docket, ['o18-say-aloud', 'o18-name-adrian', 'o18-last-signed', 'o18-catalogue-burn']);
   expect(ch18(receipt)).toContain('a postcard from Singapore');
   const done = walk(receipt, ['o18-rule-verify', 'o18-rule-sign', 'o18-rule-source', 'o18-later-own']);
   expect(ch18(done)).toContain('RAFE LIM. HOME.');
@@ -145,13 +146,13 @@ it('Rafe cut: one last page, blank; no Rafe in her life; the margins are her own
   const s = seventeenCut();
   const dispatch = c18(s, 'begin-outside');
   expect(ids(dispatch)).toEqual(['o18-morning-papers', 'o18-morning-sleep']);
-  const consignee = walk(dispatch, ['o18-morning-sleep', 'o18-switch-disarmed']);
+  const consignee = walk(dispatch, ['o18-morning-sleep', 'o18-minute-pin', 'o18-switch-disarmed']);
   expect(ch18(consignee)).toContain('It is blank.');
   expect(ids(consignee)).toEqual(['o18-blank-keep', 'o18-blank-post', 'o18-blank-burn']);
   const blank = c18(consignee, 'o18-blank-post');
   expect([blank.choices['end.rafe'], blank.choices['c18.o-blank']]).toEqual(['blank', 'post']);
   expect(ids(blank)).not.toContain('o18-home-rafe');
-  const receipt = walk(blank, ['o18-home-none', 'o18-name-adrian', 'o18-catalogue-sealed', 'o18-rule-verify', 'o18-rule-sign', 'o18-rule-door']);
+  const receipt = walk(blank, ['o18-home-none', 'o18-say-aloud', 'o18-name-adrian', 'o18-last-signed', 'o18-catalogue-sealed', 'o18-rule-verify', 'o18-rule-sign', 'o18-rule-door']);
   expect(ch18(receipt)).toContain('Countersigned. E.V.');
   expect(ch18(receipt)).toContain('Signed. I checked.');
   const done = c18(receipt, 'o18-later-own');
@@ -159,4 +160,32 @@ it('Rafe cut: one last page, blank; no Rafe in her life; the margins are her own
   expect(ch18(done)).toContain('PROOF OF DELIVERY.');
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(chapter18Choices(done)).toEqual([]);
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const dispatch = c18(seventeenRoom(), 'begin-outside');
+  const delivery = c18(dispatch, 'o18-morning-papers');
+  expect(ids(delivery)).toEqual(['o18-minute-pin', 'o18-minute-drawer', 'o18-minute-ledger']);
+  expect(ch18(c18(delivery, 'o18-minute-pin'))).toContain('R. LIM, COURIER');
+  const run = (minute: string, say: string, last: string) => {
+    const consignee = walk(delivery, [minute, 'o18-switch-armed']);
+    const docket = walk(consignee, ['o18-rafe-stay', 'o18-home-rafe']);
+    expect(ids(docket)).toEqual(['o18-say-aloud', 'o18-say-mirror', 'o18-say-none']);
+    const receipt = walk(docket, [say, 'o18-name-evelyn']);
+    expect(ids(receipt)).toEqual(['o18-last-signed', 'o18-last-blank', 'o18-last-shelf']);
+    return walk(receipt, [last, 'o18-catalogue-sealed', 'o18-rule-verify', 'o18-rule-sign', 'o18-rule-door', 'o18-later-quiet']);
+  };
+  const a = run('o18-minute-pin', 'o18-say-aloud', 'o18-last-signed');
+  const b = run('o18-minute-drawer', 'o18-say-mirror', 'o18-last-blank');
+  const c = run('o18-minute-ledger', 'o18-say-none', 'o18-last-shelf');
+  for (const k of ['end.switch', 'end.position', 'end.sloane', 'end.rafe', 'end.with', 'end.name', 'end.catalogue', 'end.rules', 'end.later']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch18(a)).toContain('You say your name to the empty room');
+  expect(ch18(b)).toContain('the woman in it says it back');
+  expect(ch18(c)).toContain('names that are for signing');
+  expect(ch18(a)).toContain('E.V. It is the first entry');
+  expect(a.phase).toBe('proof');
+  expect(replay(a.ledger, 19)).toEqual(a);
 });

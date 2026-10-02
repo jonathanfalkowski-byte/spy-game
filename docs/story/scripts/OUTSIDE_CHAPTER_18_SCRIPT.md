@@ -19,6 +19,9 @@ Design: [../OUTSIDE_CHAPTER_18_PROOF_OF_DELIVERY_DESIGN.md](../OUTSIDE_CHAPTER_1
 | **receipt** | A year later; Rafe's Tuesday knock or Singapore postcard; Meridian's catalogue; three rules of trade; a chosen night or a quiet one. | **o18-catalogue-look / -burn / -sealed**; **o18-rule-verify / -sign / -source / -people / -door / -name** (three); **o18-later-invite / -quiet** → **-no-sex / -sex / -goodnight** → **-stop / -close**; or **-maya / -own** | `end.catalogue`, `end.rules`, `end.later`, `end.later-open`, `end.consent`, fact `c18.o-evening-consent` |
 | **proof** | The last wall: WHO IS HOLDING THE PAGE? / I AM.; THE SOURCE. / (by Rafe's end); PROOF OF DELIVERY.; the last line by name. | — | — |
 
+**Deepening (2026-10-02):** `o18-minute-pin / -drawer / -ledger` (delivery, before the switch), `o18-say-aloud / -mirror / -none` (docket, before the name),
+`o18-last-signed / -blank / -shelf` (receipt, before the catalogue). Facts `c18.o-minute`, `c18.o-say`, `c18.o-last`; no `end.*` key changes.
+
 **Safety:** nothing sexual unless chosen, heat 3 at most, consent in character, and it fades; "stop" is honoured at once; Rafe never makes her
 Nell; Sloane is never a romance; nothing new is told about Nell's death; no ending is capture or topples Meridian.
 
