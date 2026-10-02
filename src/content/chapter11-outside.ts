@@ -12,7 +12,12 @@
  * order on the stairs: a page in her own hand for the sender (pass it unread / read it first / burn it; the refusal cost falls
  * on the source, never on her body). The 02:40 call after (everything / the face only / nothing yet). A chosen night (a
  * partner from before with the consent flow; Maya; alone). Neither the sender's name nor Nell's is given. Entered from an
- * Outside `chapter10.complete`; hands on to the Ch14 bridge. Keys `out.*`, `c11.o-*`; ids carry `o11-`. */
+ * Outside `chapter10.complete`; hands on to the Ch14 bridge. Keys `out.*`, `c11.o-*`; ids carry `o11-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The clients talking over her
+ * head, before Iris (c11.o-clients = listen | look | speak: six faces filed; the thirty empty frames; or "I can hear you").
+ * Her own page, before the first Evelyn's (c11.o-own = read | trace | close: read aloud under her breath; a fingertip on
+ * UNCLAIMED; the book closed on it). The night written up before dawn (c11.o-write = seen | proved | tomorrow: the face
+ * entered SEEN, NOT CHECKED in the exercise book's column; only what she could prove; or a blank page for tomorrow). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -123,7 +128,21 @@ function lobbyBlocks(s: GameState): Block[] {
   ];
 }
 
-function lobbyChoices(): C11Choice[] {
+function clientsChoices(): C11Choice[] {
+  const k = (id: 'listen' | 'look' | 'speak', label: string, hint: string, body: Block[]) =>
+    offer('o11-clients-' + id, label, hint, 'lobby', (x) => {
+      set11(x, 'o-clients', id);
+      return body;
+    });
+  return [
+    k('listen', 'Listen to who is talking', 'Not the words. The faces.', [p('You listen, not to the words but to who says them: the man with the cufflinks who says “availability” as if it were a currency, the woman in pearls who calls you “it” with great charm, the silver-haired one who has not yet looked at you and is therefore the most dangerous. You file six faces in the part of the mind you used to keep for briefings.')]),
+    k('look', 'Look at the empty frames', 'Thirty of them. Lit as if they held something.', [p('You look at the frames on the walls instead, thirty of them, each lit by its own small lamp, each empty, each exactly the size of a woman. You count them twice and get thirty both times. Somebody has taken a great deal of trouble to light an absence.')]),
+    k('speak', 'Say “I can hear you”', 'Pleasantly. To nobody.', [p('“I can hear you,” you say, pleasantly, to nobody in particular, and the conversation stops for precisely as long as it takes a woman in pearls to put her glass down, and then resumes, a little more quietly, a little more carefully, like a room that has just found out the furniture can listen.')]),
+  ];
+}
+
+function lobbyChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'o-clients')) return clientsChoices();
   const i = (id: 'warned' | 'open' | 'quiet', label: string, hint: string, body: Block[]) =>
     offer('o11-iris-' + id, label, hint, 'shelf', (x) => {
       set11(x, 'o-iris', id);
@@ -153,7 +172,21 @@ function shelfBlocks(s: GameState): Block[] {
   ];
 }
 
+function ownChoices(): C11Choice[] {
+  const k = (id: 'read' | 'trace' | 'close', label: string, hint: string, body: Block[]) =>
+    offer('o11-own-' + id, label, hint, 'shelf', (x) => {
+      set11(x, 'o-own', id);
+      return [...body, p('Then you turn one leaf back, to the woman behind yours.')];
+    });
+  return [
+    k('read', 'Read your own page aloud', 'Under your breath. Once.', [p('You read your own page aloud, under your breath, once, to hear how it sounds. It sounds like an advertisement for somebody else.')]),
+    k('trace', 'Put a finger on UNCLAIMED', 'To see whether it hurts.', [p('You put one fingertip on the word UNCLAIMED, the way you would press a bruise to find out how deep it goes. It does not hurt. That is the worst of it.')]),
+    k('close', 'Close the book on it', 'Flat hand on the grey cloth. Not yet.', [p('You close the book on your own page, and keep your palm flat on the grey cloth for as long as it takes to be sure of your hand. Not yet. Not tonight. It will be here, on the first Thursday, whether you look at it or not.')]),
+  ];
+}
+
 function shelfChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'o-own')) return ownChoices();
   const ph = (id: 'photo' | 'heart' | 'turned', label: string, hint: string, body: Block[]) =>
     offer('o11-page-' + id, label, hint, 'stairs', (x) => {
       set11(x, 'o-page', id);
@@ -252,7 +285,21 @@ function riverChoices(s: GameState): C11Choice[] {
 
 // ── The dawn: the night ──
 
+function writeChoices(): C11Choice[] {
+  const k = (id: 'seen' | 'proved' | 'tomorrow', label: string, hint: string, body: Block[]) =>
+    offer('o11-write-' + id, label, hint, 'dawn', (x) => {
+      set11(x, 'o-write', id);
+      return body;
+    });
+  return [
+    k('seen', 'Write it all up, marked SEEN', 'The face, in the column. Not checked.', [p('You write up the night in the exercise book, the long room, the clients, the book on its lectern, and against the face, in the right-hand column, you write SEEN, and then, after a long time, NOT CHECKED. It is the most honest thing in the book, and the only entry you wish were not true.')]),
+    k('proved', 'Write only what you could prove', 'The book exists. Your page is the third.', [p('You write only what you could stand up and prove: that the book exists, that it is grey cloth on a lectern, that your page is the third and Iris’s says ENDING. Nothing about the face. It goes in no column. Some things are not entries.')]),
+    k('tomorrow', 'Leave a blank page for tomorrow', 'The date, and nothing else.', [p('You open the exercise book to a fresh page, and write the date at the top, and leave the rest blank. Tonight is still too close to be a fact. In the morning it will be one, and you will be able to rule a column down it.')]),
+  ];
+}
+
 function dawnChoices(s: GameState): C11Choice[] {
+  if (!get11(s, 'o-write')) return writeChoices();
   const open = get11(s, 'o-night-open');
   const done = (id: string, label: string, hint: string, body: Block[]) =>
     offer('o11-night-' + id, label, hint, 'complete', (x) => {
@@ -352,7 +399,7 @@ export function outsideBlocks11(s: GameState): Block[] {
 
 export function outsideChoices11(s: GameState): C11Choice[] {
   if (s.phase === 'layout') return layoutChoices();
-  if (s.phase === 'lobby') return lobbyChoices();
+  if (s.phase === 'lobby') return lobbyChoices(s);
   if (s.phase === 'shelf') return shelfChoices(s);
   if (s.phase === 'stairs') return stairsChoices();
   if (s.phase === 'river') return riverChoices(s);

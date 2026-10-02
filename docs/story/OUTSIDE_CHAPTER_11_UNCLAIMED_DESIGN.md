@@ -86,6 +86,18 @@ turned), `out.slip11` (passed / read / burned), `out.told11`, `c11.o-*`; facts `
    reckoning gains callbacks to the face and the page; goldens (photograph + pass + all; heart + read + all; refuse + turn
    + burn + nothing) and a real-save authentication test.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c11.o-…`) |
+|---|---|---|
+| **The clients talking over her head** | before Iris (`lobby`) | **o11-clients-listen** (six faces filed) · **-look** (the thirty empty frames) · **-speak** ("I can hear you") |
+| **Her own page** | before the first Evelyn's (`shelf`) | **o11-own-read** · **-trace** (a fingertip on UNCLAIMED) · **-close** (the book closed on it) |
+| **The night written up** | before the night (`dawn`) | **o11-write-seen** (the face entered SEEN, NOT CHECKED in the exercise book's column) · **-proved** (only what she could prove) · **-tomorrow** (a blank page) |
+
+The write-up continues the Ch8 exercise book and its CHECKED BY column, the origin of the Ch16 ledger. No golden recapture is needed.
+
 ## 5. Art impact
 
 Reuses the Vesper's long room, reading room and landing (Celebrity Ch11) and the room over the water. New inserts: the first

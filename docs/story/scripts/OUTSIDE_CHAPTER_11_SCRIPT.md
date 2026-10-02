@@ -28,6 +28,9 @@ Shared spine: [../CHAPTER_11_THE_ASSET_DESIGN.md](../CHAPTER_11_THE_ASSET_DESIGN
 **Rules honoured:** the page is not sexual; the refusal cost falls on the source; the skeptic is never punished; no cause of
 death, no name for Nell or the sender.
 
+**Deepening (2026-10-02):** `o11-clients-listen / -look / -speak` (lobby, before Iris), `o11-own-read / -trace / -close` (shelf, before the first
+Evelyn's page), `o11-write-seen / -proved / -tomorrow` (dawn, before the night). Facts `c11.o-clients`, `c11.o-own`, `c11.o-write`; nothing reads them as flags.
+
 **Tests:** `tests/state/outside-ch11.test.ts`, on the real Outside Chapter 9 golden played through Chapter 10: the entry (and
 the Ch14 bridge stepping aside); photograph + pass + all, which authenticates (replay + decode) and hands on to Chapter 14
 with Rafe's callbacks; heart + read + the ferry line; refuse + turn + burn + nothing, and a chosen night that fades. Also
