@@ -27,6 +27,10 @@ after he has told her who Nell was to him and she has not cut him; his price is 
 punished (cut is a full position); **how Nell died is not told here** (Act IV, Ch17), and a test asserts it; Sloane is a
 target or a trade, never a romance; nothing is sexual coercion.
 
+**Deepening (2026-10-02):** `o14-gap-hand / -light / -ledger` (seam, before the summons), `o14-name-say / -write / -keep` (reckoning, before the three ways),
+`o14-cup-tea / -window / -none` (verdict, before Sloane). Facts `c14.o-gap`, `c14.o-name`, `c14.o-cup`; nothing reads them as flags. The gap and the name read, as
+colour only, `c7.o-hand` and `c8.o-walk` from the earlier deepening passes.
+
 **Tests:** `tests/state/outside-ch14.test.ts`, on the real Outside Chapter 9 golden: the entry through the bridge (and the
 absence of an Outside Ch15 offer); caught + press the lie + spare Sloane + trust him + a chosen night that fades, which
 authenticates (replay + decode); told first with the file banked: stop-and-verify, burn useful, cut him, alone; a file

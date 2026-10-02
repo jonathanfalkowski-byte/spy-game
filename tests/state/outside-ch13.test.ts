@@ -100,7 +100,7 @@ it('comply: nothing behind the door, the fade cuts to the corridor, the recovery
   expect(decodeSave(encodeSave(done))).toEqual(done);
   // Chapter 14 follows directly, and Rafe remembers the Thursday
   expect(ids14(done)).toEqual(['begin-outside']);
-  const reck = ['begin-outside', 'o14-seam-summon'].reduce(c14, done);
+  const reck = ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say'].reduce(c14, done);
   const t14 = reck.history.filter((h) => String(h.node).startsWith('chapter14.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
   expect(t14).toContain('I read you the shipping forecast and I did not ask.');
 });
@@ -117,7 +117,7 @@ it('refuse: Meridian finds his lodging, never her body; no Marsh ally; the wall 
   expect(ch13(done)).toContain('REFUSED. THEY FOUND HIS LODGING.');
   expect(done.choices['act3.ally.marsh']).toBeUndefined();
   expect(story13(done)).not.toMatch(SEXUAL);
-  const reck = ['begin-outside', 'o14-seam-summon'].reduce(c14, done);
+  const reck = ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say'].reduce(c14, done);
   const t14 = reck.history.filter((h) => String(h.node).startsWith('chapter14.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
   expect(t14).toContain('I have never been so glad of a launderette.');
 });

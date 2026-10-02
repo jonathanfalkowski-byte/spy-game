@@ -11,7 +11,14 @@
  * burn, or only spare if she left it; act3.sloane = burned | traded | spared). What Rafe is (keep, bounded, with the Jakarta
  * original held | cut, verify and walk | trust, once, with open eyes: out.way14). A chosen night (Rafe only if heard and not
  * cut; a partner from before; Maya; alone), the consent flow, fading at the act; he never makes her Nell. Sloane is a target
- * or a trade, never a romance; nothing here is sexual coercion. Keys under `out.*`, `act3.*`, `c14.*`; ids carry `o14-`. */
+ * or a trade, never a romance; nothing here is sexual coercion. Keys under `out.*`, `act3.*`, `c14.*`; ids carry `o14-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The gap in the Jakarta copy,
+ * before she summons him (c14.o-gap = hand | light | ledger: the R from the EXPENSES envelope laid against the scraped place,
+ * or recalled if she burned it; the page held to the lamp, the blade marks; or SEAM written in the exercise book against the
+ * very first page, whose CHECKED BY has been blank all year). His name, before the reckoning's three ways (c14.o-name = say |
+ * write | keep: "Rafe" said aloud, with no half-beat before it; RAFE LIM written on the wall under R.; or left unsaid, kept).
+ * The cup, before Sloane (c14.o-cup = tea | window | none: two cups, his held and not drunk; the window opened an inch; or
+ * nothing at all, the two of them at the table with the lamp). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -91,7 +98,25 @@ function seamBlocks(s: GameState): Block[] {
   ];
 }
 
+function gapChoices(): C14Choice[] {
+  const k = (id: 'hand' | 'light' | 'ledger', label: string, hint: string, body: (x: GameState) => Block[]) =>
+    offer('o14-gap-' + id, label, hint, 'seam', (x) => {
+      set14(x, 'o-gap', id);
+      return body(x);
+    });
+  return [
+    k('hand', 'Set the scraped place against a letter you know', 'The R from the EXPENSES envelope.', (x) => [
+      x.choices['c7.o-hand'] === 'burn'
+        ? p('You reach for the EXPENSES envelope, and remember, with a small cold clarity, that you burned it in the sink in the first week. You draw the R from memory instead, on the back of the copy: the long straight leg, the small careful bowl. You hold it against the scraped place, a width of one capital, and the shape the blade took away is the shape you drew.')
+        : p('You take the EXPENSES envelope from the wall and lay it beside the copy, and look at the R, the long straight leg and the small careful bowl, and then at the scraped place, a width of one capital. The shape the blade took away is the shape on the envelope. You had known it for months. It is different on paper.'),
+    ]),
+    k('light', 'Hold the copy to the lamp', 'Where the paper is too smooth.', () => [p('You hold the copy up to the lamp and tilt it until the light runs along the surface, and there it is: a faint raised scatter of paper-fibre where the blade went, and the small, bright, breathed-on patch beside it, the shape of a capital that has been taken off a page by someone who did not want to be read and could not quite bear to be gone.')]),
+    k('ledger', 'Write SEAM in the exercise book', 'Against the very first page. In the column.', () => [p('You open the exercise book to the first page of the first week, the Jakarta copy, and in the right-hand column, headed CHECKED BY, which has stood empty beside it for a year, you write at last, in pencil: SEAM. Then you look at it. It is the first entry in that column that is a finding and not a hope.')]),
+  ];
+}
+
 function seamChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'o-gap')) return gapChoices();
   return [
     offer('o14-seam-summon', catches(s) ? 'Summon him' : 'Tell him to come here', 'Your room. Your hour. Not the terminal.', 'reckoning', (x) => {
       setKey(x, 'out.seam', catches(x) ? 'caught' : 'told');
@@ -130,7 +155,25 @@ function reckoningBlocks(s: GameState): Block[] {
   ];
 }
 
-function reckoningChoices(): C14Choice[] {
+function nameChoices(): C14Choice[] {
+  const k = (id: 'say' | 'write' | 'keep', label: string, hint: string, body: (x: GameState) => Block[]) =>
+    offer('o14-name-' + id, label, hint, 'reckoning', (x) => {
+      set14(x, 'o-name', id);
+      return body(x);
+    });
+  return [
+    k('say', 'Say it aloud, once', 'Rafe. Without the half-beat.', (x) => [
+      q('You', 'Rafe.'),
+      p('You say it plainly, and there is no pause before it, none at all, no half-beat of a woman crossing a floor in the dark. It comes out as easily as a word you have said every day. He hears that, and something in his face that has been braced for a year lets go by about an inch.'),
+      ...(x.choices['c8.o-walk'] === 'watch' ? [p('You do not say that you once watched him sit among the dryers in a launderette on the far bank, for an hour, with nothing to deliver. That is yours to keep.')] : []),
+    ]),
+    k('write', 'Write it on the wall', 'RAFE LIM. Under the card that says R.', () => [p('You get up, without a word, and take the pencil, and write on the wall under the card that says R., in capitals, RAFE LIM, the first name on that wall that is not a code. He watches you write it. He does not say anything. It is the only form of witness either of you has ever really trusted.')]),
+    k('keep', 'Leave it unsaid, for now', 'Keep it. A name is a thing they take you apart with.', () => [p('You do not say it. You do not write it. You let it sit in the room between you like something set down on a table that neither of you has decided yet whether to pick up, and he sees that, and nods, once, as if you had told him something true: that you intend to be careful with it.')]),
+  ];
+}
+
+function reckoningChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'o-name')) return nameChoices();
   const r = (id: 'finish' | 'press' | 'verify', label: string, hint: string, body: Block[]) =>
     offer('o14-reck-' + id, label, hint, 'verdict', (x) => {
       set14(x, 'o-reck', id);
@@ -233,7 +276,21 @@ function verdictBlocks(s: GameState): Block[] {
   ];
 }
 
+function cupChoices(): C14Choice[] {
+  const k = (id: 'tea' | 'window' | 'none', label: string, hint: string, body: Block[]) =>
+    offer('o14-cup-' + id, label, hint, 'verdict', (x) => {
+      set14(x, 'o-cup', id);
+      return body;
+    });
+  return [
+    k('tea', 'Put the kettle on', 'Two cups. His, in both hands.', [p('You put the kettle on, because it is four in the morning and there is a man at your table, and you make two cups of tea and put one in front of him, and he holds it in both hands the way he holds a crate, and does not drink it, and looks at it as if nobody had made him a cup of anything in a very long time. Which, you suspect, is exactly the case.')]),
+    k('window', 'Open the window an inch', 'For the river.', [p('You open the window an inch. The river comes in, cold and brown and smelling of mud and diesel and the beginning of day, and the lamp gutters once and recovers. He closes his eyes for a moment as the air reaches him, the way a man does who has been in a closed room for a year without noticing the lack of weather.')]),
+    k('none', 'Nothing at all', 'The lamp. The two of you. The table.', [p('You do nothing. You do not make tea and you do not open a window. You sit at the table with the lamp between you and the wall behind, and let the silence be the length it wants to be, and it turns out that two people can sit in a silence for a very long time when neither of them is lying.')]),
+  ];
+}
+
 function verdictChoices(s: GameState): C14Choice[] {
+  if (!get14(s, 'o-cup')) return cupChoices();
   const holds = fileState(s) === 'bank' || fileState(s) === 'burn';
   const v = (id: string, label: string, hint: string, act3: 'burned' | 'traded' | 'spared', out: 'burn' | 'trade' | 'spare', body: Block[], extra?: (x: GameState) => void) =>
     offer('o14-sloane-' + id, label, hint, 'source', (x) => {
@@ -447,7 +504,7 @@ export function outsideBlocks14(s: GameState): Block[] {
 
 export function outsideChoices14(s: GameState): C14Choice[] {
   if (s.phase === 'seam') return seamChoices(s);
-  if (s.phase === 'reckoning') return reckoningChoices();
+  if (s.phase === 'reckoning') return reckoningChoices(s);
   if (s.phase === 'verdict') return verdictChoices(s);
   if (s.phase === 'source') return sourceChoices();
   if (s.phase === 'water') return waterChoices(s);

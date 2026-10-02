@@ -38,7 +38,7 @@ const twelve = () => {
 };
 const fourteen = (way: 'trust' | 'cut' | 'keep') => {
   const thirteen = ['begin-outside', 'o13-msg-wall', 'o13-terms-on', 'o13-see-bike', 'o13-move-rafe', 'o13-reply-turn', 'o13-door-on', 'o13-hours-on', 'o13-sunday-walk', 'o13-morrow-on'].reduce(c13, twelve());
-  return ['begin-outside', 'o14-seam-summon', 'o14-reck-press', 'o14-sloane-spare', 'o14-way-' + way, 'o14-evening-alone'].reduce(c14, thirteen);
+  return ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say', 'o14-reck-press', 'o14-cup-tea', 'o14-sloane-spare', 'o14-way-' + way, 'o14-evening-alone'].reduce(c14, thirteen);
 };
 const fifteenWithRafe = () =>
   ['begin-outside', 'o15-plan-leave', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-page-back', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-post-mail', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));

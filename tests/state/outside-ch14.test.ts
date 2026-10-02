@@ -44,19 +44,19 @@ it('enters The Source through the in-development bridge from an Outside Chapter 
   expect(ch14(seam)).toContain('the Jakarta handoff');
   // the verify and provenance rules mean she catches the scraped initial herself
   expect(ch14(seam)).toContain('The Jakarta copy has a gap where the courier’s initial should be.');
-  expect(ids(seam)).toEqual(['o14-seam-summon']);
+  expect(ids(seam)).toEqual(['o14-gap-hand', 'o14-gap-light', 'o14-gap-ledger']);
   // Outside has no Chapter 15 yet: nothing is offered after Chapter 14 completes
   expect(chapter15Choices(withFlags(nine(), {}))).toEqual([]);
 });
 
 it('caught, press the lie, spare Sloane, trust him, a chosen night that fades; it authenticates', () => {
   const s = nine();
-  const reck = walk14(s, ['begin-outside', 'o14-seam-summon']);
+  const reck = walk14(s, ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say']);
   expect(reck.choices['out.seam']).toBe('caught');
   expect(reck.phase).toBe('reckoning');
   expect(ch14(reck)).toContain('My name is Rafe Lim.');
   expect(ids(reck)).toEqual(['o14-reck-finish', 'o14-reck-press', 'o14-reck-verify']);
-  const verdict = once(reck, 'o14-reck-press');
+  const verdict = walk14(reck, ['o14-reck-press', 'o14-cup-tea']);
   expect(verdict.choices['out.told']).toBe('yes');
   expect(verdict.choices['act3.nell']).toBe('known');
   expect(verdict.facts).toContain('c14.o-rafe');
@@ -89,10 +89,10 @@ it('caught, press the lie, spare Sloane, trust him, a chosen night that fades; i
 
 it('told first (no verify rule), file banked: burn useful, cut him, alone with the names', () => {
   const s = withFlags(nine(), { 'out.rules': 'source,people,door', 'out.file': 'bank' });
-  const reck = walk14(s, ['begin-outside', 'o14-seam-summon']);
+  const reck = walk14(s, ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say']);
   expect(reck.choices['out.seam']).toBe('told');
   expect(ch14(reck)).toContain('There’s a page I doctored. One.');
-  const verdict = once(reck, 'o14-reck-verify');
+  const verdict = walk14(reck, ['o14-reck-verify', 'o14-cup-tea']);
   expect(ch14(verdict)).toContain('Good. Check me. She didn’t, and look.');
   expect(ids(verdict)).toEqual(['o14-sloane-burn-just', 'o14-sloane-burn-useful', 'o14-sloane-trade', 'o14-sloane-spare']);
   const source = once(verdict, 'o14-sloane-burn-useful');
@@ -112,11 +112,11 @@ it('told first (no verify rule), file banked: burn useful, cut him, alone with t
 
 it('a Sloane file left: only spare; a traded file; keep him, with the Jakarta original held; stop, then stay no-sex', () => {
   const left = withFlags(nine(), { 'out.file': 'leave' });
-  const verdictLeft = walk14(left, ['begin-outside', 'o14-seam-summon', 'o14-reck-finish']);
+  const verdictLeft = walk14(left, ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say', 'o14-reck-finish', 'o14-cup-tea']);
   expect(ids(verdictLeft)).toEqual(['o14-sloane-spare']);
 
   const banked = withFlags(nine(), { 'out.file': 'burn' });
-  const verdict = walk14(banked, ['begin-outside', 'o14-seam-summon', 'o14-reck-finish']);
+  const verdict = walk14(banked, ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say', 'o14-reck-finish', 'o14-cup-tea']);
   expect(ids(verdict)).toContain('o14-sloane-trade');
   const source = once(verdict, 'o14-sloane-trade');
   expect([source.choices['act3.sloane'], source.choices['out.sloane']]).toEqual(['traded', 'trade']);
@@ -135,7 +135,34 @@ it('a Sloane file left: only spare; a traded file; keep him, with the Jakarta or
 });
 
 it('how Nell died is not told here: Rafe does not know, and nothing in the chapter says', () => {
-  const done = walk14(nine(), ['begin-outside', 'o14-seam-summon', 'o14-reck-finish', 'o14-sloane-spare', 'o14-way-cut', 'o14-evening-alone']);
+  const done = walk14(nine(), ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say', 'o14-reck-finish', 'o14-cup-tea', 'o14-sloane-spare', 'o14-way-cut', 'o14-evening-alone']);
   expect(text(done)).toContain('he does not know how she died');
   expect(ch14(done)).not.toMatch(/\b(pushed|fell|driver|car she refused)\b/i);
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag', () => {
+  const s = nine();
+  const seam = once(s, 'begin-outside');
+  expect(ids(seam)).toEqual(['o14-gap-hand', 'o14-gap-light', 'o14-gap-ledger']);
+  expect(ch14(once(seam, 'o14-gap-hand'))).toContain('long straight leg');
+  expect(ch14(once(seam, 'o14-gap-ledger'))).toContain('SEAM');
+  const run = (gap: string, name: string, cup: string) => {
+    const reck = walk14(seam, [gap, 'o14-seam-summon']);
+    expect(ids(reck)).toEqual(['o14-name-say', 'o14-name-write', 'o14-name-keep']);
+    const verdict = walk14(reck, [name, 'o14-reck-press']);
+    expect(ids(verdict)).toEqual(['o14-cup-tea', 'o14-cup-window', 'o14-cup-none']);
+    const source = walk14(verdict, [cup, 'o14-sloane-spare']);
+    return walk14(source, ['o14-way-trust', 'o14-evening-alone']);
+  };
+  const a = run('o14-gap-hand', 'o14-name-say', 'o14-cup-tea');
+  const b = run('o14-gap-light', 'o14-name-write', 'o14-cup-window');
+  const c = run('o14-gap-ledger', 'o14-name-keep', 'o14-cup-none');
+  for (const k of ['out.seam', 'out.told', 'act3.nell', 'act3.sloane', 'out.sloane', 'out.way14', 'act3.nell-order']) {
+    expect(a.choices[k]).toEqual(b.choices[k]);
+    expect(a.choices[k]).toEqual(c.choices[k]);
+  }
+  expect(ch14(a)).toContain('there is no pause before it');
+  expect(ch14(b)).toContain('RAFE LIM, the first name on that wall');
+  expect(ch14(c)).toContain('two people can sit in a silence for a very long time');
+  expect(a.phase).toBe('complete');
 });

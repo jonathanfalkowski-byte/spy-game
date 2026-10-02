@@ -212,6 +212,19 @@ he cannot enter. **How she takes it:**
 
 ---
 
+## 6a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes). They pay off the quiet plants from the earlier deepening passes
+(the R in the EXPENSES handwriting, the launderette, the exercise book's CHECKED BY column):
+
+| Moment | Where | Choices (`c14.o-…`) |
+|---|---|---|
+| **The gap** | before she summons him (`seam`) | **o14-gap-hand** (the R from the EXPENSES envelope laid against the scraped place; recalled from memory if she burned the envelope in Ch7) · **-light** (the copy held to the lamp: blade marks, a breathed-on patch) · **-ledger** (SEAM written against the very first page in the CHECKED BY column) |
+| **His name** | before the reckoning's three ways (`reckoning`) | **o14-name-say** ("Rafe", with no half-beat before it; if she watched him in the launderette in Ch8 she keeps that to herself) · **-write** (RAFE LIM on the wall under R.) · **-keep** (left unsaid for now) |
+| **The cup** | before Sloane (`verdict`) | **o14-cup-tea** (two cups, his held in both hands, not drunk) · **-window** (the window opened an inch) · **-none** (the lamp, the table, the silence) |
+
+No golden recapture is needed.
+
 ## 7. Art impact
 
 New:

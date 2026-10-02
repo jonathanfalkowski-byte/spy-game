@@ -75,7 +75,7 @@ it('photograph it, pass the page unopened, give him everything; it authenticates
   // Chapter 14's bridge opens from Chapter 11's end; Rafe remembers the face and the page
   const seam = c14(done, 'begin-outside');
   expect(seam.phase).toBe('seam');
-  const reck = ['o14-seam-summon'].reduce(c14, seam);
+  const reck = ['o14-gap-ledger', 'o14-seam-summon', 'o14-name-say'].reduce(c14, seam);
   const text14 = reck.history.filter((h) => String(h.node).startsWith('chapter14.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
   expect(text14).toContain('You sent me her face.');
   expect(text14).toContain('You passed me a page from her.');

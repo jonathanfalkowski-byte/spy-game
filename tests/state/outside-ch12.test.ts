@@ -80,7 +80,7 @@ it('together, play along, ask him in, bring him to Nora, ask, stand beside him; 
   expect(replay(done.ledger, 19)).toEqual(done);
   expect(decodeSave(encodeSave(done))).toEqual(done);
   // Chapter 14's bridge opens from Chapter 12's end; Rafe remembers Nora's table
-  const reck = ['begin-outside', 'o14-seam-summon'].reduce(c14, done);
+  const reck = ['begin-outside', 'o14-gap-ledger', 'o14-seam-summon', 'o14-name-say'].reduce(c14, done);
   const t14 = reck.history.filter((h) => String(h.node).startsWith('chapter14.')).flatMap((h) => h.blocks).map((b) => ('text' in b ? String((b as { text: string }).text) : '')).join('\n');
   expect(t14).toContain('You sat me at Nora’s table');
   expect(t14).toContain('This is me keeping it.');
