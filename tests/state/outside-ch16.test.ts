@@ -50,9 +50,9 @@ const fourteen = (way: 'trust' | 'cut' | 'keep') => {
 };
 /** Rafe on the crew at the courier's door; Marsh outside; his statement on the record; a chosen night with him. */
 const fifteenWithRafe = () =>
-  ['begin-outside', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));
+  ['begin-outside', 'o15-plan-leave', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-page-back', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-post-mail', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));
 /** Rafe cut; alone, by invitation; her face spent. */
-const fifteenCut = () => ['begin-outside', 'o15-crew-none', 'o15-way-invited', 'o15-snag-bold', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards', 'o15-cost-face', 'o15-phone-return', 'o15-night-alone'].reduce(c15, fourteen('cut'));
+const fifteenCut = () => ['begin-outside', 'o15-plan-leave', 'o15-crew-none', 'o15-way-invited', 'o15-snag-bold', 'o15-page-back', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards', 'o15-post-mail', 'o15-cost-face', 'o15-phone-return', 'o15-night-alone'].reduce(c15, fourteen('cut'));
 
 it('enters Her Own Hand from an Outside Chapter 15; Ch15 no longer says Act IV is in development', () => {
   const s = fifteenWithRafe();

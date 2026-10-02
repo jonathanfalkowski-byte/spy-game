@@ -73,6 +73,18 @@ broken`, `act3.switch` (holders), `act3.ally.marsh / iris / nora = in` when appl
 7. **Stop line:** "[Chapters 16–18 · outside road — in development]" at the end; Ch14's old stop line is removed.
 8. **Build shape:** entered from an Outside `chapter14.complete`; goldens on the real Outside golden played through Ch10–14.
 
+## 4a. Deepening pass 1 (2026-10-02)
+
+Three optional moments, each with a neutral pick (no flag the later chapters read changes):
+
+| Moment | Where | Choices (`c15.o-…`) |
+|---|---|---|
+| **The floor-plan** | before the crew (`chart`) | **o15-plan-trace** (his lines marked HIS / YOURS / TAKEN ON TRUST; if cut, from memory with SEEN / GUESS) · **-walk** (ten to five on the bench opposite, the blind minute counted herself) · **-leave** (pinned as it is) |
+| **The page beside hers** | before the drawer (`shelves`) | **o15-page-take** (E. V. (I), RETIRED, SINGAPORE) · **-back** (not hers to take) · **-mark** (SEEN., in pencil) |
+| **The copies** | before the price (`reckon`) | **o15-post-self** (carried across the river herself) · **-rafe** (he signs for each on a grey docket and gives her the top copy; not offered if cut; an echo of Ch18's SIGNED FOR BY docket) · **-mail** (a pillar box) |
+
+Pass-1 length about 1.48k words, deepened to about 1.68k on the Rafe + Marsh path; the target is still ~4.5k, so further passes remain.
+
 ## 5. Art impact
 
 Reuses the Vesper's lobby and the archive (shared set) and the room over the water. New: the river door at ten to five with the

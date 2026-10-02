@@ -41,8 +41,8 @@ const fourteen = (way: 'trust' | 'cut' | 'keep') => {
   return ['begin-outside', 'o14-seam-summon', 'o14-reck-press', 'o14-sloane-spare', 'o14-way-' + way, 'o14-evening-alone'].reduce(c14, thirteen);
 };
 const fifteenWithRafe = () =>
-  ['begin-outside', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));
-const fifteenCut = () => ['begin-outside', 'o15-crew-none', 'o15-way-invited', 'o15-snag-bold', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards', 'o15-cost-face', 'o15-phone-return', 'o15-night-alone'].reduce(c15, fourteen('cut'));
+  ['begin-outside', 'o15-plan-leave', 'o15-crew-rafe', 'o15-crew-marsh', 'o15-way-courier', 'o15-snag-talk', 'o15-page-back', 'o15-drawer-open', 'o15-slip-gave', 'o15-took-lim', 'o15-post-mail', 'o15-cost-rafe', 'o15-phone-keep', 'o15-night-rafe', 'o15-rafe-sex', 'o15-stay'].reduce(c15, fourteen('trust'));
+const fifteenCut = () => ['begin-outside', 'o15-plan-leave', 'o15-crew-none', 'o15-way-invited', 'o15-snag-bold', 'o15-page-back', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards', 'o15-post-mail', 'o15-cost-face', 'o15-phone-return', 'o15-night-alone'].reduce(c15, fourteen('cut'));
 const sixteenRoom = () =>
   ['begin-outside', 'o16-dawn-rafe', 'o16-case-set', 'o16-aim-expose', 'o16-inside-rafe', 'o16-inside-marsh', 'o16-outside-switch', 'o16-reply-file', 'o16-first-ledger', 'o16-held-slip', 'o16-wear-grey', 'o16-dressed-rafe', 'o16-leave-write', 'o16-arrive-river'].reduce(c16, fifteenWithRafe());
 const sixteenDoor = () =>

@@ -19,6 +19,10 @@ Shared spine: [../CHAPTER_15_BREAKING_THE_LEASH_DESIGN.md](../CHAPTER_15_BREAKIN
 | **vigil** | "No more orders." / "I shall be there as myself." The black phone; a chosen night. | **o15-phone-return / -river / -keep**; night: **o15-night-rafe / -julian / -sebastian / -maya / -alone**, then scope **o15-<who>-no-sex / -sex**, then **o15-stay / -stop / -leave** | `act3.black-phone`, `c15.o-night*`, `c15.o-evening-consent` |
 | **complete** | The card: LINDEN, E. / ROTTERDAM. SATURDAY. AUTH. C. HE KNOWS (or HE DOESN'T KNOW YET) / THE BOARD MEETS. | — | — |
 
+**Deepening (2026-10-02):** `o15-plan-trace / -walk / -leave` (before the crew), `o15-page-take / -back / -mark` (before the drawer),
+`o15-post-self / -rafe / -mail` (before the price; `-rafe` not offered if he is cut). Facts `c15.o-plan`, `c15.o-page`, `c15.o-post`; none is read by
+Ch16–18; the Rafe docket is a deliberate echo of Ch18's SIGNED FOR BY.
+
 **Safety:** how Nell died is not told; Rafe never makes her Nell; the night is a chosen scope with a stop; the sexual scene fades; no
 refusal costs her body.
 

@@ -46,7 +46,7 @@ it('enters The Courier’s Door from an Outside Chapter 14; Chapter 14 no longer
   const s = fourteen('trust');
   expect([s.scene, s.phase]).toEqual(['chapter14', 'complete']);
   expect(ids(s)).toEqual(['begin-outside']);
-  const chart = c15(s, 'begin-outside');
+  const chart = walk15(s, ['begin-outside', 'o15-plan-leave']);
   expect(chart.phase).toBe('chart');
   expect(ch15(chart)).toContain('I keep everything, darling');
   expect(ch15(chart)).toContain('04:58');
@@ -55,7 +55,7 @@ it('enters The Courier’s Door from an Outside Chapter 14; Chapter 14 no longer
 });
 
 it('the courier’s door with Rafe and Marsh, a talked snag, the drawer, the slip shown, the cost is Rafe on the record; a chosen night that fades; it authenticates', () => {
-  const chart = c15(fourteen('trust'), 'begin-outside');
+  const chart = walk15(fourteen('trust'), ['begin-outside', 'o15-plan-leave']);
   const approach = walk15(chart, ['o15-crew-rafe', 'o15-crew-marsh']);
   expect(approach.phase).toBe('approach');
   expect(approach.choices['out.crew15']).toBe('rafe,marsh');
@@ -64,7 +64,7 @@ it('the courier’s door with Rafe and Marsh, a talked snag, the drawer, the sli
   const snag = c15(approach, 'o15-way-courier');
   expect(ch15(snag)).toContain('the river door');
   expect(ids(snag)).toEqual(['o15-snag-talk', 'o15-snag-hide', 'o15-snag-bold']);
-  const shelves = c15(snag, 'o15-snag-talk');
+  const shelves = walk15(snag, ['o15-snag-talk', 'o15-page-back']);
   expect(shelves.phase).toBe('shelves');
   expect(ch15(shelves)).toContain('LINDEN, E.');
   const drawer = c15(shelves, 'o15-drawer-open');
@@ -75,7 +75,7 @@ it('the courier’s door with Rafe and Marsh, a talked snag, the drawer, the sli
   const more = c15(drawer, 'o15-slip-gave');
   expect(ch15(more)).toContain('It was never the firm. It was her, by name, in her own hand.');
   expect(ids(more)).toEqual(['o15-took-adrian', 'o15-took-cards', 'o15-took-lim']);
-  const reckon = c15(more, 'o15-took-lim');
+  const reckon = walk15(more, ['o15-took-lim', 'o15-post-mail']);
   expect(reckon.phase).toBe('reckon');
   expect(ids(reckon).sort()).toEqual(['o15-cost-ally', 'o15-cost-face', 'o15-cost-money', 'o15-cost-rafe']);
   const vigil = c15(reckon, 'o15-cost-rafe');
@@ -112,21 +112,21 @@ it('the courier’s door with Rafe and Marsh, a talked snag, the drawer, the sli
 
 it('cut him loose: alone, by invitation, bold; the slip is held; the cost is her face; the night can be declined', () => {
   const s = fourteen('cut');
-  const chart = c15(s, 'begin-outside');
+  const chart = walk15(s, ['begin-outside', 'o15-plan-leave']);
   expect(ids(chart)).not.toContain('o15-crew-rafe');
   expect(ch15(chart)).toContain('you cut him loose');
   const approach = c15(chart, 'o15-crew-none');
   expect(ids(approach)).not.toContain('o15-way-courier');
   const snag = c15(approach, 'o15-way-invited');
   expect(ch15(snag)).toContain('Celeste');
-  const shelves = c15(snag, 'o15-snag-bold');
+  const shelves = walk15(snag, ['o15-snag-bold', 'o15-page-back']);
   const drawer = c15(shelves, 'o15-drawer-open');
   // no Rafe on the crew, so the slip can only be held, never shown
   expect(ids(drawer)).toEqual(['o15-slip-held']);
   const more = c15(drawer, 'o15-slip-held');
   // no LIM, R. file when he was cut
   expect(ids(more)).toEqual(['o15-took-adrian', 'o15-took-cards']);
-  const reckon = c15(more, 'o15-took-cards');
+  const reckon = walk15(more, ['o15-took-cards', 'o15-post-mail']);
   expect(ids(reckon)).not.toContain('o15-cost-rafe');
   const vigil = c15(reckon, 'o15-cost-face');
   expect(vigil.choices['act3.leash']).toBe('broken');
@@ -141,10 +141,10 @@ it('cut him loose: alone, by invitation, bold; the slip is held; the cost is her
 });
 
 it('spend an ally (Marsh), and the intimate night can be stopped or declined', () => {
-  const chart = c15(fourteen('keep'), 'begin-outside');
+  const chart = walk15(fourteen('keep'), ['begin-outside', 'o15-plan-leave']);
   const approach = c15(chart, 'o15-crew-none');
-  const shelves = c15(c15(approach, 'o15-way-invited'), 'o15-snag-hide');
-  const reckon = walk15(shelves, ['o15-drawer-open', 'o15-slip-held', 'o15-took-adrian']);
+  const shelves = walk15(approach, ['o15-way-invited', 'o15-snag-hide', 'o15-page-back']);
+  const reckon = walk15(shelves, ['o15-drawer-open', 'o15-slip-held', 'o15-took-adrian', 'o15-post-mail']);
   expect(ids(reckon)).toContain('o15-cost-ally');
   const vigil = c15(reckon, 'o15-cost-ally');
   expect(vigil.choices['c15.cost']).toBe('ally');
@@ -156,4 +156,36 @@ it('spend an ally (Marsh), and the intimate night can be stopped or declined', (
   expect(done.phase).toBe('complete');
   const declined = walk15(night, ['o15-night-rafe', 'o15-leave']);
   expect(declined.choices['c15.o-night-outcome']).toBe('declined');
+});
+
+it('deepening: three moments, each with a neutral pick that changes no flag; Rafe cut changes the plan’s words', () => {
+  // 1. the floor-plan, before the crew
+  const plan = c15(fourteen('trust'), 'begin-outside');
+  expect(ids(plan)).toEqual(['o15-plan-trace', 'o15-plan-walk', 'o15-plan-leave']);
+  const traced = c15(plan, 'o15-plan-trace');
+  expect(ch15(traced)).toContain('TAKEN ON TRUST');
+  expect(ids(traced)).toEqual(expect.arrayContaining(['o15-crew-rafe', 'o15-crew-none']));
+  const walked = c15(plan, 'o15-plan-walk');
+  expect(ch15(walked)).toContain('a florist’s van pulls up');
+  const cutPlan = c15(fourteen('cut'), 'begin-outside');
+  expect(ch15(c15(cutPlan, 'o15-plan-trace'))).toContain('GUESS');
+  // 2. the page beside hers, before the drawer
+  const approach = walk15(c15(plan, 'o15-plan-leave'), ['o15-crew-none', 'o15-way-invited', 'o15-snag-hide']);
+  expect(ids(approach.phase === 'shelves' ? approach : approach)).toEqual(['o15-page-take', 'o15-page-back', 'o15-page-mark']);
+  const marked = c15(approach, 'o15-page-mark');
+  expect(ch15(marked)).toContain('SEEN.');
+  expect(ids(marked)).toEqual(['o15-drawer-open']);
+  // 3. the copies, before the price
+  const reckon = walk15(marked, ['o15-drawer-open', 'o15-slip-held', 'o15-took-adrian']);
+  expect(ids(reckon)).toEqual(['o15-post-self', 'o15-post-rafe', 'o15-post-mail']);
+  const byRafe = c15(reckon, 'o15-post-rafe');
+  expect(ch15(byRafe)).toContain('Delivered, signed, with the time.');
+  expect(ids(byRafe)).toContain('o15-cost-face');
+  // neutral: the same cost and the same keys whichever moment is picked
+  const a = c15(walk15(c15(plan, 'o15-plan-leave'), ['o15-crew-none', 'o15-way-invited', 'o15-snag-hide', 'o15-page-back', 'o15-drawer-open', 'o15-slip-held', 'o15-took-adrian', 'o15-post-self']), 'o15-cost-face');
+  const b = c15(walk15(c15(plan, 'o15-plan-walk'), ['o15-crew-none', 'o15-way-invited', 'o15-snag-hide', 'o15-page-take', 'o15-drawer-open', 'o15-slip-held', 'o15-took-adrian', 'o15-post-mail']), 'o15-cost-face');
+  for (const k of ['act3.leash', 'act3.switch', 'c15.cost', 'out.cost15', 'out.took15', 'out.slip15', 'act3.nell-order']) expect(a.choices[k]).toEqual(b.choices[k]);
+  // no Rafe delivery option when he is cut
+  const cutReckon = walk15(c15(cutPlan, 'o15-plan-leave'), ['o15-crew-none', 'o15-way-invited', 'o15-snag-hide', 'o15-page-back', 'o15-drawer-open', 'o15-slip-held', 'o15-took-cards']);
+  expect(ids(cutReckon)).toEqual(['o15-post-self', 'o15-post-mail']);
 });

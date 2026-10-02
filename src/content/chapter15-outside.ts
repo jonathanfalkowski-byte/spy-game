@@ -12,7 +12,13 @@
  * "No more orders." "I shall be there as myself." The phone; a chosen night (Rafe only if he has told her and she did not cut him;
  * a partner from before; Maya; alone). The cause of Nell's death is not told here (Act IV, Ch17). Entered from an Outside
  * `chapter14.complete`; ends at the Act IV in-development stop, having written the shared Act III keys. Keys `out.*`, `act3.*`,
- * `c15.*`; ids carry `o15-`. */
+ * `c15.*`; ids carry `o15-`.
+ * Deepening pass (2026-10-02): three moments, each with a neutral pick that changes no flag. The floor-plan on the iron stair,
+ * before the crew (c15.o-plan = trace | walk | leave: traced in her own hand with HIS / YOURS / TAKEN ON TRUST beside each line, or
+ * drawn from memory with SEEN / GUESS if she cut him; ten to five on the bench opposite, watching the blind minute herself; or pinned
+ * as it is). The page beside hers, before the drawer (c15.o-page = take | back | mark: E. V. (I), RETIRED, SINGAPORE, taken; put
+ * back; or SEEN. in pencil). The copies, before the price (c15.o-post = self | rafe | mail: carried across the river herself; Rafe
+ * signs for each on a grey docket and gives her the top copy, if he is not cut; or posted). */
 import type { GameState } from '../state/schema';
 import { paragraph as p, speech as q, thought as t, type Block, type NodeId } from './schema';
 import { eveningPartners7 } from './chapter7-own';
@@ -92,7 +98,29 @@ const crewLine: Record<Who, [string, string, Block[]]> = {
   iris: ['Iris', 'She knows the kitchens.', [q('Iris Moreau', 'I stood in that long room for four years. I know which cabinet squeaks, and which stair the staff use to smoke. I’ll be there. It’s the first thing in four years that’s been mine.')]],
 };
 
+function planChoices(s: GameState): C15Choice[] {
+  const cut = way14(s) === 'cut';
+  const m = (id: 'trace' | 'walk' | 'leave', label: string, hint: string, body: Block[]) =>
+    offer('o15-plan-' + id, label, hint, 'chart', (x) => {
+      set15(x, 'o-plan', id);
+      return body;
+    });
+  return [
+    m('trace', cut ? 'Draw it again from memory' : 'Trace it in your own hand', 'On a clean sheet. Where each line came from.', [
+      p(cut
+        ? 'You draw the Vesper again on a clean sheet, from memory: the river side, the stair behind the kitchens, a cross where you think the cabinets are. Beside every line you write where it came from. Most of them say SEEN. A few say GUESS. You underline the guesses.'
+        : 'You trace the plan onto a clean sheet in your own hand, and beside every line you write where it came from: HIS, or YOURS. The river door is his. The kitchen stair is yours, from the Lindqvist table. The cross is his, and next to it you write, small, TAKEN ON TRUST, and underline it, and leave the pencil on the line.'),
+    ]),
+    m('walk', 'Go and look at the river door', 'At ten to five. Once. From across the road.', [
+      p('You are on the Embankment at ten to five on a grey morning, on the bench across the road, with a paper cup, doing nothing. At two minutes to five a florist’s van pulls up and a boy knocks at a black steel door, and it opens, and holds, and closes, in about the time it takes to breathe in and out.'),
+      t(cut ? 'Nobody told me the minute. I counted it myself. It is not as long as I had hoped.' : 'Exactly as he said. Not long. Long enough.'),
+    ]),
+    m('leave', cut ? 'Pin your pencil plan to the wall' : 'Pin it to the wall as it is', 'Beside the others. Let it hang.', [p('You pin it to the wall as it is, beside the others, and let it hang there for the week, the Vesper in a few lines of pencil, and every morning you look at it over the first cup of tea and do not change a thing.')]),
+  ];
+}
+
 function chartChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'o-plan')) return planChoices(s);
   const c = crew(s);
   const picks = available(s)
     .filter((w) => !c.includes(w))
@@ -179,7 +207,21 @@ const drawerBlocks: Block[] = [
   t('R. L. The Saturday. A job a man could not refuse, in a country he had never seen, booked, and authorised, in the same hand. Somebody sent him away.'),
 ];
 
+function pageChoices(): C15Choice[] {
+  const m = (id: 'take' | 'back' | 'mark', label: string, hint: string, body: Block[]) =>
+    offer('o15-page-' + id, label, hint, 'shelves', (x) => {
+      set15(x, 'o-page', id);
+      return [...body, p('Then you cross to the cabinet marked L.')];
+    });
+  return [
+    m('take', 'Take the first Evelyn’s page too', 'E. V. (I). A face, and four years.', [p('The page beside yours in the catalogue is another woman’s, on the same cream stock: E. V. (I) · RETIRED · SINGAPORE, and a photograph, and a pencilled date four years gone. You take it, too, and fold it in with your own. Whoever she was, she was never anybody’s to file.')]),
+    m('back', 'Put it back', 'Not yours to take.', [p('You look at the other woman’s page for a long moment, E. V. (I), and a face, and put it back exactly where it was, square to the edge, and close the lectern. It is not yours to take. You will remember where it is.')]),
+    m('mark', 'Write one word under it', 'In pencil. Where she will see it.', [p('You take the pencil from your hair and write one word under the other woman’s photograph, small, in capitals, in the margin where only a person who looks will ever find it: SEEN.')]),
+  ];
+}
+
 function shelvesChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'o-page')) return pageChoices();
   if (!get15(s, 'o-drawer')) {
     return [
       offer('o15-drawer-open', 'Open the drawer', 'LINDEN, E.', 'shelves', (x) => {
@@ -238,12 +280,31 @@ function reckonBlocks(s: GameState): Block[] {
   return [
     p('The week after, fast, like a list.'),
     ...(took === 'adrian' ? [p('Adrian Vale’s name: in your box. Nobody spends it again.')] : took === 'lim' ? [p('A thin file with a courier’s name on it: in your box, and nowhere else. Meridian does not keep a record of him any longer that you have not read.')] : []),
-    p('Copies of everything, in envelopes, carried across the river by a man who has carried envelopes all his life, to the people who hold the switch: ' + (holders(s).length ? holders(s).map((h) => holderName[h]).join(', ') : 'a solicitor in Holborn who has never met you and never will') + '. If you stop ringing, everything goes to everyone.'),
-    p('And the price. There is always a price for the last door.'),
+    p('Copies of everything, in envelopes, to be carried across the river to the people who hold the switch: ' + (holders(s).length ? holders(s).map((h) => holderName[h]).join(', ') : 'a solicitor in Holborn who has never met you and never will') + '. If you stop ringing, everything goes to everyone.'),
+  ];
+}
+
+function postChoices(s: GameState): C15Choice[] {
+  const m = (id: 'self' | 'rafe' | 'mail', label: string, hint: string, body: Block[]) =>
+    offer('o15-post-' + id, label, hint, 'reckon', (x) => {
+      set15(x, 'o-post', id);
+      return [...body, p('And the price. There is always a price for the last door.')];
+    });
+  return [
+    m('self', 'Carry them yourself', 'Across the bridge. The first thing you have ever carried.', [p('You carry them across the river yourself on a Tuesday, in a canvas bag, one envelope at a time, to doors you have never opened: a solicitor’s, a station’s, a kitchen’s. It is a long afternoon and a short list. By four you understand what the man on the iron stair has meant for ten years by “it’s only a delivery”.')]),
+    ...(way14(s) !== 'cut'
+      ? [m('rafe', 'Let Rafe carry them', 'He signs for each one. You get the docket.', [
+          p('He takes the bag from you on the iron stair, and weighs it in one hand, and nods, and takes a grey carbon docket pad out of his jacket, and writes down every envelope by name, and tears the top copy off and gives it to you.'),
+          q('Rafe', 'Delivered, signed, with the time. Nobody ever gives a courier a receipt for what he’s carried. I thought you’d like one.'),
+          p('You have never been handed anything with a receipt before. You fold it into the ledger, at the back, under C.'),
+        ])]
+      : []),
+    m('mail', 'Post them', 'Plain envelopes. A pillar box. Trust the post.', [p('You post them, one by one, at the pillar box at the end of the road, in plain envelopes, with a first-class stamp each, and stand there with your hand on the cold red iron for a moment after the last one has gone, like a woman who has just let go of a rope.')]),
   ];
 }
 
 function reckonChoices(s: GameState): C15Choice[] {
+  if (!get15(s, 'o-post')) return postChoices(s);
   const allyWho = irisFree(s) ? 'iris' : marshIn(s) ? 'marsh' : '';
   const c = (id: 'ally' | 'face' | 'money' | 'rafe', label: string, hint: string, shared: string, who: string, body: Block[]) =>
     offer('o15-cost-' + id, label, hint, 'vigil', (x) => {
