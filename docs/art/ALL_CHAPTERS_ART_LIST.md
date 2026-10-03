@@ -36,6 +36,7 @@ has approved this list and a quote. It currently needs re-authorizing anyway.
 | **Approved canon** | Evelynn (front, three-quarter, Helix gala); Adrian (identity v2) |
 | **Review first** (staging candidates exist) | Celeste, Sloane (the silver streak is on the wrong side: fix before approval), Maya (the pilot was rejected; the v1 portrait stands), Benton, Daniel, Marcus, Voss, the "executive" base (usable for **Julian**), Sebastian (4 candidates); Evelynn profile and full body; Adrian full body and three-quarter |
 | **Generate, P0** | **Mr Pryce**, **Iris Moreau**, **Owen Marsh**, **Julian Mercer** (if the executive base is not approved as him) |
+| **Staged 2026-10-03, review** | **Rafe Lim**, **Daniel Kessler**, **Lucien Morel**: one text-only portrait each (`art/staging/full-game/cast/*-portrait-v1-candidate.png`, 3 credits in all, receipt beside them). Provisional designs for the owner's review; Rafe's backdrop is lighter than the noir band (mean 85) and may want a relight |
 | **Generate, P1** | Theo Marr, Nora Linden (and Sam, 7), **Nell** (photographs only; owner decision: how like Evelynn?), the Aster editor, Lotte, Ruth Adair, Nadia Brandt |
 | **Generate, P2** | Mrs Tan, Mr Goh, Madame Lin, Kit Harlow, Colin Ashby, the Singapore tail (young man, lanyard), the locksmith, the board (Deverell, Marguerite Soames, the signet ring, the woman in pearls), the young cataloguer, Mrs Kowalczyk, Odile, Priya, the recovery nurse |
 
