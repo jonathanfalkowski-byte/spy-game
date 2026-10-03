@@ -1,7 +1,10 @@
 # EVE: every art shot we need (all chapters)
 
 **Status: planning only.** Nothing here has been generated, promoted or bound. Written 2026-09-27, after every chapter
-was deepened (Ch1–5 through the revision-20 prose passes, Ch6–18 with new moments). This list **supersedes**
+was deepened (Ch1–5 through the revision-20 prose passes, Ch6–18 with new moments).
+**Updated 2026-10-03:** §E2 adds the other four routes (Predator, Executive, Institutional, Outside), all built Ch7–18 and
+deepened. Their art was previously listed only in each route design's art note; it is now in one place, with this list as the
+authority. This list **supersedes**
 `CELEBRITY_ROUTE_SHOT_LIST.md`, whose Chapter 7–18 tables are carried over below with the deepening additions.
 
 **Order of work: review first, generate second.** Many Chapter 1–5 gaps already have candidates in `art/staging/`
@@ -355,6 +358,187 @@ The Sebastian lane has 8 candidates in `staging/full-game/sebastian/`. On top of
 
 ---
 
+## E2. Chapters 7–18 on the other four routes (Predator, Executive, Institutional, Outside)
+
+Added 2026-10-03, after all four routes were built (Ch7–18, continuous) and deepened. Each route reuses the shared masters in §B and
+the Celebrity frames in §E wherever location, time, wardrobe, people and props stay true; **only what is new is listed.** IDs:
+`pr` Predator, `ex` Executive, `in` Institutional, `ou` Outside; "hold" means reuse a master already listed. Everything is dark
+noir under the rules at the top. **No frame here is explicit.** Intimacy is the threshold or the first kiss, clothed, heat 3 at most;
+anything fuller belongs to the owner's own frames. Ch13's comply night is only ever the corridor and the closed door; the coercion beat is
+never drawn behind the door on any route.
+
+### E2.1 New masters and new cast (route-wide)
+
+| Group | New masters (generate unless noted) | New cast |
+|---|---|---|
+| **Predator** | the Helix executive floor beyond the Ch3–4 rooms; Marcus's office; Geneva: Morel & Cie (a panelled private bank, no name on the door), the hotel room over the lake in the rain, Lucien's flat on the Quai, the jetty and the Rue du Rhône jeweller | Lucien Morel (P0); Mrs Fenn at the archive desk (P2); Anthony Hollis (P2); the Helix directors, a general counsel and the placed woman (P2); Marcus in black tie (a costume) |
+| **Executive** | Julian's forty-first-floor office and flat (a location master; today only described); the restaurant nobody from Helix eats at; the Helix flat on the river; the Helix boardroom on forty-four (a long table, one window of rain); Julian's suite in Singapore with the windows open on the Straits | Julian Mercer (the "executive" base in staging is his candidate; review first); Hal (driver, minor); Clare (photographs only, never clear) |
+| **Institutional** | Axiom's staff gate at dawn and the guard; Level 71 at morning (a new composition); Records, Level B2, at night, lights on timers; the inquiry room on Level 12; Sloane's sealed office at night, the tape across the door; the glass room in Compliance; the Feathers, the Axiom pub; room 811 at the Fullerton; Axiom's audit van on the Embankment | Daniel Kessler (P0: he is a partner on this road and has no face yet); Priya (never shown clearly); Terry at the gate (P2); Elias Benton (in staging: review) |
+| **Outside** | **the room over the water** (the route's base: a bed, a table, a chair, a window on the black water and the old ferry terminal; by night, by day, and at 02:40 with the wall of pages and the red thread); the iron stair with the third step; the old ferry terminal at 02:40 (hold: Celebrity Ch7 set with a figure in it); the footbridge and the all-night launderette; Katong coffee shop (marble tables, ceiling fan, a table laid for two); the Vesper's river door and the evening florists' van; the Vesper archive, the cabinet marked L | **Rafe Lim** (P0: forty-one, a courier's jacket waxed at the cuffs, a good watch on a soft strap, a face that has not slept properly in a year; full light, never named in the cast sheet until Ch14); Mrs Wee (P1); the man in the linen suit (P1, never clearly shown); Nora Linden is already listed in §A; the girl on the moped (P2) |
+
+### E2.2 Predator (`pr`)
+
+| ID | Beat | Location | Who / props | P |
+|---|---|---|---|---|
+| pr07-01 | Marcus's office, the window and the buildings Helix owns | Marcus's office, dusk | Marcus; Evelynn | P0 |
+| pr07-02 | His pencil in the margin: "She will want more. Give it to her slowly." | insert | the page | P1 |
+| pr08-01 | The hub of levers: the price of every lever coming back to her | Helix floor at night | Evelynn | P1 |
+| pr08-02 | Pryce driving her home in the rain | car (hold `car-rain-window`) | Pryce, Evelynn | P1 |
+| pr10-01 | The City-pages photograph of Celeste and Evelynn laughing | insert (also used on Executive, Institutional and Outside, with new people in it) | the page | P0 |
+| pr10-02 | The black phone, worn, an N scratched on its back | insert | the phone | P1 |
+| pr11-01 | The client room, the catalogue on its lectern | Vesper (hold the long room) | the book | P0 |
+| pr11-02 | Her page, TRANSFERRED | insert | the page | P0 |
+| pr11-03 | Marcus in black tie, by the empty frames | Vesper long room | Marcus | P1 |
+| pr11-04 | The Gulf fund man: "You are not on my list" | Vesper long room | the quiet man | P2 |
+| pr12-01 | Morel & Cie | Geneva private bank | Lucien Morel | P0 |
+| pr12-02 | The hotel room over the lake in the rain | Geneva hotel | Evelynn | P0 |
+| pr12-03 | Lucien's flat on the Quai; his note under the door | Geneva | Lucien | P1 |
+| pr12-04 | The jeweller on the Rue du Rhône: Nell's watch, "For N., from N." | shop window | the watch | P1 |
+| pr13-01 | Delphine at the table; the placement against Owen Marsh | hold Claremont set | Evelynn, Delphine | P1 |
+| pr14-01 | The top of the Helix building, a last drink with Marcus | Helix roof | Marcus, Evelynn | P0 |
+| pr14-02 | The page headed OWES, and the people on it | insert | the page | P1 |
+| pr15-01 | The brass key on a green ribbon | insert | the key | P0 |
+| pr15-02 | Mrs Fenn knitting at the archive desk | Vesper archive | Mrs Fenn | P2 |
+| pr15-03 | The client ledger | insert | the ledger | P1 |
+| pr16-01 | The seventh chair, pulled out beside Celeste's | Vesper long room, board table | a composition note | P0 |
+| pr16-02 | Evelynn in Celeste's green | wardrobe / Vesper | a costume | P0 |
+| pr16-03 | Celeste's own key at her throat | insert / portrait | Evelynn | P1 |
+| pr17-01 | Evelynn in the seventh chair, beside Celeste | board table | Evelynn, Celeste, the board | P0 |
+| pr17-02 | Celeste at the clients' end of the table (the accepted road) | board table | Celeste | P0 |
+| pr17-03 | The key on its ribbon on the board table | insert | the key | P1 |
+| pr17-04 | The heavy man with the signet ring stands to leave | board table | the board | P2 |
+| pr18-01 | The four archive boxes | insert | the boxes | P1 |
+| pr18-02 | Receiving clients in green on the first Thursday (mirror of Ch11) | Vesper long room | Evelynn | P0 |
+| pr18-03 | The last card, AVAILABLE, in green | insert | the card | P0 |
+| pr18-04 | Pryce's cab, and the fare he will not take | street | Pryce | P2 |
+
+### E2.3 Executive (`ex`)
+
+| ID | Beat | Location | Who / props | P |
+|---|---|---|---|---|
+| ex07-01 | Julian's office on forty-one, the contract on the desk | Helix 41 | Julian, Evelynn | P0 |
+| ex07-02 | The photograph face down on his desk: "Somebody I didn't keep" | insert | the frame | P1 |
+| ex07-03 | The restaurant nobody from Helix eats at | restaurant | Julian, Evelynn | P1 |
+| ex08-01 | The signature tray at midnight | desk close-up | the tray, the pen | P0 |
+| ex08-02 | Hal and the black car at 01:10 | street | Hal, the car | P1 |
+| ex08-03 | The dress on the card | insert / Evelynn styled | Evelynn | P1 |
+| ex08-04 | Clare's drawer: "Never let M. put anything on J.'s tray after six." | insert | handover notes | P1 |
+| ex10-01 | The white orchid on her desk at dawn | insert | the orchid | P1 |
+| ex10-02 | Celeste at Julian's reception (the summoned path) | Helix 41 reception | Celeste, Julian | P1 |
+| ex11-01 | The balcony over the canal, Celeste with the cream folder | Vesper | Celeste, Evelynn | P0 |
+| ex11-02 | The good pen on the signature page | insert | the pen | P0 |
+| ex11-03 | Julian in black tie in the long room; the dance | Vesper | Julian | P1 |
+| ex11-04 | The cloakroom: the first Evelynn's camel coat | Vesper cloakroom | the coat | P1 |
+| ex12-01 | Julian's suite with the windows open on the Straits | Singapore hotel | Julian | P0 |
+| ex12-02 | Celeste's photograph of the two of them at dinner | insert | the photograph | P1 |
+| ex12-03 | Mrs Tan calls her Evie in front of him | Emerald Hill landing | Mrs Tan, Julian, Evelynn | P2 |
+| ex13-01 | Julian at a lobby table with a newspaper he isn't reading | Claremont lobby | Julian | P1 |
+| ex13-02 | The wall card, "Done to me. Not by me." | insert | the card | P0 |
+| ex14-01 | The Helix boardroom on forty-four | boardroom, rain | the table | P0 |
+| ex14-02 | Julian at the window at dawn in yesterday's shirt | Helix 41 | Julian | P1 |
+| ex14-03 | The tie at the window, the night before the board | apartment | Julian, Evelynn | P1 |
+| ex14-04 | Marcus's box in the lift; Julian carries her box | lift | the box | P2 |
+| ex15-01 | The Vesper reading room by day, a Helix document box, Celeste's assistant at the door | Vesper | the box | P1 |
+| ex15-02 | Julian in the archive with a card in his hand | Vesper archive | Julian | P0 |
+| ex15-03 | The black phone on the river wall | Embankment | the phone | P1 |
+| ex15-04 | VALE, E. (I): "She hated orchids. I never learned." | insert | the drawer | P1 |
+| ex16-01 | Helix's car at the Vesper's door, Hal holding it open | Vesper front | Hal | P1 |
+| ex16-02 | Julian's hands at the clasp | insert | hands, clasp | P0 |
+| ex17-01 | Julian standing at the board table with eleven pages | board table | Julian | P0 |
+| ex17-02 | Celeste's card: "Collateral, in the person of J.M." | insert | the card | P0 |
+| ex18-01 | The office next door with her name on it and the light on | Helix 41 | the door | P0 |
+| ex18-02 | Dinner for two, a silver frame face up (the woman never clear) | restaurant | Julian, Evelynn | P1 |
+| ex18-03 | The blank page ADDITIONAL TERMS, two pens | insert | the page | P0 |
+| ex18-04 | The last card: WHAT DO I OWE HIM?, answered in ink | wardrobe door | insert | P0 |
+
+### E2.4 Institutional (`in`)
+
+| ID | Beat | Location | Who / props | P |
+|---|---|---|---|---|
+| in07-01 | The staff gate at dawn, the guard (a mirror of Ch1) | Axiom gate | Evelynn | P0 |
+| in07-02 | Level 71, Sloane at the window, morning light | Level 71 | Sloane, Evelynn | P0 |
+| in07-03 | Adrian's desk as Evelynn's, with the plant | Axiom floor | the desk | P1 |
+| in07-04 | The hall camera's green light | apartment hall | insert | P0 |
+| in08-01 | Records, Level B2, at night, lights on timers | Records | Evelynn | P0 |
+| in08-02 | The back of Sloane's car under the reading light (nothing touched) | car interior | Sloane, Evelynn | P0 |
+| in08-03 | The Feathers, the Axiom pub | pub | Daniel | P1 |
+| in08-04 | The delivery note LEGEND E.V. (II); the monthly log "22:14 · subject taped hall camera" | inserts | pages | P1 |
+| in10-01 | The forged grey envelope; the City-pages photograph with new people in it | inserts | pages | P1 |
+| in11-01 | Sloane in black at the Vesper | Vesper | Sloane | P1 |
+| in11-02 | The receipt: CANDIDATE 9C (Priya's photograph never clear) | insert | the receipt | P0 |
+| in12-01 | Room 811 at the Fullerton, Sloane at the desk with her shoes off | hotel | Sloane | P1 |
+| in12-02 | The tasking sheet | insert | the page | P1 |
+| in13-01 | The forged tasking, BACKUP: — | insert | the page | P0 |
+| in13-02 | Sloane reading it at her desk | Level 71 | Sloane | P1 |
+| in14-01 | The inquiry room on Level 12 | inquiry room | a long table, a recorder | P0 |
+| in14-02 | Sloane's sealed office at night, the tape across the door | Level 71 | the door | P1 |
+| in14-03 | The glass room in Compliance, Maya with the recorder | Compliance | Maya | P1 |
+| in14-04 | The PROJECT EVE (I) file, recovered | insert | the file | P1 |
+| in15-01 | Axiom's audit van on the Embankment | Embankment | the van | P1 |
+| in15-02 | The client-file drawer; Priya's receipt | Vesper archive | insert | P1 |
+| in16-01 | The notice: one typed line on Axiom paper | insert | the notice | P0 |
+| in16-02 | The lanyard worn outside the coat, Maya at her shoulder | Vesper door | Evelynn, Maya | P1 |
+| in16-03 | "Back by nine. Log it." to the green light | apartment hall | Evelynn | P1 |
+| in17-01 | Sloane standing at the board table with a receipt, Evelynn beside her | board table | Sloane, Evelynn | P0 |
+| in17-02 | The client file on Meridian's walnut: E. V. (II) · DELIVERED, 9C on top | insert | the file | P0 |
+| in17-03 | The place card E. V. (II) with her own name over it | insert | the card | P2 |
+| in18-01 | The camera in her palm, the green light out | insert | the camera | P0 |
+| in18-02 | Sloane at her new window (or Records, aisle nine, under one bulb) | Level 71 / Records | Sloane | P1 |
+| in18-03 | The page headed SCOPE, three terms and a pencil margin | insert | the page | P0 |
+| in18-04 | The two cards on the wardrobe door, answered in ink | wardrobe door | insert | P0 |
+| in18-05 | Adrian's mug, a crossword half done | Axiom floor, bottom drawer | insert | P1 |
+
+### E2.5 Outside (`ou`)
+
+| ID | Beat | Location | Who / props | P |
+|---|---|---|---|---|
+| ou07-01 | Leaving the watched flat: the badge, the key and the phone on the counter | apartment | Evelynn | P1 |
+| ou07-02 | **The room over the water**, first view: a bed, a table, a window on the old ferry terminal | the room | Evelynn | **P0** |
+| ou07-03 | The envelope marked EXPENSES; the R with a long straight leg | insert | the envelope | P0 |
+| ou07-04 | The cheap phone on the table with its one contact | insert | the phone | P1 |
+| ou08-01 | The room by day, the wall of pages and the red thread | the room | the wall | P0 |
+| ou08-02 | The exercise book, a column headed CHECKED BY | insert | the book | **P0** |
+| ou08-03 | The old ferry terminal at 02:40: Rafe seen for the first time, face half-lit | terminal | Rafe | **P0** |
+| ou08-04 | The footbridge, and the all-night launderette: a man among the dryers | launderette window | Rafe (back or steamed glass) | P1 |
+| ou08-05 | The manifest; the blacked-out board list; E.V. (I) · RETIRED | inserts | pages | P1 |
+| ou10-01 | The black Vesper box on the third step: three orchids open, one closed | iron stair | the box | P0 |
+| ou10-02 | The City-pages photograph with Celeste's hand on her wrist | insert | the page | P0 |
+| ou10-03 | The dead pier in the rain, a man with a flask | pier | the watcher | P2 |
+| ou10-04 | The orchid in the kettle's cup of water | the room | insert | P2 |
+| ou11-01 | The first Evelyn's catalogue page: a face looking straight into the lens | insert | the page | **P0** |
+| ou11-02 | Her own page: UNCLAIMED · AVAILABLE FOR PLACEMENT | insert | the page | P0 |
+| ou11-03 | Celeste's cream envelope with one line of green ink | insert | the envelope | P1 |
+| ou11-04 | A cheap phone in a shoe | insert | the phone | P2 |
+| ou12-01 | Katong coffee shop: marble tables, a ceiling fan, a table laid for two | Singapore | Mrs Wee | **P0** |
+| ou12-02 | The man in the linen suit at the corner table | Katong | the watcher | P1 |
+| ou12-03 | Rafe at the foot of the Emerald Hill steps; the lamp on a timer | Emerald Hill | Rafe | P1 |
+| ou12-04 | The harbour wall at dusk | Singapore | Rafe, Evelynn | P1 |
+| ou13-01 | The black phone's price at night | the room | the phone | P1 |
+| ou13-02 | Marsh in the bar with his cycling clips | Claremont bar | Marsh | P1 |
+| ou13-03 | The brown envelope on the third step (the ledger) | iron stair | the envelope | P1 |
+| ou14-01 | The reckoning: two figures in the room over the water, the wall behind | the room at 02:40 | Rafe, Evelynn | **P0** |
+| ou14-02 | The Jakarta copy, the initial scraped out, beside the leaf's "R." intact | insert | two pages | **P0** |
+| ou14-03 | RAFE LIM on the wall under the card marked R. | insert | the wall | P1 |
+| ou15-01 | The river door at ten to five with the florists' van | Vesper river door | Rafe, a crate of lilies | **P0** |
+| ou15-02 | The grey cabinet marked L: LINDEN, E. | Vesper archive | Evelynn | **P0** |
+| ou15-03 | The Rotterdam slip clipped with a brass pin | insert | the slip | **P0** |
+| ou15-04 | Rafe at the iron stair with the grey docket pad | iron stair | Rafe, the docket | P1 |
+| ou16-01 | The ledger laid out on the floor with its CHECKED BY column | the room at dawn | the ledger | P0 |
+| ou16-02 | Rafe on the bench opposite the Vesper | Embankment | Rafe | P1 |
+| ou16-03 | The evening florists' van at the river door | Vesper river door | Rafe | P1 |
+| ou16-04 | Rafe straightens her collar (clothed; a hand on a collar) | iron stair | Rafe, Evelynn | P1 |
+| ou17-01 | Rafe by the wall with his hat, nothing in his arms | Vesper board room | Rafe | **P0** |
+| ou17-02 | The slip on the walnut with its brass pin | board table | insert | P0 |
+| ou17-03 | Rafe's hand signing the minute: R. LIM, COURIER | insert | the minute | **P0** |
+| ou17-04 | The Embankment floodlit, a van seen from above | street | the van | P2 |
+| ou18-01 | The front page with a column headed CHECKED BY | insert | the paper | P0 |
+| ou18-02 | Rafe on the iron stair with two coffees | iron stair | Rafe | P1 |
+| ou18-03 | The grey docket: SIGNED FOR BY | insert | the docket | **P0** |
+| ou18-04 | The catalogue with no page seven | insert | the book | P1 |
+| ou18-05 | The last wall: WHO IS HOLDING THE PAGE? / I AM. / PROOF OF DELIVERY. | the room | insert | **P0** |
+
+---
+
 ## F. Totals, and what to do first
 
 | Bucket | Frames |
@@ -364,13 +548,15 @@ The Sebastian lane has 8 candidates in `staging/full-game/sebastian/`. On top of
 | **Generate new, Ch1–5** | ~12 (Adrian's mirror goodbye, the Glass House escape / exchange / confrontation, debrief, clinic dawn and transit, Maya's kettle call, make-up off, the lift mirror, the Ch5 wait and Julian thresholds) plus the Ch5 backlog rows |
 | **Generate new, Ch6** | ~12 frames on 4 new views (tower at midnight, bedroom floor, the leaf and ORACLE inserts) |
 | **Generate new, Ch7–18** | ~99 rows (84 plus 15 added), roughly 110 frames once bundles are split; about 30 environment views across the Vesper, Claremont, Embankment, Singapore and the London set pieces |
+| **Generate new, the other four routes (§E2)** | 141 rows (64 P0): Predator 31, Executive 34, Institutional 32, Outside 44; most are inserts (pages, cards, cards on the wardrobe door, close-ups) that composite on masters already listed, plus about 27 route-specific environment views (§E2.1) |
 | **Cast sheets** | 2 approved; ~10 to review; ~27 to generate |
+| **Cast, the other four routes** | **Rafe Lim (P0)**, Daniel Kessler (P0), Lucien Morel (P0), Julian Mercer (review the executive base), Mrs Wee, Mrs Fenn, Hal, the man in the linen suit, the girl on the moped, Terry, Anthony Hollis |
 
-**Recommended sequence:**
+**Recommended sequence** (updated 2026-10-03 for the four other routes):
 1. **Owner review session (no cost):** the ~60 staging candidates, and approve or reject the 3 code-fix promotions.
    This alone fills most of the visible holes in Ch1–5.
-2. **Cast:** approve the staging portraits; then generate Pryce, Iris, Marsh and Julian (ZenCreator, quoted first).
-3. **Environments** (the non-ZenCreator image generator, one tested frame first, quoted): the Vesper Long Room, the
+2. **Cast:** approve the staging portraits; then generate Pryce, Iris, Marsh, Julian, **Rafe Lim** and **Daniel Kessler** (ZenCreator, quoted first; the route's two partners and the Outside road's whole cast arc hang on Rafe).
+3. **Environments** (the non-ZenCreator image generator, one tested frame first, quoted; the room over the water first, because every Outside chapter passes through it): the Vesper Long Room, the
    Vesper front, the Claremont bar and corridor, the Embankment rail, the apartment wall and kitchen table at night,
    Axiom Tower at midnight.
 4. **Signature scenes on those:**
@@ -387,3 +573,6 @@ The Sebastian lane has 8 candidates in `staging/full-game/sebastian/`. On top of
 1. Is Evelynn's Ch7–18 flat the same apartment as Ch1–5? (If so, the apartment masters cover most of it.)
 2. How much should Nell resemble Evelynn?
 3. Environments on the connected image generator, and ZenCreator for faces only?
+4. **Rafe Lim:** his look is fixed by the Outside design (forty-one, a waxed courier's jacket, a good watch on a soft strap, a face that has not slept in a year). The decision is order: his cast sheet first, then the room over the water with him in it, or the room first and the sheet after?
+5. **The first Evelyn (E. V. (I)):** a face that "could have been hers", looking straight into a lens (Outside Ch11, Predator Ch11, Executive Ch15). One approved portrait would serve all three, as an insert only; how like Nell and how like Evelynn?
+6. **Insert style:** pages, cards and dockets as photographed objects (consistent with the existing inserts) or as flat typeset art? One decision serves most of the §E2 inserts.
