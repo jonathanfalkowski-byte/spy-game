@@ -34,6 +34,21 @@ selection; guarded bindings are a separate implementation step.
 canonical identity or conditioning reference. Missing and cyclic correction dependencies
 are rejected by the catalog validator.
 
+## Owner-approved review batch, promoted — 2026-10-03
+
+The owner's decisions on the staging review page (155 candidates: 82 approve, 48 redo, 25 reject; unchanged since 2026-09-28)
+were acted on with the owner's go on 2026-10-03. Of the 82 approved: **32 promoted** unchanged to
+[`production/full-game/`](production/full-game/approval.json) (Sebastian's rooftop, promenade and hotel frames and full-body cast
+sheet, the Glass House arrival and encounter frames, the Sloane release and evening frames, Maya's evening scenes, the Ch3–5
+inserts, the day-end frames, the two no-streak clinic fixes, and Evelynn's canon profile); **38 were already identical to assets
+in production or reference** (no action); **12 are held**: approved by eye, but outside the hard luminance limits (mean 40–85,
+at least 30% of pixels under 50): the three Sebastian portraits, the Ch3 home-return master, the Ch4 assessment and hotel
+threshold, the three Harbour entry frames, the Ch5 shopping decision, the no-streak car reflection and the second soundcheck.
+They need the owner's word or a relight. The 48 redo and 25 reject candidates are untouched; their notes are the generate list.
+
+Promotion is **not** binding: nothing in `src/` references these files yet. Each scene binding needs its own authoring review
+(see the checklist) and the opening visual gates.
+
 ## Asset roles
 
 The [apartment canon proposal](../docs/art/APARTMENT_CANON.md) inventories twelve

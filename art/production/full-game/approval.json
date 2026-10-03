@@ -1,0 +1,821 @@
+{
+  "date": "2026-10-03",
+  "reviewer": "Project owner",
+  "source": "Owner decisions on the staging review page (155 candidates, recorded 2026-09-28: 82 approve, 48 redo, 25 reject), and the owner\u2019s go to promote the approved candidates on 2026-10-03 (\"do your recommendation\"). Promoted: approved, not already in production, inside the hard luminance limits. Nothing is bound to a scene by this record: bindings are a separate, guarded step (docs/art/ART_REVIEW_CHECKLIST.md).",
+  "counts": {
+    "approved": 82,
+    "promoted": 32,
+    "alreadyInProduction": 38,
+    "heldOutsideLuminanceBand": 12
+  },
+  "assets": [
+    {
+      "assetId": "dayend-cautious-v1-production",
+      "role": "production",
+      "group": "casework",
+      "file": "art/production/full-game/casework/dayend-cautious-v1-production.png",
+      "staging": "art/staging/full-game/casework/dayend-cautious-v1-candidate.png",
+      "sha256": "55cab6338a384b67d4d852229396427a00887ce554941183c77f0a49a34fd2ff",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 47.2,
+      "pctUnder50": 65.9,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "dayend-walkaway-v1-production",
+      "role": "production",
+      "group": "casework",
+      "file": "art/production/full-game/casework/dayend-walkaway-v1-production.png",
+      "staging": "art/staging/full-game/casework/dayend-walkaway-v1-candidate.png",
+      "sha256": "efbe44b645931e49bb46ffbb07d9a0924140c3c711c10f561166cf45a9225eb2",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 59.0,
+      "pctUnder50": 51.8,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "sebastian-okoro-fullbody-v1-production",
+      "role": "production",
+      "group": "cast",
+      "file": "art/production/full-game/cast/sebastian-okoro-fullbody-v1-production.png",
+      "staging": "art/staging/full-game/cast/sebastian-okoro-fullbody-v1-candidate.png",
+      "sha256": "b9c184e2ccbddde3069c28f77550214b55cc17ab518e8edb9e6681fe468b28b7",
+      "dimensions": [
+        1536,
+        2048
+      ],
+      "meanLuminance": 65.4,
+      "pctUnder50": 63.1,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "chapter4-notice-phone-v1-production",
+      "role": "production",
+      "group": "chapter4",
+      "file": "art/production/full-game/chapter4/chapter4-notice-phone-v1-production.png",
+      "staging": "art/staging/full-game/chapter4/chapter4-notice-phone-v1-candidate.png",
+      "sha256": "fbf1d5b402fc2e2a9f6f297bedb687b7e9384ad37ef364bda775620630ad04ee",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 50.4,
+      "pctUnder50": 69.0,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "chapter5-invitation-two-options-v1-production",
+      "role": "production",
+      "group": "chapter5",
+      "file": "art/production/full-game/chapter5/chapter5-invitation-two-options-v1-production.png",
+      "staging": "art/staging/full-game/chapter5/chapter5-invitation-two-options-v1-candidate.png",
+      "sha256": "c23c8b7fdbb7d4a58951b2db74ebae9d8126c9e9cf492b1b076f7aa54115f54a",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 52.1,
+      "pctUnder50": 66.6,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "chapter5-presentation-wardrobe-v1-production",
+      "role": "production",
+      "group": "chapter5",
+      "file": "art/production/full-game/chapter5/chapter5-presentation-wardrobe-v1-production.png",
+      "staging": "art/staging/full-game/chapter5/chapter5-presentation-wardrobe-v1-candidate.png",
+      "sha256": "016e80fde195527ff4b3ce3832f7b9d06ce9c3de133e6d065c60b206fb9d4c13",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 62.4,
+      "pctUnder50": 58.5,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evelynn-identity-nojewellery-v1-a-production",
+      "role": "production",
+      "group": "chapter5",
+      "file": "art/production/full-game/chapter5/evelynn-identity-nojewellery-v1-a-production.png",
+      "staging": "art/staging/full-game/chapter5/evelynn-identity-nojewellery-v1-a-candidate.png",
+      "sha256": "a6ea6c19d988faa21a5ff9dc75a44447495767b4a070e85443c18276a6faac5e",
+      "dimensions": [
+        1536,
+        2048
+      ],
+      "meanLuminance": 65.2,
+      "pctUnder50": 47.7,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evelynn-identity-nojewellery-v1-b-production",
+      "role": "production",
+      "group": "chapter5",
+      "file": "art/production/full-game/chapter5/evelynn-identity-nojewellery-v1-b-production.png",
+      "staging": "art/staging/full-game/chapter5/evelynn-identity-nojewellery-v1-b-candidate.png",
+      "sha256": "5661dafe7ff84cee975ff0d192eb7d07135fb146a5d314613201a2cfe8e60f78",
+      "dimensions": [
+        1536,
+        2048
+      ],
+      "meanLuminance": 66.1,
+      "pctUnder50": 47.4,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "clinic-departure-v2-no-streak-production",
+      "role": "production",
+      "group": "clinic",
+      "file": "art/production/full-game/clinic/clinic-departure-v2-no-streak-production.png",
+      "staging": "art/staging/full-game/clinic/clinic-departure-v2-no-streak-candidate.png",
+      "sha256": "43b04dde3237090319f8584a8b4af5fd022ac9e92a1bb0e4dba7a1341e7245f3",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 45.4,
+      "pctUnder50": 66.4,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evelynn-canon-profile-v1-production",
+      "role": "production",
+      "group": "evelynn",
+      "file": "art/production/full-game/evelynn/evelynn-canon-profile-v1-production.png",
+      "staging": "art/staging/evelynn/evelynn-canon-profile-v1.png",
+      "sha256": "eb190c89cb14a06282bacd202360042bb3b9569674a95aa381d9d3cb1553905e",
+      "dimensions": [
+        1536,
+        2048
+      ],
+      "meanLuminance": 65.7,
+      "pctUnder50": 48.8,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evening-maya-call-v1-production",
+      "role": "production",
+      "group": "evening",
+      "file": "art/production/full-game/evening/evening-maya-call-v1-production.png",
+      "staging": "art/staging/full-game/evening/evening-maya-call-v1-candidate.png",
+      "sha256": "18e399ff5e44f1d39aec44a606f67b4ac88d5768833c30f46838b7fb5a3c87cb",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 51.4,
+      "pctUnder50": 65.0,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evening-maya-lantern-meet-v1-production",
+      "role": "production",
+      "group": "evening",
+      "file": "art/production/full-game/evening/evening-maya-lantern-meet-v1-production.png",
+      "staging": "art/staging/full-game/evening/evening-maya-lantern-meet-v1-candidate.png",
+      "sha256": "fb78e83ea94267416e572656c6e43a4966572a0b94fdcce3a694b6b16d567215",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 40.2,
+      "pctUnder50": 73.5,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evening-warning-first-base-v1-production",
+      "role": "production",
+      "group": "evening",
+      "file": "art/production/full-game/evening/evening-warning-first-base-v1-production.png",
+      "staging": "art/staging/full-game/evening/evening-warning-first-base-v1-candidate.png",
+      "sha256": "323a468b8ddd09cafd53b3f620c07e2fc46f0e5da95fd76cad7afb8f1adf00fb",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 59.0,
+      "pctUnder50": 52.9,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "glass-house-celeste-v1-production",
+      "role": "production",
+      "group": "mission",
+      "file": "art/production/full-game/mission/glass-house-celeste-v1-production.png",
+      "staging": "art/staging/full-game/mission/glass-house-celeste-v1-candidate.png",
+      "sha256": "b99384be330aa9756e46023f0a64110cf6be265eb7f94e20786055f9e295c00d",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 51.9,
+      "pctUnder50": 51.3,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "glass-house-cover-v1-production",
+      "role": "production",
+      "group": "mission",
+      "file": "art/production/full-game/mission/glass-house-cover-v1-production.png",
+      "staging": "art/staging/full-game/mission/glass-house-cover-v1-candidate.png",
+      "sha256": "fbb266984b6e0aa204fee070ed45779d968d6963450598b556cb65879a28c182",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 55.8,
+      "pctUnder50": 47.3,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "glass-house-entry-v1-production",
+      "role": "production",
+      "group": "mission",
+      "file": "art/production/full-game/mission/glass-house-entry-v1-production.png",
+      "staging": "art/staging/full-game/mission/glass-house-entry-v1-candidate.png",
+      "sha256": "5b422fdfe13aefb66e735aba21ce36d289bf6d412cee360f0d79763c086e8de0",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 49.6,
+      "pctUnder50": 56.9,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "glass-house-hub-v1-production",
+      "role": "production",
+      "group": "mission",
+      "file": "art/production/full-game/mission/glass-house-hub-v1-production.png",
+      "staging": "art/staging/full-game/mission/glass-house-hub-v1-candidate.png",
+      "sha256": "bc0fcd59ac2adceb5a09d319c3fb52c4cfcff8335aa527ee5d7b71c0bfca2989",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 48.3,
+      "pctUnder50": 59.0,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "glass-house-marcus-v1-production",
+      "role": "production",
+      "group": "mission",
+      "file": "art/production/full-game/mission/glass-house-marcus-v1-production.png",
+      "staging": "art/staging/full-game/mission/glass-house-marcus-v1-candidate.png",
+      "sha256": "8482be57673d5c972553628e8d031f9340ffd3c6ea0858b6c2c7c350b7db5bf3",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 48.1,
+      "pctUnder50": 58.9,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f2-rooftop-master-v1-a-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f2-rooftop-master-v1-a-production.png",
+      "staging": "art/staging/full-game/sebastian/f2-rooftop-master-v1-a-candidate.png",
+      "sha256": "46b2fb4b3673cd602d2e1201fce1d5e52727003e7ecf4cb3c2b53d9b180386ba",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 57.1,
+      "pctUnder50": 64.7,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f2-rooftop-master-v1-b-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f2-rooftop-master-v1-b-production.png",
+      "staging": "art/staging/full-game/sebastian/f2-rooftop-master-v1-b-candidate.png",
+      "sha256": "c09187de2475234199d4d46df81a1dbefcb3a2839e3655e187361f18cda8ad58",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 55.6,
+      "pctUnder50": 68.2,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f3-rooftop-met-v1-a-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f3-rooftop-met-v1-a-production.png",
+      "staging": "art/staging/full-game/sebastian/f3-rooftop-met-v1-a-candidate.png",
+      "sha256": "44f611e61c6c78477bfd6b5116162cae970fe815008a80d8b56303e8ca261821",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 59.1,
+      "pctUnder50": 65.7,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f3-rooftop-met-v2-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f3-rooftop-met-v2-production.png",
+      "staging": "art/staging/full-game/sebastian/f3-rooftop-met-v2-candidate.png",
+      "sha256": "1cb5294fc133686f9c77687f7267a55b6c8dee41a1c071d5100c1f1af7036c42",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 59.9,
+      "pctUnder50": 66.8,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f5-promenade-v1-a-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f5-promenade-v1-a-production.png",
+      "staging": "art/staging/full-game/sebastian/f5-promenade-v1-a-candidate.png",
+      "sha256": "a99532ef1fe955afe47793d723e2d70e2b5b0150de7ed10c14191af2fc9f4c3e",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 45.2,
+      "pctUnder50": 70.3,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f5-promenade-v1-b-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f5-promenade-v1-b-production.png",
+      "staging": "art/staging/full-game/sebastian/f5-promenade-v1-b-candidate.png",
+      "sha256": "c171f18a0bcb5ddeea39b9e68c5e8b6a483840b97e997ee8afaf59d8ef96d660",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 55.2,
+      "pctUnder50": 59.1,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f5-promenade-v2-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f5-promenade-v2-production.png",
+      "staging": "art/staging/full-game/sebastian/f5-promenade-v2-candidate.png",
+      "sha256": "1fad700089a159bf24c6ffcb2ac03e6d44610997739622133d8e873144e3d1df",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 45.3,
+      "pctUnder50": 70.3,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f6-hotel-goodnight-v1-a-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f6-hotel-goodnight-v1-a-production.png",
+      "staging": "art/staging/full-game/sebastian/f6-hotel-goodnight-v1-a-candidate.png",
+      "sha256": "8201e0a5f4c392d8f4f1e5727d6c5b93bad061d27a9da209defe5aab6710e02d",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 54.4,
+      "pctUnder50": 64.4,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f6-hotel-goodnight-v1-b-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f6-hotel-goodnight-v1-b-production.png",
+      "staging": "art/staging/full-game/sebastian/f6-hotel-goodnight-v1-b-candidate.png",
+      "sha256": "c003b229d9dd4fff2ef5281ae09e98a41286fbc994f29856ccd126c3bd74f275",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 46.8,
+      "pctUnder50": 73.4,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f7-hotel-leadin-master-v1-a-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f7-hotel-leadin-master-v1-a-production.png",
+      "staging": "art/staging/full-game/sebastian/f7-hotel-leadin-master-v1-a-candidate.png",
+      "sha256": "9fd2bab8a3ce9d0d3c7742348b99278728216ff89f9caa7e3cc971c4ae47044b",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 69.8,
+      "pctUnder50": 48.1,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "f8-hotel-aftermath-v1-b-production",
+      "role": "production",
+      "group": "sebastian",
+      "file": "art/production/full-game/sebastian/f8-hotel-aftermath-v1-b-production.png",
+      "staging": "art/staging/full-game/sebastian/f8-hotel-aftermath-v1-b-candidate.png",
+      "sha256": "2a9c44486cc84c16e1fc2389e55a9f7ea58fed95af30e1ec5b3dd908105eb4d9",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "meanLuminance": 83.4,
+      "pctUnder50": 39.1,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "evening-plan-v1-production",
+      "role": "production",
+      "group": "sloane",
+      "file": "art/production/full-game/sloane/evening-plan-v1-production.png",
+      "staging": "art/staging/full-game/sloane/evening-plan-v1-candidate.png",
+      "sha256": "e39ad3b3d20fc5bda8d56c512f7146dd8097404a3ab724b671beac7ee7cb9d3e",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 47.6,
+      "pctUnder50": 59.7,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "release-departure-v1-production",
+      "role": "production",
+      "group": "sloane",
+      "file": "art/production/full-game/sloane/release-departure-v1-production.png",
+      "staging": "art/staging/full-game/sloane/release-departure-v1-candidate.png",
+      "sha256": "80d0e33a6e9db130c2358ff812aaa6f332adbf0f2fb5ef28fb02ed15f8ed40cd",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 66.1,
+      "pctUnder50": 52.4,
+      "ownerNote": ""
+    },
+    {
+      "assetId": "release-home-v1-production",
+      "role": "production",
+      "group": "sloane",
+      "file": "art/production/full-game/sloane/release-home-v1-production.png",
+      "staging": "art/staging/full-game/sloane/release-home-v1-candidate.png",
+      "sha256": "515944b9651eca2a4b7e95fb9bb68b7f6cf87c9d939fcdf5ed98995bb032f0ca",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "meanLuminance": 62.9,
+      "pctUnder50": 49.1,
+      "ownerNote": ""
+    }
+  ],
+  "alreadyInProduction": [
+    {
+      "id": "adrian--adrian-canon-identity-v2-candidate",
+      "staging": "art/staging/adrian/adrian-canon-identity-v2-candidate.png",
+      "identicalTo": "art/reference/adrian/adrian-canon-identity-v2.png",
+      "sha256": "0809f5f17547fb2fe44aa9eaa5f014b292cbfa9d1656b10e827fd77a39612c58"
+    },
+    {
+      "id": "chapter3--chapter3-surveillance-phone-v1-candidate",
+      "staging": "art/staging/full-game/chapter3/chapter3-surveillance-phone-v1-candidate.png",
+      "identicalTo": "art/production/opening/chapter3-surveillance-phone-v1-production.png",
+      "sha256": "d2b88a9aeec95bd80760903ed0bb468d03301a654ca68cf819a91336527af7f4"
+    },
+    {
+      "id": "chapter4--chapter4-interest-closed-report-v1-candidate",
+      "staging": "art/staging/full-game/chapter4/chapter4-interest-closed-report-v1-candidate.png",
+      "identicalTo": "art/production/gap-scenes/chapter4-interest-closed-report-v1-production.png",
+      "sha256": "2ec19fdd908f387ffc8cabd53562faabd3b4fd210b6287205322ea0a3f436267"
+    },
+    {
+      "id": "chapter4--chapter4-private-time-dinner-v1-candidate",
+      "staging": "art/staging/full-game/chapter4/chapter4-private-time-dinner-v1-candidate.png",
+      "identicalTo": "art/production/gap-scenes/chapter4-private-time-dinner-v1-production.png",
+      "sha256": "1ef567ba1dd72d47829df45e0a744d76d4d28ed68e3b7de3b9f15bf57837ad9a"
+    },
+    {
+      "id": "chapter5--chapter5-echo-apartment-base-v1-component",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-apartment-base-v1-component.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-no-purchase-v1-production.png",
+      "sha256": "b88883c4dbcdf64dc4da7151d064c87e4abe57dbac4f0f9fad7555feeab56f86"
+    },
+    {
+      "id": "chapter5--chapter5-echo-blouse-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-blouse-v1-candidate.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-blouse-v1-production.png",
+      "sha256": "b58f9887c27f5dcc121a765ecf0b1004c86deccb0fcf001c4dc117faad43a9e9"
+    },
+    {
+      "id": "chapter5--chapter5-echo-boxed-phone-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-boxed-phone-v1-candidate.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-boxed-phone-v1-production.png",
+      "sha256": "4d58469b819d2c89cbf7acabfcf586fca4a0dedad4f6cd0a5d430f61a3d3098e"
+    },
+    {
+      "id": "chapter5--chapter5-echo-clasp-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-clasp-v1-candidate.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-clasp-v1-production.png",
+      "sha256": "2c8650a39d4d81e63449def2bf9a19acd48813d7afb1bb46a00f0fee43607c9e"
+    },
+    {
+      "id": "chapter5--chapter5-echo-lunch-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-lunch-v1-candidate.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-lunch-v1-production.png",
+      "sha256": "12bd77dd6f1df0fea4d75ad1a02840c764305c1f742f02a444d75887b39fadf6"
+    },
+    {
+      "id": "chapter5--chapter5-echo-no-purchase-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-echo-no-purchase-v1-candidate.png",
+      "identicalTo": "art/production/chapter5/chapter5-echo-no-purchase-v1-production.png",
+      "sha256": "b88883c4dbcdf64dc4da7151d064c87e4abe57dbac4f0f9fad7555feeab56f86"
+    },
+    {
+      "id": "clinic--clinic-authorization-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-authorization-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-authorization-v1-production.png",
+      "sha256": "d1071f1fb3723396091331c74a88f0fe41c32719a1d1b73a3f4da59cdd3063b7"
+    },
+    {
+      "id": "clinic--clinic-briefing-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-briefing-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-briefing-v1-production.png",
+      "sha256": "a5a39648b851e47ebefaff00a7283febb2c38926fe3b5f6b3ed2235fdbc0f66e"
+    },
+    {
+      "id": "clinic--clinic-face-pause-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-face-pause-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-face-pause-v1-production.png",
+      "sha256": "d2c0dc1785bb73ab4eba526612c70f542e9f3b5ceca76813e6ecb52859317663"
+    },
+    {
+      "id": "clinic--clinic-face-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-face-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-face-v1-production.png",
+      "sha256": "f6bb4289e07e5783b59ec21af53ed13f5893224c451f48b578c4756393266e94"
+    },
+    {
+      "id": "clinic--clinic-farewell-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-farewell-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-farewell-v1-production.png",
+      "sha256": "4d02dd134c015e61e10db48b0022fbeaaccb8d70354b4f8ab3101364282ab069"
+    },
+    {
+      "id": "clinic--clinic-makeup-shadow-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-makeup-shadow-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-makeup-shadow-v1-production.png",
+      "sha256": "a4fb292bdfc0b7722400897ad049da49d1a17b0028542f455ce1a96e58c3ad4e"
+    },
+    {
+      "id": "clinic--clinic-makeup-socialite-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-makeup-socialite-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-makeup-socialite-v1-production.png",
+      "sha256": "a1abfbb1d26734e431ec0328266622f09681c27953dd9d60d2220dbf65b03c7a"
+    },
+    {
+      "id": "clinic--clinic-name-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-name-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-name-v1-production.png",
+      "sha256": "f36642e088476233a306fc94ab90e00fbf4744fff7010e700b114d1df6bb9522"
+    },
+    {
+      "id": "clinic--clinic-preparation-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-preparation-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-preparation-v1-production.png",
+      "sha256": "a9b1f4a77dfb2ed7b43c50a3368a15e0f74769460545f08f20499468ecb9d003"
+    },
+    {
+      "id": "clinic--clinic-presentation-review-executive-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-presentation-review-executive-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-presentation-review-executive-v1-production.png",
+      "sha256": "28a75043e0f4e5e03a42e9d85b011a4fa6930d3218583460544061f23f0fe01b"
+    },
+    {
+      "id": "clinic--clinic-presentation-review-socialite-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-presentation-review-socialite-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-presentation-review-socialite-v1-production.png",
+      "sha256": "8973d56e28ff8a98232a1eee29445b290f3402add5b9a14c962e096dc53bdf56"
+    },
+    {
+      "id": "clinic--clinic-recovery-mirror-look-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-recovery-mirror-look-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-recovery-mirror-look-v1-production.png",
+      "sha256": "37a16fd4d4cf2333f602584892ec42d77420eb8dc0542850401182caf61e53b4"
+    },
+    {
+      "id": "clinic--clinic-recovery-mirror-unlooked-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-recovery-mirror-unlooked-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-recovery-mirror-unlooked-v1-production.png",
+      "sha256": "cd160f9f7ce65002665da34969eafa0dc0d1306b49547b2701deabb915f520dd"
+    },
+    {
+      "id": "clinic--clinic-recovery-reply-quiet-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-recovery-reply-quiet-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-recovery-reply-quiet-v1-production.png",
+      "sha256": "2613ee271d14ac9b783bf8f5ec7e2e1fa987344de9a4dc4331dcf05e016c0c7d"
+    },
+    {
+      "id": "clinic--clinic-recovery-reply-sent-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-recovery-reply-sent-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-recovery-reply-sent-v1-production.png",
+      "sha256": "59bcda2b56696f4d8ee46b50bcd7b2c345a5b8691afa02490dca16f7b1703397"
+    },
+    {
+      "id": "clinic--clinic-rehearsal-executive-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-rehearsal-executive-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-rehearsal-executive-v1-production.png",
+      "sha256": "b5aa746b2145941233d640aef347eb8d10294b6c323f9c1d453b675c54479c21"
+    },
+    {
+      "id": "clinic--clinic-rehearsal-shadow-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-rehearsal-shadow-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-rehearsal-shadow-v1-production.png",
+      "sha256": "4dae64368a7af84dca9413e362dce5a9a04f1876d13d9459c15009968def86c7"
+    },
+    {
+      "id": "clinic--clinic-rehearsal-socialite-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-rehearsal-socialite-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-rehearsal-socialite-v1-production.png",
+      "sha256": "e23fe779f15192d22094708c3daf9419162876b3f21221c1bb0195be173f176c"
+    },
+    {
+      "id": "clinic--clinic-rest-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-rest-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-rest-v1-production.png",
+      "sha256": "555a25853377c143b16230640201e86adf789f77470053b9446f53f6152f5362"
+    },
+    {
+      "id": "clinic--clinic-simulation-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-simulation-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-simulation-v1-production.png",
+      "sha256": "7679f91d7c1daa7c6ed820415dc025b9a348782e02c8288e2bc1444c947b14b0"
+    },
+    {
+      "id": "clinic--clinic-steps-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-steps-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-steps-v1-production.png",
+      "sha256": "c88585095695d3f6d9c693ecf458e344e6e414ce9e094ba92da950760433eaa9"
+    },
+    {
+      "id": "clinic--clinic-wardrobe-choice-v1-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-wardrobe-choice-v1-candidate.png",
+      "identicalTo": "art/production/opening/clinic-wardrobe-choice-v1-production.png",
+      "sha256": "497ce5951b8ca7ef9487f34f587ad9ac272fe9d98c9d20c72325303a122149f5"
+    },
+    {
+      "id": "evelynn--evelynn-canon-front-v1",
+      "staging": "art/staging/evelynn/evelynn-canon-front-v1.png",
+      "identicalTo": "art/reference/evelynn/evelynn-canon-front-v1.png",
+      "sha256": "d2a2c1944d4bbeb30a5fed40908cfcf23925d68d1956903ebcfb863798cb491b"
+    },
+    {
+      "id": "evelynn--evelynn-canon-three-quarter-v1",
+      "staging": "art/staging/evelynn/evelynn-canon-three-quarter-v1.png",
+      "identicalTo": "art/production/chapter5/apartment-components/evelynn-canon-three-quarter-v1.png",
+      "sha256": "4f1252ed22c25695bc40abb0a46ae77e6efba86567b35a2b0a5dbc39db2abf9c"
+    },
+    {
+      "id": "mission--glass-house-assessment-v1-candidate",
+      "staging": "art/staging/full-game/mission/glass-house-assessment-v1-candidate.png",
+      "identicalTo": "art/production/opening/glass-house-assessment-v1-production.png",
+      "sha256": "2b8690f5ea326f6053b4dcd95e5e9692c5874c5a5ed5d4542508d24a69233043"
+    },
+    {
+      "id": "mission--glass-house-method-v1-candidate",
+      "staging": "art/staging/full-game/mission/glass-house-method-v1-candidate.png",
+      "identicalTo": "art/production/opening/glass-house-method-v1-production.png",
+      "sha256": "4ed9eebd944956a3801fd4bf2bcbae1cfcfe7bbdb33f2f6d6ab911f63f003b87"
+    },
+    {
+      "id": "mission--glass-house-reception-v1-candidate",
+      "staging": "art/staging/full-game/mission/glass-house-reception-v1-candidate.png",
+      "identicalTo": "art/production/opening/glass-house-reception-v1-production.png",
+      "sha256": "0c2fc67d32f9649dd5e6845126e989bce694790d1009565005f90420f25722c4"
+    },
+    {
+      "id": "sloane--refusal-lobby-v1-candidate",
+      "staging": "art/staging/full-game/sloane/refusal-lobby-v1-candidate.png",
+      "identicalTo": "art/production/opening/refusal-lobby-v1-production.png",
+      "sha256": "4241bcca317443090395f8b17caf42ce74d0d9195907b4c55fc481e0fb4e0670"
+    }
+  ],
+  "heldNotPromoted": [
+    {
+      "id": "cast--sebastian-okoro-portrait-v1-a-candidate",
+      "staging": "art/staging/full-game/cast/sebastian-okoro-portrait-v1-a-candidate.png",
+      "sha256": "19b0a052f305c15a4d0795985b3e9064918fb556b2f3c1a40d1094510299d135",
+      "meanLuminance": 39.3,
+      "pctUnder50": 74.3,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "cast--sebastian-okoro-portrait-v1-b-candidate",
+      "staging": "art/staging/full-game/cast/sebastian-okoro-portrait-v1-b-candidate.png",
+      "sha256": "b660662df0f848408f15d210fac699e5bc506a1997ef08bff14f9869882fbfce",
+      "meanLuminance": 27.6,
+      "pctUnder50": 81.4,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "cast--sebastian-okoro-portrait-v1-c-candidate",
+      "staging": "art/staging/full-game/cast/sebastian-okoro-portrait-v1-c-candidate.png",
+      "sha256": "e0a009b510ef2b3329b369e3bf189c475932ecbf07e3bcbc31b6150b35f2500a",
+      "meanLuminance": 33.1,
+      "pctUnder50": 77.4,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter3--chapter3-home-return-master-v1-candidate",
+      "staging": "art/staging/full-game/chapter3/chapter3-home-return-master-v1-candidate.png",
+      "sha256": "53ee6731a5f82e4a2ead61b2255314eb7a3949b12ddb17eed62b12dec8f3be50",
+      "meanLuminance": 31.2,
+      "pctUnder50": 82.5,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter4--chapter4-assessment-three-headings-v1-candidate",
+      "staging": "art/staging/full-game/chapter4/chapter4-assessment-three-headings-v1-candidate.png",
+      "sha256": "772c2056289fb8e4048e65eca85eb13f9fb6f1c9682ed2c7ce446ebb66fd2db4",
+      "meanLuminance": 112.1,
+      "pctUnder50": 32.7,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter4--chapter4-julian-hotel-threshold-v1-candidate",
+      "staging": "art/staging/full-game/chapter4/chapter4-julian-hotel-threshold-v1-candidate.png",
+      "sha256": "a3c56e9745c52cf3cf1c850f7e541c8e0016c7bc6e312c127630536038e0877f",
+      "meanLuminance": 35.2,
+      "pctUnder50": 73.0,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter5--chapter5-harbour-preview-entry-minimal-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-harbour-preview-entry-minimal-v1-candidate.png",
+      "sha256": "71f3cf73d8114eadee0ffc15724508ad512a555da49e653729e49b2b9124e9ab",
+      "meanLuminance": 94.8,
+      "pctUnder50": 31.5,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter5--chapter5-harbour-preview-entry-professional-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-harbour-preview-entry-professional-v1-candidate.png",
+      "sha256": "1e7fc6119d0202b878cb4c7c4ecbcde7e6bc9d02d005f3f80ec7c6c56b3778f9",
+      "meanLuminance": 93.1,
+      "pctUnder50": 33.3,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter5--chapter5-harbour-preview-entry-provocative-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-harbour-preview-entry-provocative-v1-candidate.png",
+      "sha256": "85c82f02fb054db5c68e29867c9da9ed1d8d4ee6a6e23449d376e938d6feba3b",
+      "meanLuminance": 93.6,
+      "pctUnder50": 32.8,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "chapter5--chapter5-shopping-decision-v1-candidate",
+      "staging": "art/staging/full-game/chapter5/chapter5-shopping-decision-v1-candidate.png",
+      "sha256": "274e2bcea4502dca73a7fb57d033ccaf83fd3eaf27ab292be7fef5b3ab17161f",
+      "meanLuminance": 96.7,
+      "pctUnder50": 31.7,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "clinic--clinic-complete-car-reflection-v2-no-streak-candidate",
+      "staging": "art/staging/full-game/clinic/clinic-complete-car-reflection-v2-no-streak-candidate.png",
+      "sha256": "113380b1ee10d9400b3fd8600b157870aad50498a5096a217f35c14337cb7c03",
+      "meanLuminance": 34.1,
+      "pctUnder50": 73.7,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    },
+    {
+      "id": "sebastian--f1-soundcheck-v1-b-candidate",
+      "staging": "art/staging/full-game/sebastian/f1-soundcheck-v1-b-candidate.png",
+      "sha256": "7850edcf6abdfe99963827585e2eb97b92aebfcb627702a21ba617856d212149",
+      "meanLuminance": 94.3,
+      "pctUnder50": 33.8,
+      "reason": "owner approved by eye on the review page, but outside the hard luminance limits (mean 40-85, at least 30% under 50); held until the owner confirms or a relight is staged"
+    }
+  ]
+}
